@@ -42,7 +42,6 @@ app.use((req, res) => {
         </head>
         <body>
           <div id='root'></div>
-          <script src="//widget.cloudinary.com/global/all.js"></script>
           <script src="${cdn}/vendor/jquery-1.11.3.min.js"></script>
           <script>window.__INITIAL_STATE__ = ${serialize(initialState)};</script>
           <script src="${path('app.bundle.js')}"></script>
