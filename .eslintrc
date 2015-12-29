@@ -1,0 +1,8 @@
+{
+  "extends": "airbnb",
+  "globals": {
+    "$": false,
+    "FB": false,
+    "cloudinary": false,
+  }
+}
