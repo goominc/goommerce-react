@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-const HomePage = React.createClass({
+const Home = React.createClass({
   render: function render() {
     return (
       <div>HOME</div>
@@ -10,4 +10,4 @@ const HomePage = React.createClass({
 });
 
 export default connect(
-)(HomePage);
+)(Home);
