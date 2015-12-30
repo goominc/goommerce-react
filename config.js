@@ -5,6 +5,7 @@ const defaultConfig = {
   cloudfront: {
     domain: 'd1v1n6p63zq2b9.cloudfront.net',
   },
+  apiRoot: 'http://localhost:8081',
 };
 
 const environmentConfig = {

@@ -1,16 +1,13 @@
 import merge from 'lodash/object/merge';
-import config from '../config';
-if (typeof fetch === 'undefined') {
-  require('isomorphic-fetch');
-}
+import config from '../../config';
+import axios from 'axios';
 
 export default function createFetchAction(options) {
   const {
     bailout,
     body,
-    credentials,
     endpoint,
-    method = 'GET',
+    method = 'get',
     transform,
     type,
     doDispatch = true,
@@ -19,8 +16,6 @@ export default function createFetchAction(options) {
   return (dispatch, getState) => {
     const state = getState();
     const headers = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
       'Authorization': state.auth.token ? `Bearer ${state.auth.token}` : '',
     };
     function resolve(obj) {
@@ -31,30 +26,29 @@ export default function createFetchAction(options) {
 
     if (request && doDispatch) dispatch({ type, ...request });
 
-    const apiRoot = config.get('apiRoot') || '';
-    return fetch(apiRoot + resolve(endpoint), {
+    const apiRoot = config.apiRoot;
+    return axios({
+      url: resolve(endpoint),
+      baseURL: apiRoot,
       method,
       headers,
-      credentials,
-      body: JSON.stringify(body),
-    }).then(response => response.json().then(json => ({ json, response }))
-    ).then(({ json, response }) => {
-      if (!response.ok) {
-        if (doDispatch) {
-          dispatch(merge({
-            type,
-            error: json,
-          }, resolve(failure)));
-        }
-        return Promise.reject(json);
-      }
+      data: body,
+    }).then(response => {
       if (doDispatch) {
         dispatch(merge({
           type,
-          payload: transform ? transform({ json, response, state }) : json,
+          payload: transform ? transform({ response, state }) : response.data,
         }, resolve(success)));
       }
-      return Promise.resolve(json);
+      return response.data;
+    }).catch(response => {
+      if (doDispatch) {
+        dispatch(merge({
+          type,
+          error: response.data,
+        }, resolve(failure)));
+      }
+      return Promise.reject(response.data);
     });
   };
 }
