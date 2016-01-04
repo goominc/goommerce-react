@@ -17,11 +17,10 @@ function getStatus() {
 }
 
 function commit() {
-  const configPath = './config.js';
   return open()
     .then(repo => {
       const signature = nodegit.Signature.default(repo);
-      return repo.createCommitOnHead([configPath], signature, signature, 'deploy');
+      return repo.createCommitOnHead(['config.js'], signature, signature, 'deploy');
     });
 }
 
