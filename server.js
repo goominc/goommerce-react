@@ -2,7 +2,11 @@ require('babel-core/register');
 
 const config = require('./config');
 
-const app = require('./server/app');
+const app = new (require('express'))();
+
+app.use(require('./middleware')({
+  hot: app.get('env') === 'development',
+}));
 
 app.listen(config.port, (error) => {
   if (error) {
