@@ -2,6 +2,7 @@ const config = require('./config');
 const serialize = require('serialize-javascript');
 
 module.exports = (opts) => {
+  opts = opts || {}; // eslint-disable-line no-param-reassign
   const hot = opts.hot;
   const middlewares = [];
   if (hot) {
