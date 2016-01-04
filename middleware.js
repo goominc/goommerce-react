@@ -1,7 +1,8 @@
 const config = require('./config');
 const serialize = require('serialize-javascript');
 
-module.exports = ({ hot }) => {
+module.exports = (opts) => {
+  const hot = opts.hot;
   const middlewares = [];
   if (hot) {
     const webpack = require('webpack');

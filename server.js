@@ -1,5 +1,3 @@
-require('babel-core/register');
-
 const config = require('./config');
 
 const app = new (require('express'))();
