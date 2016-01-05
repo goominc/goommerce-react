@@ -16,7 +16,7 @@ export default function createFetchAction(options) {
   return (dispatch, getState) => {
     const state = getState();
     const headers = {
-      'Authorization': state.auth.token ? `Bearer ${state.auth.token}` : '',
+      'Authorization': state.auth.bearer ? `Bearer ${state.auth.bearer}` : '',
     };
     function resolve(obj) {
       return typeof obj === 'function' ? obj(state) : obj;
