@@ -5,3 +5,9 @@ export const user = new Schema('users', {
 });
 
 export const users = arrayOf(user);
+
+export const product = new Schema('products', {
+  idAttribute: 'id',
+});
+
+export const products = arrayOf(product);
