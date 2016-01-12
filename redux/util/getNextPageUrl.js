@@ -1,4 +1,4 @@
-export function getNextPageUrl(response) {
+export default function getNextPageUrl(response) {
   const link = response.headers.get('link');
   if (!link) {
     return null;

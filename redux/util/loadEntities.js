@@ -1,6 +1,6 @@
 import { get, pick } from 'lodash/object';
 
-export function loadEntities(state, key, model) {
+export default function loadEntities(state, key, model) {
   const pagination = get(state.pagination, key, {});
   const ids = pagination.ids || [];
   const entities = ids.map(id => state.entities[model][id]);

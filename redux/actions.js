@@ -35,3 +35,11 @@ export function loadProducts() {
     },
   });
 }
+
+export function loadProduct(id) {
+  return createFetchAction({
+    type: 'LOAD_PRODUCT',
+    endpoint: `/api/v1/products/${id}`,
+    transform: ({ response }) => normalize(response.data, schemas.product),
+  });
+}

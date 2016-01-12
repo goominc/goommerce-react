@@ -2,19 +2,9 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { loadProducts } from '../redux/actions';
-import { loadEntities } from '../redux/util/loadEntities';
+import loadEntities from '../redux/util/loadEntities';
 
-const Product = React.createClass({
-  propTypes: {
-    product: PropTypes.object.isRequired,
-  },
-  render: function render() {
-    const { data } = this.props.product;
-    return (
-      <div>{data.ko}</div>
-    );
-  },
-});
+import ProductThumbnail from '../components/ProductThumbnail';
 
 const Home = React.createClass({
   propTypes: {
@@ -28,7 +18,7 @@ const Home = React.createClass({
     const { products = [] } = this.props;
     return (
       <div>
-        {products.map(product => <Product key={product.id} product={product}/>)}
+        {products.map(product => <ProductThumbnail key={product.id} product={product}/>)}
       </div>
     );
   },

@@ -5,6 +5,7 @@ import {
   Home,
   Signin,
   Signup,
+  ProductDetail,
 } from './containers';
 
 export default function configure({ getAuth }) {
@@ -14,6 +15,7 @@ export default function configure({ getAuth }) {
         <Route path="/" component={Home}/>
         <Route path="/accounts/signin" component={Signin}/>
         <Route path="/accounts/signup" component={Signup}/>
+        <Route path="/products/:productId" component={ProductDetail}/>
       </Route>
     </Route>
   );
