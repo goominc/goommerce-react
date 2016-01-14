@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
+import { History } from 'react-router';
 
 import { signup } from '../redux/actions';
 
@@ -8,7 +9,7 @@ const Signup = React.createClass({
   propTypes: {
     signup: PropTypes.func.isRequired,
   },
-  mixins: [LinkedStateMixin],
+  mixins: [LinkedStateMixin, History],
   getInitialState() {
     return {};
   },
@@ -19,7 +20,10 @@ const Signup = React.createClass({
       email,
       password,
       data: this.state,
-    });
+    }).then(
+      () => this.history(null, '/'),
+      err => alert(err.message)
+    );
   },
   render: function render() {
     return (
