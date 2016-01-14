@@ -5,7 +5,7 @@ const defaultConfig = {
     domain: 'd1v1n6p63zq2b9.cloudfront.net',
   },
   bundle: {
-    version: '9a6e9d8b0e53194826623a7ed39b2caeb5456cb0',
+    version: '76f71c6c75267516e22e580cbb7e1b9e0c2c3b11',
   },
   apiRoot: 'http://localhost:8080',
 };
