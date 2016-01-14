@@ -15,7 +15,7 @@ const ProductDetail = React.createClass({
   render() {
     const { product } = this.props;
     return (
-      <div>
+      <div className="row">
         <img src="//res.cloudinary.com/seokgyo/image/upload/v1452739897/test_c9fs0n.jpg"/>
         <div>
           {product && product.data.ko}

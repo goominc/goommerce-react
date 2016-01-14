@@ -43,3 +43,11 @@ export function loadProduct(id) {
     transform: ({ response }) => normalize(response.data, schemas.product),
   });
 }
+
+export function inicis() {
+  return createFetchAction({
+    type: 'INICIS',
+    endpoint: `/api/inicis`,
+    doDispatch: false,
+  });
+}

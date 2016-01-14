@@ -2,6 +2,7 @@ import React from 'react';
 import { Route } from 'react-router';
 import {
   App,
+  Checkout,
   Home,
   Signin,
   Signup,
@@ -16,6 +17,7 @@ export default function configure({ getAuth }) {
         <Route path="/accounts/signin" component={Signin}/>
         <Route path="/accounts/signup" component={Signup}/>
         <Route path="/products/:productId" component={ProductDetail}/>
+        <Route path="/checkout" component={Checkout}/>
       </Route>
     </Route>
   );
