@@ -7,7 +7,6 @@ const defaultConfig = {
   bundle: {
     version: '76f71c6c75267516e22e580cbb7e1b9e0c2c3b11',
   },
-  apiRoot: 'http://localhost:8080',
 };
 
 const environmentConfig = {

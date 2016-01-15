@@ -34,6 +34,7 @@ const Checkout = React.createClass({
       this.refs.price.value = res.price;
       this.refs.timestamp.value = res.timestamp;
       this.refs.signature.value = res.signature;
+      this.refs.returnUrl.value = res.returnUrl;
       this.refs.mKey.value = res.mKey;
     })
     INIStdPay.pay('checkout');
@@ -72,7 +73,7 @@ const Checkout = React.createClass({
           <input type="hidden" name="buyermail" value=""/>
           <input type="hidden" name="timestamp" ref="timestamp"/>
           <input type="hidden" name="signature" ref="signature"/>
-          <input type="hidden" name="returnUrl" value="http://localhost:3000/inicis"/>
+          <input type="hidden" name="returnUrl" ref="returnUrl"/>
           <input type="hidden" name="mKey" ref="mKey"/>
           <button type="button" className="btn btn-default" onClick={this.checkout}>
             CHECKOUT
