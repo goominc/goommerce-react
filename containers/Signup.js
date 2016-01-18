@@ -19,7 +19,6 @@ const Signup = React.createClass({
     this.props.signup({
       email,
       password,
-      data: this.state,
     }).then(
       () => this.history(null, '/'),
       err => alert(err.message)
@@ -47,14 +46,6 @@ const Signup = React.createClass({
           placeholder="Password"
           required
           valueLink={this.linkState('password')}
-        />
-        <label htmlFor="inputTel" className="sr-only">Tel</label>
-        <input
-          id="inputTel"
-          className="form-control"
-          placeholder="Tel"
-          required
-          valueLink={this.linkState('tel')}
         />
         <button className="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
       </form>
