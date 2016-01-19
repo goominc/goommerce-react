@@ -29,7 +29,7 @@ export function loadProducts() {
   return createFetchAction({
     type: 'LOAD_PRODUCTS',
     endpoint: '/api/v1/products',
-    transform: ({ response }) => normalize(response.data, schemas.products),
+    transform: ({ response }) => normalize(response.data.products, schemas.products),
     success: {
       pagination: { key: 'products', type: 'REFRESH' },
     },

@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
+import { getProductMainImage } from '../util';
 import { loadProduct } from '../redux/actions';
 
 const ProductDetail = React.createClass({
@@ -14,11 +15,12 @@ const ProductDetail = React.createClass({
   },
   render() {
     const { product } = this.props;
+    const mainImage = getProductMainImage(product) || {};
     return (
       <div className="row">
-        <img src="//res.cloudinary.com/seokgyo/image/upload/v1452739897/test_c9fs0n.jpg"/>
+        <img src={mainImage.url}/>
         <div>
-          {product && product.data.ko}
+          {product && product.name.ko}
         </div>
       </div>
     );

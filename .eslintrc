@@ -4,5 +4,6 @@
     "$": false,
     "FB": false,
     "cloudinary": false,
+    "INIStdPay": false,
   }
 }

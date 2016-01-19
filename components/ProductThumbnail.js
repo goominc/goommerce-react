@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import { getProductThumbnail } from '../util';
 
 export default React.createClass({
   propTypes: {
@@ -7,14 +8,15 @@ export default React.createClass({
   },
   render() {
     const { product } = this.props;
+    const thumbnail = getProductThumbnail(product) || {};
     return (
       <div className="col-xs-6 col-md-3">
         <Link to={`/products/${product.id}`}>
           <div className="thumbnail">
-            <img src="//res.cloudinary.com/seokgyo/image/upload/v1452739897/test_c9fs0n.jpg"/>
+            <img src={thumbnail.url}/>
           </div>
           <div className="caption">
-            {product.data.ko}
+            {product.name.ko}
           </div>
         </Link>
       </div>

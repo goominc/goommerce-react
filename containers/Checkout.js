@@ -36,7 +36,7 @@ const Checkout = React.createClass({
       this.refs.signature.value = res.signature;
       this.refs.returnUrl.value = res.returnUrl;
       this.refs.mKey.value = res.mKey;
-    })
+    });
     INIStdPay.pay('checkout');
   },
   render() {
