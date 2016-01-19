@@ -20,7 +20,7 @@ const ProductDetail = React.createClass({
       <div className="row">
         <img src={mainImage.url}/>
         <div>
-          {product && product.name.ko}
+          {product && product.sku}
         </div>
       </div>
     );

@@ -16,7 +16,7 @@ export default React.createClass({
             <img src={thumbnail.url}/>
           </div>
           <div className="caption">
-            {product.name.ko}
+            {product.sku}
           </div>
         </Link>
       </div>
