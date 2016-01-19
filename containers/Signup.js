@@ -20,7 +20,7 @@ const Signup = React.createClass({
       email,
       password,
     }).then(
-      () => this.history(null, '/'),
+      () => this.history.pushState(null, '/'),
       err => alert(err.message)
     );
   },
