@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { isEqual } from 'lodash';
 
 import { searchProducts } from '../redux/actions';
 import ProductThumbnail from '../components/ProductThumbnail';
@@ -13,7 +14,15 @@ const Search = React.createClass({
     return {};
   },
   componentDidMount() {
-    this.props.searchProducts(this.props.query).then(res => this.setState({
+    this.doSearch(this.props);
+  },
+  componentWillReceiveProps(nextProps) {
+    if (!isEqual(this.props.query, nextProps.query)) {
+      this.doSearch(nextProps);
+    }
+  },
+  doSearch(props) {
+    props.searchProducts(props.query).then(res => this.setState({
       products: res.products,
     }));
   },
