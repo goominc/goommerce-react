@@ -44,6 +44,15 @@ export function loadProduct(id) {
   });
 }
 
+export function searchProducts(query) {
+  return createFetchAction({
+    type: 'SEARCH_PRODUCTS',
+    endpoint: '/api/v1/products/search',
+    params: query,
+    doDispatch: false,
+  });
+}
+
 export function inicis() {
   return createFetchAction({
     type: 'INICIS',

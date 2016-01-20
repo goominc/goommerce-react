@@ -8,6 +8,7 @@ export default function createFetchAction(options) {
     body,
     endpoint,
     method = 'get',
+    params,
     transform,
     type,
     doDispatch = true,
@@ -32,6 +33,7 @@ export default function createFetchAction(options) {
       baseURL: apiRoot,
       method,
       headers,
+      params,
       data: body,
     }).then(response => {
       if (doDispatch) {

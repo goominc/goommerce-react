@@ -1,11 +1,24 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import { History } from 'react-router';
+import LinkedStateMixin from 'react-addons-linked-state-mixin';
 
 const App = React.createClass({
   propTypes: {
     children: PropTypes.node,
     auth: PropTypes.object,
+  },
+  mixins: [LinkedStateMixin, History],
+  getInitialState() {
+    return {};
+  },
+  handleSearch(e) {
+    e.preventDefault();
+    const { query } = this.state;
+    if (query) {
+      this.history.pushState(null, `/search?q=${query}`);
+    }
   },
   renderProfile() {
     const { auth } = this.props;
@@ -33,6 +46,18 @@ const App = React.createClass({
               <Link className="navbar-brand" to="/">GOOMMERCE</Link>
             </div>
             <div className="collapse navbar-collapse">
+              <form className="navbar-form navbar-left" role="search" onSubmit={this.handleSearch}>
+                <div className="form-group">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Search"
+                    required
+                    valueLink={this.linkState('query')}
+                  />
+                </div>
+                <button type="submit" className="btn btn-default">Submit</button>
+              </form>
               {this.renderProfile()}
             </div>
           </div>

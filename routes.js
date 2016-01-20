@@ -4,6 +4,7 @@ import {
   App,
   Checkout,
   Home,
+  Search,
   Signin,
   Signup,
   ProductDetail,
@@ -18,6 +19,7 @@ export default function configure({ getAuth }) {
         <Route path="/accounts/signup" component={Signup}/>
         <Route path="/products/:productId" component={ProductDetail}/>
         <Route path="/checkout" component={Checkout}/>
+        <Route path="/search" component={Search}/>
       </Route>
     </Route>
   );
