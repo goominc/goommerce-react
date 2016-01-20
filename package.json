@@ -44,13 +44,13 @@
     "css-loader": "^0.23.1",
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "^2.1.1",
-    "eslint-plugin-react": "^3.13.1",
+    "eslint-plugin-react": "^3.15.0",
     "extract-text-webpack-plugin": "^0.9.1",
     "nodegit": "^0.8.0",
     "react-transform-hmr": "^1.0.1",
     "s3": "^4.4.0",
     "style-loader": "^0.13.0",
-    "webpack": "^1.12.9",
+    "webpack": "^1.12.11",
     "webpack-dev-middleware": "^1.4.0",
     "webpack-hot-middleware": "^2.6.0"
   }
