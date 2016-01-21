@@ -25,6 +25,26 @@ export function signup(params) {
   });
 }
 
+export function forgotPassword({ email, resetBaseUrl }) {
+  return createFetchAction({
+    type: 'FORGOT_PASSWORD',
+    endpoint: '/api/v1/forgot',
+    method: 'post',
+    body: { email, resetBaseUrl },
+    doDispatch: false,
+  });
+}
+
+export function resetPassword({ access_token, password }) {
+  return createFetchAction({
+    type: 'RESET_PASSWORD',
+    endpoint: '/api/v1/reset',
+    method: 'put',
+    body: { access_token, password },
+    transform: ({ response }) => ({ auth: response.data }),
+  });
+}
+
 export function loadProducts() {
   return createFetchAction({
     type: 'LOAD_PRODUCTS',

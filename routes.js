@@ -3,7 +3,9 @@ import { Route } from 'react-router';
 import {
   App,
   Checkout,
+  ForgotPassword,
   Home,
+  ResetPassword,
   Search,
   Signin,
   Signup,
@@ -17,6 +19,8 @@ export default function configure({ getAuth }) {
         <Route path="/" component={Home}/>
         <Route path="/accounts/signin" component={Signin}/>
         <Route path="/accounts/signup" component={Signup}/>
+        <Route path="/accounts/forgot" component={ForgotPassword}/>
+        <Route path="/accounts/reset" component={ResetPassword}/>
         <Route path="/products/:productId" component={ProductDetail}/>
         <Route path="/checkout" component={Checkout}/>
         <Route path="/search" component={Search}/>
