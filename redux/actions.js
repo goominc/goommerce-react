@@ -76,7 +76,17 @@ export function searchProducts(query) {
 export function inicis() {
   return createFetchAction({
     type: 'INICIS',
-    endpoint: `/api/inicis`,
+    endpoint: '/api/inicis',
+    doDispatch: false,
+  });
+}
+
+export function addToCart(productVariantId) {
+  return createFetchAction({
+    type: 'ADD_TO_CART',
+    endpoint: '/api/v1/carts/product_variants',
+    method: 'post',
+    body: { productVariantId },
     doDispatch: false,
   });
 }
