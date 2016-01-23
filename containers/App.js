@@ -26,6 +26,7 @@ const App = React.createClass({
       return (
         <ul className="nav navbar-nav navbar-right">
           <li><Link to="/">{auth.email}</Link></li>
+          <li><Link to="/cart">CART</Link></li>
         </ul>
       );
     }

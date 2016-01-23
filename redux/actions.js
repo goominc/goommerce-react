@@ -81,6 +81,13 @@ export function inicis() {
   });
 }
 
+export function loadCart() {
+  return createFetchAction({
+    type: 'LOAD_CART',
+    endpoint: '/api/v1/carts',
+  });
+}
+
 export function addToCart(productVariantId) {
   return createFetchAction({
     type: 'UPDATE_CART',
