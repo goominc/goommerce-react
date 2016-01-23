@@ -83,10 +83,9 @@ export function inicis() {
 
 export function addToCart(productVariantId) {
   return createFetchAction({
-    type: 'ADD_TO_CART',
+    type: 'UPDATE_CART',
     endpoint: '/api/v1/carts/product_variants',
     method: 'post',
     body: { productVariantId },
-    doDispatch: false,
   });
 }

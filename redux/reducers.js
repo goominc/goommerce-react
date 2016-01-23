@@ -11,6 +11,13 @@ function auth(state = {}, action) {
   return state;
 }
 
+function cart(state = {}, action) {
+  if (action.type === 'UPDATE_CART' || action.type === 'GET_CART') {
+    return merge({}, state, action.payload);
+  }
+  return state;
+}
+
 // Updates an entity cache in payload to any action with payload.entities.
 function entities(state = { users: {}, products: {}, shortens: {} }, action) {
   const nextState = assign({}, state);
@@ -57,6 +64,7 @@ function pagination(state = {}, action) {
 
 const rootReducer = combineReducers({
   auth,
+  cart,
   entities,
   pagination,
 });
