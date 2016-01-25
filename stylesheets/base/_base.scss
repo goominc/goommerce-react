@@ -31,3 +31,15 @@ a {
     text-decoration: underline;
   }
 }
+
+.breadcrumb {
+  /**
+   * TODO remove Bootstrap
+   */
+  padding: 0;
+  margin-bottom: 10px;
+  background-color: transparent;
+  span {
+    font-size: 16px;
+  }
+}
