@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { History } from 'react-router';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
+import AppHeader from '../components/AppHeader';
+
+require('../stylesheets/main.scss');
 
 const App = React.createClass({
   propTypes: {
@@ -41,28 +44,7 @@ const App = React.createClass({
     const { children } = this.props;
     return (
       <div className="main container">
-        <nav className="navbar navbar-default navbar-fixed-top">
-          <div className="container-fluid">
-            <div className="navbar-header">
-              <Link className="navbar-brand" to="/">GOOMMERCE</Link>
-            </div>
-            <div className="collapse navbar-collapse">
-              <form className="navbar-form navbar-left" role="search" onSubmit={this.handleSearch}>
-                <div className="form-group">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search"
-                    required
-                    valueLink={this.linkState('query')}
-                  />
-                </div>
-                <button type="submit" className="btn btn-default">Submit</button>
-              </form>
-              {this.renderProfile()}
-            </div>
-          </div>
-        </nav>
+        <AppHeader />
         {children}
       </div>
     );

@@ -1,0 +1,127 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of the site/application.
+// -----------------------------------------------------------------------------
+$header-height: 40px;
+$header-margin: 10px;
+.header {
+  height: $header-height + $header-margin * 2;
+  line-height: $header-height + $header-margin * 2;
+  vertical-align: middle;
+  border-bottom: 1px solid #e8e8e8;
+  margin-bottom: $header-margin;
+}
+.header-wrap {
+  margin-top: $header-margin;
+  height: $header-height;
+  line-height: $header-height;
+  vertical-align: middle;
+  position: relative;
+}
+.header-logo {
+  padding: 0 15px;
+  height: $header-height;
+  font-size: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-right: 30px;
+}
+.header-search-box {
+  display: inline-block;
+  position: relative;
+  height: $header-height;
+  vertical-align: middle;
+  input {
+    border: 1px solid #cbcbcb;
+    min-width: 500px;
+    padding: 0 15px;
+    height: $header-height;
+    display: inline-block;
+    font-size: 16px;
+  }
+  .header-search-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: block;
+    height: $header-height;
+  }
+
+  .header-search-button {
+    z-index: 5;
+    width: 50px;
+    display: inline-block;
+    height: $header-height;
+    background: #e62e04 url("http://i.alicdn.com/ae-header/20151124174454/buyer/common/img/header-sprite.png") no-repeat -587px 8px;
+    border: 0;
+  }
+}
+
+$mymenu-margin: 20px;
+
+.header-mymenu-wrap {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+.header-mymenu-cart {
+  cursor: pointer;
+  color: rgb(51, 51, 51);
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  z-index: 3;
+  border: 0px none rgb(51, 51, 51);
+  font: normal normal normal normal 13px / 16.9px 'Open Sans', Arial, Helvetica, sans-senif, SimSun, 宋体;
+  vertical-align: middle;
+
+  .cart-icon {
+    display: inline-block;
+    margin-right: $mymenu-margin / 2;
+    width: 28px;
+    height: 28px;
+    overflow: hidden;
+    background: url("http://i.alicdn.com/ae-header/20151124174454/buyer/common/img/header-sprite.png") no-repeat scroll -100px -50px / auto padding-box border-box;
+  }
+  span {
+    vertical-align: middle;
+  }
+  &:hover {
+    .cart-icon {
+      background-position: -100px 0;
+    }
+  }
+}
+
+.header-mymenu-account {
+  display: inline-block;
+  font: normal normal normal normal 13px / 16.9px 'Open Sans', Arial, Helvetica, sans-senif, SimSun, 宋体;
+  margin-left: $mymenu-margin;
+  vertical-align: middle;
+  .account-icon {
+    display: inline-block;
+    margin-right: $mymenu-margin / 2;
+    width: 28px;
+    height: 28px;
+    overflow: hidden;
+    background: rgb(255, 255, 255) url("http://i.alicdn.com/ae-header/20151124174454/buyer/common/img/header-sprite.png") no-repeat scroll -50px -50px / auto padding-box border-box;
+  }
+  .account-menus-wrap {
+    display: inline-block;
+    .ua-line {
+      margin: 0 5px;
+      color: #e9e9e9;
+    }
+    .my-linkshops {
+      display: block;
+    }
+  }
+  &:hover {
+    .account-icon {
+      background-position: -50px 0;
+    }
+  }
+}
