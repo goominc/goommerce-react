@@ -1,7 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { History } from 'react-router';
 
 const Header = React.createClass({
+  mixins: [History],
+  handleSearch() {
+    const query = this.refs.searchQuery.value;
+    if (query) {
+      this.history.pushState(null, `/search?q=${query}`);
+    }
+  },
   renderAccount() {
     const { auth } = this.props;
     if (auth.bearer) {
@@ -33,9 +41,9 @@ const Header = React.createClass({
             <div className="header-logo">LINKSHOPS</div>
           </a>
           <div className="header-search-box">
-            <input placeholder="I'm shopping for..." />
+            <input ref="searchQuery" placeholder="I'm shopping for..." />
             <div className="header-search-right">
-              <button className="header-search-button">
+              <button className="header-search-button" onClick={this.handleSearch}>
               </button>
             </div>
           </div>
