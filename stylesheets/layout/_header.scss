@@ -32,18 +32,65 @@ $header-margin: 10px;
   vertical-align: middle;
   input {
     border: 1px solid #cbcbcb;
+    vertical-align: top;
+    border-right: 0;
     min-width: 500px;
+    max-width: 500px; // TODO responsive
     padding: 0 15px;
     height: $header-height;
     display: inline-block;
     font-size: 16px;
   }
-  .header-search-right {
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: block;
+  .header-search-category-box {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    border-top: 1px solid #cbcbcb;
+    border-bottom: 1px solid #cbcbcb;
     height: $header-height;
+    width: 140px;
+    font-size: 100%;
+    cursor: pointer;
+    $divider-margin-top: 15%;
+    .search-divider {
+      position: absolute;
+      top: $divider-margin-top;
+      height: 100% - $divider-margin-top * 2;
+      left: 0;
+      width: 1px;
+      background-color: #eee;
+    }
+    .arrow-down {
+      @include simple-arrow-down(5px, #ddd);
+      position: absolute;
+      top: 50%;
+      right: 10px;
+    }
+    .search-dropdown-box {
+      z-index: 5;
+      position: absolute;
+      width: 100%;
+      display: block;
+      height: auto;
+      top: 100%;
+      margin-top: 1px;
+      left: 0;
+      border-left: 1px solid #cbcbcb;
+      border-right: 1px solid #cbcbcb;
+    }
+    $dropbox-height: 40px;
+    .search-dropdown-item {
+      display: none;
+      position: relative;
+      border-bottom: 1px solid #cbcbcb;
+      width: 100%;
+      height: $dropbox-height;
+      line-height: $dropbox-height;
+      text-align: center;
+      cursor: pointer;
+      background-color: #ffffff;
+    }
   }
 
   .header-search-button {

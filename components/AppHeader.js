@@ -42,10 +42,16 @@ const Header = React.createClass({
           </a>
           <div className="header-search-box">
             <input ref="searchQuery" placeholder="I'm shopping for..." />
-            <div className="header-search-right">
-              <button className="header-search-button" onClick={this.handleSearch}>
-              </button>
+            <div className="header-search-category-box">
+              <div className="search-divider"></div>
+              <div className="arrow-down"></div>
+              All Categories
+              <div className="search-dropdown-box">
+                <div className="search-dropdown-item">C1</div>
+              </div>
             </div>
+            <button className="header-search-button" onClick={this.handleSearch}>
+            </button>
           </div>
           <div className="header-mymenu-wrap">
             <a href="/cart">
