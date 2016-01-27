@@ -26,7 +26,7 @@ export default function configure({ getAuth }) {
         <Route path="/products" component={ProductList}/>
         <Route path="/products/:productId" component={ProductDetail}/>
         <Route path="/cart" component={Cart}/>
-        <Route path="/checkout" component={Checkout}/>
+        <Route path="/orders/:orderId/checkout" component={Checkout}/>
         <Route path="/search" component={Search}/>
       </Route>
     </Route>

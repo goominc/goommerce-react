@@ -19,7 +19,7 @@ function cart(state = {}, action) {
 }
 
 // Updates an entity cache in payload to any action with payload.entities.
-function entities(state = { users: {}, products: {}, shortens: {} }, action) {
+function entities(state = { users: {}, products: {}, orders: {} }, action) {
   const nextState = assign({}, state);
   forEach(get(action, 'payload.entities'), (val, key) => {
     if (get(action, 'meta.entities.update')) {

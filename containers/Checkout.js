@@ -1,19 +1,24 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-
 import { ReactScriptLoaderMixin } from 'react-script-loader';
 
-import { inicis } from '../redux/actions';
+import { inipay, loadOrder } from '../redux/actions';
 
 const Checkout = React.createClass({
   propTypes: {
-    inicis: PropTypes.func.isRequired,
+    orderId: PropTypes.string.isRequired,
+    order: PropTypes.object,
+    inipay: PropTypes.func.isRequired,
+    loadOrder: PropTypes.func.isRequired,
   },
   mixins: [ReactScriptLoaderMixin],
   getInitialState() {
     return {
       scriptLoaded: false,
     };
+  },
+  componentDidMount() {
+    this.props.loadOrder(this.props.orderId);
   },
   onScriptError() {
     // Show the user an error message.
@@ -28,7 +33,8 @@ const Checkout = React.createClass({
     return 'https://stgstdpay.inicis.com/stdjs/INIStdPay.js';
   },
   checkout() {
-    this.props.inicis().then(res => {
+    const { orderId } = this.props;
+    this.props.inipay(orderId).then(res => {
       this.refs.mid.value = res.mid;
       this.refs.oid.value = res.oid;
       this.refs.price.value = res.price;
@@ -36,12 +42,20 @@ const Checkout = React.createClass({
       this.refs.signature.value = res.signature;
       this.refs.returnUrl.value = res.returnUrl;
       this.refs.mKey.value = res.mKey;
+      INIStdPay.pay('checkout');
     });
-    INIStdPay.pay('checkout');
   },
   render() {
+    const { order } = this.props;
+    if (!order) {
+      return (
+        <div></div>
+      );
+    }
+
     return (
       <div className="row">
+        <div>KRW {order.total.KRW}</div>
         <form id="checkout" method="POST">
           <select name="gopaymethod">
 						<option value="">[ 결제방법 선택 ]</option>
@@ -85,6 +99,9 @@ const Checkout = React.createClass({
 });
 
 export default connect(
-  undefined,
-  { inicis }
+  (state, ownProps) => ({
+    orderId: ownProps.params.orderId,
+    order: state.entities.orders[ownProps.params.orderId],
+  }),
+  { inipay, loadOrder }
 )(Checkout);

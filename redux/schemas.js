@@ -5,3 +5,6 @@ export const users = arrayOf(user);
 
 export const product = new Schema('products');
 export const products = arrayOf(product);
+
+export const order = new Schema('orders');
+export const orders = arrayOf(order);

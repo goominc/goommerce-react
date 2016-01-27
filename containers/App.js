@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
-import { History } from 'react-router';
+import { History, Link } from 'react-router';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
 import AppHeader from '../components/AppHeader';
 

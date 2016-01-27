@@ -73,10 +73,10 @@ export function searchProducts(query) {
   });
 }
 
-export function inicis() {
+export function inipay(orderId) {
   return createFetchAction({
-    type: 'INICIS',
-    endpoint: '/api/inicis',
+    type: 'INIPAY',
+    endpoint: `/api/v1/orders/${orderId}/inipay`,
     doDispatch: false,
   });
 }
@@ -94,5 +94,23 @@ export function addToCart(productVariantId) {
     endpoint: '/api/v1/carts/product_variants',
     method: 'post',
     body: { productVariantId },
+  });
+}
+
+export function createOrder({ productVariants }) {
+  return createFetchAction({
+    type: 'CREATE_ORDER',
+    endpoint: '/api/v1/orders',
+    method: 'post',
+    body: { productVariants },
+    transform: ({ response }) => normalize(response.data, schemas.order),
+  });
+}
+
+export function loadOrder(id) {
+  return createFetchAction({
+    type: 'LOAD_ORDER',
+    endpoint: `/api/v1/orders/${id}`,
+    transform: ({ response }) => normalize(response.data, schemas.order),
   });
 }
