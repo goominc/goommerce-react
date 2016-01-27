@@ -57,6 +57,7 @@ const Header = React.createClass({
             <a href="/cart">
               <div className="header-mymenu-cart">
                 <div className="cart-icon"></div>
+                <span className="cart-count">0</span>
                 <span>Cart</span>
               </div>
             </a>
