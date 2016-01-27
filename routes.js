@@ -10,6 +10,7 @@ import {
   Search,
   Signin,
   Signup,
+  ProductList,
   ProductDetail,
 } from './containers';
 
@@ -22,6 +23,7 @@ export default function configure({ getAuth }) {
         <Route path="/accounts/signup" component={Signup}/>
         <Route path="/accounts/forgot" component={ForgotPassword}/>
         <Route path="/accounts/reset" component={ResetPassword}/>
+        <Route path="/products" component={ProductList}/>
         <Route path="/products/:productId" component={ProductDetail}/>
         <Route path="/cart" component={Cart}/>
         <Route path="/checkout" component={Checkout}/>

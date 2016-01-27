@@ -1,0 +1,56 @@
+/**
+ * TODO media query for responsive
+ */
+$product-list-margin: 20px;
+.product-list-right-box {
+  width: 950px;
+  margin-left: $product-list-margin;
+  display: inline-block;
+  vertical-align: top;
+}
+
+// TODO
+.product-list-search-box {
+  width: 100%;
+  height: 150px;
+  background-color: #eee;
+}
+
+$product-in-row: 3;
+.product-list-item-wrap {
+  width: 100% / $product-in-row;
+  vertical-align: top;
+  text-align: center;
+  display: inline-block;
+  margin-top: $product-list-margin;
+  overflow-y: visible;
+  height: 350px;
+}
+.product-list-first-item {
+  margin-top: 0;
+}
+.product-list-item-box {
+  padding: 30px 20px 15px 20px;
+  width: 260px;
+  display: inline-block;
+  position: relative;
+  .product-title {
+    height: 32px;
+    overflow: hidden;
+  }
+  .product-price {
+    margin-top: $product-list-margin;
+    color: #f60;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  &:hover {
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 4px rgba(0,0,0,.13);
+    z-index: 20;
+    .product-title {
+      height: auto;
+    }
+  }
+}
+

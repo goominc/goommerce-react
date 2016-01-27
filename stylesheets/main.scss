@@ -24,11 +24,13 @@
 
 // 5. Components
 @import
-  'components/buttons';
+  'components/buttons',
+  'components/product_list_left';
 
 // 6. Page-specific styles
 @import
-  'pages/home';
+  'pages/home',
+  'pages/product_list';
 
 // 7. Themes
 @import
