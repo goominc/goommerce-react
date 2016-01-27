@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { History } from 'react-router';
 
@@ -24,9 +25,9 @@ const Header = React.createClass({
     }
     return (
       <div className="account-menus-wrap">
-        <a href="/accounts/signin"><span>Sign In</span></a>
+        <Link to="/accounts/signin"><span>Sign In</span></Link>
         <span className="ua-line">|</span>
-        <a href="/accounts/signup"><span>Join</span></a>
+        <Link to="/accounts/signup"><span>Join</span></Link>
         <div className="my-linkshops">
           <span>My Linkshops</span>
         </div>
@@ -37,9 +38,9 @@ const Header = React.createClass({
     return (
       <div className="container header">
         <div className="header-wrap">
-          <a href="/">
+          <Link to="/">
             <div className="header-logo">LINKSHOPS</div>
-          </a>
+          </Link>
           <div className="header-search-box">
             <input ref="searchQuery" placeholder="I'm shopping for..." />
             <div className="header-search-category-box">
@@ -54,13 +55,13 @@ const Header = React.createClass({
             </button>
           </div>
           <div className="header-mymenu-wrap">
-            <a href="/cart">
+            <Link to="/cart">
               <div className="header-mymenu-cart">
                 <div className="cart-icon"></div>
                 <span className="cart-count">0</span>
                 <span>Cart</span>
               </div>
-            </a>
+            </Link>
             <div className="header-mymenu-account">
               <div className="account-icon"></div>
               {this.renderAccount()}
