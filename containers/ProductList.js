@@ -11,7 +11,7 @@ export default React.createClass({
       {link:'/cart', name: 'cart'},
     ];
     return (
-      <div>
+      <div className="container-table">
         <ProductListLeft />
         <div className="product-list-right-box">
           <BreadCrumb path={path} />

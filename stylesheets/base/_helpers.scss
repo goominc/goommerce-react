@@ -11,6 +11,16 @@
   display: table;
 }
 
+@mixin container-style {
+  max-width: $max-width; /* 1 */
+  margin-left: auto; /* 2 */
+  margin-right: auto; /* 2 */
+  padding-left: 20px; /* 3 */
+  padding-right: 20px; /* 3 */
+  width: 100%; /* 1 */
+  min-width: 800px; /* 2016. 01. 27. [heekyu] this is for PC web */
+}
+
 /**
  * Main content containers
  * 1. Make the container full-width with a maximum width
@@ -18,13 +28,12 @@
  * 3. Leave some space on the edges, especially valuable on small screens
  */
 .container {
-  max-width: $max-width; /* 1 */
-  margin-left: auto; /* 2 */
-  margin-right: auto; /* 2 */
-  padding-left: 20px; /* 3 */
-  padding-right: 20px; /* 3 */
-  width: 100%; /* 1 */
- }
+  @include container-style;
+}
+.container-table {
+  @include container-style;
+  display: table;
+}
 
 /**
  * Hide text while making it readable for screen readers

@@ -46,28 +46,30 @@ const ProductDetail = React.createClass({
     return (
       <div className="container">
         <BreadCrumb path={path} />
-        <div className="product-detail-left">
-          <div className="left-thumbnail-container">
-            <span>
+        <div clssName="container-table">
+          <div className="product-detail-left">
+            <div className="left-thumbnail-container">
+              <span>
+                <img src={mainImage.url} />
+              </span>
+              <span>
+                <img src={mainImage.url} />
+              </span>
+            </div>
+            <div className="main-image-box">
               <img src={mainImage.url} />
-            </span>
-            <span>
+            </div>
+            <div className="enlarge-image-box">
               <img src={mainImage.url} />
-            </span>
+            </div>
           </div>
-          <div className="main-image-box">
-            <img src={mainImage.url} />
-          </div>
-          <div className="enlarge-image-box">
-            <img src={mainImage.url} />
-          </div>
-        </div>
-        <div className="product-detail-right">
-          <span className="product-title">2015 New Autumn Fashion Brand Men Clothes Slim Fit Men Long Sleeve Shirt Men Plaid Cotton Casual Men Shirt Social Plus Size 5XL</span>
-          <div className="divider"></div>
-          <div className="price-info-box">
-            <div className="field-label">Price: </div>
-            <div className="field-content price-value">KRW ₩{price}</div>
+          <div className="product-detail-right">
+            <span className="product-title">2015 New Autumn Fashion Brand Men Clothes Slim Fit Men Long Sleeve Shirt Men Plaid Cotton Casual Men Shirt Social Plus Size 5XL</span>
+            <div className="divider"></div>
+            <div className="price-info-box">
+              <div className="field-label">Price: </div>
+              <div className="field-content price-value"><b>KRW ₩{price}</b> / pieces</div>
+            </div>
           </div>
         </div>
         <div>

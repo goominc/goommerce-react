@@ -1,10 +1,6 @@
 // -----------------------------------------------------------------------------
 // This file contains styles that are specific to the product detail page.
 // -----------------------------------------------------------------------------
-.product-detail-container {
-  width: 100%;
-  display: table;
-}
 $product-detail-thumbnail-width: 50px;
 $product-detail-thumbnail-margin: 15px;
 .product-detail-left {
@@ -108,7 +104,11 @@ $product-detail-thumbnail-margin: 15px;
     display: inline-block;
   }
   .price-value {
-    color: #f60;
-    font-size: 18px;
+    b {
+      color: #f60;
+      font-size: 18px;
+    }
+    color: #666;
+    font-size: 14px;
   }
 }
