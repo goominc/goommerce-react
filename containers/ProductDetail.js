@@ -1,8 +1,10 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { getProductMainImage } from '../util';
+import { getProductMainImage, getProductMainPrice } from '../util';
 import { loadProduct, addToCart } from '../redux/actions';
+
+import BreadCrumb from '../components/BreadCrumb';
 
 const ProductDetail = React.createClass({
   propTypes: {
@@ -35,11 +37,38 @@ const ProductDetail = React.createClass({
 
     const mainImage = getProductMainImage(product) || {};
     const variants = product.productVariants || [];
+
+    const path = [
+      { link: '/', name: 'Home' },
+      { name: product.sku },
+    ];
+    const price = getProductMainPrice(product, 'KRW');
     return (
-      <div className="row">
-        <img src={mainImage.url}/>
-        <div>
-          {product && product.sku}
+      <div className="container">
+        <BreadCrumb path={path} />
+        <div className="product-detail-left">
+          <div className="left-thumbnail-container">
+            <span>
+              <img src={mainImage.url} />
+            </span>
+            <span>
+              <img src={mainImage.url} />
+            </span>
+          </div>
+          <div className="main-image-box">
+            <img src={mainImage.url} />
+          </div>
+          <div className="enlarge-image-box">
+            <img src={mainImage.url} />
+          </div>
+        </div>
+        <div className="product-detail-right">
+          <span className="product-title">2015 New Autumn Fashion Brand Men Clothes Slim Fit Men Long Sleeve Shirt Men Plaid Cotton Casual Men Shirt Social Plus Size 5XL</span>
+          <div className="divider"></div>
+          <div className="price-info-box">
+            <div className="field-label">Price: </div>
+            <div className="field-content price-value">KRW ₩{price}</div>
+          </div>
         </div>
         <div>
           options:

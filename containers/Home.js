@@ -17,7 +17,7 @@ const Home = React.createClass({
   render() {
     const { products = [] } = this.props;
     return (
-      <div className="row">
+      <div>
         {products.map(product => <ProductThumbnail key={product.id} product={product}/>)}
       </div>
     );

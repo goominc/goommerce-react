@@ -14,7 +14,7 @@ export default React.createClass({
       <div>
         <ProductListLeft />
         <div className="product-list-right-box">
-          <BreadCrumb parents={path} />
+          <BreadCrumb path={path} />
           <div className="product-list-search-box"></div>
           <ProductListItems />
         </div>

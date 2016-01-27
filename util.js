@@ -15,3 +15,12 @@ export function getProductMainImage(product) {
   }
   return defaultImages[0];
 }
+
+export function getProductMainPrice(product, currency) {
+  if (!product.productVariants || product.productVariants.length < 1) {
+    // TODO handle error
+    return 0;
+  }
+  // TODO find default price
+  return product.productVariants[0].price[currency];
+}

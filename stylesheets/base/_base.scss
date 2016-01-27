@@ -17,6 +17,7 @@ html {
  */
 *, *::before, *::after {
   box-sizing: inherit;
+  font-family: Arial, Helvetica, sans-senif, SimSun, 宋体;
 } 
 
 /**
@@ -40,6 +41,6 @@ a {
   margin-bottom: 10px;
   background-color: transparent;
   span {
-    font-size: 16px;
+    font-size: 100%;
   }
 }
