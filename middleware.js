@@ -3,6 +3,7 @@ const serialize = require('serialize-javascript');
 
 module.exports = (opts) => {
   opts = opts || {}; // eslint-disable-line no-param-reassign
+  opts.getAuth = opts.getAuth || (callback => callback(null, {}));
   const hot = opts.hot;
   const middlewares = [];
   if (hot) {
@@ -25,8 +26,7 @@ module.exports = (opts) => {
       return `//${config.cloudfront.domain}/app/${config.bundle.version}/${name}`;
     }
 
-    if (req.method === 'GET' && req.accepts('html')) {
-      const initialState = {};
+    function send(initialState) {
       const cdn = '//' + config.cloudfront.domain;
 
       res.send(`
@@ -48,6 +48,16 @@ module.exports = (opts) => {
           </body>
         </html>
         `);
+    }
+
+    if (req.method === 'GET' && req.accepts('html')) {
+      opts.getAuth(req, (err, result) => {
+        if (err) {
+          send({});
+        } else {
+          send({ auth: result.body });
+        }
+      });
     }
   });
 

@@ -20,6 +20,7 @@
     "axios": "^0.9.0",
     "babel": "^5.8.29",
     "babel-core": "^5.8.33",
+    "cookie-parser": "^1.4.1",
     "express": "^4.13.3",
     "history": "^1.17.0",
     "http-proxy": "^1.12.0",
@@ -35,7 +36,8 @@
     "redux": "^3.0.5",
     "redux-logger": "^2.3.2",
     "redux-thunk": "^1.0.2",
-    "serialize-javascript": "^1.1.2"
+    "serialize-javascript": "^1.1.2",
+    "superagent": "^1.7.2"
   },
   "devDependencies": {
     "babel-eslint": "^4.1.1",
