@@ -7,6 +7,7 @@ import {
   ForgotPassword,
   Home,
   OrderDetail,
+  OrderList,
   ResetPassword,
   Search,
   Signin,
@@ -27,6 +28,7 @@ export default function configure({ getAuth }) {
         <Route path="/products" component={ProductList}/>
         <Route path="/products/:productId" component={ProductDetail}/>
         <Route path="/cart" component={Cart}/>
+        <Route path="/orders" component={OrderList}/>
         <Route path="/orders/:orderId" component={OrderDetail}/>
         <Route path="/orders/:orderId/checkout" component={Checkout}/>
         <Route path="/search" component={Search}/>

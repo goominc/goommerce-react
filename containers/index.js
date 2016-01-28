@@ -10,3 +10,4 @@ export { default as ForgotPassword } from './ForgotPassword';
 export { default as ResetPassword } from './ResetPassword';
 export { default as Cart } from './Cart';
 export { default as OrderDetail } from './OrderDetail';
+export { default as OrderList } from './OrderList';
