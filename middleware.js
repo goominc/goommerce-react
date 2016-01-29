@@ -4,9 +4,8 @@ const serialize = require('serialize-javascript');
 module.exports = (opts) => {
   opts = opts || {}; // eslint-disable-line no-param-reassign
   opts.getAuth = opts.getAuth || ((req, callback) => callback(null, {}));
-  const hot = opts.hot;
   const middlewares = [];
-  if (hot) {
+  if (opts.hot) {
     const webpack = require('webpack');
     const webpackDevMiddleware = require('webpack-dev-middleware');
     const webpackHotMiddleware = require('webpack-hot-middleware');
@@ -22,7 +21,7 @@ module.exports = (opts) => {
 
   middlewares.push((req, res) => {
     function path(name) {
-      if (hot) return `/${name}`;
+      if (opts.hot || opts.localBundle) return `/${name}`;
       return `//${config.cloudfront.domain}/app/${config.bundle.version}/${name}`;
     }
 
