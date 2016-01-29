@@ -5,7 +5,7 @@ const defaultConfig = {
     domain: 'd1v1n6p63zq2b9.cloudfront.net',
   },
   bundle: {
-    version: '7580b385dce72d4b8d0d3948eabcb62ec526de17',
+    version: 'acd81ce2975a2eb837d8f04141677648e180d939',
   },
 };
 
