@@ -11,7 +11,7 @@ export function login(email, password) {
       email,
       password,
     },
-    transform: ({ response }) => ({ auth: response.data }),
+    transform: ({ data }) => ({ auth: data }),
   });
 }
 
@@ -21,7 +21,7 @@ export function signup(params) {
     endpoint: '/api/v1/users',
     method: 'post',
     body: params,
-    transform: ({ response }) => ({ auth: response.data }),
+    transform: ({ data }) => ({ auth: data }),
   });
 }
 
@@ -41,7 +41,7 @@ export function resetPassword({ access_token, password }) {
     endpoint: '/api/v1/reset',
     method: 'put',
     body: { access_token, password },
-    transform: ({ response }) => ({ auth: response.data }),
+    transform: ({ data }) => ({ auth: data }),
   });
 }
 
@@ -49,7 +49,7 @@ export function loadProducts() {
   return createFetchAction({
     type: 'LOAD_PRODUCTS',
     endpoint: '/api/v1/products',
-    transform: ({ response }) => normalize(response.data.products, schemas.products),
+    transform: ({ data }) => normalize(data.products, schemas.products),
     success: {
       pagination: { key: 'products', type: 'REFRESH' },
     },
@@ -60,7 +60,7 @@ export function loadProduct(id) {
   return createFetchAction({
     type: 'LOAD_PRODUCT',
     endpoint: `/api/v1/products/${id}`,
-    transform: ({ response }) => normalize(response.data, schemas.product),
+    transform: ({ data }) => normalize(data, schemas.product),
   });
 }
 
@@ -121,7 +121,7 @@ export function createOrder({ productVariants }) {
     endpoint: '/api/v1/orders',
     method: 'post',
     body: { productVariants },
-    transform: ({ response }) => normalize(response.data, schemas.order),
+    transform: ({ data }) => normalize(data, schemas.order),
   });
 }
 
@@ -129,7 +129,7 @@ export function loadOrder(id) {
   return createFetchAction({
     type: 'LOAD_ORDER',
     endpoint: `/api/v1/orders/${id}`,
-    transform: ({ response }) => normalize(response.data, schemas.order),
+    transform: ({ data }) => normalize(data, schemas.order),
   });
 }
 
@@ -137,7 +137,7 @@ export function loadMyOrders() {
   return createFetchAction({
     type: 'LOAD_MY_ORDERS',
     endpoint: state => `/api/v1/users/${state.auth.id}/orders`,
-    transform: ({ response }) => normalize(response.data, schemas.orders),
+    transform: ({ data }) => normalize(data, schemas.orders),
     success: {
       pagination: { key: 'myOrders', type: 'REFRESH' },
     },

@@ -1,6 +1,5 @@
 import merge from 'lodash/object/merge';
 import config from '../../config';
-import axios from 'axios';
 
 export default function createFetchAction(options) {
   const {
@@ -28,26 +27,24 @@ export default function createFetchAction(options) {
     if (request && doDispatch) dispatch({ type, ...request });
 
     const apiRoot = config.apiRoot;
-    return axios({
+    return $.ajax({
       url: resolve(endpoint),
-      baseURL: apiRoot,
       method,
       headers,
-      params,
       data: body,
-    }).then(response => {
+    }).then((data, textStatus, jqXHR) => {
       if (doDispatch) {
         dispatch(merge({
           type,
-          payload: transform ? transform({ response, state }) : response.data,
+          payload: transform ? transform({ data, state }) : data,
         }, resolve(success)));
       }
-      return response.data;
-    }).catch(response => {
+      return data;
+    }, (jqXHR, textStatus, errorThrown) => {
       if (doDispatch) {
         dispatch(merge({
           type,
-          error: response.data,
+          error: jqXHR.responseJSON,
         }, resolve(failure)));
       }
       return Promise.reject(response.data);
