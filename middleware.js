@@ -50,11 +50,11 @@ module.exports = (opts) => {
     }
 
     if (req.method === 'GET' && req.accepts('html')) {
-      opts.getAuth(req, (err, result) => {
+      opts.getAuth(req, (err, auth) => {
         if (err) {
           send({});
         } else {
-          send({ auth: result.body });
+          send({ auth });
         }
       });
     }

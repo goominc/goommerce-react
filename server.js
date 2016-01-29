@@ -23,7 +23,7 @@ app.use(require('./middleware')({
     request
       .get('http://localhost:8080/api/v1/login')
       .set('Cookie', `connect.sid=${req.cookies['connect.sid']}`)
-      .end(callback);
+      .end((err, res) => callback(err, res && res.body));
   },
 }));
 
