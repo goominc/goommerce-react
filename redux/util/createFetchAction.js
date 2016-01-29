@@ -31,7 +31,9 @@ export default function createFetchAction(options) {
       url: resolve(endpoint),
       method,
       headers,
-      data: body,
+      data: JSON.stringify(body),
+      processData: false,
+      contentType: 'application/json',
     }).then((data, textStatus, jqXHR) => {
       if (doDispatch) {
         dispatch(merge({
