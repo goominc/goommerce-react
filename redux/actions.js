@@ -88,11 +88,29 @@ export function loadCart() {
   });
 }
 
-export function addToCart(productVariantId) {
+export function addCartProduct(productVariantId) {
   return createFetchAction({
     type: 'UPDATE_CART',
     endpoint: '/api/v1/carts/product_variants',
     method: 'post',
+    body: { productVariantId },
+  });
+}
+
+export function updateCartProduct(productVariantId, count) {
+  return createFetchAction({
+    type: 'UPDATE_CART',
+    endpoint: '/api/v1/carts/product_variants',
+    method: 'put',
+    body: { productVariantId, count },
+  });
+}
+
+export function deleteCartProduct(productVariantId) {
+  return createFetchAction({
+    type: 'UPDATE_CART',
+    endpoint: '/api/v1/carts/product_variants',
+    method: 'delete',
     body: { productVariantId },
   });
 }

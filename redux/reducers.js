@@ -13,7 +13,7 @@ function auth(state = {}, action) {
 
 function cart(state = {}, action) {
   if (action.type === 'UPDATE_CART' || action.type === 'LOAD_CART') {
-    return merge({}, state, action.payload);
+    return action.payload;
   }
   return state;
 }

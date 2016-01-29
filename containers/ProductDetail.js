@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { getProductMainImage, getProductMainPrice } from '../util';
-import { loadProduct, addToCart } from '../redux/actions';
+import { loadProduct, addCartProduct } from '../redux/actions';
 
 import BreadCrumb from '../components/BreadCrumb';
 
@@ -11,19 +11,19 @@ const ProductDetail = React.createClass({
     productId: PropTypes.string.isRequired,
     product: PropTypes.object,
     loadProduct: PropTypes.func.isRequired,
-    addToCart: PropTypes.func.isRequired,
+    addCartProduct: PropTypes.func.isRequired,
   },
   componentDidMount() {
     this.props.loadProduct(this.props.productId);
   },
-  addToCart(variant) {
-    this.props.addToCart(variant.id);
+  addCartProduct(variant) {
+    this.props.addCartProduct(variant.id);
   },
   renderVariant(variant) {
     return (
       <li key={variant.sku}>
         {variant.sku}
-        <button onClick={() => this.addToCart(variant)}>add to cart</button>
+        <button onClick={() => this.addCartProduct(variant)}>add to cart</button>
       </li>
     );
   },
@@ -88,5 +88,5 @@ export default connect(
     productId: ownProps.params.productId,
     product: state.entities.products[ownProps.params.productId],
   }),
-  { loadProduct, addToCart }
+  { loadProduct, addCartProduct }
 )(ProductDetail);

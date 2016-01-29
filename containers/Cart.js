@@ -2,12 +2,14 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { History } from 'react-router';
 
-import { loadCart, createOrder } from '../redux/actions';
+import { loadCart, updateCartProduct, deleteCartProduct, createOrder } from '../redux/actions';
 
 const Cart = React.createClass({
   propTypes: {
     cart: PropTypes.object,
     loadCart: PropTypes.func.isRequired,
+    updateCartProduct: PropTypes.func.isRequired,
+    deleteCartProduct: PropTypes.func.isRequired,
     createOrder: PropTypes.func.isRequired,
   },
   mixins: [History],
@@ -22,9 +24,26 @@ const Cart = React.createClass({
     );
   },
   renderVariant(variant) {
+    function updateCount(e) {
+      this.props.updateCartProduct(variant.id, e.target.value);
+    }
+    function remove() {
+      this.props.deleteCartProduct(variant.id);
+    }
+    function buy() {
+      this.props.createOrder({
+        productVariants: [{ id: variant.id, count: variant.count }],
+      }).then(
+        (order) => this.history.pushState(null, `/orders/${order.id}/checkout`)
+      );
+    }
     return (
       <li key={variant.sku}>
-        {variant.sku}, {variant.count}
+        {variant.sku},
+        KRW {variant.price.KRW}
+        <input type="number" name="quantity" min="1" max="100" onChange={updateCount.bind(this)} defaultValue={variant.count}/>
+        <button onClick={remove.bind(this)}>Remove</button>
+        <button onClick={buy.bind(this)}>Buy this item</button>
       </li>
     );
   },
@@ -44,5 +63,5 @@ const Cart = React.createClass({
 
 export default connect(
   (state) => ({ cart: state.cart }),
-  { loadCart, createOrder }
+  { loadCart, updateCartProduct, deleteCartProduct, createOrder }
 )(Cart);
