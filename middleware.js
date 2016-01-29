@@ -3,7 +3,7 @@ const serialize = require('serialize-javascript');
 
 module.exports = (opts) => {
   opts = opts || {}; // eslint-disable-line no-param-reassign
-  opts.getAuth = opts.getAuth || function getAuth(callback) { callback(null, {}); };
+  opts.getAuth = opts.getAuth || ((req, callback) => callback(null, {}));
   const hot = opts.hot;
   const middlewares = [];
   if (hot) {
