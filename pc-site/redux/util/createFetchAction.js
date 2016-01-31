@@ -6,7 +6,6 @@ export default function createFetchAction(options) {
     body,
     endpoint,
     method = 'get',
-    params,
     transform,
     type,
     doDispatch = true,
