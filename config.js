@@ -7,6 +7,7 @@ const defaultConfig = {
   bundle: {
     version: 'b9dde5176529a64fbff9031a61a492be4909ad67',
   },
+  mobileHostPrefix: 'm.',
 };
 
 const environmentConfig = {
