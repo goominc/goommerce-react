@@ -18,8 +18,8 @@ $header-margin: 10px;
   position: relative;
 }
 .header-logo {
-  width: $header-height * 5;
-  height: $header-height;
+  width: $header-height * 4;
+  height: $header-height * 4 / 5;
   font-size: 20px;
   display: inline-block;
   vertical-align: middle;
