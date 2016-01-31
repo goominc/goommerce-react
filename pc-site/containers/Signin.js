@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
-import { History } from 'react-router';
+import { History, Link } from 'react-router';
 
 import { login } from '../redux/actions';
 
@@ -32,9 +32,11 @@ const Signin = React.createClass({
         <div className="signin-content-container">
           <div className="banner-title">The Best Value Online</div>
           <div className="banner-text">Enjoy unbeatable prices and free shipping <br/>
-            on almost all products!</div>
+            on almost all products!
+          </div>
           <div className="signin-form-box">
             <form onSubmit={this.handleSubmit}>
+              <h2>Please log in</h2>
               <label htmlFor="inputEmail">Email address</label>
               <input
                 type="email"
@@ -54,8 +56,9 @@ const Signin = React.createClass({
                 required
                 valueLink={this.linkState('password')}
               />
+              <Link to="/accounts/forgot">forgot password?</Link>
               <div className="remember-me">
-                  <input type="checkbox" value="remember-me"/> Remember me
+                <input type="checkbox" value="remember-me"/> Remember me
               </div>
               <button className="btn-signin" type="submit">Sign in</button>
             </form>
