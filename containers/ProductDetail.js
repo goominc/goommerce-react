@@ -70,13 +70,14 @@ const ProductDetail = React.createClass({
               <div className="field-label">Price: </div>
               <div className="field-content price-value"><b>KRW ₩{price}</b> / pieces</div>
             </div>
+            <div className="normal-field-box">
+              <div className="field-label">Color: </div>
+              <div className="field-content">Color</div>
+            </div>
+            <ul>
+              {variants.map(this.renderVariant)}
+            </ul>
           </div>
-        </div>
-        <div>
-          options:
-          <ul>
-            {variants.map(this.renderVariant)}
-          </ul>
         </div>
       </div>
     );

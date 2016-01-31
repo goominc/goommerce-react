@@ -51,7 +51,16 @@ const Cart = React.createClass({
     const { cart } = this.props;
     const variants = cart.productVariants || [];
     return (
-      <div className="row">
+      <div className="container">
+        <div className="cart-title-box">
+          Your Cart
+        </div>
+        <div className="cart-top-box">
+          <a><span className="cart-continue-shopping-arrow"></span> <span className="cart-continue-shopping-text">Continue Shopping</span></a>
+        </div>
+        <div className="cart-seller-box">
+          Seller:
+        </div>
         <ul>
           {variants.map(this.renderVariant)}
         </ul>
