@@ -18,6 +18,7 @@ $header-margin: 10px;
   position: relative;
 }
 .header-logo {
+  width: $header-height * 5;
   height: $header-height;
   font-size: 20px;
   display: inline-block;
@@ -34,8 +35,8 @@ $header-margin: 10px;
     border: 1px solid #cbcbcb;
     vertical-align: top;
     border-right: 0;
-    min-width: 500px;
-    max-width: 500px; // TODO responsive
+    min-width: 450px;
+    max-width: 450px; // TODO responsive
     padding: 0 15px;
     height: $header-height;
     display: inline-block;
@@ -49,7 +50,7 @@ $header-margin: 10px;
     border-top: 1px solid #cbcbcb;
     border-bottom: 1px solid #cbcbcb;
     height: $header-height;
-    width: 140px;
+    width: 120px;
     font-size: 100%;
     cursor: pointer;
     $divider-margin-top: 15%;

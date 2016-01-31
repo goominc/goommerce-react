@@ -39,7 +39,9 @@ const Header = React.createClass({
       <div className="container header">
         <div className="header-wrap">
           <Link to="/">
-            <div className="header-logo">LINKSHOPS</div>
+            <div className="header-logo">
+              <img width="100%" height="100%" src="http://www.linkshops.com/skin/frontend/linkshops2nd/default/images/logo.png" alt="Linkshops"/>
+            </div>
           </Link>
           <div className="header-search-box">
             <input ref="searchQuery" placeholder="I'm shopping for..." />

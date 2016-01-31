@@ -1,0 +1,80 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the product signin page.
+// -----------------------------------------------------------------------------]
+$padding-top: 15px;
+$padding-bottom: 5px;
+$img-height: 30px;
+.signin-header-box {
+  width: 100%;
+  padding: $padding-top 0 $padding-bottom;
+  border-bottom: 1px solid #e5e5e5;
+  img {
+    height: $img-height;
+    width: $img-height * 5;
+    display: block;
+  }
+  span {
+    color: #999;
+    font-weight: 400;
+    font-size: 12px;
+    display: block;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+.signin-content-container {
+  position: relative;
+  width: 100%;
+  background-image: url("https://i.alicdn.com/ae-login/images/banner-2.9db93b48.png");
+  background-position: -200px;
+  height: 500px;
+  color: #666;
+  .banner-title {
+    margin-top: 30px;
+    font-weight: bold;
+    font-size: 24px;
+    padding: 0 15px;
+    line-height: 30px;
+  }
+  .banner-text {
+    font-size: 12px;
+    margin-top: 10px;
+    line-height: 20px;
+    padding: 0 15px;
+  }
+}
+.signin-form-box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 50px 80px;
+  border: 1px solid #c1cee0;
+  padding: 20px;
+  z-index: 10;
+  background-color: #ffffff;
+  & label {
+    font: 700 12px arial;
+  }
+  input:not([type="checkbox"]) {
+    width: 100%;
+    margin: 5px 0 15px;
+    border: 1px solid #a6a6a6;
+    padding: 4px 6px;
+    &:hover {
+      border: 1px solid #000;
+    }
+  }
+  .remember-me {
+    margin: 10px 0;
+  }
+  .btn-signin {
+    width: 100%;
+    color: #fff;
+    padding: 5px 0;
+    font-size: 14px;
+    font-weight: 700;
+    background-color: #e8a64d;
+    border: 1px solid #e87b0e;
+  }
+}

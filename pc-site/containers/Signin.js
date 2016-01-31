@@ -5,6 +5,10 @@ import { History } from 'react-router';
 
 import { login } from '../redux/actions';
 
+import SigninHeader from '../components/SigninHeader';
+/*
+
+ */
 const Signin = React.createClass({
   propTypes: {
     login: PropTypes.func.isRequired,
@@ -23,34 +27,41 @@ const Signin = React.createClass({
   },
   render: function render() {
     return (
-      <form className="form-signin" onSubmit={this.handleSubmit}>
-        <h2 className="form-signin-heading">Please sign in</h2>
-        <label htmlFor="inputEmail" className="sr-only">Email address</label>
-        <input
-          type="email"
-          id="inputEmail"
-          className="form-control"
-          placeholder="Email address"
-          required
-          autoFocus
-          valueLink={this.linkState('email')}
-        />
-        <label htmlFor="inputPassword" className="sr-only">Password</label>
-        <input
-          type="password"
-          id="inputPassword"
-          className="form-control"
-          placeholder="Password"
-          required
-          valueLink={this.linkState('password')}
-        />
-        <div className="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"/> Remember me
-          </label>
+      <div className="container">
+        <SigninHeader />
+        <div className="signin-content-container">
+          <div className="banner-title">The Best Value Online</div>
+          <div className="banner-text">Enjoy unbeatable prices and free shipping <br/>
+            on almost all products!</div>
+          <div className="signin-form-box">
+            <form onSubmit={this.handleSubmit}>
+              <label htmlFor="inputEmail">Email address</label>
+              <input
+                type="email"
+                id="inputEmail"
+                className="form-control"
+                placeholder="Email address"
+                required
+                autoFocus
+                valueLink={this.linkState('email')}
+              />
+              <label htmlFor="inputPassword">Password</label>
+              <input
+                type="password"
+                id="inputPassword"
+                className="form-control"
+                placeholder="Password"
+                required
+                valueLink={this.linkState('password')}
+              />
+              <div className="remember-me">
+                  <input type="checkbox" value="remember-me"/> Remember me
+              </div>
+              <button className="btn-signin" type="submit">Sign in</button>
+            </form>
+          </div>
         </div>
-        <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      </form>
+      </div>
     );
   },
 });

@@ -21,9 +21,6 @@ export default function configure({ getAuth }) {
     <Route>
       <Route component={App}>
         <Route path="/" component={Home}/>
-        <Route path="/accounts/signin" component={Signin}/>
-        <Route path="/accounts/signup" component={Signup}/>
-        <Route path="/accounts/forgot" component={ForgotPassword}/>
         <Route path="/accounts/reset" component={ResetPassword}/>
         <Route path="/products" component={ProductList}/>
         <Route path="/products/:productId" component={ProductDetail}/>
@@ -33,6 +30,9 @@ export default function configure({ getAuth }) {
         <Route path="/orders/:orderId/checkout" component={Checkout}/>
         <Route path="/search" component={Search}/>
       </Route>
+      <Route path="/accounts/signin" component={Signin}/>
+      <Route path="/accounts/signup" component={Signup}/>
+      <Route path="/accounts/forgot" component={ForgotPassword}/>
     </Route>
   );
 }
