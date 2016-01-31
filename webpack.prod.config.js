@@ -19,10 +19,6 @@ module.exports = {
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false,
-        sequences: false,
-      },
-      output: {
-        semicolons: false,
       },
     }),
     // set global vars

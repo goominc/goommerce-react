@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import { Router } from 'react-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import configureStore from './redux/store';
-import { cloudinaryConfig } from 'react-cloudinary';
 import configureRoutes from './routes';
 
 const store = configureStore(window.__INITIAL_STATE__);
