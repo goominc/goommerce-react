@@ -1,5 +1,4 @@
 import merge from 'lodash/object/merge';
-import config from '../../config';
 
 export default function createFetchAction(options) {
   const {
@@ -26,7 +25,6 @@ export default function createFetchAction(options) {
 
     if (request && doDispatch) dispatch({ type, ...request });
 
-    const apiRoot = config.apiRoot;
     return $.ajax({
       url: resolve(endpoint),
       method,

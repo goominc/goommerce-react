@@ -7,9 +7,6 @@ import createBrowserHistory from 'history/lib/createBrowserHistory';
 import configureStore from './redux/store';
 import { cloudinaryConfig } from 'react-cloudinary';
 import configureRoutes from './routes';
-import config from './config';
-
-// cloudinaryConfig(config.cloudinary);
 
 const store = configureStore(window.__INITIAL_STATE__);
 

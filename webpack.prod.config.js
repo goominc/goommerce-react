@@ -6,8 +6,7 @@ module.exports = {
   devtool: 'source-map',
   entry: {
     app: [
-      './client.js',
-      './css/main.css',
+      './pc-site/client.js',
     ],
   },
   output: {
