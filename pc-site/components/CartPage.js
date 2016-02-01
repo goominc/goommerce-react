@@ -20,7 +20,7 @@ export default React.createClass({
     }
     return (
       <tr key={variant.id}>
-        <td><img class="product-pic-image" src="http://www.linkshops.com/media/catalog/product/cache/1/thumbnail/120x180/9df78eab33525d08d6e5fb8d27136e95/3/f/3f8a6201-copy.jpg" />
+        <td><img src="http://www.linkshops.com/media/catalog/product/cache/1/thumbnail/120x180/9df78eab33525d08d6e5fb8d27136e95/3/f/3f8a6201-copy.jpg" />
           <span className="product-description">{variant.sku}</span></td>
         <td><input type="number" name="quantity" min="1" max="100" onChange={handleQuantity} defaultValue={variant.count}/></td>
         <td>KRW {variant.price.KRW}</td>
@@ -40,10 +40,16 @@ export default React.createClass({
     function renderBuyAllButton() {
       if (variants.length >  0) {
         return (
-          <button onClick={buyAll}>Buy All</button>
+          <button className="cart-buyall-button" onClick={buyAll}>Buy All</button>
         );
       }
     }
+    let totalPrice = 0;
+    const variantUIs = [];
+    variants.map((variant) => {
+      totalPrice += variant.price.KRW * variant.count;
+      return this.renderVariant(variant);
+    });
     function buyAll() {
       buy(variants);
     }
@@ -71,8 +77,13 @@ export default React.createClass({
             {variants.map(this.renderVariant)}
             </tbody>
           </table>
+          <div className="cart-seller-bottom">
+            <div className="cart-total-price-box">
+              Total: <b>KRW {totalPrice}</b>
+            </div>
+            {renderBuyAllButton()}
+          </div>
         </div>
-        {renderBuyAllButton()}
       </div>
     );
   },
