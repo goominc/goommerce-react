@@ -10,7 +10,6 @@ export default React.createClass({
   renderVariant(variant) {
     const { updateCount, removeProduct, buy } = this.props;
     function handleQuantity(event) {
-      console.log(event.target.value);
       return updateCount(variant, event.target.value);
     }
     return (
@@ -25,8 +24,6 @@ export default React.createClass({
   },
   render() {
     const { cart, checkout } = this.props;
-    console.log('child');
-    console.log(cart);
     if (!cart) {
       return (
         <div>Error! No Cart</div>
