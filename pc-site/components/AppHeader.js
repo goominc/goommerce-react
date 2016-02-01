@@ -1,15 +1,11 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-import { connect } from 'react-redux';
-import { History } from 'react-router';
 
-const Header = React.createClass({
-  mixins: [History],
-  handleSearch() {
-    const query = this.refs.searchQuery.value;
-    if (query) {
-      this.history.pushState(null, `/search?q=${query}`);
-    }
+export default React.createClass({
+  propTypes: {
+    auth: PropTypes.object.isRequired,
+    cart: PropTypes.object.isRequired,
+    handleSearch: PropTypes.func.isRequired,
   },
   renderAccount() {
     const { auth } = this.props;
@@ -35,6 +31,11 @@ const Header = React.createClass({
     );
   },
   render() {
+    const { handleSearch, cart } = this.props;
+    let cartCount = 0;
+    if (cart && cart.productVariants) {
+      cartCount = cart.productVariants.length;
+    }
     return (
       <div className="container header">
         <div className="header-wrap">
@@ -53,14 +54,14 @@ const Header = React.createClass({
                 <div className="search-dropdown-item">C1</div>
               </div>
             </div>
-            <button className="header-search-button" onClick={this.handleSearch}>
+            <button className="header-search-button" onClick={handleSearch}>
             </button>
           </div>
           <div className="header-mymenu-wrap">
             <Link to="/cart">
               <div className="header-mymenu-cart">
                 <div className="cart-icon"></div>
-                <span className="cart-count">0</span>
+                <span className="cart-count">{cartCount}</span>
                 <span>Cart</span>
               </div>
             </Link>
@@ -74,7 +75,3 @@ const Header = React.createClass({
     );
   },
 });
-
-export default connect(
-  state => ({ auth: state.auth })
-)(Header);
