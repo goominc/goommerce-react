@@ -46,7 +46,9 @@ export default function createFetchAction(options) {
           error: jqXHR.responseJSON,
         }, resolve(failure)));
       }
-      return Promise.reject(response.data);
+      // 2016. 02. 01. [heekyu] there are cases that caller cannot handle error
+      // action creator must be handle actions via state transition(dispatch)
+      // return Promise.reject(errorThrown);
     });
   };
 }

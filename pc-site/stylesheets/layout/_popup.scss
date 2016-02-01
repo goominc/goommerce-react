@@ -1,0 +1,48 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to all popups
+// -----------------------------------------------------------------------------
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10000;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+$padding-horizontal: 40px;
+$padding-vertical: 20px;
+$error-popup-width: 500px;
+$error-popup-height: 250px;
+.error-popup-box {
+  position: fixed;
+  display: block;
+  top: 50%;
+  left: 50%;
+  width: $error-popup-width;
+  height: $error-popup-height;
+  line-height: $error-popup-height;
+  text-align: center;
+  margin-left: -$error-popup-width / 2;
+  margin-top: -$error-popup-height / 2;
+  z-index: 10010;
+  background-color: #fff;
+  color: #000;
+  .error-message {
+    display: inline;
+    font-size: 14px;
+    font-weight: 700;
+    padding: $padding-vertical $padding-horizontal;
+    border: 1px solid #f6312f;
+  }
+  .close-button {
+    display: block;
+    position: absolute;
+    bottom: $padding-vertical;
+    right: $padding-horizontal;
+    width: 80px;
+    height: 35px;
+    line-height: 35px;
+    border: 1px solid #000;
+  }
+}

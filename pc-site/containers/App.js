@@ -2,9 +2,11 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { History, Link } from 'react-router';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
-import AppHeader from '../components/AppHeader';
 
-import { loadCartIfEmpty } from '../redux/actions';
+import { loadCartIfEmpty, resetError } from '../redux/actions';
+
+import AppHeader from '../components/AppHeader';
+import ErrorPopup from '../components/ErrorPopup';
 
 require('../stylesheets/main.scss');
 
@@ -23,9 +25,17 @@ const App = React.createClass({
     }
   },
   render() {
-    const { children, auth, cart } = this.props;
+    const { children, auth, cart, error, resetError } = this.props;
+    function renderError() {
+      if (error && error.message) {
+        return (
+          <ErrorPopup error={error} resetError={resetError} />
+        );
+      }
+    }
     return (
       <div className="main container">
+        {renderError()}
         <AppHeader auth={auth} cart={cart} handleSearch={this.handleSearch} />
         {children}
       </div>
@@ -34,6 +44,6 @@ const App = React.createClass({
 });
 
 export default connect(
-  state => ({ auth: state.auth, cart: state.cart }),
-  { loadCartIfEmpty }
+  state => ({ auth: state.auth, cart: state.cart, error: state.error }),
+  { loadCartIfEmpty, resetError }
 )(App);

@@ -1,4 +1,4 @@
-import { assign, merge, get, set, union, forEach } from 'lodash';
+import { assign, merge, get, set, union, forEach, omit } from 'lodash';
 import { combineReducers } from 'redux';
 
 function auth(state = {}, action) {
@@ -62,14 +62,25 @@ function pagination(state = {}, action) {
   return state;
 }
 
+function errorHandler(state = {}, action) {
+  if (action.type === 'RESET_ERROR') {
+    return Object.assign({}, state, {error: {}});
+  }
+  return state;
+}
+
 const rootReducer = combineReducers({
   auth,
   cart,
   entities,
   pagination,
+  errorHandler,
 });
 
 export default (state = {}, action) => {
+  if (action.error) {
+    return Object.assign({}, state, { error: action.error });
+  }
   if (action.type === 'RESET') {
     return rootReducer({}, action);
   }

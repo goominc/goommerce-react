@@ -147,10 +147,13 @@ export function loadCartIfEmpty() {
   return (dispatch, getState) => {
     const state = getState();
     if (!state.cart || !state.cart.productVariants) {
-      const cb = (res) => {
-        dispatch({ payload: res.payload, type: 'LOAD_CART' });
-      };
-      loadCart()(cb, getState);
+      loadCart()(dispatch, getState);
     }
+  };
+}
+
+export function resetError() {
+  return {
+    type: 'RESET_ERROR',
   };
 }
