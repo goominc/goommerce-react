@@ -15,13 +15,17 @@ export default React.createClass({
     function handleRemove() {
       removeProduct(variant);
     }
+    function handleBuy() {
+      buy(variant);
+    }
     return (
-      <tr key="{variant.id}">
-        <td>c</td>
-        <td><img class="product-pic-image" width="80" height="80" src="http://g02.a.alicdn.com/kf/HTB1VaA0IVXXXXXaXFXXq6xXFXXX5/2015-New-Autumn-Fashion-Brand-Men-Clothes-Slim-Fit-Men-Long-Sleeve-Shirt-Men-Plaid-Cotton.jpg_80x80.jpg" />여기 디테디테디테디테</td>
+      <tr key={variant.id}>
+        <td><img class="product-pic-image" src="http://www.linkshops.com/media/catalog/product/cache/1/thumbnail/120x180/9df78eab33525d08d6e5fb8d27136e95/3/f/3f8a6201-copy.jpg" />
+          <span className="product-description">{variant.sku}</span></td>
         <td><input type="number" name="quantity" min="1" max="100" onChange={handleQuantity} defaultValue={variant.count}/></td>
         <td>KRW {variant.price.KRW}</td>
         <td><button onClick={handleRemove}>Remove</button></td>
+        <td><button onClick={handleBuy}>Buy</button></td>
       </tr>
     );
   },
@@ -56,10 +60,10 @@ export default React.createClass({
           <table>
             <thead>
             <tr>
-              <td width="10%"></td>
               <td width="50%">Product Detail</td>
               <td width="15%">Quantity</td>
               <td width="15%">Price</td>
+              <td width="10%"></td>
               <td width="10%"></td>
             </tr>
             </thead>
