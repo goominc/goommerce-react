@@ -41,9 +41,17 @@ export default function createFetchAction(options) {
       return data;
     }, (jqXHR, textStatus, errorThrown) => {
       if (doDispatch) {
+        let error = jqXHR.responseJSON;
+        if (!error) {
+          if (jqXHR.status === 0) {
+            error = { message: 'Network Error' };
+          } else {
+            error = { message: 'Unknown Error' };
+          }
+        }
         dispatch(merge({
           type,
-          error: jqXHR.responseJSON,
+          error,
         }, resolve(failure)));
       }
       // 2016. 02. 01. [heekyu] there are cases that caller cannot handle error
