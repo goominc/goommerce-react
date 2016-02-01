@@ -20,6 +20,7 @@ const Cart = React.createClass({
   },
   render() {
     const { cart, updateCartProduct, deleteCartProduct, createOrder } = this.props;
+    const { history } = this;
     function updateCount(variant, value) {
       updateCartProduct(variant.id, value);
     }
@@ -33,7 +34,7 @@ const Cart = React.createClass({
       createOrder({
         productVariants: productVariants.map((variant) => { return { id: variant.id, count: variant.count } }),
       }).then(
-        (order) => this.history.pushState(null, `/orders/${order.id}/checkout`)
+        (order) => history.pushState(null, `/orders/${order.id}/checkout`)
       );
     }
     return (
