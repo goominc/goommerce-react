@@ -10,9 +10,9 @@ export function getProductThumbnail(product) {
     return undefined;
   }
   for (const image of defaultImages) {
-    if (image.thumbnail) return image;
+    if (image.thumbnail) return image.url;
   }
-  return defaultImages[0];
+  return defaultImages[0].url;
 }
 
 export function getProductMainImage(product) {
@@ -21,9 +21,9 @@ export function getProductMainImage(product) {
     return undefined;
   }
   for (const image of defaultImages) {
-    if (image.mainImage) return image;
+    if (image.mainImage) return image.url;
   }
-  return defaultImages[0];
+  return defaultImages[0].url;
 }
 
 export function getProductMainPrice(product, currency) {

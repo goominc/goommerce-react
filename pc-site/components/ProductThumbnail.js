@@ -13,7 +13,7 @@ export default React.createClass({
       <div className="col-xs-6 col-md-3">
         <Link to={`/products/${product.id}`}>
           <div className="thumbnail">
-            <img src={thumbnail.url}/>
+            <img src={thumbnail}/>
           </div>
           <div className="caption">
             {product.sku}

@@ -50,17 +50,17 @@ const ProductDetail = React.createClass({
           <div className="product-detail-left">
             <div className="left-thumbnail-container">
               <span>
-                <img src={mainImage.url} />
+                <img src={mainImage} />
               </span>
               <span>
-                <img src={mainImage.url} />
+                <img src={mainImage} />
               </span>
             </div>
             <div className="main-image-box">
-              <img src={mainImage.url} />
+              <img src={mainImage} />
             </div>
             <div className="enlarge-image-box">
-              <img src={mainImage.url} />
+              <img src={mainImage} />
             </div>
           </div>
           <div className="product-detail-right">

@@ -71,6 +71,9 @@ $product-in-row: 3;
   width: 260px;
   display: inline-block;
   position: relative;
+  img {
+    width: 100%;
+  }
   .product-title {
     height: 32px;
     overflow: hidden;
