@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 
 export default React.createClass({
   propTypes: {
-    cart: PropTypes.object,
+    cart: PropTypes.object.isRequired,
     updateCount: PropTypes.func,
     removeProduct: PropTypes.func,
     buy: PropTypes.func,
@@ -19,11 +19,14 @@ export default React.createClass({
       buy(variant);
     }
     function renderBuyButton() {
-      if (buy) {
-        return (
-          <td><button onClick={handleBuy}>Buy</button></td>
-        );
+      const buttonCells = [];
+      if (removeProduct) {
+        buttonCells.push(<td><button onClick={handleRemove}>Remove</button></td>);
       }
+      if (buy) {
+        buttonCells.push(<td><button onClick={handleBuy}>Buy</button></td>);
+      }
+      return buttonCells;
     }
     return (
       <tr key={variant.id}>
@@ -31,13 +34,12 @@ export default React.createClass({
           <span className="product-description">{variant.sku}</span></td>
         <td><input type="number" name="quantity" min="1" max="100" onChange={handleQuantity} defaultValue={variant.count}/></td>
         <td>KRW {variant.price.KRW}</td>
-        <td><button onClick={handleRemove}>Remove</button></td>
         {renderBuyButton()}
       </tr>
     );
   },
   render() {
-    const { cart, buy, children } = this.props;
+    const { cart, removeProduct, buy, children } = this.props;
     if (!cart) {
       return (
         <div>Error! No Cart</div>
@@ -46,18 +48,20 @@ export default React.createClass({
     const variants = cart.productVariants || [];
     function renderHead() {
       const renderBuyCell = () => {
-        if (buy) {
-          return (
-            <td width="10%"></td>
-          );
+        const buttonCells = [];
+        if (removeProduct) {
+          buttonCells.push(<td width="10%"></td>);
         }
+        if (buy) {
+          buttonCells.push(<td width="10%"></td>);
+        }
+        return buttonCells;
       };
       return (
         <tr>
           <td width="50%">Product Detail</td>
           <td width="15%">Quantity</td>
           <td width="15%">Price</td>
-          <td width="10%"></td>
           {renderBuyCell()}
         </tr>
       );
