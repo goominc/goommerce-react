@@ -52,8 +52,14 @@ const Checkout = React.createClass({
     });
   },
   render() {
+    const handleCheckoutStep = (step) => {
+      if (step !== 3) {
+        // 2016. 02. 02. [heekyu]
+        this.props.setCheckoutStep(step);
+      }
+    };
     return (
-      <CheckoutPage {...this.props} doCheckout={this.doCheckout} />
+      <CheckoutPage {...this.props} setCheckoutStep={handleCheckoutStep} doCheckout={this.doCheckout} />
     );
   },
 });
