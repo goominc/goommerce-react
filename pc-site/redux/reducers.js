@@ -64,7 +64,16 @@ function pagination(state = {}, action) {
 
 function errorHandler(state = {}, action) {
   if (action.type === 'RESET_ERROR') {
-    return Object.assign({}, state, {error: {}});
+    return assign({}, state, {error: {}});
+  }
+  return state;
+}
+
+function checkout(state = {}, action) {
+  if (action.type === 'CHECKOUT_SET_STEP') {
+    const nextState = assign({}, state);
+    nextState.step = action.step;
+    return nextState;
   }
   return state;
 }
@@ -75,11 +84,12 @@ const rootReducer = combineReducers({
   entities,
   pagination,
   errorHandler,
+  checkout,
 });
 
 export default (state = {}, action) => {
   if (action.error) {
-    return Object.assign({}, state, { error: action.error });
+    return assign({}, state, { error: action.error });
   }
   if (action.type === 'RESET') {
     return rootReducer({}, action);

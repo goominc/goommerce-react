@@ -157,3 +157,10 @@ export function resetError() {
     type: 'RESET_ERROR',
   };
 }
+
+export function setCheckoutStep(step) {
+  return {
+    type: 'CHECKOUT_SET_STEP',
+    step,
+  };
+}

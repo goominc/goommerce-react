@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { ReactScriptLoaderMixin } from 'react-script-loader';
 
-import { inipay, loadOrder } from '../redux/actions';
+import { inipay, loadOrder, setCheckoutStep } from '../redux/actions';
 
 import CheckoutPage from '../components/CheckoutPage';
 
@@ -10,6 +10,7 @@ const Checkout = React.createClass({
   propTypes: {
     orderId: PropTypes.string.isRequired,
     order: PropTypes.object,
+    checkout: PropTypes.object,
     inipay: PropTypes.func.isRequired,
     loadOrder: PropTypes.func.isRequired,
   },
@@ -21,6 +22,10 @@ const Checkout = React.createClass({
   },
   componentDidMount() {
     this.props.loadOrder(this.props.orderId);
+    const initial_step = 1;
+    if (!this.props.checkout || this.props.checkout.step != initial_step) {
+      this.props.setCheckoutStep(initial_step);
+    }
   },
   onScriptError() {
     // Show the user an error message.
@@ -34,21 +39,21 @@ const Checkout = React.createClass({
     }
     return 'https://stgstdpay.inicis.com/stdjs/INIStdPay.js';
   },
-  checkout(orderId) {
+  doCheckout(orderId, paymentInfo) {
     this.props.inipay(orderId).then(res => {
-      this.refs.mid.value = res.mid;
-      this.refs.oid.value = res.oid;
-      this.refs.price.value = res.price;
-      this.refs.timestamp.value = res.timestamp;
-      this.refs.signature.value = res.signature;
-      this.refs.returnUrl.value = res.returnUrl;
-      this.refs.mKey.value = res.mKey;
+      paymentInfo.mid.value = res.mid;
+      paymentInfo.oid.value = res.oid;
+      paymentInfo.price.value = res.price;
+      paymentInfo.timestamp.value = res.timestamp;
+      paymentInfo.signature.value = res.signature;
+      paymentInfo.returnUrl.value = res.returnUrl;
+      paymentInfo.mKey.value = res.mKey;
       INIStdPay.pay('checkout');
     });
   },
   render() {
     return (
-      <CheckoutPage {...this.props} checkout={this.checkout} />
+      <CheckoutPage {...this.props} doCheckout={this.doCheckout} />
     );
   },
 });
@@ -57,6 +62,7 @@ export default connect(
   (state, ownProps) => ({
     orderId: ownProps.params.orderId,
     order: state.entities.orders[ownProps.params.orderId],
+    checkout: state.checkout,
   }),
-  { inipay, loadOrder }
+  { inipay, loadOrder, setCheckoutStep }
 )(Checkout);
