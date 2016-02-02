@@ -1,6 +1,14 @@
+function getImages(product) {
+  if (!product || !product.appImages) {
+    return [];
+  }
+  return product.appImages.default || [];
+}
 export function getProductThumbnail(product) {
-  if (!product) return undefined;
-  const defaultImages = product.appImages.default;
+  const defaultImages = getImages(product);
+  if (defaultImages.length < 1) {
+    return undefined;
+  }
   for (const image of defaultImages) {
     if (image.thumbnail) return image;
   }
@@ -8,8 +16,10 @@ export function getProductThumbnail(product) {
 }
 
 export function getProductMainImage(product) {
-  if (!product) return undefined;
-  const defaultImages = product.appImages.default;
+  const defaultImages = getImages(product);
+  if (defaultImages.length < 1) {
+    return undefined;
+  }
   for (const image of defaultImages) {
     if (image.mainImage) return image;
   }
