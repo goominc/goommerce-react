@@ -2,25 +2,25 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { History } from 'react-router';
 
-import { loadOrder } from '../redux/actions';
+import { loadOrder, setCheckoutStep } from '../redux/actions';
+
+import CheckoutPage from '../components/CheckoutPage';
 
 const OrderDetail = React.createClass({
   propTypes: {
     orderId: PropTypes.string.isRequired,
     order: PropTypes.object,
+    checkout: PropTypes.object,
     loadOrder: PropTypes.func.isRequired,
+    setCheckoutStep: PropTypes.func,
   },
   mixins: [History],
   componentDidMount() {
     const { orderId } = this.props;
     this.props.loadOrder(orderId);
-  },
-  renderVariant(variant) {
-    return (
-      <li key={variant.sku}>
-        {variant.sku}, {variant.count}, KRW {variant.total.KRW}
-      </li>
-    );
+    if (this.props.checkout.step != 3) {
+      this.props.setCheckoutStep(3);
+    }
   },
   render() {
     const { order } = this.props;
@@ -28,14 +28,11 @@ const OrderDetail = React.createClass({
       return (<div></div>);
     }
     const variants = order.productVariants || [];
+    const handleCheckoutStep = () => {
+      // ignore since all step is done.
+    };
     return (
-      <div className="row">
-        <ul>
-          {variants.map(this.renderVariant)}
-        </ul>
-        <div>Total: KRW {order.total.KRW}</div>
-        <div>Status: {order.paymentStatus}</div>
-      </div>
+      <CheckoutPage {...this.props} setCheckoutStep={handleCheckoutStep} />
     );
   },
 });
@@ -44,6 +41,7 @@ export default connect(
   (state, ownProps) => ({
     orderId: ownProps.params.orderId,
     order: state.entities.orders[ownProps.params.orderId],
+    checkout: state.checkout,
   }),
-  { loadOrder }
+  { loadOrder, setCheckoutStep }
 )(OrderDetail);

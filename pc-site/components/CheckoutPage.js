@@ -74,6 +74,26 @@ export default React.createClass({
       </form>
     );
   },
+  renderDone() {
+    const { order } = this.props;
+    function renderVariant(variant) {
+      return (
+        <li key={variant.sku}>
+          {variant.sku}, {variant.count}, KRW {variant.total.KRW}
+        </li>
+      );
+    };
+    return (
+      <div>
+        <ul>
+          {order.productVariants.map(renderVariant)}
+        </ul>
+        <div>Total: KRW {order.total.KRW}</div>
+        <div>Status: {order.paymentStatus}</div>
+        <SellerBox cart={order} />
+      </div>
+    );
+  },
   render() {
     const { order, checkout, setCheckoutStep } = this.props;
     if (!order) {
@@ -93,7 +113,7 @@ export default React.createClass({
       } else if (currentStep === 2) {
         return this.renderPayments();
       } else if (currentStep === 3) {
-        // TODO Done
+        return this.renderDone();
       } else {
         // ERROR!
         window.alert('Invalid Checkout Page State!');
@@ -105,6 +125,8 @@ export default React.createClass({
         setCheckoutStep(step);
       }
     };
+
+    const endClassName = `checkout-progress-end ${currentStep === 3 ? 'progress-active': ''}`;
 
     return (
       <div className="checkout-container-wrap">
@@ -118,7 +140,7 @@ export default React.createClass({
           </div>
           <div className="checkout-progress-shadow progress-2-shadow"></div>
           <div className={getProgressbarClass(3)} onClick={() => handleClickStep(3)}>done</div>
-          <div className="checkout-progress-end"></div>
+          <div className={endClassName}></div>
           {getContent()}
         </div>
       </div>
