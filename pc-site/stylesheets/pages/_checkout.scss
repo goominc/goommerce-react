@@ -1,0 +1,84 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the checkout page.
+// -----------------------------------------------------------------------------
+$checkout-container-width: 950px;
+.checkout-container-wrap {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
+.checkout-container {
+  width: $checkout-container-width;
+  display: inline-block;
+  text-align: left;
+  .form-box {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .form-label {
+    text-align: right;
+    font-size: 14px;
+    width: 150px;
+    display: inline-block;
+    margin-right: 15px;
+  }
+  input[type="text"] {
+    width: 300px;
+    padding: 5px;
+  }
+}
+@mixin zindex-with-after($zindex) {
+  z-index: $zindex;
+  &:after {
+    z-index: $zindex;
+  }
+}
+$arrow-size: 10px;
+$inactive-progress-color: #f2f2f2;
+$active-progress-color: #f90;
+.checkout-progress-arrow {
+  @include body-and-arrow($checkout-container-width / 3 - $arrow-size * 2, $arrow-size, $inactive-progress-color);
+  text-align: center;
+  color: #666;
+  font-weight: 400;
+  vertical-align: top;
+}
+.checkout-progress-shadow {
+  @include body-and-arrow($arrow-size, $arrow-size, #fff);
+}
+.progress-1 {
+  @include zindex-with-after(30);
+}
+.progress-2 {
+  @include zindex-with-after(20);
+}
+.progress-3 {
+  @include zindex-with-after(10);
+}
+.progress-1-shadow {
+  @include zindex-with-after(25);
+}
+.progress-2-shadow {
+  @include zindex-with-after(15);
+}
+.checkout-progress-end {
+  width: $arrow-size * 2;
+  height: $arrow-size * 2;
+  display: inline-block;
+  background-color: $inactive-progress-color;
+}
+
+.progress-active {
+  background-color: $active-progress-color;
+  color: #fff;
+  &:after {
+    border-left-color: $active-progress-color;
+  }
+}
+
+.checkout-section-title {
+  color: rgb(51, 51, 51);
+  font: normal normal bold normal 16px / 30px 'Open Sans', Arial, Helvetica, sans-senif, SimSun, 宋体;
+  padding: 20px 0;
+  text-align: left;
+}

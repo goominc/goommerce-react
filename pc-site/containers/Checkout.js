@@ -4,6 +4,8 @@ import { ReactScriptLoaderMixin } from 'react-script-loader';
 
 import { inipay, loadOrder } from '../redux/actions';
 
+import SellerBox from '../components/CartSellerBox';
+
 const Checkout = React.createClass({
   propTypes: {
     orderId: PropTypes.string.isRequired,
@@ -52,9 +54,31 @@ const Checkout = React.createClass({
         <div></div>
       );
     }
+    console.log(order);
 
     return (
-      <div className="row">
+      <div className="checkout-container-wrap">
+        <div className="checkout-container">
+          <div className="checkout-progress-arrow progress-1 progress-active">p1</div>
+          <div className="checkout-progress-shadow progress-1-shadow"></div>
+          <div className="checkout-progress-arrow progress-2">p2</div>
+          <div className="checkout-progress-shadow progress-2-shadow"></div>
+          <div className="checkout-progress-arrow progress-3">p3</div>
+          <div className="checkout-progress-end"></div>
+
+          <div className="checkout-section-title">1. Please fill in your shipping address. </div>
+          <div className="form-box">
+            <div className="form-label">Country Name: </div>
+            <input type="text" />
+          </div>
+          <div className="form-box">
+            <div className="form-label">Address: </div>
+            <input type="text" />
+          </div>
+
+          <div className="checkout-section-title">2. Review and confirm your order (3 items):</div>
+          <SellerBox cart={order} />
+        </div>
         <div>KRW {order.total.KRW}</div>
         <form id="checkout" method="POST">
           <select name="gopaymethod">
