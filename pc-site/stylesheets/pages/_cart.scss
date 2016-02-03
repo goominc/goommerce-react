@@ -78,8 +78,6 @@
     display: inline-block;
     font-size: 14px;
     padding: 3px 15px;
-    color: #fff;
-    background-color: #f8af23;
-    border: 1px solid #e87b0e;
+    @include button-default-styles();
   }
 }

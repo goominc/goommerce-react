@@ -1,0 +1,106 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the header of My Pages
+// -----------------------------------------------------------------------------
+
+.mypage-navigation {
+  $height: 45px;
+  height: $height;
+  line-height: $height;
+  margin: 0 0 20px 0;
+  background: #e62e04;
+  color: #fff;
+  width: 100%;
+}
+.mypage-nav-container {
+  max-width: 1200px;
+  margin: auto;
+  display: block;
+  .mypage-nav-menu {
+    text-align: center;
+    display: inline-block;
+    padding: 0 20px;
+    font-size: 14px;
+    cursor: pointer;
+    &:hover {
+      background-color: #c71801;
+    }
+    &.active {
+      background-color: #a63c24;
+    }
+  }
+}
+.mypage-contents-container {
+  background-color: #f2f2f2;
+  max-width: 1200px;
+  margin: auto;
+  display: block;
+  overflow: hidden;
+}
+$mypage-active-color: #f60;
+.mypage-leftbar-box {
+  display: inline-block;
+  border: 1px solid #e8e8e8;
+  background-color: #fff;
+  width: 220px;
+  margin-right: 20px;
+  .mypage-leftbar-title {
+    display: inline-block;
+    width: 100%;
+    font-size: 18px;
+    padding: 15px 15px 5px 15px;
+    font-weight: 500;
+  }
+  .mypage-leftbar-item {
+    display: inline-block;
+    padding: 5px 0 5px 15px;
+    width: 100%;
+    font-size: 14px;
+    span {
+      cursor: pointer;
+      &:hover {
+        color: $mypage-active-color;
+      }
+    }
+    &.active {
+      background-color: #f2f2f2;
+      border-left: 3px solid $mypage-active-color;
+      color: $mypage-active-color;
+    }
+  }
+}
+
+.mypage-right-box {
+  display: inline-block;
+  vertical-align: top;
+  width: 920px;
+  h2 {
+    font-weight: 500;
+  }
+  @mixin mypage-simple-bar() {
+    width: 100%;
+    padding: $margin-rare;
+    border: 1px solid #e8e8e8;
+    background-color: #fff;
+    margin-bottom: $margin-medium-rare;
+    color: #999;
+  }
+  .order-status-bar {
+    @include mypage-simple-bar();
+    span {
+      margin-right: $margin-rare;
+      cursor: pointer;
+      &:hover, &.active {
+        color: $mypage-active-color;
+      }
+    }
+  }
+  .order-search-bar {
+    @include mypage-simple-bar();
+    input {
+      margin-right: $margin-rare;
+    }
+    button {
+      @include button-default-styles();
+    }
+  }
+}

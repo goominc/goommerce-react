@@ -71,3 +71,8 @@ $breakpoints: (
 /// @example scss - When using a CDN
 ///   $base-url: 'http://cdn.example.com/assets/';
 $base-url: '/assets/' !default;
+
+
+/// most used margin values
+$margin-rare: 15px;
+$margin-medium-rare: 20px;

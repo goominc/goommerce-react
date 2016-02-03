@@ -14,6 +14,7 @@ import {
   Signup,
   ProductList,
   ProductDetail,
+  MyPage,
 } from './containers';
 
 export default function configure({ getAuth }) {
@@ -29,6 +30,7 @@ export default function configure({ getAuth }) {
         <Route path="/orders/:orderId" component={OrderDetail}/>
         <Route path="/orders/:orderId/checkout" component={Checkout}/>
         <Route path="/search" component={Search}/>
+        <Route path="/mypage" component={MyPage} />
       </Route>
       <Route path="/accounts/signin" component={Signin}/>
       <Route path="/accounts/signup" component={Signup}/>

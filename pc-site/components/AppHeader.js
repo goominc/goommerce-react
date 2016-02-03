@@ -11,12 +11,14 @@ export default React.createClass({
     const { auth } = this.props;
     if (auth.bearer) {
       return (
-        <div className="account-menus-wrap">
-          <span>Hi, </span>
-          <div className="my-linkshops">
-            <span>{auth.email}</span>
+        <Link to="/mypage">
+          <div className="account-menus-wrap">
+            <span>Hi, </span>
+            <div className="my-linkshops">
+              <span>{auth.email}</span>
+            </div>
           </div>
-        </div>
+        </Link>
       );
     }
     return (

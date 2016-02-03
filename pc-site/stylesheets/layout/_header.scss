@@ -1,14 +1,16 @@
 // -----------------------------------------------------------------------------
 // This file contains all styles related to the header of the site/application.
 // -----------------------------------------------------------------------------
+.header-wide-container {
+  width: 100%;
+  border-bottom: 1px solid #e8e8e8;
+}
 $header-height: 40px;
 $header-margin: 10px;
 .header {
   height: $header-height + $header-margin * 2;
   line-height: $header-height + $header-margin * 2;
   vertical-align: middle;
-  border-bottom: 1px solid #e8e8e8;
-  margin-bottom: $header-margin;
 }
 .header-wrap {
   margin-top: $header-margin;
@@ -165,6 +167,7 @@ $mymenu-margin: 20px;
   font: normal normal normal normal 13px / 16.9px 'Open Sans', Arial, Helvetica, sans-senif, SimSun, 宋体;
   margin-left: $mymenu-margin;
   vertical-align: middle;
+  cursor: pointer;
   .account-icon {
     display: inline-block;
     margin-right: $mymenu-margin / 2;
