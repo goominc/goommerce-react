@@ -27,7 +27,7 @@ module.exports = (opts) => {
   }
 
   if (opts.localBundle) {
-    middlewares.push(serveStatic('dist'));
+    middlewares.push(serveStatic(__dirname + '/dist'));
   }
 
   middlewares.push((req, res) => {
