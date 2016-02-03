@@ -1,5 +1,6 @@
 const config = require('./config');
 const serialize = require('serialize-javascript');
+const serveStatic = require('serve-static')
 
 module.exports = (opts) => {
   opts = opts || {}; // eslint-disable-line no-param-reassign
@@ -23,6 +24,10 @@ module.exports = (opts) => {
     const webpack = require('webpack');
     webpackRuntime('./webpack.config');
     webpackRuntime('./webpack.mobile.config');
+  }
+
+  if (opts.localBundle) {
+    middlewares.push(serveStatic('dist'));
   }
 
   middlewares.push((req, res) => {

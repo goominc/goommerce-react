@@ -1,10 +1,7 @@
 const config = require('./config');
 
-const express = require('express');
-const app = new express();
-if (app.get('env') === 'production') {
-  app.use(express.static(`${__dirname}/dist/`));
-}
+const Express = require('express');
+const app = new Express();
 
 const httpProxy = require('http-proxy');
 const apiProxy = httpProxy.createProxyServer();
@@ -18,7 +15,7 @@ app.use(cookieParser());
 const request = require('superagent');
 app.use(require('./middleware')({
   hot: app.get('env') === 'development',
-  localBundle: true,
+  localBundle: app.get('env') === 'production',
   getAuth: (req, callback) => {
     request
       .get('http://localhost:8080/api/v1/login')
