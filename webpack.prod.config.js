@@ -35,7 +35,7 @@ module.exports = {
       {
         test: /\.js$/,
         loaders: ['babel'],
-        include: [path.join(__dirname, 'pc-site')],
+        include: [path.join(__dirname, 'pc-site'), path.join(__dirname, 'commons')],
       },
       {
         test: /\.css$/,
