@@ -5,14 +5,13 @@ import { getProductThumbnail } from '../util';
 export default React.createClass({
   propTypes: {
     cart: PropTypes.object.isRequired,
-    canChangeQuantity: PropTypes.boolean,
+    canChangeQuantity: PropTypes.bool,
     updateCount: PropTypes.func,
     removeProduct: PropTypes.func,
     buy: PropTypes.func,
   },
   renderVariant(variant) {
     const { updateCount, removeProduct, buy, canChangeQuantity } = this.props;
-    console.log(canChangeQuantity);
     function handleQuantity(event) {
       return updateCount(variant, event.target.value);
     }
@@ -25,10 +24,10 @@ export default React.createClass({
     function renderBuyButton() {
       const buttonCells = [];
       if (removeProduct) {
-        buttonCells.push(<td><button onClick={handleRemove}>Remove</button></td>);
+        buttonCells.push(<td key="removeProduct"><button onClick={handleRemove}>Remove</button></td>);
       }
       if (buy) {
-        buttonCells.push(<td><button onClick={handleBuy}>Buy</button></td>);
+        buttonCells.push(<td key="buyProduct"><button onClick={handleBuy}>Buy</button></td>);
       }
       return buttonCells;
     }
@@ -40,7 +39,7 @@ export default React.createClass({
       }
     };
     return (
-      <tr key={variant.id}>
+      <tr key={`cart-variant-${variant.id}`}>
         <td><img src={getProductThumbnail(variant)} />
           <span className="product-description">{variant.sku}</span></td>
         <td>{renderQuantity(variant)}</td>
@@ -61,10 +60,10 @@ export default React.createClass({
       const renderBuyCell = () => {
         const buttonCells = [];
         if (removeProduct) {
-          buttonCells.push(<td width="10%"></td>);
+          buttonCells.push(<td key="removeProduct" width="10%"></td>);
         }
         if (buy) {
-          buttonCells.push(<td width="10%"></td>);
+          buttonCells.push(<td key="buyProduct" width="10%"></td>);
         }
         return buttonCells;
       };

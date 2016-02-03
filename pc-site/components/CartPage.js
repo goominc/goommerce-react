@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 
 import SellerBox from './CartSellerBox';
 
@@ -31,7 +32,7 @@ export default React.createClass({
           Your Cart
         </div>
         <div className="cart-top-box">
-          <a><span className="cart-continue-shopping-arrow"></span><span className="cart-continue-shopping-text">Continue Shopping</span></a>
+          <Link to="/products"><span className="cart-continue-shopping-arrow"></span><span className="cart-continue-shopping-text">Continue Shopping</span></Link>
         </div>
         <SellerBox {...this.props} canChangeQuantity>
           <div className="cart-seller-bottom">

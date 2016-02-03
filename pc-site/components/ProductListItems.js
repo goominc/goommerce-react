@@ -5,7 +5,7 @@ import { getProductMainImage, getProductMainPrice } from '../util';
 
 export default React.createClass({
   propTypes: {
-    products: PropTypes.object.isRequired,
+    products: PropTypes.array.isRequired,
   },
   render() {
     const { products } = this.props;
