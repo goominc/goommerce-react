@@ -89,7 +89,7 @@ const rootReducer = combineReducers({
 
 export default (state = {}, action) => {
   if (action.error) {
-    return assign({}, state, { error: action.error });
+    return assign({}, state, { errorHandler: {error: action.error} });
   }
   if (action.type === 'RESET') {
     return rootReducer({}, action);

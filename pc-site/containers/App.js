@@ -44,6 +44,6 @@ const App = React.createClass({
 });
 
 export default connect(
-  state => ({ auth: state.auth, cart: state.cart, error: state.error }),
+  state => ({ auth: state.auth, cart: state.cart, error: state.errorHandler.error }),
   { loadCartIfEmpty, resetError }
 )(App);
