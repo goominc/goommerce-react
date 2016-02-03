@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 
+import { getProductThumbnail } from '../util';
+
 export default React.createClass({
   propTypes: {
     cart: PropTypes.object.isRequired,
@@ -30,7 +32,7 @@ export default React.createClass({
     }
     return (
       <tr key={variant.id}>
-        <td><img src="http://www.linkshops.com/media/catalog/product/cache/1/thumbnail/120x180/9df78eab33525d08d6e5fb8d27136e95/3/f/3f8a6201-copy.jpg" />
+        <td><img src={getProductThumbnail(variant)} />
           <span className="product-description">{variant.sku}</span></td>
         <td><input type="number" name="quantity" min="1" max="100" onChange={handleQuantity} defaultValue={variant.count}/></td>
         <td>KRW {variant.price.KRW}</td>
