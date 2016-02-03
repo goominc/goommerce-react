@@ -18,8 +18,27 @@ function checkout(state = {}, action) {
   return state;
 }
 
+// BEGIN page-wide reducers
+function pageProductDetail(state = {}, action) {
+  if (action.type === 'ACTIVE_IMAGE') {
+    return assign({}, state, { image_url: action.url });
+  } else if (action.type === 'CHANGE_VARIANT_SELECTION') {
+    return assign({}, state, { selected_variant: action.selected_variant });
+  }
+  return state;
+}
+function pageProductList(state = {}, action) {
+  // TODO query related state management
+  return state;
+}
+const pageReducers = combineReducers({
+  pageProductDetail,
+  pageProductList,
+});
+// END page-wide reducers
+
 const rootReducer = combineReducers(
-  Object.assign({}, CommonReducers.reducers, { errorHandler, checkout } )
+  Object.assign({}, CommonReducers.reducers, { errorHandler, checkout, page: pageReducers } )
 );
 
 export default (state = {}, action) => {

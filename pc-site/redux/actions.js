@@ -15,3 +15,18 @@ export function setCheckoutStep(step) {
     step,
   };
 }
+
+// BEGIN Product Detail Page actions
+export function setActiveImage(imageUrl) {
+  return {
+    type: 'ACTIVE_IMAGE',
+    url: imageUrl,
+  };
+}
+export function changeVariantSelection(selected_variant) {
+  return {
+    type: 'CHANGE_VARIANT_SELECTION',
+    selected_variant,
+  };
+}
+// END Product Detail Page actions

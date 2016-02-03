@@ -27,7 +27,7 @@ $product-detail-thumbnail-margin: 15px;
         height: $product-detail-thumbnail-width;
       }
     }
-    .img-active {
+    .image-active {
       border: 2px solid #FCAB42;
       img {
         margin-left: -1px;
@@ -58,11 +58,12 @@ $product-detail-thumbnail-margin: 15px;
     margin-left: $product-detail-thumbnail-margin;
     width: 450px;
     height: 450px;
+    overflow: hidden;
     img {
       position: absolute;
       top: 0;
       display: block;
-      width: 100%;
+      width: 200%;
       height: auto;
     }
   }

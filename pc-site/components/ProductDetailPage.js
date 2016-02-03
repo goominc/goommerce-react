@@ -7,7 +7,10 @@ import BreadCrumb from '../components/BreadCrumb';
 export default React.createClass({
   propTypes: {
     product: PropTypes.object.isRequired,
+    images: PropTypes.array.isRequired,
     addCartProduct: PropTypes.func,
+    activeImageUrl: PropTypes.string,
+    setActiveImage: PropTypes.func,
   },
   renderVariant(variant) {
     const { addCartProduct } = this.props;
@@ -18,19 +21,50 @@ export default React.createClass({
       </li>
     );
   },
+  handleMouseEnterThumbnail(image) {
+    this.props.setActiveImage(image.url);
+  },
+  handleMouseEnterMainImage() {
+    // TODO make this to external state
+    $('.enlarge-image-box').css('display', 'block');
+  },
+  handleMouseMoveMainImage(e) {
+    // TODO make this to external state
+    const width = 50; // TODO
+    const height = width / 2 * 3;
+    const offset = $(e.target).offset();
+    const x = e.pageX - offset.left;
+    const y = e.pageY - offset.top;
+    const left = Math.max(x - width, 0);
+    const top = Math.max(y - height, 0);
+    const zoomElem = $('.enlarge-image-box img');
+    zoomElem.css('margin-left', `-${left}px`);
+    zoomElem.css('margin-top', `-${top}px`);
+  },
+  handleMouseLeaveMainImage() {
+    // TODO make this to external state
+    $('.enlarge-image-box').css('display', 'none');
+  },
   render() {
-    const { product } = this.props;
-    if (!product) {
+    const { product, images, activeImageUrl } = this.props;
+    const renderThumbnail = (image) => {
+      let className = '';
+      if (image.url === activeImageUrl) {
+        className = 'image-active';
+      }
       return (
-        <div></div>
+        <span className={className} key={image.url} onMouseEnter={() => this.handleMouseEnterThumbnail(image)}>
+          <img src={image.url} />
+        </span>
       );
-    }
+    };
 
     const mainImage = getProductMainImage(product) || {};
     const variants = product.productVariants || [];
 
     const path = [
       { link: '/', name: 'Home' },
+      { link: '/products', name: 'Product List'},
       { name: product.sku },
     ];
     const price = getProductMainPrice(product, 'KRW');
@@ -40,18 +74,16 @@ export default React.createClass({
         <div clssName="container-table">
           <div className="product-detail-left">
             <div className="left-thumbnail-container">
-              <span>
-                <img src={mainImage} />
-              </span>
-              <span>
-                <img src={mainImage} />
-              </span>
+              {images.map(renderThumbnail)}
             </div>
-            <div className="main-image-box">
-              <img src={mainImage} />
+            <div onMouseMove={this.handleMouseMoveMainImage}
+                 onMouseEnter={this.handleMouseEnterMainImage}
+                 onMouseLeave={this.handleMouseLeaveMainImage}
+                 className="main-image-box">
+              <img src={activeImageUrl} />
             </div>
             <div className="enlarge-image-box">
-              <img src={mainImage} />
+              <img src={activeImageUrl} />
             </div>
           </div>
           <div className="product-detail-right">
