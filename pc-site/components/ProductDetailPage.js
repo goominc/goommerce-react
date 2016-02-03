@@ -62,6 +62,15 @@ export default React.createClass({
     const mainImage = getProductMainImage(product) || {};
     const variants = product.productVariants || [];
 
+    const renderPath = (categoryPath, index) => {
+      const crumbPath = [{ link: '/', name: 'Home' }];
+      for (let i = 0; i < categoryPath.ko.length; i++) {
+        crumbPath.push({ link: 'products', name: categoryPath.ko[i] });
+      }
+      crumbPath.push({ name: product.sku });
+      return (<BreadCrumb key={`bread-crumb-${index}`} path={crumbPath} />);
+    };
+
     const path = [
       { link: '/', name: 'Home' },
       { link: '/products', name: 'Product List'},
@@ -70,7 +79,8 @@ export default React.createClass({
     const price = getProductMainPrice(product, 'KRW');
     return (
       <div className="container">
-        <BreadCrumb path={path} />
+        <BreadCrumb key='bread-crumb-default' path={path} />
+        {product.data.categoryPath ? product.data.categoryPath.map(renderPath): []}
         <div clssName="container-table">
           <div className="product-detail-left">
             <div className="left-thumbnail-container">
