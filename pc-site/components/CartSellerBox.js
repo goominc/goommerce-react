@@ -5,12 +5,14 @@ import { getProductThumbnail } from '../util';
 export default React.createClass({
   propTypes: {
     cart: PropTypes.object.isRequired,
+    canChangeQuantity: PropTypes.boolean,
     updateCount: PropTypes.func,
     removeProduct: PropTypes.func,
     buy: PropTypes.func,
   },
   renderVariant(variant) {
-    const { updateCount, removeProduct, buy } = this.props;
+    const { updateCount, removeProduct, buy, canChangeQuantity } = this.props;
+    console.log(canChangeQuantity);
     function handleQuantity(event) {
       return updateCount(variant, event.target.value);
     }
@@ -30,11 +32,18 @@ export default React.createClass({
       }
       return buttonCells;
     }
+    const renderQuantity = () => {
+      if (canChangeQuantity) {
+        return (<input type="number" name="quantity" min="1" max="100" onChange={handleQuantity} defaultValue={variant.count}/>);
+      } else {
+        return (<span>{variant.count}</span>);
+      }
+    };
     return (
       <tr key={variant.id}>
         <td><img src={getProductThumbnail(variant)} />
           <span className="product-description">{variant.sku}</span></td>
-        <td><input type="number" name="quantity" min="1" max="100" onChange={handleQuantity} defaultValue={variant.count}/></td>
+        <td>{renderQuantity(variant)}</td>
         <td>KRW {variant.price.KRW}</td>
         {renderBuyButton()}
       </tr>

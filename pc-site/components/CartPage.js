@@ -33,7 +33,7 @@ export default React.createClass({
         <div className="cart-top-box">
           <a><span className="cart-continue-shopping-arrow"></span><span className="cart-continue-shopping-text">Continue Shopping</span></a>
         </div>
-        <SellerBox {...this.props}>
+        <SellerBox {...this.props} canChangeQuantity>
           <div className="cart-seller-bottom">
             <div className="cart-total-price-box">
               Total: <b>KRW {totalPrice}</b>
