@@ -2,8 +2,10 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-import { loadMyOrders } from '../redux/actions';
-import loadEntities from '../redux/util/loadEntities';
+import loadEntities from '../../commons/redux/util/loadEntities';
+
+import { ApiAction } from '../redux/actions';
+const { loadMyOrders } = ApiAction;
 
 const OrderList = React.createClass({
   propTypes: {

@@ -2,8 +2,10 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { isEqual } from 'lodash';
 
-import { searchProducts } from '../redux/actions';
 import ProductThumbnail from '../components/ProductThumbnail';
+
+import { ApiAction } from '../redux/actions';
+const { searchProducts } = ApiAction;
 
 const Search = React.createClass({
   propTypes: {

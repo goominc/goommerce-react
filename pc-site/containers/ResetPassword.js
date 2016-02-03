@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { History } from 'react-router';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
 
-import { resetPassword } from '../redux/actions';
+import { ApiAction } from '../redux/actions';
+const { resetPassword } = ApiAction;
 
 const ResetPassword = React.createClass({
   propTypes: {

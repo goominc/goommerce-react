@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
-import { default as reducer } from './reducers';
+import { default as reducer } from './../../pc-site/redux/reducers';
 
 export default function configureStore(initialState) {
   const middlewares = [
@@ -14,14 +14,6 @@ export default function configureStore(initialState) {
   const finalCreateStore = compose(...middlewares)(createStore);
 
   const store = finalCreateStore(reducer, initialState);
-
-  if (module.hot) {
-    // Enable Webpack hot module replacement for reducers
-    module.hot.accept('./reducers', () => {
-      const nextRootReducer = require('./reducers');
-      store.replaceReducer(nextRootReducer);
-    });
-  }
 
   return store;
 }

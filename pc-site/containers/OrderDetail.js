@@ -2,9 +2,10 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { History } from 'react-router';
 
-import { loadOrder, setCheckoutStep } from '../redux/actions';
-
 import CheckoutPage from '../components/CheckoutPage';
+
+import { ApiAction, setCheckoutStep } from '../redux/actions';
+const { loadOrder } = ApiAction;
 
 const OrderDetail = React.createClass({
   propTypes: {

@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import { History, Link } from 'react-router';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
 
-import { loadCartIfEmpty, resetError } from '../redux/actions';
-
 import AppHeader from '../components/AppHeader';
 import ErrorPopup from '../components/ErrorPopup';
+
+import { ApiAction, resetError } from '../redux/actions';
+const { loadCartIfEmpty } = ApiAction;
 
 require('../stylesheets/main.scss');
 

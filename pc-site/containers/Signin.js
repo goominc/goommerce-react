@@ -3,12 +3,11 @@ import { connect } from 'react-redux';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
 import { History, Link } from 'react-router';
 
-import { login } from '../redux/actions';
-
 import SigninHeader from '../components/SigninHeader';
-/*
 
- */
+import { ApiAction } from '../redux/actions';
+const { login } = ApiAction;
+
 const Signin = React.createClass({
   propTypes: {
     login: PropTypes.func.isRequired,

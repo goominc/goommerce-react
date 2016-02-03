@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 
 export default React.createClass({
   propTypes: {
@@ -14,7 +15,7 @@ export default React.createClass({
     //               need keys
     this.props.path.forEach((parent, index) => {
       if (parent.link) {
-        items.push(<a key={parent.name} href={parent.link}><span>{parent.name}</span></a>);
+        items.push(<Link key={parent.name} to={parent.link}><span>{parent.name}</span></Link>);
       } else {
         items.push(<span key={parent.name}>{parent.name}</span>);
       }

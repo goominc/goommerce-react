@@ -1,11 +1,13 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { loadProducts } from '../redux/actions';
-import loadEntities from '../redux/util/loadEntities';
+import loadEntities from '../../commons/redux/util/loadEntities';
 
 import ProductListItems from '../components/ProductListItems';
 import ProductThumbnail from '../components/ProductThumbnail';
+
+import { ApiAction } from '../redux/actions';
+const { loadProducts } = ApiAction;
 
 const Home = React.createClass({
   propTypes: {

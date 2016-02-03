@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
 import { History, Link } from 'react-router';
 
-import { signup } from '../redux/actions';
-
 import SigninHeader from '../components/SigninHeader';
+
+import { ApiAction } from '../redux/actions';
+const { signup } = ApiAction;
 
 const Signup = React.createClass({
   propTypes: {

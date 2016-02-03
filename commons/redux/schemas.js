@@ -1,3 +1,5 @@
+// Copyright (C) 2016 Goom Inc. All rights reserved.
+
 import { Schema, arrayOf } from 'normalizr';
 
 export const user = new Schema('users');

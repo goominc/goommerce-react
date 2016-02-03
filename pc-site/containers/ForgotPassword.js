@@ -3,9 +3,10 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
 
-import { forgotPassword } from '../redux/actions';
+import SigninHeader from '../components/SigninHeader';
 
-import SigninHeader from '../components/SigninHeader'
+import { ApiAction } from '../redux/actions';
+const { forgotPassword } = ApiAction;
 
 const ForgotPassword = React.createClass({
   propTypes: {

@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { loadProduct, addCartProduct } from '../redux/actions';
-
 import ProductDetailPage from '../components/ProductDetailPage';
 
+import { ApiAction } from '../redux/actions';
+const { loadProduct, addCartProduct } = ApiAction;
 
 const ProductDetail = React.createClass({
   propTypes: {

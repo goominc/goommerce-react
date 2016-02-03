@@ -4,10 +4,18 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
-import configureStore from './redux/store';
+import configureStore from './../commons/redux/store';
 import configureRoutes from './routes';
 
 const store = configureStore(window.__INITIAL_STATE__);
+
+if (module.hot) {
+  // Enable Webpack hot module replacement for reducers
+  module.hot.accept('./redux/reducers', () => {
+    const nextRootReducer = require('./redux/reducers');
+    store.replaceReducer(nextRootReducer);
+  });
+}
 
 const routes = configureRoutes({
   getAuth() {

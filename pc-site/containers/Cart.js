@@ -2,9 +2,10 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { History } from 'react-router';
 
-import { loadCart, updateCartProduct, deleteCartProduct, createOrder } from '../redux/actions';
-
 import CartPage from '../components/CartPage'
+
+import { ApiAction } from '../redux/actions';
+const { loadCart, updateCartProduct, deleteCartProduct, createOrder } = ApiAction;
 
 const Cart = React.createClass({
   propTypes: {
