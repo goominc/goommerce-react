@@ -30,8 +30,10 @@ const ProductDetail = React.createClass({
       }
     };
     objToImages(product);
-    for (let i = 0; i < product.productVariants.length; i++) {
-      objToImages(product.productVariants[i]);
+    if (product.productVariants) {
+      for (let i = 0; i < product.productVariants.length; i++) {
+        objToImages(product.productVariants[i]);
+      }
     }
     return images;
   },
