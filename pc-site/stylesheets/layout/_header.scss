@@ -209,12 +209,41 @@ $mymenu-margin: 20px;
   }
   .right-menu-item {
     display: inline-block;
+    position: relative;
     padding: 0 $margin-15;
     color: #999;
     font-size: 12px;
     cursor: pointer;
+    .dropdown-box {
+      display: none;
+    }
     &:hover {
       background-color: #fff;
+      .dropdown-box {
+        width: 100px;
+        height: initial;
+        line-height: initial;
+        display: inline-block;
+        position: absolute;
+        margin-top: 0;
+        top: 100%;
+        right: -1px;
+        border-left: 1px solid #e8e8e8;
+        border-right: 1px solid #e8e8e8;
+        border-bottom: 1px solid #e8e8e8;
+        background-color: #fff;
+        z-index: 1000;
+      }
+      .dropdown-menu {
+        display: inline-block;
+        width: 100%;
+        padding: 5px $margin-15;
+        cursor: pointer;
+        &:hover {
+          color: $default-active-text-color;
+          font-weight: 500;
+        }
+      }
     }
   }
   .right-menu-divider {

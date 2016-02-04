@@ -43,9 +43,22 @@ export default React.createClass({
         <div className="top-helper-bar">
           <div className="container">
             <div className="right-menus">
-              <div className="right-menu-item">Lang</div>
+              <div className="right-menu-item">
+                Lang
+                <div className="dropdown-box">
+                  <div className="dropdown-menu">한국어</div>
+                  <div className="dropdown-menu">English</div>
+                  <div className="dropdown-menu">쭝꿔</div>
+                </div>
+              </div>
               <div className="right-menu-divider"></div>
-              <div className="right-menu-item">Currency</div>
+              <div className="right-menu-item">
+                Currency
+                <div className="dropdown-box">
+                  <div className="dropdown-menu">KRW</div>
+                  <div className="dropdown-menu">USD</div>
+                </div>
+              </div>
               <div className="right-menu-divider"></div>
             </div>
           </div>
