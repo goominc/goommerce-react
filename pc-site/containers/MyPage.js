@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 import MyPageHeader from '../components/mypage/MyPageHeader';
 import MyPageLeftbar from '../components/mypage/MyPageLeftbar';
+import MyOrderContainer from './MyOrderContainer';
 
 const MyPage = React.createClass({
   render() {
@@ -15,20 +16,7 @@ const MyPage = React.createClass({
         <MyPageHeader menuName="My Orders" />
         <div className="mypage-contents-container">
           <MyPageLeftbar />
-          <div className="mypage-right-box">
-            <h2>Orders</h2>
-            <div className="order-status-bar">
-              <span>Before Payment</span>
-              <span className="active">Before shipping</span>
-              <span>On Delivery</span>
-              <span>Complete</span>
-            </div>
-            <div className="order-search-bar">
-              Order Number:  <input type="text" />
-              Product:  <input type="text" />
-              <button>Search</button>
-            </div>
-          </div>
+          <MyOrderContainer />
         </div>
       </div>
     );

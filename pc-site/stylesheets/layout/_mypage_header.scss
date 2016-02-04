@@ -73,21 +73,22 @@ $mypage-active-color: #f60;
   display: inline-block;
   vertical-align: top;
   width: 920px;
+  padding-bottom: $margin-15;
   h2 {
     font-weight: 500;
   }
   @mixin mypage-simple-bar() {
     width: 100%;
-    padding: $margin-rare;
+    padding: $margin-15;
     border: 1px solid #e8e8e8;
     background-color: #fff;
-    margin-bottom: $margin-medium-rare;
+    margin-bottom: $margin-20;
     color: #999;
   }
   .order-status-bar {
     @include mypage-simple-bar();
     span {
-      margin-right: $margin-rare;
+      margin-right: $margin-15;
       cursor: pointer;
       &:hover, &.active {
         color: $mypage-active-color;
@@ -97,7 +98,7 @@ $mypage-active-color: #f60;
   .order-search-bar {
     @include mypage-simple-bar();
     input {
-      margin-right: $margin-rare;
+      margin-right: $margin-15;
     }
     button {
       @include button-default-styles();

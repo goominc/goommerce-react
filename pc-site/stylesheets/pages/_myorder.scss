@@ -1,0 +1,45 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the mypage.
+// -----------------------------------------------------------------------------
+
+.order-list-container {
+  width: 100%;
+  border: 1px solid #e8e8e8;
+  background-color: #fff;
+  padding: $margin-15;
+  .order-box {
+    width: 100%;
+    display: block;
+    padding-bottom: $margin-15;
+    border-bottom: 1px solid #f2f2f2;
+    + .order-box {
+      margin-top: $margin-15;
+    }
+  }
+  .order-head {
+    background-color: #f2f2f2;
+    padding: $margin-15;
+  }
+  .order-product-box {
+    width: 70%;
+    .order-product-item {
+      padding: $margin-15 0;
+      display: block;
+      width: 100%;
+      height: 150px;
+      border: 1px solid #f2f2f2;
+      .thumbnail-box {
+        display: inline-block;
+        width: 50px;
+        height: 100%;
+      }
+      .content-box {
+        display: inline-block;
+        vertical-align: top;
+      }
+    }
+  }
+  .order-action-box {
+    width: 30%;
+  }
+}
