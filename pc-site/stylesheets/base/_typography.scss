@@ -5,3 +5,6 @@ body {
   color: $text-color;
   font: normal 125% / 1.4 $text-font-stack;
 }
+input {
+  outline: none;
+}
