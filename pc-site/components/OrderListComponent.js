@@ -3,6 +3,8 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
+import { getProductThumbnail } from '../util';
+
 export default React.createClass({
   propTypes: {
     orders: PropTypes.array.isRequired,
@@ -11,7 +13,40 @@ export default React.createClass({
     function formatDate(date) {
       return new Date(date).toString();
     }
-    const { orders = [] } = this.props;
+    const { orders } = this.props;
+    console.log(orders);
+
+    const renderProductVariant = (variant) => {
+      return (
+        <div key={variant.id} className="order-product-item">
+          <div className="thumbnail-box"><img src={getProductThumbnail(variant)} /></div>
+          <div className="content-box">
+            {variant.sku} <br/>
+            Price / piece : {variant.price.KRW} <br/>
+            Count: {variant.count} <br/>
+            Total Price : {variant.total.KRW} <br/>
+          </div>
+        </div>
+      );
+    };
+    const renderOrder = (order) => {
+      return (
+        <div key={order.id} className="order-box">
+          <div className="order-head">
+            <span>Order Id: {order.id} </span> <Link to={`/orders/${order.id}`} >View Detail</Link> <br/>
+            <span>Total Price: KWR {order.total.KRW}</span> <br/>
+            <span>Order Date: {formatDate(order.createdAt)}</span> <br/>
+            <span>Seller: Mola</span>
+          </div>
+          <div className="order-product-box">
+            {order.productVariants.map(renderProductVariant)}
+          </div>
+          <div className="order-action-box">
+            Status : {order.paymentStatus}
+          </div>
+        </div>
+      );
+    };
 
     return (
       <div className="mypage-right-box">
@@ -28,22 +63,7 @@ export default React.createClass({
           <button>Search</button>
         </div>
         <div className="order-list-container">
-          <div className="order-box">
-            <div className="order-head">
-              Order Id: 1
-            </div>
-            <div className="order-product-box"></div>
-          </div>
-          <div className="order-box">
-            <div className="order-head">
-              Order Id: 2
-            </div>
-          </div>
-          <div>
-            <ul>
-              {orders.map(order => <Link to={`/orders/${order.id}`} key={order.id}><li>{order.id}, KWR{order.total.KRW}, {formatDate(order.createdAt)}</li></Link>)}
-            </ul>
-          </div>
+          {orders.map(renderOrder)}
         </div>
       </div>
     );
