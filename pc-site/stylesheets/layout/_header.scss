@@ -8,8 +8,8 @@
 $header-height: 40px;
 $header-margin: 10px;
 .header {
-  height: $header-height + $header-margin * 2;
-  line-height: $header-height + $header-margin * 2;
+  height: $header-height + $header-margin;
+  line-height: $header-height + $header-margin;
   vertical-align: middle;
 }
 .header-wrap {
@@ -190,5 +190,36 @@ $mymenu-margin: 20px;
     .account-icon {
       background-position: -50px 0;
     }
+  }
+}
+
+.top-helper-bar {
+  $height: 35px;
+  background-color: #f2f2f2;
+  border-bottom: 1px solid #e8e8e8;
+  height: $height;
+  position: relative;
+  .right-menus {
+    position: absolute;
+    top: 0;
+    right: $margin-20;
+    height: $height;
+    line-height: $height;
+    display: block;
+  }
+  .right-menu-item {
+    display: inline-block;
+    padding: 0 $margin-15;
+    color: #999;
+    font-size: 12px;
+    cursor: pointer;
+    &:hover {
+      background-color: #fff;
+    }
+  }
+  .right-menu-divider {
+    @include vertical-divider(0, #e9e9e9);
+    display: inline-block;
+    vertical-align: top;
   }
 }

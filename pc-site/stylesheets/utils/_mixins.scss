@@ -55,6 +55,13 @@
   background-color: #ddd;
   margin: $margin 0;
 }
+@mixin vertical-divider ($margin, $color) {
+  display: block;
+  width: 1px;
+  height: 100%;
+  background-color: $color;
+  margin: 0 $margin;
+}
 
 // BEGIN https://css-tricks.com/snippets/css/css-triangle/
 @mixin simple-arrow-up($size, $color) {

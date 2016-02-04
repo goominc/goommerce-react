@@ -37,9 +37,7 @@ const App = React.createClass({
     return (
       <div>
         {renderError()}
-        <div className="header-wide-container">
-          <AppHeader auth={auth} cart={cart} handleSearch={this.handleSearch} />
-        </div>
+        <AppHeader auth={auth} cart={cart} handleSearch={this.handleSearch} />
         {children}
       </div>
     );

@@ -39,37 +39,49 @@ export default React.createClass({
       cartCount = cart.productVariants.length;
     }
     return (
-      <div className="container header">
-        <div className="header-wrap">
-          <Link to="/">
-            <div className="header-logo">
-              <img width="100%" height="100%" src="http://www.linkshops.com/skin/frontend/linkshops2nd/default/images/logo.png" alt="Linkshops"/>
+      <div className="header-wide-container">
+        <div className="top-helper-bar">
+          <div className="container">
+            <div className="right-menus">
+              <div className="right-menu-item">Lang</div>
+              <div className="right-menu-divider"></div>
+              <div className="right-menu-item">Currency</div>
+              <div className="right-menu-divider"></div>
             </div>
-          </Link>
-          <div className="header-search-box">
-            <input ref="searchQuery" placeholder="I'm shopping for..." />
-            <div className="header-search-category-box">
-              <div className="search-divider"></div>
-              <div className="arrow-down"></div>
-              All Categories
-              <div className="search-dropdown-box">
-                <div className="search-dropdown-item">C1</div>
-              </div>
-            </div>
-            <button className="header-search-button" onClick={handleSearch}>
-            </button>
           </div>
-          <div className="header-mymenu-wrap">
-            <Link to="/cart">
-              <div className="header-mymenu-cart">
-                <div className="cart-icon"></div>
-                <span className="cart-count">{cartCount}</span>
-                <span>Cart</span>
+        </div>
+        <div className="container header">
+          <div className="header-wrap">
+            <Link to="/">
+              <div className="header-logo">
+                <img width="100%" height="100%" src="http://www.linkshops.com/skin/frontend/linkshops2nd/default/images/logo.png" alt="Linkshops"/>
               </div>
             </Link>
-            <div className="header-mymenu-account">
-              <div className="account-icon"></div>
-              {this.renderAccount()}
+            <div className="header-search-box">
+              <input ref="searchQuery" placeholder="I'm shopping for..." />
+              <div className="header-search-category-box">
+                <div className="search-divider"></div>
+                <div className="arrow-down"></div>
+                All Categories
+                <div className="search-dropdown-box">
+                  <div className="search-dropdown-item">C1</div>
+                </div>
+              </div>
+              <button className="header-search-button" onClick={handleSearch}>
+              </button>
+            </div>
+            <div className="header-mymenu-wrap">
+              <Link to="/cart">
+                <div className="header-mymenu-cart">
+                  <div className="cart-icon"></div>
+                  <span className="cart-count">{cartCount}</span>
+                  <span>Cart</span>
+                </div>
+              </Link>
+              <div className="header-mymenu-account">
+                <div className="account-icon"></div>
+                {this.renderAccount()}
+              </div>
             </div>
           </div>
         </div>
