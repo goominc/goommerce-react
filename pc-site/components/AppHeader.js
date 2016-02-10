@@ -11,14 +11,12 @@ export default React.createClass({
     const { auth } = this.props;
     if (auth.bearer) {
       return (
-        <Link to="/mypage">
-          <div className="account-menus-wrap">
-            <span>Hi, </span>
-            <div className="my-linkshops">
-              <span>{auth.email}</span>
-            </div>
+        <div className="account-menus-wrap">
+          <span>Hi, </span>
+          <div className="my-linkshops">
+            <span>{auth.email}</span>
           </div>
-        </Link>
+        </div>
       );
     }
     return (
@@ -44,7 +42,7 @@ export default React.createClass({
           <div className="container">
             <div className="right-menus">
               <div className="right-menu-item">
-                Lang
+                Language
                 <div className="dropdown-box">
                   <div className="dropdown-menu">한국어</div>
                   <div className="dropdown-menu">English</div>
@@ -65,10 +63,8 @@ export default React.createClass({
         </div>
         <div className="container header">
           <div className="header-wrap">
-            <Link to="/">
-              <div className="header-logo">
-                <img width="100%" height="100%" src="http://www.linkshops.com/skin/frontend/linkshops2nd/default/images/logo.png" alt="Linkshops"/>
-              </div>
+            <Link className="header-item" to="/">
+              <img className="header-logo" src="http://www.linkshops.com/skin/frontend/linkshops2nd/default/images/logo.png" alt="Linkshops"/>
             </Link>
             <div className="header-search-box">
               <input ref="searchQuery" placeholder="I'm shopping for..." />
@@ -84,7 +80,7 @@ export default React.createClass({
               </button>
             </div>
             <div className="header-mymenu-wrap">
-              <Link to="/cart">
+              <Link className="header-item" to="/cart">
                 <div className="header-mymenu-cart">
                   <div className="cart-icon"></div>
                   <span className="cart-count">{cartCount}</span>
@@ -94,6 +90,11 @@ export default React.createClass({
               <div className="header-mymenu-account">
                 <div className="account-icon"></div>
                 {this.renderAccount()}
+                <div className="dropdown-box">
+                  <div className="dropdown-menu">Logout</div>
+                  <div className="dropdown-menu"><Link to="/mypage">My Linkshops</Link></div>
+                  <div className="dropdown-menu"><Link to="/mypage">My Orders</Link></div>
+                </div>
               </div>
             </div>
           </div>
