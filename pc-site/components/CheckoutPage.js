@@ -88,8 +88,8 @@ export default React.createClass({
         <ul>
           {order.productVariants.map(renderVariant)}
         </ul>
-        <div>Total: KRW {order.total.KRW}</div>
-        <div>Status: {order.paymentStatus}</div>
+        <div>Total: KRW {order.totalEstimation.KRW}</div>
+        <div>Status: {order.status}</div>
         <SellerBox cart={order} />
       </div>
     );
