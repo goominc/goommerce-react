@@ -42,7 +42,7 @@ export default React.createClass({
             {order.productVariants.map(renderProductVariant)}
           </div>
           <div className="order-action-box">
-            Status : {order.paymentStatus}
+            Status : {order.status}
           </div>
         </div>
       );
