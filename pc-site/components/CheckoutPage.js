@@ -35,7 +35,7 @@ export default React.createClass({
     };
     return (
       <form id="checkout" method="POST">
-        <div>KRW {order.total.KRW}</div>
+        <div>KRW {order.totalEstimation.KRW}</div>
         <select name="gopaymethod">
           <option value="">[ 결제방법 선택 ]</option>
           <option value="Card">신용카드 결제</option>
@@ -82,7 +82,7 @@ export default React.createClass({
           {variant.sku}, {variant.count}, KRW {variant.total.KRW}
         </li>
       );
-    };
+    }
     return (
       <div>
         <ul>
