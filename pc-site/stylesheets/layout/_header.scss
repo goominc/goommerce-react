@@ -6,7 +6,7 @@
   border-bottom: 1px solid #e8e8e8;
 }
 $header-height: 40px;
-$header-margin: 10px;
+$header-margin: 15px;
 .header-wrap {
   padding: $header-margin 0;
   position: relative;
@@ -181,12 +181,15 @@ $mymenu-margin: 20px;
 }
 .header-mymenu-account {
   display: inline-block;
+  vertical-align: middle;
   font: normal normal normal normal 13px / 16.9px 'Open Sans', Arial, Helvetica, sans-senif, SimSun, 宋体;
   padding: 0 10px;
   cursor: pointer;
   border-left: 1px solid transparent;
   border-top: 1px solid transparent;
   border-right: 1px solid transparent;
+  padding-top: 5px;
+  padding-bottom: 5px;
   .dropdown-box {
     display: none;
   }
@@ -194,8 +197,6 @@ $mymenu-margin: 20px;
     border-left: 1px solid #e8e8e8;
     border-top: 1px solid #e8e8e8;
     border-right: 1px solid #e8e8e8;
-    padding-top: 5px;
-    padding-bottom: 5px;
     .dropdown-box {
       @include header-dropdown-box(200px);
       border: 1px solid #e8e8e8;
@@ -209,11 +210,11 @@ $mymenu-margin: 20px;
   }
   .account-icon {
     display: inline-block;
+    vertical-align: top;
     margin-right: $mymenu-margin / 2;
     width: 28px;
     height: 28px;
     overflow: hidden;
-    vertical-align: middle;
     background: rgb(255, 255, 255) url("http://i.alicdn.com/ae-header/20151124174454/buyer/common/img/header-sprite.png") no-repeat scroll -50px -50px / auto padding-box border-box;
   }
   .account-menus-wrap {
@@ -223,7 +224,6 @@ $mymenu-margin: 20px;
       color: #e9e9e9;
     }
     .my-linkshops {
-      display: inline-block;
     }
   }
 }
