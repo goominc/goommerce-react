@@ -1,15 +1,28 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { Route, IndexRoute } from 'react-router';
 import {
-  Home
+  App,
+  Cart,
+  Category,
+  Home,
+  ProductDetail,
+  ProductList,
 } from './containers';
 
-export default function configure({ getAuth }) {
+
+/*
+
+<Route path="/cart" component={Cart}/>*/
+
+export default function configure() {
   return (
     <Route>
-      <div className="container">
-        <Route path="/" component={Home}/>
-      </div>
+      <Route path="/" component={App}>
+        <IndexRoute component={Home} />
+        <Route path="/category" component={Category} />
+        <Route path="/products" component={ProductList} />
+        <Route path="/products/:productId" component={ProductDetail}/>
+      </Route>
     </Route>
   );
 }

@@ -23,11 +23,19 @@ html {
  * Basic styles for links
  */
 a {
-  color: $brand-color;
+  color: $text-color;
   text-decoration: none;
 
   @include on-event {
-    color: $text-color;
+    color: $brand-color;
     text-decoration: underline;
   }
+}
+
+ul, ol {
+  list-style: none;
+}
+a, abbr, acronym, address, article, aside, blockquote, body, caption, code, dd, del, dfn, dialog, div, dl, dt, em, figure, firldset, footer, form, h1, h2, h3, h4, h5, h6, header, hgroup, html, iframe, img, label, legend, li, nav, object, ol, p, pre, q, section, span, table, tbody, td, tfoot, th, thead, tr, ul {
+    margin: 0;
+    padding: 0;
 }

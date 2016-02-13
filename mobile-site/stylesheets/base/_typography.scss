@@ -3,5 +3,7 @@
  */
 body {
   color: $text-color;
-  font: normal 125% / 1.4 $text-font-stack;
+  font-size: 12px;
+  font-family: $text-font-stack;
+  line-height: 1.3;
 }

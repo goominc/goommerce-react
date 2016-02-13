@@ -28,7 +28,10 @@
 
 // 6. Page-specific styles
 @import
-  'pages/home';
+  'pages/home',
+  'pages/category',
+  'pages/productlist',
+  'pages/productdetail';
 
 // 7. Themes
 @import

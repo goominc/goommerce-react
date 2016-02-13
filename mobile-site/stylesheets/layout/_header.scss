@@ -1,3 +1,77 @@
 // -----------------------------------------------------------------------------
 // This file contains all styles related to the header of the site/application.
 // -----------------------------------------------------------------------------
+.gm-header {
+  position: relative;
+  width: 100%;
+  height: 48px;
+  overflow: hidden;
+  text-align: center;
+  font-size: 18px;
+  line-height: 48px;
+  color: #333;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+
+  .drawer {
+    box-sizing: border-box;
+    display: block;
+    height: 48px;
+    width: 44px;
+    padding: 10px 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    @extend %drawer-image;
+    background-size: 44px 28px;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+  .position-right {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: -webkit-box;
+  }
+
+  .search {
+    box-sizing: border-box;
+    display: block;
+    height: 48px;
+    width: 44px;
+    padding: 10px 0;
+    margin-right: 1px;
+    @extend %search-image;
+    background-size: 44px 28px;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+  .cart {
+    box-sizing: border-box;
+    height: 48px;
+    width: 44px;
+    padding: 10px 0;
+    position: relative;
+    display: block;
+    @extend %cart-image;
+    background-size: 44px 28px;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
+  .cart-count {
+    box-sizing: border-box;
+    /*display: none;*/
+    background-color: #e62e04;
+    height: 14px;
+    min-width: 14px;
+    padding: 0 2px;
+    border-radius: 14px;
+    color: #fff;
+    text-align: center;
+    font-size: 10px;
+    line-height: 14px;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+  }
+}

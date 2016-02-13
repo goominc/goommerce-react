@@ -1,3 +1,12 @@
 // -----------------------------------------------------------------------------
 // This file contains all styles related to the button component.
 // -----------------------------------------------------------------------------
+%drawer-image {
+  background-image: url('data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAFgAAAA4AgMAAAAED9f9AAAACVBMVEUAAABmZmZmZmaO3ZBrAAAAA3RSTlMA5rA5MyM4AAAAJElEQVQ4y2MYOUA1FAEiEMKiSMIheIUxDRkFo9Ew2MFoeBMDAPLUMTllKtkfAAAAAElFTkSuQmCC');
+}
+%search-image {
+  background-image: url('data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAFgAAAA4CAMAAABOv89cAAAATlBMVEUAAABmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmY9dRe7AAAAGXRSTlMA+ZtfCAMY8efNRYZsMdrAUQ+1jzsjpnmtfQEQMAAAAc1JREFUWMPtl9mSgyAQRW1QFkXE3fv/PzqiNTVbEgTGl6m5D6mUkOPtpunqFH9SvRs7RYC02zpVv4atN8InqWb+HazGdxET+UlYTpeLqed5bl3THe4lz+S21mMG9ymvwijsWsqsNMgdoadvT0tzPO4zuD7s9UEViC6L3EqA6odLFdvJXWLhlXbnTs9Wx53cpIG9Kfd82ZfLlJQIbykQkE5JRud/F3ozTzM8BXNlq5QMd4EtMwF1dElIf3IBbQCLvhuADF5aB6hYcANs4bAIiG2hA2DCu3R8XdhL58Lib5+8FOQaf3oALjQvAyx3gbdIMAHillQooA3vGoExvgXxhKIMi13yIuNbMgfslQ5IZSRY4EKSG2BI6fMs1CpUSqfnAIlgFcs+GlypkOVeHQecYhl1oHCkSABXGlDi9YtN2iBEr8aoidJHIe9Ji2fj4st4wnUK+7CaDcUOFT8HNPo5booNXrJ2ZSp59QDLyy/Y0dtVU7d/DsnkWh3emBNnqcxmgNcgCkFZ5J7hlNSdtoRDyqd3BjLIHsAIX2TNCVtzyUXPF/VO1eP5D/KDvFRFjsTkuHPtaS9EzldzM5kVxT1k2r/cQubFHRqJF//61zW9AdPJKWW5EZ1YAAAAAElFTkSuQmCC');
+}
+%cart-image {
+  background-image: url('data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAFgAAAA4CAMAAABOv89cAAAARVBMVEUAAABmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmaPI08VAAAAFnRSTlMAD+DxMCAI+ulvFKxK0Zpbfoo7J8EaizWZ0gAAAV9JREFUWMPt2Ftu5CAURdEDuMDGb7tqz3+onUr/tdMJkFxFirIGcNlGMhLoR+ApTUaDWawG3/XlnHMHBFmICW6yMMMkCyNssjDAKAsTeFl4AFEWEqXSvKqCp0LN5DsVvMptkFyRA1C5A8hlCXXFsXTrXIBBFQIshcF9rDwt7hbBGqG3CNYAySJYJ/AoDK6TClrya3ClvuDk3BuCNcNsEawFgkWwVsAiWBnoCoLrJdgKguv1kMJ7GoNd4gONwQMfaAzWDP72vqwGHbDKwFLxpTVigF0GVuCUgTvgC1QvHijTqdJgNVi5KxLV5pH1pniL+oQtwDzp4jYm0vhQqxFSgvUyt4cAPqvNRFrlFoK7LDif6jxLc/CuF57pcgk8JR2E5n9k/Tt/+Pd+kvTCQVSTheXZ179RfLzuVK82B2z5HPHxsqKf3NSzq9H+n5eL7HmanVqtM2nsdJGXHr87/fpWfwDIJzAJtbEj7wAAAABJRU5ErkJggg==');
+}
