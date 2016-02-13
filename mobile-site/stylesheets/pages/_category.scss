@@ -1,0 +1,227 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the category page.
+// -----------------------------------------------------------------------------
+
+.category-container {
+    background-color: #eee;
+}
+.cate-list {
+    background-color: #fff
+}
+.cate-list li:after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    right: 12px;
+    top: 20px;
+    width: 12px;
+    height: 12px;
+    background: #000;
+    background: rgba(0, 0, 0, 0);
+    border-right: 1px solid #9e9d9e;
+    border-top: 1px solid #9e9d9e;
+    -webkit-transform: rotate(50deg) translateZ(0);
+    transform: rotate(50deg) translateZ(0);
+    z-index: 9;
+}
+
+.cate-list li {
+    position: relative;
+    border-bottom: 1px solid #ddd;
+}
+
+.cate-list li a {
+    display: block;
+    font-size: 14px;
+    line-height: 54px;
+    height: 54px
+}
+.cate-list li {
+    padding-left: 54px
+}
+
+.cate-list li a {
+    padding-left: 0
+}
+
+.cate-list li span {
+    position: absolute;
+    left: 0;
+    top: 0
+}
+
+[class*=icon-topcat-] {
+    display: inline-block;
+    width: 54px;
+    height: 54px;
+    background: url('http://gtms02.alicdn.com/tps/i2/TB1a4PtGXXXXXatXVXXsbdU3XXX-344-2114.png') no-repeat;
+    background-size: 172px 1057px
+}
+
+.icon-topcat-10016 {
+    background-position: 0 0
+}
+
+.icon-topcat-10016W {
+    background-position: 0 -59px
+}
+
+.icon-topcat-10001 {
+    background-position: 0 -118px
+}
+
+.icon-topcat-10001W {
+    background-position: 0 -177px
+}
+
+.icon-topcat-10002 {
+    background-position: 0 -236px
+}
+
+.icon-topcat-10002W {
+    background-position: 0 -295px
+}
+
+.icon-topcat-10003 {
+    background-position: 0 -354px
+}
+
+.icon-topcat-10003W {
+    background-position: 0 -413px
+}
+
+.icon-topcat-10004 {
+    background-position: 0 -472px
+}
+
+.icon-topcat-10004W {
+    background-position: 0 -531px
+}
+
+.icon-topcat-10008 {
+    background-position: 0 -590px
+}
+
+.icon-topcat-10008W {
+    background-position: 0 -649px
+}
+
+.icon-topcat-10009 {
+    background-position: 0 -708px
+}
+
+.icon-topcat-10009W {
+    background-position: 0 -767px
+}
+
+.icon-topcat-10005 {
+    background-position: 0 -826px
+}
+
+.icon-topcat-10005W {
+    background-position: 0 -885px
+}
+
+.icon-topcat-10011 {
+    background-position: 0 -944px
+}
+
+.icon-topcat-10011W {
+    background-position: -59px 0
+}
+
+.icon-topcat-10012 {
+    background-position: -59px -59px
+}
+
+.icon-topcat-10012W {
+    background-position: -59px -118px
+}
+
+.icon-topcat-10013 {
+    background-position: -59px -177px
+}
+
+.icon-topcat-10013W {
+    background-position: -59px -236px
+}
+
+.icon-topcat-10014 {
+    background-position: -59px -295px
+}
+
+.icon-topcat-10014W {
+    background-position: -59px -354px
+}
+
+.icon-topcat-10015 {
+    background-position: -59px -413px
+}
+
+.icon-topcat-10015W {
+    background-position: -59px -472px
+}
+
+.icon-topcat-10017 {
+    background-position: -59px -531px
+}
+
+.icon-topcat-10017W {
+    background-position: -59px -590px
+}
+
+.icon-topcat-10018 {
+    background-position: -59px -649px
+}
+
+.icon-topcat-10018W {
+    background-position: -59px -708px
+}
+
+.icon-topcat-10019 {
+    background-position: -59px -767px
+}
+
+.icon-topcat-10019W {
+    background-position: -59px -826px
+}
+
+.icon-topcat-10021 {
+    background-position: -59px -885px
+}
+
+.icon-topcat-10021W {
+    background-position: -59px -944px
+}
+
+.icon-topcat-10023 {
+    background-position: -118px 0
+}
+
+.icon-topcat-10023W {
+    background-position: -118px -59px
+}
+
+.icon-topcat-10024 {
+    background-position: -118px -118px
+}
+
+.icon-topcat-10024W {
+    background-position: -118px -177px
+}
+
+.icon-topcat-10025 {
+    background-position: -118px -236px
+}
+
+.icon-topcat-10025W {
+    background-position: -118px -295px
+}
+
+.icon-topcat-10010 {
+    background-position: -118px -354px
+}
+
+.icon-topcat-10010W {
+    background-position: -118px -413px
+}

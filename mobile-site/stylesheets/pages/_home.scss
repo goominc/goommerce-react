@@ -1,0 +1,300 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the home page.
+// -----------------------------------------------------------------------------
+
+.main-container {
+    background-color: #efefef;
+}
+
+.key-visual {
+  /*visibility: hidden;*/
+  display: block;
+  margin: 0 auto 8px;
+  overflow: hidden;
+  position: relative;
+  //-webkit-transform: translate3d(0, 0, 0);
+  //-moz-transform: translate3d(0, 0, 0);
+  //-ms-transform: translate3d(0, 0, 0);
+  //-o-transform: translate3d(0, 0, 0);
+  //transform: translate3d(0, 0, 0);
+  //transition-property: transform; 
+  //transition-timing-function: cubic-bezier(0, 0, 0.5, 1); 
+  //transition-duration: 350ms;
+  //transform: translate3d(-750px, 0px, 0px);
+}
+.kv-container {
+  overflow: hidden;
+  width: 500%;
+  .kv-item {
+    overflow: hidden;
+    text-align: center;
+    float: left;
+    position: relative;
+    a {
+      display: block;
+    }
+    img {
+      width: 100%;
+    }
+  }
+}
+.kv-tab {
+  height: 16px;
+  text-align: center;
+  line-height: 10px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  z-index: 0;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.kv-tab span {
+  background-color: #fff;
+  border-radius: 6px;
+  display: inline-block;
+  height: 0;
+  width: 6px;
+  overflow: hidden;
+  padding: 6px 0 0 0;
+  margin: 0 2px;
+  opacity: .8;
+  cursor: pointer;
+}
+.kv-tab span.current {
+  background-color: #e62e04;
+  opacity: 1;
+}
+.promotion {
+  padding: 0 8px;
+}
+.promotion-block {
+  border-radius: 5px 5px 0 0;
+  background-color: #fff;
+  margin-bottom: 12px;
+}
+.promotion-block header {
+  font-size: 16px;
+  border-bottom: 1px solid #efefef;
+  height: 44px;
+  line-height: 44px;
+}
+.promotion-block header span {
+  padding: 0 8px;
+}
+.promotion-block header a {
+  display: block;
+  padding: 0 8px;
+}
+.promotion-block header a::after {
+  content: '';
+  width: 18px;
+  height: 18px;
+  background: url('data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAAASFBMVEUAAADMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMzMy8vLyMjMzMzMzMz1Ava3AAAAF3RSTlMAA5qxpkV3CgHkkmrYFRi8Wcwh0WExJYoYeOEAAAETSURBVDjLjZTpboQwDIQn5MKbQDi2nfd/00ZtF5FDwPwgwvpEjD02ztqCicyKJmzoSi0rSUlaJyG5LqplrJCD9X8v3g6ZtxXic9D5IuLIoYhMO/WMSrPmPp0YoRvRaHSUg/I73+jqzf1z40D3wUP1Qcfh/7+oxyP2KqlR0/6ewiNnZWpqpqh8LMdlXcpxyc+VHheU5wpszKldUQM3BFpcUpYBhh6XlKdBFOCakggm3FCJoMENZQqoyJZfZyj1GXu+LkqPke8i8bYEWChbWYJA25gozmUxm7YgZNNWbakbDMfVVw2urYIXk+9YRZ1MN76oVWO6yr6BRjX2fTwI9yP1fDgzFftjHqenC+N+9TxfYo/W4Q+RvhN3N7EpTgAAAABJRU5ErkJggg==') no-repeat;
+  background-size: 100% 100%;
+  vertical-align: middle;
+  float: right;
+  margin-top: 14px;
+}
+.promotion-block header a.touched {
+  background-color: #ccc;
+  border-radius: 5px 5px 0 0;
+}
+.promotion-block header a.touched::after {
+  background: url('data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyNpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNS1jMDIxIDc5LjE1NDkxMSwgMjAxMy8xMC8yOS0xMTo0NzoxNiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIChNYWNpbnRvc2gpIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjAwOTU0QTIxOTdDNjExRTM5NEJBRjMyMjNCNUZDRUY5IiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjAwOTU0QTIyOTdDNjExRTM5NEJBRjMyMjNCNUZDRUY5Ij4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6MDA5NTRBMUY5N0M2MTFFMzk0QkFGMzIyM0I1RkNFRjkiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MDA5NTRBMjA5N0M2MTFFMzk0QkFGMzIyM0I1RkNFRjkiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz7xyetKAAAC10lEQVR42syYzWsTURTF3ySpaNPUhUTahUrjxo+NK7FQxMX0Q10rdGdxIZXYlZD2D/AfUBempW4siAqtrrRbabHYgiuboKi0utJFWrUbpRnPxRMZBtN5b94L9MKPpuTd804mk7n3XS8IAmUYPWAQ9IHj4AjI8b0fYA1UwAKYB59MxD1NQ2lwGRRBr+SB39xM+M51nTQstAERfwXugsdgO3YnMRSDDyrB39gAZTAIsjvkZLmmzJyAGn7cfju9uZeCEjUwDnIaHyBKjrk1apWpbWQoD15TYA50JzASpZtaAbXzuoZkYRXUQQl4Dsw08KhZ5x75OEPtYIkJVx0aiTLCPZa4Z1NDU7ykEzGCInLd8upNcK+pZoZ8LnimsdFNrr1jYUrynlLHjxpKgVWwCbo0xNJgxoGpLj4WKtT8Z2iY4uMGYq5MlagxHDa0QKemzxkx9cDSVI57LzYM9fCOn0z4CV2YmqSHgvwzSrEhi1+Mrakh5o4q3ge/YmpTq01l6WEmg/p6EnwEW8oupJJf4esi/46x4sfFFj2cEEOHwLJyEzampI05nWFztancRVJT4qEjpVoTYuoeqINr4JRuYopt537Hhs6BF+AruADeaOSIh5/ylX1my+kqLoIn4BvwwXuDXn1drtAqKIB2B2YugVnwBZw1MJOlh7cpng7aKGATciM/BO+otWaQ20cPi/JQKliWDsXeSDSWwYEE+eVw6bAproodgsRL0OmiuIbbj5Kh2C3mzUdbUdv2I80maUOzQZM6dZtCs2CPRYNW+1+DFm5h5zQK4xjXSmHOWLSwjWNRf7Mm/75mky8HvSJbX2X5VU3rHoNGWnwM2tY5Bu26g2KDg2ClhUfpFe5hNGzYt5uGDWH6eXnD45gBjXHMQGQcUw3/mpphOrC6Ac5EBlYfpG3gug5wNDSwUqGB1SOdgZWXcKR3ngXxGDjMyZniJG0dVFm0n5uO9P4IMAB7hvBtbGXo4QAAAABJRU5ErkJggg==');
+  background-size: 100% 100%
+}
+.promotion-block article {
+  overflow: hidden;
+  width: 100%
+}
+.promotion-block .flex-box {
+  display: flex;
+  display: -ms-flexbox;
+  display: -webkit-box;
+  display: -moz-box;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.promotion-block .flex-box li {
+  flex: 1;
+  -ms-box-flex: 1;
+  -ms-flex: 1;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  width: 0;    
+}
+.categories .flex-box li {
+  margin-left: -1px;
+  border-left: 1px solid #efefef;
+  text-align: center;
+}
+.categories li a {
+  display: block;
+  font-size: 9px;
+  line-height: 1.1;
+  padding: 8px 0 0 0;
+  word-break: normal;
+  word-wrap: break-word;
+  height: 64px;
+}
+.categories li a::before {
+  width: 25px;
+  height: 25px;
+  display: block;
+  margin: 0 auto 8px;
+  content: ''}
+.categories .apparel-accessories a {
+  color: #eb5836;
+}
+.categories .apparel-accessories a::before {
+  background: url('data:image/png; base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAAAyCAMAAACXm+KbAAAAZlBMVEX///////////////////////////8AAAD////////////////////////////////////////////////////////////////////////////////////////////////////////bOngfAAAAIXRSTlPxNfkiDCkaAM2Gg5xDL7f1Fel92u12BKmQTWw5VGPD1cdSNjFTAAABcUlEQVRYw+2Z226EIBCGWQF/QUBxPZ9W3/8l27Wbbrs1qe0FbBu+K2ZIzBeBGRLI+qQEsX8qlhF//M0/9jsuMs3uUZbKy1OImZEBujLbl0pTaYCNxrcYaTlqMQGoY6o1zWsAkwB4SzyKnXsGKuxq6ikdB57n8WlKi9qsVlCw/uxHLDMdoJrrMOI0es8PfBs3A9CZzLlYlnLkfXKLCnT2lq9Q3JLLxMBT4lYs6kBbe9dUb6FNNVR2X2oRo4ucipF4+BSXPZBrnQN9+TFvaUzcLmUV24eDIBWlSj5s+AWF4z22IF0PIJE4FiN0PHJETpy4LhcSBxrPDOG8js1H1rLA7Fws0urbQlDGQ+S+8lcwl+SVcm/SXmfODSoPLWlh2Ng9BAobbPbRxJtCCtHm8d5czlohZNF4vI+ddsUY935RDGJBLIgFsSAWxIJYEAtiQWwXzZIdav9iCrso72KJkOILUiTexT4RHiB+yLM9QFwJYt55Ac0ej+W5m3HQAAAAAElFTkSuQmCC') no-repeat center center;
+  background-size: auto 100%;
+  background-color: #eb5836;
+}
+.categories .jewelry a {
+  color: #fe8f20;
+}
+.categories .jewelry a::before {
+  background: url('data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAAAyCAMAAACXm+KbAAAAclBMVEX///////////////////////////8AAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////9od/OkAAAAJXRSTlPxFuZMJQVRAPsN/ljYji33ljaozL/CoUO20V5mIezfg3c8ELFx6rXv4gAAAc5JREFUWMPtmdtu2zAMhi3L8i+fz4fYjpM45fu/4tKsS7c11kWBgcTa/8aELoQPpkiRokdC9Q32n4IV3ucU93goamPvM/o3f+xikvCnNCZBruxN9rDnqJMDlgfxw/YRigHrEeXBL+UGrRSwGlDR9iaFqJECRgneWa44iXEl+Vsev5uCopJqnN+sEJ0ksHjCeDdKnGVdSf4W+LdPqgJPDpg9WqIeU9M0Gi1ZzwoBO6n2Hpk3vTqyUycRYPEM8wq2ZjeVPlFrMFl+sCJBcPhz6RAgKdjBZlT+h0ioMHODlcj9j6trgJIX7LBF6dN1szWsYAnqvYIj4QQbd8tVG+LKB2Y1dh3WQVs2sNTlL42UDSxD74rXjAvMDmp1BexgmcAKVbmw861gAvMwOHtNeDLBBkawCzlUGS6wYskLx85BwHXG4tDVQXZm4koX7lR1Qs2Y+fX+xhVWzruy2+80X1iri9DutHOLOfDWY+Veh5IRJ1iqMD4/+Zq55r/i2QPiGbnPDEYlzN9p4ahRpcQNRrVCkv6OVSqEHn/DS5QOMEmdxvdgHF8WqD6W8ERAZK8XQFU61JfFYMmOUgYQBR3bc2UAmHweV5I0gLjrK86SBEks2A8XXAf3i12o4wAAAABJRU5ErkJggg==') no-repeat center center;
+  background-size: auto 100%;
+  background-color: #fe8f20;
+}
+.categories .electronics a {
+  color: #398dc7;
+}
+.categories .electronics a::before {
+  background: url('data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAAAyCAMAAACXm+KbAAAAaVBMVEX///////////////////////////8AAAD////////////////////////////////////////////////////////////////////////////////////////////////////////////JbzHaAAAAInRSTlPxN6AK7vdGAOhYENj0af0hjN9zwbbNAxmGqfotUJN8rmIoiolZ3AAAAatJREFUWMPt2dmOozAQBVCMMRdsg8FsYU/z/x85mWTyMmqWaWnKdIt6QJFuxRwZCyPwlpPWBfuhMOF9sXT6HiLVXxziP81YmldFWRZVnp7pUgazZRzP4szOwUlg0WQAHtrR90cbcsBM0Qlg+iYhbRX9uYRdVCQc8qZdw6oecvxrkGCq0VduYS1H8smSymPw1iUsQ7Ny/pEjcwfLYNRaVjTIXMFaNGo9rSRaNzAl62IrnyGVE9iAcbthwuAC5iPstjsEg08P60JUez3Fw04Oa5Hs7+wxWnJYjGK/qUCcEsMUmDgwOoMihpW4HWmbMBPDEpRH2mYktDDBmvxIX94wQQrzJDu0qlMmA1JYhGHxlNo86SP3lgERMSyuDMCzbnWu/AYw6k4O49xY26/fp+7orTVSUsNqDL9JCfy1nfT+OHYDamIY+uf6Ev2H/izXphfPvg/6NfbemaLt/IJdsAt2wS7Yz4Dphr1+MKP3clLYkr2e+W/IdnNamA4R+v7jsDIh4p0LYtgSJDVQJ8HqwK/cc/BSJS/LfDen/wARiOcfgt38aH3PTzYnqgv2r/ULQ8SqXxV3/g0AAAAASUVORK5CYII=') no-repeat center center;
+  background-size: auto 100%;
+  background-color: #398dc7;
+}
+.categories .beauty-health a {
+  color: #86c021;
+}
+.categories .beauty-health a::before {
+  background: url('data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAAAyCAMAAACXm+KbAAAATlBMVEX///////////////////////////8AAAD///////////////////////////////////////////////////////////////////////8uFn80AAAAGXRSTlPxN1ZP+8+FAL2V6kfH9q3fLz4IZJh6GW8fLNtMwgAAAQdJREFUWMPt2d2qhCAUhmFL7avR1LKfWfd/oxtChmKfbPYw8DH5HplHDxmBLCWkVdiXwkb1RvIYNjRW1P/63BuLDsnN08h2lHbDqmTFQgaLTwQRUduTC6YSwrFoZ0sF2zHI0YKBCebhysoiM8Ga1wEqOCJYj1ZKBg0RLKPnhE1QnLAGpsIq7IYw5WOCtyWPFL2igPX4VU8C00t3atE0sOG6MVRYhd0GlnJ7KicaGO1/rJPHKeloYLTfWIVVWIVV2J/y6K4bHTwFLEJfNxwiBUw07PnRQnPckiRAG3k1OgQSmGRoKyXvsJPcK0XMjnnSR9OMlWcAYcYwoeTCaMgGEEd3myURRQv7AfWauJSgVNEYAAAAAElFTkSuQmCC') no-repeat center center;
+  background-size: auto 100%;
+  background-color: #86c021;
+}
+.top-spread li {
+  background-color: #efefef;
+}
+.top-spread-2{
+  li:nth-child(1) {
+    text-align: left;
+  }
+  li:nth-child(2) {
+    text-align: right;
+  }
+  img {
+    width: 98%;
+  }
+  li {
+    position: relative;
+  }
+  li .evt-title {
+    position:absolute;
+    left:7%;
+    top:3%;
+    line-height:14px;
+    font-size:15px;
+    color:#E87644;
+    margin:0;
+    max-width:86%;
+    text-overflow:ellipsis;overflow:hidden;white-space:nowrap;
+  }  
+}
+.top-spread img {
+  width: 95%
+}
+#today-deals {
+  background: 0 0;
+}
+#today-deals header {
+  border-radius: 5px 5px 0 0;
+  background-color: #fff;
+}
+#today-deals .loading {
+  background-color: #fff;
+}
+#today-deals ul {
+  background-color: #fff;
+  margin-bottom: 4px;
+}
+.today-deals article {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+.today-deals .product-container {
+  width: 100%;
+  margin-left: -1px;
+}
+.today-deals .product-container li {
+  float: left;
+  width: 50%;
+  position: relative;
+}
+.today-deals .product-container li a {
+  display: block;
+  padding: 8px;
+  border-left: 1px solid #efefef;
+  border-top: 1px solid #efefef;
+}
+
+.promotion-block .product-image {
+  margin: 0 auto;
+  margin-bottom: 4px;
+  text-align: center;
+  width: 135px;
+  height: 135px;
+  vertical-align: middle;
+  overflow: hidden;
+}
+.promotion-block .product-image img {
+  max-width: 100%;
+  max-height: 100%;
+  vertical-align: middle;
+  margin: 0 auto;
+}
+.promotion-block .product-cost {
+  display: block;
+  font-size: 10px;
+  color: #999;
+  padding-left: 4px;
+}
+.promotion-block .product-cost strong {
+  font-size: 11px;
+  color: #e62e04;
+}  
+.ui-button {
+  display: block;
+  position: relative;
+  overflow: visible;
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 44px;
+  height: 44px;
+  margin: 0;
+  text-align: center;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  border: none;
+  width: 100%;
+  text-decoration: none;
+}
+.ui-button-third {
+  background-color: #eee;
+  border: solid 1px #ddd;
+  background-image: -webkit-linear-gradient(bottom, #eee, #fff);
+  background-image: -moz-linear-gradient(bottom, #eee, #fff);
+  background-image: -o-linear-gradient(bottom, #eee, #fff);
+  background-image: linear-gradient(to top, #eee, #fff);
+  color: #333;
+}
