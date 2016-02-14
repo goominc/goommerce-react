@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
+import i18n from '../../commons/utils/i18n';
+
 export default React.createClass({
   propTypes: {
     auth: PropTypes.object.isRequired,
@@ -91,9 +93,9 @@ export default React.createClass({
                 <div className="account-icon"></div>
                 {this.renderAccount()}
                 <div className="dropdown-box">
-                  <div className="dropdown-menu">Logout</div>
-                  <div className="dropdown-menu"><Link to="/mypage">My Linkshops</Link></div>
-                  <div className="dropdown-menu"><Link to="/mypage">My Orders</Link></div>
+                  <div className="dropdown-menu">{i18n.get('pcMain.myMenu.logout')}</div>
+                  <div className="dropdown-menu"><Link to="/mypage">{i18n.get('pcMain.myMenu.myLinkshops')}</Link></div>
+                  <div className="dropdown-menu"><Link to="/mypage">{i18n.get('pcMain.myMenu.myOrder')}</Link></div>
                 </div>
               </div>
             </div>

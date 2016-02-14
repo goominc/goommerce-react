@@ -10,5 +10,9 @@ exports.init = (reduxStore) => {
 
 exports.get = (key) => {
   const i18n = store.getState().i18n;
-  return _.get(i18n[i18n.activeLang], key);
+  const res = _.get(i18n[i18n.activeLang], key);
+  if (!res) {
+    return key;
+  }
+  return res;
 };
