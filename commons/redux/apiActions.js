@@ -153,3 +153,27 @@ export function loadCartIfEmpty() {
     }
   };
 }
+
+// TODO load i18n texts
+export function changeLanguage(lang) {
+  return (dispatch, getState) => {
+    const cookie = require('../utils/cookie');
+    cookie.set('GOOMMERCE-LANG', lang);
+    const state = getState();
+    if (state.i18n && state.i18n[lang]) {
+      dispatch({
+        type: 'CHANGE_LANGUAGE',
+        lang,
+      });
+    } else {
+      // TODO
+      /*
+      return createFetchAction({
+        type: 'LOAD_AND_CHANGE_LANGUAGE',
+        lang,
+        endpoint: '/api/v1/',
+      });
+      */
+    }
+  };
+}

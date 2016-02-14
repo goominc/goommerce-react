@@ -17,6 +17,8 @@ if (module.hot) {
   });
 }
 
+require('../commons/utils/i18n').init(store);
+
 const routes = configureRoutes({
   getAuth() {
     return store.getState().auth;

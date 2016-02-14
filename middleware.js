@@ -1,6 +1,6 @@
 const config = require('./config');
 const serialize = require('serialize-javascript');
-const serveStatic = require('serve-static')
+const serveStatic = require('serve-static');
 
 module.exports = (opts) => {
   opts = opts || {}; // eslint-disable-line no-param-reassign
@@ -71,6 +71,7 @@ module.exports = (opts) => {
           <body>
             <div id='root'></div>
             <script src="${cdn}/vendor/jquery-1.11.3.min.js"></script>
+            <script src="${cdn}/vendor/owl.carousel.min.js"></script>
             <script>window.__INITIAL_STATE__ = ${serialize(initialState)};</script>
             <script src="${path('app.bundle.js')}"></script>
           </body>
@@ -85,6 +86,14 @@ module.exports = (opts) => {
         var initialState = {};
         if (!err) {
           initialState = { auth };
+        }
+        if (req.i18n) {
+          initialState.i18n = req.i18n;
+          if (auth && auth.options && auth.options.locale) {
+            initialState.i18n.activeLang = auth.options.locale;
+          } else {
+            initialState.i18n.activeLang = 'ko'; // default
+          }
         }
         if (host.startsWith(config.mobileHostPrefix)) {
           return sendMobile(initialState);

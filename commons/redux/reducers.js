@@ -63,11 +63,24 @@ function pagination(state = {}, action) {
   return state;
 }
 
+function i18n(state = {}, action) {
+  if (action.type === 'CHANGE_LANGUAGE') {
+    state.activeLang = action.lang;
+    return state;
+  } else if (action.type === 'LOAD_AND_CHANGE_LANGUAGE') {
+    state[action.lang] = action.payload;
+    state.activeLang = action.lang;
+    return state;
+  }
+  return state;
+}
+
 const reducers = {
   auth,
   cart,
   entities,
   pagination,
+  i18n,
 };
 
 exports.reducers = reducers;

@@ -1,3 +1,6 @@
+// Copyright (C) 2016 Goom Inc. All rights reserved.
+
+const _ = require('lodash');
 const config = require('./config');
 
 const Express = require('express');
@@ -13,6 +16,16 @@ const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
 const request = require('superagent');
+
+app.use((req, res, next) => {
+  // 2016. 02. 13. [heekyu] this is not efficient but only for development
+  const i18n = {
+    ko: _.assign({}, require('./pc-site/i18n/mainpage.ko.json')),
+  };
+  req.i18n = i18n;
+  next();
+});
+
 app.use(require('./middleware')({
   hot: app.get('env') === 'development',
   localBundle: app.get('env') === 'production',
