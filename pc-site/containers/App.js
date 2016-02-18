@@ -19,8 +19,7 @@ const App = React.createClass({
   componentDidMount() {
     this.props.loadCartIfEmpty();
   },
-  handleSearch() {
-    const query = this.refs.searchQuery.value;
+  handleSearch(query) {
     if (query) {
       this.history.pushState(null, `/search?q=${query}`);
     }

@@ -78,7 +78,7 @@ export default React.createClass({
                   <div className="search-dropdown-item">C1</div>
                 </div>
               </div>
-              <button className="header-search-button" onClick={handleSearch}>
+              <button className="header-search-button" onClick={() => handleSearch(this.refs.searchQuery.value)}>
               </button>
             </div>
             <div className="header-mymenu-wrap">
