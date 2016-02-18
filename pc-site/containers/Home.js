@@ -16,7 +16,7 @@ const Home = React.createClass({
   },
   componentDidMount() {
     this.props.loadProducts();
-    $('.main-banner').owlCarousel({autoPlay:3000, items:1});
+    $('.main-banner').owlCarousel({ autoPlay:10000, items:1 });
   },
   render() {
     const { products = [] } = this.props;
