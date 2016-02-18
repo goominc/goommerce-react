@@ -67,6 +67,7 @@ module.exports = (opts) => {
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <title>${config.title}</title>
             <link rel="stylesheet" href="${path('app.css')}">
+            <link rel="stylesheet" href="${cdn}/vendor/owl.carousel.css">
           </head>
           <body>
             <div id='root'></div>

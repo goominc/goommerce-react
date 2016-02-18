@@ -16,6 +16,7 @@ const Home = React.createClass({
   },
   componentDidMount() {
     this.props.loadProducts();
+    $('.main-banner').owlCarousel({autoPlay:3000, items:1});
   },
   render() {
     const { products = [] } = this.props;
@@ -41,6 +42,8 @@ const Home = React.createClass({
           </div>
           <div className="main-banner">
             <img src="http://img.alicdn.com/tps/i3/TB1Gh.zLpXXXXXMXVXXVpvE2pXX-750-400.jpg"/>
+            <img src="https://img.alicdn.com/tps/TB12FmSLFXXXXXeapXXXXXXXXXX-750-400.jpg"/>
+            <img src="https://img.alicdn.com/tps/TB10vWZLFXXXXcpXFXXXXXXXXXX-750-400.jpg"/>
           </div>
           <div className="right-banner">
             <img src="http://img.alicdn.com/tps/i1/TB1o1laLFXXXXb7aXXXJTjSZVXX-320-400.jpg"/>
