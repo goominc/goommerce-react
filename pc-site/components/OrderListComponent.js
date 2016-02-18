@@ -22,7 +22,7 @@ export default React.createClass({
           <div className="thumbnail-box"><img src={getProductThumbnail(variant)} /></div>
           <div className="content-box">
             {variant.sku} <br/>
-            Price / piece : {variant.price.KRW} <br/>
+            Price / piece : {variant.KRW} <br/>
             Count: {variant.count} <br/>
             Total Price : {variant.total.KRW} <br/>
           </div>

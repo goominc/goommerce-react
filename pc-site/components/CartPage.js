@@ -24,7 +24,7 @@ export default React.createClass({
     let totalPrice = 0;
     for (let i = 0; i < variants.length; i++) {
       const variant = variants[i];
-      totalPrice += variant.price.KRW * variant.count;
+      totalPrice += variant.KRW * variant.count;
     };
     return (
       <div className="container">

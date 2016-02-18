@@ -12,7 +12,7 @@ const { loadProducts } = ApiAction;
 
 const ProductList = React.createClass({
   propTypes: {
-    products: PropTypes.object.isRequired,
+    products: PropTypes.array.isRequired,
   },
   componentDidMount() {
     this.props.loadProducts();

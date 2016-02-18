@@ -39,7 +39,7 @@ $product-detail-thumbnail-margin: 15px;
     display: inline-block;
     position: relative;
     width: 450px;
-    height: 450px;
+    height: 675px;
     overflow: hidden;
     border: 1px solid #dedede;
     img {
@@ -55,9 +55,8 @@ $product-detail-thumbnail-margin: 15px;
     position: absolute;
     top: 0;
     left: 100%;
-    margin-left: $product-detail-thumbnail-margin;
     width: 450px;
-    height: 450px;
+    height: 675px;
     overflow: hidden;
     img {
       position: absolute;

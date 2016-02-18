@@ -43,7 +43,7 @@ export default React.createClass({
         <td><img src={getProductThumbnail(variant)} />
           <span className="product-description">{variant.sku}</span></td>
         <td>{renderQuantity(variant)}</td>
-        <td>KRW {variant.price.KRW}</td>
+        <td>KRW {variant.KRW}</td>
         {renderBuyButton()}
       </tr>
     );

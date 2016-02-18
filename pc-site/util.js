@@ -32,5 +32,5 @@ export function getProductMainPrice(product, currency) {
     return 0;
   }
   // TODO find default price
-  return product.productVariants[0].price[currency];
+  return product.productVariants[0][currency];
 }
