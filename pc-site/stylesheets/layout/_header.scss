@@ -264,6 +264,9 @@ $mymenu-margin: 20px;
       .dropdown-menu {
         @include header-dropdown-menu();
       }
+      .dropdown-menu.active {
+        color: $default-active-text-color;
+      }
     }
   }
   .right-menu-divider {

@@ -8,9 +8,9 @@ exports.init = (reduxStore) => {
   store = reduxStore;
 };
 
-exports.get = (key) => {
+exports.get = (key, locale) => {
   const i18n = store.getState().i18n;
-  const res = _.get(i18n[i18n.activeLang], key);
+  const res = _.get(i18n[locale], key);
   if (!res) {
     return key;
   }

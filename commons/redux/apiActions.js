@@ -148,32 +148,29 @@ export function loadMyOrders() {
 export function loadCartIfEmpty() {
   return (dispatch, getState) => {
     const state = getState();
-    if (!state.cart || !state.cart.productVariants) {
+    if (state.auth && (!state.cart || !state.cart.productVariants)) {
       loadCart()(dispatch, getState);
     }
   };
 }
 
 // TODO load i18n texts
-export function changeLanguage(lang) {
+export function changeLocale(locale) {
   return (dispatch, getState) => {
     const cookie = require('../utils/cookie');
-    cookie.set('GOOMMERCE-LANG', lang);
+    cookie.set('locale', locale);
     const state = getState();
-    if (state.i18n && state.i18n[lang]) {
+    if (state.i18n && state.i18n[locale]) {
       dispatch({
         type: 'CHANGE_LANGUAGE',
-        lang,
+        locale,
       });
     } else {
-      // TODO
-      /*
       return createFetchAction({
         type: 'LOAD_AND_CHANGE_LANGUAGE',
-        lang,
-        endpoint: '/api/v1/',
-      });
-      */
+        endpoint: `/api/v1/i18n/texts/${locale}`,
+        success: { locale },
+      })(dispatch, getState);
     }
   };
 }

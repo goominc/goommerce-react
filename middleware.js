@@ -91,9 +91,9 @@ module.exports = (opts) => {
         if (req.i18n) {
           initialState.i18n = req.i18n;
           if (auth && auth.options && auth.options.locale) {
-            initialState.i18n.activeLang = auth.options.locale;
+            initialState.i18n.activeLocale = auth.options.locale;
           } else {
-            initialState.i18n.activeLang = 'ko'; // default
+            initialState.i18n.activeLocale = 'ko'; // default
           }
         }
         if (host.startsWith(config.mobileHostPrefix)) {

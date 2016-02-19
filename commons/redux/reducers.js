@@ -65,11 +65,11 @@ function pagination(state = {}, action) {
 
 function i18n(state = {}, action) {
   if (action.type === 'CHANGE_LANGUAGE') {
-    state.activeLang = action.lang;
+    state.activeLocale = action.locale;
     return state;
   } else if (action.type === 'LOAD_AND_CHANGE_LANGUAGE') {
-    state[action.lang] = action.payload;
-    state.activeLang = action.lang;
+    state[action.locale] = action.payload;
+    state.activeLocale = action.locale;
     return state;
   }
   return state;

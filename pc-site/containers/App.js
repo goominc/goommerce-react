@@ -7,7 +7,7 @@ import AppHeader from '../components/AppHeader';
 import ErrorPopup from '../components/ErrorPopup';
 
 import { ApiAction, resetError } from '../redux/actions';
-const { loadCartIfEmpty } = ApiAction;
+const { loadCartIfEmpty, changeLocale } = ApiAction;
 
 require('../stylesheets/main.scss');
 
@@ -25,7 +25,7 @@ const App = React.createClass({
     }
   },
   render() {
-    const { children, auth, cart, error, resetError } = this.props;
+    const { children, auth, cart, error, resetError, changeLocale, activeLocale } = this.props;
     function renderError() {
       if (error && error.message) {
         return (
@@ -36,7 +36,13 @@ const App = React.createClass({
     return (
       <div>
         {renderError()}
-        <AppHeader auth={auth} cart={cart} handleSearch={this.handleSearch} />
+        <AppHeader
+          auth={auth}
+          cart={cart}
+          handleSearch={this.handleSearch}
+          changeLocale={changeLocale}
+          activeLocale={activeLocale}
+          changeCurrency={() => {/* TODO */}}/>
         {children}
       </div>
     );
@@ -44,6 +50,6 @@ const App = React.createClass({
 });
 
 export default connect(
-  state => ({ auth: state.auth, cart: state.cart, error: state.errorHandler.error }),
-  { loadCartIfEmpty, resetError }
+  state => ({ auth: state.auth, cart: state.cart, error: state.errorHandler.error, activeLocale: state.i18n.activeLocale }),
+  { loadCartIfEmpty, resetError, changeLocale }
 )(App);

@@ -7,7 +7,10 @@ export default React.createClass({
   propTypes: {
     auth: PropTypes.object.isRequired,
     cart: PropTypes.object.isRequired,
+    activeLocale: PropTypes.string,
     handleSearch: PropTypes.func.isRequired,
+    changeLocale: PropTypes.func.isRequired,
+    changeCurrency: PropTypes.func.isRequired,
   },
   renderAccount() {
     const { auth } = this.props;
@@ -33,11 +36,39 @@ export default React.createClass({
     );
   },
   render() {
-    const { handleSearch, cart } = this.props;
+    const { handleSearch, cart, changeLocale, activeLocale } = this.props;
     let cartCount = 0;
     if (cart && cart.productVariants) {
       cartCount = cart.productVariants.length;
     }
+    const renderLocales = () => {
+      const locales = [
+        { locale: 'ko', text: '한국어' },
+        { locale: 'en', text: 'English' },
+        { locale: 'zh_cn', text: '쭝꿔' },
+      ];
+      return (
+        <div className="dropdown-box">
+          {locales.map((obj) => {
+            return (<div key={obj.locale} className={`dropdown-menu ${obj.locale === activeLocale ? 'active' : ''}`}
+                         onClick={() => changeLocale(obj.locale)}>{obj.text}</div>);
+          })}
+        </div>
+      );
+    };
+    /*
+    const renderCurrencies = () => {
+      const currencies = ['KRW', 'USD', 'CNY', 'RMB'];
+      return (
+        <div className="dropdown-box">
+          {currencies.map((obj) => {
+            return (<div key={obj} className={`dropdown-menu ${obj === activeCurrency ? 'active': ''}`}
+                         onClick={() => changeCurrency(obj)}></div>);
+          })}
+        </div>
+      );
+    };
+    */
     return (
       <div className="header-wide-container">
         <div className="top-helper-bar">
@@ -45,11 +76,7 @@ export default React.createClass({
             <div className="right-menus">
               <div className="right-menu-item">
                 Language
-                <div className="dropdown-box">
-                  <div className="dropdown-menu">한국어</div>
-                  <div className="dropdown-menu">English</div>
-                  <div className="dropdown-menu">쭝꿔</div>
-                </div>
+                {renderLocales()}
               </div>
               <div className="right-menu-divider"></div>
               <div className="right-menu-item">
@@ -57,6 +84,7 @@ export default React.createClass({
                 <div className="dropdown-box">
                   <div className="dropdown-menu">KRW</div>
                   <div className="dropdown-menu">USD</div>
+                  <div className="dropdown-menu">CNY</div>
                 </div>
               </div>
               <div className="right-menu-divider"></div>
@@ -93,9 +121,9 @@ export default React.createClass({
                 <div className="account-icon"></div>
                 {this.renderAccount()}
                 <div className="dropdown-box">
-                  <div className="dropdown-menu">{i18n.get('pcMain.myMenu.logout')}</div>
-                  <div className="dropdown-menu"><Link to="/mypage">{i18n.get('pcMain.myMenu.myLinkshops')}</Link></div>
-                  <div className="dropdown-menu"><Link to="/mypage">{i18n.get('pcMain.myMenu.myOrder')}</Link></div>
+                  <div className="dropdown-menu">{i18n.get('pcMain.myMenu.logout', activeLocale)}</div>
+                  <div className="dropdown-menu"><Link to="/mypage">{i18n.get('pcMain.myMenu.myLinkshops', activeLocale)}</Link></div>
+                  <div className="dropdown-menu"><Link to="/mypage">{i18n.get('pcMain.myMenu.myOrder', activeLocale)}</Link></div>
                 </div>
               </div>
             </div>
