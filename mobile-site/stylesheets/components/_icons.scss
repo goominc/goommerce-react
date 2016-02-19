@@ -1,0 +1,273 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the icon(ms-icon) component.
+// -----------------------------------------------------------------------------
+
+.iconfont, .ms-icon {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: iconfont;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-stroke-width: .2px;
+}
+.icon-customer-service::before {
+    content: "\e62d"}
+.icon-code::before {
+    content: "\e62f"}
+.icon-creditcard::before {
+    content: "\e630"}
+.icon-discount::before {
+    content: "\e631"}
+.icon-extend-warranty::before {
+    content: "\e632"}
+.icon-filter::before {
+    content: "\e633"}
+.icon-listsmall::before {
+    content: "\e634"}
+.icon-noreason-return::before {
+    content: "\e635"}
+.icon-overflow::before {
+    content: "\e636"}
+.icon-page-edit::before {
+    content: "\e637"}
+.icon-page::before {
+    content: "\e638"}
+.icon-rtqsend::before {
+    content: "\e639"}
+.icon-store::before {
+    content: "\e63a"}
+.icon-timing::before {
+    content: "\e63b"}
+.icon-wangwang::before {
+    content: "\e63c"}
+.icon-arrow-down::before {
+    content: "\e63d"}
+.icon-arrow-left::before {
+    content: "\e63e"}
+.icon-arrow-right::before {
+    content: "\e63f"}
+.icon-arrow-up::before {
+    content: "\e640"}
+.icon-add-circle::before {
+    content: "\e641"}
+.icon-check-circle::before {
+    content: "\e642"}
+.icon-delete-circle::before {
+    content: "\e643"}
+.icon-downward::before {
+    content: "\e644"}
+.icon-pre-circle::before {
+    content: "\e645"}
+.icon-backward::before {
+    content: "\e646"}
+.icon-reduce-circle::before {
+    content: "\e647"}
+.icon-next-circle::before {
+    content: "\e648"}
+.icon-forward::before {
+    content: "\e649"}
+.icon-upward::before {
+    content: "\e64a"}
+.icon-feedback-required::before {
+    content: "\e64b"}
+.icon-aboutus::before {
+    content: "\e600"}
+.icon-airfreight::before {
+    content: "\e601"}
+.icon-amount::before {
+    content: "\e602"}
+.icon-attachment::before {
+    content: "\e603"}
+.icon-bp::before {
+    content: "\e604"}
+.icon-complete-order::before {
+    content: "\e605"}
+.icon-coupon::before {
+    content: "\e607"}
+.icon-boat::before {
+    content: "\e608"}
+.icon-date::before {
+    content: "\e609"}
+.icon-datum::before {
+    content: "\e60a"}
+.icon-delaydelivery::before {
+    content: "\e60b"}
+.icon-edit-order::before {
+    content: "\e60c"}
+.icon-encrypted-email::before {
+    content: "\e60d"}
+.icon-fresh::before {
+    content: "\e60e"}
+.icon-listbig::before {
+    content: "\e60f"}
+.icon-location::before {
+    content: "\e610"}
+.icon-logistics::before {
+    content: "\e611"}
+.icon-navigation::before {
+    content: "\e612"}
+.icon-notification::before {
+    content: "\e613"}
+.icon-open-email::before {
+    content: "\e614"}
+.icon-ordersearch::before {
+    content: "\e615"}
+.icon-order::before {
+    content: "\e616"}
+.icon-print::before {
+    content: "\e617"}
+.icon-shipping::before {
+    content: "\e618"}
+.icon-transport::before {
+    content: "\e619"}
+.icon-product::before {
+    content: "\e61a"}
+.icon-return-guarantee::before {
+    content: "\e61b"}
+.icon-scale::before {
+    content: "\e61c"}
+.icon-schedule::before {
+    content: "\e61d"}
+.icon-service::before {
+    content: "\e61e"}
+.icon-supplier-group::before {
+    content: "\e61f"}
+.icon-translation::before {
+    content: "\e620"}
+.icon-wallet::before {
+    content: "\e621"}
+.icon-write-email::before {
+    content: "\e622"}
+.icon-shippingcart::before {
+    content: "\e623"}
+.icon-home::before {
+    content: "\e624"}
+.icon-search::before {
+    content: "\e625"}
+.icon-feedback::before {
+    content: "\e626"}
+.icon-setting::before {
+    content: "\e627"}
+.icon-share::before {
+    content: "\e628"}
+.icon-guid::before {
+    content: "\e62a"}
+.icon-listgrid::before {
+    content: "\e62b"}
+.icon-camera::before {
+    content: "\e62c"}
+.icon-messages::before {
+    content: "\e64c"}
+.icon-myae::before {
+    content: "\e64e"}
+.icon-helpcenter::before {
+    content: "\e64d"}
+.icon-uservoices::before {
+    content: "\e64f"}
+.icon-communicate::before {
+    content: "\e650"}
+.icon-expression::before {
+    content: "\e651"}
+.icon-keyboard::before {
+    content: "\e652"}
+.icon-more::before {
+    content: "\e653"}
+.icon-filtering::before {
+    content: "\e606"}
+.icon-wishlist-focus::before {
+    content: "\e629"}
+.icon-wishlist::before {
+    content: "\e654"}
+.icon-filter-focus::before {
+    content: "\e655"}
+.icon-close::before {
+    content: "\e62e"}
+.icon-check::before {
+    content: "\e656"}
+.icon-minus::before {
+    content: "\e660"}
+.icon-plus::before {
+    content: "\e661"}
+.icon-drawer::before {
+    content: "\e65f"}
+.icon-remove::before {
+    content: "\e657"}
+.icon-addwish::before {
+    content: "\e65e"}
+.icon-discussion::before {
+    content: "\e658"}
+.icon-edit::before {
+    content: "\e659"}
+.icon-explore::before {
+    content: "\e65a"}
+.icon-security::before {
+    content: "\e65b"}
+.icon-time::before {
+    content: "\e65c"}
+.icon-lock::before {
+    content: "\e65d"}
+.icon-mobile::before {
+    content: "\e66a"}
+.icon-feedbackfull::before {
+    content: "\e662"}
+.icon-share-android::before {
+    content: "\e66b"}
+.icon-search-android::before {
+    content: "\e665"}
+.icon-dropdown-android::before {
+    content: "\e66c"}
+.icon-dropup-android::before {
+    content: "\e66d"}
+.icon-more-android::before {
+    content: "\e663"}
+.icon-dropdown-ios::before {
+    content: "\e666"}
+.icon-dropup-ios::before {
+    content: "\e664"}
+.icon-more-ios::before {
+    content: "\e667"}
+.icon-search-ios::before {
+    content: "\e668"}
+.icon-share-ios::before {
+    content: "\e669"}
+.icon-tag::before {
+    content: "\e66e"}
+.icon-backtop::before {
+    content: "\e66f"}
+.icon-dropleft-android::before {
+    content: "\e671"}
+.icon-dropright-android::before {
+    content: "\e673"}
+.icon-dropleft-ios::before {
+    content: "\e672"}
+.icon-dropright-ios::before {
+    content: "\e674"}
+.icon-download:before {
+    content: "\e675"}
+.icon-down-to-bottom:before {
+    content: "\e677"}
+.icon-zan:before {
+    content: "\e678"}
+.icon-homepage-down-to-bottom:before {
+    content: "\e677"}
+.icon-ranking:before {
+    content: "\e679"}
+.icon-wishlists:before {
+    content: "\e67a"}
+.icon-navigation1:before {
+    content: "\e67b"}
+.icon-navigation:before {
+    content: "\e67b"}
+.icon-1111:before {
+    content: "\e67c"}
+.icon-icmestorelist:before {
+    content: "\e67d"}
+.icon-couponalley:before {
+    content: "\e67e"}
+.icon-icblackfriday:before {
+    content: "\e67f"}
