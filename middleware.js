@@ -84,17 +84,15 @@ module.exports = (opts) => {
       opts.getAuth(req, (err, auth) => {
         const host = req.get('host');
         // 2016. 01. 30. [heekyu] cannot use let
-        var initialState = {};
+        var initialState = {
+          currency: { activeCurrency: req.currency },
+        };
         if (!err) {
-          initialState = { auth };
+          initialState.auth = auth;
         }
         if (req.i18n) {
           initialState.i18n = req.i18n;
-          if (auth && auth.options && auth.options.locale) {
-            initialState.i18n.activeLocale = auth.options.locale;
-          } else {
-            initialState.i18n.activeLocale = 'ko'; // default
-          }
+          initialState.i18n.activeLocale = req.locale;
         }
         if (host.startsWith(config.mobileHostPrefix)) {
           return sendMobile(initialState);

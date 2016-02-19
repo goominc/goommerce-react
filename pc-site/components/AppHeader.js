@@ -36,7 +36,7 @@ export default React.createClass({
     );
   },
   render() {
-    const { handleSearch, cart, changeLocale, activeLocale } = this.props;
+    const { handleSearch, cart, changeLocale, changeCurrency, activeLocale, activeCurrency } = this.props;
     let cartCount = 0;
     if (cart && cart.productVariants) {
       cartCount = cart.productVariants.length;
@@ -56,19 +56,17 @@ export default React.createClass({
         </div>
       );
     };
-    /*
     const renderCurrencies = () => {
       const currencies = ['KRW', 'USD', 'CNY', 'RMB'];
       return (
         <div className="dropdown-box">
           {currencies.map((obj) => {
             return (<div key={obj} className={`dropdown-menu ${obj === activeCurrency ? 'active': ''}`}
-                         onClick={() => changeCurrency(obj)}></div>);
+                         onClick={() => changeCurrency(obj)}>{obj}</div>);
           })}
         </div>
       );
     };
-    */
     return (
       <div className="header-wide-container">
         <div className="top-helper-bar">
@@ -81,11 +79,7 @@ export default React.createClass({
               <div className="right-menu-divider"></div>
               <div className="right-menu-item">
                 Currency
-                <div className="dropdown-box">
-                  <div className="dropdown-menu">KRW</div>
-                  <div className="dropdown-menu">USD</div>
-                  <div className="dropdown-menu">CNY</div>
-                </div>
+                {renderCurrencies()}
               </div>
               <div className="right-menu-divider"></div>
             </div>

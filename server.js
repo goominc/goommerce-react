@@ -23,6 +23,8 @@ app.use((req, res, next) => {
     ko: _.assign({}, require('./pc-site/i18n/mainpage.ko.json')),
   };
   req.i18n = i18n;
+  req.locale = 'ko';
+  req.currency = 'KRW';
   next();
 });
 

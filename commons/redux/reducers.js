@@ -74,6 +74,13 @@ function i18n(state = {}, action) {
   }
   return state;
 }
+function currency(state = {}, action) {
+  if (action.type === 'CHANGE_CURRENCY') {
+    state.activeCurrency = action.currency;
+    return state;
+  }
+  return state;
+}
 
 const reducers = {
   auth,
@@ -81,6 +88,7 @@ const reducers = {
   entities,
   pagination,
   i18n,
+  currency,
 };
 
 exports.reducers = reducers;

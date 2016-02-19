@@ -154,12 +154,29 @@ export function loadCartIfEmpty() {
   };
 }
 
-// TODO load i18n texts
+const simpleNotify = (auth, method, url, body) => {
+  const headers = {
+    'Authorization': auth.bearer ? `Bearer ${auth.bearer}` : '',
+  };
+  $.ajax({
+    url,
+    method,
+    headers,
+    data: JSON.stringify(body),
+    processData: false,
+    contentType: 'application/json',
+  }); // ignore response
+};
+
 export function changeLocale(locale) {
   return (dispatch, getState) => {
+    const state = getState();
+    if (state.activeLocale === locale) return;
+    if (state.auth) {
+      simpleNotify(state.auth, 'PUT', `/api/v1/users/${state.auth.id}/locale`, { locale });
+    }
     const cookie = require('../utils/cookie');
     cookie.set('locale', locale);
-    const state = getState();
     if (state.i18n && state.i18n[locale]) {
       dispatch({
         type: 'CHANGE_LANGUAGE',
@@ -172,5 +189,21 @@ export function changeLocale(locale) {
         success: { locale },
       })(dispatch, getState);
     }
+  };
+}
+
+export function changeCurrency(currency) {
+  return (dispatch, getState) => {
+    const state = getState();
+    if (state.activeCurrency === currency) return;
+    if (state.auth) {
+      simpleNotify(state.auth, 'PUT', `/api/v1/users/${state.auth.id}/currency`, { currency });
+    }
+    const cookie = require('../utils/cookie');
+    cookie.set('currency', currency);
+    dispatch({
+      type: 'CHANGE_CURRENCY',
+      currency,
+    });
   };
 }
