@@ -24,14 +24,16 @@
 
 // 5. Components
 @import
-  'components/buttons';
+  'components/buttons',
+  'components/icons';
 
 // 6. Page-specific styles
 @import
   'pages/home',
   'pages/category',
   'pages/productlist',
-  'pages/productdetail';
+  'pages/productdetail',
+  'pages/cart';
 
 // 7. Themes
 @import

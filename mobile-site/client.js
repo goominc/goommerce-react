@@ -4,10 +4,10 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
-// import configureStore from './redux/store';
+import configureMobileStore from './../commons/redux/store';
 import { cloudinaryConfig } from 'react-cloudinary';
 import configureRoutes from './routes';
-
+/*
 const history = createBrowserHistory();
 
 history.listen(() => {
@@ -21,9 +21,17 @@ render(
     {routes}
   </Router>,
   document.getElementById('root')
-);
-/*
-const store = configureStore(window.__INITIAL_STATE__);
+);*/
+
+const store = configureMobileStore(window.__INITIAL_STATE__);
+
+if (module.hot) {
+  // Enable Webpack hot module replacement for reducers
+  module.hot.accept('./redux/reducers', () => {
+    const nextRootReducer = require('./redux/reducers');
+    store.replaceReducer(nextRootReducer);
+  });
+}
 
 const routes = configureRoutes({
   getAuth() {
@@ -44,4 +52,3 @@ render(
   </Provider>,
   document.getElementById('root')
 );
-*/

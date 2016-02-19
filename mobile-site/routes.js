@@ -10,10 +10,6 @@ import {
 } from './containers';
 
 
-/*
-
-<Route path="/cart" component={Cart}/>*/
-
 export default function configure() {
   return (
     <Route>
@@ -22,6 +18,7 @@ export default function configure() {
         <Route path="/category" component={Category} />
         <Route path="/products" component={ProductList} />
         <Route path="/products/:productId" component={ProductDetail}/>
+        <Route path="/cart" component={Cart}/>
       </Route>
     </Route>
   );
