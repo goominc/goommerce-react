@@ -58,12 +58,12 @@ export default React.createClass({
         <input type="hidden" name="version" value="1.0"/>
         <input type="hidden" name="mid" ref="mid"/>
         <input type="hidden" name="oid" ref="oid"/>
-        <input type="hidden" name="goodname" value="키보드/마우스"/>
+        <input type="hidden" name="goodname" value="의류"/>
         <input type="hidden" name="price" ref="price"/>
         <input type="hidden" name="currency" value="WON"/>
         <input type="hidden" name="buyername" value="LINKSHOPS"/>
         <input type="hidden" name="buyertel" value="010-2000-1234"/>
-        <input type="hidden" name="buyermail" value=""/>
+        <input type="hidden" name="buyeremail" ref="buyeremail"/>
         <input type="hidden" name="timestamp" ref="timestamp"/>
         <input type="hidden" name="signature" ref="signature"/>
         <input type="hidden" name="returnUrl" ref="returnUrl"/>

@@ -45,6 +45,7 @@ const Checkout = React.createClass({
       paymentInfo.mid.value = res.mid;
       paymentInfo.oid.value = res.oid;
       paymentInfo.price.value = res.price;
+      paymentInfo.buyeremail.value = res.buyeremail;
       paymentInfo.timestamp.value = res.timestamp;
       paymentInfo.signature.value = res.signature;
       paymentInfo.returnUrl.value = res.returnUrl;
