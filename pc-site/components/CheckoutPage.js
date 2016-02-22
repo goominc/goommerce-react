@@ -35,7 +35,7 @@ export default React.createClass({
     };
     return (
       <form id="checkout" method="POST">
-        <div>KRW {order.totalEstimation.KRW}</div>
+        <div>KRW {order.totalEstimationKRW}</div>
         <select name="gopaymethod">
           <option value="">[ 결제방법 선택 ]</option>
           <option value="Card">신용카드 결제</option>
@@ -88,7 +88,7 @@ export default React.createClass({
         <ul>
           {order.productVariants.map(renderVariant)}
         </ul>
-        <div>Total: KRW {order.totalEstimation.KRW}</div>
+        <div>Total: KRW {order.totalEstimationKRW}</div>
         <div>Status: {order.status}</div>
         <SellerBox cart={order} />
       </div>
