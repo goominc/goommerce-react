@@ -211,7 +211,7 @@ export function loadMyOrders() {
 export function loadCartIfEmpty() {
   return (dispatch, getState) => {
     const state = getState();
-    if (state.auth && (!state.cart || !state.cart.productVariants)) {
+    if (state.auth && state.auth.id && (!state.cart || !state.cart.productVariants)) {
       loadCart()(dispatch, getState);
     }
   };
