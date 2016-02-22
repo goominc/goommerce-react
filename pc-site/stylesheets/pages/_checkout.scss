@@ -83,3 +83,46 @@ $active-progress-color: #f90;
   padding: 20px 0;
   text-align: left;
 }
+
+.checkout-address-box {
+  $padding-left: 20px;
+  position: relative;
+  width: 310px;
+  height: 260px;
+  display: inline-block;
+  overflow: hidden; // defensive
+  margin-right: $margin-15;
+  padding: 25px 10px $padding-left $padding-left;
+  border: 2px solid #ddd;
+  &.selected {
+    border: 2px solid #e52e02;
+    background-color: #fff4f2;
+  }
+  .field-box {
+    width: 100%;
+  }
+  .field-label {
+    display: inline-block;
+    width: 30px;
+    text-align: right;
+    margin-right: $margin-15;
+  }
+  .field-text {
+    display: inline;
+  }
+  .field-username {
+    display: inline;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .edit-box {
+    position: absolute;
+    display: inline;
+    left: $padding-left;
+    bottom: $padding-left;
+    a {
+      color: #06c;
+      font-weight: 500;
+    }
+  }
+}

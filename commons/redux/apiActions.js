@@ -134,6 +134,69 @@ export function loadOrder(id) {
   });
 }
 
+export function loadAddresses() {
+  return (dispatch, getState) => {
+    const state = getState();
+    if (!state.auth) {
+      // TODO alert with message
+      window.alert('Not Login User has no address');
+      return;
+    }
+    return createFetchAction({
+      type: 'LOAD_ADDRESS',
+      endpoint: `/api/v1/users/${state.auth.id}/addresses`,
+      transform: ({ data }) => normalize(data.addresses, schemas.addresses),
+    }) (dispatch, getState);
+  };
+}
+
+export function saveAddressAndSetActive(address) {
+  return (dispatch, getState) => {
+    const state = getState();
+    if (!state.auth) {
+      // TODO alert with message
+      window.alert('Not Login User cannot set address');
+      return;
+    }
+    const headers = {
+      'Authorization': state.auth.bearer ? `Bearer ${state.auth.bearer}` : '',
+    };
+    const ajax = {
+      url: `/api/v1/users/${state.auth.id}/addresses`,
+      headers,
+      processData: false,
+      contentType: 'application/json',
+    };
+    if (address.id) {
+      ajax.method = 'PUT';
+      ajax.url = `${ajax.url}/${address.id}`;
+      ajax.data = JSON.stringify(_.pick(address, 'countryCode', 'detail'));
+    } else {
+      ajax.method = 'POST';
+      ajax.data = JSON.stringify(address);
+    }
+    $.ajax(ajax).then((data) => {
+      console.log(data);
+      dispatch({
+        type: 'SET_ACTIVE_ADDRESS',
+        addressId: data.id,
+      });
+    }, () => {
+      // TODO
+    });
+  };
+}
+
+export function setActiveAddress(addressId) {
+  return (dispatch) => {
+    // TODO set in user setting in server
+    dispatch({
+      type: 'SET_ACTIVE_ADDRESS',
+      addressId,
+    });
+  };
+}
+
 export function loadMyOrders() {
   return createFetchAction({
     type: 'LOAD_MY_ORDERS',

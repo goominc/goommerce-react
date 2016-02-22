@@ -20,7 +20,7 @@ function cart(state = {}, action) {
 }
 
 // Updates an entity cache in payload to any action with payload.entities.
-function entities(state = { users: {}, products: {}, orders: {} }, action) {
+function entities(state = { users: {}, products: {}, orders: {}, addresses: {} }, action) {
   const nextState = assign({}, state);
   forEach(get(action, 'payload.entities'), (val, key) => {
     if (get(action, 'meta.entities.update')) {
@@ -82,6 +82,14 @@ function currency(state = {}, action) {
   return state;
 }
 
+function settings(state = {}, action) {
+  if (action.type === 'SET_ACTIVE_ADDRESS') {
+    state.activeAddressId = action.addressId;
+    return state;
+  }
+  return state;
+}
+
 const reducers = {
   auth,
   cart,
@@ -89,6 +97,7 @@ const reducers = {
   pagination,
   i18n,
   currency,
+  settings,
 };
 
 exports.reducers = reducers;

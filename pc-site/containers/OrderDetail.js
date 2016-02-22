@@ -24,8 +24,8 @@ const OrderDetail = React.createClass({
     }
   },
   render() {
-    const { order } = this.props;
-    if (!order) {
+    const { order, addresses } = this.props;
+    if (!order || !addresses) {
       return (<div></div>);
     }
     const variants = order.productVariants || [];

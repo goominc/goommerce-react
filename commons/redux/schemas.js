@@ -10,3 +10,6 @@ export const products = arrayOf(product);
 
 export const order = new Schema('orders');
 export const orders = arrayOf(order);
+
+export const address = new Schema('addresses');
+export const addresses = arrayOf(address);

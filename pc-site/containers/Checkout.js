@@ -5,12 +5,13 @@ import { ReactScriptLoaderMixin } from 'react-script-loader';
 import CheckoutPage from '../components/CheckoutPage';
 
 import { ApiAction, setCheckoutStep } from '../redux/actions';
-const { inipay, loadOrder } = ApiAction;
+const { inipay, loadOrder, loadAddresses, saveAddressAndSetActive } = ApiAction;
 
 const Checkout = React.createClass({
   propTypes: {
     orderId: PropTypes.string.isRequired,
     order: PropTypes.object,
+    addresses: PropTypes.object,
     checkout: PropTypes.object,
     inipay: PropTypes.func.isRequired,
     loadOrder: PropTypes.func.isRequired,
@@ -23,6 +24,7 @@ const Checkout = React.createClass({
   },
   componentDidMount() {
     this.props.loadOrder(this.props.orderId);
+    this.props.loadAddresses();
     const initial_step = 1;
     if (!this.props.checkout || this.props.checkout.step != initial_step) {
       this.props.setCheckoutStep(initial_step);
@@ -54,14 +56,39 @@ const Checkout = React.createClass({
     });
   },
   render() {
+    if (!this.props.order) {
+      return (<div></div>);
+    }
     const handleCheckoutStep = (step) => {
       if (step !== 3) {
         // 2016. 02. 02. [heekyu]
         this.props.setCheckoutStep(step);
       }
     };
+    const fields = [
+      { key: 'detail.name', text: 'Contact Name' },
+      { key: 'countryCode', text: 'Country/Region' },
+      { key: 'detail.streetAddress', text: 'Street Address' },
+      { key: 'detail.city', text: 'City' },
+      { key: 'detail.postalCode', text: 'Zip/Postal Code' },
+      { key: 'detail.tel', text: 'Tel' },
+    ];
+    const { addresses } = this.props;
+    let { activeAddress } = this.props;
+    if (!activeAddress) {
+      if (addresses && Object.keys(addresses).length > 0) {
+        activeAddress = addresses[Object.keys(addresses)[0]];
+      } else {
+        activeAddress = { detail: {} };
+        fields.forEach((field) => _.set(activeAddress, field.key, ''));
+      }
+    }
     return (
-      <CheckoutPage {...this.props} setCheckoutStep={handleCheckoutStep} doCheckout={this.doCheckout} />
+      <CheckoutPage {...this.props}
+        setCheckoutStep={handleCheckoutStep}
+        doCheckout={this.doCheckout}
+        activeAddress={activeAddress}
+        addressFields={fields} />
     );
   },
 });
@@ -70,7 +97,9 @@ export default connect(
   (state, ownProps) => ({
     orderId: ownProps.params.orderId,
     order: state.entities.orders[ownProps.params.orderId],
+    activeAddress: state.entities.addresses[state.settings.activeAddressId] || null,
+    addresses: state.entities.addresses,
     checkout: state.checkout,
   }),
-  { inipay, loadOrder, setCheckoutStep }
+  { inipay, loadOrder, loadAddresses, setCheckoutStep, saveAddress: saveAddressAndSetActive }
 )(Checkout);

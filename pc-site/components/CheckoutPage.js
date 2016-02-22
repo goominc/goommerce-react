@@ -1,31 +1,26 @@
 import React, { PropTypes } from 'react';
+import LinkedStateMixin from 'react-addons-linked-state-mixin'; // for manage form input...
 
-import SellerBox from './CartSellerBox';
+import CheckoutStep1 from './CheckoutStep1';
 
 export default React.createClass({
   propTypes: {
     order: PropTypes.object.isRequired,
+    addressFields: PropTypes.array,
+    activeAddress: PropTypes.object,
+    addresses: PropTypes.object,
+    saveAddress: PropTypes.func,
     doCheckout: PropTypes.func,
     checkout: PropTypes.object,
     setCheckoutStep: PropTypes.func,
   },
+  getInitialState() {
+    return {};
+  },
+  mixins: [LinkedStateMixin],
   renderCheckoutInformations() {
-    const { order } = this.props;
     return (
-      <div>
-        <div className="checkout-section-title">1. Please fill in your shipping address. </div>
-        <div className="form-box">
-          <div className="form-label">Country Name: </div>
-          <input type="text" />
-        </div>
-        <div className="form-box">
-          <div className="form-label">Address: </div>
-          <input type="text" />
-        </div>
-
-        <div className="checkout-section-title">2. Review and confirm your order (3 items):</div>
-        <SellerBox cart={order} />
-      </div>
+      <CheckoutStep1 {...this.props} />
     );
   },
   renderPayments() {
