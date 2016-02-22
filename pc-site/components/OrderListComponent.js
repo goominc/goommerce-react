@@ -14,17 +14,18 @@ export default React.createClass({
       return new Date(date).toString();
     }
     const { orders } = this.props;
-    console.log(orders);
 
-    const renderProductVariant = (variant) => {
+    const renderOrderProduct = (product) => {
+      const variant = product.variant;
+      const thumbnail = getProductThumbnail(variant) || getProductThumbnail(product.product);
       return (
-        <div key={variant.id} className="order-product-item">
-          <div className="thumbnail-box"><img src={getProductThumbnail(variant)} /></div>
+        <div key={product.id} className="order-product-item">
+          <div className="thumbnail-box"><img src={thumbnail} /></div>
           <div className="content-box">
             {variant.sku} <br/>
-            Price / piece : {variant.KRW} <br/>
-            Count: {variant.count} <br/>
-            Total Price : {variant.total.KRW} <br/>
+            Price / piece : {product.KRW} <br/>
+            Count: {product.orderedCount} <br/>
+            Total Price : {product.totalKRW} <br/>
           </div>
         </div>
       );
@@ -34,12 +35,12 @@ export default React.createClass({
         <div key={order.id} className="order-box">
           <div className="order-head">
             <span>Order Id: {order.id} </span> <Link to={`/orders/${order.id}`} >View Detail</Link> <br/>
-            <span>Total Price: KWR {order.total.KRW}</span> <br/>
+            <span>Total Price: KWR {order.totalKRW}</span> <br/>
             <span>Order Date: {formatDate(order.createdAt)}</span> <br/>
             <span>Seller: Mola</span>
           </div>
           <div className="order-product-box">
-            {order.productVariants.map(renderProductVariant)}
+            {order.orderProducts.map(renderOrderProduct)}
           </div>
           <div className="order-action-box">
             Status : {order.status}

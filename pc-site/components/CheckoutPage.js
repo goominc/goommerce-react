@@ -76,17 +76,18 @@ export default React.createClass({
   },
   renderDone() {
     const { order } = this.props;
-    function renderVariant(variant) {
+    function renderOrderProduct(product) {
+      const sku = product.productVariant.sku;
       return (
-        <li key={variant.sku}>
-          {variant.sku}, {variant.count}, KRW {variant.total.KRW}
+        <li key={sku}>
+          {sku}, KRW {product.priceKRW} x {product.orderedCount}
         </li>
       );
     }
     return (
       <div>
         <ul>
-          {order.productVariants.map(renderVariant)}
+          {order.orderProducts.map(renderOrderProduct)}
         </ul>
         <div>Total: KRW {order.totalEstimationKRW}</div>
         <div>Status: {order.status}</div>
