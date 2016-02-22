@@ -176,7 +176,6 @@ export function saveAddressAndSetActive(address) {
       ajax.data = JSON.stringify(address);
     }
     $.ajax(ajax).then((data) => {
-      console.log(data);
       dispatch({
         type: 'SET_ACTIVE_ADDRESS',
         addressId: data.id,
@@ -235,7 +234,7 @@ export function changeLocale(locale) {
   return (dispatch, getState) => {
     const state = getState();
     if (state.activeLocale === locale) return;
-    if (state.auth) {
+    if (state.auth && state.auth.id) {
       simpleNotify(state.auth, 'PUT', `/api/v1/users/${state.auth.id}/locale`, { locale });
     }
     const cookie = require('../utils/cookie');
@@ -259,7 +258,7 @@ export function changeCurrency(currency) {
   return (dispatch, getState) => {
     const state = getState();
     if (state.activeCurrency === currency) return;
-    if (state.auth) {
+    if (state.auth && state.auth.id) {
       simpleNotify(state.auth, 'PUT', `/api/v1/users/${state.auth.id}/currency`, { currency });
     }
     const cookie = require('../utils/cookie');
