@@ -16,7 +16,7 @@ export default React.createClass({
     const { orders } = this.props;
 
     const renderOrderProduct = (product) => {
-      const variant = product.variant;
+      const variant = product.productVariant;
       const thumbnail = getProductThumbnail(variant) || getProductThumbnail(product.product);
       return (
         <div key={product.id} className="order-product-item">
@@ -40,7 +40,7 @@ export default React.createClass({
             <span>Seller: Mola</span>
           </div>
           <div className="order-product-box">
-            {order.orderProducts.map(renderOrderProduct)}
+            {(order.orderProducts || []).map(renderOrderProduct)}
           </div>
           <div className="order-action-box">
             Status : {order.status}

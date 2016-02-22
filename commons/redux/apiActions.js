@@ -138,7 +138,7 @@ export function loadMyOrders() {
   return createFetchAction({
     type: 'LOAD_MY_ORDERS',
     endpoint: state => `/api/v1/users/${state.auth.id}/orders`,
-    transform: ({ data }) => normalize(data, schemas.orders),
+    transform: ({ data }) => normalize(data.orders, schemas.orders),
     success: {
       pagination: { key: 'myOrders', type: 'REFRESH' },
     },

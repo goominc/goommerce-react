@@ -87,7 +87,7 @@ export default React.createClass({
     return (
       <div>
         <ul>
-          {order.orderProducts.map(renderOrderProduct)}
+          {(order.orderProducts || []).map(renderOrderProduct)}
         </ul>
         <div>Total: KRW {order.totalEstimationKRW}</div>
         <div>Status: {order.status}</div>
