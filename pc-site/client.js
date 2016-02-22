@@ -6,8 +6,9 @@ import { Router } from 'react-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 import configureStore from './../commons/redux/store';
 import configureRoutes from './routes';
+import reducer from './redux/reducers';
 
-const store = configureStore(window.__INITIAL_STATE__);
+const store = configureStore(reducer, window.__INITIAL_STATE__);
 
 if (module.hot) {
   // Enable Webpack hot module replacement for reducers
