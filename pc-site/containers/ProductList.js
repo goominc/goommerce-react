@@ -12,6 +12,7 @@ const { searchProducts } = ApiAction;
 const ProductList = React.createClass({
   propTypes: {
     query: PropTypes.object.isRequired,
+    category: PropTypes.object,
     categories: PropTypes.object.isRequired,
     searchProducts: PropTypes.func.isRequired,
   },
@@ -27,28 +28,37 @@ const ProductList = React.createClass({
     }
   },
   doSearch(props) {
-    props.searchProducts(props.query).then(res => this.setState({
-      products: res.products,
-    }));
+    props.searchProducts(props.query).then(res => this.setState(res));
   },
   breadCrumbPath() {
-    const { query, categories } = this.props;
+    const { categories } = this.props;
     const path = [{ link: '/', name: { en: 'Home', ko: '홈' } }];
-    function pushPath(categoryId) {
-      const category = categories[categoryId];
+    function pushPath(category) {
       if (!category) return;
-      if (category.parentId) pushPath(category.parentId);
+      if (category.parentId) {
+        pushPath(categories[category.parentId]);
+      }
       path.push({ link: `/categories/${category.id}`, name: category.name });
     }
-    pushPath(query.categoryId || 'tree');
+    pushPath(this.props.category);
     return path;
+  },
+  aggregateChildren() {
+    const { categories: aggs = {} } = this.state;
+    const { children = [] } = this.props.category || {};
+    return children.map((child) => ({
+      name: child.name,
+      count: (aggs[child.id] || {}).doc_count,
+    }));
   },
   render() {
     const { products = [] } = this.state;
     const path = this.breadCrumbPath();
+    const children = this.aggregateChildren();
+
     return (
       <div className="container-table">
-        <ProductListLeft path={path.slice(1)} />
+        <ProductListLeft path={path.slice(1)} children={children} />
         <div className="product-list-right-box">
           <BreadCrumb path={path} />
           <div className="product-list-search-box"></div>
@@ -60,6 +70,12 @@ const ProductList = React.createClass({
 });
 
 export default connect(
-  (state) => ({ categories: state.categories }),
+  (state, ownProps) => {
+    const { categoryId = 'tree' } = ownProps.query;
+    return {
+      categories: state.categories,
+      category: state.categories[categoryId],
+    };
+  },
   { searchProducts }
 )(ProductList);
