@@ -35,12 +35,12 @@ const ProductList = React.createClass({
     const { query, categories } = this.props;
     const path = [{ link: '/', name: { en: 'Home', ko: '홈' } }];
     function pushPath(categoryId) {
-      const category = categories[categoryId || 1];
+      const category = categories[categoryId];
       if (!category) return;
       if (category.parentId) pushPath(category.parentId);
       path.push({ link: `/categories/${category.id}`, name: category.name });
     }
-    pushPath(query.categoryId);
+    pushPath(query.categoryId || 'tree');
     return path;
   },
   render() {
@@ -48,7 +48,7 @@ const ProductList = React.createClass({
     const path = this.breadCrumbPath();
     return (
       <div className="container-table">
-        <ProductListLeft />
+        <ProductListLeft path={path.slice(1)} />
         <div className="product-list-right-box">
           <BreadCrumb path={path} />
           <div className="product-list-search-box"></div>
