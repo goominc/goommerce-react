@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { History, Link } from 'react-router';
-import LinkedStateMixin from 'react-addons-linked-state-mixin';
+import { History } from 'react-router';
 
 import AppHeader from '../components/AppHeader';
 import ErrorPopup from '../components/ErrorPopup';
@@ -14,8 +13,20 @@ require('../stylesheets/main.scss');
 const App = React.createClass({
   propTypes: {
     children: PropTypes.node,
+    activeLocale: PropTypes.string,
+    activeCurrency: PropTypes.string,
+  },
+  childContextTypes: {
+    activeLocale: PropTypes.string,
+    activeCurrency: PropTypes.string,
   },
   mixins: [History],
+  getChildContext() {
+    return {
+      activeLocale: this.props.activeLocale,
+      activeCurrency: this.props.activeCurrency,
+    };
+  },
   componentDidMount() {
     this.props.loadCartIfEmpty();
     this.props.loadCategories();
@@ -48,7 +59,8 @@ const App = React.createClass({
           changeLocale={changeLocale}
           activeLocale={activeLocale}
           changeCurrency={changeCurrency}
-          activeCurrency={activeCurrency} />
+          activeCurrency={activeCurrency}
+        />
         {children}
       </div>
     );

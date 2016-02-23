@@ -7,6 +7,10 @@ export default React.createClass({
   propTypes: {
     products: PropTypes.array.isRequired,
   },
+  contextTypes: {
+    activeLocale: PropTypes.string,
+    activeCurrency: PropTypes.string,
+  },
   render() {
     const { products } = this.props;
     const itemsInRow = 3;
