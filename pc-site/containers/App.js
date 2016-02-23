@@ -7,7 +7,7 @@ import AppHeader from '../components/AppHeader';
 import ErrorPopup from '../components/ErrorPopup';
 
 import { ApiAction, resetError } from '../redux/actions';
-const { loadCartIfEmpty, changeLocale, changeCurrency } = ApiAction;
+const { loadCartIfEmpty, changeLocale, changeCurrency, logout } = ApiAction;
 
 require('../stylesheets/main.scss');
 
@@ -18,6 +18,9 @@ const App = React.createClass({
   mixins: [History],
   componentDidMount() {
     this.props.loadCartIfEmpty();
+  },
+  handleLogout() {
+    this.props.logout().then(() => window.location.href = '/');
   },
   handleSearch(query) {
     if (query) {
@@ -39,6 +42,7 @@ const App = React.createClass({
         <AppHeader
           auth={auth}
           cart={cart}
+          handleLogout={this.handleLogout}
           handleSearch={this.handleSearch}
           changeLocale={changeLocale}
           activeLocale={activeLocale}
@@ -53,5 +57,5 @@ const App = React.createClass({
 export default connect(
   state => ({ auth: state.auth, cart: state.cart, error: state.errorHandler.error,
     activeLocale: state.i18n.activeLocale, activeCurrency: state.currency.activeCurrency }),
-  { loadCartIfEmpty, resetError, changeLocale, changeCurrency }
+  { loadCartIfEmpty, resetError, changeLocale, changeCurrency, logout }
 )(App);

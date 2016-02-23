@@ -8,6 +8,7 @@ export default React.createClass({
     auth: PropTypes.object.isRequired,
     cart: PropTypes.object.isRequired,
     activeLocale: PropTypes.string,
+    handleLogout: PropTypes.func.isRequired,
     handleSearch: PropTypes.func.isRequired,
     changeLocale: PropTypes.func.isRequired,
     changeCurrency: PropTypes.func.isRequired,
@@ -36,7 +37,7 @@ export default React.createClass({
     );
   },
   render() {
-    const { handleSearch, cart, changeLocale, changeCurrency, activeLocale, activeCurrency } = this.props;
+    const { handleLogout, handleSearch, cart, changeLocale, changeCurrency, activeLocale, activeCurrency } = this.props;
     let cartCount = 0;
     if (cart && cart.productVariants) {
       cartCount = cart.productVariants.length;
@@ -115,7 +116,7 @@ export default React.createClass({
                 <div className="account-icon"></div>
                 {this.renderAccount()}
                 <div className="dropdown-box">
-                  <div className="dropdown-menu">{i18n.get('pcMain.myMenu.logout', activeLocale)}</div>
+                  <div className="dropdown-menu" onClick={handleLogout}>{i18n.get('pcMain.myMenu.logout', activeLocale)}</div>
                   <div className="dropdown-menu"><Link to="/mypage">{i18n.get('pcMain.myMenu.myLinkshops', activeLocale)}</Link></div>
                   <div className="dropdown-menu"><Link to="/mypage">{i18n.get('pcMain.myMenu.myOrder', activeLocale)}</Link></div>
                 </div>
