@@ -13,6 +13,7 @@ export default React.createClass({
   },
   render() {
     const { products } = this.props;
+    const { activeCurrency } = this.context;
     const itemsInRow = 3;
     const maxRowCount = 10;
     const renderItem = (item, index) => {
@@ -26,7 +27,7 @@ export default React.createClass({
               <Link to={`/products/${item.id}`}>Socone Mens Women Breathable Trail Running Shoes New 2015 Summer Mens Shoes Outdoor Water Shoe Athletic Sport Shoes Men Trainers</Link>
             </div>
             <div className="product-price">
-              KRW {getProductMainPrice(item, 'KRW')}
+              {activeCurrency} {getProductMainPrice(item, activeCurrency)}
             </div>
           </div>
         </div>
