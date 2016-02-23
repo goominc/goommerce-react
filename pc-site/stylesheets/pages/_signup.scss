@@ -1,0 +1,73 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the product signup page.
+// -----------------------------------------------------------------------------
+
+.signup-header {
+  width: 100%;
+  text-align: center;
+  border-bottom: 2px solid #e6e6e6;
+  .signup-step-wrap {
+    padding: 0 70px;
+    display: inline-block;
+    width: 350px;
+    color: #999;
+    margin-bottom: -2px;
+    .step-number {
+      $number-width: 30px;
+      color: #fff;
+      background-color: #999;
+      margin: $margin-15;
+      display: inline-block;
+      width: $number-width;
+      height: $number-width;
+      line-height: $number-width;
+      border-radius: 50%;
+    }
+    span {
+      display: inline-block;
+      font-size: 20px;
+      font-weight: 500;
+      vertical-align: middle;
+    }
+    &.active {
+      color: #3e3e3e;
+      border-bottom: 2px solid #e62e04;
+      .step-number {
+        background-color: #e62e04;
+      }
+    }
+  }
+}
+
+.signup-form-body {
+  margin: 30px 0 60px 0;
+  text-align: center;
+  .form-group {
+    width: 250px;
+    margin: $margin-15 auto $margin-15*2 auto;
+    input {
+      display: block;
+      width: 100%;
+      padding: 7px 15px;
+      font-size: 14px;
+    }
+  }
+  .field-label {
+    display: block;
+    text-align: left;
+    font-size: 14px;
+    margin: $margin-15 0;
+  }
+  .next-button {
+    height: 36px;
+    line-height: 36px;
+    padding: 0 $margin-20;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 700;
+    background-color: #ff4001;
+    border: 0;
+    border-radius: 3px;
+  }
+}
