@@ -1,6 +1,10 @@
 // -----------------------------------------------------------------------------
 // This file contains styles that are specific to the home page.
 // -----------------------------------------------------------------------------
+.main-wide-container {
+  width: 100%;
+  background-color: #eee;
+}
 .main-banner-wrap {
   width: 100%;
   position: relative;
@@ -62,4 +66,125 @@
       border-bottom: 1px solid #e9e9e9;
     }
   }
+}
+
+.curation-topic-box {
+  $height: 550px;
+  border-top: 2px solid #f31349;
+  background-color: #fff;
+  height: $height;
+  margin-bottom: $margin-20;
+  .left-category {
+    width: 200px;
+    display: inline-block;
+    vertical-align: top;
+  }
+  .left-category-title {
+    width: 100%;
+    height: 100px;
+    padding-top: 22px;
+    border-bottom: 1px solid #eee;
+    font-size: 20px;
+    line-height: 28px;
+    text-align: center;
+    font-weight: 700;
+    color: #f31349;
+    margin: 0 auto;
+  }
+  .left-category-item {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    font-size: 14px;
+    margin-top: $margin-15;
+    &:hover {
+      color: $default-active-text-color;
+      text-decoration: none;
+    }
+  }
+  .item-color-0 {
+    color: #4e4e4e;
+  }
+  .item-color-1 {
+    color: #f31349;
+  }
+  .center-slide {
+    width: 400px;
+    height: 100%;
+    overflow: hidden;
+    display: inline-block !important;
+    .img-wrap {
+      position: relative;
+      right: 50%;
+      text-align: center;
+      height: 100%;
+    }
+    img {
+      display: inline-block;
+      width: auto;
+      height: 100%;
+      margin-right: -100%;
+    }
+  }
+  .right-banner {
+    $banner-height: 275px;
+    display: inline-block;
+    vertical-align: top;
+    width: 600px;
+    height: 100%;
+    .large-banner {
+      position: relative;
+      width: 400px;
+      display: inline-block;
+      vertical-align: top;
+      height: $banner-height;
+      border-right: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+      img {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+      }
+    }
+    .small-banner {
+      width: 200px;
+      display: inline-block;
+      vertical-align: top;
+      height: $banner-height;
+      border-right: 1px solid #eee;
+      border-bottom: 1px solid #eee;
+      .title {
+        padding: 15px 5px 2px 5px;
+        font-weight: 700;
+        color: #333;
+        text-align: center;
+      }
+      .sub-title {
+        text-align: center;
+        width: 100%;
+        color: #aaa;
+      }
+      .img-wrap {
+        text-align: center;
+        padding: 15px 0 10px;
+        height: 219px;
+      }
+      img {
+        width: 180px;
+        height: 195px;
+      }
+    }
+  }
+  .hover-highlight {
+    &:hover {
+      box-shadow: 0 3px 6px 0 rgba(51,51,51,.3);
+      text-decoration: none;
+      z-index: 100;
+    }
+  }
+}
+
+.owl-item {
+  // 2016. 02. 23. [heekyu] for sibling image overflow parent width
+  overflow: hidden;
 }

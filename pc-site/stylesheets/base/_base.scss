@@ -50,3 +50,8 @@ a {
 .required {
   color: #e02222;
 }
+
+.no-horizontal-padding {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
