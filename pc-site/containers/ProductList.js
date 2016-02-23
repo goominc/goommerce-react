@@ -31,9 +31,8 @@ const ProductList = React.createClass({
       products: res.products,
     }));
   },
-  render() {
+  breadCrumbPath() {
     const { query, categories } = this.props;
-    const { products = [] } = this.state;
     const path = [{ link: '/', name: { en: 'Home', ko: '홈' } }];
     function pushPath(categoryId) {
       const category = categories[categoryId || 1];
@@ -42,6 +41,11 @@ const ProductList = React.createClass({
       path.push({ link: `/categories/${category.id}`, name: category.name });
     }
     pushPath(query.categoryId);
+    return path;
+  },
+  render() {
+    const { products = [] } = this.state;
+    const path = this.breadCrumbPath();
     return (
       <div className="container-table">
         <ProductListLeft />
