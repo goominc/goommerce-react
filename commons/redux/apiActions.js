@@ -17,6 +17,14 @@ export function login(email, password) {
   });
 }
 
+export function logout() {
+  return createFetchAction({
+    type: 'LOGOUT',
+    endpoint: '/api/v1/login',
+    method: 'delete',
+  });
+}
+
 export function signup(params) {
   return createFetchAction({
     type: 'LOGIN',
