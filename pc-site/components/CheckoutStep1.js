@@ -73,13 +73,22 @@ export default React.createClass({
         </div>
       );
     };
+    const cartVariants = order.orderProducts.map((orderProduct) => {
+      return _.assign({}, orderProduct.productVariant, { count: orderProduct.orderedCount });
+    });
     return (
       <div>
         <div className="checkout-section-title">1. Please fill in your shipping address. </div>
         {renderAddress()}
 
         <div className="checkout-section-title">2. Review and confirm your order (3 items):</div>
-        <SellerBox cart={order} />
+        <SellerBox productVariants={cartVariants} />
+        <div className="checkout-place-order">
+          <span className="all-total-label">All Total:</span>
+          <span className="all-total-value">{150000}</span>
+          <br/>
+          <button className="place-order-button">Place Order</button>
+        </div>
       </div>
     );
   },

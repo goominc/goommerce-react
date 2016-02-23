@@ -4,7 +4,7 @@ import { getProductThumbnail } from '../util';
 
 export default React.createClass({
   propTypes: {
-    cart: PropTypes.object.isRequired,
+    productVariants: PropTypes.array.isRequired,
     canChangeQuantity: PropTypes.bool,
     updateCount: PropTypes.func,
     removeProduct: PropTypes.func,
@@ -49,13 +49,13 @@ export default React.createClass({
     );
   },
   render() {
-    const { cart, removeProduct, buy, children } = this.props;
-    if (!cart) {
+    const { productVariants, removeProduct, buy, children } = this.props;
+    if (!productVariants) {
       return (
-        <div>Error! No Cart</div>
+        <div>Error! No Products!</div>
       );
     }
-    const variants = cart.productVariants || [];
+    const variants = productVariants || [];
     function renderHead() {
       const renderBuyCell = () => {
         const buttonCells = [];

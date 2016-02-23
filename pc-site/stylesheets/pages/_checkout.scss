@@ -126,3 +126,21 @@ $active-progress-color: #f90;
     }
   }
 }
+
+.checkout-place-order {
+  text-align: right;
+  .all-total-label {
+    font-size: 18px;
+    color: #999;
+  }
+  .all-total-value {
+    font-size: 18px;
+    color: #f60;
+  }
+  .place-order-button {
+    @include button-default-styles();
+    font-size: 18px;
+    padding: 8px 25px;
+    margin: $margin-20 0;
+  }
+}
