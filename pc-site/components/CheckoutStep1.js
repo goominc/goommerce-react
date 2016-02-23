@@ -11,12 +11,13 @@ export default React.createClass({
     activeAddress: PropTypes.object,
     addresses: PropTypes.object,
     saveAddress: PropTypes.func,
+    setCheckoutStep: PropTypes.func,
   },
   getInitialState() {
     return {};
   },
   render() {
-    const { order, addressFields, activeAddress } = this.props;
+    const { order, addressFields, activeAddress, setCheckoutStep } = this.props;
 
     const renderFormField = (obj) => {
       return (
@@ -87,7 +88,7 @@ export default React.createClass({
           <span className="all-total-label">All Total:</span>
           <span className="all-total-value">{150000}</span>
           <br/>
-          <button className="place-order-button">Place Order</button>
+          <button className="place-order-button" onClick={() => setCheckoutStep(2)}>Place Order</button>
         </div>
       </div>
     );
