@@ -32,7 +32,7 @@ export default function configure({ getAuth }) {
         <Route path="/orders/:orderId" component={OrderDetail}/>
         <Route path="/orders/:orderId/checkout" component={Checkout}/>
         <Route path="/brands/:brandId" component={Brand}/>
-        <Route path="/category/:categoryId" component={Category}/>
+        <Route path="/categories/:categoryId" component={Category}/>
         <Route path="/search" component={Search}/>
         <Route path="/mypage" component={MyPage} />
       </Route>

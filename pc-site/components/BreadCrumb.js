@@ -15,12 +15,12 @@ export default React.createClass({
     //               need keys
     this.props.path.forEach((parent, index) => {
       if (parent.link) {
-        items.push(<Link key={parent.name} to={parent.link}><span>{parent.name}</span></Link>);
+        items.push(<Link key={index} to={parent.link}><span>{parent.name.ko}</span></Link>);
       } else {
-        items.push(<span key={parent.name}>{parent.name}</span>);
+        items.push(<span key={index}>{parent.name.ko}</span>);
       }
       if (index < this.props.path.length - 1) {
-        items.push(<span key={index}> > </span>);
+        items.push(<span key={`spen${index}`}> > </span>);
       }
     });
     return (

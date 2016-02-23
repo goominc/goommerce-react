@@ -1,28 +1,47 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-
-import loadEntities from '../../commons/redux/util/loadEntities';
+import { isEqual } from 'lodash';
 
 import BreadCrumb from '../components/BreadCrumb';
 import ProductListLeft from '../components/ProductListLeft';
 import ProductListItems from '../components/ProductListItems';
 
 import { ApiAction } from '../redux/actions';
-const { loadProducts } = ApiAction;
+const { searchProducts } = ApiAction;
 
 const ProductList = React.createClass({
   propTypes: {
-    products: PropTypes.array.isRequired,
+    query: PropTypes.object.isRequired,
+    categories: PropTypes.object.isRequired,
+    searchProducts: PropTypes.func.isRequired,
+  },
+  getInitialState() {
+    return {};
   },
   componentDidMount() {
-    this.props.loadProducts();
+    this.doSearch(this.props);
+  },
+  componentWillReceiveProps(nextProps) {
+    if (!isEqual(this.props.query, nextProps.query)) {
+      this.doSearch(nextProps);
+    }
+  },
+  doSearch(props) {
+    props.searchProducts(props.query).then(res => this.setState({
+      products: res.products,
+    }));
   },
   render() {
-    const { products } = this.props;
-    const path = [
-      {link:'/', name: 'home'},
-      {link:'/cart', name: 'cart'},
-    ];
+    const { query, categories } = this.props;
+    const { products = [] } = this.state;
+    const path = [{ link: '/', name: { en: 'Home', ko: '홈' } }];
+    function pushPath(categoryId) {
+      const category = categories[categoryId || 1];
+      if (!category) return;
+      if (category.parentId) pushPath(category.parentId);
+      path.push({ link: `/categories/${category.id}`, name: category.name });
+    }
+    pushPath(query.categoryId);
     return (
       <div className="container-table">
         <ProductListLeft />
@@ -37,6 +56,6 @@ const ProductList = React.createClass({
 });
 
 export default connect(
-  state => loadEntities(state, 'products', 'products'),
-  { loadProducts }
+  (state) => ({ categories: state.categories }),
+  { searchProducts }
 )(ProductList);
