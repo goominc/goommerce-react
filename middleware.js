@@ -83,8 +83,7 @@ module.exports = (opts) => {
     if (req.method === 'GET' && req.accepts('html')) {
       opts.getAuth(req, (err, auth) => {
         const host = req.get('host');
-        // 2016. 01. 30. [heekyu] cannot use let
-        var initialState = {
+        const initialState = {
           currency: { activeCurrency: req.currency },
         };
         if (!err) {
