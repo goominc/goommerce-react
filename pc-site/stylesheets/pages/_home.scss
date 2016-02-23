@@ -5,6 +5,51 @@
   width: 100%;
   background-color: #eee;
 }
+@mixin main-category-padding() {
+  padding: 5px 10px;
+}
+$main-category-item-height: 30px;
+.main-menu-bar {
+  width: 100%;
+  background-color: #fff;
+  .category-title {
+    @include main-category-padding();
+    display: inline-block;
+    width: 220px;
+    height: $main-category-item-height;
+    line-height: $main-category-item-height;
+    box-sizing: content-box;
+    font-size: 14px;
+    font-weight: 400;
+    background-color: #f2f2f2;
+    border-bottom: #e9e9e9;
+    a {
+      margin-left: $margin-15;
+      color: #666;
+      font-size: 12px;
+      &:hover {
+        color: #666;
+      }
+    }
+  }
+  .menu-box {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: $margin-20;
+    height: $main-category-item-height + 10px;
+    line-height: $main-category-item-height + 10px;
+  }
+  .menu-item {
+    display: inline-block;
+    margin-right: $margin-20;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    &:hover {
+      color: $default-active-text-color;
+    }
+  }
+}
 .main-banner-wrap {
   width: 100%;
   position: relative;
@@ -38,24 +83,10 @@
   display: inline-block;
   vertical-align: top;
   border: 1px solid #e9e9e9;
-  $height: 30px;
-  @mixin category-padding() {
-    padding: 5px 10px;
-  }
-  .category-title {
-    @include category-padding();
-    height: $height;
-    line-height: $height;
-    box-sizing: content-box;
-    font-size: 18px;
-    font-weight: 400;
-    background-color: #f2f2f2;
-    border-bottom: #e9e9e9;
-  }
   .category-dropdown-item {
-    @include category-padding();
-    height: $height;
-    line-height: $height;
+    @include main-category-padding();
+    height: $main-category-item-height;
+    line-height: $main-category-item-height;
     box-sizing: content-box;
     background-color: #fff;
     border-top: 1px solid transparent;

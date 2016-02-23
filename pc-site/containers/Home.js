@@ -40,7 +40,7 @@ const Home = React.createClass({
           <a href={item.link} key={item.text} className={`left-category-item item-color-${item.colorNum}`}>
             {item.text}
           </a>
-        )
+        );
       };
       const slideItems = [
         { img: 'https://img.alicdn.com/tps/TB1Lqf1LFXXXXbVXpXXXXXXXXXX-480-550.jpg' },
@@ -97,12 +97,21 @@ const Home = React.createClass({
     };
     return (
       <div className="main-wide-container">
+        <div className="main-menu-bar">
+          <div className="container no-horizontal-padding">
+            <div className="category-title">CATEGORIES <a href="/products">See All > </a> </div>
+            <div className="menu-box">
+              <div className="menu-item">Super Deals</div>
+              <div className="menu-item">Super Market</div>
+              <div className="menu-item">Featured Brands</div>
+              <div className="menu-item">Best Selling</div>
+              <div className="menu-item">IT Company</div>
+            </div>
+          </div>
+        </div>
         <div className="container no-horizontal-padding">
           <div className="main-banner-wrap">
             <div className="category-dropdown-box">
-              <div className="category-title">
-                Categories
-              </div>
               <div className="category-dropdown-item">
                 Shirts
               </div>
