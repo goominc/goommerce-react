@@ -7,7 +7,7 @@ import AppHeader from '../components/AppHeader';
 import ErrorPopup from '../components/ErrorPopup';
 
 import { ApiAction, resetError } from '../redux/actions';
-const { loadCartIfEmpty, changeLocale, changeCurrency, logout } = ApiAction;
+const { loadCartIfEmpty, loadCategories, changeLocale, changeCurrency, logout } = ApiAction;
 
 require('../stylesheets/main.scss');
 
@@ -18,6 +18,7 @@ const App = React.createClass({
   mixins: [History],
   componentDidMount() {
     this.props.loadCartIfEmpty();
+    this.props.loadCategories();
   },
   handleLogout() {
     this.props.logout().then(() => window.location.href = '/');
@@ -57,5 +58,5 @@ const App = React.createClass({
 export default connect(
   state => ({ auth: state.auth, cart: state.cart, error: state.errorHandler.error,
     activeLocale: state.i18n.activeLocale, activeCurrency: state.currency.activeCurrency }),
-  { loadCartIfEmpty, resetError, changeLocale, changeCurrency, logout }
+  { loadCartIfEmpty, loadCategories, resetError, changeLocale, changeCurrency, logout }
 )(App);

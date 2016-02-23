@@ -90,9 +90,26 @@ function settings(state = {}, action) {
   return state;
 }
 
+function categories(state = {}, action) {
+  function flatten(category, map) {
+    map[category.id] = category;
+    category.children.forEach((child) => flatten(child, map));
+  }
+
+  if (action.type !== 'LOAD_CATEGORIES') {
+    return state;
+  }
+
+  const newState = {};
+  flatten(action.payload, newState);
+  newState.tree = action.payload;
+  return newState;
+}
+
 const reducers = {
   auth,
   cart,
+  categories,
   entities,
   pagination,
   i18n,

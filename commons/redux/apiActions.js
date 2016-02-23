@@ -142,6 +142,13 @@ export function loadOrder(id) {
   });
 }
 
+export function loadCategories() {
+  return createFetchAction({
+    type: 'LOAD_CATEGORIES',
+    endpoint: '/api/v1/categories',
+  });
+}
+
 export function loadAddresses() {
   return (dispatch, getState) => {
     const state = getState();
