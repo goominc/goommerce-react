@@ -4,6 +4,7 @@ import {
   App,
   Cart,
   Checkout,
+  Category,
   ForgotPassword,
   Home,
   OrderDetail,
@@ -29,6 +30,7 @@ export default function configure({ getAuth }) {
         <Route path="/orders" component={MyOrderContainer}/>
         <Route path="/orders/:orderId" component={OrderDetail}/>
         <Route path="/orders/:orderId/checkout" component={Checkout}/>
+        <Route path="/category/:categoryId" component={Category}/>
         <Route path="/search" component={Search}/>
         <Route path="/mypage" component={MyPage} />
       </Route>
