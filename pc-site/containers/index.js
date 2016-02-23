@@ -1,4 +1,5 @@
 export { default as App } from './App';
+export { default as Brand } from './Brand';
 export { default as Category } from './Category';
 export { default as Checkout } from './Checkout';
 export { default as Home } from './Home';
