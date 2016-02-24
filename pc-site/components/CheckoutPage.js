@@ -14,10 +14,10 @@ export default React.createClass({
     checkout: PropTypes.object,
     setCheckoutStep: PropTypes.func,
   },
+  mixins: [LinkedStateMixin],
   getInitialState() {
     return {};
   },
-  mixins: [LinkedStateMixin],
   renderCheckoutInformations() {
     return (
       <CheckoutStep1 {...this.props} />

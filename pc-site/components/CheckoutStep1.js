@@ -13,11 +13,16 @@ export default React.createClass({
     saveAddress: PropTypes.func,
     setCheckoutStep: PropTypes.func,
   },
+  contextTypes: {
+    activeLocale: PropTypes.string,
+    activeCurrency: PropTypes.string,
+  },
   getInitialState() {
     return {};
   },
   render() {
     const { order, addressFields, activeAddress, setCheckoutStep } = this.props;
+    const { activeCurrency } = this.context;
 
     const renderFormField = (obj) => {
       return (
@@ -86,7 +91,7 @@ export default React.createClass({
         <SellerBox productVariants={cartVariants} />
         <div className="checkout-place-order">
           <span className="all-total-label">All Total:</span>
-          <span className="all-total-value">{150000}</span>
+          <span className="all-total-value">{activeCurrency} {order['totalEstimation' + activeCurrency]}</span>
           <br/>
           <button className="place-order-button" onClick={() => setCheckoutStep(2)}>Place Order</button>
         </div>
