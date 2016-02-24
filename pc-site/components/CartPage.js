@@ -8,8 +8,13 @@ export default React.createClass({
     cart: PropTypes.object,
     buy: PropTypes.func,
   },
+  contextTypes: {
+    activeLocale: PropTypes.string,
+    activeCurrency: PropTypes.string,
+  },
   render() {
     const { cart, buy } = this.props;
+    const { activeCurrency } = this.context;
     function buyAll() {
       buy(variants);
     }
@@ -21,11 +26,7 @@ export default React.createClass({
       }
     }
     const variants = cart.productVariants || [];
-    let totalPrice = 0;
-    for (let i = 0; i < variants.length; i++) {
-      const variant = variants[i];
-      totalPrice += variant.KRW * variant.count;
-    };
+    const total = cart.total || {};
     return (
       <div className="container">
         <div className="cart-title-box">
@@ -37,7 +38,7 @@ export default React.createClass({
         <SellerBox {...this.props} productVariants={variants} canChangeQuantity>
           <div className="cart-seller-bottom">
             <div className="cart-total-price-box">
-              Total: <b>KRW {totalPrice}</b>
+              Total: <b>{activeCurrency} {total[activeCurrency]}</b>
             </div>
             {renderBuyAllButton()}
           </div>

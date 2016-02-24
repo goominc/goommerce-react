@@ -10,8 +10,13 @@ export default React.createClass({
     removeProduct: PropTypes.func,
     buy: PropTypes.func,
   },
+  contextTypes: {
+    activeLocale: PropTypes.string,
+    activeCurrency: PropTypes.string,
+  },
   renderVariant(variant) {
     const { updateCount, removeProduct, buy, canChangeQuantity } = this.props;
+    const { activeCurrency } = this.context;
     function handleQuantity(event) {
       return updateCount(variant, event.target.value);
     }
@@ -43,7 +48,7 @@ export default React.createClass({
         <td><img src={getProductThumbnail(variant)} />
           <span className="product-description">{variant.sku}</span></td>
         <td>{renderQuantity(variant)}</td>
-        <td>KRW {variant.KRW}</td>
+        <td>{activeCurrency} {variant[activeCurrency]}</td>
         {renderBuyButton()}
       </tr>
     );
