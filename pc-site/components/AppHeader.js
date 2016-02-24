@@ -7,11 +7,14 @@ export default React.createClass({
   propTypes: {
     auth: PropTypes.object.isRequired,
     cart: PropTypes.object.isRequired,
-    activeLocale: PropTypes.string,
     handleLogout: PropTypes.func.isRequired,
     handleSearch: PropTypes.func.isRequired,
     changeLocale: PropTypes.func.isRequired,
     changeCurrency: PropTypes.func.isRequired,
+  },
+  contextTypes: {
+    activeLocale: PropTypes.string,
+    activeCurrency: PropTypes.string,
   },
   renderAccount() {
     const { auth } = this.props;
@@ -37,7 +40,8 @@ export default React.createClass({
     );
   },
   render() {
-    const { handleLogout, handleSearch, cart, changeLocale, changeCurrency, activeLocale, activeCurrency } = this.props;
+    const { handleLogout, handleSearch, cart, changeLocale, changeCurrency } = this.props;
+    const { activeLocale, activeCurrency } = this.context;
     let cartCount = 0;
     if (cart && cart.productVariants) {
       cartCount = cart.productVariants.length;

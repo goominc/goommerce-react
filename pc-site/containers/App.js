@@ -40,7 +40,7 @@ const App = React.createClass({
     }
   },
   render() {
-    const { children, auth, cart, error, resetError, changeLocale, changeCurrency, activeLocale, activeCurrency } = this.props;
+    const { children, auth, cart, error, resetError, changeLocale, changeCurrency } = this.props;
     function renderError() {
       if (error && error.message) {
         return (
@@ -57,9 +57,7 @@ const App = React.createClass({
           handleLogout={this.handleLogout}
           handleSearch={this.handleSearch}
           changeLocale={changeLocale}
-          activeLocale={activeLocale}
           changeCurrency={changeCurrency}
-          activeCurrency={activeCurrency}
         />
         {children}
       </div>
