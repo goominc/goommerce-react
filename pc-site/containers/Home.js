@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { get } from 'lodash';
 
 import loadEntities from '../../commons/redux/util/loadEntities';
 
@@ -11,7 +12,15 @@ const { loadProducts } = ApiAction;
 const Home = React.createClass({
   propTypes: {
     products: PropTypes.array,
+    categories: PropTypes.object.isRequired,
     loadProducts: PropTypes.func.isRequired,
+  },
+  contextTypes: {
+    activeLocale: PropTypes.string,
+    activeCurrency: PropTypes.string,
+  },
+  getInitialState() {
+    return {};
   },
   componentDidMount() {
     this.props.loadProducts();
@@ -20,6 +29,7 @@ const Home = React.createClass({
   },
   render() {
     const { products = [] } = this.props;
+    const { activeCurrency, activeLocale } = this.context;
     const renderCurationTopic = () => {
       const linkItems = [
         { link: '/products', text: 'Fall Dresses', colorNum: 0 },
@@ -77,7 +87,7 @@ const Home = React.createClass({
       return (
         <div className="curation-topic-box">
           <div className="left-category">
-            <div className="left-category-title hover-highlight">WOMEN'S CLOTHING</div>
+            <div className="left-category-title hover-highlight">WOMENS CLOTHING</div>
             {linkItems.map((item) => renderItem(item))}
           </div>
           <div className="center-slide hover-highlight">
@@ -91,6 +101,30 @@ const Home = React.createClass({
             </a>
             {smallBanners.map((item) => renderSmallBanner(item))}
           </div>
+        </div>
+      );
+    };
+    const renderCategories = () => {
+      const renderHoverCategory = () => {
+        const { hoverCategory } = this.state;
+        if (hoverCategory) {
+          const children = hoverCategory.children || [];
+          return (
+            <div className="category-hover-box">
+              {children.map((c, i) => (
+                <div key={i} className="child-item">{c.name[activeLocale]}</div>
+              ))}
+            </div>
+          );
+        }
+      };
+      const topCategories = get(this.props.categories, 'tree.children', []);
+      return (
+        <div className="category-dropdown-box">
+          {topCategories.map((c, i) => (
+            <div key={i} className="category-dropdown-item" onMouseEnter={() => this.setState({ hoverCategory: c })}>{c.name[activeLocale]}</div>
+          ))}
+          {renderHoverCategory()}
         </div>
       );
     };
@@ -110,28 +144,7 @@ const Home = React.createClass({
         </div>
         <div className="container no-horizontal-padding">
           <div className="main-banner-wrap">
-            <div className="category-dropdown-box">
-              <div className="category-dropdown-item top-item">Men's</div>
-              <div className="category-dropdown-item">Women's</div>
-              <div className="category-dropdown-item">iPhone 6</div>
-              <div className="category-dropdown-item">Galaxy 6</div>
-              <div className="category-dropdown-item">Nexus 9</div>
-              <div className="category-dropdown-item">LG Phone</div>
-              <div className="category-dropdown-item">Xiaomi</div>
-              <div className="category-dropdown-item">Sony</div>
-              <div className="category-dropdown-item">ClashOfClan</div>
-              <div className="category-dropdown-item">GOOM</div>
-              <div className="category-dropdown-item">APRIL</div>
-              <div className="category-dropdown-item">Phone</div>
-              <div className="category-dropdown-item bottom-item">Book</div>
-              <div className="category-hover-box">
-                <div className="child-item">iPhone 6s</div>
-                <div className="child-item">iPhone 6s</div>
-                <div className="child-item">iPhone 6s</div>
-                <div className="child-item">iPhone 6s</div>
-                <div className="child-item">iPhone 6s</div>
-              </div>
-            </div>
+            {renderCategories()}
             <div className="main-banner">
               <img src="http://img.alicdn.com/tps/i3/TB1Gh.zLpXXXXXMXVXXVpvE2pXX-750-400.jpg"/>
               <img src="https://img.alicdn.com/tps/TB12FmSLFXXXXXeapXXXXXXXXXX-750-400.jpg"/>
@@ -150,6 +163,9 @@ const Home = React.createClass({
 });
 
 export default connect(
-  state => loadEntities(state, 'products', 'products'),
+  state => ({
+    categories: state.categories,
+    ...loadEntities(state, 'products', 'products'),
+  }),
   { loadProducts }
 )(Home);
