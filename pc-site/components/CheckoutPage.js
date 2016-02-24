@@ -36,19 +36,6 @@ export default React.createClass({
           <option value="Card">신용카드 결제</option>
           <option value="DirectBank">실시간 은행계좌이체</option>
           <option value="VBank">무통장 입금</option>
-          <option value="HPP">핸드폰 결제</option>
-          <option value="PhoneBill">받는전화결제</option>
-          <option value="OCBPoint">OK 캐쉬백포인트 결제</option>
-          <option value="Culture">문화상품권 결제</option>
-          <option value="TeenCash">틴캐시 결제</option>
-          <option value="DGCL">스마트문화 상품권 결제</option>
-          <option value="BCSH">도서문화 상품권 결제</option>
-          <option value="YPAY">옐로페이 결제</option>
-          <option value="KPAY">케이페이 결제</option>
-          <option value="EasyPay">간편 결제</option>
-          <option value="EWallet">전자지갑 결제</option>
-          <option value="POINT">포인트 결제</option>
-          <option value="GiftCard">상품권 결제</option>
         </select>
         <input type="hidden" name="version" value="1.0"/>
         <input type="hidden" name="mid" ref="mid"/>
