@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import { get } from 'lodash';
 
 import loadEntities from '../../commons/redux/util/loadEntities';
@@ -112,7 +113,9 @@ const Home = React.createClass({
           return (
             <div className="category-hover-box">
               {children.map((c, i) => (
-                <div key={i} className="child-item">{c.name[activeLocale]}</div>
+                <Link key={i} to={'/categories/' + c.id}>
+                  <div className="child-item">{c.name[activeLocale]}</div>
+                </Link>
               ))}
             </div>
           );
@@ -122,7 +125,9 @@ const Home = React.createClass({
       return (
         <div className="category-dropdown-box">
           {topCategories.map((c, i) => (
-            <div key={i} className="category-dropdown-item" onMouseEnter={() => this.setState({ hoverCategory: c })}>{c.name[activeLocale]}</div>
+            <Link key={i} to={'/categories/' + c.id}>
+              <div key={i} className="category-dropdown-item" onMouseEnter={() => this.setState({ hoverCategory: c })}>{c.name[activeLocale]}</div>
+            </Link>
           ))}
           {renderHoverCategory()}
         </div>
