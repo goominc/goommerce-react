@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import loadEntities from '../../commons/redux/util/loadEntities';
 
 import ProductListItems from '../components/ProductListItems';
-import ProductThumbnail from '../components/ProductThumbnail';
 
 import { ApiAction } from '../redux/actions';
 const { loadProducts } = ApiAction;
