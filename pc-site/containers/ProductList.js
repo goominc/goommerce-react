@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { get, isEqual, pick } from 'lodash';
+import { Link } from 'react-router';
+import { get, isEqual, pick, range } from 'lodash';
 
 import Breadcrumb from '../components/Breadcrumb';
 import ProductListLeft from '../components/ProductListLeft';
@@ -15,9 +16,13 @@ const ProductList = React.createClass({
     categoryId: PropTypes.string,
     brandId: PropTypes.string,
     pageNum: PropTypes.string,
+    genPageLink: PropTypes.func,
     category: PropTypes.object,
     categories: PropTypes.object.isRequired,
     searchProducts: PropTypes.func.isRequired,
+  },
+  getDefaultProps() {
+    return { pageNum: '0' };
   },
   getInitialState() {
     return {};
@@ -32,7 +37,7 @@ const ProductList = React.createClass({
     }
   },
   doSearch(props) {
-    const { query, categoryId, brandId, pageNum = 0 } = props;
+    const { query, categoryId, brandId, pageNum } = props;
     const size = 30;
     props.searchProducts({
       q: query,
@@ -63,6 +68,24 @@ const ProductList = React.createClass({
       count: (aggs[child.id] || {}).doc_count,
     }));
   },
+  pagination() {
+    const { pagination } = this.state;
+    const { genPageLink } = this.props;
+    if (genPageLink && pagination) {
+      const beforeCnt = 2;
+      const totalCnt = 7;
+      const { pageNum } = this.props;
+      const start = Math.max(0, pageNum - beforeCnt);
+      const end = Math.min((pagination.total - 1) / pagination.size, start + totalCnt - 1) + 1;
+      return (
+        <ol>
+          {range(start, end).map(i => (
+            <li key={i}><Link {...genPageLink(i)}>{i + 1}</Link></li>
+          ))}
+        </ol>
+      );
+    }
+  },
   render() {
     const { products = [] } = this.state;
     const path = this.breadCrumbPath();
@@ -75,6 +98,7 @@ const ProductList = React.createClass({
           <Breadcrumb path={path} />
           <div className="product-list-search-box"></div>
           <ProductListItems products={products} />
+          {this.pagination()}
         </div>
       </div>
     );

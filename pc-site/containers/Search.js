@@ -9,9 +9,16 @@ export default React.createClass({
     params: PropTypes.object.isRequired,
   },
   render() {
-    const query = defaults({}, this.props.params, this.props.location.query);
+    const { params, location } = this.props;
+    function genPageLink(pageNum) {
+      return {
+        to: `/search/${params.query}/${pageNum}`,
+        query: location.query,
+      };
+    }
+    const query = defaults({}, params, location.query);
     return (
-      <ProductList {...query}/>
+      <ProductList {...query} genPageLink={genPageLink}/>
     );
   },
 });
