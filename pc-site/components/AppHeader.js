@@ -40,7 +40,7 @@ export default React.createClass({
     );
   },
   render() {
-    const { handleLogout, handleSearch, cart, changeLocale, changeCurrency } = this.props;
+    const { auth, handleLogout, handleSearch, cart, changeLocale, changeCurrency } = this.props;
     const { activeLocale, activeCurrency } = this.context;
     let cartCount = 0;
     if (cart && cart.productVariants) {
@@ -72,6 +72,14 @@ export default React.createClass({
         </div>
       );
     };
+    const dropDown = (
+      <div className="dropdown-box">
+        <div className="dropdown-menu" onClick={handleLogout}>{i18n.get('pcMain.myMenu.logout', activeLocale)}</div>
+        <div className="dropdown-menu"><Link to="/mypage">{i18n.get('pcMain.myMenu.myLinkshops', activeLocale)}</Link></div>
+        <div className="dropdown-menu"><Link to="/mypage">{i18n.get('pcMain.myMenu.myOrder', activeLocale)}</Link></div>
+      </div>
+    );
+
     return (
       <div className="header-wide-container">
         <img style={ {marginLeft: '-200px', cursor: 'pointer'} } src="http://is.alicdn.com/kf/HTB1kPH5LFXXXXc1XpXXq6xXFXXXh.jpg" />
@@ -120,11 +128,7 @@ export default React.createClass({
               <div className="header-mymenu-account">
                 <div className="account-icon"></div>
                 {this.renderAccount()}
-                <div className="dropdown-box">
-                  <div className="dropdown-menu" onClick={handleLogout}>{i18n.get('pcMain.myMenu.logout', activeLocale)}</div>
-                  <div className="dropdown-menu"><Link to="/mypage">{i18n.get('pcMain.myMenu.myLinkshops', activeLocale)}</Link></div>
-                  <div className="dropdown-menu"><Link to="/mypage">{i18n.get('pcMain.myMenu.myOrder', activeLocale)}</Link></div>
-                </div>
+                {auth.bearer && dropDown}
               </div>
             </div>
           </div>
