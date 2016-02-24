@@ -12,14 +12,9 @@ export default React.createClass({
     activeImageUrl: PropTypes.string,
     setActiveImage: PropTypes.func,
   },
-  renderVariant(variant) {
-    const { addCartProduct } = this.props;
-    return (
-      <li key={variant.sku}>
-        {variant.sku}
-        <button onClick={() => addCartProduct(variant.id)}>add to cart</button>
-      </li>
-    );
+  contextTypes: {
+    activeLocale: PropTypes.string,
+    activeCurrency: PropTypes.string,
   },
   handleMouseEnterThumbnail(image) {
     this.props.setActiveImage(image.url);
@@ -45,8 +40,18 @@ export default React.createClass({
     // TODO make this to external state
     $('.enlarge-image-box').css('display', 'none');
   },
+  renderVariant(variant) {
+    const { addCartProduct } = this.props;
+    return (
+      <li key={variant.sku}>
+        {variant.sku}
+        <button onClick={() => addCartProduct(variant.id)}>add to cart</button>
+      </li>
+    );
+  },
   render() {
     const { product, images, activeImageUrl } = this.props;
+    const { activeCurrency } = this.context;
     const renderThumbnail = (image) => {
       let className = '';
       if (image.url === activeImageUrl) {
@@ -59,7 +64,6 @@ export default React.createClass({
       );
     };
 
-    const mainImage = getProductMainImage(product) || {};
     const variants = product.productVariants || [];
 
     const renderPath = (categoryPath, index) => {
@@ -73,10 +77,10 @@ export default React.createClass({
 
     const path = [
       { link: '/', name: 'Home' },
-      { link: '/products', name: 'Product List'},
+      { link: '/products', name: 'Product List' },
       { name: product.sku },
     ];
-    const price = getProductMainPrice(product, 'KRW');
+    const price = getProductMainPrice(product, activeCurrency);
     return (
       <div className="container">
         <BreadCrumb key='bread-crumb-default' path={path} />
@@ -101,7 +105,7 @@ export default React.createClass({
             <div className="divider"></div>
             <div className="price-info-box">
               <div className="field-label">Price: </div>
-              <div className="field-content price-value"><b>KRW ₩{price}</b> / pieces</div>
+              <div className="field-content price-value"><b>{activeCurrency} {price}</b> / pieces</div>
             </div>
             <div className="normal-field-box">
               <div className="field-label">Color: </div>
