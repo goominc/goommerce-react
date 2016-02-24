@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 
-import { getProductMainImage, getProductMainPrice } from '../util';
+import { getProductMainPrice } from '../util';
 
-import BreadCrumb from '../components/BreadCrumb';
+import Breadcrumb from '../components/Breadcrumb';
 
 export default React.createClass({
   propTypes: {
@@ -72,28 +72,27 @@ export default React.createClass({
         crumbPath.push({ link: 'products', name: categoryPath.ko[i] });
       }
       crumbPath.push({ name: product.sku });
-      return (<BreadCrumb key={`bread-crumb-${index}`} path={crumbPath} />);
+      return (<Breadcrumb key={`breadcrumb-${index}`} path={crumbPath} />);
     };
 
     const path = [
-      { link: '/', name: 'Home' },
-      { link: '/products', name: 'Product List' },
-      { name: product.sku },
+      { link: '/', name: { en: 'Home', ko: '홈' } },
+      { link: '/products', name: { en: 'Product List', ko: '상품목록' } },
+      { name: { en: product.sku, ko: product.sku } },
     ];
     const price = getProductMainPrice(product, activeCurrency);
     return (
       <div className="container">
-        <BreadCrumb key='bread-crumb-default' path={path} />
-        {product.data.categoryPath ? product.data.categoryPath.map(renderPath): []}
+        <Breadcrumb key="breadcrumb-default" path={path} />
+        {product.data && product.data.categoryPath ? product.data.categoryPath.map(renderPath) : []}
         <div clssName="container-table">
           <div className="product-detail-left">
             <div className="left-thumbnail-container">
               {images.map(renderThumbnail)}
             </div>
-            <div onMouseMove={this.handleMouseMoveMainImage}
-                 onMouseEnter={this.handleMouseEnterMainImage}
-                 onMouseLeave={this.handleMouseLeaveMainImage}
-                 className="main-image-box">
+            <div onMouseMove={this.handleMouseMoveMainImage} onMouseEnter={this.handleMouseEnterMainImage}
+              onMouseLeave={this.handleMouseLeaveMainImage} className="main-image-box"
+            >
               <img src={activeImageUrl} />
             </div>
             <div className="enlarge-image-box">
@@ -118,5 +117,5 @@ export default React.createClass({
         </div>
       </div>
     );
-  }
+  },
 });

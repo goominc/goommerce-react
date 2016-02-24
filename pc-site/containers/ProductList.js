@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { get, isEqual, pick } from 'lodash';
 
-import BreadCrumb from '../components/BreadCrumb';
+import Breadcrumb from '../components/Breadcrumb';
 import ProductListLeft from '../components/ProductListLeft';
 import ProductListItems from '../components/ProductListItems';
 
@@ -72,7 +72,7 @@ const ProductList = React.createClass({
       <div className="container-table">
         <ProductListLeft path={path.slice(1)} children={children} />
         <div className="product-list-right-box">
-          <BreadCrumb path={path} />
+          <Breadcrumb path={path} />
           <div className="product-list-search-box"></div>
           <ProductListItems products={products} />
         </div>

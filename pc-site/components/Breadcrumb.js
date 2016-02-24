@@ -6,9 +6,9 @@ export default React.createClass({
     path: PropTypes.array.isRequired,
   },
   render() {
-    if (!this.props.path || this.props.path.length < 1) {
+    if (!this.props.path || !this.props.path.length) {
       // TODO alert
-      return;
+      return null;
     }
     const items = [];
     // 2016. 01. 25. [heekyu] http://facebook.github.io/react/docs/multiple-components.html#dynamic-children
