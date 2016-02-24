@@ -112,17 +112,25 @@ const Home = React.createClass({
         <div className="container no-horizontal-padding">
           <div className="main-banner-wrap">
             <div className="category-dropdown-box">
-              <div className="category-dropdown-item">
-                Shirts
-              </div>
-              <div className="category-dropdown-item">
-                Shoes
-              </div>
-              <div className="category-dropdown-item">
-                Women's
-              </div>
-              <div className="category-dropdown-item">
-                Men's
+              <div className="category-dropdown-item top-item">Men's</div>
+              <div className="category-dropdown-item">Women's</div>
+              <div className="category-dropdown-item">iPhone 6</div>
+              <div className="category-dropdown-item">Galaxy 6</div>
+              <div className="category-dropdown-item">Nexus 9</div>
+              <div className="category-dropdown-item">LG Phone</div>
+              <div className="category-dropdown-item">Xiaomi</div>
+              <div className="category-dropdown-item">Sony</div>
+              <div className="category-dropdown-item">ClashOfClan</div>
+              <div className="category-dropdown-item">GOOM</div>
+              <div className="category-dropdown-item">APRIL</div>
+              <div className="category-dropdown-item">Phone</div>
+              <div className="category-dropdown-item bottom-item">Book</div>
+              <div className="category-hover-box">
+                <div className="child-item">iPhone 6s</div>
+                <div className="child-item">iPhone 6s</div>
+                <div className="child-item">iPhone 6s</div>
+                <div className="child-item">iPhone 6s</div>
+                <div className="child-item">iPhone 6s</div>
               </div>
             </div>
             <div className="main-banner">
