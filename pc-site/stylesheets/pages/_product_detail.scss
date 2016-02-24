@@ -17,22 +17,19 @@ $product-detail-thumbnail-margin: 15px;
       position: relative;
       display: block;
       width: $product-detail-thumbnail-width + 2px;
-      height: $product-detail-thumbnail-width + 2px;
-      border: 1px solid #dedede;
+      height: 0;
+      padding-top: 150%;
+      border: 2px solid #dedede;
       margin-bottom: $product-detail-thumbnail-margin;
       img {
         position: absolute;
         top: 0;
-        width: $product-detail-thumbnail-width;
-        height: $product-detail-thumbnail-width;
+        width: 100%;
+        height: 100%;
       }
     }
     .image-active {
       border: 2px solid #FCAB42;
-      img {
-        margin-left: -1px;
-        margin-top: -1px;
-      }
     }
   }
   .main-image-box {
