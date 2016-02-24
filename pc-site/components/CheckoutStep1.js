@@ -79,6 +79,7 @@ export default React.createClass({
         </div>
       );
     };
+    // FIXME
     const cartVariants = order.orderProducts.map((orderProduct) => {
       return _.assign({}, orderProduct.productVariant, { count: orderProduct.orderedCount });
     });

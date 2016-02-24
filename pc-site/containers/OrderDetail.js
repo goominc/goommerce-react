@@ -19,16 +19,15 @@ const OrderDetail = React.createClass({
   componentDidMount() {
     const { orderId } = this.props;
     this.props.loadOrder(orderId);
-    if (this.props.checkout.step != 3) {
+    if (this.props.checkout.step !== 3) {
       this.props.setCheckoutStep(3);
     }
   },
   render() {
-    const { order, addresses } = this.props;
-    if (!order || !addresses) {
+    const { order } = this.props;
+    if (!order) {
       return (<div></div>);
     }
-    const variants = order.productVariants || [];
     const handleCheckoutStep = () => {
       // ignore since all step is done.
     };

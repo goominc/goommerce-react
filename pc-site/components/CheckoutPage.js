@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import LinkedStateMixin from 'react-addons-linked-state-mixin'; // for manage form input...
 
 import CheckoutStep1 from './CheckoutStep1';
+import SellerBox from './CartSellerBox';
 
 export default React.createClass({
   propTypes: {
@@ -14,6 +15,10 @@ export default React.createClass({
     checkout: PropTypes.object,
     setCheckoutStep: PropTypes.func,
   },
+  contextTypes: {
+    activeLocale: PropTypes.string,
+    activeCurrency: PropTypes.string,
+  },
   mixins: [LinkedStateMixin],
   getInitialState() {
     return {};
@@ -25,12 +30,13 @@ export default React.createClass({
   },
   renderPayments() {
     const { order, doCheckout } = this.props;
+    const { activeCurrency } = this.context;
     const handleCheckout = () => {
       doCheckout(order.id, this.refs);
     };
     return (
       <form id="checkout" method="POST">
-        <div>KRW {order.totalEstimationKRW}</div>
+        <div>{activeCurrency} {order['totalEstimation' + activeCurrency]}</div>
         <select name="gopaymethod">
           <option value="">[ 결제방법 선택 ]</option>
           <option value="Card">신용카드 결제</option>
@@ -58,22 +64,15 @@ export default React.createClass({
   },
   renderDone() {
     const { order } = this.props;
-    function renderOrderProduct(product) {
-      const sku = product.productVariant.sku;
-      return (
-        <li key={sku}>
-          {sku}, KRW {product.priceKRW} x {product.orderedCount}
-        </li>
-      );
-    }
+    // FIXME
+    const variants = order.orderProducts.map((p) => {
+      return _.assign({}, p.productVariant, { count: p.orderedCount });
+    });
     return (
       <div>
-        <ul>
-          {(order.orderProducts || []).map(renderOrderProduct)}
-        </ul>
+        <SellerBox productVariants={variants} />
         <div>Total: KRW {order.totalEstimationKRW}</div>
         <div>Status: {order.status}</div>
-        <SellerBox cart={order} />
       </div>
     );
   },
@@ -87,7 +86,7 @@ export default React.createClass({
     const currentStep = checkout.step || 1;
 
     function getProgressbarClass(step) {
-      return `checkout-progress-arrow progress-${step} ${currentStep === step ? 'progress-active': ''}`;
+      return `checkout-progress-arrow progress-${step} ${currentStep === step ? 'progress-active' : ''}`;
     }
 
     const getContent = () => {
@@ -104,12 +103,12 @@ export default React.createClass({
     };
 
     const handleClickStep = (step) => {
-      if (step != currentStep) {
+      if (step !== currentStep) {
         setCheckoutStep(step);
       }
     };
 
-    const endClassName = `checkout-progress-end ${currentStep === 3 ? 'progress-active': ''}`;
+    const endClassName = `checkout-progress-end ${currentStep === 3 ? 'progress-active' : ''}`;
 
     return (
       <div className="checkout-container-wrap">
