@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { isEqual } from 'lodash';
+import { get, isEqual } from 'lodash';
 
 import BreadCrumb from '../components/BreadCrumb';
 import ProductListLeft from '../components/ProductListLeft';
@@ -15,6 +15,9 @@ const ProductList = React.createClass({
     category: PropTypes.object,
     categories: PropTypes.object.isRequired,
     searchProducts: PropTypes.func.isRequired,
+  },
+  getDefaultProps() {
+    return { query: {} };
   },
   getInitialState() {
     return {};
@@ -71,7 +74,7 @@ const ProductList = React.createClass({
 
 export default connect(
   (state, ownProps) => {
-    const { categoryId = 'tree' } = ownProps.query;
+    const categoryId = get(ownProps.query, 'categoryId', 'tree');
     return {
       categories: state.categories,
       category: state.categories[categoryId],
