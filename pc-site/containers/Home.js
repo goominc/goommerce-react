@@ -126,7 +126,10 @@ const Home = React.createClass({
         <div className="category-dropdown-box">
           {topCategories.map((c, i) => (
             <Link key={i} to={'/categories/' + c.id}>
-              <div key={i} className="category-dropdown-item" onMouseEnter={() => this.setState({ hoverCategory: c })}>{c.name[activeLocale]}</div>
+              <div
+                className={"category-dropdown-item" + (i === 0 ? " top-item" : "")}
+                onMouseEnter={() => this.setState({ hoverCategory: c })}
+              >{c.name[activeLocale]}</div>
             </Link>
           ))}
           {renderHoverCategory()}
