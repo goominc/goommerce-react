@@ -7,9 +7,8 @@ export default React.createClass({
     params: PropTypes.object.isRequired,
   },
   render() {
-    const { brandId } = this.props.params;
     return (
-      <ProductList query={{ brandId }}/>
+      <ProductList {...this.props.params}/>
     );
   },
 });

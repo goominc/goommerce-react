@@ -31,9 +31,9 @@ export default function configure({ getAuth }) {
         <Route path="/orders" component={MyOrderContainer}/>
         <Route path="/orders/:orderId" component={OrderDetail}/>
         <Route path="/orders/:orderId/checkout" component={Checkout}/>
-        <Route path="/brands/:brandId" component={Brand}/>
-        <Route path="/categories/:categoryId" component={Category}/>
-        <Route path="/search" component={Search}/>
+        <Route path="/brands/:brandId(/:pageNum)" component={Brand}/>
+        <Route path="/categories/:categoryId(/:pageNum)" component={Category}/>
+        <Route path="/search/:query(/:pageNum)" component={Search}/>
         <Route path="/mypage" component={MyPage} />
       </Route>
       <Route path="/accounts/signin" component={Signin}/>

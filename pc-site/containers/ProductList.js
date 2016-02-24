@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { get, isEqual } from 'lodash';
+import { get, isEqual, pick } from 'lodash';
 
 import BreadCrumb from '../components/BreadCrumb';
 import ProductListLeft from '../components/ProductListLeft';
@@ -11,13 +11,13 @@ const { searchProducts } = ApiAction;
 
 const ProductList = React.createClass({
   propTypes: {
-    query: PropTypes.object.isRequired,
+    query: PropTypes.string,
+    categoryId: PropTypes.string,
+    brandId: PropTypes.string,
+    pageNum: PropTypes.string,
     category: PropTypes.object,
     categories: PropTypes.object.isRequired,
     searchProducts: PropTypes.func.isRequired,
-  },
-  getDefaultProps() {
-    return { query: {} };
   },
   getInitialState() {
     return {};
@@ -26,12 +26,21 @@ const ProductList = React.createClass({
     this.doSearch(this.props);
   },
   componentWillReceiveProps(nextProps) {
-    if (!isEqual(this.props.query, nextProps.query)) {
+    const props = ['query', 'categoryId', 'barndId', 'pageNum'];
+    if (!isEqual(pick(this.props, props), pick(nextProps, props))) {
       this.doSearch(nextProps);
     }
   },
   doSearch(props) {
-    props.searchProducts(props.query).then(res => this.setState(res));
+    const { query, categoryId, brandId, pageNum = 0 } = props;
+    const size = 30;
+    props.searchProducts({
+      q: query,
+      categoryId,
+      brandId,
+      from: pageNum * size,
+      size,
+    }).then(res => this.setState(res));
   },
   breadCrumbPath() {
     const { categories } = this.props;

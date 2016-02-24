@@ -36,7 +36,7 @@ const App = React.createClass({
   },
   handleSearch(query) {
     if (query) {
-      this.history.pushState(null, `/search?q=${query}`);
+      this.history.pushState(null, `/search/${query}`);
     }
   },
   render() {
