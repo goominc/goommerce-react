@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import ProductDetailPage from '../components/ProductDetailPage';
 
-import { ApiAction, setActiveImage, selectColor, selectSize, openLoginPoupIfNotLogin } from '../redux/actions';
+import { ApiAction, setActiveImage, selectColor, selectSize, wrapLogin } from '../redux/actions';
 const { loadProduct, loadProductAndThen, addCartProduct, createOrder } = ApiAction;
 
 const ProductDetail = React.createClass({
@@ -90,7 +90,7 @@ const ProductDetail = React.createClass({
     this.props.addCartProduct(variant.id);
   },
   render() {
-    const { product, activeImageUrl, selectColor, selectSize, createOrder, openLoginPoupIfNotLogin } = this.props;
+    const { product, activeImageUrl, selectColor, selectSize, createOrder, wrapLogin } = this.props;
     if (!product) {
       return (<div></div>);
     }
@@ -104,11 +104,11 @@ const ProductDetail = React.createClass({
       { attrName: 'Size', key: 'sizes', select: selectSize },
     ];
     const buyNow = (variantId, quantity) => {
-      if (!openLoginPoupIfNotLogin()) {
+      wrapLogin(() => {
         createOrder({ productVariants: [{ id: variantId, count: quantity }] }).then((order) => {
           this.context.router.push(`/orders/${order.id}/checkout`);
         });
-      }
+      });
     };
     return (
       <ProductDetailPage
@@ -128,5 +128,5 @@ export default connect(
   }),
   { loadProduct, loadProductAndThen, addCartProduct, createOrder,
     setActiveImage, selectColor, selectSize,
-    openLoginPoupIfNotLogin }
+    wrapLogin }
 )(ProductDetail);

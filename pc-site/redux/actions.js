@@ -22,6 +22,17 @@ export function closePopup() {
   };
 }
 
+export function wrapLogin(cb) {
+  return (dispatch, getState) => {
+    const state = getState();
+    if (!state.auth || !state.auth.id) {
+      return dispatch(openPopup('login'));
+    }
+    return cb();
+  };
+}
+// 2016. 02. 25. [heekyu] use this when intuitive code readability
+/*
 export function openLoginPoupIfNotLogin() {
   return (dispatch, getState) => {
     const state = getState();
@@ -32,7 +43,7 @@ export function openLoginPoupIfNotLogin() {
     return false;
   };
 }
-
+*/
 export function setCheckoutStep(step) {
   return {
     type: 'CHECKOUT_SET_STEP',
