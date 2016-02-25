@@ -106,7 +106,12 @@ export default React.createClass({
       { link: '/products', name: { en: 'Product List', ko: '상품목록' } },
       { name: { en: product.sku, ko: product.sku } },
     ];
-    const price = getProductMainPrice(product, activeCurrency);
+    let price = 0;
+    if (selectedVariant) {
+      price = selectedVariant[activeCurrency];
+    } else {
+      price = getProductMainPrice(product, activeCurrency);
+    }
 
     return (
       <div className="container">
