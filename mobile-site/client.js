@@ -48,7 +48,7 @@ history.listen(() => {
 
 render(
   <Provider store={store}>
-    <Router history={browserHistory}>
+    <Router history={history}>
       {routes}
     </Router>
   </Provider>,
