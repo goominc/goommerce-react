@@ -75,6 +75,15 @@ function pageProductDetail(state = {}, action) {
     const activeSize = state2.activeSize;
     state2 = updateColorsAndSizes(variants, activeColor, activeSize, state2);
 
+    if (activeColor) {
+      for (let i = 0; i < variants.length; i++) {
+        const variant = variants[i];
+        if (variant.data.color === activeColor) {
+          state2.image_url = variant.appImages.default[0].url;
+          break;
+        }
+      }
+    }
     if (activeColor && activeSize) {
       for (let i = 0; i < variants.length; i++) {
         const variant = variants[i];
