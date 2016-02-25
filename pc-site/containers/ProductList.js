@@ -77,7 +77,7 @@ const ProductList = React.createClass({
       const totalCnt = 7;
       const { pageNum } = this.props;
       const start = Math.max(0, pageNum - beforeCnt);
-      const end = Math.min((pagination.total - 1) / pagination.size, start + totalCnt - 1) + 1;
+      const end = Math.min(Math.floor((pagination.total - 1) / pagination.size), start + totalCnt - 1) + 1;
       return (
         <ol>
           {range(start, end).map(i => (
