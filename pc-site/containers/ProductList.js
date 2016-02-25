@@ -106,12 +106,9 @@ const ProductList = React.createClass({
 });
 
 export default connect(
-  (state, ownProps) => {
-    const categoryId = get(ownProps.query, 'categoryId', 'tree');
-    return {
-      categories: state.categories,
-      category: state.categories[categoryId],
-    };
-  },
+  (state, ownProps) => ({
+    categories: state.categories,
+    category: state.categories[ownProps.categoryId || 'tree'],
+  }),
   { searchProducts }
 )(ProductList);
