@@ -258,6 +258,68 @@ $main-category-item-height: 30px;
   }
 }
 
+.main-slogan {
+  width: 100%;
+  background-color: #fff;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  .slogan-item {
+    border-right: 1px solid #eee;
+    display: inline-block;
+    width: percentage(1/6);
+    min-height: 228px;
+    text-align: center;
+    padding: 40px 0 10px;
+    &:first-child { // does not IE support... FIXME if needed
+      border-left: 1px solid #eee;
+    }
+    .icon {
+      display: block;
+      margin: 0 auto 15px;
+      width: 52px;
+      height: 53px;
+      background: url('http://i.alicdn.com/ae-wholesale-ui/common/img/home-sprite.c17e1a34.png') no-repeat;
+    }
+    .i-great{
+      background-position:-400px -350px;
+      width:60px
+    }
+    .i-delivery{
+      background-position:-500px -350px;
+      width:60px
+    }
+    .i-payment{
+      background-position:-100px -350px;
+      width:54px
+    }
+    .i-confidence{
+      background-position:-200px -350px;
+      width:50px
+    }
+    .i-help{
+      background-position:0 -350px;
+      width:68px
+    }
+    .i-shop{
+      background-position:-250px -350px;
+      width:106px
+    }
+    h3 {
+      font-size: 18px;
+      line-height: 30px;
+      margin-bottom: 5px;
+      font-weight: 400;
+      color: #333;
+    }
+    p {
+      margin-bottom: 0;
+      line-height: 22px;
+      color: #999;
+      padding: 0 15px;
+    }
+  }
+}
+
 .owl-item {
   // 2016. 02. 23. [heekyu] for sibling image overflow parent width
   overflow: hidden;

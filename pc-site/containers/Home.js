@@ -173,6 +173,40 @@ const Home = React.createClass({
           {renderCurationTopic()}
           <ProductListItems products={products} />
         </div>
+        <div className="main-slogan">
+          <div className="container">
+            <div className="slogan-item">
+              <i className="icon i-great"></i>
+              <h3>Great Value</h3>
+              <p>We offer competitive prices on our 100 million plus product range.</p>
+            </div>
+            <div className="slogan-item">
+              <i className="icon i-delivery"></i>
+              <h3>Worldwide Delivery</h3>
+              <p>With sites in 5 languages, we ship to over 200 countries &amp; regions.</p>
+            </div>
+            <div className="slogan-item">
+              <i className="icon i-payment"></i>
+              <h3>Safe Payment</h3>
+              <p>Pay with the world’s most popular and secure payment methods.</p>
+            </div>
+            <div className="slogan-item">
+              <i className="icon i-confidence"></i>
+              <h3>Shop with Confidence</h3>
+              <p>Our Buyer Protection covers your purchase from click to delivery.</p>
+            </div>
+            <div className="slogan-item">
+              <i className="icon i-help"></i>
+              <h3>24/7 Help Center</h3>
+              <p>Round-the-clock assistance for a smooth shopping experience.</p>
+            </div>
+            <div className="slogan-item">
+              <i className="icon i-shop"></i>
+              <h3>Shop On-The-Go</h3>
+              <p><a rel="nofollow" href="javascript:;">Download the app</a> and get the world of AliExpress at your fingertips.</p>
+            </div>
+          </div>
+        </div>
       </div>
     );
   },
