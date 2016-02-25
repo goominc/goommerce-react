@@ -62,6 +62,7 @@ $product-in-row: 3;
   margin-top: $product-list-margin;
   overflow-y: visible;
   height: 450px;
+  margin-bottom: 30px;
 }
 .product-list-first-item {
   margin-top: 0;
@@ -69,6 +70,7 @@ $product-in-row: 3;
 .product-list-item-box {
   padding: 30px 20px 15px 20px;
   width: 260px;
+  background-color: #fff;
   display: inline-block;
   position: relative;
   border: 1px solid transparent;
