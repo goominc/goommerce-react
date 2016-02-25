@@ -110,12 +110,20 @@ const Home = React.createClass({
         const { hoverCategory } = this.state;
         if (hoverCategory) {
           const children = hoverCategory.children || [];
+          // FIXME
           return (
             <div className="category-hover-box">
               {children.map((c, i) => (
-                <Link key={i} to={'/categories/' + c.id}>
-                  <div className="child-item">{c.name[activeLocale]}</div>
-                </Link>
+                <div key={i}>
+                  <Link to={'/categories/' + c.id}>
+                    <div className="child-item"><b>{c.name[activeLocale]}</b></div>
+                  </Link>
+                  {(c.children || []).map((gc, gi) => (
+                    <Link key={gi} to={'/categories/' + gc.id}>
+                      <div className="child-item">{gc.name[activeLocale]}</div>
+                    </Link>
+                  ))}
+                </div>
               ))}
             </div>
           );
