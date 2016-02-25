@@ -47,13 +47,13 @@ $active-progress-color: #f90;
 .checkout-progress-shadow {
   @include body-and-arrow($arrow-size, $arrow-size, #fff);
 }
-.progress-1 {
+.progress-review {
   @include zindex-with-after(30);
 }
-.progress-2 {
+.progress-payment {
   @include zindex-with-after(20);
 }
-.progress-3 {
+.progress-done {
   @include zindex-with-after(10);
 }
 .progress-1-shadow {
