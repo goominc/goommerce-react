@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import ProductDetailPage from '../components/ProductDetailPage';
 
-import { ApiAction, setActiveImage, selectColor, selectSize } from '../redux/actions';
+import { ApiAction, setActiveImage, selectColor, selectSize, openLoginPoupIfNotLogin } from '../redux/actions';
 const { loadProduct, loadProductAndThen, addCartProduct, createOrder } = ApiAction;
 
 const ProductDetail = React.createClass({
@@ -90,7 +90,7 @@ const ProductDetail = React.createClass({
     this.props.addCartProduct(variant.id);
   },
   render() {
-    const { product, activeImageUrl, selectColor, selectSize, createOrder } = this.props;
+    const { product, activeImageUrl, selectColor, selectSize, createOrder, openLoginPoupIfNotLogin } = this.props;
     if (!product) {
       return (<div></div>);
     }
@@ -104,9 +104,11 @@ const ProductDetail = React.createClass({
       { attrName: 'Size', key: 'sizes', select: selectSize },
     ];
     const buyNow = (variantId, quantity) => {
-      createOrder({ productVariants: [{ id: variantId, count: quantity }] }).then((order) => {
-        this.context.router.push(`/orders/${order.id}/checkout`);
-      });
+      if (!openLoginPoupIfNotLogin()) {
+        createOrder({ productVariants: [{ id: variantId, count: quantity }] }).then((order) => {
+          this.context.router.push(`/orders/${order.id}/checkout`);
+        });
+      }
     };
     return (
       <ProductDetailPage
@@ -124,5 +126,7 @@ export default connect(
     variantAttributes: state.page.pageProductDetail.variantAttributes,
     selectedVariant: state.page.pageProductDetail.selectedVariant,
   }),
-  { loadProduct, loadProductAndThen, addCartProduct, createOrder, setActiveImage, selectColor, selectSize }
+  { loadProduct, loadProductAndThen, addCartProduct, createOrder,
+    setActiveImage, selectColor, selectSize,
+    openLoginPoupIfNotLogin }
 )(ProductDetail);

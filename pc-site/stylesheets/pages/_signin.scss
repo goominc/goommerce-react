@@ -47,15 +47,11 @@ $img-height: 30px;
     padding: 0 15px;
   }
 }
-.signin-form-box {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 50px 80px;
+$sign-form-width: 450px;
+@mixin signin-form-inner() {
   border: 1px solid #c1cee0;
   padding: 20px;
-  width: 450px;
-  z-index: 10;
+  width: $sign-form-width;
   background-color: #ffffff;
   & label {
     font: 700 12px arial;
@@ -86,4 +82,28 @@ $img-height: 30px;
     background-color: #ff7e00;
     border: 1px solid #ff2855;
   }
+}
+.signin-form-box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 50px 80px;
+  z-index: 10;
+  @include signin-form-inner();
+}
+
+.signin-popup {
+  position: fixed;
+  z-index: 10010;
+  left: 50%;
+  margin-left: - $sign-form-width / 2;
+  top: 100px;
+  @include signin-form-inner();
+}
+.popup-close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 16px;
+  cursor: pointer;
 }

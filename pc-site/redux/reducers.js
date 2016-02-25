@@ -3,6 +3,17 @@ import { combineReducers } from 'redux';
 
 import CommonReducers from '../../commons/redux/reducers';
 
+function popup(state = {}, action) {
+  if (action.type === 'OPEN_POPUP') {
+    const next = {};
+    next[action.popupName] = true;
+    return next;
+  } else if (action.type === 'CLOSE_POPUP') {
+    return {};
+  }
+  return state;
+}
+
 function errorHandler(state = {}, action) {
   if (action.type === 'RESET_ERROR') {
     return assign({}, state, { error: {} });
@@ -133,7 +144,7 @@ const pageReducers = combineReducers({
 // END page-wide reducers
 
 const rootReducer = combineReducers(
-  Object.assign({}, CommonReducers.reducers, { errorHandler, checkout, page: pageReducers })
+  Object.assign({}, CommonReducers.reducers, { errorHandler, popup, checkout, page: pageReducers })
 );
 
 export default (state = {}, action) => {

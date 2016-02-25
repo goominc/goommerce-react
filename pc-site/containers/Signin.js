@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
 import { Link } from 'react-router';
 
-import SigninHeader from '../components/SigninHeader';
+import SigninHeader from '../components/user/SigninHeader';
+import SigninForm from '../components/user/SigninForm';
 
 import { ApiAction } from '../redux/actions';
 const { login } = ApiAction;
@@ -19,15 +20,16 @@ const Signin = React.createClass({
   getInitialState() {
     return {};
   },
-  handleSubmit(e) {
-    e.preventDefault();
-    const { email, password } = this.state;
+  handleSubmit(email, password) {
     this.props.login(email, password).then(
       () => this.context.router.push('/'),
       () => alert('Invalid username/password.')
     );
   },
   render: function render() {
+    const goForgotPassword = () => {
+      this.context.router.push('/accounts/forgot');
+    };
     return (
       <div className="container">
         <SigninHeader />
@@ -37,33 +39,7 @@ const Signin = React.createClass({
             on almost all products!
           </div>
           <div className="signin-form-box">
-            <form onSubmit={this.handleSubmit}>
-              <h2>Please log in</h2>
-              <label htmlFor="inputEmail">Email address</label>
-              <input
-                type="email"
-                id="inputEmail"
-                className="form-control"
-                placeholder="Email address"
-                required
-                autoFocus
-                valueLink={this.linkState('email')}
-              />
-              <label htmlFor="inputPassword">Password</label>
-              <input
-                type="password"
-                id="inputPassword"
-                className="form-control"
-                placeholder="Password"
-                required
-                valueLink={this.linkState('password')}
-              />
-              <Link to="/accounts/forgot">forgot password?</Link>
-              <div className="remember-me">
-                <input type="checkbox" value="remember-me"/> Remember me
-              </div>
-              <button className="btn-signin" type="submit">Sign in</button>
-            </form>
+            <SigninForm handleSubmit={this.handleSubmit} goForgotPassword={goForgotPassword} />
           </div>
         </div>
       </div>

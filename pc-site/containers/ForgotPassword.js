@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
 
-import SigninHeader from '../components/SigninHeader';
+import SigninHeader from '../components/user/SigninHeader';
 
 import { ApiAction } from '../redux/actions';
 const { forgotPassword } = ApiAction;

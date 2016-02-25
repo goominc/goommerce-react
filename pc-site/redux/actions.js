@@ -9,6 +9,30 @@ export function resetError() {
   };
 }
 
+export function openPopup(popupName) {
+  return {
+    type: 'OPEN_POPUP',
+    popupName,
+  };
+}
+
+export function closePopup() {
+  return {
+    type: 'CLOSE_POPUP',
+  };
+}
+
+export function openLoginPoupIfNotLogin() {
+  return (dispatch, getState) => {
+    const state = getState();
+    if (!state.auth || !state.auth.id) {
+      dispatch(openPopup('login'));
+      return true;
+    }
+    return false;
+  };
+}
+
 export function setCheckoutStep(step) {
   return {
     type: 'CHECKOUT_SET_STEP',
