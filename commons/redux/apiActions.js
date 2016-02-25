@@ -3,8 +3,9 @@
 import { normalize } from 'normalizr';
 import createFetchAction from './util/createFetchAction';
 import * as schemas from './schemas';
-
 import { simpleNotify, ajaxReturnPromise } from './util/ajaxUtil';
+
+const _ = require('lodash');
 
 export function login(email, password) {
   return createFetchAction({
@@ -162,55 +163,30 @@ export function loadCategories() {
 }
 
 export function loadAddresses() {
-  return (dispatch, getState) => {
-    const state = getState();
-    if (!state.auth) {
-      // TODO alert with message
-      window.alert('Not Login User has no address');
-      return;
-    }
-    return createFetchAction({
-      type: 'LOAD_ADDRESS',
-      endpoint: `/api/v1/users/${state.auth.id}/addresses`,
-      transform: ({ data }) => normalize(data.addresses, schemas.addresses),
-    }) (dispatch, getState);
-  };
+  return createFetchAction({
+    type: 'LOAD_ADDRESS',
+    endpoint: `/api/v1/users/self/addresses`,
+    transform: ({ data }) => normalize(data.addresses, schemas.addresses),
+  });
 }
 
-export function saveAddressAndSetActive(address) {
-  return (dispatch, getState) => {
-    const state = getState();
-    if (!state.auth) {
-      // TODO alert with message
-      window.alert('Not Login User cannot set address');
-      return;
-    }
-    const headers = {
-      'Authorization': state.auth.bearer ? `Bearer ${state.auth.bearer}` : '',
-    };
-    const ajax = {
-      url: `/api/v1/users/${state.auth.id}/addresses`,
-      headers,
-      processData: false,
-      contentType: 'application/json',
-    };
-    if (address.id) {
-      ajax.method = 'PUT';
-      ajax.url = `${ajax.url}/${address.id}`;
-      ajax.data = JSON.stringify(_.pick(address, 'countryCode', 'detail'));
-    } else {
-      ajax.method = 'POST';
-      ajax.data = JSON.stringify(address);
-    }
-    $.ajax(ajax).then((data) => {
-      dispatch({
-        type: 'SET_ACTIVE_ADDRESS',
-        addressId: data.id,
-      });
-    }, () => {
-      // TODO
+export function saveAddress(address) {
+  if (address.id) {
+    return createFetchAction({
+      type: 'UPDATE_ADDRESS',
+      endpoint: `/api/v1/users/self/addresses/${address.id}`,
+      method: 'put',
+      body: _.pick(address, 'countryCode', 'detail'),
+      transform: ({ data }) => normalize(data, schemas.address),
     });
-  };
+  }
+  return createFetchAction({
+    type: 'CREATE_ADDRESS',
+    endpoint: '/api/v1/users/self/addresses',
+    method: 'post',
+    body: address,
+    transform: ({ data }) => normalize(data, schemas.address),
+  });
 }
 
 export function setActiveAddress(addressId) {
@@ -226,7 +202,7 @@ export function setActiveAddress(addressId) {
 export function loadMyOrders() {
   return createFetchAction({
     type: 'LOAD_MY_ORDERS',
-    endpoint: state => `/api/v1/users/${state.auth.id}/orders`,
+    endpoint: '/api/v1/users/self/orders',
     transform: ({ data }) => normalize(data.orders, schemas.orders),
     success: {
       pagination: { key: 'myOrders', type: 'REFRESH' },

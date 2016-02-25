@@ -12,6 +12,7 @@ export default React.createClass({
     activeAddress: PropTypes.object,
     addresses: PropTypes.object,
     saveAddress: PropTypes.func,
+    setActiveAddress: PropTypes.func,
     doCheckout: PropTypes.func,
   },
   contextTypes: {

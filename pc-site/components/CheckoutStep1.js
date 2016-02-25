@@ -12,6 +12,7 @@ export default React.createClass({
     activeAddress: PropTypes.object,
     addresses: PropTypes.object,
     saveAddress: PropTypes.func,
+    setActiveAddress: PropTypes.func,
   },
   contextTypes: {
     activeLocale: PropTypes.string,
@@ -38,7 +39,8 @@ export default React.createClass({
       e.preventDefault();
       const activeAddressInState = this.state.activeAddress;
       if (activeAddressInState) {
-        this.props.saveAddress(activeAddressInState);
+        this.props.saveAddress(activeAddressInState).then(
+          (address) => this.props.setActiveAddress(address.id));
       }
       this.setState({ editMode: false });
     };

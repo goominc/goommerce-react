@@ -5,7 +5,7 @@ import { ReactScriptLoaderMixin } from 'react-script-loader';
 import CheckoutPage from '../components/CheckoutPage';
 
 import { ApiAction } from '../redux/actions';
-const { inipay, loadOrder, loadAddresses, saveAddressAndSetActive } = ApiAction;
+const { inipay, loadOrder, loadAddresses, saveAddress, setActiveAddress } = ApiAction;
 
 const Checkout = React.createClass({
   propTypes: {
@@ -15,6 +15,9 @@ const Checkout = React.createClass({
     addresses: PropTypes.object,
     inipay: PropTypes.func.isRequired,
     loadOrder: PropTypes.func.isRequired,
+    loadAddresses: PropTypes.func.isRequired,
+    saveAddress: PropTypes.func.isRequired,
+    setActiveAddress: PropTypes.func.isRequired,
   },
   mixins: [ReactScriptLoaderMixin],
   getDefaultProps() {
@@ -92,5 +95,5 @@ export default connect(
     activeAddress: state.entities.addresses[state.settings.activeAddressId] || null,
     addresses: state.entities.addresses,
   }),
-  { inipay, loadOrder, loadAddresses, saveAddress: saveAddressAndSetActive }
+  { inipay, loadOrder, loadAddresses, saveAddress, setActiveAddress }
 )(Checkout);
