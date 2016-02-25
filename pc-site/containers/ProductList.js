@@ -66,6 +66,7 @@ const ProductList = React.createClass({
     return children.map((child) => ({
       name: child.name,
       count: (aggs[child.id] || {}).doc_count,
+      link: `/categories/${child.id}`,
     }));
   },
   pagination() {

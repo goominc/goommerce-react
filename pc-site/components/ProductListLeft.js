@@ -18,7 +18,9 @@ export default React.createClass({
       }
       return children.map((child, idx) => (
         <div className="product-list-category-depth2" key={idx}>
-          {child.name.ko} ({child.count})
+          <Link to={child.link}>
+            {child.name.ko} ({child.count})
+          </Link>
         </div>
       ));
     };
