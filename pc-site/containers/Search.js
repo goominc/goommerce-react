@@ -12,7 +12,7 @@ export default React.createClass({
     const { params, location } = this.props;
     function genPageLink(pageNum) {
       return {
-        to: `/search/${params.query}/${pageNum}`,
+        pathname: `/search/${params.query}/${pageNum}`,
         query: location.query,
       };
     }

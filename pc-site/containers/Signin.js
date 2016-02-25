@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
-import { History, Link } from 'react-router';
+import { Link } from 'react-router';
 
 import SigninHeader from '../components/SigninHeader';
 
@@ -12,7 +12,10 @@ const Signin = React.createClass({
   propTypes: {
     login: PropTypes.func.isRequired,
   },
-  mixins: [LinkedStateMixin, History],
+  contextTypes: {
+    router: PropTypes.object.isRequired,
+  },
+  mixins: [LinkedStateMixin],
   getInitialState() {
     return {};
   },
@@ -20,7 +23,7 @@ const Signin = React.createClass({
     e.preventDefault();
     const { email, password } = this.state;
     this.props.login(email, password).then(
-      () => this.history.pushState(null, '/'),
+      () => this.context.router.push('/'),
       () => alert('Invalid username/password.')
     );
   },

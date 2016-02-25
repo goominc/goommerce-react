@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { History } from 'react-router';
 
 import { ApiAction, resetError, logout } from '../redux/actions';
 const { loadCartIfEmpty, login, signup } = ApiAction;
@@ -13,7 +12,9 @@ const App = React.createClass({
   propTypes: {
     children: PropTypes.node,
   },
-  mixins: [History],
+  contextTypes: {
+    router: PropTypes.object.isRequired,
+  },
   getInitialState() {
     return {
       menuState: {
@@ -81,7 +82,7 @@ const App = React.createClass({
     this.props.login(email, password).then(
       () => {
         this.hideSignRegister();
-        return this.history.pushState(null, '/');
+        return this.context.router.push('/');
       },
       () => alert('Invalid username/password.')
     );
@@ -90,7 +91,7 @@ const App = React.createClass({
     this.props.signup(params).then(
       () => {
         this.hideSignRegister();
-        return this.history.pushState(null, '/');
+        return this.context.router.push('/');
       },
       (err) => alert(err.msg)
     );

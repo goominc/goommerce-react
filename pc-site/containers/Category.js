@@ -9,7 +9,7 @@ export default React.createClass({
   render() {
     const { categoryId } = this.props.params;
     function genPageLink(pageNum) {
-      return { to: `/categories/${categoryId}/${pageNum}` };
+      return `/categories/${categoryId}/${pageNum}`;
     }
     return (
       <ProductList {...this.props.params} genPageLink={genPageLink}/>

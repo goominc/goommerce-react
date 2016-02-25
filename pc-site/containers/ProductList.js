@@ -80,7 +80,7 @@ const ProductList = React.createClass({
       return (
         <ol>
           {range(start, end).map(i => (
-            <li key={i}><Link {...genPageLink(i)}>{i + 1}</Link></li>
+            <li key={i}><Link to={genPageLink(i)}>{i + 1}</Link></li>
           ))}
         </ol>
       );

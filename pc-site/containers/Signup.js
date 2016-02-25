@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { History, Link } from 'react-router';
 
 import SigninHeader from '../components/SigninHeader';
 import SignupPage from '../components/SignupPage';
@@ -12,7 +11,9 @@ const Signup = React.createClass({
   propTypes: {
     signup: PropTypes.func.isRequired,
   },
-  mixins: [History],
+  contextTypes: {
+    router: PropTypes.object.isRequired,
+  },
   handleSubmit(newUser) {
     const { email, password, passwordConfirm } = newUser;
     // 2016. 02. 23. [heekyu] interactive
@@ -28,7 +29,7 @@ const Signup = React.createClass({
       email,
       password,
     }).then(
-      () => this.history.pushState(null, '/'),
+      () => this.context.router.push('/'),
       err => alert(err.message)
     );
   },

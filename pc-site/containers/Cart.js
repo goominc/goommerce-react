@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { History } from 'react-router';
 
 import CartPage from '../components/CartPage'
 
@@ -15,13 +14,15 @@ const Cart = React.createClass({
     deleteCartProduct: PropTypes.func.isRequired,
     createOrder: PropTypes.func.isRequired,
   },
-  mixins: [History],
+  contextTypes: {
+    router: PropTypes.object.isRequired,
+  },
   componentDidMount() {
     this.props.loadCart();
   },
   render() {
+    const { router } = this.context;
     const { cart, updateCartProduct, deleteCartProduct, createOrder } = this.props;
-    const { history } = this;
     function updateCount(variant, value) {
       updateCartProduct(variant.id, value);
     }
@@ -35,7 +36,7 @@ const Cart = React.createClass({
       createOrder({
         productVariants: productVariants.map((variant) => { return { id: variant.id, count: variant.count } }),
       }).then(
-        (order) => history.pushState(null, `/orders/${order.id}/checkout`)
+        (order) => router.push(`/orders/${order.id}/checkout`)
       );
     }
     return (

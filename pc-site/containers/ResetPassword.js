@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { History } from 'react-router';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
 
 import { ApiAction } from '../redux/actions';
@@ -11,7 +10,10 @@ const ResetPassword = React.createClass({
     access_token: PropTypes.string.isRequired,
     resetPassword: PropTypes.func.isRequired,
   },
-  mixins: [History, LinkedStateMixin],
+  contextTypes: {
+    router: PropTypes.object.isRequired,
+  },
+  mixins: [LinkedStateMixin],
   getInitialState() {
     return {};
   },
@@ -22,7 +24,7 @@ const ResetPassword = React.createClass({
     this.props.resetPassword({
       access_token,
       password,
-    }).then(() => this.history.pushState(null, '/'));
+    }).then(() => this.context.router.push(null, '/'));
   },
   render: function render() {
     return (

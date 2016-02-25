@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { History } from 'react-router';
 
 import CheckoutPage from '../components/CheckoutPage';
 
@@ -15,7 +14,6 @@ const OrderDetail = React.createClass({
     loadOrder: PropTypes.func.isRequired,
     setCheckoutStep: PropTypes.func,
   },
-  mixins: [History],
   componentDidMount() {
     const { orderId } = this.props;
     this.props.loadOrder(orderId);

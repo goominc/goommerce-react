@@ -2,8 +2,7 @@ import 'babel-core/polyfill';
 import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router } from 'react-router';
-import createBrowserHistory from 'history/lib/createBrowserHistory';
+import { Router, browserHistory } from 'react-router';
 import configureStore from './../commons/redux/store';
 import configureRoutes from './routes';
 import reducer from './redux/reducers';
@@ -25,15 +24,10 @@ const routes = configureRoutes({
     return store.getState().auth;
   },
 });
-const history = createBrowserHistory();
-
-history.listen(() => {
-  $('body').scrollTop(0);
-});
 
 render(
   <Provider store={store}>
-    <Router history={history}>
+    <Router history={browserHistory}>
       {routes}
     </Router>
   </Provider>,

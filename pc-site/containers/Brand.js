@@ -9,7 +9,7 @@ export default React.createClass({
   render() {
     const { brandId } = this.props.params;
     function genPageLink(pageNum) {
-      return { to: `/brands/${brandId}/${pageNum}` };
+      return `/brands/${brandId}/${pageNum}`;
     }
     return (
       <ProductList {...this.props.params} genPageLink={genPageLink}/>

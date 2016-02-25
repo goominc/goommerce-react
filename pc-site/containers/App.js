@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { History } from 'react-router';
 
 import AppHeader from '../components/AppHeader';
 import ErrorPopup from '../components/ErrorPopup';
@@ -16,11 +15,13 @@ const App = React.createClass({
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
   },
+  contextTypes: {
+    router: PropTypes.object.isRequired,
+  },
   childContextTypes: {
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
   },
-  mixins: [History],
   getChildContext() {
     return {
       activeLocale: this.props.activeLocale,
@@ -36,7 +37,7 @@ const App = React.createClass({
   },
   handleSearch(query) {
     if (query) {
-      this.history.pushState(null, `/search/${query}`);
+      this.context.router.push(`/search/${query}`);
     }
   },
   render() {
