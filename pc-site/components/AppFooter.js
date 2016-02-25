@@ -32,6 +32,10 @@ export default React.createClass({
             <div className="info-content">#6, Sungwoo BD 324, Toegye-ro, Jung-gu, Seoul, Korea</div>
           </div>
         </div>
+        <div className="footer-copywrite">
+          <div className="container">
+            <b>April Co., Ltd.</b>© 2016 Linkshops.com. All rights reserved.	</div>
+        </div>
       </div>
     );
   },
