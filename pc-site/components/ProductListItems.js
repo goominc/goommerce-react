@@ -21,7 +21,7 @@ export default React.createClass({
         <div key={item.id} className="product-list-item-wrap product-list-first-item">
           <div className="product-list-item-box">
             <div className="img-wrap">
-              <img src={getProductMainImage(item)} />
+              <img src={getProductMainImage(item.topHit || item)} />
             </div>
             <div className="product-title">
               <Link to={`/products/${item.id}`}>Socone Mens Women Breathable Trail Running Shoes New 2015 Summer Mens Shoes Outdoor Water Shoe Athletic Sport Shoes Men Trainers</Link>
