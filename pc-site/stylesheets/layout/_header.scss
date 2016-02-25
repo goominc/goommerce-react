@@ -1,6 +1,15 @@
 // -----------------------------------------------------------------------------
 // This file contains all styles related to the header of the site/application.
 // -----------------------------------------------------------------------------
+.top-banner {
+  min-width: 720px;
+  height: 80px;
+  width: 100%;
+  background-image: url('http://is.alicdn.com/kf/HTB1kPH5LFXXXXc1XpXXq6xXFXXXh.jpg');
+  background-position: center top;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
 .header-wide-container {
   width: 100%;
   border-bottom: 1px solid #e8e8e8;

@@ -82,7 +82,7 @@ export default React.createClass({
 
     return (
       <div className="header-wide-container">
-        <img style={ {marginLeft: '-200px', cursor: 'pointer'} } src="http://is.alicdn.com/kf/HTB1kPH5LFXXXXc1XpXXq6xXFXXXh.jpg" />
+        <div className="top-banner"></div>
         <div className="top-helper-bar">
           <div className="container">
             <div className="right-menus">
