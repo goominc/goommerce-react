@@ -90,7 +90,8 @@ const ProductDetail = React.createClass({
     this.props.addCartProduct(variant.id);
   },
   render() {
-    const { product, activeImageUrl, selectColor, selectSize, createOrder, wrapLogin } = this.props;
+    const { product, activeImageUrl, selectColor, selectSize,
+      createOrder, addCartProduct, wrapLogin } = this.props;
     if (!product) {
       return (<div></div>);
     }
@@ -110,9 +111,14 @@ const ProductDetail = React.createClass({
         });
       });
     };
+    const addToCart = (...args) => {
+      wrapLogin(() => {
+        addCartProduct(...args);
+      });
+    };
     return (
       <ProductDetailPage
-        {...this.props} images={images} activeImageUrl={passImageUrl} attributes={attributes} buyNow={buyNow}
+        {...this.props} images={images} activeImageUrl={passImageUrl} attributes={attributes} buyNow={buyNow} addCartProduct={addToCart}
       />
     );
   },
