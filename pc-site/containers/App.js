@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import AppHeader from '../components/AppHeader';
+import AppFooter from '../components/AppFooter';
 import ErrorPopup from '../components/ErrorPopup';
 
 import { ApiAction, resetError } from '../redux/actions';
@@ -61,6 +62,7 @@ const App = React.createClass({
           changeCurrency={changeCurrency}
         />
         {children}
+        <AppFooter />
       </div>
     );
   },

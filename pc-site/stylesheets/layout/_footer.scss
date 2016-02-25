@@ -1,3 +1,25 @@
 // -----------------------------------------------------------------------------
 // This file contains all styles related to the footer of the site/application.
 // -----------------------------------------------------------------------------
+
+.footer-linkshops {
+  background-color: #e8e8e8;
+  padding-top: 30px;
+  .info-box {
+    width: 50%;
+    display: inline-block;
+    margin-bottom: $margin-20;
+    vertical-align: top;
+  }
+  .info-title {
+    color: #333;
+    font-size: 16px;
+    line-height: 28px;
+    margin-bottom: 5px;
+  }
+  .info-content {
+    color: #999;
+    line-height: 18px;
+    font-size: 13px;
+  }
+}
