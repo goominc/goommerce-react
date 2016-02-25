@@ -62,7 +62,7 @@ export default React.createClass({
       );
     };
     const renderCurrencies = () => {
-      const currencies = ['KRW', 'USD', 'CNY', 'RMB'];
+      const currencies = ['KRW', 'USD', 'CNY'];
       return (
         <div className="dropdown-box">
           {currencies.map((obj) => {
