@@ -32,12 +32,16 @@ export default React.createClass({
     const { order, doCheckout } = this.props;
     const { activeCurrency } = this.context;
     const handleCheckout = () => {
-      doCheckout(order.id, this.refs);
+      if (this.refs.gopaymethod.value) {
+        doCheckout(order.id, this.refs);
+      } else {
+        window.alert('Please select a pay method.');
+      }
     };
     return (
       <form id="checkout" method="POST">
         <div>{activeCurrency} {order['totalEstimation' + activeCurrency]}</div>
-        <select name="gopaymethod">
+        <select name="gopaymethod" ref="gopaymethod">
           <option value="">[ 결제방법 선택 ]</option>
           <option value="Card">신용카드 결제</option>
           <option value="DirectBank">실시간 은행계좌이체</option>
