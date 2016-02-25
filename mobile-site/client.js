@@ -3,6 +3,8 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
+import useScroll from 'scroll-behavior/lib/useStandardScroll';
+
 import configureStore from './../commons/redux/store';
 import configureRoutes from './routes';
 import reducer from './redux/reducers';
@@ -24,6 +26,7 @@ render(
 );*/
 
 const store = configureStore(reducer, window.__INITIAL_STATE__);
+const history = useScroll(() => browserHistory)();
 
 if (module.hot) {
   // Enable Webpack hot module replacement for reducers
