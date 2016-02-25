@@ -4,31 +4,28 @@ import { ReactScriptLoaderMixin } from 'react-script-loader';
 
 import CheckoutPage from '../components/CheckoutPage';
 
-import { ApiAction, setCheckoutStep } from '../redux/actions';
+import { ApiAction } from '../redux/actions';
 const { inipay, loadOrder, loadAddresses, saveAddressAndSetActive } = ApiAction;
 
 const Checkout = React.createClass({
   propTypes: {
     orderId: PropTypes.string.isRequired,
+    step: PropTypes.string,
     order: PropTypes.object,
     addresses: PropTypes.object,
-    checkout: PropTypes.object,
     inipay: PropTypes.func.isRequired,
     loadOrder: PropTypes.func.isRequired,
   },
   mixins: [ReactScriptLoaderMixin],
+  getDefaultProps() {
+    return { step: 'review' };
+  },
   getInitialState() {
-    return {
-      scriptLoaded: false,
-    };
+    return { scriptLoaded: false };
   },
   componentDidMount() {
     this.props.loadOrder(this.props.orderId);
     this.props.loadAddresses();
-    const initial_step = 1;
-    if (!this.props.checkout || this.props.checkout.step != initial_step) {
-      this.props.setCheckoutStep(initial_step);
-    }
   },
   onScriptError() {
     // Show the user an error message.
@@ -57,14 +54,8 @@ const Checkout = React.createClass({
   },
   render() {
     if (!this.props.order) {
-      return (<div></div>);
+      return (<div>Loading...</div>);
     }
-    const handleCheckoutStep = (step) => {
-      if (step !== 3) {
-        // 2016. 02. 02. [heekyu]
-        this.props.setCheckoutStep(step);
-      }
-    };
     const fields = [
       { key: 'detail.name', text: 'Contact Name' },
       { key: 'countryCode', text: 'Country/Region' },
@@ -85,10 +76,10 @@ const Checkout = React.createClass({
     }
     return (
       <CheckoutPage {...this.props}
-        setCheckoutStep={handleCheckoutStep}
         doCheckout={this.doCheckout}
         activeAddress={activeAddress}
-        addressFields={fields} />
+        addressFields={fields}
+      />
     );
   },
 });
@@ -96,10 +87,10 @@ const Checkout = React.createClass({
 export default connect(
   (state, ownProps) => ({
     orderId: ownProps.params.orderId,
+    step: ownProps.params.step,
     order: state.entities.orders[ownProps.params.orderId],
     activeAddress: state.entities.addresses[state.settings.activeAddressId] || null,
     addresses: state.entities.addresses,
-    checkout: state.checkout,
   }),
-  { inipay, loadOrder, loadAddresses, setCheckoutStep, saveAddress: saveAddressAndSetActive }
+  { inipay, loadOrder, loadAddresses, saveAddress: saveAddressAndSetActive }
 )(Checkout);

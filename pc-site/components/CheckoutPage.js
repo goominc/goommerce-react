@@ -7,17 +7,17 @@ import SellerBox from './CartSellerBox';
 export default React.createClass({
   propTypes: {
     order: PropTypes.object.isRequired,
+    step: PropTypes.string.isRequired,
     addressFields: PropTypes.array,
     activeAddress: PropTypes.object,
     addresses: PropTypes.object,
     saveAddress: PropTypes.func,
     doCheckout: PropTypes.func,
-    checkout: PropTypes.object,
-    setCheckoutStep: PropTypes.func,
   },
   contextTypes: {
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
+    router: PropTypes.object.isRequired,
   },
   mixins: [LinkedStateMixin],
   getInitialState() {
@@ -70,7 +70,7 @@ export default React.createClass({
     const { order } = this.props;
     // FIXME
     const variants = order.orderProducts.map((p) => {
-      return _.assign({}, p.productVariant, { count: p.orderedCount });
+      return Object.assign({}, p.productVariant, { count: p.orderedCount });
     });
     return (
       <div>
@@ -81,51 +81,50 @@ export default React.createClass({
     );
   },
   render() {
-    const { order, checkout, setCheckoutStep } = this.props;
+    const { order, step } = this.props;
     if (!order) {
       return (
         <div></div>
       );
     }
-    const currentStep = checkout.step || 1;
-
-    function getProgressbarClass(step) {
-      return `checkout-progress-arrow progress-${step} ${currentStep === step ? 'progress-active' : ''}`;
+    function getProgressbarClass(progress) {
+      return `checkout-progress-arrow progress-${progress} ${step === progress ? 'progress-active' : ''}`;
     }
 
     const getContent = () => {
-      if (currentStep === 1) {
-        return this.renderCheckoutInformations();
-      } else if (currentStep === 2) {
-        return this.renderPayments();
-      } else if (currentStep === 3) {
-        return this.renderDone();
-      } else {
-        // ERROR!
-        window.alert('Invalid Checkout Page State!');
+      switch (step) {
+        case 'review':
+          return this.renderCheckoutInformations();
+        case 'payment':
+          return this.renderPayments();
+        case 'done':
+          return this.renderDone();
+        default:
+          window.alert('Invalid Checkout Page State!');
       }
     };
 
-    const handleClickStep = (step) => {
-      if (step !== currentStep) {
-        setCheckoutStep(step);
+    const handleClickStep = (newStep) => {
+      if (step !== 'done' && newStep !== 'done' && step !== newStep) {
+        this.context.router.push(`/orders/${order.id}/checkout/${newStep}`);
       }
     };
-
-    const endClassName = `checkout-progress-end ${currentStep === 3 ? 'progress-active' : ''}`;
+    const endClassName = `checkout-progress-end ${step === 'done' ? 'progress-active' : ''}`;
 
     return (
       <div className="checkout-container-wrap">
         <div className="checkout-container">
-          <div className={getProgressbarClass(1)} onClick={() => handleClickStep(1)}>
+          <div className={getProgressbarClass('review')} onClick={() => handleClickStep('review')}>
             checkout informations
           </div>
           <div className="checkout-progress-shadow progress-1-shadow"></div>
-          <div className={getProgressbarClass(2)} onClick={() => handleClickStep(2)}>
+          <div className={getProgressbarClass('payment')} onClick={() => handleClickStep('payment')}>
             payment
           </div>
           <div className="checkout-progress-shadow progress-2-shadow"></div>
-          <div className={getProgressbarClass(3)} onClick={() => handleClickStep(3)}>done</div>
+          <div className={getProgressbarClass('done')} onClick={() => handleClickStep('done')}>
+            done
+          </div>
           <div className={endClassName}></div>
           {getContent()}
         </div>

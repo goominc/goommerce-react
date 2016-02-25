@@ -1,6 +1,7 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 
 import SellerBox from './CartSellerBox';
 
@@ -11,7 +12,6 @@ export default React.createClass({
     activeAddress: PropTypes.object,
     addresses: PropTypes.object,
     saveAddress: PropTypes.func,
-    setCheckoutStep: PropTypes.func,
   },
   contextTypes: {
     activeLocale: PropTypes.string,
@@ -21,7 +21,7 @@ export default React.createClass({
     return {};
   },
   render() {
-    const { order, addressFields, activeAddress, setCheckoutStep } = this.props;
+    const { order, addressFields, activeAddress } = this.props;
     const { activeCurrency } = this.context;
 
     const renderFormField = (obj) => {
@@ -94,7 +94,9 @@ export default React.createClass({
           <span className="all-total-label">All Total:</span>
           <span className="all-total-value">{activeCurrency} {order['totalEstimation' + activeCurrency]}</span>
           <br/>
-          <button className="place-order-button" onClick={() => setCheckoutStep(2)}>Place Order</button>
+          <Link to={`/orders/${order.id}/checkout/payment`}>
+            <button className="place-order-button">Place Order</button>
+          </Link>
         </div>
       </div>
     );
