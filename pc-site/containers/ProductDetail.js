@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 
 import ProductDetailPage from '../components/ProductDetailPage';
 
-import { ApiAction, setActiveImage } from '../redux/actions';
-const { loadProduct, addCartProduct } = ApiAction;
+import { ApiAction, setActiveImage, selectColor, selectSize } from '../redux/actions';
+const { loadProduct, loadProductAndThen, addCartProduct, createOrder } = ApiAction;
 
 const ProductDetail = React.createClass({
   propTypes: {
@@ -12,6 +12,55 @@ const ProductDetail = React.createClass({
     product: PropTypes.object,
     loadProduct: PropTypes.func.isRequired,
     addCartProduct: PropTypes.func.isRequired,
+    activeImageUrl: PropTypes.string,
+    loadProductAndThen: PropTypes.func,
+    setActiveImage: PropTypes.func,
+    selectColor: PropTypes.func,
+    selectSize: PropTypes.func,
+  },
+  contextTypes: {
+    router: PropTypes.object.isRequired,
+  },
+  componentDidMount() {
+    this.props.setActiveImage('');
+    const parseVariants = (product) => {
+      const extractDataFromVariant = (variant) => {
+        const splits = variant.sku.split('-');
+        if (splits.length === 3) {
+          return {
+            color: splits[1],
+            size: splits[2],
+          };
+        }
+        return {};
+      };
+      const variants = [];
+      for (let i = 0; i < product.productVariants.length; i++) {
+        const variant = product.productVariants[i];
+        if (!variant.data.color) {
+          const data = extractDataFromVariant(variant);
+          if (!data.color) {
+            window.alert(`[DATA ERROR] cannot detect color from variant (${variant.sku})`);
+            continue;
+          }
+          variant.data.color = data.color;
+          variant.data.size = data.size;
+        }
+        variants.push(variant);
+      }
+      return variants;
+    };
+    const afterLoadProduct = (product, dispatch) => {
+      dispatch({
+        type: 'PRODUCT_DETAIL_VARIANTS',
+        variants: parseVariants(product),
+      });
+    };
+    this.props.loadProductAndThen(this.props.productId, afterLoadProduct);
+  },
+  componentDidUnMount() {
+    // 2016. 02. 03. [heekyu] remove this if show previous shown image before
+    this.props.setActiveImage('');
   },
   buildImages() {
     const { product } = this.props;
@@ -37,27 +86,32 @@ const ProductDetail = React.createClass({
     }
     return images;
   },
-  componentDidMount() {
-    this.props.loadProduct(this.props.productId);
-  },
-  componentDidUnMount() {
-    // 2016. 02. 03. [heekyu] remove this if show previouse shown image before
-    this.props.setActiveImage('');
-  },
   addCartProduct(variant) {
     this.props.addCartProduct(variant.id);
   },
   render() {
-    const { product, activeImageUrl } = this.props;
-    if (!product) return (<div></div>);
+    const { product, activeImageUrl, selectColor, selectSize, createOrder } = this.props;
+    if (!product) {
+      return (<div></div>);
+    }
     const images = this.buildImages();
     let passImageUrl = activeImageUrl;
     if (images.length > 0 && (!activeImageUrl || activeImageUrl === '')) {
       passImageUrl = images[0].url;
     }
+    const attributes = [
+      { attrName: 'Color', key: 'colors', select: selectColor },
+      { attrName: 'Size', key: 'sizes', select: selectSize },
+    ];
+    const buyNow = (variantId, quantity) => {
+      createOrder({ productVariants: [{ id: variantId, count: quantity }] }).then((order) => {
+        this.context.router.push(`/orders/${order.id}/checkout`);
+      });
+    };
     return (
       <ProductDetailPage
-        {...this.props} images={images} activeImageUrl={passImageUrl} />
+        {...this.props} images={images} activeImageUrl={passImageUrl} attributes={attributes} buyNow={buyNow}
+      />
     );
   },
 });
@@ -67,6 +121,8 @@ export default connect(
     productId: ownProps.params.productId,
     product: state.entities.products[ownProps.params.productId],
     activeImageUrl: state.page.pageProductDetail.image_url,
+    variantAttributes: state.page.pageProductDetail.variantAttributes,
+    selectedVariant: state.page.pageProductDetail.selectedVariant,
   }),
-  { loadProduct, addCartProduct, setActiveImage }
+  { loadProduct, loadProductAndThen, addCartProduct, createOrder, setActiveImage, selectColor, selectSize }
 )(ProductDetail);

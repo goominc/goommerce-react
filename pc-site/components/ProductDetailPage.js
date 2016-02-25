@@ -8,7 +8,11 @@ export default React.createClass({
   propTypes: {
     product: PropTypes.object.isRequired,
     images: PropTypes.array.isRequired,
+    variantAttributes: PropTypes.object,
+    attributes: PropTypes.array,
+    selectedVariant: PropTypes.object,
     addCartProduct: PropTypes.func,
+    buyNow: PropTypes.func,
     activeImageUrl: PropTypes.string,
     setActiveImage: PropTypes.func,
   },
@@ -40,17 +44,12 @@ export default React.createClass({
     // TODO make this to external state
     $('.enlarge-image-box').css('display', 'none');
   },
-  renderVariant(variant) {
-    const { addCartProduct } = this.props;
-    return (
-      <li key={variant.sku}>
-        {variant.sku}
-        <button onClick={() => addCartProduct(variant.id)}>add to cart</button>
-      </li>
-    );
-  },
   render() {
-    const { product, images, activeImageUrl } = this.props;
+    const { product, images, activeImageUrl, variantAttributes, attributes, selectedVariant,
+      addCartProduct, buyNow } = this.props;
+    if (!product || !variantAttributes) {
+      return (<div></div>);
+    }
     const { activeCurrency } = this.context;
     const renderThumbnail = (image) => {
       let className = '';
@@ -75,12 +74,40 @@ export default React.createClass({
       return (<Breadcrumb key={`breadcrumb-${index}`} path={crumbPath} />);
     };
 
+    const renderAttributes = (attrName, attrObj, selectFunc) => {
+      const renderItem = (key, obj) => {
+        let className = '';
+        if (!obj.enable) {
+          className += ' disable-item';
+        }
+        if (obj.selected) {
+          className += ' active';
+        }
+        if (obj.img) {
+          return (<img className={className} key={key} onClick={() => selectFunc(key)} src={obj.img.url} />);
+        }
+        return (<div key={key} onClick={() => selectFunc(key)} className={`attribute-item-text${className}`}>{key}</div>);
+      };
+      const keys = Object.keys(attrObj);
+      return (
+        <div key={attrName} className="normal-field-box">
+          <div className="field-label">{attrName}: </div>
+          <div className="field-content">
+            {keys.map((key) => renderItem(key, attrObj[key]))}
+          </div>
+        </div>
+      );
+    };
+
+    const buttonClassName = !!selectedVariant ? '' : 'button-disabled';
+
     const path = [
       { link: '/', name: { en: 'Home', ko: '홈' } },
       { link: '/products', name: { en: 'Product List', ko: '상품목록' } },
       { name: { en: product.sku, ko: product.sku } },
     ];
     const price = getProductMainPrice(product, activeCurrency);
+
     return (
       <div className="container">
         <Breadcrumb key="breadcrumb-default" path={path} />
@@ -91,7 +118,9 @@ export default React.createClass({
               {images.map(renderThumbnail)}
             </div>
             <div onMouseMove={this.handleMouseMoveMainImage} onMouseEnter={this.handleMouseEnterMainImage}
-              onMouseLeave={this.handleMouseLeaveMainImage} className="main-image-box"
+              onMouseEnter={this.handleMouseEnterMainImage}
+              onMouseLeave={this.handleMouseLeaveMainImage}
+              className="main-image-box"
             >
               <img src={activeImageUrl} />
             </div>
@@ -106,13 +135,28 @@ export default React.createClass({
               <div className="field-label">Price: </div>
               <div className="field-content price-value"><b>{activeCurrency} {price}</b> / pieces</div>
             </div>
+            {attributes.map((attr) => renderAttributes(attr.attrName, variantAttributes[attr.key], attr.select))}
             <div className="normal-field-box">
-              <div className="field-label">Color: </div>
-              <div className="field-content">Color</div>
+              <div className="field-label">Quantity: </div>
+              <div className="field-content"><input type="number" defaultValue="1" min="1" ref="quantity" /></div>
             </div>
-            <ul>
-              {variants.map(this.renderVariant)}
-            </ul>
+            <div className="normal-field-box">
+              <div className="field-label"></div>
+              <div className="field-content">
+                <button className={`product-buy-now-button ${buttonClassName}`}
+                  disabled={!selectedVariant}
+                  onClick={() => buyNow(selectedVariant.id, this.refs.quantity.value)}
+                >
+                  Buy Now
+                </button>
+                <button className={`product-add-to-cart-button ${buttonClassName}`}
+                  disabled={!selectedVariant}
+                  onClick={() => addCartProduct(selectedVariant.id, this.refs.quantity.value)}
+                >
+                  Add To Cart
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

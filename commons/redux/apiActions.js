@@ -4,6 +4,8 @@ import { normalize } from 'normalizr';
 import createFetchAction from './util/createFetchAction';
 import * as schemas from './schemas';
 
+import { simpleNotify, ajaxReturnPromise } from './util/ajaxUtil';
+
 export function login(email, password) {
   return createFetchAction({
     type: 'LOGIN',
@@ -74,6 +76,16 @@ export function loadProduct(id) {
   });
 }
 
+export function loadProductAndThen(id, cb) {
+  return (dispatch, getState) => {
+    loadProduct(id) (dispatch, getState).then((res) => {
+      if (cb) {
+        cb(res, dispatch, getState);
+      }
+    });
+  };
+}
+
 export function searchProducts(query) {
   return createFetchAction({
     type: 'SEARCH_PRODUCTS',
@@ -97,12 +109,12 @@ export function loadCart() {
   });
 }
 
-export function addCartProduct(productVariantId) {
+export function addCartProduct(productVariantId, count) {
   return createFetchAction({
     type: 'UPDATE_CART',
     endpoint: '/api/v1/carts/product_variants',
     method: 'post',
-    body: { productVariantId },
+    body: { productVariantId, count: count || 1 },
   });
 }
 
@@ -230,20 +242,6 @@ export function loadCartIfEmpty() {
     }
   };
 }
-
-const simpleNotify = (auth, method, url, body) => {
-  const headers = {
-    'Authorization': auth.bearer ? `Bearer ${auth.bearer}` : '',
-  };
-  $.ajax({
-    url,
-    method,
-    headers,
-    data: JSON.stringify(body),
-    processData: false,
-    contentType: 'application/json',
-  }); // ignore response
-};
 
 export function changeLocale(locale) {
   return (dispatch, getState) => {

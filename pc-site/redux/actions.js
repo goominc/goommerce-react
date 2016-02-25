@@ -23,10 +23,16 @@ export function setActiveImage(imageUrl) {
     url: imageUrl,
   };
 }
-export function changeVariantSelection(selected_variant) {
+export function selectColor(color) {
   return {
-    type: 'CHANGE_VARIANT_SELECTION',
-    selected_variant,
+    type: 'PRODUCT_DETAIL_SET_COLOR',
+    color,
+  };
+}
+export function selectSize(size) {
+  return {
+    type: 'PRODUCT_DETAIL_SET_SIZE',
+    size,
   };
 }
 // END Product Detail Page actions
