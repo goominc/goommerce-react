@@ -36,12 +36,10 @@ export default React.createClass({
     };
     const handleSubmitAddress = (e) => {
       e.preventDefault();
-      let activeAddressInState = this.state.activeAddress;
-      if (!activeAddressInState) {
-        // Did not changed
-        return;
+      const activeAddressInState = this.state.activeAddress;
+      if (activeAddressInState) {
+        this.props.saveAddress(activeAddressInState);
       }
-      this.props.saveAddress(activeAddressInState);
       this.setState({ editMode: false });
     };
     let editMode = !!this.state.editMode;
@@ -81,7 +79,7 @@ export default React.createClass({
     };
     // FIXME
     const cartVariants = order.orderProducts.map((orderProduct) => {
-      return _.assign({}, orderProduct.productVariant, { count: orderProduct.orderedCount });
+      return Object.assign({}, orderProduct.productVariant, { count: orderProduct.orderedCount });
     });
     return (
       <div>
