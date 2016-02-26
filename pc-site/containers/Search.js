@@ -10,15 +10,13 @@ export default React.createClass({
   },
   render() {
     const { params, location } = this.props;
-    function genPageLink(pageNum) {
-      return {
-        pathname: `/search/${params.query}/${pageNum}`,
-        query: location.query,
-      };
-    }
+    const genLink = ({ pageNum, brandId, categoryId }) => ({
+      pathname: `/search/${params.query}${pageNum ? `/${pageNum}` : ''}`,
+      query: { brandId, categoryId },
+    });
     const query = defaults({}, params, location.query);
     return (
-      <ProductList {...query} genPageLink={genPageLink}/>
+      <ProductList {...query} genLink={genLink}/>
     );
   },
 });

@@ -16,7 +16,7 @@ const ProductList = React.createClass({
     categoryId: PropTypes.string,
     brandId: PropTypes.string,
     pageNum: PropTypes.string,
-    genPageLink: PropTypes.func,
+    genLink: PropTypes.func.isRequired,
     category: PropTypes.object,
     categories: PropTypes.object.isRequired,
     searchProducts: PropTypes.func.isRequired,
@@ -60,19 +60,10 @@ const ProductList = React.createClass({
     pushPath(this.props.category);
     return path;
   },
-  aggregateChildren() {
-    const { categories: aggs = {} } = this.state;
-    const { children = [] } = this.props.category || {};
-    return children.map((child) => ({
-      name: child.name,
-      count: (aggs[child.id] || {}).doc_count,
-      link: `/categories/${child.id}`,
-    }));
-  },
   pagination() {
     const { pagination } = this.state;
-    const { genPageLink } = this.props;
-    if (genPageLink && pagination) {
+    const { genLink } = this.props;
+    if (genLink && pagination) {
       const beforeCnt = 2;
       const totalCnt = 7;
       const { pageNum } = this.props;
@@ -86,7 +77,7 @@ const ProductList = React.createClass({
           );
         }
         return (
-          <Link to={genPageLink(i)} key={i}>
+          <Link to={genLink({ ...this.props, pageNum: i })} key={i}>
             <div className="page-button">{i + 1}</div>
           </Link>
         );
@@ -99,13 +90,12 @@ const ProductList = React.createClass({
     }
   },
   render() {
-    const { products = [] } = this.state;
+    const { products = [], aggs = {} } = this.state;
     const path = this.breadCrumbPath();
-    const children = this.aggregateChildren();
 
     return (
       <div className="container-table">
-        <ProductListLeft path={path.slice(1)} children={children} />
+        <ProductListLeft {...this.props} aggs={aggs}/>
         <div className="product-list-right-box">
           <Breadcrumb path={path} />
           <div className="product-list-search-box"></div>

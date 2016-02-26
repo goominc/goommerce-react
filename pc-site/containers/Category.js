@@ -7,12 +7,12 @@ export default React.createClass({
     params: PropTypes.object.isRequired,
   },
   render() {
-    const { categoryId } = this.props.params;
-    function genPageLink(pageNum) {
-      return `/categories/${categoryId}/${pageNum}`;
-    }
+    const genLink = ({ pageNum, brandId, categoryId }) => ({
+      pathname: `/categories/${categoryId}${pageNum ? `/${pageNum}` : ''}`,
+      query: { brandId },
+    });
     return (
-      <ProductList {...this.props.params} genPageLink={genPageLink}/>
+      <ProductList {...this.props.params} genLink={genLink}/>
     );
   },
 });
