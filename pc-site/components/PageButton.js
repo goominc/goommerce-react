@@ -18,8 +18,30 @@ export default React.createClass({
     const beforeCnt = 2;
     const totalCnt = 7;
     const pageCnt = Math.ceil(pagination.total / pagination.size);
-    const start = Math.max(0, Math.min(pageNum - 1 - beforeCnt, pageCnt - totalCnt)) + 1;
-    const end = Math.min(pageCnt, start + totalCnt) + 1;
+    let start = Math.max(0, Math.min(pageNum - 1 - beforeCnt, pageCnt - totalCnt)) + 1;
+    let end = Math.min(pageCnt, start + totalCnt) + 1;
+    if (start === 2) start--;
+    if (end === pageCnt - 1) end++;
+    const renderFirst = () => {
+      if (start > 1) {
+        const res = [];
+        res.push(
+          <div className="page-button">1</div>
+        );
+        res.push(<span>...</span>);
+        return res;
+      }
+    };
+    const renderLast = () => {
+      if (end < pageCnt) {
+        const res = [];
+        res.push(<span>...</span>);
+        res.push(
+          <div className="page-button">{pageCnt}</div>
+        );
+        return res;
+      }
+    };
     const renderButton = (i) => {
       if (i === Number(pageNum)) {
         return (
@@ -34,7 +56,9 @@ export default React.createClass({
     };
     return (
       <div className="page-button-line">
+        {renderFirst()}
         {_.range(start, end).map(renderButton)}
+        {renderLast()}
       </div>
     );
   },
