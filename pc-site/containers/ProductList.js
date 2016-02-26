@@ -79,12 +79,22 @@ const ProductList = React.createClass({
       const pageCnt = Math.ceil(pagination.total / pagination.size);
       const start = Math.max(0, Math.min(pageNum - beforeCnt, pageCnt - totalCnt));
       const end = Math.min(pageCnt, start + totalCnt);
+      const renderButton = (i) => {
+        if (i === Number(pageNum)) {
+          return (
+            <div key={i} className="page-button active">{i + 1}</div>
+          );
+        }
+        return (
+          <Link to={genPageLink(i)} key={i}>
+            <div className="page-button">{i + 1}</div>
+          </Link>
+        );
+      };
       return (
-        <ol>
-          {range(start, end).map(i => (
-            <li key={i}><Link to={genPageLink(i)}>{i + 1}</Link></li>
-          ))}
-        </ol>
+        <div className="page-button-line">
+          {range(start, end).map(renderButton)}
+        </div>
       );
     }
   },
