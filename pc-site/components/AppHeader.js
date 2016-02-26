@@ -115,6 +115,11 @@ export default React.createClass({
       </div>
     );
 
+    const handleSearchSubmit = (e) => {
+      e.preventDefault();
+      handleSearch(this.refs.searchQuery.value);
+    };
+
     return (
       <div className="header-wide-container">
         <div className="top-banner"></div>
@@ -139,17 +144,18 @@ export default React.createClass({
             <Link className="header-item" to="/">
               <img className="header-logo" src="http://www.linkshops.com/skin/frontend/linkshops2nd/default/images/logo.png" alt="Linkshops"/>
             </Link>
-            <div className="header-search-box">
-              <input ref="searchQuery" placeholder={i18n.get('pcMain.search.placeHolder')} />
-              <div className="header-search-category-box" onClick={toggleSearchDropdown}>
-                <div className="search-divider"></div>
-                <div className="arrow-down"></div>
-                {activeCategory ? activeCategory.name[activeLocale] : i18n.get('word.allCategories')}
-                {renderSearchDropdown()}
+            <form onSubmit={handleSearchSubmit}>
+              <div className="header-search-box">
+                <input ref="searchQuery" placeholder={i18n.get('pcMain.search.placeHolder')} />
+                <div className="header-search-category-box" onClick={toggleSearchDropdown}>
+                  <div className="search-divider"></div>
+                  <div className="arrow-down"></div>
+                  {activeCategory ? activeCategory.name[activeLocale] : i18n.get('word.allCategories')}
+                  {renderSearchDropdown()}
+                </div>
+                <button className="header-search-button" type="submit"></button>
               </div>
-              <button className="header-search-button" onClick={() => handleSearch(this.refs.searchQuery.value)}>
-              </button>
-            </div>
+            </form>
             <div className="header-mymenu-wrap">
               <Link className="header-item" to="/cart">
                 <div className="header-mymenu-cart">
