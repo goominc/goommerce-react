@@ -6,7 +6,7 @@ import AppFooter from '../components/AppFooter';
 import SigninPopup from '../components/popup/SigninPopup';
 import ErrorPopup from '../components/popup/ErrorPopup';
 
-import { ApiAction, resetError, closePopup } from '../redux/actions';
+import { ApiAction, resetError, closePopup, toggleSearchDropdown, selectSearchDropdown } from '../redux/actions';
 const { loadCartIfEmpty, loadCategories, changeLocale, changeCurrency, login, logout } = ApiAction;
 
 require('../stylesheets/main.scss');
@@ -43,7 +43,10 @@ const App = React.createClass({
     }
   },
   render() {
-    const { children, auth, cart, error, resetError, changeLocale, changeCurrency,
+    const { children, auth, cart,
+      categories, showSearchDropdown,
+      error, resetError,
+      changeLocale, changeCurrency,
       login, popup, closePopup } = this.props;
     const renderError = () => {
       if (error && error.message) {
@@ -70,12 +73,9 @@ const App = React.createClass({
         {renderError()}
         {renderPopup()}
         <AppHeader
-          auth={auth}
-          cart={cart}
+          {...this.props}
           handleLogout={this.handleLogout}
           handleSearch={this.handleSearch}
-          changeLocale={changeLocale}
-          changeCurrency={changeCurrency}
         />
         {children}
         <AppFooter />
@@ -85,8 +85,11 @@ const App = React.createClass({
 });
 
 export default connect(
-  state => ({ auth: state.auth, cart: state.cart, error: state.errorHandler.error,
+  state => ({ auth: state.auth, cart: state.cart,
+    categories: state.categories, showSearchDropdown: state.search.showDropdown, activeCategory: state.search.activeCategory,
+    error: state.errorHandler.error,
     activeLocale: state.i18n.activeLocale, activeCurrency: state.currency.activeCurrency,
     popup: state.popup }),
-  { loadCartIfEmpty, loadCategories, resetError, closePopup, changeLocale, changeCurrency, login, logout }
+  { loadCartIfEmpty, loadCategories, resetError, closePopup, toggleSearchDropdown, selectSearchDropdown,
+    changeLocale, changeCurrency, login, logout }
 )(App);

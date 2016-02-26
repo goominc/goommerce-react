@@ -90,15 +90,18 @@ $header-margin: 15px;
     }
     $dropbox-height: 40px;
     .search-dropdown-item {
-      display: none;
       position: relative;
       border-bottom: 1px solid #cbcbcb;
       width: 100%;
+      z-index: 10010;
       height: $dropbox-height;
       line-height: $dropbox-height;
       text-align: center;
       cursor: pointer;
       background-color: #ffffff;
+      &.active {
+        color: $default-active-text-color;
+      }
     }
   }
 

@@ -7,6 +7,11 @@ export default React.createClass({
   propTypes: {
     auth: PropTypes.object.isRequired,
     cart: PropTypes.object.isRequired,
+    categories: PropTypes.object,
+    activeCategory: PropTypes.object,
+    showSearchDropdown: PropTypes.bool,
+    toggleSearchDropdown: PropTypes.func.isRequired,
+    selectSearchDropdown: PropTypes.func.isRequired,
     handleLogout: PropTypes.func.isRequired,
     handleSearch: PropTypes.func.isRequired,
     changeLocale: PropTypes.func.isRequired,
@@ -40,12 +45,42 @@ export default React.createClass({
     );
   },
   render() {
-    const { auth, handleLogout, handleSearch, cart, changeLocale, changeCurrency } = this.props;
+    const { auth, handleLogout, handleSearch, cart, categories, changeLocale, changeCurrency } = this.props;
+    const { toggleSearchDropdown, selectSearchDropdown, showSearchDropdown, activeCategory } = this.props;
     const { activeLocale, activeCurrency } = this.context;
     let cartCount = 0;
     if (cart && cart.productVariants) {
       cartCount = cart.productVariants.length;
     }
+    const renderSearchDropdownItems = () => {
+      const items = _.get(categories, 'tree.children') || [];
+      return items.map((item, index) => {
+        let className = 'search-dropdown-item';
+        if (activeCategory && activeCategory.id === item.id) {
+          className += ' active';
+        }
+        return (
+          <div onClick={() => selectSearchDropdown(item)} key={index} className={className}>{item.name[activeLocale]}</div>
+        );
+      });
+    };
+    const renderSearchDropdown = () => {
+      if (!showSearchDropdown) {
+        return (<div></div>);
+      }
+      let notSelectedClassName = 'search-dropdown-item';
+      if (!activeCategory) {
+        notSelectedClassName += ' active';
+      }
+      const overlayStyle = { backgroundColor: 'transparent', cursor: 'default' };
+      return (
+        <div className="search-dropdown-box">
+          <div className="popup-overlay" style={overlayStyle}></div>
+          <div onClick={() => selectSearchDropdown(null)} className={notSelectedClassName}>{i18n.get('word.allCategories')}</div>
+          {renderSearchDropdownItems()}
+        </div>
+      );
+    };
     const renderLocales = () => {
       const locales = [
         { locale: 'ko', text: '한국어' },
@@ -106,13 +141,11 @@ export default React.createClass({
             </Link>
             <div className="header-search-box">
               <input ref="searchQuery" placeholder={i18n.get('pcMain.search.placeHolder')} />
-              <div className="header-search-category-box">
+              <div className="header-search-category-box" onClick={toggleSearchDropdown}>
                 <div className="search-divider"></div>
                 <div className="arrow-down"></div>
-                {i18n.get('word.allCategories')}
-                <div className="search-dropdown-box">
-                  <div className="search-dropdown-item">C1</div>
-                </div>
+                {activeCategory ? activeCategory.name[activeLocale] : i18n.get('word.allCategories')}
+                {renderSearchDropdown()}
               </div>
               <button className="header-search-button" onClick={() => handleSearch(this.refs.searchQuery.value)}>
               </button>

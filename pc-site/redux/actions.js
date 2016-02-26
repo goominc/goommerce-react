@@ -22,6 +22,19 @@ export function closePopup() {
   };
 }
 
+export function toggleSearchDropdown() {
+  return {
+    type: 'TOGGLE_SEARCH_DROPDOWN',
+  };
+}
+
+export function selectSearchDropdown(category) {
+  return {
+    type: 'SET_SEARCH_CATEGORY',
+    category,
+  };
+}
+
 export function wrapLogin(cb) {
   return (dispatch, getState) => {
     const state = getState();

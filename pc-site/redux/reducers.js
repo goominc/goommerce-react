@@ -21,6 +21,18 @@ function errorHandler(state = {}, action) {
   return state;
 }
 
+function search(state = {}, action) {
+  if (action.type === 'SET_SEARCH_CATEGORY') {
+    return assign({}, state, { activeCategory: action.category });
+  } else if (action.type === 'TOGGLE_SEARCH_DROPDOWN') {
+    return assign({}, state, { showDropdown: !state.showDropdown });
+  }
+  if (state.showDropdown) {
+    state.shoDropdown = false;
+  }
+  return state;
+}
+
 function checkout(state = {}, action) {
   if (action.type === 'CHECKOUT_SET_STEP') {
     const nextState = assign({}, state);
@@ -152,7 +164,8 @@ const pageReducers = combineReducers({
 // END page-wide reducers
 
 const rootReducer = combineReducers(
-  Object.assign({}, CommonReducers.reducers, { errorHandler, popup, checkout, page: pageReducers })
+  Object.assign({}, CommonReducers.reducers,
+    { errorHandler, popup, search, checkout, page: pageReducers })
 );
 
 export default (state = {}, action) => {
