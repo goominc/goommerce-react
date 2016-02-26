@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { Route, Redirect } from 'react-router';
 import {
   App,
   Brand,
@@ -14,7 +14,6 @@ import {
   Search,
   Signin,
   Signup,
-  ProductList,
   ProductDetail,
   MyPage,
 } from './containers';
@@ -25,7 +24,7 @@ export default function configure({ getAuth }) {
       <Route component={App}>
         <Route path="/" component={Home}/>
         <Route path="/accounts/reset" component={ResetPassword}/>
-        <Route path="/products" component={ProductList}/>
+        <Redirect from="/products" to="/categories/1" />
         <Route path="/products/:productId" component={ProductDetail}/>
         <Route path="/cart" component={Cart}/>
         <Route path="/orders" component={MyOrderContainer}/>
