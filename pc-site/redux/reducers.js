@@ -35,6 +35,10 @@ function pageProductDetail(state = {}, action) {
   const initColorsAndSizes = (variants) => {
     const attributes = { colors: {}, sizes: {} };
     variants.forEach((variant) => {
+      if (!variant.appImages || !variant.appImages.default || variant.appImages.default.length < 1) {
+        console.log(`${variant.sku} does not have color or size`);
+        return;
+      }
       attributes.colors[variant.data.color] = { enable: true, selected: false, img: variant.appImages.default[0] };
       attributes.sizes[variant.data.size] = { enable: true, selected: false };
     });
@@ -46,6 +50,10 @@ function pageProductDetail(state = {}, action) {
     const newAttributes = JSON.parse(JSON.stringify(variantAttributes));
     for (let i = 0; i < variants.length; i++) {
       const variant = variants[i];
+      if (!newAttributes.sizes[variant.data.size] || !newAttributes.colors[variant.data.color]) {
+        console.log(`${variant.sku} does not have color or size`);
+        continue;
+      }
       // 2016. 02. 25. [heekyu] set disable attributes
       if (!activeColor || activeColor === variant.data.color) {
         newAttributes.sizes[variant.data.size].enable = true;
