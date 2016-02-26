@@ -10,7 +10,11 @@ export default React.createClass({
     genLink: PropTypes.func.isRequired,
     aggs: PropTypes.object.isRequired,
   },
+  contextTypes: {
+    activeLocale: PropTypes.string,
+  },
   renderCategories() {
+    const { activeLocale } = this.context;
     const { aggs, category, categories, genLink } = this.props;
     if (!category || !categories) {
       return undefined;
@@ -25,7 +29,7 @@ export default React.createClass({
       .map((c, index) => (
         <div className="product-list-category-depth2" key={index}>
           <Link to={categoryLink(c.id)}>
-            {c.name.ko} ({aggs.categories[c.id].doc_count})
+            {c.name[activeLocale]} ({aggs.categories[c.id].doc_count})
           </Link>
         </div>
       ));
@@ -47,7 +51,7 @@ export default React.createClass({
             <div className="product-list-category-depth1">
               <Link to={categoryLink(list[0].id)}>
                 {list.length !== 1 && <span className="category-arrow">&lt;</span>}
-                {list[0].name.ko}
+                {list[0].name[activeLocale]}
               </Link>
             </div>
             {next()}
