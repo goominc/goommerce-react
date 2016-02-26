@@ -6,6 +6,7 @@ import { get, isEqual, pick, range } from 'lodash';
 import Breadcrumb from '../components/Breadcrumb';
 import ProductListLeft from '../components/ProductListLeft';
 import ProductListItems from '../components/ProductListItems';
+import PageButton from '../components/PageButton';
 
 import { ApiAction } from '../redux/actions';
 const { searchProducts } = ApiAction;
@@ -22,7 +23,7 @@ const ProductList = React.createClass({
     searchProducts: PropTypes.func.isRequired,
   },
   getDefaultProps() {
-    return { pageNum: '0' };
+    return { pageNum: '1' };
   },
   getInitialState() {
     return {};
@@ -43,7 +44,7 @@ const ProductList = React.createClass({
       q: query,
       categoryId,
       brandId,
-      from: pageNum * size,
+      from: (pageNum - 1) * size,
       size,
     }).then(res => this.setState(res));
   },
@@ -60,35 +61,6 @@ const ProductList = React.createClass({
     pushPath(this.props.category);
     return path;
   },
-  pagination() {
-    const { pagination } = this.state;
-    const { genLink } = this.props;
-    if (genLink && pagination) {
-      const beforeCnt = 2;
-      const totalCnt = 7;
-      const { pageNum } = this.props;
-      const pageCnt = Math.ceil(pagination.total / pagination.size);
-      const start = Math.max(0, Math.min(pageNum - beforeCnt, pageCnt - totalCnt));
-      const end = Math.min(pageCnt, start + totalCnt);
-      const renderButton = (i) => {
-        if (i === Number(pageNum)) {
-          return (
-            <div key={i} className="page-button active">{i + 1}</div>
-          );
-        }
-        return (
-          <Link to={genLink({ ...this.props, pageNum: i })} key={i}>
-            <div className="page-button">{i + 1}</div>
-          </Link>
-        );
-      };
-      return (
-        <div className="page-button-line">
-          {range(start, end).map(renderButton)}
-        </div>
-      );
-    }
-  },
   render() {
     const { products = [], aggs = {} } = this.state;
     const path = this.breadCrumbPath();
@@ -100,7 +72,11 @@ const ProductList = React.createClass({
           <Breadcrumb path={path} />
           <div className="product-list-search-box"></div>
           <ProductListItems products={products} />
-          {this.pagination()}
+          <PageButton
+            pagination={this.state.pagination}
+            genLink={(pageNum) => this.props.genLink({ ...this.props, pageNum })}
+            pageNum={this.props.pageNum}
+          />
         </div>
       </div>
     );
