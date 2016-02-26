@@ -16,10 +16,16 @@ export default React.createClass({
     handleSearch: PropTypes.func.isRequired,
     changeLocale: PropTypes.func.isRequired,
     changeCurrency: PropTypes.func.isRequired,
+    params: PropTypes.object,
   },
   contextTypes: {
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
+  },
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.params.query !== this.props.params.query) {
+      this.refs.searchQuery.value = nextProps.params.query || '';
+    }
   },
   renderAccount() {
     const { auth } = this.props;
@@ -46,7 +52,7 @@ export default React.createClass({
   },
   render() {
     const { auth, handleLogout, handleSearch, cart, categories, changeLocale, changeCurrency } = this.props;
-    const { toggleSearchDropdown, selectSearchDropdown, showSearchDropdown, activeCategory } = this.props;
+    const { toggleSearchDropdown, selectSearchDropdown, showSearchDropdown, activeCategory, params } = this.props;
     const { activeLocale, activeCurrency } = this.context;
     let cartCount = 0;
     if (cart && cart.productVariants) {
@@ -146,7 +152,7 @@ export default React.createClass({
             </Link>
             <form onSubmit={handleSearchSubmit}>
               <div className="header-search-box">
-                <input ref="searchQuery" placeholder={i18n.get('pcMain.search.placeHolder')} />
+                <input ref="searchQuery" placeholder={i18n.get('pcMain.search.placeHolder')} defaultValue={params.query || ''}/>
                 <div className="header-search-category-box" onClick={toggleSearchDropdown}>
                   <div className="search-divider"></div>
                   <div className="arrow-down"></div>

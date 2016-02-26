@@ -16,6 +16,7 @@ const App = React.createClass({
     children: PropTypes.node,
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
+    params: PropTypes.object,
   },
   contextTypes: {
     router: PropTypes.object.isRequired,
@@ -85,7 +86,7 @@ const App = React.createClass({
 });
 
 export default connect(
-  state => ({ auth: state.auth, cart: state.cart,
+  (state) => ({ auth: state.auth, cart: state.cart,
     categories: state.categories, showSearchDropdown: state.search.showDropdown, activeCategory: state.search.activeCategory,
     error: state.errorHandler.error,
     activeLocale: state.i18n.activeLocale, activeCurrency: state.currency.activeCurrency,
