@@ -26,6 +26,12 @@ $checkout-container-width: 950px;
     width: 300px;
     padding: 5px;
   }
+  .save-button {
+    @include button-default-styles();
+    padding: 3px 15px;
+    display: inline-block;
+    font-size: 14px;
+  }
 }
 @mixin zindex-with-after($zindex) {
   z-index: $zindex;

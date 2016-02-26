@@ -53,7 +53,10 @@ export default React.createClass({
         return (
           <form onSubmit={handleSubmitAddress}>
             {addressFields.map((field) => renderFormField(field))}
-            <button type="submit">저장하고 사용하기</button>
+            <div className="form-box">
+              <div className="form-label"></div>
+              <button className="save-button" type="submit">Save and ship to this address</button>
+            </div>
           </form>
         );
       }
@@ -75,7 +78,7 @@ export default React.createClass({
             <div className="field-label"></div>
             <div className="field-text">{activeAddress.detail.city}</div>
           </div>
-          <div className="edit-box"><a href="javascript:;" onClick={() => this.setState({ editMode: true })}>Edit</a></div>
+          <div className="edit-box"><a onClick={() => this.setState({ editMode: true })}>Edit</a></div>
         </div>
       );
     };
