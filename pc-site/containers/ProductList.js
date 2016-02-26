@@ -32,7 +32,7 @@ const ProductList = React.createClass({
     this.doSearch(this.props);
   },
   componentWillReceiveProps(nextProps) {
-    const props = ['query', 'categoryId', 'barndId', 'pageNum'];
+    const props = ['query', 'categoryId', 'brandId', 'pageNum'];
     if (!isEqual(pick(this.props, props), pick(nextProps, props))) {
       this.doSearch(nextProps);
     }

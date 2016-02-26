@@ -9,9 +9,43 @@ export default React.createClass({
     categories: PropTypes.object.isRequired,
     genLink: PropTypes.func.isRequired,
     aggs: PropTypes.object.isRequired,
+    query: PropTypes.string,
+    brandId: PropTypes.string,
+    categoryId: PropTypes.string,
   },
   contextTypes: {
     activeLocale: PropTypes.string,
+  },
+  renderBrands() {
+    const { activeLocale } = this.context;
+    const { aggs: { brands = [] }, genLink } = this.props;
+
+    if (this.props.brandId) {
+      return (
+        <div className="product-list-category-title">
+          Selected Brand: {this.props.brandId}  // FIXME
+        </div>
+      );
+    }
+
+    const brandLink = (brandId) => {
+      return genLink(Object.assign(pick(this.props, ['query', 'categoryId']), { brandId }));
+    };
+
+    return (
+      <div>
+        <div className="product-list-category-title">
+          Related Brands
+        </div>
+        {brands.map((b) => (
+          <div key={b.id} className="product-list-category-depth1">
+            <Link to={brandLink(b.id)}>
+              {b.data.name[activeLocale]} ({b.doc_count})
+            </Link>
+          </div>
+        ))}
+      </div>
+    );
   },
   renderCategories() {
     const { activeLocale } = this.context;
@@ -69,6 +103,7 @@ export default React.createClass({
           Related Categories
         </div>
         {this.renderCategories()}
+        {this.renderBrands()}
       </div>
     );
   },
