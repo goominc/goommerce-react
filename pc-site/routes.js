@@ -24,7 +24,7 @@ export default function configure({ getAuth }) {
       <Route component={App}>
         <Route path="/" component={Home}/>
         <Route path="/accounts/reset" component={ResetPassword}/>
-        <Redirect from="/products" to="/categories/1" />
+        <Redirect from="/products" to="/categories/all" />
         <Route path="/products/:productId" component={ProductDetail}/>
         <Route path="/cart" component={Cart}/>
         <Route path="/orders" component={MyOrderContainer}/>

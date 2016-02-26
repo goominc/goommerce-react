@@ -42,7 +42,7 @@ const ProductList = React.createClass({
     const size = 30;
     props.searchProducts({
       q: query,
-      categoryId,
+      categoryId: categoryId === 'all' ? undefined : categoryId,
       brandId,
       from: (pageNum - 1) * size,
       size,
@@ -84,9 +84,12 @@ const ProductList = React.createClass({
 });
 
 export default connect(
-  (state, ownProps) => ({
-    categories: state.categories,
-    category: state.categories[ownProps.categoryId || 'tree'],
-  }),
+  (state, ownProps) => {
+    const { categoryId = 'tree' } = ownProps;
+    return {
+      categories: state.categories,
+      category: state.categories[categoryId === 'all' ? 'tree' : categoryId],
+    };
+  },
   { searchProducts }
 )(ProductList);
