@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import { get } from 'lodash';
 
 import loadEntities from '../../commons/redux/util/loadEntities';
+import i18n from '../../commons/utils/i18n';
 
 import ProductListItems from '../components/ProductListItems';
 
@@ -148,7 +149,7 @@ const Home = React.createClass({
       <div className="main-wide-container">
         <div className="main-menu-bar">
           <div className="container no-horizontal-padding">
-            <div className="category-title">CATEGORIES <a href="/products">See All > </a> </div>
+            <div className="category-title">{i18n.get('word.categories')} <a href="/products">{i18n.get('word.seeAll')} > </a> </div>
             <div className="menu-box">
               <div className="menu-item">Super Deals</div>
               <div className="menu-item">Super Market</div>

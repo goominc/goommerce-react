@@ -1,0 +1,12 @@
+{
+  "pcMain": {
+    "myMenu": {
+      "logout": "logout",
+      "myLinkshops": "myLinkshops",
+      "myOrders": "myOrders"
+    },
+    "search": {
+      "placeHolder": "I'm shopping for..."
+    }
+  }
+}

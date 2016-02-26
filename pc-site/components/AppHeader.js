@@ -21,7 +21,7 @@ export default React.createClass({
     if (auth.bearer) {
       return (
         <div className="account-menus-wrap">
-          <span>Hi, </span>
+          <span>{i18n.get('word.hi')} </span>
           <div className="my-linkshops">
             <span>{auth.email}</span>
           </div>
@@ -74,9 +74,9 @@ export default React.createClass({
     };
     const dropDown = (
       <div className="dropdown-box">
-        <div className="dropdown-menu" onClick={handleLogout}>{i18n.get('pcMain.myMenu.logout', activeLocale)}</div>
-        <div className="dropdown-menu"><Link to="/mypage">{i18n.get('pcMain.myMenu.myLinkshops', activeLocale)}</Link></div>
-        <div className="dropdown-menu"><Link to="/mypage">{i18n.get('pcMain.myMenu.myOrder', activeLocale)}</Link></div>
+        <div className="dropdown-menu" onClick={handleLogout}>{i18n.get('pcMain.myMenu.logout')}</div>
+        <div className="dropdown-menu"><Link to="/mypage">{i18n.get('pcMain.myMenu.myLinkshops')}</Link></div>
+        <div className="dropdown-menu"><Link to="/mypage">{i18n.get('pcMain.myMenu.myOrders')}</Link></div>
       </div>
     );
 
@@ -105,11 +105,11 @@ export default React.createClass({
               <img className="header-logo" src="http://www.linkshops.com/skin/frontend/linkshops2nd/default/images/logo.png" alt="Linkshops"/>
             </Link>
             <div className="header-search-box">
-              <input ref="searchQuery" placeholder="I'm shopping for..." />
+              <input ref="searchQuery" placeholder={i18n.get('pcMain.search.placeHolder')} />
               <div className="header-search-category-box">
                 <div className="search-divider"></div>
                 <div className="arrow-down"></div>
-                All Categories
+                {i18n.get('word.allCategories')}
                 <div className="search-dropdown-box">
                   <div className="search-dropdown-item">C1</div>
                 </div>
@@ -122,7 +122,7 @@ export default React.createClass({
                 <div className="header-mymenu-cart">
                   <div className="cart-icon"></div>
                   <span className="cart-count">{cartCount}</span>
-                  <span>Cart</span>
+                  <span>{i18n.get('word.cart')}</span>
                 </div>
               </Link>
               <div className="header-mymenu-account">
