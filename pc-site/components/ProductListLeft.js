@@ -9,6 +9,7 @@ export default React.createClass({
     categories: PropTypes.object.isRequired,
     genLink: PropTypes.func.isRequired,
     aggs: PropTypes.object.isRequired,
+    brand: PropTypes.object,
     query: PropTypes.string,
     brandId: PropTypes.string,
     categoryId: PropTypes.string,
@@ -20,10 +21,10 @@ export default React.createClass({
     const { activeLocale } = this.context;
     const { aggs: { brands = [] }, genLink } = this.props;
 
-    if (this.props.brandId) {
+    if (this.props.brand) {
       return (
         <div className="product-list-category-title">
-          Selected Brand: {this.props.brandId}  // FIXME
+          Selected Brand: {this.props.brand.data.name[activeLocale]}
         </div>
       );
     }

@@ -62,12 +62,12 @@ const ProductList = React.createClass({
     return path;
   },
   render() {
-    const { products = [], aggs = {} } = this.state;
+    const { products = [], aggs = {}, brand } = this.state;
     const path = this.breadCrumbPath();
 
     return (
       <div className="container-table">
-        <ProductListLeft {...this.props} aggs={aggs}/>
+        <ProductListLeft {...this.props} aggs={aggs} brand={brand}/>
         <div className="product-list-right-box">
           <Breadcrumb path={path} />
           <div className="product-list-search-box"></div>
