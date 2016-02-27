@@ -1,87 +1,31 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { ApiAction, resetError, logout } from '../redux/actions';
-const { loadCartIfEmpty, login, signup } = ApiAction;
+import { ApiAction, resetError, toggleMenu, toggleSignRegister } from '../redux/actions';
+const { loadCartIfEmpty, login, signup, logout } = ApiAction;
 
 import AppHeader from '../components/AppHeader';
 import CommonFooter from '../components/CommonFooter';
 import LeftSideBar from '../components/LeftSideBar';
+import SignRegister from '../components/SignRegister';
 
 const App = React.createClass({
   propTypes: {
     children: PropTypes.node,
+    loadCartIfEmpty: PropTypes.func.isRequired,
+    toggleMenu: PropTypes.func.isRequired,
+    toggleSignRegister: PropTypes.func.isRequired,
   },
   contextTypes: {
     router: PropTypes.object.isRequired,
   },
-  getInitialState() {
-    return {
-      menuState: {
-        show: false,
-        showSign: {
-          show: false,
-          type: 'signin',
-        },
-      },
-      logoType: {
-        isDefaultLogo: false,
-        titleText: 'App & Accesories',
-      },
-    };
-  },
   componentDidMount() {
     this.props.loadCartIfEmpty();
   },
-  toggleMenu() {
-    this.setState({
-      menuState: {
-        show: !this.state.menuState.show,
-        showSign: {
-          show: this.state.menuState.showSign.show,
-          type: this.state.menuState.showSign.type,
-        },
-      },
-    });
-  },
-  showSignin() {
-    this.setState({
-      menuState: {
-        show: this.state.menuState.show,
-        showSign: {
-          show: true,
-          type: 'signin',
-        },
-      },
-    });
-  },
-  showRegister() {
-    this.setState({
-      menuState: {
-        show: this.state.menuState.show,
-        showSign: {
-          show: true,
-          type: 'register',
-        },
-      },
-    });
-  },
-  hideSignRegister() {
-    this.setState({
-      menuState: {
-        show: this.state.menuState.show,
-        showSign: {
-          show: false,
-          type: 'signin',
-        },
-      },
-    });
-  },
   _login(email, password) {
-    // TODO show loading gif
     this.props.login(email, password).then(
       () => {
-        this.hideSignRegister();
+        this.props.toggleSignRegister(false, 'sign');
         return this.context.router.push('/');
       },
       () => alert('Invalid username/password.')
@@ -90,37 +34,39 @@ const App = React.createClass({
   _signup(params) {
     this.props.signup(params).then(
       () => {
-        this.hideSignRegister();
+        this.props.toggleSignRegister(false, 'sign');
         return this.context.router.push('/');
       },
       (err) => alert(err.msg)
     );
   },
   _logout() {
-    this.props.logout();
+    this.props.logout().then(
+      () => window.location.href = '/'
+    );
   },
   render() {
-    const { children, auth, cart } = this.props;
+    const { children, auth, cart, header, showMenu, toggleMenu, showSign, toggleSignRegister } = this.props;
     let fixedStyle = {};
-    if (this.state.showSide) {
+    if (showMenu) {
       fixedStyle = {
         position: 'fixed',
       };
     }
     return (
       <div id="" style={fixedStyle}>
-        <AppHeader toggle={this.toggleMenu} cart={cart} logoType={this.state.logoType}/>
+        <AppHeader toggle={toggleMenu} cart={cart} header={header} />
         {children}
         <CommonFooter />
-        <LeftSideBar menuState={this.state.menuState} toggle={this.toggleMenu} auth={auth} cart={cart} login={this._login} register={this._signup} logout={this._logout}
-          showSignin={this.showSignin} showRegister={this.showRegister} hideSignRegister={this.hideSignRegister}
-        />
+        <LeftSideBar show={showMenu} toggle={toggleMenu} toggleSignRegister={toggleSignRegister} auth={auth} cart={cart} logout={this._logout} />
+        <SignRegister show={showSign} toggleSignRegister={toggleSignRegister} login={this._login} register={this._signup} />
       </div>
     );
   },
 });
 
 export default connect(
-  state => ({ auth: state.auth, cart: state.cart, error: state.errorHandler.error }),
-  { loadCartIfEmpty, resetError, login, signup, logout }
+  state => ({ auth: state.auth, cart: state.cart, error: state.errorHandler.error,
+    showMenu: state.menu.showMenu, showSign: state.sign, header: state.header }),
+  { loadCartIfEmpty, resetError, login, signup, logout, toggleMenu, toggleSignRegister }
 )(App);

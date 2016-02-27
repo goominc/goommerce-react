@@ -4,10 +4,8 @@ import LinkedStateMixin from 'react-addons-linked-state-mixin';
 
 export default React.createClass({
   propTypes: {
-    show: PropTypes.object.isRequired,
-    hide: PropTypes.func.isRequired,
-    toggleSignin: PropTypes.func.isRequired,
-    toggleRegister: PropTypes.func.isRequired,
+    show: PropTypes.object,
+    toggleSignRegister: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired,
     register: PropTypes.func.isRequired,
   },
@@ -29,16 +27,17 @@ export default React.createClass({
     });
   },
   _hide() {
-    this.props.hide();
+    this.props.toggleSignRegister(false, 'sign');
   },
   _toggleSignin() {
-    this.props.toggleSignin();
+    this.props.toggleSignRegister(true, 'sign');
   },
   _toggleRegister() {
-    this.props.toggleRegister();
+    this.props.toggleSignRegister(true, 'register');
   },
   render() {
     const { show } = this.props;
+
     let mainStyle = {
       top: '100%',
       visibility: 'hidden',
@@ -57,7 +56,7 @@ export default React.createClass({
     let registerClassName = '';
     let signStyle = {};
     let registerStyle = {};
-    if (show.type === 'signin') {
+    if (show.flag === 'sign') {
       signClassName = 'tab-actived';
       signStyle = {
         display: 'block',
@@ -164,12 +163,6 @@ export default React.createClass({
 
                       <div className="ms-msg-error">Passwords are not the same</div>
                     </div>
-                    <div className="form-group">
-                      <input type="text" className="check-code" placeholder="" name="imagePassword" data-verify-type="checkCode" /><img src="http://captcha.alibaba.com/get_img?identity=aliexpress.com&amp;sessionid=7b2202b33fb24033a112363b1bc1e7fa&amp;kjtype=b2b_default&amp;t=0.43626335402950644" />
-                      <div className="ms-msg-error">Please enter valid Code</div>
-                    </div>
-
-                    <div className="agreement-box"><a href="http://news.alibaba.com/article/detail/help/100453670-1-alibaba.com-free-membership-agreement.html">Read Aliexpress.com Free Membership Agreement</a></div>
                     <div className="form-group">
                       <button type="button" onClick={this.handleRegister} className="ms-button-primary" data-stat="joininfree_page::joininfree_create::joininfree_create_button">Agree &amp; Create My Account</button>
                     </div>

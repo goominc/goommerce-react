@@ -15,27 +15,23 @@ const Home = React.createClass({
         <div className="promotion">
           <section className="promotion-block categories">
             <header>
-              <Link to="/category">
+              <Link to="/categoryList">
                 All Categories
               </Link>
             </header>
             <article>
               <ul className="flex-box">
                 <li className="apparel-accessories">
-                  <a href="/category?cateId=10001">Apparel &amp; Accessories
-                  </a>
+                  <Link to="/categoryList/10001">Apparel &amp; Accessories</Link>
                 </li>
                 <li className="jewelry">
-                  <a href="/category?cateId=10016">Jewelry
-                  </a>
+                  <Link to="/categoryList/10016">Jewelry</Link>
                 </li>
                 <li className="electronics">
-                  <a href="/category?cateId=10005">Electronics
-                  </a>
+                  <Link to="/categoryList/10005">Electronics</Link>
                 </li>
                 <li className="beauty-health">
-                  <a href="/category?cateId=10004">Beauty &amp;Health
-                  </a>
+                  <Link to="/categoryList/10004">Beauty &amp;Health</Link>
                 </li>
               </ul>
             </article>

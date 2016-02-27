@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+
+import { ApiAction, setHeader } from '../redux/actions';
+const { loadProduct } = ApiAction;
 
 import ProductDetailPage from '../components/ProductDetailPage';
-//import ProductDetailBanner from '../components/ProductDetailBanner';
 
 const ProductDetail = React.createClass({
+  componentDidMount() {
+    this.props.setHeader(false, true, true, 'Detail');
+  },
   render() {
     return (
       <ProductDetailPage />
@@ -11,4 +17,7 @@ const ProductDetail = React.createClass({
   },
 });
 
-export default ProductDetail;
+export default connect(
+  undefined,
+  { loadProduct, setHeader }
+)(ProductDetail);

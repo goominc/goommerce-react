@@ -3,16 +3,14 @@ import { Link } from 'react-router';
 
 
 export default React.createClass({
-  /*propTypes: {
-
-  },*/
-  render() {
-
-    return (
-      <section className="shopcart-list" id="shopcart-list">
-        <div className="shipto bb p-24 mb-24">Ship my order(s) to
-          <span className="ship-to" id="ship-to">South Korea<i className="ms-icon icon-arrow-right fr"></i></span>
-        </div>
+  propTypes: {
+    cart: PropTypes.object.isRequired,
+  },
+  renderCart() {
+    const { cart } = this.props;
+    //if (cart && cart.productVariant) {
+    if (true) {
+      return (
           <article id="seller-cart-220935154" className="seller-products">
             <div className="seller bt p-24 pt-24 pb-24">
               <a href="/store/storeHome.htm?sellerAdminSeq=220935154">
@@ -57,7 +55,7 @@ export default React.createClass({
                     <div className="trim">
                       <span className="trim ms-numberic ms-numberic-8908340955" data-shop-cartid="8908340955">
                         <a className="ms-minus disabled"><i className="ms-icon icon-minus"></i></a>
-                        <input type="number" id="quantity-8908340955" min="1" value="1" />
+                        <input type="number" id="quantity-8908340955" min="1" />
                         <a className="ms-plus"><i className="ms-icon icon-plus"></i></a>
                       </span>
                     </div>
@@ -100,64 +98,50 @@ export default React.createClass({
               </dl>
             </div>
           </article>
-          <article id="seller-cart-buyall" className="seller-products">
-            <div className="seller-cart-buyall seller-costs bt p-24 pb-24">
-              <dl className="seller-costs-subtotal mt-24 clearfix">
-                <dt>Subtotal: (2 items)</dt>
-                <dd><span>US $24.74</span></dd>
-              </dl>
-              <dl className="seller-costs-shipping mt-16 clearfix">
-                <dt>Shipping&nbsp;:</dt>
-                <dd><span>US $0.84</span></dd>
-              </dl>
+          );
+    }
+  },
+
+  render() {
+    return (
+      <section className="shopcart-list" id="shopcart-list">
+        <div className="shipto bb p-24 mb-24">Ship my order(s) to
+          <span className="ship-to" id="ship-to">South Korea<i className="ms-icon icon-arrow-right fr"></i></span>
+        </div>
+        {this.renderCart()}
+        <article id="seller-cart-buyall" className="seller-products">
+          <div className="seller-cart-buyall seller-costs bt p-24 pb-24">
+            <dl className="seller-costs-subtotal mt-24 clearfix">
+              <dt>Subtotal: (2 items)</dt>
+              <dd><span>US $24.74</span></dd>
+            </dl>
+            <dl className="seller-costs-shipping mt-16 clearfix">
+              <dt>Shipping&nbsp;:</dt>
+              <dd><span>US $0.84</span></dd>
+            </dl>
+          </div>
+          <div className="accounts bt bb p-24 pt-24 pb-24 clearfix">
+            <div className="total">
+              <span>Total&nbsp;:</span>
+              <span className="mt-16 price">US $25.58</span>
             </div>
-            <div className="accounts bt bb p-24 pt-24 pb-24 clearfix">
-              <div className="total">
-                <span>Total&nbsp;:</span>
-                <span className="mt-16 price">US $25.58</span>
-              </div>
-              <div className="ui-button ui-button-main buyall  ">Buy All</div>
-            </div>
-          </article>
-          <form id="submit-for-seller-create-order" method="post" action="/order/createNewOrderForCombine.htm">
-              <input name="_csrf_token_" type="hidden" value="80o95z53ypzs" />
-              <input type="hidden" data-role="seller-shopcart-ids" name="availableProductShopcartIds" value="" />
-          </form>
-          <form id="submit-for-delete" method="post" action="/shopcart/detail.htm">
-              <input name="_csrf_token_" type="hidden" value="80o95z53ypzs" />
-              <input type="hidden" name="action" value="/shopcart/mobi_shopcart_action" />
-              <input type="hidden" data-role="shopcart-id" name="shopcartId" value="" />
-              <input type="hidden" name="event_submit_do_delete_shopcart" value="anything" />
-          </form>
-          <form id="submit-for-delete-all" method="post" action="/shopcart/detail.htm">
-              <input name="_csrf_token_" type="hidden" value="80o95z53ypzs" />
-              <input type="hidden" name="action" value="/shopcart/mobi_shopcart_action" />
-              <input type="hidden" name="event_submit_do_delete_all_shopcart" value="anything" />
-          </form>
-          <form id="submit-for-update-quantity" method="post" action="/shopcart/detail.htm">
-              <input name="_csrf_token_" type="hidden" value="80o95z53ypzs" />
-              <input type="hidden" name="action" value="/shopcart/mobi_shopcart_action" />
-              <input type="hidden" data-role="shopcart-id" name="shopcartId" value="" />
-              <input type="hidden" data-role="quantity" name="quantity" value="" />
-              <input type="hidden" name="event_submit_do_update_quantity" value="anything" />
-          </form>
-          <form id="submit-for-update-freight" method="post" action="/shopcart/detail.htm">
-              <input name="_csrf_token_" type="hidden" value="80o95z53ypzs" />
-              <input type="hidden" name="action" value="/shopcart/mobi_shopcart_action" />
-              <input type="hidden" data-role="shopcart-id" name="shopcartId" value="" />
-              <input type="hidden" data-role="freight" name="logisticService" value="" />
-              <input type="hidden" name="event_submit_do_update_logistic_service" value="anything" />
-          </form>
-          <form id="submit-for-update-country" method="post" action="/shopcart/detail.htm">
-              <input name="_csrf_token_" type="hidden" value="80o95z53ypzs" />
-              <input type="hidden" name="action" value="/shopcart/mobi_shopcart_action" />
-              <input type="hidden" data-role="country-code" name="countryCode" value="" />
-              <input type="hidden" name="event_submit_do_update_buyer_country" value="anything" />
-          </form>
-          <form id="submit-for-buy-all" method="post" action="/order/createNewOrderForCombine.htm">
-              <input name="_csrf_token_" type="hidden" value="80o95z53ypzs" />
-              <input type="hidden" data-role="seller-shopcart-ids" name="availableProductShopcartIds" value="" />
-          </form>
+            <div className="ui-button ui-button-main buyall  ">Buy All</div>
+          </div>
+        </article>
+        <form id="submit-for-seller-create-order" method="post" action="/order/createNewOrderForCombine.htm">
+        </form>
+        <form id="submit-for-delete" method="post" action="/shopcart/detail.htm">
+        </form>
+        <form id="submit-for-delete-all" method="post" action="/shopcart/detail.htm">
+        </form>
+        <form id="submit-for-update-quantity" method="post" action="/shopcart/detail.htm">
+        </form>
+        <form id="submit-for-update-freight" method="post" action="/shopcart/detail.htm">
+        </form>
+        <form id="submit-for-update-country" method="post" action="/shopcart/detail.htm">
+        </form>
+        <form id="submit-for-buy-all" method="post" action="/order/createNewOrderForCombine.htm">
+        </form>
       </section>
     );
   },

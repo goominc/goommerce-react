@@ -1,0 +1,349 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the order page.
+// -----------------------------------------------------------------------------
+#place-order {
+  border-bottom: 1px solid #CCC;
+  background-color: #f4f4f4
+}
+#place-order h2 {
+  height: 35px;
+  line-height: 35px;
+  font-size: 16px;
+  padding: 7px 10px;
+  margin-bottom: 0
+}
+.order-panel {
+  padding: 10px 15px 0;
+  position: relative
+}
+.order-panel:before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 4px;
+  display: block;
+  background: #d6d6d6;
+  background: -moz-linear-gradient(top, rgba(214, 214, 214, 1) 0, rgba(242, 242, 242, 1) 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, rgba(214, 214, 214, 1)), color-stop(100%, rgba(242, 242, 242, 1)));
+  background: -webkit-linear-gradient(top, rgba(214, 214, 214, 1) 0, rgba(242, 242, 242, 1) 100%);
+  background: -o-linear-gradient(top, rgba(214, 214, 214, 1) 0, rgba(242, 242, 242, 1) 100%);
+  background: -ms-linear-gradient(top, rgba(214, 214, 214, 1) 0, rgba(242, 242, 242, 1) 100%);
+  background: linear-gradient(to bottom, rgba(214, 214, 214, 1) 0, rgba(242, 242, 242, 1) 100%);
+  content: ".";
+  text-indent: -999px
+}
+.order-panel h3 {
+  margin-bottom: 0;
+  padding-bottom: 6px;
+  position: relative;
+  z-index: 0;
+  height: 24px;
+  line-height: 24px;
+  overflow: hidden;
+  font-size: 12px;
+  font-weight: 700
+}
+.order-section {
+  padding: 15px 0;
+  border-top: 1px dashed #CCC
+}
+.order-section-summary {
+  padding: 15px 0;
+  border-top: 1px solid #CCC
+}
+.order-shipping-address {
+  line-height: 1.5
+}
+.order-shipping-address .name {
+  font-size: 13px
+}
+.order-shipping-address p {
+  margin: 3px 0 10px;
+  color: #666
+}
+#change-address {
+  padding: 0;
+  font-size: 13px;
+  color: #06C
+}
+.order-panel h3 {
+  white-space: nowrap
+}
+.order-panel h3 .order-reduction, .order-panel h3 a {
+  font-weight: 400;
+  z-index: 1
+}
+.order-reduction {
+  float: right;
+  border-left: 10px solid #F8F8F8;
+  z-index: 2;
+  position: relative;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAAXCAIAAACqH45PAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RUIxQUJBOThCOTZEMTFFMzk3MDU4M0Y2Qzc4NDY5NkYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RUIxQUJBOTlCOTZEMTFFMzk3MDU4M0Y2Qzc4NDY5NkYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFQjFBQkE5NkI5NkQxMUUzOTcwNTgzRjZDNzg0Njk2RiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFQjFBQkE5N0I5NkQxMUUzOTcwNTgzRjZDNzg0Njk2RiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PkKTF4AAAAGwSURBVHja7NyxSkJRHMfx/7leTbJFDJSCqHBpaK0lGhqCnqLX6BmCtqC1B2iItggyaCmHxggiIYOWQgcV9Oq9/1ISKo0SjY75/eAgXBT5n3N/93+ueozmLyWXkVpJZparDSkdbcWqzxKJiYjK4BnT3+t/4zMBfzP1mM09c+X2WLyKpNf86aXC3sbE47Umklord4+b/mtMYIHIens7Q017D6xGTeZWJb1evjrQm4uxZLweBJ/iRb8Ysc52SfWbQW0fZ6iAgSTgaJ1KrqQWdXbFLzz4+WwkIr6E3jdT2nM9SCL8T8aMytxWi9cxbj0+X9zfjN6dRKIxiU8G7cTRH1wFlAUaRqcdYrZbwKmc7oSyh64TvK4NjXGoCAB7O6xw7iw8lQhMqHn/iYsIAJs7LHGj0koragHA+sAyDo0VgOEILMPXegCGJbDorgAMz5IQAAgsACCwABBYAEBgAQCBBYDAAgAruVKvNh/dKNvlAbAqsJzUgnqV1vMPv3k37O4JwLbA0vKT+l7nn59JKwDWBVZQvJeGJ+Fx0UBosQBYzHjnu15mWwKVkCsdm7gDgD1eBBgAKrOEpvEkQFMAAAAASUVORK5CYII=') no-repeat
+}
+.order-reduction span {
+  display: inline-block;
+  height: 23px;
+  padding: 0 17px 0 11px;
+  color: #FFF;
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAXCAIAAABiVjOwAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6Q0E0NzBGMjE4QkFCMTFFMjkzMzVFMkQ2RERFOTQxQjAiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6Q0E0NzBGMjI4QkFCMTFFMjkzMzVFMkQ2RERFOTQxQjAiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpDQTQ3MEYxRjhCQUIxMUUyOTMzNUUyRDZEREU5NDFCMCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpDQTQ3MEYyMDhCQUIxMUUyOTMzNUUyRDZEREU5NDFCMCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgxCcsAAAAG9SURBVHjalJS9TxRREMBn3n7dfoBCyIaQa6gMiYmaSGFjR0FBR2ltQoF/gd1VFBTWUJP4H9hjc4UmFDYkhkjDnR5wHLvHfrz3hrm7Zzw55NbJFG+z+9vf7GRmMdl5CkUKk4EIsoAyA8fjA8ZPcHNPzC/zHUHXbcqTu1mk1O9S+gu8QCcdIl1+/Sy/HIzeJtCLJh0kiwG21rC2m+56A/MeCDYLw0xWxAmyj/4j9/U79Od6L7bKcFFIAMu+nyEaJNoB3Vypww8q7ZweH2klbfq3x4TtohvqT+/F7srC8cfLZ2+VBaJIHmTYxZW4ocyS+Ns+ErWebwg3eJAxmANhTCiWmg0//3k2tzqNMaTWTqi82YUfzeL7YbuswgyFJDwpoT4r+hLSNK3ADDkF4Pgz8/6AsaFySFlyE7TjVPQAckcsKwNQSlX2CJAlzyxEUVTVY1lwfnHOU1Wr1ap6tIIgCCKo2OthKAVhGIr/YnjY+evNMA42kXNq8ARoaRixuEJFf7rHbVEU//bcXP71P+D9uQ/R113MeoZRnZM7dY9PNl/SiOl0MTf7Y+Pj+rgHjezPWTCbJ87qK3z5ZvTMrQADAD9IzLqbsk7HAAAAAElFTkSuQmCC') 100% 0 no-repeat
+}
+.order-product {
+  font-size: 12px
+}
+.order-product-info dt {
+  float: left
+}
+.order-product-info .order-image {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  width: 80px;
+  height: 80px;
+  border: 1px solid #DDD
+}
+.order-product-info .order-image img {
+  vertical-align: middle;
+  max-width: 80px;
+  max-height: 80px
+}
+.order-product-info dd {
+  margin-left: 90px;
+  font-size: 14px
+}
+.order-product-sku {
+  margin-top: 10px
+}
+.order-product-options {
+  color: #666
+}
+.order-product-cost dt, .order-product-quantity dt, .order-product-shipping dt, .order-product-sku dt {
+  float: left;
+  width: 60px;
+  line-height: 25px;
+  min-height: 22px;
+  font-weight: 700
+}
+.order-product-cost dd, .order-product-quantity dd, .order-product-shipping dd, .order-product-sku dd {
+  margin-bottom: 15px;
+  line-height: 25px;
+  min-height: 22px
+}
+.order-product-price {
+  margin: 10px 0;
+  line-height: 25px
+}
+.order-product-quantity .product-quantity {
+  display: inline-block;
+  height: 25px;
+  width: 60px;
+  margin: 0 3px;
+  padding: 0 5px;
+  border: 1px solid #DDD;
+  text-align: right;
+  line-height: 25px;
+  background: #FFF
+}
+.product-unit {
+  color: #666;
+  vertical-align: top
+}
+.order-product-quantity .product-quantity-error {
+  border-color: #FF614D;
+  text-align: right;
+  overflow: hidden;
+  background-color: #FFEFEF
+}
+.product-error-message {
+  display: none;
+  height: 27px;
+  line-height: 27px;
+  color: #FE3F2F
+}
+.order-product-shipping dt {
+  width: 61px
+}
+.order-product-shipping dd {
+  margin-left: 63px
+}
+.shipping-box .cost b {
+  font-weight: 400
+}
+.change-coupon, .shipping-box .shipping-selected {
+  border: 1px solid #E0E0E0;
+  color: #666;
+  height: 25px;
+  padding: 0 20px 0 5px;
+  line-height: 25px;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+  background: #FFF
+}
+.change-coupon:after, .shipping-box .shipping-selected:after {
+  position: absolute;
+  z-index: 0;
+  content: ".";
+  display: block;
+  right: 5px;
+  top: 50%;
+  background-color: #CCC;
+  width: 0;
+  height: 0;
+  margin-top: -2px;
+  overflow: hidden;
+  border: 5px solid #FFF;
+  border-top-color: #CCC
+}
+.shipping-box .shipping-content {
+  border-top: 1px solid #E0E0E0;
+  border-bottom: 1px solid #E0E0E0;
+  margin-top: -1px;
+  background-color: #F8F8F8;
+  position: absolute;
+  z-index: -1;
+  height: 0;
+  width: 100%;
+  left: 0;
+  overflow: hidden;
+  opacity: 0;
+  background: #FFF
+}
+.shipping-box .shipping-list {
+  color: #666;
+  padding: 10px 0
+}
+.shipping-box .shipping-list .shipping-item {
+  line-height: 35px;
+  padding: 0 10px
+}
+.shipping-box .shipping-list .shipping-item:active {
+  background-color: #CCC
+}
+.shipping-box .shipping-list .shipping-item label {
+  display: block
+}
+.shipping-box .shipping-list .shipping-item .shipping-radio {
+  vertical-align: baseline;
+  margin-right: 4px
+}
+.shipping-box .selected-price {
+  margin-right: 3px
+}
+.shipping-box .shipping-cost, .shipping-box .shipping-time {
+  float: right;
+  margin-left: 10px
+}
+.shipping-box .shipping-action {
+  text-align: center;
+  line-height: 25px;
+  height: 25px;
+  padding-bottom: 15px
+}
+.shipping-box .shipping-cancel, .shipping-box .shipping-ok {
+  height: 25px;
+  padding: 0 10px;
+  width: 45%;
+  font-size: 14px;
+  margin: 0 5px
+}
+.shipping-box-active .shipping-selected {
+  border-bottom: 1px solid #FFF;
+  z-index: 2
+}
+.shipping-box-active .shipping-content {
+  opacity: 1;
+  z-index: 1;
+  height: auto
+}
+.shipping-info {
+  margin-top: 5px;
+  color: #666;
+  line-height: 1.5
+}
+.order-product-message dt .optional {
+  color: #666
+}
+.order-product-message dt {
+  margin-bottom: 5px
+}
+.order-product-message .text-wrap {
+  padding: 5px;
+  border: 1px solid #DDD;
+  background: #FFF
+}
+.order-product-cpf .text-wrap {
+  margin-bottom: 12px
+}
+.order-product-message textarea {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  line-height: 1.5;
+  resize: none
+}
+.order-product-cpf .cpf-error {
+  margin-bottom: 12px;
+  color: #e63e04;
+  font-size: 12px;
+  line-height: 1.5
+}
+.order-product-cpf .cpf-explain {
+  margin-top: 12px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #7d7d7d
+}
+.order-product-checkout {
+  padding: 10px 0
+}
+.order-product-checkout li {
+  list-style: none;
+  height: 25px;
+  margin: 2px 0;
+  line-height: 25px
+}
+.order-product-checkout .cost b {
+  font-weight: 400
+}
+.order-product-checkout .checkout-total .cost b {
+  font-weight: 700;
+  color: #BD1A1D
+}
+.order-product-checkout .checkout-item {
+  float: left;
+  clear: both
+}
+.order-product-checkout li.ae-promotion {
+  margin-top: 4px
+}
+.order-product-checkout .ae-promotion .checkout-item {
+  float: left;
+  line-height: 1;
+  max-width: 250px;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -ms-box-align: center
+}
+.order-product-checkout .cost {
+  position: absolute;
+  right: 14px
+}
+#order-summary {
+  padding: 0 15px 35px;
+  position: relative
+}
+#order-summary h3 {
+  height: 33px;
+  margin: 0 -15px;
+  padding: 0 15px;
+  line-height: 33px;
+  border-top: 3px solid #DDD;
+  font-size: 13px;
+  color: #FFF;
+  background: #666
+}
+

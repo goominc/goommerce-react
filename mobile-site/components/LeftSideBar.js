@@ -1,37 +1,26 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-import SignRegister from './SignRegister';
-
 export default React.createClass({
   propTypes: {
-    menuState: PropTypes.object.isRequired,
+    show: PropTypes.bool,
     toggle: PropTypes.func.isRequired,
+    toggleSignRegister: PropTypes.func.isRequired,
     auth: PropTypes.object.isRequired,
     cart: PropTypes.object.isRequired,
-    login: PropTypes.func.isRequired,
-    register: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired,
   },
   _toggle() {
     this.props.toggle();
-  },
-  _login(email, password) {
-    this.props.login(email, password);
-  },
-  _register(params) {
-    this.props.register(params);
   },
   _logout() {
     this.props.logout();
   },
   _showSignin() {
-    this.props.showSignin();
+    this.props.toggleSignRegister(true, 'sign');
   },
   _showRegister() {
-    this.props.showRegister();
-  },
-  _hideSignRegister() {
-    this.props.hideSignRegister();
+    this.props.toggleSignRegister(true, 'register');
   },
   renderAuth() {
     const { auth } = this.props;
@@ -67,15 +56,15 @@ export default React.createClass({
     }
   },
   render() {
-    const { menuState } = this.props;
+    const { show } = this.props;
     const showStyle = {
-      display: menuState.show ? 'block' : 'none',
+      display: show ? 'block' : 'none',
     };
-    const sideClassName = 'ms-drawer' + (menuState.show ? ' open' : '');
+    const sideClassName = 'ms-drawer' + (show ? ' open' : '');
 
     return (
       <div className="ms-drawer-wrapper">
-        <div className="ms-drawer-mask" style={showStyle} onClick={this._toggle}><span className="ms-drawer-back"></span></div>
+        <div className="ms-drawer-mask" style={showStyle} onClick={this.props.toggle}><span className="ms-drawer-back"></span></div>
 
         <section className={sideClassName}>
           <div className="ms-drawer-loginInfo">
@@ -84,24 +73,22 @@ export default React.createClass({
           </div>
 
           <ul className="drawer-guide">
-            <li className="drawer-home"><a href="http://m.aliexpress.com/"><i className="ms-icon icon-home"></i><span>Home</span></a></li>
+            <li className="drawer-home"><Link to="/"><i className="ms-icon icon-home"></i><span>Home</span></Link></li>
             <li className="drawer-myOrder"><a className="drawer-myOrder" href="http://m.aliexpress.com/downloadapp/myOrder.htm"><i className="ms-icon icon-order"></i><span>My Orders</span></a></li>
-            <li className="drawer-cart"><a href="http://m.aliexpress.com/shopcart/detail.htm"><i className="ms-icon icon-shippingcart"></i><span>Cart</span></a></li>
+            <li className="drawer-cart"><Link to="/cart"><i className="ms-icon icon-shippingcart"></i><span>Cart</span></Link></li>
             <li className="drawer-wishList"><a href="http://m.aliexpress.com/myaccount/wishlist/detail.htm"><i className="ms-icon icon-wishlist"></i><span>Wish List</span></a></li>
 
             <li className="drawer-language"><i className="ms-icon icon-translation"></i><b>Language</b><span>English</span></li>
-            <li className="drawer-download"><a href="http://m.aliexpress.com/d.do?p=a4&amp;ck=in_msite_download"><i className="ms-icon icon-downward"></i><span>Download APP</span></a></li>
+            {/* <li className="drawer-download"><a href="http://m.aliexpress.com/d.do?p=a4&amp;ck=in_msite_download"><i className="ms-icon icon-downward"></i><span>Download APP</span></a></li>*/}
           </ul>
           <ul className="drawer-feature">
-            <li className="drawer-help"><a href="http://activities.aliexpress.com/h5_help_center.php"><span>Help Center</span></a></li>
+            {/* <li className="drawer-help"><a href="http://activities.aliexpress.com/h5_help_center.php"><span>Help Center</span></a></li>
             <li className="drawer-feedback"><a href="http://m.aliexpress.com/app_feedback_form/msite.html"><span>Feedback</span></a></li>
-            <li className="drawer-questionnaire"><a href="https://www.surveymonkey.com/s/8LNTJFB"><span>Questionnaire</span></a></li>
+            <li className="drawer-questionnaire"><a href="https://www.surveymonkey.com/s/8LNTJFB"><span>Questionnaire</span></a></li>*/}
             {this.renderLogout()}
           </ul>
 
         </section>
-
-        <SignRegister show={menuState.showSign} hide={this._hideSignRegister} toggleSignin={this._showSignin} toggleRegister={this._showRegister} login={this._login} register={this._register}/>
       </div>
 
     );

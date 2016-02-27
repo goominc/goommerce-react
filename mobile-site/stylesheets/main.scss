@@ -33,8 +33,10 @@
   'pages/category',
   'pages/productlist',
   'pages/productdetail',
-  'pages/cart';
+  'pages/cart',
+  'pages/order';
 
 // 7. Themes
 @import
-  'themes/default';
+  'themes/default',
+  'themes/owlCarousel';

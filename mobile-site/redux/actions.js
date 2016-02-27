@@ -16,8 +16,32 @@ export function setCheckoutStep(step) {
   };
 }
 
-export function logout() {
+export function toggleMenu() {
   return {
-    type: 'LOGOUT',
+    type: 'TOGGLE_MENU',
+  };
+}
+
+export function toggleSignRegister(show, flag) {
+  return {
+    type: 'TOGGLE_SIGN_REGISTER',
+    show,
+    flag,
+  };
+}
+
+export function setHeader(showLogo, showSearch, showCart, titleText) {
+  return {
+    type: 'SET_HEADER',
+    showLogo,
+    showSearch,
+    showCart,
+    titleText,
+  };
+}
+
+export function changeViewType() {
+  return {
+    type: 'CHANGE_LIST_VIEW',
   };
 }
