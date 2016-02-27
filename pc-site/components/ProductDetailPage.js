@@ -50,7 +50,7 @@ export default React.createClass({
     if (!product || !variantAttributes) {
       return (<div></div>);
     }
-    const { activeCurrency } = this.context;
+    const { activeCurrency, activeLocale } = this.context;
     const renderThumbnail = (image) => {
       let className = '';
       if (image.url === activeImageUrl) {
@@ -144,6 +144,10 @@ export default React.createClass({
             <div className="normal-field-box">
               <div className="field-label">Quantity: </div>
               <div className="field-content"><input type="number" defaultValue="1" min="1" ref="quantity" /></div>
+            </div>
+            <div className="normal-field-box">
+              <div className="field-label">Seller: </div>
+              <div className="field-content">{_.get(product, 'brand.data.name')[activeLocale]}</div>
             </div>
             <div className="normal-field-box">
               <div className="field-label"></div>
