@@ -15,9 +15,13 @@ export default React.createClass({
     if (!pagination || !genLink) {
       return (<div></div>);
     }
+    const pageCnt = Math.ceil(pagination.total / pagination.size);
+    if (pageCnt < 2) {
+      // 2016. 02. 28. [heekyu] do not show if only one page
+      return (<div></div>);
+    }
     const beforeCnt = 2;
     const totalCnt = 7;
-    const pageCnt = Math.ceil(pagination.total / pagination.size);
     let start = Math.max(0, Math.min(pageNum - 1 - beforeCnt, pageCnt - totalCnt)) + 1;
     let end = Math.min(pageCnt, start + totalCnt - 1);
     if (start === 2) start--;
