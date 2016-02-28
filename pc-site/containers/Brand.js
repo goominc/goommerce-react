@@ -1,9 +1,11 @@
 import React, { PropTypes } from 'react';
+import { defaults } from 'lodash';
 
 import ProductList from './ProductList';
 
 export default React.createClass({
   propTypes: {
+    location: PropTypes.object.isRequired,
     params: PropTypes.object.isRequired,
   },
   render() {
@@ -12,8 +14,10 @@ export default React.createClass({
       pathname: `/brands/${brandId}${pageNum ? `/${pageNum}` : ''}`,
       query: { categoryId },
     });
+    const { params, location } = this.props;
+    const query = defaults({}, params, location.query);
     return (
-      <ProductList {...this.props.params} genLink={genLink}/>
+      <ProductList {...query} genLink={genLink}/>
     );
   },
 });

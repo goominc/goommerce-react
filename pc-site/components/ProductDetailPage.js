@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 
 import { getProductMainPrice } from '../util';
 
@@ -147,7 +148,7 @@ export default React.createClass({
             </div>
             <div className="normal-field-box">
               <div className="field-label">Seller: </div>
-              <div className="field-content">{_.get(product, 'brand.data.name')[activeLocale]}</div>
+              <div className="field-content"><Link to={`/brands/${product.brand.id}`}>{_.get(product, 'brand.data.name')[activeLocale]}</Link></div>
             </div>
             <div className="normal-field-box">
               <div className="field-label"></div>
