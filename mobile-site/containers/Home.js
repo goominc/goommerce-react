@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
+
+import { ApiAction, setHeader } from '../redux/actions';
+const { loadProducts } = ApiAction;
+
+import loadEntities from '../../commons/redux/util/loadEntities';
 
 import MainBanner from '../components/MainBanner';
 import MainRecommendList from '../components/MainRecommendList';
 
 const Home = React.createClass({
+  propTypes: {
+    loadProducts: PropTypes.func.isRequired,
+    setHeader: PropTypes.func.isRequired,
+  },
   componentDidMount() {
-
+    this.props.setHeader(true, true, true, '');
+    this.props.loadProducts();
   },
   render() {
     return (
@@ -54,7 +65,7 @@ const Home = React.createClass({
               </ul>
             </article>
           </section>
-          <MainRecommendList />
+          <MainRecommendList products={this.props.products} />
         </div>
 
         <div className="info-area">
@@ -62,11 +73,14 @@ const Home = React.createClass({
         결재방법 - visa master<br />
         따러와 - facebook vk insta<br />
         </div>
-
-
       </div>
     );
   },
 });
 
-export default Home;
+export default connect(
+  state => ({
+    ...loadEntities(state, 'products', 'products'),
+  }),
+  { loadProducts, setHeader }
+)(Home);

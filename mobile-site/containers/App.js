@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { ApiAction, resetError, toggleMenu, toggleSignRegister } from '../redux/actions';
-const { loadCartIfEmpty, login, signup, logout } = ApiAction;
+const { loadCartIfEmpty, loadCategories, login, signup, logout } = ApiAction;
 
 import AppHeader from '../components/AppHeader';
 import CommonFooter from '../components/CommonFooter';
@@ -21,6 +21,7 @@ const App = React.createClass({
   },
   componentDidMount() {
     this.props.loadCartIfEmpty();
+    this.props.loadCategories();
   },
   _login(email, password) {
     this.props.login(email, password).then(
@@ -49,8 +50,10 @@ const App = React.createClass({
     const { children, auth, cart, header, showMenu, toggleMenu, showSign, toggleSignRegister } = this.props;
     let fixedStyle = {};
     if (showMenu) {
+      const windowHeight = $(window).height();
       fixedStyle = {
-        position: 'fixed',
+        height: windowHeight,
+        overflowY: 'hidden',
       };
     }
     return (
@@ -68,5 +71,5 @@ const App = React.createClass({
 export default connect(
   state => ({ auth: state.auth, cart: state.cart, error: state.errorHandler.error,
     showMenu: state.menu.showMenu, showSign: state.sign, header: state.header }),
-  { loadCartIfEmpty, resetError, login, signup, logout, toggleMenu, toggleSignRegister }
+  { loadCartIfEmpty, loadCategories, resetError, login, signup, logout, toggleMenu, toggleSignRegister }
 )(App);

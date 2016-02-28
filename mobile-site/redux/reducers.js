@@ -38,16 +38,24 @@ function header(state = { showLogo: true, showSearch: true, showCart: true, titl
   }
   return state;
 }
+
 const productListInitialState = {
   viewType: { type: 'list-view', next: 'gallery-view', next2: 'bigPic-view' },
   showSort: false,
   showFilter: false,
 };
 
-function pageProductList(state = { type: 'list-view', next: 'gallery-view', next2: 'bigPic-view' }, action) {
+function pageProductList(state = productListInitialState, action) {
   if (action.type === 'CHANGE_LIST_VIEW') {
-    return assign({}, state, { type: state.next, next: state.next2, next2: state.type });
+    return assign({}, state, { viewType: { type: state.viewType.next, next: state.viewType.next2, next2: state.viewType.type } });
   }
+  if (action.type === 'TOGGLE_PRODUCT_SORT') {
+    return assign({}, state, { showSort: !state.showSort });
+  }
+  if (action.type === 'TOGGLE_PRODUCT_FILTER') {
+    return assign({}, state, { showFilter: !state.showFilter });
+  }
+
   return state;
 }
 

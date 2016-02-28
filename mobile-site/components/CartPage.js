@@ -94,7 +94,7 @@ export default React.createClass({
                     </a>
                   </div>
                 </dt>
-                <dd><span className="ui-button ui-button-main buy ">buy all from this seller&nbsp;</span></dd>
+                <dd><Link to="/orders"><span className="ui-button ui-button-main buy ">buy all from this seller&nbsp;</span></Link></dd>
               </dl>
             </div>
           </article>
@@ -125,7 +125,7 @@ export default React.createClass({
               <span>Total&nbsp;:</span>
               <span className="mt-16 price">US $25.58</span>
             </div>
-            <div className="ui-button ui-button-main buyall  ">Buy All</div>
+            <Link to="/orders"><div className="ui-button ui-button-main buyall  ">Buy All</div></Link>
           </div>
         </article>
         <form id="submit-for-seller-create-order" method="post" action="/order/createNewOrderForCombine.htm">

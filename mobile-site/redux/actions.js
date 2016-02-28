@@ -45,3 +45,15 @@ export function changeViewType() {
     type: 'CHANGE_LIST_VIEW',
   };
 }
+
+export function toggleProductSort() {
+  return {
+    type: 'TOGGLE_PRODUCT_SORT',
+  };
+}
+
+export function toggleProductFilter() {
+  return {
+    type: 'TOGGLE_PRODUCT_FILTER',
+  };
+}

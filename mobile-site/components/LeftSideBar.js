@@ -73,7 +73,7 @@ export default React.createClass({
           </div>
 
           <ul className="drawer-guide">
-            <li className="drawer-home"><Link to="/"><i className="ms-icon icon-home"></i><span>Home</span></Link></li>
+            <li className="drawer-home"><Link to="/" onClick={this.props.toggle}><i className="ms-icon icon-home"></i><span>Home</span></Link></li>
             <li className="drawer-myOrder"><a className="drawer-myOrder" href="http://m.aliexpress.com/downloadapp/myOrder.htm"><i className="ms-icon icon-order"></i><span>My Orders</span></a></li>
             <li className="drawer-cart"><Link to="/cart"><i className="ms-icon icon-shippingcart"></i><span>Cart</span></Link></li>
             <li className="drawer-wishList"><a href="http://m.aliexpress.com/myaccount/wishlist/detail.htm"><i className="ms-icon icon-wishlist"></i><span>Wish List</span></a></li>
