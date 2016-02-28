@@ -115,10 +115,11 @@ const Home = React.createClass({
           return (
             <div className="category-hover-box">
               {children.map((c, i) => (
-                <div key={i}>
+                <div className="child-box" key={i}>
                   <Link to={'/categories/' + c.id}>
                     <div className="child-item"><b>{c.name[activeLocale]}</b></div>
                   </Link>
+                  <div className="separator"></div>
                   {(c.children || []).map((gc, gi) => (
                     <Link key={gi} to={'/categories/' + gc.id}>
                       <div className="child-item">{gc.name[activeLocale]}</div>
