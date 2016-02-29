@@ -16,7 +16,7 @@ export default React.createClass({
           <li key={product.id}>
             <Link to={'/products/' + product.id}>
               <div className="product-image">
-                <img src={getProductMainImage(product)} />
+                <img src={getProductMainImage(product).url} />
               </div>
               <div className="product-cost"><strong>{product.USD} USD</strong> / piece</div>
               <div className="product-cost">1000 Orders</div>

@@ -65,10 +65,10 @@ export function setCheckoutStep(step) {
 }
 
 // BEGIN Product Detail Page actions
-export function setActiveImage(imageUrl) {
+export function setActiveImage(image) {
   return {
     type: 'ACTIVE_IMAGE',
-    url: imageUrl,
+    image,
   };
 }
 export function selectColor(color) {

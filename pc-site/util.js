@@ -21,9 +21,9 @@ export function getProductMainImage(product) {
     return undefined;
   }
   for (const image of defaultImages) {
-    if (image.mainImage) return image.url;
+    if (image.mainImage) return image;
   }
-  return defaultImages[0].url;
+  return defaultImages[0];
 }
 
 export function getProductMainPrice(product, currency) {

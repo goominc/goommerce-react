@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { cloudinaryConfig } from 'react-cloudinary';
 
 import AppHeader from '../components/AppHeader';
 import AppFooter from '../components/AppFooter';
@@ -10,6 +11,8 @@ import { ApiAction, resetError, closePopup, toggleSearchDropdown, selectSearchDr
 const { loadCartIfEmpty, loadCategories, changeLocale, changeCurrency, login, logout } = ApiAction;
 
 require('../stylesheets/main.scss');
+
+cloudinaryConfig({ cloud_name: 'linkshops', api_key: '592412811688523' });
 
 const App = React.createClass({
   propTypes: {
@@ -44,10 +47,8 @@ const App = React.createClass({
     }
   },
   render() {
-    const { children, auth, cart,
-      categories, showSearchDropdown,
+    const { children,
       error, resetError,
-      changeLocale, changeCurrency,
       login, popup, closePopup } = this.props;
     const renderError = () => {
       if (error && error.message) {

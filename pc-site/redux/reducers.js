@@ -110,7 +110,7 @@ function pageProductDetail(state = {}, action) {
       for (let i = 0; i < variants.length; i++) {
         const variant = variants[i];
         if (variant.data.color === activeColor) {
-          state2.image_url = variant.appImages.default[0].url;
+          state2.activeImage = variant.appImages.default[0];
           break;
         }
       }
@@ -128,7 +128,7 @@ function pageProductDetail(state = {}, action) {
     return state2;
   };
   if (action.type === 'ACTIVE_IMAGE') {
-    return assign({}, state, { image_url: action.url });
+    return assign({}, state, { activeImage: action.image });
   } else if (action.type === 'PRODUCT_DETAIL_VARIANTS') {
     const initialVariantState = { variants: action.variants, selectedVariant: null, activeColor: null, activeSize: null };
     return assign({}, state, initialVariantState, initColorsAndSizes(action.variants));

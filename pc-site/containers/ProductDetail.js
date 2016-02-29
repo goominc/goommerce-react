@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import ProductDetailPage from '../components/ProductDetailPage';
+import { getProductMainImage } from '../util';
 
 import { ApiAction, setActiveImage, selectColor, selectSize, wrapLogin } from '../redux/actions';
 const { loadProduct, loadProductAndThen, addCartProduct, createOrder } = ApiAction;
@@ -12,7 +13,7 @@ const ProductDetail = React.createClass({
     product: PropTypes.object,
     loadProduct: PropTypes.func.isRequired,
     addCartProduct: PropTypes.func.isRequired,
-    activeImageUrl: PropTypes.string,
+    activeImage: PropTypes.object,
     loadProductAndThen: PropTypes.func,
     setActiveImage: PropTypes.func,
     selectColor: PropTypes.func,
@@ -22,7 +23,7 @@ const ProductDetail = React.createClass({
     router: PropTypes.object.isRequired,
   },
   componentDidMount() {
-    this.props.setActiveImage('');
+    this.props.setActiveImage({ url: '' });
     const parseVariants = (product) => {
       const extractDataFromVariant = (variant) => {
         const splits = variant.sku.split('-');
@@ -59,8 +60,7 @@ const ProductDetail = React.createClass({
     this.props.loadProductAndThen(this.props.productId, afterLoadProduct);
   },
   componentDidUnMount() {
-    // 2016. 02. 03. [heekyu] remove this if show previous shown image before
-    this.props.setActiveImage('');
+    this.props.setActiveImage({ url: '' });
   },
   buildImages() {
     const { product } = this.props;
@@ -90,15 +90,15 @@ const ProductDetail = React.createClass({
     this.props.addCartProduct(variant.id);
   },
   render() {
-    const { product, activeImageUrl, selectColor, selectSize,
+    const { product, activeImage, selectColor, selectSize,
       createOrder, addCartProduct, wrapLogin } = this.props;
     if (!product) {
       return (<div></div>);
     }
     const images = this.buildImages();
-    let passImageUrl = activeImageUrl;
-    if (images.length > 0 && (!activeImageUrl || activeImageUrl === '')) {
-      passImageUrl = images[0].url;
+    let passImage = activeImage;
+    if (images.length > 0 && (!activeImage.url || !activeImage.url)) {
+      passImage = getProductMainImage(product.topHit || product);
     }
     const attributes = [
       { attrName: 'Color', key: 'colors', select: selectColor },
@@ -118,7 +118,7 @@ const ProductDetail = React.createClass({
     };
     return (
       <ProductDetailPage
-        {...this.props} images={images} activeImageUrl={passImageUrl} attributes={attributes} buyNow={buyNow} addCartProduct={addToCart}
+        {...this.props} images={images} activeImage={passImage} attributes={attributes} buyNow={buyNow} addCartProduct={addToCart}
       />
     );
   },
@@ -128,7 +128,7 @@ export default connect(
   (state, ownProps) => ({
     productId: ownProps.params.productId,
     product: state.entities.products[ownProps.params.productId],
-    activeImageUrl: state.page.pageProductDetail.image_url,
+    activeImage: state.page.pageProductDetail.activeImage,
     variantAttributes: state.page.pageProductDetail.variantAttributes,
     selectedVariant: state.page.pageProductDetail.selectedVariant,
   }),

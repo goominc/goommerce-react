@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import { CloudinaryImage } from 'react-cloudinary';
 
 import { getProductMainPrice } from '../util';
 
@@ -14,7 +15,7 @@ export default React.createClass({
     selectedVariant: PropTypes.object,
     addCartProduct: PropTypes.func,
     buyNow: PropTypes.func,
-    activeImageUrl: PropTypes.string,
+    activeImage: PropTypes.object,
     setActiveImage: PropTypes.func,
   },
   contextTypes: {
@@ -22,7 +23,7 @@ export default React.createClass({
     activeCurrency: PropTypes.string,
   },
   handleMouseEnterThumbnail(image) {
-    this.props.setActiveImage(image.url);
+    this.props.setActiveImage(image);
   },
   handleMouseEnterMainImage() {
     // TODO make this to external state
@@ -46,25 +47,37 @@ export default React.createClass({
     $('.enlarge-image-box').css('display', 'none');
   },
   render() {
-    const { product, images, activeImageUrl, variantAttributes, attributes, selectedVariant,
+    const { product, images, activeImage, variantAttributes, attributes, selectedVariant,
       addCartProduct, buyNow } = this.props;
     if (!product || !variantAttributes) {
       return (<div></div>);
     }
     const { activeCurrency, activeLocale } = this.context;
+    const renderImage = (image, className) => {
+      if (!image) {
+        return (<img />);
+      }
+      if (!image.publicId) {
+        return (<img src={image.url} />);
+      }
+      return (
+        <CloudinaryImage className={className} publicId={image.publicId}
+          version={image.version}
+          options={ { width: 50, height: 75 } }
+        />
+      );
+    };
     const renderThumbnail = (image) => {
       let className = '';
-      if (image.url === activeImageUrl) {
+      if (image.url === activeImage.url) {
         className = 'image-active';
       }
       return (
         <span className={className} key={image.url} onMouseEnter={() => this.handleMouseEnterThumbnail(image)}>
-          <img src={image.url} />
+          {renderImage(image)}
         </span>
       );
     };
-
-    const variants = product.productVariants || [];
 
     const renderPath = (categoryPath, index) => {
       const crumbPath = [{ link: '/', name: 'Home' }];
@@ -128,10 +141,10 @@ export default React.createClass({
               onMouseLeave={this.handleMouseLeaveMainImage}
               className="main-image-box"
             >
-              <img src={activeImageUrl} />
+              <img src={activeImage.url} />
             </div>
             <div className="enlarge-image-box">
-              <img src={activeImageUrl} />
+              <img src={activeImage.url} />
             </div>
           </div>
           <div className="product-detail-right">
@@ -148,7 +161,7 @@ export default React.createClass({
             </div>
             <div className="normal-field-box">
               <div className="field-label">Seller: </div>
-              <div className="field-content"><Link to={`/brands/${product.brand.id}`}>{_.get(product, 'brand.data.name')[activeLocale]}</Link></div>
+              <div className="field-content"><Link to={`/brands/${_.get(product, 'brand.id')}`}>{_.get(product, 'brand.data.name.' + activeLocale)}</Link></div>
             </div>
             <div className="normal-field-box">
               <div className="field-label"></div>

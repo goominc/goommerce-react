@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import { CloudinaryImage } from 'react-cloudinary';
 
 import { getProductMainImage, getProductMainPrice } from '../util';
 
@@ -14,15 +15,29 @@ export default React.createClass({
   render() {
     const { products } = this.props;
     const { activeCurrency } = this.context;
-    const itemsInRow = 3;
-    const maxRowCount = 10;
-    const renderItem = (item, index) => {
+
+    const renderItem = (item) => {
+      const image = getProductMainImage(item.topHit || item);
+      const renderImage = () => {
+        if (!image) {
+          return (<img />);
+        }
+        if (!image.publicId) {
+          return (<img src={image.url} />);
+        }
+        return (
+          <CloudinaryImage publicId={image.publicId}
+            version={image.version}
+            options={ { width: 220, height: 330 } }
+          />
+        );
+      };
       return (
         <div key={item.id} className="product-list-item-wrap product-list-first-item">
           <div className="product-list-item-box">
             <div className="img-wrap">
               <Link to={`/products/${item.id}`}>
-                <img src={getProductMainImage(item.topHit || item)} />
+                {renderImage()}
               </Link>
             </div>
             <div className="product-title">
