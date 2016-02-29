@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 
 import { getProductThumbnail } from '../util';
 
@@ -45,8 +46,10 @@ export default React.createClass({
     };
     return (
       <tr key={`cart-variant-${variant.id}`}>
-        <td><img src={getProductThumbnail(variant)} />
-          <span className="product-description">{variant.sku}</span></td>
+        <td><Link to={`/products/${variant.productId}`}>
+          <img src={getProductThumbnail(variant)} />
+          <span className="product-description">{variant.sku}</span>
+        </Link></td>
         <td>{renderQuantity(variant)}</td>
         <td>{activeCurrency} {variant[activeCurrency]}</td>
         {renderBuyButton()}
