@@ -69,7 +69,7 @@ export default React.createClass({
     };
     const renderThumbnail = (image) => {
       let className = '';
-      if (image.url === activeImage.url) {
+      if (activeImage && image.url === activeImage.url) {
         className = 'image-active';
       }
       return (
