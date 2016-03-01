@@ -12,7 +12,7 @@ const { loadCartIfEmpty, loadCategories, changeLocale, changeCurrency, login, lo
 
 require('../stylesheets/main.scss');
 
-cloudinaryConfig({ cloud_name: 'linkshops', api_key: '592412811688523' });
+cloudinaryConfig({ cloud_name: 'linkshops', crop: 'limit' });
 
 const App = React.createClass({
   propTypes: {
