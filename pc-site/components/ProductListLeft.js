@@ -13,6 +13,7 @@ export default React.createClass({
     query: PropTypes.string,
     brandId: PropTypes.string,
     categoryId: PropTypes.string,
+    pageNum: PropTypes.string,
   },
   contextTypes: {
     activeLocale: PropTypes.string,
@@ -22,9 +23,14 @@ export default React.createClass({
     const { aggs: { brands = [] }, genLink } = this.props;
 
     if (this.props.brand) {
+      const link = genLink(pick(this.props, ['query', 'categoryId', 'pageNum']));
       return (
         <div className="product-list-category-title">
-          Selected Brand: {this.props.brand.data.name[activeLocale]}
+          Selected Brand:
+          <div>
+            {this.props.brand.data.name[activeLocale]}
+            <Link to={link}><span>(X)</span></Link>
+          </div>
         </div>
       );
     }
