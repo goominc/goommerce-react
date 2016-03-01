@@ -53,16 +53,6 @@ export default React.createClass({
       return (<div></div>);
     }
     const { activeCurrency, activeLocale } = this.context;
-    // 2016. 03. 01. [heekyu] CloudinaryImage cannot pass aditional props
-    const cropImageUrl = (image, width, height) => {
-      let url = image.url.substring(0, image.url.length - image.publicId.length);
-      if (width) {
-        url += `w_${width}`;
-        if (height) url += ',';
-      }
-      if (height) url += `h_${height}`;
-      return url + '/' + image.publicId;
-    };
     const renderImage = (image) => {
       if (!image) {
         return (<img />);
@@ -107,11 +97,16 @@ export default React.createClass({
           className += ' active';
         }
         if (obj.img) {
-          let url = obj.img.url;
           if (obj.img.publicId) {
-            url = cropImageUrl(obj.img, 50, 75);
+            return (<CloudinaryImage
+              className={className}
+              key={key}
+              onClick={() => selectFunc(key)}
+              publicId={obj.img.publicId}
+              options={{ width: 50, height: 75, crop: 'scale' }}
+            />);
           }
-          return (<img className={className} key={key} onClick={() => selectFunc(key)} src={url} />);
+          return (<img className={className} key={key} onClick={() => selectFunc(key)} src={obj.img.url} />);
         }
         return (<div key={key} onClick={() => selectFunc(key)} className={`attribute-item-text${className}`}>{key}</div>);
       };
