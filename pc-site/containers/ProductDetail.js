@@ -97,7 +97,7 @@ const ProductDetail = React.createClass({
     }
     const images = this.buildImages();
     let passImage = activeImage;
-    if (images.length > 0 && (!activeImage.url || !activeImage.url)) {
+    if (images.length > 0 && (!activeImage || !activeImage.url)) {
       passImage = getProductMainImage(product.topHit || product);
     }
     const attributes = [
