@@ -19,7 +19,6 @@ const Home = React.createClass({
   },
   contextTypes: {
     activeLocale: PropTypes.string,
-    activeCurrency: PropTypes.string,
   },
   getInitialState() {
     return {};
@@ -30,8 +29,7 @@ const Home = React.createClass({
     $('.center-slide').owlCarousel({ autoPlay: 10000, items: 1 });
   },
   render() {
-    const { products = [] } = this.props;
-    const { activeCurrency, activeLocale } = this.context;
+    const { products = [], activeLocale } = this.props;
     const renderCurationTopic = () => {
       const linkItems = [
         { link: '/products', text: 'Fall Dresses', colorNum: 0 },
@@ -161,6 +159,7 @@ const Home = React.createClass({
         </div>
       );
     };
+    console.log('called')
     return (
       <div className="main-wide-container">
         <div className="main-menu-bar">
@@ -231,6 +230,7 @@ const Home = React.createClass({
 export default connect(
   state => ({
     categories: state.categories,
+    activeLocale: state.i18n.activeLocale,
     main_categories: state.cms.main_categories,
     ...loadEntities(state, 'products', 'products'),
   }),
