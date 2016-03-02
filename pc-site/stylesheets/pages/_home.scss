@@ -50,6 +50,7 @@ $main-category-item-height: 30px;
     }
   }
 }
+$main-banner-height: 400px;
 .main-banner-wrap {
   width: 100%;
   position: relative;
@@ -57,7 +58,7 @@ $main-category-item-height: 30px;
   margin-bottom: 20px;
   .main-banner {
     width: 750px;
-    height: 400px;
+    height: $main-banner-height;
     display: inline-block !important;
     cursor: pointer;
     img {
@@ -71,11 +72,14 @@ $main-category-item-height: 30px;
     right: 0;
     z-index: 10;
     width: 320px;
-    height: 400px;
+    height: $main-banner-height;
     img {
       width: 100%;
       height: 100%;
     }
+  }
+  a {
+    text-decoration: none;
   }
 }
 .category-dropdown-box {
@@ -92,28 +96,21 @@ $main-category-item-height: 30px;
     border-right: 1px solid #e9e9e9;
     border-bottom: 1px solid transparent;
     border-top: 1px solid transparent;
-    &:hover {
-      border-top: 1px solid #e9e9e9;
-    }
-    &:hover {
-      border-bottom: 1px solid #e9e9e9;
-      border-right: 0;
-    }
   }
   .top-item {
     height: $main-category-item-height + 5px;
     line-height: $main-category-item-height + 5px;
     border-top: 0;
-    &:hover {
-      border-top: 0;
+    &.active {
+      border-top: 0 !important;
     }
   }
   .bottom-item {
     height: $main-category-item-height + 5px;
     line-height: $main-category-item-height + 5px;
     border-bottom: 0;
-    &:hover {
-      border-bottom: 0;
+    &.active {
+      border-bottom: 0 !important;
     }
   }
   .category-hover-box {
@@ -122,6 +119,7 @@ $main-category-item-height: 30px;
     left: 100%;
     position: absolute;
     width: 640px;
+    height: $main-banner-height;
     top: 0;
     z-index: 500;
     .child-box {
@@ -146,6 +144,11 @@ $main-category-item-height: 30px;
     }
   }
   &:hover {
+    .category-dropdown-item.active {
+      border-top: 1px solid #e9e9e9;
+      border-bottom: 1px solid #e9e9e9;
+      border-right: 0;
+    }
     .category-hover-box {
       display: block;
     }

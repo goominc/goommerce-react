@@ -19,6 +19,16 @@ function cart(state = {}, action) {
   return state;
 }
 
+function cms(state = {}, action) {
+  if (action.type === 'LOAD_CMS_DATA') {
+    const res = action.payload;
+    const newState = assign({}, state);
+    newState[action.name] = res;
+    return newState;
+  }
+  return state;
+}
+
 // Updates an entity cache in payload to any action with payload.entities.
 function entities(state = { users: {}, products: {}, orders: {}, addresses: {} }, action) {
   const nextState = assign({}, state);
@@ -110,6 +120,7 @@ const reducers = {
   auth,
   cart,
   categories,
+  cms,
   entities,
   pagination,
   i18n,

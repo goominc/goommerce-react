@@ -107,6 +107,10 @@ const Home = React.createClass({
       );
     };
     const renderCategories = () => {
+      const { main_categories } = this.props;
+      if (!main_categories) {
+        return (<div></div>);
+      }
       const renderHoverCategory = () => {
         const { hoverCategory } = this.state;
         if (hoverCategory) {
@@ -131,17 +135,28 @@ const Home = React.createClass({
           );
         }
       };
-      const topCategories = get(this.props.categories, 'tree.children', []);
+      const topCategories = main_categories;
+      const renderCategoryItem = (c, i) => {
+        let className = 'category-dropdown-item';
+        if (i === 0) className += ' top-item';
+        else if (i === topCategories.length - 1) className += ' bottom-item';
+        const handleMouseEnter = (e) => {
+          $('.category-dropdown-item').removeClass('active');
+          $(e.target).addClass('active');
+          this.setState({ hoverCategory: c });
+        };
+        return (
+          <Link key={i} to={'/categories/' + c.id}>
+            <div
+              className={className}
+              onMouseEnter={handleMouseEnter}
+            >{c.name[activeLocale]}</div>
+          </Link>
+        );
+      };
       return (
         <div className="category-dropdown-box">
-          {topCategories.map((c, i) => (
-            <Link key={i} to={'/categories/' + c.id}>
-              <div
-                className={"category-dropdown-item" + (i === 0 ? " top-item" : "")}
-                onMouseEnter={() => this.setState({ hoverCategory: c })}
-              >{c.name[activeLocale]}</div>
-            </Link>
-          ))}
+          {topCategories.map(renderCategoryItem)}
           {renderHoverCategory()}
         </div>
       );
@@ -173,7 +188,6 @@ const Home = React.createClass({
             </div>
           </div>
           {renderCurationTopic()}
-          <ProductListItems products={products} />
         </div>
         <div className="main-slogan">
           <div className="container">
@@ -217,6 +231,7 @@ const Home = React.createClass({
 export default connect(
   state => ({
     categories: state.categories,
+    main_categories: state.cms.main_categories,
     ...loadEntities(state, 'products', 'products'),
   }),
   { loadProducts }

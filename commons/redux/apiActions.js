@@ -222,24 +222,23 @@ export function loadCartIfEmpty() {
 export function changeLocale(locale) {
   return (dispatch, getState) => {
     const state = getState();
-    if (state.activeLocale === locale) return;
+    if (state.activeLocale === locale) return null;
     if (state.auth && state.auth.id) {
       simpleNotify(state.auth, 'PUT', `/api/v1/users/${state.auth.id}/locale`, { locale });
     }
     const cookie = require('../utils/cookie');
     cookie.set('locale', locale);
     if (state.i18n && state.i18n[locale]) {
-      dispatch({
+      return dispatch({
         type: 'CHANGE_LANGUAGE',
         locale,
       });
-    } else {
-      return createFetchAction({
-        type: 'LOAD_AND_CHANGE_LANGUAGE',
-        endpoint: `/api/v1/i18n/texts/${locale}`,
-        success: { locale },
-      })(dispatch, getState);
     }
+    return createFetchAction({
+      type: 'LOAD_AND_CHANGE_LANGUAGE',
+      endpoint: `/api/v1/i18n/texts/${locale}`,
+      success: { locale },
+    })(dispatch, getState);
   };
 }
 
@@ -257,4 +256,12 @@ export function changeCurrency(currency) {
       currency,
     });
   };
+}
+
+export function loadCMSData(name) {
+  return createFetchAction({
+    type: 'LOAD_CMS_DATA',
+    endpoint: `/api/v1/cms/${name}`,
+    success: { name },
+  });
 }
