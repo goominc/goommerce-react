@@ -4,6 +4,7 @@
   "description": "goommerce react client",
   "main": "middleware.js",
   "scripts": {
+    "lint": "eslint .",
     "postinstall": "NODE_ENV=production webpack --verbose --colors --display-error-details --config webpack.prod.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

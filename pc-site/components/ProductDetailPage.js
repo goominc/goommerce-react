@@ -144,7 +144,7 @@ export default React.createClass({
             <div className="left-thumbnail-container">
               {images.map(renderThumbnail)}
             </div>
-            <div onMouseMove={this.handleMouseMoveMainImage} onMouseEnter={this.handleMouseEnterMainImage}
+            <div onMouseMove={this.handleMouseMoveMainImage}
               onMouseEnter={this.handleMouseEnterMainImage}
               onMouseLeave={this.handleMouseLeaveMainImage}
               className="main-image-box"
