@@ -159,7 +159,6 @@ const Home = React.createClass({
         </div>
       );
     };
-    console.log('called')
     return (
       <div className="main-wide-container">
         <div className="main-menu-bar">
