@@ -1,6 +1,20 @@
+const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const babelrc = fs.readFileSync('./.babelrc');
+const babelLoaderQuery = JSON.parse(babelrc);
+babelLoaderQuery.plugins = babelLoaderQuery.plugins || [];
+babelLoaderQuery.plugins.push('react-transform');
+babelLoaderQuery.extra = babelLoaderQuery.extra || {};
+babelLoaderQuery.extra['react-transform'] = {
+  transforms: [{
+    transform: 'react-transform-hmr',
+    imports: ['react'],
+    locals: ['module'],
+  }],
+};
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -29,7 +43,7 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        loaders: ['babel'],
+        loaders: ['babel?' + JSON.stringify(babelLoaderQuery)],
         exclude: /node_modules/,
       },
       {

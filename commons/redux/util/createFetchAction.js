@@ -1,4 +1,4 @@
-import merge from 'lodash/merge';
+import merge from 'lodash/object/merge';
 
 export default function createFetchAction(options) {
   const {
