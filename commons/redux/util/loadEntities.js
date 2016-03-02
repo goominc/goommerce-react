@@ -1,4 +1,4 @@
-import { get, pick } from 'lodash/object';
+import { get, pick } from 'lodash';
 
 export default function loadEntities(state, key, model) {
   const pagination = get(state.pagination, key, {});
