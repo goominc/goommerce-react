@@ -5,22 +5,19 @@ import ProductDetailPage from '../components/ProductDetailPage';
 import { getProductMainImage } from '../util';
 
 import { ApiAction, setActiveImage, selectColor, selectSize, wrapLogin } from '../redux/actions';
-const { loadProduct, loadProductAndThen, addCartProduct, createOrder } = ApiAction;
 
 const ProductDetail = React.createClass({
   propTypes: {
     productId: PropTypes.string.isRequired,
     product: PropTypes.object,
-    loadProduct: PropTypes.func.isRequired,
-    addCartProduct: PropTypes.func.isRequired,
     activeImage: PropTypes.object,
-    loadProductAndThen: PropTypes.func,
     setActiveImage: PropTypes.func,
     selectColor: PropTypes.func,
     selectSize: PropTypes.func,
   },
   contextTypes: {
     router: PropTypes.object.isRequired,
+    ApiAction: PropTypes.object,
   },
   componentDidMount() {
     this.props.setActiveImage({ url: '' });
@@ -57,7 +54,7 @@ const ProductDetail = React.createClass({
         variants: parseVariants(product),
       });
     };
-    this.props.loadProductAndThen(this.props.productId, afterLoadProduct);
+    this.context.ApiAction.loadProductAndThen(this.props.productId, afterLoadProduct);
   },
   componentDidUnMount() {
     this.props.setActiveImage({ url: '' });
@@ -90,8 +87,8 @@ const ProductDetail = React.createClass({
     this.props.addCartProduct(variant.id);
   },
   render() {
-    const { product, activeImage, selectColor, selectSize,
-      createOrder, addCartProduct, wrapLogin } = this.props;
+    const { product, activeImage, selectColor, selectSize, wrapLogin } = this.props;
+    const { createOrder, addCartProduct, addWish } = this.context.ApiAction;
     if (!product) {
       return (<div></div>);
     }
@@ -118,7 +115,9 @@ const ProductDetail = React.createClass({
     };
     return (
       <ProductDetailPage
-        {...this.props} images={images} activeImage={passImage} attributes={attributes} buyNow={buyNow} addCartProduct={addToCart}
+        {...this.props}
+        images={images} activeImage={passImage} attributes={attributes}
+        buyNow={buyNow} addCartProduct={addToCart} addWish={addWish}
       />
     );
   },
@@ -132,7 +131,5 @@ export default connect(
     variantAttributes: state.page.pageProductDetail.variantAttributes,
     selectedVariant: state.page.pageProductDetail.selectedVariant,
   }),
-  { loadProduct, loadProductAndThen, addCartProduct, createOrder,
-    setActiveImage, selectColor, selectSize,
-    wrapLogin }
+  { setActiveImage, selectColor, selectSize, wrapLogin }
 )(ProductDetail);
