@@ -265,3 +265,11 @@ export function loadCMSData(name) {
     success: { name },
   });
 }
+
+export function loadWishlist() {
+  return createFetchAction({
+    type: 'LOAD_WISH_LIST',
+    endpoint: '/api/v1/users/self/wishes',
+    transform: ({ data }) => normalize(data, schemas.products),
+  });
+}

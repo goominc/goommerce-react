@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import CheckoutPage from '../components/CheckoutPage';
+import CheckoutPage from '../components/checkout/CheckoutPage';
 
 import { ApiAction } from '../redux/actions';
 const { loadOrder } = ApiAction;
