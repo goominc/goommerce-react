@@ -14,19 +14,11 @@ $product-detail-thumbnail-margin: 15px;
     margin-right: $product-detail-thumbnail-margin;
     vertical-align: top;
     span {
-      position: relative;
       display: block;
       width: $product-detail-thumbnail-width + 2px;
-      height: 0;
-      padding-top: 150%;
+      @include default-responsive-img-wrap();
       border: 2px solid #dedede;
       margin-bottom: $product-detail-thumbnail-margin;
-      img {
-        position: absolute;
-        top: 0;
-        width: 100%;
-        height: 100%;
-      }
     }
     .image-active {
       border: 2px solid #FCAB42;
