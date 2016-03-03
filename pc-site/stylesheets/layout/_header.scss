@@ -128,6 +128,13 @@ $mymenu-margin: 20px;
   line-height: $header-height;
   display: inline-block;
 }
+@mixin header-icon-sprites() {
+  display: inline-block;
+  margin-right: $mymenu-margin / 2;
+  overflow: hidden;
+  background: url("http://i.alicdn.com/ae-header/20151124174454/buyer/common/img/header-sprite.png");
+  background-repeat: no-repeat;
+}
 .header-mymenu-cart {
   cursor: pointer;
   color: rgb(51, 51, 51);
@@ -141,17 +148,32 @@ $mymenu-margin: 20px;
   font: normal normal normal normal 13px / 16.9px 'Open Sans', Arial, Helvetica, sans-senif, SimSun, 宋体;
 
   .cart-icon {
-    display: inline-block;
-    margin-right: $mymenu-margin / 2;
+    @include header-icon-sprites();
     width: 28px;
     height: 28px;
-    overflow: hidden;
-    background: url("http://i.alicdn.com/ae-header/20151124174454/buyer/common/img/header-sprite.png") no-repeat scroll -100px -50px / auto padding-box border-box;
+    margin-top: 2px; // FIXME
+    background-position: -100px -50px;
   }
   &:hover {
     .cart-icon {
       background-position: -100px 0;
     }
+    .wishlist-icon {
+      background-position: 0 0;
+    }
+  }
+  .wishlist-icon {
+    @include header-icon-sprites();
+    width: 28px;
+    height: 24px;
+    margin-top: 4px; // FIXME
+    background-position: 0 -50px;
+  }
+  .wishlist-text {
+    display: inline-block;
+    max-width: 30px;
+    overflow-x: hidden;
+    vertical-align: top;
   }
   .cart-count {
     box-sizing: border-box;
@@ -234,6 +256,9 @@ $mymenu-margin: 20px;
   }
   .account-menus-wrap {
     display: inline-block;
+    max-width: 70px;
+    min-width: 70px;
+    overflow-x: hidden;
     .ua-line {
       margin: 0 5px;
       color: #e9e9e9;

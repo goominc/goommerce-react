@@ -29,12 +29,17 @@ export default React.createClass({
   },
   renderAccount() {
     const { auth } = this.props;
+    const getName = (email) => {
+      const idx = email.indexOf('@');
+      if (idx > 0) return email.substring(0, idx);
+      return email;
+    };
     if (auth.bearer) {
       return (
         <div className="account-menus-wrap">
           <span>{i18n.get('word.hi')} </span>
           <div className="my-linkshops">
-            <span>{auth.email}</span>
+            <span>{getName(auth.email)}</span>
           </div>
         </div>
       );
@@ -174,6 +179,12 @@ export default React.createClass({
                   <div className="cart-icon"></div>
                   <span className="cart-count">{cartCount}</span>
                   <span>{i18n.get('word.cart')}</span>
+                </div>
+              </Link>
+              <Link className="header-item" to="/cart">
+                <div className="header-mymenu-cart">
+                  <div className="wishlist-icon"></div>
+                  <span className="wishlist-text">{i18n.get('word.wishlist')}</span>
                 </div>
               </Link>
               <div className="header-mymenu-account">
