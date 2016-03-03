@@ -44,7 +44,7 @@ const ProductList = React.createClass({
       q: query,
       categoryId: categoryId === 'all' ? undefined : categoryId,
       brandId,
-      from: (pageNum - 1) * size,
+      from: Math.max((pageNum - 1) * size, 0),
       size,
     }).then(res => this.setState(res));
   },
