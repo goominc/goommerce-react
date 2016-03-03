@@ -1,0 +1,24 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the wish list page.
+// -----------------------------------------------------------------------------
+
+.wish-list-box {
+  width: 100%;
+  background-color: #fff;
+  .wish-item {
+    padding: $margin-15;
+    border-bottom: 1px solid #f2f2f2;
+    .img-box {
+      display: inline-block;
+      width: 120px;
+    }
+    .img-wrap {
+      width: 100%;
+      @include default-responsive-img-wrap();
+    }
+    .item-info-box {
+      display: inline-block;
+      vertical-align: top;
+    }
+  }
+}

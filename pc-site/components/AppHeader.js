@@ -128,7 +128,7 @@ export default React.createClass({
       <div className="dropdown-box">
         <div className="dropdown-menu" onClick={handleLogout}>{i18n.get('pcMain.myMenu.logout')}</div>
         <div className="dropdown-menu"><Link to="/mypage">{i18n.get('pcMain.myMenu.myLinkshops')}</Link></div>
-        <div className="dropdown-menu"><Link to="/mypage">{i18n.get('pcMain.myMenu.myOrders')}</Link></div>
+        <div className="dropdown-menu"><Link to="/mypage/my_orders">{i18n.get('pcMain.myMenu.myOrders')}</Link></div>
       </div>
     );
 
@@ -181,7 +181,7 @@ export default React.createClass({
                   <span>{i18n.get('word.cart')}</span>
                 </div>
               </Link>
-              <Link className="header-item" to="/cart">
+              <Link className="header-item" to="/mypage/wish_list">
                 <div className="header-mymenu-cart">
                   <div className="wishlist-icon"></div>
                   <span className="wishlist-text">{i18n.get('word.wishlist')}</span>

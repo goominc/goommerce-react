@@ -15,6 +15,7 @@ export default React.createClass({
     selectedVariant: PropTypes.object,
     addCartProduct: PropTypes.func,
     buyNow: PropTypes.func,
+    addWish: PropTypes.func,
     activeImage: PropTypes.object,
     setActiveImage: PropTypes.func,
   },
@@ -48,7 +49,7 @@ export default React.createClass({
   },
   render() {
     const { product, images, activeImage, variantAttributes, attributes, selectedVariant,
-      addCartProduct, buyNow } = this.props;
+      addCartProduct, buyNow, addWish } = this.props;
     if (!product || !variantAttributes) {
       return (<div></div>);
     }
@@ -186,6 +187,12 @@ export default React.createClass({
                 >
                   Add To Cart
                 </button>
+              </div>
+            </div>
+            <div className="normal-field-box">
+              <div className="field-label"></div>
+              <div className="field-content">
+                <a onClick={() => addWish(product.id)}>Add to Wish List</a>
               </div>
             </div>
           </div>

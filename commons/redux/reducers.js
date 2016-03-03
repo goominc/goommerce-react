@@ -29,8 +29,24 @@ function cms(state = {}, action) {
   return state;
 }
 
+const handleWishUpdate = (state, action) => {
+  if (action.type === 'ADD_WISH_LIST') {
+    const wish = action.payload;
+    const newState = assign({}, state);
+    newState.wishes[wish.id] = wish;
+    return newState;
+  } else if (action.type === 'DELETE_WISH_LIST') {
+    return omit(state, action.wishId);
+  }
+  return null;
+};
+
 // Updates an entity cache in payload to any action with payload.entities.
-function entities(state = { users: {}, products: {}, orders: {}, addresses: {} }, action) {
+function entities(state = { users: {}, products: {}, orders: {}, addresses: {}, wishes: {} }, action) {
+  const handleWishState = handleWishUpdate(state, action);
+  if (handleWishState) {
+    return handleWishState;
+  }
   const nextState = assign({}, state);
   forEach(get(action, 'payload.entities'), (val, key) => {
     if (get(action, 'meta.entities.update')) {

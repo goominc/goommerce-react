@@ -13,3 +13,6 @@ export const orders = arrayOf(order);
 
 export const address = new Schema('addresses');
 export const addresses = arrayOf(address);
+
+export const wish = new Schema('wishes');
+export const wishes = arrayOf(wish);

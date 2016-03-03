@@ -30,14 +30,15 @@
 
 // 6. Page-specific styles
 @import
-  'pages/home',
-  'pages/product_list',
-  'pages/product_detail',
   'pages/cart',
   'pages/checkout',
+  'pages/home',
+  'pages/myorder',
+  'pages/product_detail',
+  'pages/product_list',
   'pages/signin',
   'pages/signup',
-  'pages/myorder';
+  'pages/wish_list';
 
 // 7. Themes
 @import

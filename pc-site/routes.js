@@ -33,6 +33,7 @@ export default function configure({ getAuth }) {
         <Route path="/brands/:brandId(/:pageNum)" component={Brand}/>
         <Route path="/categories/:categoryId(/:pageNum)" component={Category}/>
         <Route path="/search/:query(/:pageNum)" component={Search}/>
+        <Route path="/mypage/:menuName" component={MyPage} />
         <Route path="/mypage" component={MyPage} />
       </Route>
       <Route path="/accounts/signin" component={Signin}/>

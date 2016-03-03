@@ -266,10 +266,28 @@ export function loadCMSData(name) {
   });
 }
 
+export function addWish(productId) {
+  return createFetchAction({
+    type: 'ADD_WISH_LIST',
+    endpoint: '/api/v1/users/self/wishes',
+    method: 'post',
+    body: { productId },
+  });
+}
+
+export function deleteWish(wishId) {
+  return createFetchAction({
+    type: 'DELETE_WISH_LIST',
+    endpoint: `/api/v1/users/self/wishes/${wishId}`,
+    method: 'delete',
+    success: { wishId },
+  });
+}
+
 export function loadWishlist() {
   return createFetchAction({
     type: 'LOAD_WISH_LIST',
     endpoint: '/api/v1/users/self/wishes',
-    transform: ({ data }) => normalize(data, schemas.products),
+    transform: ({ data }) => normalize(data, schemas.wishes),
   });
 }
