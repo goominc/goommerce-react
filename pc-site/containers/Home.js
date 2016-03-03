@@ -12,7 +12,6 @@ const Home = React.createClass({
   propTypes: {
     products: PropTypes.array,
     categories: PropTypes.object.isRequired,
-    loadProducts: PropTypes.func.isRequired,
   },
   contextTypes: {
     activeLocale: PropTypes.string,
