@@ -17,7 +17,6 @@ const ProductList = React.createClass({
     genLink: PropTypes.func.isRequired,
     category: PropTypes.object,
     categories: PropTypes.object.isRequired,
-    searchProducts: PropTypes.func.isRequired,
   },
   contextTypes: {
     ApiAction: PropTypes.object,
@@ -67,7 +66,7 @@ const ProductList = React.createClass({
 
     return (
       <div className="container-table">
-        <ProductListLeft {...this.props} aggs={aggs} brand={brand}/>
+        <ProductListLeft {...this.props} aggs={aggs} brand={brand || null}/>
         <div className="product-list-right-box">
           <Breadcrumb path={path} />
           <div className="product-list-search-box"></div>
