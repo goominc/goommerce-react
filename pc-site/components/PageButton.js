@@ -30,18 +30,22 @@ export default React.createClass({
       if (start > 1) {
         const res = [];
         res.push(
-          <div className="page-button">1</div>
+          <Link key="page-first" to={genLink(1)}>
+            <div className="page-button">1</div>
+          </Link>
         );
-        res.push(<span>...</span>);
+        res.push(<span key="page-first-dot">...</span>);
         return res;
       }
     };
     const renderLast = () => {
       if (end < pageCnt) {
         const res = [];
-        res.push(<span>...</span>);
+        res.push(<span key="page-last-dot">...</span>);
         res.push(
-          <div className="page-button">{pageCnt}</div>
+          <Link key="page-last" to={genLink(pageCnt)}>
+            <div className="page-button">{pageCnt}</div>
+          </Link>
         );
         return res;
       }
@@ -53,7 +57,7 @@ export default React.createClass({
         );
       }
       return (
-        <Link to={genLink(i)} key={i}>
+        <Link key={i} to={genLink(i)}>
           <div className="page-button">{i}</div>
         </Link>
       );
