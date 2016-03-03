@@ -8,7 +8,6 @@ import SigninPopup from '../components/popup/SigninPopup';
 import ErrorPopup from '../components/popup/ErrorPopup';
 
 import { ApiAction, resetError, closePopup, toggleSearchDropdown, selectSearchDropdown } from '../redux/actions';
-const { loadCartIfEmpty, loadCategories, loadCMSData, changeLocale, changeCurrency, login, logout } = ApiAction;
 
 require('../stylesheets/main.scss');
 
@@ -27,12 +26,20 @@ const App = React.createClass({
   childContextTypes: {
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
+    ApiAction: PropTypes.object,
   },
   getChildContext() {
-    return {
+    const res = {
       activeLocale: this.props.activeLocale,
       activeCurrency: this.props.activeCurrency,
     };
+    const actions = {};
+    const apiFuncs = Object.keys(ApiAction);
+    apiFuncs.forEach((api) => {
+      actions[api] = this.props[api];
+    });
+    res.ApiAction = actions;
+    return res;
   },
   componentDidMount() {
     this.props.loadCartIfEmpty();
@@ -93,6 +100,5 @@ export default connect(
     error: state.errorHandler.error,
     activeLocale: state.i18n.activeLocale, activeCurrency: state.currency.activeCurrency,
     popup: state.popup }),
-  { loadCartIfEmpty, loadCategories, loadCMSData, resetError, closePopup, toggleSearchDropdown, selectSearchDropdown,
-    changeLocale, changeCurrency, login, logout }
+  _.assign({}, ApiAction, { resetError, closePopup, toggleSearchDropdown, selectSearchDropdown })
 )(App);

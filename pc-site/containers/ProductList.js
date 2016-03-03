@@ -8,9 +8,6 @@ import ProductListLeft from '../components/ProductListLeft';
 import ProductListItems from '../components/ProductListItems';
 import PageButton from '../components/PageButton';
 
-import { ApiAction } from '../redux/actions';
-const { searchProducts } = ApiAction;
-
 const ProductList = React.createClass({
   propTypes: {
     query: PropTypes.string,
@@ -21,6 +18,9 @@ const ProductList = React.createClass({
     category: PropTypes.object,
     categories: PropTypes.object.isRequired,
     searchProducts: PropTypes.func.isRequired,
+  },
+  contextTypes: {
+    ApiAction: PropTypes.object,
   },
   getDefaultProps() {
     return { pageNum: '1' };
@@ -40,7 +40,7 @@ const ProductList = React.createClass({
   doSearch(props) {
     const { query, categoryId, brandId, pageNum } = props;
     const size = 30;
-    props.searchProducts({
+    this.context.ApiAction.searchProducts({
       q: query,
       categoryId: categoryId === 'all' ? undefined : categoryId,
       brandId,
@@ -90,6 +90,5 @@ export default connect(
       categories: state.categories,
       category: state.categories[categoryId === 'all' ? 'tree' : categoryId],
     };
-  },
-  { searchProducts }
+  }
 )(ProductList);

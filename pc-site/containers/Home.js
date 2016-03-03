@@ -8,9 +8,6 @@ import i18n from '../../commons/utils/i18n';
 
 import ProductListItems from '../components/ProductListItems';
 
-import { ApiAction } from '../redux/actions';
-const { loadProducts } = ApiAction;
-
 const Home = React.createClass({
   propTypes: {
     products: PropTypes.array,
@@ -24,7 +21,6 @@ const Home = React.createClass({
     return {};
   },
   componentDidMount() {
-    this.props.loadProducts();
     $('.main-banner').owlCarousel({ autoPlay: 10000, items: 1 });
     $('.center-slide').owlCarousel({ autoPlay: 10000, items: 1 });
   },
@@ -232,6 +228,5 @@ export default connect(
     activeLocale: state.i18n.activeLocale,
     main_categories: state.cms.main_categories,
     ...loadEntities(state, 'products', 'products'),
-  }),
-  { loadProducts }
+  })
 )(Home);
