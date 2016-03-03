@@ -2,8 +2,9 @@
   "extends": "airbnb",
   "globals": {
     "$": false,
+    "_": false,
     "FB": false,
-    "cloudinary": false,
     "INIStdPay": false,
+    "cloudinary": false,
   }
 }

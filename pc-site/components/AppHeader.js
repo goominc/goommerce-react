@@ -91,13 +91,17 @@ export default React.createClass({
       const locales = [
         { locale: 'ko', text: '한국어' },
         { locale: 'en', text: 'English' },
-        { locale: 'zh_cn', text: '쭝꿔' },
+        { locale: 'zh-cn', text: '简体' },
+        { locale: 'zh-tw', text: '繁體' },
       ];
       return (
         <div className="dropdown-box">
           {locales.map((obj) => {
-            return (<div key={obj.locale} className={`dropdown-menu ${obj.locale === activeLocale ? 'active' : ''}`}
-                         onClick={() => changeLocale(obj.locale)}>{obj.text}</div>);
+            return (
+              <div key={obj.locale} className={`dropdown-menu ${obj.locale === activeLocale ? 'active' : ''}`}
+                onClick={() => changeLocale(obj.locale)}
+              >{obj.text}</div>
+              );
           })}
         </div>
       );
@@ -107,8 +111,10 @@ export default React.createClass({
       return (
         <div className="dropdown-box">
           {currencies.map((obj) => {
-            return (<div key={obj} className={`dropdown-menu ${obj === activeCurrency ? 'active': ''}`}
-                         onClick={() => changeCurrency(obj)}>{obj}</div>);
+            return (
+              <div key={obj} className={`dropdown-menu ${obj === activeCurrency ? 'active' : ''}`}
+                onClick={() => changeCurrency(obj)}
+              >{obj}</div>);
           })}
         </div>
       );

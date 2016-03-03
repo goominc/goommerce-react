@@ -43,6 +43,7 @@ app.use(require('./middleware')({
 }));
 
 app.listen(config.port, (error) => {
+  console.log('Server is listening on', config.port); // eslint-disable-line no-console
   if (error) {
     console.error(error); // eslint-disable-line no-console
   }
