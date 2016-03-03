@@ -39,13 +39,13 @@ const ProductList = React.createClass({
   },
   doSearch(props) {
     const { query, categoryId, brandId, pageNum } = props;
-    const size = 30;
+    const limit = 30;
     this.context.ApiAction.searchProducts({
       q: query,
       categoryId: categoryId === 'all' ? undefined : categoryId,
       brandId,
-      from: Math.max((pageNum - 1) * size, 0),
-      size,
+      offset: Math.max((pageNum - 1) * limit, 0),
+      limit,
     }).then(res => this.setState(res));
   },
   breadCrumbPath() {

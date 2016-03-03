@@ -15,7 +15,7 @@ export default React.createClass({
     if (!pagination || !genLink) {
       return (<div></div>);
     }
-    const pageCnt = Math.ceil(pagination.total / pagination.size);
+    const pageCnt = Math.ceil(pagination.total / pagination.limit);
     if (pageCnt < 2) {
       // 2016. 02. 28. [heekyu] do not show if only one page
       return (<div></div>);
