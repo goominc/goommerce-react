@@ -52,7 +52,7 @@ $product-list-margin: 20px;
   background-color: #eee;
 }
 
-$product-in-row: 3;
+$product-in-row: 5;
 .product-list-item-wrap {
   width: 100% / $product-in-row;
   vertical-align: top;
@@ -68,7 +68,7 @@ $product-in-row: 3;
 }
 .product-list-item-box {
   padding: 30px 20px 15px 20px;
-  width: 260px;
+  width: 200px;
   background-color: #fff;
   display: inline-block;
   position: relative;
