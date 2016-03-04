@@ -19,10 +19,9 @@ function getAjaxData(auth, method, url, body) {
 }
 
 export function ajaxReturnPromise(auth, method, url, body) {
-  const ajaxData = getAjaxData(auth, method, url, body);
   return $.ajax(getAjaxData(auth, method, url, body));
 }
 
 export function simpleNotify(auth, method, url, body) {
-  ajaxReturnPromise(auth,method,url,body);
-};
+  ajaxReturnPromise(auth, method, url, body);
+}
