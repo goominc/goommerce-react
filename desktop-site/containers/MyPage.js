@@ -2,11 +2,11 @@
 
 import React, { PropTypes } from 'react';
 
-import MyPageHeader from '../components/mypage/MyPageHeader';
-import MyPageLeftbar from '../components/mypage/MyPageLeftbar';
-import MyOrderContainer from './MyOrderContainer';
-import WishListContainer from './WishListContainer';
-import FavoriteBrandContainer from './FavoriteBrandContainer';
+import MyPageHeader from 'components/mypage/MyPageHeader';
+import MyPageLeftbar from 'components/mypage/MyPageLeftbar';
+import MyOrderContainer from 'containers/MyOrderContainer';
+import WishListContainer from 'containers/WishListContainer';
+import FavoriteBrandContainer from 'containers/FavoriteBrandContainer';
 
 export default React.createClass({
   render() {

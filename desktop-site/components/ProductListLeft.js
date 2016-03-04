@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 import { get, pick } from 'lodash';
 
-import i18n from '../../commons/utils/i18n';
+import i18n from 'commons/utils/i18n';
 
 export default React.createClass({
   propTypes: {

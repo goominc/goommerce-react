@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-import i18n from '../../commons/utils/i18n';
+import i18n from 'commons/utils/i18n';
 
 export default React.createClass({
   propTypes: {

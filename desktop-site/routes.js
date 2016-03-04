@@ -16,7 +16,7 @@ import {
   Signup,
   ProductDetail,
   MyPage,
-} from './containers';
+} from 'containers';
 
 export default function configure({ getAuth }) {
   return (

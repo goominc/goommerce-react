@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import LinkedStateMixin from 'react-addons-linked-state-mixin'; // for manage form input...
 
-import CheckoutStep1 from './CheckoutStep1';
-import SellerBox from './../CartSellerBox';
+import CheckoutStep1 from 'components/checkout/CheckoutStep1';
+import SellerBox from 'components/CartSellerBox';
 
 export default React.createClass({
   propTypes: {

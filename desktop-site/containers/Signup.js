@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import SigninHeader from '../components/user/SigninHeader';
-import SignupPage from '../components/user/SignupPage';
+import SigninHeader from 'components/user/SigninHeader';
+import SignupPage from 'components/user/SignupPage';
 
-import { ApiAction } from '../redux/actions';
+import { ApiAction } from 'redux/actions';
 const { signup } = ApiAction;
 
 const Signup = React.createClass({

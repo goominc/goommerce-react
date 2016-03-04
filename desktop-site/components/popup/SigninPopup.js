@@ -2,7 +2,7 @@
 
 import React, { PropTypes } from 'react';
 
-import SigninForm from '../user/SigninForm';
+import SigninForm from 'components/user/SigninForm';
 
 export default React.createClass({
   propTypes: {

@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
 import { Link } from 'react-router';
 
-import SigninHeader from '../components/user/SigninHeader';
-import SigninForm from '../components/user/SigninForm';
+import SigninHeader from 'components/user/SigninHeader';
+import SigninForm from 'components/user/SigninForm';
 
-import { ApiAction } from '../redux/actions';
+import { ApiAction } from 'redux/actions';
 const { login } = ApiAction;
 
 const Signin = React.createClass({

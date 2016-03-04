@@ -4,11 +4,11 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
-import loadEntities from '../../commons/redux/util/loadEntities';
+import loadEntities from 'commons/redux/util/loadEntities';
 
-import OrderListComponent from '../components/OrderListComponent';
+import OrderListComponent from 'components/OrderListComponent';
 
-import { ApiAction } from '../redux/actions';
+import { ApiAction } from 'redux/actions';
 const { loadMyOrders } = ApiAction;
 
 const MyOrderContainer = React.createClass({
@@ -34,5 +34,3 @@ export default connect(
   state => loadEntities(state, 'myOrders', 'orders'),
   { loadMyOrders }
 )(MyOrderContainer);
-
-

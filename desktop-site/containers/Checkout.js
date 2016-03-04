@@ -2,9 +2,9 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { ReactScriptLoaderMixin } from 'react-script-loader';
 
-import CheckoutPage from '../components/checkout/CheckoutPage';
+import CheckoutPage from 'components/checkout/CheckoutPage';
 
-import { ApiAction } from '../redux/actions';
+import { ApiAction } from 'redux/actions';
 const { inipay, loadOrder, loadAddresses, saveAddress, setActiveAddress } = ApiAction;
 
 const Checkout = React.createClass({

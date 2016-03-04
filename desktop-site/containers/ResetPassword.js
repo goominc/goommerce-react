@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
 
-import { ApiAction } from '../redux/actions';
+import { ApiAction } from 'redux/actions';
 const { resetPassword } = ApiAction;
 
 const ResetPassword = React.createClass({

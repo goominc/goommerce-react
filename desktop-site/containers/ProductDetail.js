@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import ProductDetailPage from '../components/ProductDetailPage';
-import { getProductMainImage } from '../util';
+import ProductDetailPage from 'components/ProductDetailPage';
+import { getProductMainImage } from 'util';
 
-import { ApiAction, setActiveImage, selectColor, selectSize, wrapLogin } from '../redux/actions';
+import { ApiAction, setActiveImage, selectColor, selectSize, wrapLogin } from 'redux/actions';
 
 const ProductDetail = React.createClass({
   propTypes: {

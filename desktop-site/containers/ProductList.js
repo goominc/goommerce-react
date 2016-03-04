@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { get, isEqual, pick, range } from 'lodash';
 
-import Breadcrumb from '../components/Breadcrumb';
-import ProductListLeft from '../components/ProductListLeft';
-import ProductListItems from '../components/ProductListItems';
-import PageButton from '../components/PageButton';
+import Breadcrumb from 'components/Breadcrumb';
+import ProductListLeft from 'components/ProductListLeft';
+import ProductListItems from 'components/ProductListItems';
+import PageButton from 'components/PageButton';
 
 const ProductList = React.createClass({
   propTypes: {

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { defaults } from 'lodash';
 
-import ProductList from './ProductList';
+import ProductList from 'containers/ProductList';
 
 export default React.createClass({
   propTypes: {

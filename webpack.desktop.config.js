@@ -56,4 +56,10 @@ module.exports = {
       },
     ],
   },
+  resolve: {
+    root: [
+      path.resolve(__dirname),
+      path.resolve('desktop-site'),
+    ],
+  },
 };

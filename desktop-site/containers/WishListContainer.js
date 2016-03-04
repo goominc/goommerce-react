@@ -3,8 +3,8 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import loadEntities from '../../commons/redux/util/loadEntities';
-import WishListPage from '../components/mypage/WishListPage';
+import loadEntities from 'commons/redux/util/loadEntities';
+import WishListPage from 'components/mypage/WishListPage';
 
 const WishList = React.createClass({
   propTypes: {

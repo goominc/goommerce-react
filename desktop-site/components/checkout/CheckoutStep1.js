@@ -3,7 +3,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-import SellerBox from './../CartSellerBox';
+import SellerBox from 'components/CartSellerBox';
 
 export default React.createClass({
   propTypes: {

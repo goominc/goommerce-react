@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { get } from 'lodash';
 
-import loadEntities from '../../commons/redux/util/loadEntities';
-import i18n from '../../commons/utils/i18n';
+import loadEntities from 'commons/redux/util/loadEntities';
+import i18n from 'commons/utils/i18n';
 
-import ProductListItems from '../components/ProductListItems';
+import ProductListItems from 'components/ProductListItems';
 
 const Home = React.createClass({
   propTypes: {

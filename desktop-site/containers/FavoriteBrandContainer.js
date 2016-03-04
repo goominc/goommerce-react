@@ -3,7 +3,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import FavoriteBrandPage from '../components/mypage/FavoriteBrandPage';
+import FavoriteBrandPage from 'components/mypage/FavoriteBrandPage';
 
 const FavoriteBrand = React.createClass({
   render() {

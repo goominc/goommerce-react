@@ -3,7 +3,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-import { getProductThumbnail } from '../util';
+import { getProductThumbnail } from 'util';
 
 export default React.createClass({
   propTypes: {

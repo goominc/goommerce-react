@@ -1,6 +1,6 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
-import * as ApiAction from '../../commons/redux/apiActions';
+import * as ApiAction from 'commons/redux/apiActions';
 exports.ApiAction = ApiAction;
 
 export function resetError() {

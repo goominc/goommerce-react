@@ -2,10 +2,10 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { cloudinaryConfig } from 'react-cloudinary';
 
-import AppHeader from '../components/AppHeader';
-import AppFooter from '../components/AppFooter';
-import SigninPopup from '../components/popup/SigninPopup';
-import ErrorPopup from '../components/popup/ErrorPopup';
+import AppHeader from 'components/AppHeader';
+import AppFooter from 'components/AppFooter';
+import ErrorPopup from 'components/popup/ErrorPopup';
+import SigninPopup from 'components/popup/SigninPopup';
 
 import { ApiAction, resetError, closePopup, toggleSearchDropdown, selectSearchDropdown } from '../redux/actions';
 
