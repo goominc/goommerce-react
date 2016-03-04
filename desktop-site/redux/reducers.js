@@ -1,4 +1,3 @@
-import { assign, get } from 'lodash';
 import { combineReducers } from 'redux';
 
 import CommonReducers from '../../commons/redux/reducers';
@@ -16,16 +15,16 @@ function popup(state = {}, action) {
 
 function errorHandler(state = {}, action) {
   if (action.type === 'RESET_ERROR') {
-    return assign({}, state, { error: {} });
+    return Object.assign({}, state, { error: {} });
   }
   return state;
 }
 
 function search(state = {}, action) {
   if (action.type === 'SET_SEARCH_CATEGORY') {
-    return assign({}, state, { activeCategory: action.category });
+    return Object.assign({}, state, { activeCategory: action.category });
   } else if (action.type === 'TOGGLE_SEARCH_DROPDOWN') {
-    return assign({}, state, { showDropdown: !state.showDropdown });
+    return Object.assign({}, state, { showDropdown: !state.showDropdown });
   }
   if (state.showDropdown) {
     state.shoDropdown = false;
@@ -35,7 +34,7 @@ function search(state = {}, action) {
 
 function checkout(state = {}, action) {
   if (action.type === 'CHECKOUT_SET_STEP') {
-    const nextState = assign({}, state);
+    const nextState = Object.assign({}, state);
     nextState.step = action.step;
     return nextState;
   }
@@ -48,7 +47,7 @@ function pageProductDetail(state = {}, action) {
     const attributes = { colors: {}, sizes: {} };
     variants.forEach((variant) => {
       if (!variant.appImages || !variant.appImages.default || variant.appImages.default.length < 1) {
-        console.log(`${variant.sku} does not have color or size`);
+        console.log(`${variant.sku} does not have color or size`); // eslint-disable-line no-console
         return;
       }
       attributes.colors[variant.data.color] = { enable: true, selected: false, img: variant.appImages.default[0] };
@@ -63,7 +62,7 @@ function pageProductDetail(state = {}, action) {
     for (let i = 0; i < variants.length; i++) {
       const variant = variants[i];
       if (!newAttributes.sizes[variant.data.size] || !newAttributes.colors[variant.data.color]) {
-        console.log(`${variant.sku} does not have color or size`);
+        console.log(`${variant.sku} does not have color or size`); // eslint-disable-line no-console
         continue;
       }
       // 2016. 02. 25. [heekyu] set disable attributes
@@ -128,10 +127,12 @@ function pageProductDetail(state = {}, action) {
     return state2;
   };
   if (action.type === 'ACTIVE_IMAGE') {
-    return assign({}, state, { activeImage: action.image });
+    return Object.assign({}, state, { activeImage: action.image });
   } else if (action.type === 'PRODUCT_DETAIL_VARIANTS') {
-    const initialVariantState = { variants: action.variants, selectedVariant: null, activeColor: null, activeSize: null };
-    return assign({}, state, initialVariantState, initColorsAndSizes(action.variants));
+    const initialVariantState = {
+      variants: action.variants, selectedVariant: null, activeColor: null, activeSize: null,
+    };
+    return Object.assign({}, state, initialVariantState, initColorsAndSizes(action.variants));
   } else if (action.type === 'PRODUCT_DETAIL_SET_COLOR') {
     const color = action.color;
     if (color === state.activeColor) {
@@ -140,7 +141,7 @@ function pageProductDetail(state = {}, action) {
       state.activeColor = color;
     }
     const next = colorsAndSizesFromState(state);
-    return assign({}, next);
+    return Object.assign({}, next);
   } else if (action.type === 'PRODUCT_DETAIL_SET_SIZE') {
     const size = action.size;
     if (size === state.activeSize) {
@@ -148,7 +149,7 @@ function pageProductDetail(state = {}, action) {
     } else {
       state.activeSize = size;
     }
-    const next = assign({}, colorsAndSizesFromState(state));
+    const next = Object.assign({}, colorsAndSizesFromState(state));
     return next;
   }
   return state;
@@ -170,7 +171,7 @@ const rootReducer = combineReducers(
 
 export default (state = {}, action) => {
   if (action.error) {
-    return assign({}, state, { errorHandler: { error: action.error } });
+    return Object.assign({}, state, { errorHandler: { error: action.error } });
   }
   if (action.type === 'RESET') {
     return rootReducer({}, action);

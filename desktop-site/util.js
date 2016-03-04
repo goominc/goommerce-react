@@ -10,7 +10,9 @@ export function getProductThumbnail(product) {
     return undefined;
   }
   for (const image of defaultImages) {
-    if (image.thumbnail) return image.url;
+    if (image.thumbnail) {
+      return image.url;
+    }
   }
   return defaultImages[0].url;
 }
@@ -21,7 +23,9 @@ export function getProductMainImage(product) {
     return undefined;
   }
   for (const image of defaultImages) {
-    if (image.mainImage) return image;
+    if (image.mainImage) {
+      return image;
+    }
   }
   return defaultImages[0];
 }

@@ -7,7 +7,7 @@ import AppFooter from 'components/AppFooter';
 import ErrorPopup from 'components/popup/ErrorPopup';
 import SigninPopup from 'components/popup/SigninPopup';
 
-import { ApiAction, resetError, closePopup, toggleSearchDropdown, selectSearchDropdown } from '../redux/actions';
+import { ApiAction, resetError, closePopup, toggleSearchDropdown, selectSearchDropdown } from 'redux/actions';
 
 require('../stylesheets/main.scss');
 
@@ -18,7 +18,16 @@ const App = React.createClass({
     children: PropTypes.node,
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
+    closePopup: PropTypes.func,
+    error: PropTypes.func,
+    loadCMSData: PropTypes.func,
+    loadCartIfEmpty: PropTypes.func,
+    loadCategories: PropTypes.func,
+    login: PropTypes.func,
+    logout: PropTypes.func,
     params: PropTypes.object,
+    popup: PropTypes.func,
+    resetError: PropTypes.func,
   },
   contextTypes: {
     router: PropTypes.object.isRequired,
@@ -47,7 +56,7 @@ const App = React.createClass({
     this.props.loadCMSData('main_categories');
   },
   handleLogout() {
-    this.props.logout().then(() => window.location.href = '/');
+    this.props.logout().then(() => { window.location.href = '/'; });
   },
   handleSearch(query) {
     if (query) {
@@ -55,28 +64,30 @@ const App = React.createClass({
     }
   },
   render() {
-    const { children,
-      error, resetError,
-      login, popup, closePopup } = this.props;
+    const { children, error, login, popup } = this.props;
     const renderError = () => {
       if (error && error.message) {
         return (
-          <ErrorPopup error={error} resetError={resetError} />
+          <ErrorPopup error={error} resetError={this.props.resetError} />
         );
       }
+      return '';
     };
     const renderPopup = () => {
       const handleLogin = (email, password) => {
         login(email, password).then(
-          () => closePopup(),
-          () => alert('Invalid username/password.')
+          () => this.props.closePopup(),
+          () => alert('Invalid username/password.') // eslint-disable-line no-alert
         );
       };
       if (popup.login) {
         return (
-          <SigninPopup closePopup={closePopup} handleSubmit={handleLogin} goForgotPassword={() => console.log('TODO')} />
+          <SigninPopup closePopup={closePopup} handleSubmit={handleLogin}
+            goForgotPassword={() => console.log('TODO')} // eslint-disable-line no-console
+          />
         );
       }
+      return '';
     };
     return (
       <div>
@@ -95,10 +106,15 @@ const App = React.createClass({
 });
 
 export default connect(
-  (state) => ({ auth: state.auth, cart: state.cart,
-    categories: state.categories, showSearchDropdown: state.search.showDropdown, activeCategory: state.search.activeCategory,
+  (state) => ({
+    auth: state.auth,
+    cart: state.cart,
+    categories: state.categories,
+    showSearchDropdown: state.search.showDropdown,
+    activeCategory: state.search.activeCategory,
     error: state.errorHandler.error,
     activeLocale: state.i18n.activeLocale, activeCurrency: state.currency.activeCurrency,
-    popup: state.popup }),
-  _.assign({}, ApiAction, { resetError, closePopup, toggleSearchDropdown, selectSearchDropdown })
+    popup: state.popup,
+  }),
+  Object.assign({}, ApiAction, { resetError, closePopup, toggleSearchDropdown, selectSearchDropdown })
 )(App);
