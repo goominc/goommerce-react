@@ -1,7 +1,6 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
 import loadEntities from 'commons/redux/util/loadEntities';
@@ -31,6 +30,6 @@ const MyOrderContainer = React.createClass({
 });
 
 export default connect(
-  state => loadEntities(state, 'myOrders', 'orders'),
+  (state) => loadEntities(state, 'myOrders', 'orders'),
   { loadMyOrders }
 )(MyOrderContainer);

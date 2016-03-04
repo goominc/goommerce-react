@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
-import { Link } from 'react-router';
 
 import SigninHeader from 'components/user/SigninHeader';
 import SigninForm from 'components/user/SigninForm';
@@ -23,7 +22,7 @@ const Signin = React.createClass({
   handleSubmit(email, password) {
     this.props.login(email, password).then(
       () => this.context.router.push('/'),
-      () => alert('Invalid username/password.')
+      () => alert('Invalid username/password.') // eslint-disable-line no-alert
     );
   },
   render: function render() {
@@ -35,7 +34,7 @@ const Signin = React.createClass({
         <SigninHeader />
         <div className="signin-content-container">
           <div className="banner-title">The Best Value Online</div>
-          <div className="banner-text">Enjoy unbeatable prices and free shipping <br/>
+          <div className="banner-text">Enjoy unbeatable prices and free shipping <br />
             on almost all products!
           </div>
           <div className="signin-form-box">

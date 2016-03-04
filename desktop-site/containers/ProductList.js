@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
-import { get, isEqual, pick, range } from 'lodash';
 
 import Breadcrumb from 'components/Breadcrumb';
 import ProductListLeft from 'components/ProductListLeft';
 import ProductListItems from 'components/ProductListItems';
 import PageButton from 'components/PageButton';
+
+const _ = require('lodash');
 
 const ProductList = React.createClass({
   propTypes: {
@@ -32,7 +32,7 @@ const ProductList = React.createClass({
   },
   componentWillReceiveProps(nextProps) {
     const props = ['query', 'categoryId', 'brandId', 'pageNum'];
-    if (!isEqual(pick(this.props, props), pick(nextProps, props))) {
+    if (!_.isEqual(_.pick(this.props, props), _.pick(nextProps, props))) {
       this.doSearch(nextProps);
     }
   },
@@ -45,13 +45,15 @@ const ProductList = React.createClass({
       brandId,
       offset: Math.max((pageNum - 1) * limit, 0),
       limit,
-    }).then(res => this.setState(res));
+    }).then((res) => this.setState(res));
   },
   breadCrumbPath() {
     const { categories } = this.props;
     const path = [{ link: '/', name: { en: 'Home', ko: '홈' } }];
     function pushPath(category) {
-      if (!category) return;
+      if (!category) {
+        return;
+      }
       if (category.parentId) {
         pushPath(categories[category.parentId]);
       }
@@ -66,7 +68,7 @@ const ProductList = React.createClass({
 
     return (
       <div className="container-table">
-        <ProductListLeft {...this.props} aggs={aggs} brand={brand || null}/>
+        <ProductListLeft {...this.props} aggs={aggs} brand={brand || null} />
         <div className="product-list-right-box">
           <Breadcrumb path={path} />
           <div className="product-list-search-box"></div>

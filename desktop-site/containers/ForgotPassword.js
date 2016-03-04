@@ -15,12 +15,12 @@ const ForgotPassword = React.createClass({
   mixins: [LinkedStateMixin],
   getInitialState() {
     return {
-      resetBaseUrl: window.location.href.slice(0, -6) + 'reset',
+      resetBaseUrl: `${window.location.href.slice(0, -6)}reset`,
     };
   },
   handleSubmit(e) {
     e.preventDefault();
-    this.props.forgotPassword(this.state).then(res => alert(res.message));
+    this.props.forgotPassword(this.state).then((res) => alert(res.message)); // eslint-disable-line no-alert
   },
   render: function render() {
     return (

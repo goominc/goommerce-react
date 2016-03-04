@@ -1,12 +1,14 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
-import React, { PropTypes } from 'react';
+import React from 'react';
 
 import MyPageHeader from 'components/mypage/MyPageHeader';
 import MyPageLeftbar from 'components/mypage/MyPageLeftbar';
 import MyOrderContainer from 'containers/MyOrderContainer';
 import WishListContainer from 'containers/WishListContainer';
 import FavoriteBrandContainer from 'containers/FavoriteBrandContainer';
+
+const _ = require('lodash');
 
 export default React.createClass({
   render() {

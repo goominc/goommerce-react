@@ -4,16 +4,18 @@ import { connect } from 'react-redux';
 import ProductDetailPage from 'components/ProductDetailPage';
 import { getProductMainImage } from 'util';
 
-import { ApiAction, setActiveImage, selectColor, selectSize, wrapLogin } from 'redux/actions';
+import { selectColor, selectSize, setActiveImage, wrapLogin } from 'redux/actions';
 
 const ProductDetail = React.createClass({
   propTypes: {
-    productId: PropTypes.string.isRequired,
-    product: PropTypes.object,
     activeImage: PropTypes.object,
+    addCartProduct: PropTypes.func,
+    product: PropTypes.object,
+    productId: PropTypes.string.isRequired,
     setActiveImage: PropTypes.func,
     selectColor: PropTypes.func,
     selectSize: PropTypes.func,
+    wrapLogin: PropTypes.func,
   },
   contextTypes: {
     router: PropTypes.object.isRequired,
@@ -38,7 +40,7 @@ const ProductDetail = React.createClass({
         if (!variant.data.color) {
           const data = extractDataFromVariant(variant);
           if (!data.color) {
-            window.alert(`[DATA ERROR] cannot detect color from variant (${variant.sku})`);
+            window.alert(`[DATA ERROR] cannot detect color from variant (${variant.sku})`); // eslint-disable-line no-alert, max-len
             continue;
           }
           variant.data.color = data.color;
@@ -87,8 +89,8 @@ const ProductDetail = React.createClass({
     this.props.addCartProduct(variant.id);
   },
   render() {
-    const { product, activeImage, selectColor, selectSize, wrapLogin } = this.props;
-    const { createOrder, addCartProduct, addWish, addFavoriteBrand } = this.context.ApiAction;
+    const { activeImage, product, selectColor, selectSize, wrapLogin } = this.props; // eslint-disable-line no-shadow
+    const { addCartProduct, addWish, addFavoriteBrand, createOrder } = this.context.ApiAction;
     if (!product) {
       return (<div></div>);
     }

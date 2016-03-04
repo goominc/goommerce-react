@@ -16,7 +16,7 @@ export default React.createClass({
     const { params, location } = this.props;
     const query = defaults({}, params, location.query);
     return (
-      <ProductList {...query} genLink={genLink}/>
+      <ProductList {...query} genLink={genLink} />
     );
   },
 });

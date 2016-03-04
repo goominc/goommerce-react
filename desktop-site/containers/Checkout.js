@@ -6,18 +6,20 @@ import CheckoutPage from 'components/checkout/CheckoutPage';
 
 import { ApiAction } from 'redux/actions';
 const { inipay, loadOrder, loadAddresses, saveAddress, setActiveAddress } = ApiAction;
+const _ = require('lodash');
 
 const Checkout = React.createClass({
   propTypes: {
-    orderId: PropTypes.string.isRequired,
-    step: PropTypes.string,
-    order: PropTypes.object,
+    activeAddress: PropTypes.object,
     addresses: PropTypes.object,
     inipay: PropTypes.func.isRequired,
     loadOrder: PropTypes.func.isRequired,
     loadAddresses: PropTypes.func.isRequired,
+    order: PropTypes.object,
+    orderId: PropTypes.string.isRequired,
     saveAddress: PropTypes.func.isRequired,
     setActiveAddress: PropTypes.func.isRequired,
+    step: PropTypes.string,
   },
   mixins: [ReactScriptLoaderMixin],
   getDefaultProps() {
@@ -43,7 +45,7 @@ const Checkout = React.createClass({
     return 'https://stgstdpay.inicis.com/stdjs/INIStdPay.js';
   },
   doCheckout(orderId, paymentInfo) {
-    this.props.inipay(orderId).then(res => {
+    this.props.inipay(orderId).then((res) => {
       paymentInfo.mid.value = res.mid;
       paymentInfo.oid.value = res.oid;
       paymentInfo.price.value = res.price;

@@ -18,11 +18,11 @@ const Signup = React.createClass({
     const { email, password, passwordConfirm } = newUser;
     // 2016. 02. 23. [heekyu] interactive
     if (!password || password === '') {
-      window.alert('type password');
+      alert('type password'); // eslint-disable-line no-alert
       return;
     }
     if (password !== passwordConfirm) {
-      window.alert('password mismatch');
+      alert('password mismatch'); // eslint-disable-line no-alert
       return;
     }
     this.props.signup({
@@ -30,7 +30,7 @@ const Signup = React.createClass({
       password,
     }).then(
       () => this.context.router.push('/'),
-      err => alert(err.message)
+      (err) => alert(err.message) // eslint-disable-line no-alert
     );
   },
   render: function render() {

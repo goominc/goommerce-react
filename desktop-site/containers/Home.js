@@ -1,17 +1,16 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { get } from 'lodash';
 
 import loadEntities from 'commons/redux/util/loadEntities';
 import i18n from 'commons/utils/i18n';
 
-import ProductListItems from 'components/ProductListItems';
-
 const Home = React.createClass({
   propTypes: {
-    products: PropTypes.array,
+    activeLocale: PropTypes.string,
     categories: PropTypes.object.isRequired,
+    main_categories: PropTypes.object,
+    products: PropTypes.array,
   },
   contextTypes: {
     activeLocale: PropTypes.string,
@@ -24,7 +23,7 @@ const Home = React.createClass({
     $('.center-slide').owlCarousel({ autoPlay: 10000, items: 1 });
   },
   render() {
-    const { products = [], activeLocale } = this.props;
+    const { activeLocale } = this.props;
     const renderCurationTopic = () => {
       const linkItems = [
         { link: '/products', text: 'Fall Dresses', colorNum: 0 },
@@ -39,46 +38,56 @@ const Home = React.createClass({
         { link: '/products', text: 'Scarves', colorNum: 0 },
         { link: '/products', text: 'Hair Accessories', colorNum: 0 },
       ];
-      const renderItem = (item) => {
-        return (
-          <a href={item.link} key={item.text} className={`left-category-item item-color-${item.colorNum}`}>
-            {item.text}
-          </a>
-        );
-      };
+      const renderItem = (item) => (
+        <a href={item.link} key={item.text} className={`left-category-item item-color-${item.colorNum}`}>
+          {item.text}
+        </a>
+      );
       const slideItems = [
         { img: 'https://img.alicdn.com/tps/TB1Lqf1LFXXXXbVXpXXXXXXXXXX-480-550.jpg' },
         { img: 'http://img.alicdn.com/tps/i2/TB1UHPPLFXXXXc0XpXXL2TJPFXX-480-550.jpg' },
         { img: 'http://img.alicdn.com/tps/i3/TB19sDBLFXXXXaOaXXXL2TJPFXX-480-550.jpg' },
       ];
-      const renderSlideItem = (item) => {
-        return (
-          <a key={item.img} href="/products">
+      const renderSlideItem = (item) => (
+        <a key={item.img} href="/products">
+          <div className="img-wrap">
+            <img src={item.img} />
+          </div>
+        </a>
+      );
+      const smallBanners = [
+        {
+          title: 'New in 2016 Spring',
+          subTitle: 'For Her',
+          img: 'https://img.alicdn.com/tps/TB1oh4kLFXXXXcqXXXXXXXXXXXX-180-195.png',
+        },
+        {
+          title: 'New in 2016 April',
+          subTitle: 'Vintage Style',
+          img: 'https://img.alicdn.com/tps/TB1gdcLLpXXXXbpXpXXXXXXXXXX-180-195.jpg',
+        },
+        {
+          title: 'New in 2015 Spring',
+          subTitle: 'For You',
+          img: 'https://img.alicdn.com/tps/TB1n15zKXXXXXcLXVXXXXXXXXXX-180-195.jpg',
+        },
+        {
+          title: 'New in 2014 Spring',
+          subTitle: 'For Me',
+          img: 'https://img.alicdn.com/tps/TB1LYMJLpXXXXbxXpXXXXXXXXXX-180-195.jpg',
+        },
+      ];
+      const renderSmallBanner = (item) => (
+        <a key={item.title} href="/products">
+          <div className="small-banner hover-highlight">
+            <div className="title">{item.title}</div>
+            <div className="sub-title">{item.subTitle}</div>
             <div className="img-wrap">
               <img src={item.img} />
             </div>
-          </a>
-        );
-      };
-      const smallBanners = [
-        { title: 'New in 2016 Spring', subTitle: 'For Her', img: 'https://img.alicdn.com/tps/TB1oh4kLFXXXXcqXXXXXXXXXXXX-180-195.png' },
-        { title: 'New in 2016 April', subTitle: 'Vintage Style', img: 'https://img.alicdn.com/tps/TB1gdcLLpXXXXbpXpXXXXXXXXXX-180-195.jpg' },
-        { title: 'New in 2015 Spring', subTitle: 'For You', img: 'https://img.alicdn.com/tps/TB1n15zKXXXXXcLXVXXXXXXXXXX-180-195.jpg' },
-        { title: 'New in 2014 Spring', subTitle: 'For Me', img: 'https://img.alicdn.com/tps/TB1LYMJLpXXXXbxXpXXXXXXXXXX-180-195.jpg' },
-      ];
-      const renderSmallBanner = (item) => {
-        return (
-          <a key={item.title} href="/products">
-            <div className="small-banner hover-highlight">
-              <div className="title">{item.title}</div>
-              <div className="sub-title">{item.subTitle}</div>
-              <div className="img-wrap">
-                <img src={item.img} />
-              </div>
-            </div>
-          </a>
-        );
-      };
+          </div>
+        </a>
+      );
       return (
         <div className="curation-topic-box">
           <div className="left-category">
@@ -113,12 +122,12 @@ const Home = React.createClass({
             <div className="category-hover-box">
               {children.map((c, i) => (
                 <div className="child-box" key={i}>
-                  <Link to={'/categories/' + c.id}>
+                  <Link to={`/categories/${c.id}`}>
                     <div className="child-item"><b>{c.name[activeLocale]}</b></div>
                   </Link>
                   <div className="separator"></div>
                   {(c.children || []).map((gc, gi) => (
-                    <Link key={gi} to={'/categories/' + gc.id}>
+                    <Link key={gi} to={`/categories/${gc.id}`}>
                       <div className="child-item">{gc.name[activeLocale]}</div>
                     </Link>
                   ))}
@@ -127,19 +136,23 @@ const Home = React.createClass({
             </div>
           );
         }
+        return '';
       };
       const topCategories = main_categories;
       const renderCategoryItem = (c, i) => {
         let className = 'category-dropdown-item';
-        if (i === 0) className += ' top-item';
-        else if (i === topCategories.length - 1) className += ' bottom-item';
+        if (i === 0) {
+          className += ' top-item';
+        } else if (i === topCategories.length - 1) {
+          className += ' bottom-item';
+        }
         const handleMouseEnter = (e) => {
           $('.category-dropdown-item').removeClass('active');
           $(e.target).addClass('active');
           this.setState({ hoverCategory: c });
         };
         return (
-          <Link key={i} to={'/categories/' + c.id}>
+          <Link key={i} to={`/categories/${c.id}`}>
             <div
               className={className}
               onMouseEnter={handleMouseEnter}
@@ -158,7 +171,9 @@ const Home = React.createClass({
       <div className="main-wide-container">
         <div className="main-menu-bar">
           <div className="container no-horizontal-padding">
-            <div className="category-title">{i18n.get('word.categories')} <a href="/products">{i18n.get('word.seeAll')} > </a> </div>
+            <div className="category-title">{i18n.get('word.categories')}
+              <a href="/products">{i18n.get('word.seeAll')}</a>
+            </div>
             <div className="menu-box">
               <div className="menu-item">Super Deals</div>
               <div className="menu-item">Super Market</div>
@@ -172,12 +187,12 @@ const Home = React.createClass({
           <div className="main-banner-wrap">
             {renderCategories()}
             <div className="main-banner">
-              <img src="http://img.alicdn.com/tps/i3/TB1Gh.zLpXXXXXMXVXXVpvE2pXX-750-400.jpg"/>
-              <img src="https://img.alicdn.com/tps/TB12FmSLFXXXXXeapXXXXXXXXXX-750-400.jpg"/>
-              <img src="https://img.alicdn.com/tps/TB10vWZLFXXXXcpXFXXXXXXXXXX-750-400.jpg"/>
+              <img src="http://img.alicdn.com/tps/i3/TB1Gh.zLpXXXXXMXVXXVpvE2pXX-750-400.jpg" />
+              <img src="https://img.alicdn.com/tps/TB12FmSLFXXXXXeapXXXXXXXXXX-750-400.jpg" />
+              <img src="https://img.alicdn.com/tps/TB10vWZLFXXXXcpXFXXXXXXXXXX-750-400.jpg" />
             </div>
             <div className="right-banner">
-              <img src="http://img.alicdn.com/tps/i1/TB1o1laLFXXXXb7aXXXJTjSZVXX-320-400.jpg"/>
+              <img src="http://img.alicdn.com/tps/i1/TB1o1laLFXXXXb7aXXXJTjSZVXX-320-400.jpg" />
             </div>
           </div>
           {renderCurationTopic()}
@@ -212,7 +227,10 @@ const Home = React.createClass({
             <div className="slogan-item">
               <i className="icon i-shop"></i>
               <h3>Shop On-The-Go</h3>
-              <p><a rel="nofollow" href="javascript:;">Download the app</a> and get the world of AliExpress at your fingertips.</p>
+              <p>
+                <a rel="nofollow" href="">Download the app</a>
+                and get the world of AliExpress at your fingertips.
+              </p>
             </div>
           </div>
         </div>
@@ -221,11 +239,9 @@ const Home = React.createClass({
   },
 });
 
-export default connect(
-  state => ({
-    categories: state.categories,
-    activeLocale: state.i18n.activeLocale,
-    main_categories: state.cms.main_categories,
-    ...loadEntities(state, 'products', 'products'),
-  })
-)(Home);
+export default connect((state) => ({
+  categories: state.categories,
+  activeLocale: state.i18n.activeLocale,
+  main_categories: state.cms.main_categories,
+  ...loadEntities(state, 'products', 'products'),
+}))(Home);
