@@ -8,7 +8,7 @@ import {
   Order,
   ProductDetail,
   ProductList,
-} from './containers';
+} from 'containers';
 
 
 export default function configure() {

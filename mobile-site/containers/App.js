@@ -1,13 +1,13 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { ApiAction, resetError, toggleMenu, toggleSignRegister } from '../redux/actions';
+import { ApiAction, resetError, toggleMenu, toggleSignRegister } from 'redux/actions';
 const { loadCartIfEmpty, loadCategories, login, signup, logout } = ApiAction;
 
-import AppHeader from '../components/AppHeader';
-import CommonFooter from '../components/CommonFooter';
-import LeftSideBar from '../components/LeftSideBar';
-import SignRegister from '../components/SignRegister';
+import AppHeader from 'components/AppHeader';
+import CommonFooter from 'components/CommonFooter';
+import LeftSideBar from 'components/LeftSideBar';
+import SignRegister from 'components/SignRegister';
 
 const App = React.createClass({
   propTypes: {

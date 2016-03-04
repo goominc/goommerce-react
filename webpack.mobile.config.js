@@ -54,9 +54,14 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loaders: ["style", "css", "sass"]
+        loaders: ['style', 'css', 'sass'],
       },
     ],
   },
+  resolve: {
+    root: [
+      path.resolve(__dirname),
+      path.resolve('mobile-site'),
+    ],
+  },
 };
-

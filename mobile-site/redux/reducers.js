@@ -1,6 +1,6 @@
 import { assign, merge, get, set, union, forEach, omit } from 'lodash';
 import { combineReducers } from 'redux';
-import CommonReducers from '../../commons/redux/reducers';
+import CommonReducers from 'commons/redux/reducers';
 
 function errorHandler(state = {}, action) {
   if (action.type === 'RESET_ERROR') {

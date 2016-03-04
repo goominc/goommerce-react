@@ -2,13 +2,13 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
-import { ApiAction, setHeader } from '../redux/actions';
+import { ApiAction, setHeader } from 'redux/actions';
 const { loadProducts } = ApiAction;
 
-import loadEntities from '../../commons/redux/util/loadEntities';
+import loadEntities from 'commons/redux/util/loadEntities';
 
-import MainBanner from '../components/MainBanner';
-import MainRecommendList from '../components/MainRecommendList';
+import MainBanner from 'components/MainBanner';
+import MainRecommendList from 'components/MainRecommendList';
 
 const Home = React.createClass({
   propTypes: {

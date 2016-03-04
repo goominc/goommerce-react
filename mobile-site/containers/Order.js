@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import OrderPage from '../components/OrderPage';
+import OrderPage from 'components/OrderPage';
 
-import { ApiAction } from '../redux/actions';
+import { ApiAction } from 'redux/actions';
 //const { loadCart, updateCartProduct, deleteCartProduct, createOrder } = ApiAction;
 
 

@@ -5,9 +5,9 @@ import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import useScroll from 'scroll-behavior/lib/useStandardScroll';
 
-import configureStore from './../commons/redux/store';
-import configureRoutes from './routes';
-import reducer from './redux/reducers';
+import configureStore from 'commons/redux/store';
+import configureRoutes from 'routes';
+import reducer from 'redux/reducers';
 
 /*
 const history = createBrowserHistory();

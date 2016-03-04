@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-import ProductDetailBanner from './ProductDetailBanner';
-import ProductDetailRelated from './ProductDetailRelated';
+import ProductDetailBanner from 'components/ProductDetailBanner';
+import ProductDetailRelated from 'components/ProductDetailRelated';
 
 export default React.createClass({
   /*propTypes: {

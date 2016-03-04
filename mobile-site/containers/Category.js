@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { ApiAction, setHeader } from '../redux/actions';
+import { ApiAction, setHeader } from 'redux/actions';
 const { loadCategories } = ApiAction;
 
-import CategoryList from '../components/CategoryList';
+import CategoryList from 'components/CategoryList';
 
 const Category = React.createClass({
   propTypes: {

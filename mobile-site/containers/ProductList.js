@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { ApiAction, setHeader, changeViewType, toggleProductSort, toggleProductFilter } from '../redux/actions';
 const { searchProducts } = ApiAction;
 
-import ProductListItem from '../components/ProductListItem';
+import ProductListItem from 'components/ProductListItem';
 
 const ProductList = React.createClass({
   propTypes: {
