@@ -2,9 +2,21 @@
   "extends": "airbnb",
   "globals": {
     "$": false,
-    "_": false,
     "FB": false,
     "INIStdPay": false,
     "cloudinary": false,
-  }
+  },
+  "parser": "babel-eslint",
+  "plugins": [
+    "babel",
+    "react",
+  ],
+  "rules": {
+    "curly": [2, "all"],
+    "babel/arrow-parens": 2,
+    "max-len": [2, 120, 4],
+    "no-param-reassign": 0,
+    "no-mixed-requires": [1, {"grouping": true}],
+    "indent": [2, 2],
+  },
 }

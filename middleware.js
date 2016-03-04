@@ -4,7 +4,7 @@ const serveStatic = require('serve-static');
 const webpack = require('webpack');
 
 module.exports = (opts) => {
-  opts = opts || {}; // eslint-disable-line no-param-reassign
+  opts = opts || {};
   opts.getAuth = opts.getAuth || ((req, callback) => callback(null, {}));
   const middlewares = [];
 
@@ -27,13 +27,15 @@ module.exports = (opts) => {
   }
 
   if (opts.localBundle) {
-    middlewares.push(serveStatic(__dirname + '/dist'));
+    middlewares.push(serveStatic(`${__dirname}/dist`));
   }
 
   middlewares.push((req, res) => {
-    const cdn = '//' + config.cloudfront.domain;
+    const cdn = `//${config.cloudfront.domain}`;
     function path(name) {
-      if (opts.hot || opts.localBundle) return `/${name}`;
+      if (opts.hot || opts.localBundle) {
+        return `/${name}`;
+      }
       return `//${config.cloudfront.domain}/app/${config.bundle.version}/${name}`;
     }
 
@@ -98,10 +100,9 @@ module.exports = (opts) => {
         if (host.startsWith(config.mobileHostPrefix)) {
           return sendMobile(initialState);
         }
-        send(initialState);
+        return send(initialState);
       });
     }
   });
-
   return middlewares;
 };

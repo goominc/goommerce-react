@@ -8,17 +8,17 @@ function open() {
 
 function getVersion() {
   return open()
-    .then(repo => repo.getHeadCommit())
-    .then(commit => commit.toString());
+    .then((repo) => repo.getHeadCommit())
+    .then((commit) => commit.toString());
 }
 
 function getStatus() {
-  return open().then(repo => repo.getStatus());
+  return open().then((repo) => repo.getStatus());
 }
 
 function commit() {
   return open()
-    .then(repo => {
+    .then((repo) => {
       const signature = nodegit.Signature.default(repo);
       return repo.createCommitOnHead(['config.js'], signature, signature, 'deploy');
     });
@@ -26,17 +26,14 @@ function commit() {
 
 function push() {
   return open()
-    .then(repo => {
-      return repo.getRemote('origin').then(remote => remote.push(
-        ['refs/heads/master:refs/heads/master'],
-        {
-          callbacks: {
-            credentials: (url, userName) => {
-              return nodegit.Cred.sshKeyFromAgent(userName);
-            },
-          },
-        }));
-    });
+    .then((repo) => repo.getRemote('origin').then((remote) => remote.push(
+      ['refs/heads/master:refs/heads/master'],
+      {
+        callbacks: {
+          credentials: (url, userName) => nodegit.Cred.sshKeyFromAgent(userName),
+        },
+      }))
+    );
 }
 
 function replaceBundleVersion(version) {
@@ -54,8 +51,11 @@ function webpack() {
   return new Promise((resolve, reject) => {
     require('webpack')(webpackConfig, (err) => {
       console.log('done webapck');
-      if (err) reject(err);
-      resolve();
+      if (err) {
+        reject(err);
+      } else {
+        resolve();
+      }
     });
   });
 }
@@ -67,7 +67,7 @@ function upload() {
     },
   });
 
-  return getVersion().then(version => {
+  return getVersion().then((version) => {
     console.log('start upload scripts to s3.');
     const uploader = client.uploadDir({
       localDir: webpackConfig.output.path,
@@ -79,7 +79,7 @@ function upload() {
     });
 
     return new Promise((resolve, reject) => {
-      uploader.on('error', err => {
+      uploader.on('error', (err) => {
         console.log('failed uploading');
         reject(err);
       });
@@ -94,18 +94,16 @@ function upload() {
 function run() {
   return webpack()
     .then(() => upload())
-    .then(version => replaceBundleVersion(version))
+    .then((version) => replaceBundleVersion(version))
     .then(() => commit())
     .then(() => push())
-    .then(null, err => console.log(err));
+    .then(null, console.log);
 }
 
-getStatus().then(
-  status => {
-    if (status.length) {
-      console.error('please commit all changes.');
-    } else {
-      run();
-    }
+getStatus().then((status) => {
+  if (status.length) {
+    console.error('please commit all changes.');
+  } else {
+    run();
   }
-);
+});
