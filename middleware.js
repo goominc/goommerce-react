@@ -1,6 +1,7 @@
 const config = require('./config');
 const serialize = require('serialize-javascript');
 const serveStatic = require('serve-static');
+const webpack = require('webpack');
 
 module.exports = (opts) => {
   opts = opts || {}; // eslint-disable-line no-param-reassign
@@ -21,8 +22,7 @@ module.exports = (opts) => {
   }
 
   if (opts.hot) {
-    const webpack = require('webpack');
-    webpackRuntime('./webpack.config');
+    webpackRuntime('./webpack.desktop.config');
     webpackRuntime('./webpack.mobile.config');
   }
 

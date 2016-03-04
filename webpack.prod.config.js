@@ -6,7 +6,7 @@ module.exports = {
   devtool: 'source-map',
   entry: {
     app: [
-      './pc-site/client.js',
+      './desktop-site/client.js',
     ],
   },
   output: {
@@ -35,7 +35,7 @@ module.exports = {
       {
         test: /\.js$/,
         loaders: ['babel'],
-        include: [path.join(__dirname, 'pc-site'), path.join(__dirname, 'commons')],
+        include: [path.join(__dirname, 'desktop-site'), path.join(__dirname, 'commons')],
       },
       {
         test: /\.css$/,

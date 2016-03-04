@@ -21,8 +21,8 @@ app.use((req, res, next) => {
   // 2016. 02. 13. [heekyu] this is not efficient but only for development
   const i18n = {
     en: _.assign({},
-      require('./pc-site/i18n/mainpage.en.json'),
-      require('./pc-site/i18n/word.en.json')
+      require('./desktop-site/i18n/mainpage.en.json'),
+      require('./desktop-site/i18n/word.en.json')
     ),
   };
   req.i18n = i18n;

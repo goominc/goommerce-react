@@ -21,7 +21,7 @@ module.exports = {
   entry: {
     app: [
       'webpack-hot-middleware/client',
-      './pc-site/client',
+      './desktop-site/client',
     ],
   },
   output: {

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-import { getProductMainImage, getProductMainPrice } from '../../pc-site/util';
+import { getProductMainImage, getProductMainPrice } from '../../desktop-site/util';
 
 export default React.createClass({
   propTypes: {
