@@ -129,6 +129,7 @@ export default React.createClass({
         <div className="dropdown-menu" onClick={handleLogout}>{i18n.get('pcMain.myMenu.logout')}</div>
         <div className="dropdown-menu"><Link to="/mypage">{i18n.get('pcMain.myMenu.myLinkshops')}</Link></div>
         <div className="dropdown-menu"><Link to="/mypage/my_orders">{i18n.get('pcMain.myMenu.myOrders')}</Link></div>
+        <div className="dropdown-menu"><Link to="/mypage/favorite_brands">{i18n.get('pcMain.myMenu.favoriateBrands')}</Link></div>
       </div>
     );
 

@@ -1,0 +1,72 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the favorite brand page.
+// -----------------------------------------------------------------------------
+
+.favorite-brand-search-box {
+  background-color: #fff;
+  margin-bottom: $margin-20;
+  padding: $margin-15;
+  width: 100%;
+  input {
+    padding: 5px 10px;
+    font-size: 14px;
+  }
+}
+
+.favorite-brand-box {
+  background-color: #fff;
+  border: 1px solid #e8e8e8;
+  box-sizing: content-box;
+  display: table;
+  height: 300px;
+  margin-bottom: $margin-15;
+  width: 100%;
+  $padding: 10px;
+  .brand-info {
+    border-right: 1px solid #e8e8e8;
+    display: inline-block;
+    height: 100%;
+    padding: $padding;
+    width: 220px + 2 * $padding;
+    .title {
+      color: #000;
+      display: inline-block;
+      font-size: 15px;
+      margin-bottom: 10px;
+      width: 100%;
+    }
+    .main-products {
+      color: #999;
+      display: inline-block;
+      font-size: 12px;
+      margin-bottom: $margin-15;
+      width: 100%;
+    }
+  }
+  .brand-products {
+    display: table-cell;
+    vertical-align: top;
+    padding: $padding;
+    width: 100%;
+    .product-item {
+      display: inline-block;
+      width: percentage(1/4);
+      height: 100%;
+      text-align: center;
+      vertical-align: top;
+      .img-wrap {
+        margin-bottom: $margin-15;
+        width: 100%;
+        @include default-responsive-img-wrap();
+      }
+      .price {
+        color: #e62e04;
+        font-size: 16px;
+        font-weight: 700;
+      }
+      .price-unit {
+        color: #9b9ba3;
+      }
+    }
+  }
+}

@@ -289,5 +289,27 @@ export function loadWishlist() {
     type: 'LOAD_WISH_LIST',
     endpoint: '/api/v1/users/self/wishes',
     transform: ({ data }) => normalize(data, schemas.wishes),
+    /*
+    success: {
+      pagination: { key: 'wishes', type: 'REFRESH' },
+    },
+    */
+  });
+}
+
+export function addFavoriteBrand(brandId) {
+  return createFetchAction({
+    type: 'ADD_FAVORITE_BRAND',
+    endpoint: '/api/v1/users/self/favoriteBrands',
+    method: 'post',
+    body: { brandId },
+  });
+}
+
+export function deleteFavoriteBrand(brandId) {
+  return createFetchAction({
+    type: 'DELETE_FAVORITE_BRAND',
+    endpoint: `/api/v1/users/self/favoriteBrands/${brandId}`,
+    method: 'delete',
   });
 }

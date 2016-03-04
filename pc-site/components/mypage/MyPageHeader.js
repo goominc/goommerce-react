@@ -25,7 +25,6 @@ export default React.createClass({
           <div className={className}>{menu.title}</div>
         </Link>
       );
-      // return (<div key={menu.title} className={className}>{menu.title}</div>);
     };
     return (
       <div className="mypage-navigation">

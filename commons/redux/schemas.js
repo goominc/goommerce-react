@@ -16,3 +16,6 @@ export const addresses = arrayOf(address);
 
 export const wish = new Schema('wishes');
 export const wishes = arrayOf(wish);
+
+export const favoriteBrand = new Schema('favoriteBrands');
+export const favoriteBrands = arrayOf(favoriteBrand);

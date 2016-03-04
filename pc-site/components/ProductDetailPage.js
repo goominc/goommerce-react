@@ -16,6 +16,7 @@ export default React.createClass({
     addCartProduct: PropTypes.func,
     buyNow: PropTypes.func,
     addWish: PropTypes.func,
+    addFavoriteBrand: PropTypes.func,
     activeImage: PropTypes.object,
     setActiveImage: PropTypes.func,
   },
@@ -49,10 +50,11 @@ export default React.createClass({
   },
   render() {
     const { product, images, activeImage, variantAttributes, attributes, selectedVariant,
-      addCartProduct, buyNow, addWish } = this.props;
+      addCartProduct, buyNow, addWish, addFavoriteBrand } = this.props;
     if (!product || !variantAttributes) {
       return (<div></div>);
     }
+    const brand = product.brand;
     const { activeCurrency, activeLocale } = this.context;
     const renderImage = (image) => {
       if (!image) {
@@ -136,6 +138,21 @@ export default React.createClass({
       price = getProductMainPrice(product, activeCurrency);
     }
 
+    const renderBrand = () => {
+      if (brand) {
+        return (
+          <div className="normal-field-box">
+            <div className="field-label">Seller: </div>
+            <div className="field-content">
+              <span>{_.get(brand, 'data.name.' + activeLocale)}</span> <br/>
+              <Link to={`/brands/${brand.id}`}>Products this seller provide</Link> <br/>
+              <a onClick={() => addFavoriteBrand(brand.id)}>Add Favorite Brand</a>
+            </div>
+          </div>
+        );
+      }
+    };
+
     return (
       <div className="container">
         <Breadcrumb key="breadcrumb-default" path={path} />
@@ -168,10 +185,7 @@ export default React.createClass({
               <div className="field-label">Quantity: </div>
               <div className="field-content"><input type="number" defaultValue="1" min="1" ref="quantity" /></div>
             </div>
-            <div className="normal-field-box">
-              <div className="field-label">Seller: </div>
-              <div className="field-content"><Link to={`/brands/${_.get(product, 'brand.id')}`}>{_.get(product, 'brand.data.name.' + activeLocale)}</Link></div>
-            </div>
+            {renderBrand()}
             <div className="normal-field-box">
               <div className="field-label"></div>
               <div className="field-content">

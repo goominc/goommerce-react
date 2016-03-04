@@ -2,8 +2,9 @@
   "pcMain": {
     "myMenu": {
       "logout": "logout",
-      "myLinkshops": "myLinkshops",
-      "myOrders": "myOrders"
+      "myLinkshops": "My Linkshops",
+      "myOrders": "My Orders",
+      "favoriteBrands": "Favoriate Brands"
     },
     "search": {
       "placeHolder": "I'm shopping for..."

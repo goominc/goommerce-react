@@ -2,7 +2,26 @@
 
 import { assign, merge, get, set, union, forEach, omit } from 'lodash';
 
+const handleFavoriteBrandUpdate = (state, action) => {
+  if (action.type === 'ADD_FAVORITE_BRAND') {
+    // 2016. 03. 04. [heekyu] added data does not need in normal cases.
+    /*
+    const brand = action.payload;
+    const newState = assign({}, state);
+    newState.favoriteBrands[brand.id] = brand;
+    return newState;
+    */
+    return state;
+  } else if (action.type === 'DELETE_FAVORIATE_BRAND') {
+    return omit(state.favoriteBrands, action.brandId);
+  }
+  return null;
+};
 function auth(state = {}, action) {
+  const favoriteBrandState = handleFavoriteBrandUpdate(state, action);
+  if (favoriteBrandState) {
+    return favoriteBrandState;
+  }
   if (action.type === 'LOGOUT' && !action.error) {
     return {};
   }
@@ -31,21 +50,25 @@ function cms(state = {}, action) {
 
 const handleWishUpdate = (state, action) => {
   if (action.type === 'ADD_WISH_LIST') {
+    // 2016. 03. 04. [heekyu] added data does not need in normal cases.
+    return state;
+    /*
     const wish = action.payload;
     const newState = assign({}, state);
     newState.wishes[wish.id] = wish;
     return newState;
+    */
   } else if (action.type === 'DELETE_WISH_LIST') {
-    return omit(state, action.wishId);
+    return omit(state.wishes, action.wishId);
   }
   return null;
 };
 
 // Updates an entity cache in payload to any action with payload.entities.
-function entities(state = { users: {}, products: {}, orders: {}, addresses: {}, wishes: {} }, action) {
-  const handleWishState = handleWishUpdate(state, action);
-  if (handleWishState) {
-    return handleWishState;
+function entities(state = { users: {}, products: {}, orders: {}, addresses: {}, wishes: {}, favoriteBrands: {} }, action) {
+  const wishState = handleWishUpdate(state, action);
+  if (wishState) {
+    return wishState;
   }
   const nextState = assign({}, state);
   forEach(get(action, 'payload.entities'), (val, key) => {

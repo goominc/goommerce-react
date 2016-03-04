@@ -88,7 +88,7 @@ const ProductDetail = React.createClass({
   },
   render() {
     const { product, activeImage, selectColor, selectSize, wrapLogin } = this.props;
-    const { createOrder, addCartProduct, addWish } = this.context.ApiAction;
+    const { createOrder, addCartProduct, addWish, addFavoriteBrand } = this.context.ApiAction;
     if (!product) {
       return (<div></div>);
     }
@@ -101,23 +101,33 @@ const ProductDetail = React.createClass({
       { attrName: 'Color', key: 'colors', select: selectColor },
       { attrName: 'Size', key: 'sizes', select: selectSize },
     ];
-    const buyNow = (variantId, quantity) => {
+    const wrapBuyNow = (variantId, quantity) => {
       wrapLogin(() => {
         createOrder({ productVariants: [{ id: variantId, count: quantity }] }).then((order) => {
           this.context.router.push(`/orders/${order.id}/checkout`);
         });
       });
     };
-    const addToCart = (...args) => {
+    const wrapAddToCart = (...args) => {
       wrapLogin(() => {
         addCartProduct(...args);
+      });
+    };
+    const wrapAddWish = (...args) => {
+      wrapLogin(() => {
+        addWish(...args);
+      });
+    };
+    const wrapAddFavoriteBrand = (...args) => {
+      wrapLogin(() => {
+        addFavoriteBrand(...args);
       });
     };
     return (
       <ProductDetailPage
         {...this.props}
         images={images} activeImage={passImage} attributes={attributes}
-        buyNow={buyNow} addCartProduct={addToCart} addWish={addWish}
+        buyNow={wrapBuyNow} addCartProduct={wrapAddToCart} addWish={wrapAddWish} addFavoriteBrand={wrapAddFavoriteBrand}
       />
     );
   },

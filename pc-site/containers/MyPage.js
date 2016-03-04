@@ -2,17 +2,13 @@
 
 import React, { PropTypes } from 'react';
 
-import { connect } from 'react-redux';
-
 import MyPageHeader from '../components/mypage/MyPageHeader';
 import MyPageLeftbar from '../components/mypage/MyPageLeftbar';
 import MyOrderContainer from './MyOrderContainer';
 import WishListContainer from './WishListContainer';
+import FavoriteBrandContainer from './FavoriteBrandContainer';
 
-const MyPage = React.createClass({
-  contextType: {
-    ApiAction: PropTypes.object,
-  },
+export default React.createClass({
   render() {
     const menuName = _.get(this.props, 'params.menuName');
     const renderSubmenu = () => {
@@ -20,6 +16,8 @@ const MyPage = React.createClass({
         return (<MyOrderContainer />);
       } else if (menuName === 'wish_list') {
         return (<WishListContainer />);
+      } else if (menuName === 'favorite_brands') {
+        return (<FavoriteBrandContainer />);
       }
       return (<div></div>);
     };
@@ -35,6 +33,3 @@ const MyPage = React.createClass({
     );
   },
 });
-
-export default connect(
-)(MyPage);
