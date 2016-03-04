@@ -5,6 +5,8 @@ import { Link } from 'react-router';
 
 import SellerBox from 'components/CartSellerBox';
 
+const _ = require('lodash');
+
 export default React.createClass({
   propTypes: {
     order: PropTypes.object.isRequired,
@@ -25,16 +27,17 @@ export default React.createClass({
     const { order, addressFields, activeAddress } = this.props;
     const { activeCurrency } = this.context;
 
-    const renderFormField = (obj) => {
-      return (
-        <div key={obj.key} className="form-box">
-          <div className="form-label">{`${obj.text}: `}</div>
-          <input type="text"
-                 value={_.get(activeAddress, obj.key)}
-                 onChange={(e) => { _.set(activeAddress, obj.key, e.target.value ); this.setState({ activeAddress }) } } />
-        </div>
-      );
-    };
+    const renderFormField = (obj) => (
+      <div key={obj.key} className="form-box">
+        <div className="form-label">{`${obj.text}: `}</div>
+        <input type="text" value={_.get(activeAddress, obj.key)}
+          onChange={(e) => {
+            _.set(activeAddress, obj.key, e.target.value);
+            this.setState({ activeAddress });
+          }}
+        />
+      </div>
+    );
     const handleSubmitAddress = (e) => {
       e.preventDefault();
       const activeAddressInState = this.state.activeAddress;
@@ -83,9 +86,8 @@ export default React.createClass({
       );
     };
     // FIXME
-    const cartVariants = order.orderProducts.map((orderProduct) => {
-      return Object.assign({}, orderProduct.productVariant, { count: orderProduct.orderedCount });
-    });
+    const cartVariants = order.orderProducts.map((orderProduct) =>
+      Object.assign({}, orderProduct.productVariant, { count: orderProduct.orderedCount }));
     return (
       <div>
         <div className="checkout-section-title">1. Please fill in your shipping address. </div>
@@ -95,8 +97,8 @@ export default React.createClass({
         <SellerBox productVariants={cartVariants} />
         <div className="checkout-place-order">
           <span className="all-total-label">All Total:</span>
-          <span className="all-total-value">{activeCurrency} {order['totalEstimation' + activeCurrency]}</span>
-          <br/>
+          <span className="all-total-value">{activeCurrency} {order[`totalEstimation${activeCurrency}`]}</span>
+          <br />
           <Link to={`/orders/${order.id}/checkout/payment`}>
             <button className="place-order-button">Place Order</button>
           </Link>

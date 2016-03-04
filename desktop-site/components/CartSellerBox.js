@@ -5,18 +5,19 @@ import { getProductThumbnail } from 'util';
 
 export default React.createClass({
   propTypes: {
-    productVariants: PropTypes.array.isRequired,
-    canChangeQuantity: PropTypes.bool,
-    updateCount: PropTypes.func,
-    removeProduct: PropTypes.func,
     buy: PropTypes.func,
+    canChangeQuantity: PropTypes.bool,
+    children: PropTypes.string,
+    productVariants: PropTypes.array.isRequired,
+    removeProduct: PropTypes.func,
+    updateCount: PropTypes.func,
   },
   contextTypes: {
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
   },
   renderVariant(variant) {
-    const { updateCount, removeProduct, buy, canChangeQuantity } = this.props;
+    const { buy, canChangeQuantity, updateCount, removeProduct } = this.props;
     const { activeCurrency } = this.context;
     function handleQuantity(event) {
       return updateCount(variant, event.target.value);
@@ -39,10 +40,13 @@ export default React.createClass({
     }
     const renderQuantity = () => {
       if (canChangeQuantity) {
-        return (<input type="number" name="quantity" min="1" max="100" onChange={handleQuantity} defaultValue={variant.count}/>);
-      } else {
-        return (<span>{variant.count}</span>);
+        return (
+          <input type="number" name="quantity" min="1" max="100" onChange={handleQuantity}
+            defaultValue={variant.count}
+          />
+        );
       }
+      return (<span>{variant.count}</span>);
     };
     return (
       <tr key={`cart-variant-${variant.id}`}>

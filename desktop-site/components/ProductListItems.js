@@ -41,7 +41,10 @@ export default React.createClass({
               </Link>
             </div>
             <div className="product-title">
-              <Link to={`/products/${item.id}`}>Socone Mens Women Breathable Trail Running Shoes New 2015 Summer Mens Shoes Outdoor Water Shoe Athletic Sport Shoes Men Trainers</Link>
+              <Link to={`/products/${item.id}`}>
+                Socone Mens Women Breathable Trail Running Shoes New 2015 Summer Mens Shoes Outdoor Water Shoe Athletic
+                Sport Shoes Men Trainers
+              </Link>
             </div>
             <div className="product-price">
               {activeCurrency} {getProductMainPrice(item, activeCurrency)}

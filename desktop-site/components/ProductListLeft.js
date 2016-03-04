@@ -37,9 +37,7 @@ export default React.createClass({
       );
     }
 
-    const brandLink = (brandId) => {
-      return genLink(Object.assign(pick(this.props, ['query', 'categoryId']), { brandId }));
-    };
+    const brandLink = (brandId) => genLink(Object.assign(pick(this.props, ['query', 'categoryId']), { brandId }));
 
     return (
       <div>
@@ -61,9 +59,7 @@ export default React.createClass({
       return undefined;
     }
 
-    const categoryLink = (categoryId) => {
-      return genLink(Object.assign(pick(this.props, ['query', 'brandId']), { categoryId }));
-    };
+    const categoryLink = (categoryId) => genLink(Object.assign(pick(this.props, ['query', 'brandId']), { categoryId }));
 
     const childCategories = category.children
       .filter((c) => get(aggs, `categories.${c.id}.doc_count`))
@@ -76,7 +72,9 @@ export default React.createClass({
       ));
 
     function ancestor(c) {
-      if (!c) return [];
+      if (!c) {
+        return [];
+      }
       return ancestor(categories[c.parentId]).concat(c);
     }
 
@@ -99,6 +97,7 @@ export default React.createClass({
           </div>
         );
       }
+      return '';
     };
 
     return render(ancestor(category));

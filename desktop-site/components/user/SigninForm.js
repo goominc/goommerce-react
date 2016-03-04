@@ -37,7 +37,7 @@ export default React.createClass({
         />
         <a onClick={goForgotPassword}>forgot password?</a>
         <div className="remember-me">
-          <input type="checkbox" value="remember-me"/> Remember me
+          <input type="checkbox" value="remember-me" /> Remember me
         </div>
         <button className="btn-signin" type="submit">Sign in</button>
       </form>

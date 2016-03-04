@@ -6,14 +6,14 @@ import SellerBox from 'components/CartSellerBox';
 
 export default React.createClass({
   propTypes: {
-    order: PropTypes.object.isRequired,
-    step: PropTypes.string.isRequired,
     addressFields: PropTypes.array,
     activeAddress: PropTypes.object,
     addresses: PropTypes.object,
+    doCheckout: PropTypes.func,
     saveAddress: PropTypes.func,
     setActiveAddress: PropTypes.func,
-    doCheckout: PropTypes.func,
+    step: PropTypes.string.isRequired,
+    order: PropTypes.object.isRequired,
   },
   contextTypes: {
     activeLocale: PropTypes.string,
@@ -36,31 +36,31 @@ export default React.createClass({
       if (this.refs.gopaymethod.value) {
         doCheckout(order.id, this.refs);
       } else {
-        window.alert('Please select a pay method.');
+        window.alert('Please select a pay method.'); // eslint-disable-line no-alert
       }
     };
     return (
       <form id="checkout" method="POST">
-        <div>{activeCurrency} {order['totalEstimation' + activeCurrency]}</div>
+        <div>{activeCurrency} {order[`totalEstimation${activeCurrency}`]}</div>
         <select name="gopaymethod" ref="gopaymethod">
           <option value="">[ 결제방법 선택 ]</option>
           <option value="Card">신용카드 결제</option>
           <option value="DirectBank">실시간 은행계좌이체</option>
           <option value="VBank">무통장 입금</option>
         </select>
-        <input type="hidden" name="version" value="1.0"/>
-        <input type="hidden" name="mid" ref="mid"/>
-        <input type="hidden" name="oid" ref="oid"/>
-        <input type="hidden" name="goodname" value="의류"/>
-        <input type="hidden" name="price" ref="price"/>
-        <input type="hidden" name="currency" value="WON"/>
-        <input type="hidden" name="buyername" value="LINKSHOPS"/>
-        <input type="hidden" name="buyertel" value="010-2000-1234"/>
-        <input type="hidden" name="buyeremail" ref="buyeremail"/>
-        <input type="hidden" name="timestamp" ref="timestamp"/>
-        <input type="hidden" name="signature" ref="signature"/>
-        <input type="hidden" name="returnUrl" ref="returnUrl"/>
-        <input type="hidden" name="mKey" ref="mKey"/>
+        <input type="hidden" name="version" value="1.0" />
+        <input type="hidden" name="mid" ref="mid" />
+        <input type="hidden" name="oid" ref="oid" />
+        <input type="hidden" name="goodname" value="의류" />
+        <input type="hidden" name="price" ref="price" />
+        <input type="hidden" name="currency" value="WON" />
+        <input type="hidden" name="buyername" value="LINKSHOPS" />
+        <input type="hidden" name="buyertel" value="010-2000-1234" />
+        <input type="hidden" name="buyeremail" ref="buyeremail" />
+        <input type="hidden" name="timestamp" ref="timestamp" />
+        <input type="hidden" name="signature" ref="signature" />
+        <input type="hidden" name="returnUrl" ref="returnUrl" />
+        <input type="hidden" name="mKey" ref="mKey" />
         <button type="button" className="btn btn-default" onClick={handleCheckout}>
           CHECKOUT
         </button>
@@ -70,9 +70,7 @@ export default React.createClass({
   renderDone() {
     const { order } = this.props;
     // FIXME
-    const variants = order.orderProducts.map((p) => {
-      return Object.assign({}, p.productVariant, { count: p.orderedCount });
-    });
+    const variants = order.orderProducts.map((p) => Object.assign({}, p.productVariant, { count: p.orderedCount }));
     return (
       <div>
         <SellerBox productVariants={variants} />
@@ -94,15 +92,20 @@ export default React.createClass({
 
     const getContent = () => {
       switch (step) {
-        case 'review':
+        case 'review': { // eslint-disable-line indent
           return this.renderCheckoutInformations();
-        case 'payment':
+        }
+        case 'payment': { // eslint-disable-line indent
           return this.renderPayments();
-        case 'done':
+        }
+        case 'done': { // eslint-disable-line indent
           return this.renderDone();
-        default:
-          window.alert('Invalid Checkout Page State!');
+        }
+        default: { // eslint-disable-line indent
+          window.alert('Invalid Checkout Page State!'); // eslint-disable-line no-alert
+        }
       }
+      return '';
     };
 
     const handleClickStep = (newStep) => {

@@ -6,6 +6,8 @@ import { getProductMainPrice } from 'util';
 
 import Breadcrumb from 'components/Breadcrumb';
 
+const _ = require('lodash');
+
 export default React.createClass({
   propTypes: {
     product: PropTypes.object.isRequired,
@@ -111,7 +113,9 @@ export default React.createClass({
           }
           return (<img className={className} key={key} onClick={() => selectFunc(key)} src={obj.img.url} />);
         }
-        return (<div key={key} onClick={() => selectFunc(key)} className={`attribute-item-text${className}`}>{key}</div>);
+        return (
+          <div key={key} onClick={() => selectFunc(key)} className={`attribute-item-text${className}`}>{key}</div>
+        );
       };
       const keys = Object.keys(attrObj);
       return (
@@ -144,13 +148,14 @@ export default React.createClass({
           <div className="normal-field-box">
             <div className="field-label">Seller: </div>
             <div className="field-content">
-              <span>{_.get(brand, 'data.name.' + activeLocale)}</span> <br/>
-              <Link to={`/brands/${brand.id}`}>Products this seller provide</Link> <br/>
+              <span>{_.get(brand, ['data', 'name', activeLocale])}</span> <br />
+              <Link to={`/brands/${brand.id}`}>Products this seller provide</Link> <br />
               <a onClick={() => addFavoriteBrand(brand.id)}>Add Favorite Brand</a>
             </div>
           </div>
         );
       }
+      return '';
     };
 
     return (
@@ -174,7 +179,10 @@ export default React.createClass({
             </div>
           </div>
           <div className="product-detail-right">
-            <span className="product-title">2015 New Autumn Fashion Brand Men Clothes Slim Fit Men Long Sleeve Shirt Men Plaid Cotton Casual Men Shirt Social Plus Size 5XL</span>
+            <span className="product-title">
+              2015 New Autumn Fashion Brand Men Clothes Slim Fit Men Long Sleeve Shirt Men Plaid Cotton Casual Men Shirt
+              Social Plus Size 5XL
+            </span>
             <div className="divider"></div>
             <div className="price-info-box">
               <div className="field-label">Price: </div>

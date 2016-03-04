@@ -22,32 +22,30 @@ export default React.createClass({
         <div key={product.id} className="order-product-item">
           <div className="thumbnail-box"><img src={thumbnail} /></div>
           <div className="content-box">
-            {variant.sku} <br/>
-            Price / piece : {product.KRW} <br/>
-            Count: {product.orderedCount} <br/>
-            Total Price : {product.totalKRW} <br/>
+            {variant.sku} <br />
+            Price / piece : {product.KRW} <br />
+            Count: {product.orderedCount} <br />
+            Total Price : {product.totalKRW} <br />
           </div>
         </div>
       );
     };
-    const renderOrder = (order) => {
-      return (
-        <div key={order.id} className="order-box">
-          <div className="order-head">
-            <span>Order Id: {order.id} </span> <Link to={`/orders/${order.id}`} >View Detail</Link> <br/>
-            <span>Total Price: KWR {order.totalKRW}</span> <br/>
-            <span>Order Date: {formatDate(order.createdAt)}</span> <br/>
-            <span>Seller: Mola</span>
-          </div>
-          <div className="order-product-box">
-            {(order.orderProducts || []).map(renderOrderProduct)}
-          </div>
-          <div className="order-action-box">
-            Status : {order.status}
-          </div>
+    const renderOrder = (order) => (
+      <div key={order.id} className="order-box">
+        <div className="order-head">
+          <span>Order Id: {order.id} </span> <Link to={`/orders/${order.id}`} >View Detail</Link> <br />
+          <span>Total Price: KWR {order.totalKRW}</span> <br />
+          <span>Order Date: {formatDate(order.createdAt)}</span> <br />
+          <span>Seller: Mola</span>
         </div>
-      );
-    };
+        <div className="order-product-box">
+          {(order.orderProducts || []).map(renderOrderProduct)}
+        </div>
+        <div className="order-action-box">
+          Status : {order.status}
+        </div>
+      </div>
+    );
 
     return (
       <div className="mypage-right-box">
@@ -59,8 +57,8 @@ export default React.createClass({
           <span>Complete</span>
         </div>
         <div className="order-search-bar">
-          Order Number:  <input type="text" />
-          Product:  <input type="text" />
+          Order Number: <input type="text" />
+          Product: <input type="text" />
           <button>Search</button>
         </div>
         <div className="order-list-container">

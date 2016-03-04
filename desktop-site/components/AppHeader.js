@@ -3,6 +3,8 @@ import { Link } from 'react-router';
 
 import i18n from 'commons/utils/i18n';
 
+const _ = require('lodash');
+
 export default React.createClass({
   propTypes: {
     auth: PropTypes.object.isRequired,
@@ -31,7 +33,9 @@ export default React.createClass({
     const { auth } = this.props;
     const getName = (email) => {
       const idx = email.indexOf('@');
-      if (idx > 0) return email.substring(0, idx);
+      if (idx > 0) {
+        return email.substring(0, idx);
+      }
       return email;
     };
     if (auth.bearer) {
@@ -71,7 +75,9 @@ export default React.createClass({
           className += ' active';
         }
         return (
-          <div onClick={() => selectSearchDropdown(item)} key={index} className={className}>{item.name[activeLocale]}</div>
+          <div onClick={() => selectSearchDropdown(item)} key={index} className={className}>
+            {item.name[activeLocale]}
+          </div>
         );
       });
     };
@@ -87,7 +93,9 @@ export default React.createClass({
       return (
         <div className="search-dropdown-box">
           <div className="popup-overlay" style={overlayStyle}></div>
-          <div onClick={() => selectSearchDropdown(null)} className={notSelectedClassName}>{i18n.get('word.allCategories')}</div>
+          <div onClick={() => selectSearchDropdown(null)} className={notSelectedClassName}>
+            {i18n.get('word.allCategories')}
+          </div>
           {renderSearchDropdownItems()}
         </div>
       );
@@ -101,13 +109,11 @@ export default React.createClass({
       ];
       return (
         <div className="dropdown-box">
-          {locales.map((obj) => {
-            return (
-              <div key={obj.locale} className={`dropdown-menu ${obj.locale === activeLocale ? 'active' : ''}`}
-                onClick={() => changeLocale(obj.locale)}
-              >{obj.text}</div>
-              );
-          })}
+          {locales.map((obj) => (
+            <div key={obj.locale} className={`dropdown-menu ${obj.locale === activeLocale ? 'active' : ''}`}
+              onClick={() => changeLocale(obj.locale)}
+            >{obj.text}</div>
+          ))}
         </div>
       );
     };
@@ -115,12 +121,11 @@ export default React.createClass({
       const currencies = ['KRW', 'USD', 'CNY'];
       return (
         <div className="dropdown-box">
-          {currencies.map((obj) => {
-            return (
-              <div key={obj} className={`dropdown-menu ${obj === activeCurrency ? 'active' : ''}`}
-                onClick={() => changeCurrency(obj)}
-              >{obj}</div>);
-          })}
+          {currencies.map((obj) => (
+            <div key={obj} className={`dropdown-menu ${obj === activeCurrency ? 'active' : ''}`}
+              onClick={() => changeCurrency(obj)}
+            >{obj}</div>
+          ))}
         </div>
       );
     };
@@ -129,7 +134,9 @@ export default React.createClass({
         <div className="dropdown-menu" onClick={handleLogout}>{i18n.get('pcMain.myMenu.logout')}</div>
         <div className="dropdown-menu"><Link to="/mypage">{i18n.get('pcMain.myMenu.myLinkshops')}</Link></div>
         <div className="dropdown-menu"><Link to="/mypage/my_orders">{i18n.get('pcMain.myMenu.myOrders')}</Link></div>
-        <div className="dropdown-menu"><Link to="/mypage/favorite_brands">{i18n.get('pcMain.myMenu.favoriteBrands')}</Link></div>
+        <div className="dropdown-menu">
+          <Link to="/mypage/favorite_brands">{i18n.get('pcMain.myMenu.favoriteBrands')}</Link>
+        </div>
       </div>
     );
 
@@ -160,11 +167,15 @@ export default React.createClass({
         <div className="container header">
           <div className="header-wrap">
             <Link className="header-item" to="/">
-              <img className="header-logo" src="http://www.linkshops.com/skin/frontend/linkshops2nd/default/images/logo.png" alt="Linkshops"/>
+              <img className="header-logo"
+                src="http://www.linkshops.com/skin/frontend/linkshops2nd/default/images/logo.png" alt="Linkshops"
+              />
             </Link>
             <form onSubmit={handleSearchSubmit}>
               <div className="header-search-box">
-                <input ref="searchQuery" placeholder={i18n.get('pcMain.search.placeHolder')} defaultValue={params.query || ''}/>
+                <input ref="searchQuery" placeholder={i18n.get('pcMain.search.placeHolder')}
+                  defaultValue={params.query || ''}
+                />
                 <div className="header-search-category-box" onClick={toggleSearchDropdown}>
                   <div className="search-divider"></div>
                   <div className="arrow-down"></div>

@@ -24,8 +24,12 @@ export default React.createClass({
     const totalCnt = 7;
     let start = Math.max(0, Math.min(pageNum - 1 - beforeCnt, pageCnt - totalCnt)) + 1;
     let end = Math.min(pageCnt, start + totalCnt - 1);
-    if (start === 2) start--;
-    if (end === pageCnt - 1) end++;
+    if (start === 2) {
+      start--;
+    }
+    if (end === pageCnt - 1) {
+      end++;
+    }
     const renderFirst = () => {
       if (start > 1) {
         const res = [];
@@ -37,6 +41,7 @@ export default React.createClass({
         res.push(<span key="page-first-dot">...</span>);
         return res;
       }
+      return '';
     };
     const renderLast = () => {
       if (end < pageCnt) {
@@ -49,6 +54,7 @@ export default React.createClass({
         );
         return res;
       }
+      return '';
     };
     const renderButton = (i) => {
       if (i === Number(pageNum)) {
