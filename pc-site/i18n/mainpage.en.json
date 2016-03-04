@@ -1,10 +1,10 @@
 {
   "pcMain": {
     "myMenu": {
-      "logout": "logout",
+      "favoriteBrands": "Favoriate Brands",
+      "logout": "Sign Out",
       "myLinkshops": "My Linkshops",
-      "myOrders": "My Orders",
-      "favoriteBrands": "Favoriate Brands"
+      "myOrders": "My Orders"
     },
     "search": {
       "placeHolder": "I'm shopping for..."

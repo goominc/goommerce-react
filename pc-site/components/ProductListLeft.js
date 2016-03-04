@@ -3,6 +3,8 @@ import { Link } from 'react-router';
 
 import { get, pick } from 'lodash';
 
+import i18n from '../../commons/utils/i18n';
+
 export default React.createClass({
   propTypes: {
     category: PropTypes.object,
@@ -41,9 +43,7 @@ export default React.createClass({
 
     return (
       <div>
-        <div className="product-list-category-title">
-          Related Brands
-        </div>
+        <div className="product-list-category-title">{i18n.get('word.brands')}</div>
         {brands.map((b) => (
           <div key={b.id} className="product-list-category-depth1">
             <Link to={brandLink(b.id)}>
@@ -106,9 +106,7 @@ export default React.createClass({
   render() {
     return (
       <div className="product-list-left-box">
-        <div className="product-list-category-title">
-          Related Categories
-        </div>
+        <div className="product-list-category-title">{i18n.get('word.relatedCategories')}</div>
         {this.renderCategories()}
         {this.renderBrands()}
       </div>
