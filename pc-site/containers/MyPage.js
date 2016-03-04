@@ -1,6 +1,6 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import { connect } from 'react-redux';
 
@@ -10,9 +10,12 @@ import MyOrderContainer from './MyOrderContainer';
 import WishListContainer from './WishListContainer';
 
 const MyPage = React.createClass({
+  contextType: {
+    ApiAction: PropTypes.object,
+  },
   render() {
+    const menuName = _.get(this.props, 'params.menuName');
     const renderSubmenu = () => {
-      const menuName = _.get(this.props, 'params.menuName');
       if (menuName === 'my_orders') {
         return (<MyOrderContainer />);
       } else if (menuName === 'wish_list') {
@@ -23,7 +26,7 @@ const MyPage = React.createClass({
     const containerStyle = { backgroundColor: '#f2f2f2' };
     return (
       <div style={containerStyle}>
-        <MyPageHeader menuName="My Orders" />
+        <MyPageHeader menuName={menuName} />
         <div className="mypage-contents-container">
           <MyPageLeftbar />
           {renderSubmenu()}
