@@ -26,7 +26,7 @@ const App = React.createClass({
     login: PropTypes.func,
     logout: PropTypes.func,
     params: PropTypes.object,
-    popup: PropTypes.func,
+    popup: PropTypes.object,
     resetError: PropTypes.func,
   },
   contextTypes: {
