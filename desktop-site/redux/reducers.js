@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 
 import CommonReducers from '../../commons/redux/reducers';
+import { initColorsAndSizes } from 'commons/utils/productUtil';
 
 function popup(state = {}, action) {
   if (action.type === 'OPEN_POPUP') {
@@ -43,18 +44,6 @@ function checkout(state = {}, action) {
 
 // BEGIN page-wide reducers
 function pageProductDetail(state = {}, action) {
-  const initColorsAndSizes = (variants) => {
-    const attributes = { colors: {}, sizes: {} };
-    variants.forEach((variant) => {
-      if (!variant.appImages || !variant.appImages.default || variant.appImages.default.length < 1) {
-        console.log(`${variant.sku} does not have color or size`); // eslint-disable-line no-console
-        return;
-      }
-      attributes.colors[variant.data.color] = { enable: true, selected: false, img: variant.appImages.default[0] };
-      attributes.sizes[variant.data.size] = { enable: true, selected: false };
-    });
-    return { variantAttributes: attributes };
-  };
   const updateColorsAndSizes = (variants, activeColor, activeSize, state2) => {
     const { variantAttributes } = state2;
     // 2016. 02. 25. [heekyu] copy object for render view

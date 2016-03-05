@@ -6,6 +6,8 @@ import ProductListLeft from 'components/ProductListLeft';
 import ProductListItems from 'components/ProductListItems';
 import PageButton from 'components/PageButton';
 
+import { getProductMainImage } from 'util';
+
 const _ = require('lodash');
 
 const ProductList = React.createClass({
@@ -66,13 +68,34 @@ const ProductList = React.createClass({
     const { products = [], aggs = {}, brand } = this.state;
     const path = this.breadCrumbPath();
 
+    products.forEach((product) => {
+      if (!product.mainImage) {
+        product.mainImage = getProductMainImage(product.topHit || product);
+      }
+    });
+
+    const changeMainImage = (productId, image) => {
+      for (let i = 0; i < products.length; i++) {
+        const product = products[i];
+        if (product.id === productId) {
+          if (product.mainImage && product.mainImage.url === image.url) {
+            // same image
+            return;
+          }
+          product.mainImage = image;
+          this.setState({ products });
+          return;
+        }
+      }
+    };
+
     return (
       <div className="container-table">
         <ProductListLeft {...this.props} aggs={aggs} brand={brand || null} />
         <div className="product-list-right-box">
           <Breadcrumb path={path} />
           <div className="product-list-search-box"></div>
-          <ProductListItems products={products} />
+          <ProductListItems products={products} changeMainImage={changeMainImage} />
           <PageButton
             pagination={this.state.pagination}
             genLink={(pageNum) => this.props.genLink({ ...this.props, pageNum })}

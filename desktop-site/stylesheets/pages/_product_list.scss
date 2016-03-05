@@ -60,7 +60,7 @@ $product-in-row: 5;
   display: inline-block;
   margin-top: $product-list-margin;
   overflow-y: visible;
-  height: 450px;
+  height: 330px;
   margin-bottom: 30px;
 }
 .product-list-first-item {
@@ -77,6 +77,9 @@ $product-in-row: 5;
     width: 100%;
     @include default-responsive-img-wrap();
   }
+  a {
+    text-decoration: none;
+  }
   .product-title {
     height: 32px;
     overflow: hidden;
@@ -87,12 +90,35 @@ $product-in-row: 5;
     font-weight: 700;
     font-size: 16px;
   }
+  .variant-image-container {
+    display: none;
+  }
   &:hover {
     border: 1px solid #ccc;
     box-shadow: 2px 2px 4px rgba(0,0,0,.13);
     z-index: 20;
     .product-title {
       height: auto;
+    }
+    a {
+      color: $brand-color;
+    }
+    .variant-image-container {
+      display: block;
+      width: 100%;
+      .variant-item {
+        cursor: pointer;
+        display: inline-block;
+        text-align: center;
+        width: percentage(1/3);
+        .img-wrap {
+          width: 100%;
+          @include default-responsive-img-wrap();
+        }
+        &:hover {
+          color: $brand-color;
+        }
+      }
     }
   }
 }
