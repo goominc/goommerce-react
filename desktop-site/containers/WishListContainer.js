@@ -3,11 +3,12 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
+import loadEntities from 'commons/redux/util/loadEntities';
 import WishListPage from 'components/mypage/WishListPage';
 
 const WishList = React.createClass({
   propTypes: {
-    wishes: PropTypes.object,
+    wishes: PropTypes.array,
   },
   contextTypes: {
     ApiAction: PropTypes.object,
@@ -25,5 +26,6 @@ const WishList = React.createClass({
 });
 
 export default connect((state) => (
-  { wishes: Object.keys(state.entities.wishes).map((wishId) => state.entities.wishes[wishId]).filter((i) => !!i) }
+  // { wishes: Object.keys(state.entities.wishes).map((wishId) => state.entities.wishes[wishId]).filter((i) => !!i) }
+  { ...loadEntities(state, 'wishes', 'wishes') }
 ))(WishList);

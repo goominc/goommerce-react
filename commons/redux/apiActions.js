@@ -288,12 +288,10 @@ export function loadWishlist() {
   return createFetchAction({
     type: 'LOAD_WISH_LIST',
     endpoint: '/api/v1/users/self/wishes',
-    transform: ({ data }) => normalize(data, schemas.wishes),
-    /*
+    transform: ({ data }) => normalize(data.wishes, schemas.wishes),
     success: {
       pagination: { key: 'wishes', type: 'REFRESH' },
     },
-    */
   });
 }
 

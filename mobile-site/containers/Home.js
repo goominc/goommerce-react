@@ -79,7 +79,7 @@ const Home = React.createClass({
 });
 
 export default connect(
-  state => ({
+  (state) => ({
     ...loadEntities(state, 'products', 'products'),
   }),
   { loadProducts, setHeader }
