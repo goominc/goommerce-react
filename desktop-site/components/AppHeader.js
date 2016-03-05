@@ -100,23 +100,21 @@ export default React.createClass({
         </div>
       );
     };
-    const renderLocales = () => {
-      const locales = [
-        { locale: 'ko', text: '한국어' },
-        { locale: 'en', text: 'English' },
-        { locale: 'zh-cn', text: '简体' },
-        { locale: 'zh-tw', text: '繁體' },
-      ];
-      return (
-        <div className="dropdown-box">
-          {locales.map((obj) => (
-            <div key={obj.locale} className={`dropdown-menu ${obj.locale === activeLocale ? 'active' : ''}`}
-              onClick={() => changeLocale(obj.locale)}
-            >{obj.text}</div>
-          ))}
-        </div>
-      );
+    const locales = {
+      ko: '한국어',
+      en: 'English',
+      'zn-cn': '简体',
+      'zh-tw': '繁體',
     };
+    const renderLocales = () => (
+      <div className="dropdown-box">
+        {Object.keys(locales).map((key) => (
+          <div key={key} className={`dropdown-menu ${key === activeLocale ? 'active' : ''}`}
+            onClick={() => changeLocale(key)}
+          >{locales[key]}</div>
+        ))}
+      </div>
+    );
     const renderCurrencies = () => {
       const currencies = ['KRW', 'USD', 'CNY'];
       return (
@@ -152,12 +150,12 @@ export default React.createClass({
           <div className="container">
             <div className="right-menus">
               <div className="right-menu-item">
-                Language
+                Language <b>({locales[activeLocale]})</b>
                 {renderLocales()}
               </div>
               <div className="right-menu-divider"></div>
               <div className="right-menu-item">
-                Currency
+                Currency <b>({activeCurrency})</b>
                 {renderCurrencies()}
               </div>
               <div className="right-menu-divider"></div>

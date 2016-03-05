@@ -296,8 +296,9 @@ $mymenu-margin: 20px;
     &:hover {
       background-color: #fff;
       .dropdown-box {
-        @include header-dropdown-box(120px);
-        right: -1px;
+        @include header-dropdown-box(100%);
+        left: -1px;
+        box-sizing: content-box;
         border-left: 1px solid #e8e8e8;
         border-right: 1px solid #e8e8e8;
         border-bottom: 1px solid #e8e8e8;
