@@ -59,7 +59,7 @@ const handleWishUpdate = (state, action) => {
     return newState;
     */
   } else if (action.type === 'DELETE_WISH_LIST') {
-    return omit(state.wishes, action.wishId);
+    return Object.assign({}, state, { wishes: omit(state.wishes, action.wishId) });
   }
   return null;
 };

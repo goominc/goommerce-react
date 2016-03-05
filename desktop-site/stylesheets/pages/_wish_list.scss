@@ -3,22 +3,41 @@
 // -----------------------------------------------------------------------------
 
 .wish-list-box {
-  width: 100%;
   background-color: #fff;
+  width: 100%;
   .wish-item {
-    padding: $margin-15;
     border-bottom: 1px solid #f2f2f2;
+    display: table;
+    padding: $margin-15;
+    width: 100%;
     .img-box {
       display: inline-block;
+      margin-right: $margin-20;
       width: 120px;
     }
     .img-wrap {
-      width: 100%;
       @include default-responsive-img-wrap();
+      border: 1px solid #f2f2f2;
+      box-sizing: content-box;
+      width: 100%;
     }
     .item-info-box {
-      display: inline-block;
+      display: table-cell;
       vertical-align: top;
+      width: 100%;
+      .price-area {
+        @include price-info-text();
+      }
+    }
+    .item-action-box {
+      display: table-cell;
+      text-align: center;
+      vertical-align: middle;
+      width: 100px;
+      min-width: 100px;
+      a {
+        color: #06c;
+      }
     }
   }
 }

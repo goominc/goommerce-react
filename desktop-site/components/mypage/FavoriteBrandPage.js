@@ -41,7 +41,7 @@ export default React.createClass({
                 src="http://res.cloudinary.com/linkshops/image/upload/c_limit,h_330,w_220/v1/old/3f8a2769-copy_1.jpg"
               />
             </div>
-            <span className="price">US $17.99</span>
+            <span className="price-number">US $17.99</span>
             <span className="price-unit"> / piece</span>
           </div>
         </div>

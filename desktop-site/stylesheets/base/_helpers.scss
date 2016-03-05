@@ -78,3 +78,15 @@
     height: 100%;
   }
 }
+
+@mixin price-info-text() {
+  .price-number {
+    color: #e62e04;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .price-unit {
+    font-size: 13px;
+    color: #9b9ba3;
+  }
+}
