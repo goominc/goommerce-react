@@ -20,6 +20,7 @@
   display: table;
   height: 300px;
   margin-bottom: $margin-15;
+  position: relative;
   width: 100%;
   $padding: 10px;
   .brand-info {
@@ -61,5 +62,15 @@
       }
       @include price-info-text();
     }
+  }
+  .brand-delete-icon {
+    border-left: 1px solid #e8e8e8;
+    border-bottom: 1px solid #e8e8e8;
+    height: 30px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    background: url("http://i.alicdn.com/ae-buyer-ui/common/img/me-icons.9492e996.png") center -432px no-repeat;
   }
 }

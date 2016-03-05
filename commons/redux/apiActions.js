@@ -309,5 +309,6 @@ export function deleteFavoriteBrand(brandId) {
     type: 'DELETE_FAVORITE_BRAND',
     endpoint: `/api/v1/users/self/favoriteBrands/${brandId}`,
     method: 'delete',
+    success: { brandId },
   });
 }

@@ -1,8 +1,9 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 
-const _ = require('lodash');
+import * as _ from 'lodash';
 
 export default React.createClass({
   propTypes: {
@@ -12,7 +13,7 @@ export default React.createClass({
     activeLocale: PropTypes.string,
   },
   render() {
-    const { brands } = this.props;
+    const { brands, deleteFavoriteBrand } = this.props;
     const { activeLocale } = this.context;
     if (!brands) {
       return (<div></div>);
@@ -28,13 +29,13 @@ export default React.createClass({
           <a href="/" target="_blank"><button>Visit Store</button></a>
         </div>
         <div className="brand-products">
-          <div className="product-item">
+          <Link to="/products/1" className="product-item">
             <div className="img-wrap">
               <img
                 src="http://res.cloudinary.com/linkshops/image/upload/c_limit,h_330,w_220/v1/old/3f8a2769-copy_1.jpg"
               />
             </div>
-          </div>
+          </Link>
           <div className="product-item">
             <div className="img-wrap">
               <img
@@ -45,6 +46,7 @@ export default React.createClass({
             <span className="price-unit"> / piece</span>
           </div>
         </div>
+        <a onClick={() => deleteFavoriteBrand(brand.id) } className="brand-delete-icon"></a>
       </div>
     );
     return (

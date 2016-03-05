@@ -4,16 +4,20 @@ import { assign, merge, get, set, union, forEach, omit } from 'lodash';
 
 const handleFavoriteBrandUpdate = (state, action) => {
   if (action.type === 'ADD_FAVORITE_BRAND') {
-    // 2016. 03. 04. [heekyu] added data does not need in normal cases.
-    /*
     const brand = action.payload;
     const newState = assign({}, state);
-    newState.favoriteBrands[brand.id] = brand;
+    newState.favoriteBrands.push(brand);
     return newState;
-    */
+    // return state;
+  } else if (action.type === 'DELETE_FAVORITE_BRAND') {
+    for (let i = 0; i < state.favoriteBrands.length; i++) {
+      const brand = state.favoriteBrands[i];
+      if (brand.id === action.brandId) {
+        state.favoriteBrands.splice(i, 1);
+        return Object.assign({}, state);
+      }
+    }
     return state;
-  } else if (action.type === 'DELETE_FAVORIATE_BRAND') {
-    return omit(state.favoriteBrands, action.brandId);
   }
   return null;
 };
