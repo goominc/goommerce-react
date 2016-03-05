@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
+import * as _ from 'lodash';
+
 import ProductDetailPage from 'components/ProductDetailPage';
 import { getProductMainImage } from 'util';
 
@@ -12,6 +14,7 @@ const ProductDetail = React.createClass({
     addCartProduct: PropTypes.func,
     product: PropTypes.object,
     productId: PropTypes.string.isRequired,
+    favoriteBrands: PropTypes.array,
     setActiveImage: PropTypes.func,
     selectColor: PropTypes.func,
     selectSize: PropTypes.func,
@@ -89,7 +92,7 @@ const ProductDetail = React.createClass({
     this.props.addCartProduct(variant.id);
   },
   render() {
-    const { activeImage, product, selectColor, selectSize, wrapLogin } = this.props; // eslint-disable-line no-shadow
+    const { activeImage, product, favoriteBrands, selectColor, selectSize, wrapLogin } = this.props; // eslint-disable-line no-shadow
     const { addCartProduct, addWish, addFavoriteBrand, createOrder } = this.context.ApiAction;
     if (!product) {
       return (<div></div>);
@@ -125,9 +128,17 @@ const ProductDetail = React.createClass({
         addFavoriteBrand(...args);
       });
     };
+    let likeBrand = false;
+    for (let i = 0; i < favoriteBrands.length; i++) {
+      if (favoriteBrands[i].id === _.get(product, 'brand.id')) {
+        likeBrand = true;
+        break;
+      }
+    }
     return (
       <ProductDetailPage
         {...this.props}
+        likeBrand={likeBrand}
         images={images} activeImage={passImage} attributes={attributes}
         buyNow={wrapBuyNow} addCartProduct={wrapAddToCart} addWish={wrapAddWish} addFavoriteBrand={wrapAddFavoriteBrand}
       />
@@ -142,6 +153,7 @@ export default connect(
     activeImage: state.page.pageProductDetail.activeImage,
     variantAttributes: state.page.pageProductDetail.variantAttributes,
     selectedVariant: state.page.pageProductDetail.selectedVariant,
+    favoriteBrands: state.auth.favoriteBrands || [],
   }),
   { setActiveImage, selectColor, selectSize, wrapLogin }
 )(ProductDetail);

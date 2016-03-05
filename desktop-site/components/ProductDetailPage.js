@@ -15,6 +15,7 @@ export default React.createClass({
     variantAttributes: PropTypes.object,
     attributes: PropTypes.array,
     selectedVariant: PropTypes.object,
+    likeBrand: PropTypes.bool,
     addCartProduct: PropTypes.func,
     buyNow: PropTypes.func,
     addWish: PropTypes.func,
@@ -51,7 +52,7 @@ export default React.createClass({
     $('.enlarge-image-box').css('display', 'none');
   },
   render() {
-    const { product, images, activeImage, variantAttributes, attributes, selectedVariant,
+    const { product, images, activeImage, variantAttributes, attributes, selectedVariant, likeBrand,
       addCartProduct, buyNow, addWish, addFavoriteBrand } = this.props;
     if (!product || !variantAttributes) {
       return (<div></div>);
@@ -144,13 +145,19 @@ export default React.createClass({
 
     const renderBrand = () => {
       if (brand) {
+        const renderFavoriteButton = () => {
+          if (likeBrand) {
+            return (<Link to="/mypage/favorite_brands">I like this brand!</Link>);
+          }
+          return (<a onClick={() => addFavoriteBrand(brand.id)}>Add Favorite Brand</a>);
+        };
         return (
           <div className="normal-field-box">
             <div className="field-label">Seller: </div>
             <div className="field-content">
               <span>{_.get(brand, ['data', 'name', activeLocale])}</span> <br />
               <Link to={`/brands/${brand.id}`}>Products this seller provide</Link> <br />
-              <a onClick={() => addFavoriteBrand(brand.id)}>Add Favorite Brand</a>
+              {renderFavoriteButton()}
             </div>
           </div>
         );
