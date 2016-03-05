@@ -43,7 +43,9 @@ export default function createFetchAction(options) {
       if (doDispatch) {
         let error = jqXHR.responseJSON;
         if (!error) {
-          if (jqXHR.status === 0) {
+          if (errorThrown) {
+            error = { message: errorThrown };
+          } else if (jqXHR.status === 0) {
             error = { message: 'Network Error' };
           } else {
             error = { message: 'Unknown Error' };

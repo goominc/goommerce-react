@@ -76,13 +76,12 @@ const App = React.createClass({
     const renderPopup = () => {
       const handleLogin = (email, password) => {
         login(email, password).then(
-          () => this.props.closePopup(),
-          () => alert('Invalid username/password.') // eslint-disable-line no-alert
+          () => this.props.closePopup()
         );
       };
       if (popup.login) {
         return (
-          <SigninPopup closePopup={closePopup} handleSubmit={handleLogin}
+          <SigninPopup closePopup={this.props.closePopup} handleSubmit={handleLogin}
             goForgotPassword={() => console.log('TODO')} // eslint-disable-line no-console
           />
         );

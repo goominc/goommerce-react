@@ -25,7 +25,7 @@ $error-popup-height: 250px;
   text-align: center;
   margin-left: -$error-popup-width / 2;
   margin-top: -$error-popup-height / 2;
-  z-index: 10010;
+  z-index: 20010;
   background-color: #fff;
   color: #000;
   .error-message {
