@@ -9,7 +9,7 @@ const Home = React.createClass({
   propTypes: {
     activeLocale: PropTypes.string,
     categories: PropTypes.object.isRequired,
-    main_categories: PropTypes.object,
+    main_categories: PropTypes.array,
     products: PropTypes.array,
   },
   contextTypes: {

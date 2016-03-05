@@ -19,7 +19,7 @@ const App = React.createClass({
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
     closePopup: PropTypes.func,
-    error: PropTypes.func,
+    error: PropTypes.object,
     loadCMSData: PropTypes.func,
     loadCartIfEmpty: PropTypes.func,
     loadCategories: PropTypes.func,
