@@ -27,7 +27,7 @@ const App = React.createClass({
     this.props.login(email, password).then(
       () => {
         this.props.toggleSignRegister(false, 'sign');
-        return this.context.router.push('/');
+        //return this.context.router.push('/');
       },
       () => alert('Invalid username/password.')
     );

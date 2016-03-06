@@ -25,6 +25,7 @@
   }
   .sort-by.clickable {
     z-index: 1000;
+    position: fixed;
   }
   .sort-by.expand-arrow .sort-by.shrink-arrow {
     position: relative;

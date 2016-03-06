@@ -2,44 +2,77 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import ProductDetailBanner from 'components/ProductDetailBanner';
 import ProductDetailRelated from 'components/ProductDetailRelated';
+import ProductDetailCart from 'components/ProductDetailCart';
 
 export default React.createClass({
-  /*propTypes: {
-
-  },*/
+  propTypes: {
+    product: PropTypes.object,
+    images: PropTypes.array,
+    variants: PropTypes.array,
+    showCart: PropTypes.bool.isRequired,
+    toggleCart: PropTypes.func.isRequired,
+    colors: PropTypes.array,
+    sizes: PropTypes.array,
+    currentColor: PropTypes.string,
+    currentSize: PropTypes.string,
+    currentVariant: PropTypes.string,
+    setColor: PropTypes.func.isRequired,
+    setSize: PropTypes.func.isRequired,
+    addCart: PropTypes.func.isRequird,
+  },
   render() {
-    const product = {
-      'id': 1,
-      'title': '2015 New Autumn Women Dress Zipper Off Shoulder Long Sleeve Dresses Sexy Club Evening Party Bodycon Mini Dresses Black White',
-      'price_app': 'US $8.82',
-      'price': 'US $8.99',
-      'origin_price': 'US $17.63',
-    };
+    const { product, images, showCart, variants, colors, sizes, currentColor, currentSize, currentVariant } = this.props;
+    if (!product) {
+      return (
+        <div />
+        );
+    }
+
+    const renderBrand = () => {
+      if (product && product.brand && product.brand.data) {
+        return (
+        <section className="ms-mrg-b12 ms-detail-store">
+          <Link to={'/brands/' + product.brand.id}>
+            <header className="store-title">{product.brand.data.name.en}</header>
+            { /* <p className="store-info">
+              <img src="http://i01.i.aliimg.com/wimg/feedback/icon/25-s.gif" className="store-level" />
+              <span className="store-postive">94.7% positive feedback the past</span>
+            </p> */ }
+            <span className="ms-arrow">
+              <span className="ms-icon icon-arrow-right"></span>
+            </span>
+          </Link>
+        </section>
+        );
+      }
+    }
+
     return (
       <article className="ms-detail">
-        <ProductDetailBanner />
-        <p className="ms-detail-subject ms-pd-lr12">{product.title}</p>
+        <ProductDetailBanner images={images}/>
 
-        <section className="ms-product-datail-price-tag  ms-app-only-product-detail-price">
+        <p className="ms-detail-subject ms-pd-lr12">2015 New Autumn Women Dress Zipper Off Shoulder Long Sleeve Dresses Sexy Club Evening Party Bodycon Mini Dresses Black White</p>
+
+        { /* <section className="ms-product-datail-price-tag  ms-app-only-product-detail-price">
           <a className="ms-app-only-price-tag-wrapper j-price-tag">
             <div className="ms-price-tag">
               <span className="ms-price-tag-info"><i className="ms-icon icon-mobile"></i></span>
               <span className="ms-price-tag-price arrow-right">Price on the app: {product.price_app}<i className="ms-icon icon-dropright-android"></i></span>
             </div>
           </a>
-        </section>
+        </section> */ }
 
         <section className="ms-pd-lr12 ms-detail-price">
           <div className="detail-price-container">
-            <span className="price-span">{product.price}</span>
+            <span className="price-span">US ${product.USD}</span>
             <span className="unit-span">  /piece</span>
           </div>
           <p className="detail-origin-price">
-            <del>{product.origin_price}  /piece</del>
+            <del>US ${product.USD} /piece</del>
           </p>
         </section>
 
-        <section className="ms-pd-lr12 ms-detail-discount">
+        { /* <section className="ms-pd-lr12 ms-detail-discount">
           <span className="discount-p">
             <span className="normal-discount-span">-49%</span>
             <span className="coupon-discount-span"><Link to="http://m.aliexpress.com/store/storeHome.htm?sellerAdminSeq=201507793">Get a Store Coupon</Link></span>
@@ -49,9 +82,9 @@ export default React.createClass({
                 <span className="ms-icon icon-arrow-down"></span>
             </div>
           </span>
-        </section>
+        </section> */ }
 
-        <section className="ms-pd-lr12 ms-detail-orders-stars">
+        { /* <section className="ms-pd-lr12 ms-detail-orders-stars">
           <div className="orders-wrap">
             <span>Orders </span><span>818</span>
           </div>
@@ -62,29 +95,29 @@ export default React.createClass({
               <span className="ms-star-top" style={ { width: '94.7%' } }></span>
             </span>
           </div>
-        </section>
+        </section> */ }
 
-        <section className="ms-detail-sku ms-sku-row ms-color-second">
+        <section className="ms-detail-sku ms-sku-row ms-color-second" onClick={this.props.toggleCart}>
           <p id="detail-sku-bar">
               Color
               Size
           </p>
-          <p id="detail-shipping-bar">
+          { /* <p id="detail-shipping-bar">
             <span>Shipping cost: </span>
             <span className="ms-color-ship" id="detail-shipping-cost">Free Shipping</span>
-          </p>
+          </p> */ }
           <span className="ms-arrow">
             <span className="ms-icon icon-arrow-right"></span>
           </span>
         </section>
 
         <section className="ms-detail-btn-wrap ms-mrg-b12">
-          <button className="ms-button-secondary" data-role="add-cart">Add to cart&nbsp;</button>
-          <button className="ms-button-primary" data-role="buy-now">Buy now&nbsp;</button>
+          <button className="ms-button-secondary" onClick={this.props.toggleCart}>Add to cart&nbsp;</button>
+          <button className="ms-button-primary" onClick={this.props.toggleCart}>Buy now&nbsp;</button>
         </section>
 
         <section className="ms-detail-description ms-detail-row ms-color-second">
-          <Link to="http://m.aliexpress.com/item-desc/32490813821.html">
+          <Link to="/">
             <p>Description&nbsp;</p>
           </Link>
           <span className="ms-arrow">
@@ -92,18 +125,18 @@ export default React.createClass({
           </span>
         </section>
 
-        <section className="ms-color-second ms-mrg-b12 ms-feedback">
+        { /* <section className="ms-color-second ms-mrg-b12 ms-feedback">
           <header className="ms-detail-row">
             <Link to="http://m.aliexpress.com/getSiteProductEvaluation.htm?productId=32490813821&amp;page=1">Feedback(164)</Link>
             <span className="ms-arrow">
               <span className="ms-icon icon-arrow-right"></span>
             </span>
           </header>
-        </section>
+        </section> */ }
 
         <section className="ms-detail-bp">
           <section className="ms-detail-row">
-            <p><Link to="http://activities.aliexpress.com/adcms/www-aliexpress-com/buyerprotection/index.php">Buyer Protection</Link></p>
+            <p><Link to="/">Buyer Protection</Link></p>
             <span className="ms-arrow">
                 <span className="ms-icon icon-arrow-right"></span>
             </span>
@@ -120,20 +153,14 @@ export default React.createClass({
           </ul>
         </section>
 
-        <section className="ms-mrg-b12 ms-detail-store">
-          <Link to="http://m.aliexpress.com/store/storeHome.htm?sellerAdminSeq=201507793">
-            <header className="store-title">Sammydress Group Co. Ltd</header>
-            <p className="store-info">
-              <img src="http://i01.i.aliimg.com/wimg/feedback/icon/25-s.gif" className="store-level" />
-              <span className="store-postive">94.7% positive feedback the past</span>
-            </p>
-            <span className="ms-arrow">
-              <span className="ms-icon icon-arrow-right"></span>
-            </span>
-          </Link>
-        </section>
+        {renderBrand()}
 
-        <ProductDetailRelated />
+        { /* <ProductDetailRelated /> */ }
+
+        <ProductDetailCart show={showCart} toggle={this.props.toggleCart} topImg={images}
+        currentColor={currentColor} currentSize={currentSize} currentVariant={currentVariant}
+        variants={variants} colors={colors} sizes={sizes} setColor={this.props.setColor} setSize={this.props.setSize}
+        addCart={this.props.addCart} />
 
       </article>
     );

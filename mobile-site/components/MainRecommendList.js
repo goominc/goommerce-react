@@ -12,17 +12,32 @@ export default React.createClass({
     const { products } = this.props;
 
     const prodDiv = products.map((product) => {
-      return (
-          <li key={product.id}>
-            <Link to={'/products/' + product.id}>
-              <div className="product-image">
-                <img src={getProductMainImage(product).url} />
-              </div>
-              <div className="product-cost"><strong>{product.USD} USD</strong> / piece</div>
-              <div className="product-cost">1000 Orders</div>
-            </Link>
-          </li>
-        );
+      const img = getProductMainImage(product);
+      if (img) {
+        return (
+            <li key={product.id}>
+              <Link to={'/products/' + product.id}>
+                <div className="product-image">
+                  <img src={getProductMainImage(product).url} />
+                </div>
+                <div className="product-cost"><strong>{product.USD} USD</strong> / piece</div>
+                <div className="product-cost">1000 Orders</div>
+              </Link>
+            </li>
+          );
+      } else {
+        return (
+            <li key={product.id}>
+              <Link to={'/products/' + product.id}>
+                <div className="product-image">
+                  <img />
+                </div>
+                <div className="product-cost"><strong>{product.USD} USD</strong> / piece</div>
+                <div className="product-cost">1000 Orders</div>
+              </Link>
+            </li>
+          );
+      }
     });
 
     return (

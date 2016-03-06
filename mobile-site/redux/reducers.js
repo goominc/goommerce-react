@@ -59,8 +59,36 @@ function pageProductList(state = productListInitialState, action) {
   return state;
 }
 
+const productDetailInitialState = {
+  showCart: false,
+  selectColor: null,
+  selectSize: null,
+  selectVariant: null,
+}
+
+function pageProductDetail(state = productDetailInitialState, action) {
+  if (action.type === 'TOGGLE_PRODUCT_CART') {
+    return assign({}, state, { showCart: !state.showCart });
+  }
+  if (action.type === 'PRODUCT_VARIANT_SET_COLOR') {
+    if (action.color === state.selectColor) {
+      return assign({}, state, { selectColor: null, selectVariant: null });
+    } else {
+      return assign({}, state, { selectColor: action.color, selectVariant: (action.color && state.selectSize) ? (action.color + "-" + state.selectSize) : null });
+    }
+  }
+  if (action.type === 'PRODUCT_VARIANT_SET_SIZE') {
+    if (action.size === state.selectSize) {
+      return assign({}, state, { selectSize: null, selectVariant: null });
+    } else {
+      return assign({}, state, { selectSize: action.size, selectVariant: (state.selectColor && action.size) ? (state.selectColor + "-" + action.size) : null  });
+    }
+  }
+  return state;
+}
+
 const rootReducer = combineReducers(
-  Object.assign({}, CommonReducers.reducers, { errorHandler, checkout, menu, sign, header, pageProductList })
+  Object.assign({}, CommonReducers.reducers, { errorHandler, checkout, menu, sign, header, pageProductList, pageProductDetail })
 );
 
 export default (state = {}, action) => {

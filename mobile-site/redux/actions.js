@@ -39,7 +39,7 @@ export function setHeader(showLogo, showSearch, showCart, titleText) {
     titleText,
   };
 }
-
+/* ProductList */
 export function changeViewType() {
   return {
     type: 'CHANGE_LIST_VIEW',
@@ -56,4 +56,25 @@ export function toggleProductFilter() {
   return {
     type: 'TOGGLE_PRODUCT_FILTER',
   };
+}
+
+/* ProductDetail */
+export function toggleProductCart() {
+  return {
+    type: 'TOGGLE_PRODUCT_CART',
+  };
+}
+
+export function setProductColor(color) {
+  return {
+    type: 'PRODUCT_VARIANT_SET_COLOR',
+    color,
+  };
+}
+
+export function setProductSize(size) {
+  return {
+    type: 'PRODUCT_VARIANT_SET_SIZE',
+    size,
+  }
 }
