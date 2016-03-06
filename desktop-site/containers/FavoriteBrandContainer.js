@@ -9,6 +9,9 @@ const FavoriteBrand = React.createClass({
   contextTypes: {
     ApiAction: PropTypes.object,
   },
+  componentDidMount() {
+    this.context.ApiAction.loadFavoriteBrandProducts();
+  },
   render() {
     return (
       <FavoriteBrandPage {...this.props} deleteFavoriteBrand={this.context.ApiAction.deleteFavoriteBrand} />
@@ -17,5 +20,8 @@ const FavoriteBrand = React.createClass({
 });
 
 export default connect((state) => (
-  { brands: state.auth.favoriteBrands || [] }
+  {
+    brands: state.auth.favoriteBrands || [],
+    brandProducts: state.favoriteBrand.brandProducts || [],
+  }
 ))(FavoriteBrand);

@@ -18,7 +18,7 @@
   border: 1px solid #e8e8e8;
   box-sizing: content-box;
   display: table;
-  height: 300px;
+  height: 250px;
   margin-bottom: $margin-15;
   position: relative;
   width: 100%;
@@ -48,19 +48,28 @@
     display: table-cell;
     vertical-align: top;
     padding: $padding;
+    text-align: left;
     width: 100%;
+    a {
+      text-decoration: none;
+    }
     .product-item {
       display: inline-block;
-      width: percentage(1/4);
       height: 100%;
       text-align: center;
       vertical-align: top;
+      width: 140px;
       .img-wrap {
+        border: 1px solid #ddd;
+        box-sizing: content-box;
         margin-bottom: $margin-15;
         width: 100%;
         @include default-responsive-img-wrap();
       }
       @include price-info-text();
+      & + .product-item {
+        margin-left: $margin-15;
+      }
     }
   }
   .brand-delete-icon {

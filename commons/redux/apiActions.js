@@ -312,3 +312,28 @@ export function deleteFavoriteBrand(brandId) {
     success: { brandId },
   });
 }
+
+export function loadFavoriteBrandProducts() {
+  return (dispatch, getState) => {
+    const state = getState();
+    if (!state.auth) {
+      return;
+    }
+    const favoriteBrands = state.auth.favoriteBrands || [];
+    if (favoriteBrands.length < 1) {
+      return;
+    }
+    const promises = [];
+    const count = 4;
+    favoriteBrands.forEach((brand) => {
+      const url = `/api/v1/products/search?q=&categoryId=&brandId=${brand.id}&offset=0&limit=${count}`;
+      promises.push(ajaxReturnPromise(state.auth, 'get', url));
+    });
+    Promise.all(promises).then((res) => {
+      dispatch({
+        type: 'LOAD_FAVORITE_BRAND_PRODUCTS',
+        brandProducts: res.map((item) => item.products),
+      });
+    });
+  };
+}

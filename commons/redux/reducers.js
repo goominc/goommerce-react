@@ -88,6 +88,13 @@ function entities(state = { users: {}, products: {}, orders: {}, addresses: {}, 
   return nextState;
 }
 
+function favoriteBrand(state = {}, action) {
+  if (action.type === 'LOAD_FAVORITE_BRAND_PRODUCTS') {
+    return Object.assign({}, state, { brandProducts: action.brandProducts });
+  }
+  return state;
+}
+
 // Updates the pagination data for different actions.
 function pagination(state = {}, action) {
   function mergeId(type, curIds, result) {
@@ -165,6 +172,7 @@ const reducers = {
   categories,
   cms,
   entities,
+  favoriteBrand,
   pagination,
   i18n,
   currency,
