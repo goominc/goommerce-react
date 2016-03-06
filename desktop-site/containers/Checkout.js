@@ -5,7 +5,8 @@ import { ReactScriptLoaderMixin } from 'react-script-loader';
 import CheckoutPage from 'components/checkout/CheckoutPage';
 
 import { ApiAction } from 'redux/actions';
-const { inipay, loadOrder, loadAddresses, saveAddress, setActiveAddress } = ApiAction;
+const { inipay, loadOrder, loadAddresses,
+  saveAddress, saveOrderAddress, setActiveAddress, saveDefaultAddressOnCreateOrder } = ApiAction;
 const _ = require('lodash');
 
 const Checkout = React.createClass({
@@ -18,7 +19,9 @@ const Checkout = React.createClass({
     order: PropTypes.object,
     orderId: PropTypes.string.isRequired,
     saveAddress: PropTypes.func.isRequired,
+    saveOrderAddress: PropTypes.func.isRequired,
     setActiveAddress: PropTypes.func.isRequired,
+    saveDefaultAddressOnCreateOrder: PropTypes.func,
     step: PropTypes.string,
   },
   mixins: [ReactScriptLoaderMixin],
@@ -29,8 +32,12 @@ const Checkout = React.createClass({
     return { scriptLoaded: false };
   },
   componentDidMount() {
-    this.props.loadOrder(this.props.orderId);
-    this.props.loadAddresses();
+    const promises = [];
+    promises.push(this.props.loadOrder(this.props.orderId));
+    promises.push(this.props.loadAddresses());
+    Promise.all(promises).then((res) => {
+      this.props.saveDefaultAddressOnCreateOrder(res[0], res[1].addresses || []);
+    });
   },
   onScriptError() {
     // Show the user an error message.
@@ -94,8 +101,8 @@ export default connect(
     orderId: ownProps.params.orderId,
     step: ownProps.params.step,
     order: state.entities.orders[ownProps.params.orderId],
-    activeAddress: state.entities.addresses[state.settings.activeAddressId] || null,
+    activeAddress: state.entities.addresses[state.auth.addressId] || null,
     addresses: state.entities.addresses,
   }),
-  { inipay, loadOrder, loadAddresses, saveAddress, setActiveAddress }
+  { inipay, loadOrder, loadAddresses, saveAddress, saveOrderAddress, setActiveAddress, saveDefaultAddressOnCreateOrder }
 )(Checkout);

@@ -14,6 +14,7 @@ export default React.createClass({
     activeAddress: PropTypes.object,
     addresses: PropTypes.object,
     saveAddress: PropTypes.func,
+    saveOrderAddress: PropTypes.func,
     setActiveAddress: PropTypes.func,
   },
   contextTypes: {
@@ -24,7 +25,7 @@ export default React.createClass({
     return {};
   },
   render() {
-    const { order, addressFields, activeAddress } = this.props;
+    const { order, addressFields, activeAddress, saveAddress, saveOrderAddress, setActiveAddress } = this.props;
     const { activeCurrency } = this.context;
 
     const renderFormField = (obj) => (
@@ -42,8 +43,10 @@ export default React.createClass({
       e.preventDefault();
       const activeAddressInState = this.state.activeAddress;
       if (activeAddressInState) {
-        this.props.saveAddress(activeAddressInState).then(
-          (address) => this.props.setActiveAddress(address.id));
+        saveAddress(activeAddressInState).then((address) => {
+          setActiveAddress(address.id);
+          saveOrderAddress(order.id, address);
+        });
       }
       this.setState({ editMode: false });
     };

@@ -10,8 +10,6 @@ export default React.createClass({
     activeAddress: PropTypes.object,
     addresses: PropTypes.object,
     doCheckout: PropTypes.func,
-    saveAddress: PropTypes.func,
-    setActiveAddress: PropTypes.func,
     step: PropTypes.string.isRequired,
     order: PropTypes.object.isRequired,
   },

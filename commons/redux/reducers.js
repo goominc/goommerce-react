@@ -21,10 +21,20 @@ const handleFavoriteBrandUpdate = (state, action) => {
   }
   return null;
 };
+const handleAddressUpdate = (state, action) => {
+  if (action.type === 'SET_ACTIVE_ADDRESS') {
+    return assign({}, state, { addressId: action.addressId });
+  }
+  return null;
+};
 function auth(state = {}, action) {
   const favoriteBrandState = handleFavoriteBrandUpdate(state, action);
   if (favoriteBrandState) {
     return favoriteBrandState;
+  }
+  const addressState = handleAddressUpdate(state, action);
+  if (addressState) {
+    return addressState;
   }
   if (action.type === 'LOGOUT' && !action.error) {
     return {};
@@ -68,11 +78,23 @@ const handleWishUpdate = (state, action) => {
   return null;
 };
 
+const handleOrderAddressUpdate = (state, action) => {
+  if (action.type === 'UPDATE_ORDER_ADDRESS') {
+    state.orders[action.orderId].address = action.address;
+    return assign({}, state);
+  }
+  return null;
+};
+
 // Updates an entity cache in payload to any action with payload.entities.
 function entities(state = { users: {}, products: {}, orders: {}, addresses: {}, wishes: {}, favoriteBrands: {} }, action) {
   const wishState = handleWishUpdate(state, action);
   if (wishState) {
     return wishState;
+  }
+  const orderState = handleOrderAddressUpdate(state, action);
+  if (orderState) {
+    return orderState;
   }
   const nextState = assign({}, state);
   forEach(get(action, 'payload.entities'), (val, key) => {
@@ -142,14 +164,6 @@ function currency(state = {}, action) {
   return state;
 }
 
-function settings(state = {}, action) {
-  if (action.type === 'SET_ACTIVE_ADDRESS') {
-    state.activeAddressId = action.addressId;
-    return state;
-  }
-  return state;
-}
-
 function categories(state = {}, action) {
   function flatten(category, map) {
     map[category.id] = category;
@@ -176,7 +190,6 @@ const reducers = {
   pagination,
   i18n,
   currency,
-  settings,
 };
 
 exports.reducers = reducers;

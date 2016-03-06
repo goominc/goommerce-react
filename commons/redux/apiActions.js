@@ -190,12 +190,45 @@ export function saveAddress(address) {
 }
 
 export function setActiveAddress(addressId) {
-  return (dispatch) => {
-    // TODO set in user setting in server
+  return (dispatch, getState) => {
+    const state = getState();
+    if (state.auth.addressId !== addressId) {
+      simpleNotify(state.auth, 'PUT', `/api/v1/users/self/addresses/${addressId}/set`, { addressId });
+      dispatch({
+        type: 'SET_ACTIVE_ADDRESS',
+        addressId,
+      });
+    }
+  };
+}
+
+// 2016. 03. 06. [heekyu] do not merge setActiveAddress & saveOrderAddress
+//                        since there exists circular call threat
+export function saveOrderAddress(orderId, address) {
+  return (dispatch, getState) => {
+    const state = getState();
+    simpleNotify(state.auth, 'PUT', `/api/v1/orders/${orderId}/address`, address);
     dispatch({
-      type: 'SET_ACTIVE_ADDRESS',
-      addressId,
+      type: 'UPDATE_ORDER_ADDRESS',
+      orderId,
+      address,
     });
+  };
+}
+
+export function saveDefaultAddressOnCreateOrder(order, addresses) {
+  return (dispatch, getState) => {
+    if (order.address) {
+      return;
+    }
+    const state = getState();
+    for (let i = 0; i < addresses.length; i++) {
+      const address = addresses[i];
+      if (address.id === state.auth.addressId) {
+        saveOrderAddress(order.id, address)(dispatch, getState);
+        return;
+      }
+    }
   };
 }
 
