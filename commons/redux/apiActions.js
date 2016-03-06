@@ -165,7 +165,7 @@ export function loadCategories() {
 export function loadAddresses() {
   return createFetchAction({
     type: 'LOAD_ADDRESS',
-    endpoint: `/api/v1/users/self/addresses`,
+    endpoint: '/api/v1/users/self/addresses',
     transform: ({ data }) => normalize(data.addresses, schemas.addresses),
   });
 }
