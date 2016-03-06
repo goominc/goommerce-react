@@ -4,10 +4,11 @@
 $product-detail-thumbnail-width: 50px;
 $product-detail-thumbnail-margin: 15px;
 .product-detail-left {
-  width: 550px;
-  vertical-align: top;
+  display: inline-block;
+  margin-right: $margin-20;
   position: relative;
-  display: table-cell;
+  vertical-align: top;
+  width: 550px;
   .left-thumbnail-container {
     display: inline-block;
     width: $product-detail-thumbnail-width + 2px;
@@ -57,9 +58,9 @@ $product-detail-thumbnail-margin: 15px;
   }
 }
 .product-detail-right {
-  margin-left: 20px;
   display: table-cell;
   vertical-align: top;
+  width: 100%;
   .product-title {
     color: rgb(51, 51, 51);
     height: 44px;

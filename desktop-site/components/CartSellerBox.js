@@ -7,7 +7,7 @@ export default React.createClass({
   propTypes: {
     buy: PropTypes.func,
     canChangeQuantity: PropTypes.bool,
-    children: PropTypes.string,
+    children: PropTypes.object,
     productVariants: PropTypes.array.isRequired,
     removeProduct: PropTypes.func,
     updateCount: PropTypes.func,

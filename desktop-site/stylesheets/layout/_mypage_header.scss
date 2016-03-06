@@ -34,9 +34,10 @@
 }
 .mypage-contents-container {
   background-color: #f2f2f2;
-  max-width: 1200px;
-  margin: auto;
   display: block;
+  margin: auto;
+  padding-bottom: $margin-20;
+  max-width: 1200px;
   overflow: hidden;
 }
 $mypage-active-color: #f60;

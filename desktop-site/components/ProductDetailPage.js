@@ -89,7 +89,7 @@ export default React.createClass({
       for (let i = 0; i < categoryPath.ko.length; i++) {
         crumbPath.push({ link: 'products', name: categoryPath.ko[i] });
       }
-      crumbPath.push({ name: product.sku });
+      crumbPath.push({ name: product.id });
       return (<Breadcrumb key={`breadcrumb-${index}`} path={crumbPath} />);
     };
 
@@ -134,7 +134,7 @@ export default React.createClass({
     const path = [
       { link: '/', name: { en: 'Home', ko: '홈' } },
       { link: '/products', name: { en: 'Product List', ko: '상품목록' } },
-      { name: { en: product.sku, ko: product.sku } },
+      { name: { en: product.id, ko: product.id } },
     ];
     let price = 0;
     if (selectedVariant) {
@@ -169,7 +169,7 @@ export default React.createClass({
       <div className="container">
         <Breadcrumb key="breadcrumb-default" path={path} />
         {product.data && product.data.categoryPath ? product.data.categoryPath.map(renderPath) : []}
-        <div clssName="container-table">
+        <div className="container-table">
           <div className="product-detail-left">
             <div className="left-thumbnail-container">
               {images.map(renderThumbnail)}
@@ -187,8 +187,7 @@ export default React.createClass({
           </div>
           <div className="product-detail-right">
             <span className="product-title">
-              2015 New Autumn Fashion Brand Men Clothes Slim Fit Men Long Sleeve Shirt Men Plaid Cotton Casual Men Shirt
-              Social Plus Size 5XL
+              Product: {product.id}
             </span>
             <div className="divider"></div>
             <div className="price-info-box">
