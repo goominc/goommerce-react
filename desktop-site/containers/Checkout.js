@@ -106,12 +106,21 @@ const Checkout = React.createClass({
       checkoutToggleEditAddress();
     };
 
+    const cancelEditAddress = () => {
+      if (Object.keys(addresses).length < 1) {
+        // must be create address
+        return;
+      }
+      checkoutToggleEditAddress();
+    };
+
     return (
       <CheckoutPage
         {...this.props}
         doCheckout={this.doCheckout}
         addressForEdit={addressForEdit}
         addressFields={fields}
+        cancelEditAddress={cancelEditAddress}
         editAddress={editAddress}
         submitAddress={(address) => saveAddressAndThen(order, address)}
       />

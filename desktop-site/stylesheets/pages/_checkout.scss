@@ -1,7 +1,7 @@
 // -----------------------------------------------------------------------------
 // This file contains styles that are specific to the checkout page.
 // -----------------------------------------------------------------------------
-$checkout-container-width: 950px;
+$checkout-container-width: 940px;
 .checkout-container-wrap {
   width: 100%;
   text-align: center;
@@ -32,6 +32,11 @@ $checkout-container-width: 950px;
     display: inline-block;
     font-size: 14px;
   }
+  .cancel-button {
+    margin-left: $margin-15;
+    padding: 3px 15px;
+    font-size: 14px;
+  }
 }
 @mixin zindex-with-after($zindex) {
   z-index: $zindex;
@@ -43,7 +48,7 @@ $arrow-size: 10px;
 $inactive-progress-color: #f2f2f2;
 $active-progress-color: #f90;
 .checkout-progress-arrow {
-  @include body-and-arrow($checkout-container-width / 3 - $arrow-size * 2, $arrow-size, $inactive-progress-color);
+  @include body-and-arrow(($checkout-container-width - $arrow-size) / 3 - $arrow-size, $arrow-size, $inactive-progress-color);
   text-align: center;
   color: #666;
   font-weight: 400;
@@ -96,14 +101,16 @@ $active-progress-color: #f90;
   cursor: pointer;
   display: inline-block;
   height: 260px;
-  margin-right: $margin-15;
   overflow: hidden; // defensive
   padding: 25px 10px $padding-left $padding-left;
   position: relative;
-  width: 300px;
+  width: 300px; // TODO enhance width logic
   &.selected {
     border: 2px solid #e52e02;
     background-color: #fff4f2;
+  }
+  & + .checkout-address-box {
+    margin-left: $margin-20;
   }
   .field-box {
     width: 100%;

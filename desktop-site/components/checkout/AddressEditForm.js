@@ -11,7 +11,7 @@ export default React.createClass({
     submitAddress: PropTypes.func,
   },
   render() {
-    const { addressForEdit, addressFields, submitAddress } = this.props;
+    const { addressForEdit, addressFields, submitAddress, cancelEditAddress } = this.props;
     const renderFormField = (obj) => (
       <div key={obj.objKey} className="form-box">
         <div className="form-label">{`${obj.text}: `}</div>
@@ -35,6 +35,7 @@ export default React.createClass({
         <div className="form-box">
           <div className="form-label"></div>
           <button className="save-button" type="submit">Save and ship to this address</button>
+          <button className="cancel-button" type="reset" onClick={cancelEditAddress}>Cancel</button>
         </div>
       </form>
     );
