@@ -86,7 +86,11 @@ module.exports = [{
       {
         test: /\.js$/,
         loaders: ['babel'],
-        include: [path.join(__dirname, 'mobile-site'), path.join(__dirname, 'commons')],
+        include: [
+          path.join(__dirname, 'mobile-site'),
+          path.join(__dirname, 'commons'),
+          path.join(__dirname, 'desktop-site'),
+        ],
       },
       {
         test: /\.css$/,
