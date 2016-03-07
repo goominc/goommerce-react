@@ -170,6 +170,19 @@ export function loadAddresses() {
   });
 }
 
+export function setActiveAddressId(addressId) {
+  return (dispatch, getState) => {
+    const state = getState();
+    if (state.auth.addressId !== addressId) {
+      simpleNotify(state.auth, 'PUT', `/api/v1/users/self/addresses/${addressId}/set`, { addressId });
+      dispatch({
+        type: 'SET_ACTIVE_ADDRESS',
+        addressId,
+      });
+    }
+  };
+}
+
 export function saveAddress(address) {
   if (address.id) {
     return createFetchAction({
@@ -180,25 +193,16 @@ export function saveAddress(address) {
       transform: ({ data }) => normalize(data, schemas.address),
     });
   }
-  return createFetchAction({
-    type: 'CREATE_ADDRESS',
-    endpoint: '/api/v1/users/self/addresses',
-    method: 'post',
-    body: address,
-    transform: ({ data }) => normalize(data, schemas.address),
-  });
-}
-
-export function setActiveAddress(addressId) {
   return (dispatch, getState) => {
-    const state = getState();
-    if (state.auth.addressId !== addressId) {
-      simpleNotify(state.auth, 'PUT', `/api/v1/users/self/addresses/${addressId}/set`, { addressId });
-      dispatch({
-        type: 'SET_ACTIVE_ADDRESS',
-        addressId,
-      });
-    }
+    return createFetchAction({
+      type: 'CREATE_ADDRESS',
+      endpoint: '/api/v1/users/self/addresses',
+      method: 'post',
+      body: address,
+      transform: ({ data }) => normalize(data, schemas.address),
+    })(dispatch, getState).then((res) => {
+      return setActiveAddressId(res.id)(dispatch, getState);
+    });
   };
 }
 

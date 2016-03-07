@@ -3,88 +3,63 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
+import AddressEditForm from './AddressEditForm';
+import AddressView from './AddressView';
 import SellerBox from 'components/CartSellerBox';
-
-const _ = require('lodash');
 
 export default React.createClass({
   propTypes: {
     order: PropTypes.object.isRequired,
     addressFields: PropTypes.array,
-    activeAddress: PropTypes.object,
+    activeAddressId: PropTypes.number,
     addresses: PropTypes.object,
+    isEditMode: PropTypes.bool,
+    checkoutNewAddress: PropTypes.func,
     saveAddress: PropTypes.func,
-    saveOrderAddress: PropTypes.func,
-    setActiveAddress: PropTypes.func,
+    setActiveAddressId: PropTypes.func,
   },
   contextTypes: {
-    activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
   },
-  getInitialState() {
-    return {};
-  },
   render() {
-    const { order, addressFields, activeAddress, saveAddress, saveOrderAddress, setActiveAddress } = this.props;
+    const { order, activeAddressId, addresses, isEditMode,
+      checkoutNewAddress, setActiveAddressId } = this.props;
     const { activeCurrency } = this.context;
 
-    const renderFormField = (obj) => (
-      <div key={obj.key} className="form-box">
-        <div className="form-label">{`${obj.text}: `}</div>
-        <input type="text" value={_.get(activeAddress, obj.key)}
-          onChange={(e) => {
-            _.set(activeAddress, obj.key, e.target.value);
-            this.setState({ activeAddress });
-          }}
-        />
-      </div>
-    );
-    const handleSubmitAddress = (e) => {
-      e.preventDefault();
-      const activeAddressInState = this.state.activeAddress;
-      if (activeAddressInState) {
-        saveAddress(activeAddressInState).then((address) => {
-          setActiveAddress(address.id);
-          saveOrderAddress(order.id, address);
-        });
-      }
-      this.setState({ editMode: false });
-    };
-    let editMode = !!this.state.editMode;
-    if (!activeAddress || !activeAddress.id) {
-      editMode = true;
-    }
-    const renderAddress = () => {
-      if (editMode) {
+    const renderAddresses = () => {
+      if (isEditMode) {
         return (
-          <form onSubmit={handleSubmitAddress}>
-            {addressFields.map((field) => renderFormField(field))}
-            <div className="form-box">
-              <div className="form-label"></div>
-              <button className="save-button" type="submit">Save and ship to this address</button>
-            </div>
-          </form>
+          <AddressEditForm {...this.props} />
         );
       }
+      const renderNewAddressButton = () => (
+        <div className="checkout-address-action-line">
+          <a onClick={() => checkoutNewAddress()}>Add a New Address</a>
+        </div>
+      );
+      const renderAddress = (address) => (
+        <AddressView key={address.id}
+          {...this.props}
+          address={address}
+          isActive={activeAddressId === address.id}
+          onClickMe={(address2) => setActiveAddressId(address2.id)}
+        />
+      );
+      const addressIds = Object.keys(addresses);
+      for (let i = 0; i < addressIds.length; i++) {
+        const addressId = addressIds[i];
+        if (addressId.toString() === activeAddressId.toString()) {
+          for (let j = i - 1; j >= 0; j--) {
+            addressIds[j + 1] = addressIds[j];
+          }
+          addressIds[0] = addressId;
+          break;
+        }
+      }
       return (
-        <div className="checkout-address-box selected">
-          <div className="field-box">
-            <div className="field-label">name</div>
-            <div className="field-text">{activeAddress.detail.name}</div>
-          </div>
-          <div className="field-box">
-            <div className="field-label">C.C.</div>
-            <div className="field-text">{activeAddress.countryCode}</div>
-          </div>
-          <div className="field-box">
-            <div className="field-label">A.D.</div>
-            <div className="field-text">{activeAddress.detail.streetAddress}</div>
-          </div>
-          <div className="field-box">
-            <div className="field-label"></div>
-            <div className="field-text">{activeAddress.detail.city}</div>
-          </div>
-          <div className="edit-box"><a onClick={() => this.setState({ editMode: true })}>Edit</a></div>
+        <div>
+          {addressIds.map((addressId) => renderAddress(addresses[addressId]))}
+          {renderNewAddressButton()}
         </div>
       );
     };
@@ -94,7 +69,7 @@ export default React.createClass({
     return (
       <div>
         <div className="checkout-section-title">1. Please fill in your shipping address. </div>
-        {renderAddress()}
+        {renderAddresses()}
 
         <div className="checkout-section-title">2. Review and confirm your order (3 items):</div>
         <SellerBox productVariants={cartVariants} />

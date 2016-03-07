@@ -44,23 +44,37 @@ export function wrapLogin(cb) {
     return cb();
   };
 }
-// 2016. 02. 25. [heekyu] use this when intuitive code readability
-/*
-export function openLoginPoupIfNotLogin() {
-  return (dispatch, getState) => {
-    const state = getState();
-    if (!state.auth || !state.auth.id) {
-      dispatch(openPopup('login'));
-      return true;
-    }
-    return false;
-  };
-}
-*/
+
 export function setCheckoutStep(step) {
   return {
     type: 'CHECKOUT_SET_STEP',
     step,
+  };
+}
+
+export function checkoutNewAddress() {
+  return {
+    type: 'CHECKOUT_NEW_ADDRESS',
+  };
+}
+
+export function checkoutToggleEditAddress() {
+  return {
+    type: 'CHECKOUT_TOGGLE_EDIT_MODE',
+  };
+}
+
+export function saveAddressAndThen(order, address) {
+  return (dispatch, getState) => {
+    ApiAction.saveAddress(address)(dispatch, getState).then(() => {
+      const promises = [ApiAction.saveOrderAddress(order.id, address)(dispatch, getState)];
+      if (address.id) {
+        promises.push(ApiAction.setActiveAddressId(address.id)(dispatch, getState));
+      }
+      return Promise.all([promises]);
+    }).then(() => {
+      dispatch(checkoutToggleEditAddress());
+    });
   };
 }
 

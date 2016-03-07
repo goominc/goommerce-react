@@ -7,7 +7,6 @@ import SellerBox from 'components/CartSellerBox';
 export default React.createClass({
   propTypes: {
     addressFields: PropTypes.array,
-    activeAddress: PropTypes.object,
     addresses: PropTypes.object,
     doCheckout: PropTypes.func,
     step: PropTypes.string.isRequired,

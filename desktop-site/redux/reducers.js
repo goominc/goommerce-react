@@ -147,9 +147,18 @@ function pageProductList(state = {}) {
   // TODO query related state management
   return state;
 }
+function pageCheckout(state = { isEditMode: false }, action) {
+  if (action.type === 'CHECKOUT_NEW_ADDRESS') {
+    return Object.assign({}, state, { isEditMode: true, isNewAddress: true });
+  } else if (action.type === 'CHECKOUT_TOGGLE_EDIT_MODE') {
+    return Object.assign({}, state, { isEditMode: !state.isEditMode, isNewAddress: false });
+  }
+  return state;
+}
 const pageReducers = combineReducers({
   pageProductDetail,
   pageProductList,
+  pageCheckout,
 });
 // END page-wide reducers
 

@@ -92,14 +92,15 @@ $active-progress-color: #f90;
 
 .checkout-address-box {
   $padding-left: 20px;
-  position: relative;
-  width: 310px;
-  height: 260px;
-  display: inline-block;
-  overflow: hidden; // defensive
-  margin-right: $margin-15;
-  padding: 25px 10px $padding-left $padding-left;
   border: 2px solid #ddd;
+  cursor: pointer;
+  display: inline-block;
+  height: 260px;
+  margin-right: $margin-15;
+  overflow: hidden; // defensive
+  padding: 25px 10px $padding-left $padding-left;
+  position: relative;
+  width: 300px;
   &.selected {
     border: 2px solid #e52e02;
     background-color: #fff4f2;
@@ -131,6 +132,10 @@ $active-progress-color: #f90;
       font-weight: 500;
     }
   }
+}
+.checkout-address-action-line {
+  display: block;
+  width: 100%;
 }
 
 .checkout-place-order {

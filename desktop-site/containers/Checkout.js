@@ -4,24 +4,27 @@ import { ReactScriptLoaderMixin } from 'react-script-loader';
 
 import CheckoutPage from 'components/checkout/CheckoutPage';
 
-import { ApiAction } from 'redux/actions';
+import { ApiAction, checkoutNewAddress, checkoutToggleEditAddress, saveAddressAndThen } from 'redux/actions';
 const { inipay, loadOrder, loadAddresses,
-  saveAddress, saveOrderAddress, setActiveAddress, saveDefaultAddressOnCreateOrder } = ApiAction;
+  saveOrderAddress, setActiveAddressId, saveDefaultAddressOnCreateOrder } = ApiAction;
 const _ = require('lodash');
 
 const Checkout = React.createClass({
   propTypes: {
-    activeAddress: PropTypes.object,
+    activeAddressId: PropTypes.string,
     addresses: PropTypes.object,
+    isEditMode: PropTypes.bool,
+    isNewAddress: PropTypes.bool,
     inipay: PropTypes.func.isRequired,
     loadOrder: PropTypes.func.isRequired,
     loadAddresses: PropTypes.func.isRequired,
     order: PropTypes.object,
     orderId: PropTypes.string.isRequired,
-    saveAddress: PropTypes.func.isRequired,
     saveOrderAddress: PropTypes.func.isRequired,
-    setActiveAddress: PropTypes.func.isRequired,
     saveDefaultAddressOnCreateOrder: PropTypes.func,
+    checkoutNewAddress: PropTypes.func,
+    checkoutToggleEditAddress: PropTypes.func,
+    saveAddressAndThen: PropTypes.func,
     step: PropTypes.string,
   },
   mixins: [ReactScriptLoaderMixin],
@@ -36,7 +39,18 @@ const Checkout = React.createClass({
     promises.push(this.props.loadOrder(this.props.orderId));
     promises.push(this.props.loadAddresses());
     Promise.all(promises).then((res) => {
-      this.props.saveDefaultAddressOnCreateOrder(res[0], res[1].addresses || []);
+      const order = res[0];
+      const addresses = res[1].addresses || [];
+      let activeAddressExist = false;
+      addresses.forEach((address) => {
+        if (address.id === this.props.activeAddressId) {
+          activeAddressExist = true;
+        }
+      });
+      if (!activeAddressExist) {
+        this.props.checkoutNewAddress();
+      }
+      this.props.saveDefaultAddressOnCreateOrder(order, addresses);
     });
   },
   onScriptError() {
@@ -69,28 +83,37 @@ const Checkout = React.createClass({
       return (<div>Loading...</div>);
     }
     const fields = [
-      { key: 'detail.name', text: 'Contact Name' },
-      { key: 'countryCode', text: 'Country/Region' },
-      { key: 'detail.streetAddress', text: 'Street Address' },
-      { key: 'detail.city', text: 'City' },
-      { key: 'detail.postalCode', text: 'Zip/Postal Code' },
-      { key: 'detail.tel', text: 'Tel' },
+      { key: 'detail.name', objKey: 'name', text: 'Contact Name' },
+      { key: 'countryCode', objKey: 'countryCode', text: 'Country/Region' },
+      { key: 'detail.streetAddress', objKey: 'street', text: 'Street Address' },
+      { key: 'detail.city', objKey: 'city', text: 'City' },
+      { key: 'detail.postalCode', objKey: 'postalCode', text: 'Zip/Postal Code' },
+      { key: 'detail.tel', objKey: 'tel', text: 'Tel' },
     ];
-    const { addresses } = this.props;
-    let { activeAddress } = this.props;
-    if (!activeAddress) {
-      if (addresses && Object.keys(addresses).length > 0) {
-        activeAddress = addresses[Object.keys(addresses)[0]];
-      } else {
-        activeAddress = { detail: {} };
-        fields.forEach((field) => _.set(activeAddress, field.key, ''));
-      }
+    const { order, addresses, isEditMode, isNewAddress, activeAddressId,
+      checkoutToggleEditAddress, saveAddressAndThen } = this.props;
+
+    let addressForEdit = { detail: {} };
+    if (isEditMode && !isNewAddress && addresses[activeAddressId]) {
+      addressForEdit = addresses[activeAddressId];
     }
+
+    const editAddress = (address) => {
+      if (address.id !== activeAddressId) {
+        window.alert('code error');
+        return;
+      }
+      checkoutToggleEditAddress();
+    };
+
     return (
-      <CheckoutPage {...this.props}
+      <CheckoutPage
+        {...this.props}
         doCheckout={this.doCheckout}
-        activeAddress={activeAddress}
+        addressForEdit={addressForEdit}
         addressFields={fields}
+        editAddress={editAddress}
+        submitAddress={(address) => saveAddressAndThen(order, address)}
       />
     );
   },
@@ -101,8 +124,11 @@ export default connect(
     orderId: ownProps.params.orderId,
     step: ownProps.params.step,
     order: state.entities.orders[ownProps.params.orderId],
-    activeAddress: state.entities.addresses[state.auth.addressId] || null,
+    activeAddressId: state.auth.addressId,
     addresses: state.entities.addresses,
+    isEditMode: state.page.pageCheckout.isEditMode,
+    isNewAddress: state.page.pageCheckout.isNewAddress,
   }),
-  { inipay, loadOrder, loadAddresses, saveAddress, saveOrderAddress, setActiveAddress, saveDefaultAddressOnCreateOrder }
+  { inipay, loadOrder, loadAddresses, saveOrderAddress, setActiveAddressId,
+    saveDefaultAddressOnCreateOrder, checkoutNewAddress, checkoutToggleEditAddress, saveAddressAndThen }
 )(Checkout);
