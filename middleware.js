@@ -1,4 +1,5 @@
 const config = require('./config');
+const MobileDetect = require('mobile-detect');
 const serialize = require('serialize-javascript');
 const serveStatic = require('serve-static');
 const webpack = require('webpack');
@@ -38,6 +39,7 @@ module.exports = (opts) => {
       }
       return `//${config.cloudfront.domain}/app/${config.bundle.version}/${name}`;
     }
+    const md = new MobileDetect(req.headers['user-agent']);
 
     function sendMobile(initialState) {
       res.send(`
@@ -97,7 +99,8 @@ module.exports = (opts) => {
           initialState.i18n = req.i18n;
           initialState.i18n.activeLocale = req.locale;
         }
-        if (host.startsWith(config.mobileHostPrefix)) {
+        // TODO redirect for mobile page?
+        if (host.startsWith(config.mobileHostPrefix) || md.mobile()) {
           return sendMobile(initialState);
         }
         return send(initialState);
