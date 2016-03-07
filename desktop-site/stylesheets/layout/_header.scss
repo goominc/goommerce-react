@@ -12,6 +12,7 @@
 }
 .header-wide-container {
   width: 100%;
+  min-width: 750px;
   border-bottom: 1px solid #e8e8e8;
 }
 $header-height: 40px;
