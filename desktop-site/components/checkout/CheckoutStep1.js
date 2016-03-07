@@ -71,7 +71,7 @@ export default React.createClass({
         <div className="checkout-section-title">1. Please fill in your shipping address. </div>
         {renderAddresses()}
 
-        <div className="checkout-section-title">2. Review and confirm your order (3 items):</div>
+        <div className="checkout-section-title">2. Review and confirm your order ({cartVariants.length} items):</div>
         <SellerBox productVariants={cartVariants} />
         <div className="checkout-place-order">
           <span className="all-total-label">All Total:</span>
