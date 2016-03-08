@@ -5,8 +5,7 @@ import { initColorsAndSizes } from 'commons/utils/productUtil';
 
 function popup(state = {}, action) {
   if (action.type === 'OPEN_POPUP') {
-    const next = {};
-    next[action.popupName] = true;
+    const next = { popupName: action.popupName };
     return next;
   } else if (action.type === 'CLOSE_POPUP') {
     return {};

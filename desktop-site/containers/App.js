@@ -6,6 +6,8 @@ import AppHeader from 'components/AppHeader';
 import AppFooter from 'components/AppFooter';
 import ErrorPopup from 'components/popup/ErrorPopup';
 import SigninPopup from 'components/popup/SigninPopup';
+import AfterAddToCartPopup from 'components/popup/AfterAddToCartPopup';
+import AfterAddToWishListPopup from 'components/popup/AfterAddToWishListPopup';
 
 import { ApiAction, resetError, closePopup, toggleSearchDropdown, selectSearchDropdown } from 'redux/actions';
 
@@ -74,16 +76,24 @@ const App = React.createClass({
       return '';
     };
     const renderPopup = () => {
-      const handleLogin = (email, password) => {
-        login(email, password).then(
-          () => this.props.closePopup()
-        );
-      };
-      if (popup.login) {
+      if (popup.popupName === 'login') {
+        const handleLogin = (email, password) => {
+          login(email, password).then(
+            () => this.props.closePopup()
+          );
+        };
         return (
           <SigninPopup closePopup={this.props.closePopup} handleSubmit={handleLogin}
             goForgotPassword={() => console.log('TODO')} // eslint-disable-line no-console
           />
+        );
+      } else if (popup.popupName === 'addCart') {
+        return (
+          <AfterAddToCartPopup closePopup={this.props.closePopup} />
+        );
+      } else if (popup.popupName === 'addWish') {
+        return (
+          <AfterAddToWishListPopup closePopup={this.props.closePopup} />
         );
       }
       return '';

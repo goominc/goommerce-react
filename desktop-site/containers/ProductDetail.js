@@ -6,12 +6,13 @@ import * as _ from 'lodash';
 import ProductDetailPage from 'components/ProductDetailPage';
 import { getProductMainImage } from 'util';
 
-import { selectColor, selectSize, setActiveImage, wrapLogin } from 'redux/actions';
+import { selectColor, selectSize, setActiveImage, wrapLogin, addCartAndPopup, addWishAndPopup } from 'redux/actions';
 
 const ProductDetail = React.createClass({
   propTypes: {
     activeImage: PropTypes.object,
-    addCartProduct: PropTypes.func,
+    addCartAndPopup: PropTypes.func,
+    addWishAndPopup: PropTypes.func,
     product: PropTypes.object,
     productId: PropTypes.string.isRequired,
     favoriteBrands: PropTypes.array,
@@ -88,12 +89,9 @@ const ProductDetail = React.createClass({
     }
     return images;
   },
-  addCartProduct(variant) {
-    this.props.addCartProduct(variant.id);
-  },
   render() {
-    const { activeImage, product, favoriteBrands, selectColor, selectSize, wrapLogin } = this.props; // eslint-disable-line no-shadow
-    const { addCartProduct, addWish, addFavoriteBrand, createOrder } = this.context.ApiAction;
+    const { activeImage, product, favoriteBrands, selectColor, selectSize, wrapLogin, addCartAndPopup, addWishAndPopup } = this.props; // eslint-disable-line no-shadow
+    const { addFavoriteBrand, createOrder } = this.context.ApiAction;
     if (!product) {
       return (<div></div>);
     }
@@ -115,12 +113,12 @@ const ProductDetail = React.createClass({
     };
     const wrapAddToCart = (...args) => {
       wrapLogin(() => {
-        addCartProduct(...args);
+        addCartAndPopup(...args);
       });
     };
     const wrapAddWish = (...args) => {
       wrapLogin(() => {
-        addWish(...args);
+        addWishAndPopup(...args);
       });
     };
     const wrapAddFavoriteBrand = (...args) => {
@@ -155,5 +153,5 @@ export default connect(
     selectedVariant: state.page.pageProductDetail.selectedVariant,
     favoriteBrands: state.auth.favoriteBrands || [],
   }),
-  { setActiveImage, selectColor, selectSize, wrapLogin }
+  { setActiveImage, selectColor, selectSize, wrapLogin, addCartAndPopup, addWishAndPopup }
 )(ProductDetail);

@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------------------
-// This file contains styles that are specific to the product signin page.
+// This file contains styles that are specific to the signin page.
 // -----------------------------------------------------------------------------
 $padding-top: 15px;
 $padding-bottom: 5px;
@@ -93,8 +93,6 @@ $sign-form-width: 450px;
 }
 
 .signin-popup {
-  position: fixed;
-  z-index: 10010;
   left: 50%;
   margin-left: - $sign-form-width / 2;
   top: 100px;

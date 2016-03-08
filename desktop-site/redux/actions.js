@@ -97,4 +97,18 @@ export function selectSize(size) {
     size,
   };
 }
+export function addCartAndPopup(...args) {
+  return (dispatch, getState) => {
+    ApiAction.addCartProduct(...args)(dispatch, getState).then(() => {
+      dispatch(openPopup('addCart'));
+    });
+  };
+}
+export function addWishAndPopup(...args) {
+  return (dispatch, getState) => {
+    ApiAction.addWish(...args)(dispatch, getState).then(() => {
+      dispatch(openpopup('addWish'));
+    });
+  };
+}
 // END Product Detail Page actions
