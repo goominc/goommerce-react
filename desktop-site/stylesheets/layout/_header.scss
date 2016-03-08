@@ -54,17 +54,18 @@ $header-margin: 15px;
     font-size: 16px;
   }
   .header-search-category-box {
-    position: relative;
-    display: inline-block;
-    vertical-align: top;
-    text-align: center;
     border-top: 1px solid #cbcbcb;
     border-bottom: 1px solid #cbcbcb;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 100%;
     height: $header-height;
     line-height: $header-height;
+    position: relative;
+    text-align: center;
+    vertical-align: top;
     width: 140px;
-    font-size: 100%;
-    cursor: pointer;
+    z-index: 10000;
     $divider-margin-top: 15%;
     .search-divider {
       position: absolute;
