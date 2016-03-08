@@ -103,7 +103,7 @@ export default React.createClass({
     const locales = {
       ko: '한국어',
       en: 'English',
-      'zn-cn': '简体',
+      'zh-cn': '简体',
       'zh-tw': '繁體',
     };
     const renderLocales = () => (
