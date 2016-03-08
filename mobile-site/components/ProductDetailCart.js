@@ -14,7 +14,7 @@ export default React.createClass({
     currentVariant: PropTypes.string,
     setColor: PropTypes.func.isRequired,
     setSize: PropTypes.func.isRequired,
-    addCart: PropTypes.func.isRequird,
+    addCart: PropTypes.func.isRequired,
     topImg: PropTypes.array,
   },
   mixins: [LinkedStateMixin],

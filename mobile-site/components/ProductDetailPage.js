@@ -18,7 +18,7 @@ export default React.createClass({
     currentVariant: PropTypes.string,
     setColor: PropTypes.func.isRequired,
     setSize: PropTypes.func.isRequired,
-    addCart: PropTypes.func.isRequird,
+    addCart: PropTypes.func.isRequired,
   },
   render() {
     const { product, images, showCart, variants, colors, sizes, currentColor, currentSize, currentVariant } = this.props;
