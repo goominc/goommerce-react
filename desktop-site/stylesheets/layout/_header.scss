@@ -286,12 +286,13 @@ $mymenu-margin: 20px;
     display: block;
   }
   .right-menu-item {
-    display: inline-block;
-    position: relative;
-    padding: 0 $margin-15;
     color: #999;
-    font-size: 12px;
     cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    padding: 0 $margin-15;
+    position: relative;
+    width: 140px;
     .dropdown-box {
       display: none;
     }
