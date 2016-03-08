@@ -12,7 +12,7 @@ export default React.createClass({
     return (
       <div>
         <div className="popup-overlay"></div>
-        <div className="popup-body signin-popup">
+        <div className="signin-popup">
           <SigninForm {...this.props} />
           <div className="popup-close-button" onClick={this.props.closePopup}>X</div>
         </div>

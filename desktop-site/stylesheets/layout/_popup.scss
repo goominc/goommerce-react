@@ -10,11 +10,6 @@
   z-index: 10000;
   background-color: rgba(0, 0, 0, 0.6);
 }
-.popup-body {
-  position: fixed;
-  z-index: 10010;
-  background-color: #fff;
-}
 $padding-horizontal: 40px;
 $padding-vertical: 20px;
 $error-popup-width: 500px;
@@ -52,19 +47,20 @@ $error-popup-height: 250px;
   }
 }
 
+@mixin cart-saved-successfully() {
+  background: url("http://i.alicdn.com/ae-detail-ui/node_modules/@alife/beta-feedback/src/img/sprite-feedback-standalone.7350efc5.png") no-repeat;
+  background-position: -6px -82px;
+  padding: 10px 10px 20px 56px;
+}
+
+$cart-popup-width: 800px;
+$cart-popup-height: 400px;
 .add-cart-popup {
-  $width: 800px;
-  height: 400px;
-  left: 50%;
-  margin-left: -$width / 2;
+  @include popup-body($cart-popup-width, $cart-popup-height);
   padding: 20px 15px 15px 15px;
-  top: 100px;
-  width: $width;
   .popup-title {
-    background: url("http://i.alicdn.com/ae-detail-ui/node_modules/@alife/beta-feedback/src/img/sprite-feedback-standalone.7350efc5.png") no-repeat;
-    background-position: -6px -82px;
+    @include cart-saved-successfully();
     border-bottom: 1px solid #ddd;
-    padding: 10px 10px 20px 56px;
     span {
       display: inline-block;
       font-size: 14px;
@@ -80,4 +76,41 @@ $error-popup-height: 250px;
       }
     }
   }
+}
+
+.add-wish-popup {
+  @include popup-body($cart-popup-width, $cart-popup-height);
+  padding: 20px 15px 15px 15px;
+  .popup-title {
+    @include cart-saved-successfully();
+    font-size: 14px;
+    font-weight: 500;
+    span {
+      display: inline-block;
+      font-size: 14px;
+      margin-bottom: $margin-15;
+      width: 100%;
+    }
+    button {
+      margin-right: $margin-15;
+      padding: 3px 5px;
+    }
+    .visit-wish-list-button {
+      @include button-default-styles();
+      padding: 3px 15px;
+      display: inline-block;
+      font-size: 14px;
+    }
+  }
+  .popup-body {
+
+  }
+}
+
+.popup-close-button {
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  font-size: 16px;
+  cursor: pointer;
 }

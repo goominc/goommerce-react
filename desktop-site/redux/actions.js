@@ -107,7 +107,7 @@ export function addCartAndPopup(...args) {
 export function addWishAndPopup(...args) {
   return (dispatch, getState) => {
     ApiAction.addWish(...args)(dispatch, getState).then(() => {
-      dispatch(openpopup('addWish'));
+      dispatch(openPopup('addWish'));
     });
   };
 }
