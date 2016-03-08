@@ -100,7 +100,7 @@ module.exports = (opts) => {
           initialState.i18n.activeLocale = req.locale;
         }
         // TODO redirect for mobile page?
-        if (host.startsWith(config.mobileHostPrefix) || md.mobile()) {
+        if (host.startsWith(config.mobileHostPrefix) || (md.mobile() && !md.tablet())) {
           return sendMobile(initialState);
         }
         return send(initialState);
