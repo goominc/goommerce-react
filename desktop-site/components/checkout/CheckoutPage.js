@@ -3,6 +3,7 @@ import LinkedStateMixin from 'react-addons-linked-state-mixin'; // for manage fo
 
 import CheckoutStep1 from 'components/checkout/CheckoutStep1';
 import SellerBox from 'components/CartSellerBox';
+import i18n from 'commons/utils/i18n';
 
 export default React.createClass({
   propTypes: {
@@ -72,7 +73,7 @@ export default React.createClass({
       <div>
         <SellerBox productVariants={variants} />
         <div>Total: KRW {order.totalEstimationKRW}</div>
-        <div>Status: {order.status}</div>
+        <div>Status: {i18n.get(`enum.order.status.${order.status}`)}</div>
       </div>
     );
   },

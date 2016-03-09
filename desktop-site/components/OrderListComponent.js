@@ -5,6 +5,8 @@ import { Link } from 'react-router';
 
 import { getProductThumbnail } from 'util';
 
+import i18n from 'commons/utils/i18n';
+
 export default React.createClass({
   propTypes: {
     orders: PropTypes.array.isRequired,
@@ -42,7 +44,7 @@ export default React.createClass({
           {(order.orderProducts || []).map(renderOrderProduct)}
         </div>
         <div className="order-action-box">
-          Status : {order.status}
+          Status: {i18n.get(`enum.order.status.${order.status}`)}
         </div>
       </div>
     );
