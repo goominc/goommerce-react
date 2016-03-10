@@ -12,6 +12,10 @@ exports.get = (key) => {
   const state = store.getState();
   const i18n = state.i18n;
   const locale = state.i18n.activeLocale;
+
+  if (_.isObject(key)) {
+    return key[locale];
+  }
   const res = _.get(i18n[locale], key);
   if (!res) {
     return key;

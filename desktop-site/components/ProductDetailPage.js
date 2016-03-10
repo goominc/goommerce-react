@@ -5,8 +5,7 @@ import { CloudinaryImage } from 'react-cloudinary';
 import { getProductMainPrice } from 'util';
 
 import Breadcrumb from 'components/Breadcrumb';
-
-const _ = require('lodash');
+import brandUtil from 'commons/utils/brandUtil';
 
 export default React.createClass({
   propTypes: {
@@ -24,7 +23,6 @@ export default React.createClass({
     setActiveImage: PropTypes.func,
   },
   contextTypes: {
-    activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
   },
   handleMouseEnterThumbnail(image) {
@@ -58,7 +56,7 @@ export default React.createClass({
       return (<div></div>);
     }
     const brand = product.brand;
-    const { activeCurrency, activeLocale } = this.context;
+    const { activeCurrency } = this.context;
     const renderImage = (image) => {
       if (!image) {
         return (<img />);
@@ -155,7 +153,7 @@ export default React.createClass({
           <div className="normal-field-box">
             <div className="field-label">Seller: </div>
             <div className="field-content">
-              <span>{_.get(brand, ['data', 'name', activeLocale])}</span> <br />
+              {brandUtil.getName(brand)} <br />
               <Link to={`/brands/${brand.id}`}>Products this seller provide</Link> <br />
               {renderFavoriteButton()}
             </div>

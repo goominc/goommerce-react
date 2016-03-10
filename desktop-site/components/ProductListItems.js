@@ -6,6 +6,7 @@ import * as _ from 'lodash';
 
 import { getProductMainPrice } from 'util';
 import { initColorsAndSizes } from 'commons/utils/productUtil';
+import brandUtil from 'commons/utils/brandUtil';
 
 export default React.createClass({
   propTypes: {
@@ -13,12 +14,11 @@ export default React.createClass({
     changeMainImage: PropTypes.func,
   },
   contextTypes: {
-    activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
   },
   render() {
     const { products, changeMainImage } = this.props;
-    const { activeLocale, activeCurrency } = this.context;
+    const { activeCurrency } = this.context;
 
     const renderItem = (item) => {
       // 2016. 03. 05. [heekyu] calc mainImage in parent Container
@@ -62,7 +62,7 @@ export default React.createClass({
             <Link to={`/products/${item.id}`}>
               <div className="product-title">
                 {item.id} <br />
-                Brand: {_.get(item, `brand.data.name.${activeLocale}`)}
+                {brandUtil.getName(item.brand)}
               </div>
             </Link>
             <div className="variant-image-container">

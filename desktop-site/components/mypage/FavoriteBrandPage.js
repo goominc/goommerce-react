@@ -3,7 +3,9 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-import * as _ from 'lodash';
+import brandUtil from 'commons/utils/brandUtil';
+
+const _ = require('lodash');
 
 export default React.createClass({
   propTypes: {
@@ -17,7 +19,7 @@ export default React.createClass({
   },
   render() {
     const { brands, brandProducts, deleteFavoriteBrand } = this.props;
-    const { activeLocale, activeCurrency } = this.context;
+    const { activeCurrency } = this.context;
     if (!brands) {
       return (<div></div>);
     }
@@ -39,7 +41,7 @@ export default React.createClass({
       return (
         <div key={brand.id} className="favorite-brand-box">
           <div className="brand-info">
-            <span className="title">{_.get(brand, `data.name.${activeLocale}`)}</span>
+            <span className="title">{brandUtil.getName(brand)}</span>
           <span className="main-products">
             Main products: <br />
             Apparel & Accessories

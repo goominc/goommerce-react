@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 
 import { get, pick } from 'lodash';
 
+import brandUtil from 'commons/utils/brandUtil';
 import i18n from 'commons/utils/i18n';
 
 export default React.createClass({
@@ -30,7 +31,7 @@ export default React.createClass({
         <div className="product-list-category-title">
           Selected Brand:
           <div>
-            {this.props.brand.data.name[activeLocale]}
+            {brandUtil.getName(this.props.brand)}
             <Link to={link}><span>(X)</span></Link>
           </div>
         </div>
@@ -42,10 +43,10 @@ export default React.createClass({
     return (
       <div>
         <div className="product-list-category-title">{i18n.get('word.brands')}</div>
-        {brands.map((b) => (
-          <div key={b.id} className="product-list-category-depth1">
-            <Link to={brandLink(b.id)}>
-              {b.data.name[activeLocale]} ({b.doc_count})
+        {brands.map((brand) => (
+          <div key={brand.id} className="product-list-category-depth1">
+            <Link to={brandLink(brand.id)}>
+              {brandUtil.getName(brand)} ({brand.doc_count})
             </Link>
           </div>
         ))}
