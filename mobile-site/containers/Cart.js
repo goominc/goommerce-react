@@ -1,31 +1,36 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { History } from 'react-router';
 
 import CartPage from 'components/CartPage';
 
-import { ApiAction } from 'redux/actions';
+import { ApiAction, setHeader } from 'redux/actions';
 const { loadCart, updateCartProduct, deleteCartProduct, createOrder } = ApiAction;
-
 
 const Cart = React.createClass({
   propTypes: {
     cart: PropTypes.object,
+    setHeader: PropTypes.func.isRequired,
     loadCart: PropTypes.func.isRequired,
     updateCartProduct: PropTypes.func.isRequired,
     deleteCartProduct: PropTypes.func.isRequired,
     createOrder: PropTypes.func.isRequired,
   },
-
+  componentDidMount() {
+    this.props.setHeader(false, true, false, 'Cart');
+  },
+  wrapOrder() {
+    this.props.createOrder();
+  },
   render() {
     const { cart } = this.props;
     return (
-      <CartPage cart={cart}/>
+      <CartPage cart={cart}
+        updateCartProduct={this.props.updateCartProduct} deleteCartProduct={this.props.deleteCartProduct} createOrder={this.wrapOrder} />
       );
   },
 });
 
 export default connect(
   (state) => ({ cart: state.cart }),
-  { loadCart, updateCartProduct, deleteCartProduct, createOrder }
+  { setHeader, loadCart, updateCartProduct, deleteCartProduct, createOrder }
 )(Cart);

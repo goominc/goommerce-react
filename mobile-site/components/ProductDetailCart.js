@@ -29,23 +29,35 @@ export default React.createClass({
       this.setState({ quantity: this.state.quantity - 1 });
     }
   },
-  renderColors () {
+  handleAddCart() {
+    if (this.props.currentVariant) {
+      $('.ms-toast').show();
+      $('.ms-toast').addClass('ms-toast-glow');
+      this.props.addCart(this.state.quantity)
+      .then(() => {
+        setTimeout(() => $('.ms-toast').removeClass('ms-toast-glow'), 1000);
+      }, () => {
+        setTimeout(() => $('.ms-toast').removeClass('ms-toast-glow'), 1000);
+      });
+    }
+  },
+  renderColors() {
     const { colors, currentColor } = this.props;
     if (colors && colors.length > 0) {
       const renderColors = colors.map((color) => {
         if (color.variant && color.variant.appImages && color.variant.appImages.default && color.variant.appImages.default.length) {
-        return (
-          <span className={'sku-color' + (color.color === currentColor ? ' selected' : '') } key={color.color} onClick={() => this.props.setColor(color.color)}>
-            <img alt="sku" src={color.variant.appImages.default[0].url} />
-            <span className="sku-disabled-mask"></span>
-          </span>
-          );
+          return (
+            <span className={'sku-color' + (color.color === currentColor ? ' selected' : '') } key={color.color} onClick={() => this.props.setColor(color.color)}>
+              <img alt="sku" src={color.variant.appImages.default[0].url} />
+              <span className="sku-disabled-mask"></span>
+            </span>
+            );
         }
       });
       return renderColors;
     }
   },
-  renderSizes () {
+  renderSizes() {
     const { sizes, currentSize } = this.props;
     if (sizes && sizes.length > 0) {
       return sizes.map((size) => {
@@ -53,11 +65,6 @@ export default React.createClass({
           <span className={'sku-text' + (size.size === currentSize ? ' selected' : '') } key={size.size} onClick={() => this.props.setSize(size.size)}>{size.size}</span>
           );
       });
-    }
-  },
-  handleAddCart() {
-    if (this.props.currentVariant) {
-      this.props.addCart(this.state.quantity);
     }
   },
   render() {
@@ -224,6 +231,9 @@ export default React.createClass({
               </section>
             </div>
           </section>
+        </div>
+        <div className="ms-toast">
+          <div className="ms-toast-content">Item added to cart</div>
         </div>
       </div>
     );

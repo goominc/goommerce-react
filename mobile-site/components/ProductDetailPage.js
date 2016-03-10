@@ -45,7 +45,7 @@ export default React.createClass({
         </section>
         );
       }
-    }
+    };
 
     return (
       <article className="ms-detail">
@@ -158,9 +158,9 @@ export default React.createClass({
         { /* <ProductDetailRelated /> */ }
 
         <ProductDetailCart show={showCart} toggle={this.props.toggleCart} topImg={images}
-        currentColor={currentColor} currentSize={currentSize} currentVariant={currentVariant}
-        variants={variants} colors={colors} sizes={sizes} setColor={this.props.setColor} setSize={this.props.setSize}
-        addCart={this.props.addCart} />
+          currentColor={currentColor} currentSize={currentSize} currentVariant={currentVariant}
+          variants={variants} colors={colors} sizes={sizes} setColor={this.props.setColor} setSize={this.props.setSize}
+          addCart={this.props.addCart} />
 
       </article>
     );

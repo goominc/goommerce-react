@@ -26,9 +26,10 @@ const ProductDetail = React.createClass({
   componentDidMount() {
     this.props.setHeader(false, true, true, 'Detail');
     this.props.loadProduct(this.props.params.productId)
-    .then(res => {
+    .then((res) => {
       const variants = this.parseVariants(res);
-      this.setState({ product: res, productVariants: variants, productColors: this.parseProductColors(variants), productSizes: this.parseProductSizes(variants) });
+      this.setState({ product: res, productVariants: variants,
+        productColors: this.parseProductColors(variants), productSizes: this.parseProductSizes(variants) });
     });
   },
   parseVariants(product) {
@@ -61,8 +62,7 @@ const ProductDetail = React.createClass({
   parseProductColors(variants) {
     const colors = [];
     const colorSet = new Set();
-    for (let i = 0; i < variants.length; i++)
-    {
+    for (let i = 0; i < variants.length; i++) {
       const variantColor = variants[i].data.color;
       if (colorSet.has(variantColor)) {
         continue;
@@ -75,8 +75,7 @@ const ProductDetail = React.createClass({
   parseProductSizes(variants) {
     const sizes = [];
     const sizeSet = new Set();
-    for (let i = 0; i < variants.length; i++)
-    {
+    for (let i = 0; i < variants.length; i++) {
       const variantSize = variants[i].data.size;
       if (sizeSet.has(variantSize)) {
         continue;
@@ -124,15 +123,18 @@ const ProductDetail = React.createClass({
     const images = this.buildImages();
     return (
       <ProductDetailPage product={this.state.product} images={images} variants={this.state.productVariants}
-      colors={this.state.productColors} sizes={this.state.productSizes} currentColor={this.props.color} currentSize={this.props.size} currentVariant={this.props.variant}
-      showCart={this.props.showCart} toggleCart={this.props.toggleProductCart} setColor={this.props.setProductColor} setSize={this.props.setProductSize}
-      addCart={this.wrapAddCart} />
+        colors={this.state.productColors} sizes={this.state.productSizes}
+        currentColor={this.props.color} currentSize={this.props.size}
+        currentVariant={this.props.variant} showCart={this.props.showCart} toggleCart={this.props.toggleProductCart}
+        setColor={this.props.setProductColor} setSize={this.props.setProductSize} addCart={this.wrapAddCart}
+      />
       );
   },
 });
 
 export default connect(
-  state => ({ showCart: state.pageProductDetail.showCart,
-   color: state.pageProductDetail.selectColor, size: state.pageProductDetail.selectSize, variant: state.pageProductDetail.selectVariant }),
+  (state) => ({ showCart: state.pageProductDetail.showCart,
+   color: state.pageProductDetail.selectColor, size: state.pageProductDetail.selectSize,
+   variant: state.pageProductDetail.selectVariant }),
   { loadProduct, addCartProduct, setHeader, toggleProductCart, setProductColor, setProductSize }
 )(ProductDetail);
