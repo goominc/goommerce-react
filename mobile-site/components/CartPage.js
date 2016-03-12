@@ -8,7 +8,7 @@ export default React.createClass({
     deleteCartProduct: PropTypes.func.isRequired,
     createOrder: PropTypes.func.isRequired,
   },
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     const { cart } = this.props;
     if (cart && cart.productVariants && cart.productVariants.length) {
       for (let i = 0; i < cart.productVariants.length; i++) {
@@ -23,6 +23,12 @@ export default React.createClass({
           $(`#plus-${cart.productVariants[i].id}`).removeClass('disabled');
         }
       }
+    }
+  },
+  handleBuyAll() {
+    const { cart } = this.props;
+    if (cart && cart.productVariants && cart.productVariants.length) {
+      this.props.createOrder(cart.productVariants);
     }
   },
   renderCart() {
@@ -91,22 +97,28 @@ export default React.createClass({
                     <span className="pre">Quantity&nbsp;:</span>
                     <div className="trim">
                       <span className="trim ms-numberic">
-                        <a className="ms-minus" id={`minus-${productVariant.id}`} onClick={minusCount}><i className="ms-icon icon-minus"></i></a>
-                        <input id={`count-${productVariant.id}`}type="number" min="1" defaultValue={productVariant.count} onChange={updateCount}/>
-                        <a className="ms-plus" id={`plus-${productVariant.id}`} onClick={plusCount}><i className="ms-icon icon-plus"></i></a>
+                        <a className="ms-minus" id={`minus-${productVariant.id}`} onClick={minusCount}>
+                          <i className="ms-icon icon-minus"></i>
+                        </a>
+                        <input id={`count-${productVariant.id}`} type="number" min="1"
+                          defaultValue={productVariant.count} onChange={updateCount}
+                        />
+                        <a className="ms-plus" id={`plus-${productVariant.id}`} onClick={plusCount}>
+                          <i className="ms-icon icon-plus"></i>
+                        </a>
                       </span>
                     </div>
                     <span className="delete" onClick={deleteProduct}><i className="ms-icon icon-remove fr"></i></span>
                   </div>
                 </div>
-                { /*<div className="pi-shipping mb-40">
+                { /* <div className="pi-shipping mb-40">
                   <div className="shipping clearfix">
                     Shipping&nbsp;: <span className="shipping-cost">free shipping&nbsp;<i className="ms-icon icon-arrow-right fr"></i></span>
                   </div>
                 </div> */ }
               </li>
             </ul>
-            { /*<div className="seller-costs bt p-24 ">
+            { /* <div className="seller-costs bt p-24 ">
               <dl className="seller-costs-subtotal mt-24 clearfix">
                 <dt>Subtotal:</dt>
                 <dd><span>US $17.90</span></dd>
@@ -168,7 +180,7 @@ export default React.createClass({
               <span>Total&nbsp;:</span>
               <span className="mt-16 price">US ${totalCost}</span>
             </div>
-            <Link to="/orders"><div className="ui-button ui-button-main buyall  ">Buy All</div></Link>
+            <div className="ui-button ui-button-main buyall" onClick={this.handleBuyAll}>Buy All</div>
           </div>
         </article>
       </section>

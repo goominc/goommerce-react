@@ -3,28 +3,32 @@ import { connect } from 'react-redux';
 
 import OrderPage from 'components/OrderPage';
 
-import { ApiAction } from 'redux/actions';
-//const { loadCart, updateCartProduct, deleteCartProduct, createOrder } = ApiAction;
+import { ApiAction, setHeader } from 'redux/actions';
+const { loadOrder } = ApiAction;
 
-
-const Cart = React.createClass({
-  /* propTypes: {
-    cart: PropTypes.object,
-    loadCart: PropTypes.func.isRequired,
-    updateCartProduct: PropTypes.func.isRequired,
-    deleteCartProduct: PropTypes.func.isRequired,
-    createOrder: PropTypes.func.isRequired,
-  },*/
-
+const Order = React.createClass({
+  propTypes: {
+    params: PropTypes.object.isRequired,
+    order: PropTypes.object,
+    setHeader: PropTypes.func.isRequired,
+    loadOrder: PropTypes.func.isRequired,
+  },
+  componentDidMount() {
+    this.props.setHeader(false, false, false, 'Place Order');
+    const { orderId } = this.props.params;
+    this.props.loadOrder(orderId);
+  },
   render() {
-    //const { cart } = this.props;
+    const { order } = this.props;
     return (
-        <OrderPage />
+        <OrderPage order={order} />
       );
   },
 });
 
 export default connect(
-  (state) => ({ cart: state.cart }),
-  { }
-)(Cart);
+  (state, ownProps) => ({
+    order: state.entities.orders[ownProps.params.orderId],
+  }),
+  { loadOrder, setHeader }
+)(Order);

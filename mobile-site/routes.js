@@ -22,7 +22,7 @@ export default function configure() {
         <Route path="/categories/:categoryId" component={ProductList} />
         <Route path="/products/:productId" component={ProductDetail} />
         <Route path="/cart" component={Cart} />
-        <Route path="/orders" component={Order} />
+        <Route path="/orders/:orderId" component={Order} />
       </Route>
     </Route>
   );

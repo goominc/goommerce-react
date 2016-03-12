@@ -15,17 +15,25 @@ const Cart = React.createClass({
     deleteCartProduct: PropTypes.func.isRequired,
     createOrder: PropTypes.func.isRequired,
   },
+  contextTypes: {
+    router: PropTypes.object.isRequired,
+  },
   componentDidMount() {
     this.props.setHeader(false, true, false, 'Cart');
+    this.props.loadCart();
   },
-  wrapOrder() {
-    this.props.createOrder();
+  wrapOrder(productVariants) {
+    this.props.createOrder({
+      productVariants: productVariants.map((variant) => ({ id: variant.id, count: variant.count })),
+    }).then((order) => this.context.router.push(`/orders/${order.id}`));
   },
   render() {
     const { cart } = this.props;
     return (
       <CartPage cart={cart}
-        updateCartProduct={this.props.updateCartProduct} deleteCartProduct={this.props.deleteCartProduct} createOrder={this.wrapOrder} />
+        updateCartProduct={this.props.updateCartProduct} deleteCartProduct={this.props.deleteCartProduct}
+        createOrder={this.wrapOrder}
+      />
       );
   },
 });
