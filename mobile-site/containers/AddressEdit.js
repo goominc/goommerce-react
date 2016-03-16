@@ -1,51 +1,91 @@
 import React, { PropTypes } from 'react';
-// import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import LinkedStateMixin from 'react-addons-linked-state-mixin';
+
 
 import { ApiAction, setHeader } from 'redux/actions';
 const { loadAddresses, saveAddress } = ApiAction;
 
 const AddressEdit = React.createClass({
   propTypes: {
-    cart: PropTypes.object,
-    addresses: PropTypes.object,
-    activeAddressId: PropTypes.number,
     setHeader: PropTypes.func.isRequired,
     loadAddresses: PropTypes.func.isRequired,
     saveAddress: PropTypes.func.isRequired,
-    params: PropTypes.object.isRequired,
+    params: PropTypes.object,
+  },
+  contextTypes: {
+    router: PropTypes.object.isRequired,
+  },
+  mixins: [LinkedStateMixin],
+  getInitialState() {
+    return {};
   },
   componentDidMount() {
-    this.props.setHeader(false, false, false, 'Edit Address');
-    this.props.loadAddresses();
+    const { params } = this.props;
+    if (params && params.addressId) {
+      this.props.loadAddresses().then((res) => {
+        if (res && res.addresses && Object.keys(res.addresses).length) {
+          for (const i in res.addresses) {
+            if (res.addresses[i].id === parseInt(params.addressId, 10)) {
+              this.setState({
+                id: params.addressId,
+                name: res.addresses[i].detail.name,
+                countryCode: res.addresses[i].countryCode,
+                streetAddress: res.addresses[i].detail.streetAddress,
+                city: res.addresses[i].detail.city,
+                postalCode: res.addresses[i].detail.postalCode,
+                tel: res.addresses[i].detail.tel,
+              });
+              this.props.setHeader(false, false, false, 'Edit Address');
+            }
+          }
+        }
+      });
+    } else {
+      this.props.setHeader(false, false, false, 'Add Address');
+    }
+  },
+  handleSave() {
+    const address = {
+      id: this.state.id,
+      countryCode: this.state.countryCode,
+      detail: {
+        name: this.state.name,
+        city: this.state.city,
+        streetAddress: this.state.streetAddress,
+        postalCode: this.state.postalCode,
+        tel: this.state.tel,
+      },
+    };
+    this.props.saveAddress(address).then((res) => this.context.router.push('/orders/address/select'));
   },
   render() {
     return (
       <div className="wrap">
         <fieldset className="field-form address-form">
           <div className="field-item">
-            <input type="text" placeholder="Contact Name" />
+            <input type="text" placeholder="Contact Name" valueLink={this.linkState('name')} />
           </div>
           <div className="field-item">
             { /* <div className="panel-select">South Korea<i className="ms-icon icon-arrow-right"></i></div> */ }
-            <input type="text" placeholder="Country/Region" />
+            <input type="text" placeholder="Country/Region" valueLink={this.linkState('countryCode')} />
           </div>
           <div className="field-item">
-            <input type="text" placeholder="Street Address" />
+            <input type="text" placeholder="Street Address" valueLink={this.linkState('streetAddress')} />
           </div>
           <div className="field-item">
             { /* <div className="hidden panel-select">Jung-gu<i className="ms-icon icon-arrow-right"></i></div> */ }
-            <input type="text" placeholder="City" />
+            <input type="text" placeholder="City" valueLink={this.linkState('city')} />
           </div>
           { /* <div className="field-item">
             <div className="panel-select">Seoul<i className="ms-icon icon-arrow-right"></i></div>
             <input type="text" placeholder="State" />
           </div> */ }
           <div className="field-item">
-            <input type="text" placeholder="Zip/Postal code" />
+            <input type="text" placeholder="Zip/Postal code" valueLink={this.linkState('postalCode')} />
           </div>
           <div className="field-item tel">
-            <input type="tel" placeholder="Tel" />
+            <input type="tel" placeholder="Tel" valueLink={this.linkState('tel')} />
           </div>
           { /*
           <div className="field-item tel">
@@ -56,7 +96,9 @@ const AddressEdit = React.createClass({
           </div>
           */ }
           <div className="address-action">
-            <input type="submit" value="Update" className="ui-button ui-button-main add" />
+            <input type="submit" value="Save"
+              className="ui-button ui-button-main add" onClick={this.handleSave}
+            />
           </div>
         </fieldset>
       </div>
@@ -65,6 +107,6 @@ const AddressEdit = React.createClass({
 });
 
 export default connect(
-  (state) => ({ activeAddressId: state.auth.addressId, addresses: state.entities.addresses }),
+  undefined,
   { setHeader, loadAddresses, saveAddress }
 )(AddressEdit);

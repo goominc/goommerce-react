@@ -11,7 +11,7 @@ export default React.createClass({
   },
   renderAddresses() {
     const { addresses, activeAddressId } = this.props;
-    if (!addresses) {
+    if (!addresses || !Object.keys(addresses).length) {
       return (
           <div className="order-section order-shipping-address">
             <Link id="change-address" to="/orders/address/add">Add Shipping Address</Link>

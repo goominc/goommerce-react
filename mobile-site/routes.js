@@ -26,7 +26,7 @@ export default function configure() {
         <Route path="/cart" component={Cart} />
         <Route path="/orders/:orderId" component={Order} />
         <Route path="/orders/address/select" component={AddressList} />
-        <Route path="/orders/address/add" />
+        <Route path="/orders/address/add" component={AddressEdit} />
         <Route path="/orders/address/change/:addressId" component={AddressEdit} />
       </Route>
     </Route>

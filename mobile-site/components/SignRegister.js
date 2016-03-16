@@ -84,7 +84,7 @@ export default React.createClass({
             <div className="tab-body">
               <div className="tab-pane" style={signStyle}>
                 <div id="login-wrap" className="login-static nc-outer-box">
-                  <form id="login-form" name="login-form" className="form clr style-type-auto" onSubmit={this.handleLogin}>
+                  <form id="login-form" className="form clr style-type-auto" onSubmit={this.handleLogin}>
                     <div id="login-loading" className="loading-mask">
                       <div className="loading-icon"></div>
                       <div className="loading-mask-body"></div>
