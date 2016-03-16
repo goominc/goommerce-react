@@ -6,3 +6,5 @@ export { default as ProductList } from 'containers/ProductList';
 export { default as ProductDetail } from 'containers/ProductDetail';
 export { default as Cart } from 'containers/Cart';
 export { default as Order } from 'containers/Order';
+export { default as AddressList } from 'containers/AddressList';
+export { default as AddressEdit } from 'containers/AddressEdit';

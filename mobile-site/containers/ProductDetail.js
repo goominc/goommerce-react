@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { ApiAction, setHeader, toggleProductCart, setProductColor, setProductSize } from 'redux/actions';
-const { loadProduct, addCartProduct } = ApiAction;
+const { loadProduct, addCartProduct, createOrder } = ApiAction;
 
 import ProductDetailPage from 'components/ProductDetailPage';
 
@@ -11,6 +11,7 @@ const ProductDetail = React.createClass({
     setHeader: PropTypes.func.isRequired,
     loadProduct: PropTypes.func.isRequired,
     addCartProduct: PropTypes.func.isRequired,
+    createOrder: PropTypes.func.isRequired,
     toggleProductCart: PropTypes.func.isRequired,
     setProductColor: PropTypes.func.isRequired,
     setProductSize: PropTypes.func.isRequired,
@@ -19,6 +20,9 @@ const ProductDetail = React.createClass({
     color: PropTypes.string,
     size: PropTypes.string,
     variant: PropTypes.string,
+  },
+  contextTypes: {
+    router: PropTypes.object.isRequired,
   },
   getInitialState() {
     return { product: {}, productVariants: [] };
@@ -94,6 +98,15 @@ const ProductDetail = React.createClass({
         }
       }
     }
+    return null;
+  },
+  wrapOrder(productVariants) {
+    if (!(productVariants instanceof Array)) {
+      productVariants = [productVariants];
+    }
+    this.props.createOrder({
+      productVariants: productVariants.map((variant) => ({ id: variant.id, count: variant.count })),
+    }).then((order) => this.context.router.push(`/orders/${order.id}`));
   },
   buildImages() {
     const { product } = this.state;
@@ -127,6 +140,7 @@ const ProductDetail = React.createClass({
         currentColor={this.props.color} currentSize={this.props.size}
         currentVariant={this.props.variant} showCart={this.props.showCart} toggleCart={this.props.toggleProductCart}
         setColor={this.props.setProductColor} setSize={this.props.setProductSize} addCart={this.wrapAddCart}
+        buyNow={this.wrapOrder}
       />
       );
   },
@@ -136,5 +150,5 @@ export default connect(
   (state) => ({ showCart: state.pageProductDetail.showCart,
    color: state.pageProductDetail.selectColor, size: state.pageProductDetail.selectSize,
    variant: state.pageProductDetail.selectVariant }),
-  { loadProduct, addCartProduct, setHeader, toggleProductCart, setProductColor, setProductSize }
+  { loadProduct, addCartProduct, createOrder, setHeader, toggleProductCart, setProductColor, setProductSize }
 )(ProductDetail);

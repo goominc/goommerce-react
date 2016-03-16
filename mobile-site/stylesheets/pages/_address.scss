@@ -1,0 +1,64 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the address page.
+// -----------------------------------------------------------------------------
+.addressList, .addressList * {
+  box-sizing: border-box
+}
+.addressList {
+  font-size: 15px;
+  color: #000
+}
+.addressList .hide {
+  display: none
+}
+.addressList>ul>li:first-child {
+  border-top: 0
+}
+.addressList>ul>li {
+  position: relative;
+  color: #333;
+  padding: 12px;
+  background: #fff;
+  margin-bottom: 12px;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  top: -50%
+}
+.addressList>ul>li .name .edit-address {
+  color: #999;
+  font-size: 12px;
+  float: right
+}
+.addressList>ul>li .address-info {
+  color: #666;
+  font-size: 12px;
+  height: 18px;
+  line-height: 18px
+}
+.addressList .ms-icon {
+  font-size: 16px;
+  margin-left: 4px
+}
+.addressList>ul>li .default {
+  position: absolute;
+  color: #e62e04;
+  right: 12px;
+  top: 50%
+}
+.addressList>ul>li .hide {
+  display: none;
+}
+.add-address {
+  min-height: 44px;
+  line-height: 44px;
+  padding: 0 12px;
+  background: #fff;
+  cursor: pointer;
+  margin-bottom: 12px;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5
+}
+.add-address .ms-icon {
+  margin-right: 8px
+}
+

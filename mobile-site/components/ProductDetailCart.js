@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
 
 export default React.createClass({
@@ -15,6 +14,7 @@ export default React.createClass({
     setColor: PropTypes.func.isRequired,
     setSize: PropTypes.func.isRequired,
     addCart: PropTypes.func.isRequired,
+    buyNow: PropTypes.func.isRequired,
     topImg: PropTypes.array,
   },
   mixins: [LinkedStateMixin],
@@ -41,31 +41,48 @@ export default React.createClass({
       });
     }
   },
+  handleBuyNow() {
+    if (this.props.currentVariant) {
+      const { variants } = this.props;
+      for (let i = 0; i < variants.length; i++) {
+        if (variants[i].sku.indexOf(this.props.currentVariant) >= 0) {
+          this.props.buyNow({ id: variants[i].id, count: this.state.quantity });
+        }
+      }
+    }
+  },
   renderColors() {
     const { colors, currentColor } = this.props;
     if (colors && colors.length > 0) {
       const renderColors = colors.map((color) => {
-        if (color.variant && color.variant.appImages && color.variant.appImages.default && color.variant.appImages.default.length) {
+        if (color.variant && color.variant.appImages
+        && color.variant.appImages.default && color.variant.appImages.default.length) {
           return (
-            <span className={'sku-color' + (color.color === currentColor ? ' selected' : '') } key={color.color} onClick={() => this.props.setColor(color.color)}>
+            <span className={'sku-color' + (color.color === currentColor ? ' selected' : '') }
+              key={color.color} onClick={() => this.props.setColor(color.color)}
+            >
               <img alt="sku" src={color.variant.appImages.default[0].url} />
               <span className="sku-disabled-mask"></span>
             </span>
             );
         }
+        return null;
       });
       return renderColors;
     }
+    return null;
   },
   renderSizes() {
     const { sizes, currentSize } = this.props;
     if (sizes && sizes.length > 0) {
-      return sizes.map((size) => {
-        return (
-          <span className={'sku-text' + (size.size === currentSize ? ' selected' : '') } key={size.size} onClick={() => this.props.setSize(size.size)}>{size.size}</span>
-          );
-      });
+      return sizes.map((size) => (
+          <span className={'sku-text' + (size.size === currentSize ? ' selected' : '') }
+            key={size.size} onClick={() => this.props.setSize(size.size)}
+          >{size.size}</span>
+        )
+      );
     }
+    return null;
   },
   render() {
     const { show, variants, colors, sizes, currentColor, currentSize, currentVariant, topImg } = this.props;
@@ -73,7 +90,7 @@ export default React.createClass({
     if (show) {
       style = {
         zIndex: '51',
-        top: '0%'
+        top: '0%',
       };
     }
 
@@ -85,7 +102,8 @@ export default React.createClass({
             </div>
           );
       }
-    }
+      return null;
+    };
 
     const variantTitle = currentVariant ? (currentColor + ',' + currentSize) : 'please select Color,Size';
 
@@ -227,7 +245,7 @@ export default React.createClass({
               </section> */ }
               <section className="ms-detail-btn-wrap">
                 <button className="ms-button-secondary" onClick={this.handleAddCart}>Add to cart&nbsp;</button>
-                <button className="ms-button-primary">Buy now&nbsp;</button>
+                <button className="ms-button-primary" onClick={this.handleBuyNow}>Buy now&nbsp;</button>
               </section>
             </div>
           </section>

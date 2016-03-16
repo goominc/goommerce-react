@@ -19,6 +19,7 @@ export default React.createClass({
     setColor: PropTypes.func.isRequired,
     setSize: PropTypes.func.isRequired,
     addCart: PropTypes.func.isRequired,
+    buyNow: PropTypes.func.isRequired,
   },
   render() {
     const { product, images, showCart, variants, colors, sizes, currentColor, currentSize, currentVariant } = this.props;
@@ -32,7 +33,7 @@ export default React.createClass({
       if (product && product.brand && product.brand.data) {
         return (
         <section className="ms-mrg-b12 ms-detail-store">
-          <Link to={'/brands/' + product.brand.id}>
+          <Link to={`/brands/${product.brand.id}`}>
             <header className="store-title">{product.brand.data.name.en}</header>
             { /* <p className="store-info">
               <img src="http://i01.i.aliimg.com/wimg/feedback/icon/25-s.gif" className="store-level" />
@@ -45,11 +46,12 @@ export default React.createClass({
         </section>
         );
       }
+      return null;
     };
 
     return (
       <article className="ms-detail">
-        <ProductDetailBanner images={images}/>
+        <ProductDetailBanner images={images} />
 
         <p className="ms-detail-subject ms-pd-lr12">2015 New Autumn Women Dress Zipper Off Shoulder Long Sleeve Dresses Sexy Club Evening Party Bodycon Mini Dresses Black White</p>
 
@@ -160,7 +162,8 @@ export default React.createClass({
         <ProductDetailCart show={showCart} toggle={this.props.toggleCart} topImg={images}
           currentColor={currentColor} currentSize={currentSize} currentVariant={currentVariant}
           variants={variants} colors={colors} sizes={sizes} setColor={this.props.setColor} setSize={this.props.setSize}
-          addCart={this.props.addCart} />
+          addCart={this.props.addCart} buyNow={this.props.buyNow}
+        />
 
       </article>
     );

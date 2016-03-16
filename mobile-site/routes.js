@@ -8,6 +8,8 @@ import {
   Order,
   ProductDetail,
   ProductList,
+  AddressList,
+  AddressEdit,
 } from 'containers';
 
 
@@ -23,6 +25,9 @@ export default function configure() {
         <Route path="/products/:productId" component={ProductDetail} />
         <Route path="/cart" component={Cart} />
         <Route path="/orders/:orderId" component={Order} />
+        <Route path="/orders/address/select" component={AddressList} />
+        <Route path="/orders/address/add" />
+        <Route path="/orders/address/change/:addressId" component={AddressEdit} />
       </Route>
     </Route>
   );

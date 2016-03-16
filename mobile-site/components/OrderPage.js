@@ -6,6 +6,42 @@ import { getProductMainImage } from 'desktop-site/util';
 export default React.createClass({
   propTypes: {
     order: PropTypes.object,
+    addresses: PropTypes.object,
+    activeAddressId: PropTypes.number,
+  },
+  renderAddresses() {
+    const { addresses, activeAddressId } = this.props;
+    if (!addresses) {
+      return (
+          <div className="order-section order-shipping-address">
+            <Link id="change-address" to="/orders/address/add">Add Shipping Address</Link>
+          </div>
+        );
+    }
+    let selectedAddress = null;
+    for (const i in addresses) {
+      /* if no default address */
+      if (!selectedAddress) {
+        selectedAddress = addresses[i];
+      }
+      if (addresses[i].id === activeAddressId) {
+        selectedAddress = addresses[i];
+      }
+    }
+
+    return (
+        <div className="order-section order-shipping-address">
+          <div className="name">{selectedAddress.detail.name}</div>
+          <p>
+            {selectedAddress.detail.streetAddress}
+            <br /> {selectedAddress.detail.city}
+            <br /> {selectedAddress.countryCode}
+            <br /> {selectedAddress.detail.postalCode}
+            <br />
+          </p>
+          <Link id="change-address" to="/orders/address/select">Change Shipping Address</Link>
+        </div>
+      );
   },
   renderProducts() {
     const { order } = this.props;
@@ -21,6 +57,7 @@ export default React.createClass({
               </h3>
               );
           }
+          return null;
         };
         let variantStr = '';
         if (orderProduct.productVariant && orderProduct.productVariant.data) {
@@ -130,6 +167,7 @@ export default React.createClass({
           );
       });
     }
+    return <div />;
   },
   render() {
     const { order } = this.props;
@@ -140,17 +178,7 @@ export default React.createClass({
       <section id="place-order">
         <div className="order-panel">
           <h3>shipping address&nbsp;:</h3>
-          <div className="order-section order-shipping-address">
-            <div className="name">Kim Heekyu</div>
-            <p>
-              324, Toegye-ro
-              <br /> Jung-gu, Seoul
-              <br /> South Korea
-              <br /> 04614
-              <br />
-            </p>
-            <Link id="change-address" to="/">Change Shipping Address</Link>
-          </div>
+          {this.renderAddresses()}
         </div>
         {this.renderProducts()}
         <div id="order-summary">
