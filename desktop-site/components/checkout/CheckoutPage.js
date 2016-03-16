@@ -5,6 +5,8 @@ import CheckoutStep1 from 'components/checkout/CheckoutStep1';
 import SellerBox from 'components/CartSellerBox';
 import i18n from 'commons/utils/i18n';
 
+const _ = require('lodash');
+
 export default React.createClass({
   propTypes: {
     addressFields: PropTypes.array,
@@ -43,7 +45,6 @@ export default React.createClass({
         <select name="gopaymethod" ref="gopaymethod">
           <option value="">[ 결제방법 선택 ]</option>
           <option value="Card">신용카드 결제</option>
-          <option value="DirectBank">실시간 은행계좌이체</option>
           <option value="VBank">무통장 입금</option>
         </select>
         <input type="hidden" name="version" value="1.0" />
@@ -65,6 +66,22 @@ export default React.createClass({
       </form>
     );
   },
+  renderVBank() {
+    const { order } = this.props;
+    if (order.status === 1) {
+      const payment = _.find(order.payments, (p) => p.type === 0 && p.status === 2 && p.data.payMethod === 'VBank');
+      if (payment) {
+        return (
+          <div>
+            <div>입금은행: {payment.data.vactBankName}</div>
+            <div>입금계좌번호: {payment.data.VACT_Num}</div>
+            <div>예금주명: {payment.data.VACT_Name}</div>
+            <div>송금자명: {payment.data.VACT_InputName}</div>
+          </div>
+        );
+      }
+    }
+  },
   renderDone() {
     const { order } = this.props;
     // FIXME
@@ -74,6 +91,7 @@ export default React.createClass({
         <SellerBox productVariants={variants} />
         <div>Total: KRW {order.totalEstimationKRW}</div>
         <div>Status: {i18n.get(`enum.order.status.${order.status}`)}</div>
+        {this.renderVBank()}
       </div>
     );
   },
