@@ -8,6 +8,7 @@ import {
   Order,
   ProductDetail,
   ProductList,
+  Brand,
   AddressList,
   AddressEdit,
 } from 'containers';
@@ -22,6 +23,7 @@ export default function configure() {
         <Redirect from="/products" to="/categories/all" />
         { /* <Route path="/products" component={ProductList} /> */ }
         <Route path="/categories/:categoryId" component={ProductList} />
+        <Route path="/brands/:brandId" component={Brand} />
         <Route path="/products/:productId" component={ProductDetail} />
         <Route path="/cart" component={Cart} />
         <Route path="/orders/:orderId" component={Order} />

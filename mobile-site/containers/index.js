@@ -8,3 +8,4 @@ export { default as Cart } from 'containers/Cart';
 export { default as Order } from 'containers/Order';
 export { default as AddressList } from 'containers/AddressList';
 export { default as AddressEdit } from 'containers/AddressEdit';
+export { default as Brand } from 'containers/Brand';
