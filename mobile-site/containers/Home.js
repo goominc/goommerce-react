@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
 import { ApiAction, setHeader } from 'redux/actions';
-const { loadProducts } = ApiAction;
+const { searchProducts } = ApiAction;
 
 import loadEntities from 'commons/redux/util/loadEntities';
 
@@ -12,14 +12,26 @@ import MainRecommendList from 'components/MainRecommendList';
 
 const Home = React.createClass({
   propTypes: {
-    loadProducts: PropTypes.func.isRequired,
+    searchProducts: PropTypes.func.isRequired,
     setHeader: PropTypes.func.isRequired,
+  },
+  getInitialState() {
+    return {};
   },
   componentDidMount() {
     this.props.setHeader(true, true, true, '');
-    this.props.loadProducts();
+    this.props.searchProducts({
+      // q: query,
+      // categoryId: params.categoryId === 'all' ? undefined : params.categoryId,
+      // brandId,
+      from: 0,
+      size: 30,
+    }).then((res) => this.setState(res));
   },
   render() {
+    if (!this.state.products) {
+      return (<div></div>);
+    }
     return (
       <div className="main-container">
         <MainBanner />
@@ -65,7 +77,7 @@ const Home = React.createClass({
               </ul>
             </article>
           </section>
-          <MainRecommendList products={this.props.products} />
+          <MainRecommendList products={this.state.products} />
         </div>
 
         <div className="info-area">
@@ -82,5 +94,5 @@ export default connect(
   (state) => ({
     ...loadEntities(state, 'products', 'products'),
   }),
-  { loadProducts, setHeader }
+  { searchProducts, setHeader }
 )(Home);
