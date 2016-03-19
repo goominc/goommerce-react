@@ -11,6 +11,9 @@ import {
   Brand,
   AddressList,
   AddressEdit,
+  MyOrder,
+  MyOrderDetail,
+  WishList,
 } from 'containers';
 
 
@@ -30,6 +33,9 @@ export default function configure() {
         <Route path="/orders/address/select" component={AddressList} />
         <Route path="/orders/address/add" component={AddressEdit} />
         <Route path="/orders/address/change/:addressId" component={AddressEdit} />
+        <Route path="/myOrder" component={MyOrder} />
+        <Route path="/myOrder/:orderId" component={MyOrderDetail} />
+        <Route path="/wishlist" component={WishList} />
       </Route>
     </Route>
   );

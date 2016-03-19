@@ -1,0 +1,196 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the brand page.
+// -----------------------------------------------------------------------------
+.tab-pane {
+  min-height: 400px
+}
+.ms-tab .tab-body {
+  padding: 16px 0
+}
+.tab-pane ul li {
+  padding: 16px 12px;
+  border-bottom: 1px solid #eee;
+  min-height: 89px
+}
+.tab-pane ul li:first-child {
+  padding-top: 0
+}
+.tab-pane ul li:last-child {
+  padding-bottom: 0;
+  border-bottom: 0
+}
+.product-list .left {
+  float: left
+}
+.product-list .right {
+  position: relative;
+  margin-left: -100px;
+  padding-left: 112px;
+  float: right;
+  width: 100%;
+  height: 100px
+}
+.product-list .prod-pic {
+  width: 100px;
+  height: 100px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: table-cell;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  -moz-box-orient: horizontal;
+  -moz-box-pack: center;
+  -moz-box-align: center;
+  -o-box-orient: horizontal;
+  -o-box-pack: center;
+  -o-box-align: center;
+  -ms-box-orient: horizontal;
+  -ms-box-pack: center;
+  -ms-box-align: center;
+  vertical-align: top
+}
+.product-list .prod-pic img {
+  max-width: 100%;
+  max-height: 100%
+}
+.product-list .prod-name {
+  color: #333;
+  max-height: 36px;
+  line-height: 18px;
+  margin-bottom: 4px;
+  overflow: hidden;
+  font-size: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  -ms-box-orient: vertical;
+  -moz-box-orient: vertical
+}
+.product-list .prod-price {
+  height: 18px;
+  line-height: 18px;
+  font-size: 15px;
+  color: #e62e04;
+  margin-bottom: 4px
+}
+.product-list .prod-delete {
+  font-size: 12px;
+  color: #999;
+  height: 18px;
+  line-height: 18px
+}
+.product-list .bigSaleLogo {
+  font-size: 16px;
+  background-color: #f62b4c;
+  height: 18px;
+  line-height: 18px;
+  color: #fff
+}
+.product-list .ms-price-tag-price-20151111 {
+  color: #F44336;
+  background-color: #FEE3E1
+}
+.product-list .delete {
+  position: absolute;
+  top: auto;
+  right: 0;
+  bottom: 20px;
+  color: #ccc;
+  font-size: 24px;
+  float: right
+}
+.product-list .apponly {
+  position: absolute;
+  top: auto;
+  bottom: 20px;
+  color: red;
+  font-size: 24px;
+  float: left
+}
+.store-list .store-name {
+  font-size: 16px;
+  height: 22px;
+  line-height: 22px;
+  color: #333;
+  margin-bottom: 4px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis
+}
+.store-list .store-feedback {
+  font-size: 11px;
+  color: #666;
+  height: 15px;
+  line-height: 15px;
+  margin-bottom: 4px
+}
+.store-list .store-feedback-score {
+  font-size: 11px;
+  color: #666;
+  height: 15px;
+  line-height: 15px
+}
+.store-feedback-score img {
+  vertical-align: middle;
+  padding-left: 8px
+}
+.store-list .fr {
+  float: right;
+  color: #ccc;
+  font-size: 24px;
+  top: -5px
+}
+.ms-wishlist-price-tag-wrapper {
+  display: block
+}
+.ms-wishlist-price-tag-wrapper .ms-price-tag {
+  position: absolute;
+  left: 112px;
+  right: 0;
+  bottom: -1px;
+  letter-spacing: -.3px
+}
+.ms-price-tag .ms-price-tag-info {
+  color: #FFF;
+  padding: 0 4px 0 0;
+  background-color: #6CB0FF;
+  border-radius: 1px 0 0 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  font-size: 14px
+}
+.ms-price-tag .ms-icon {
+  font-size: 14px;
+  top: 0
+}
+.ms-price-tag .ms-price-tag-price {
+  color: #6CB0FF;
+  background-color: #DFEEFF;
+  border-radius: 0 1px 1px 0;
+  padding: 0 4px;
+  font-size: 14px
+}
+.ms-bigSale-price-tag-info {
+  color: #FFF;
+  background-color: #955;
+  border-radius: 0 1px 1px 0;
+  padding: 0 4px;
+  font-size: 16px
+}
+.ms-bigSale-price-tag .bigSale-price {
+  color: #FFF;
+  background-color: #955;
+  border-radius: 0 1px 1px 0;
+  padding: 0 4px;
+  font-size: 12px
+}
+.ms-bigSale-price-tag .brand {
+  background-color: red;
+  font-size: 12px;
+  border-radius: 3px;
+  color: #fff;
+  padding-right: 10px
+}

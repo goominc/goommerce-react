@@ -9,3 +9,6 @@ export { default as Order } from 'containers/Order';
 export { default as AddressList } from 'containers/AddressList';
 export { default as AddressEdit } from 'containers/AddressEdit';
 export { default as Brand } from 'containers/Brand';
+export { default as MyOrder } from 'containers/MyOrder';
+export { default as MyOrderDetail } from 'containers/MyOrderDetail';
+export { default as WishList } from 'containers/WishList';

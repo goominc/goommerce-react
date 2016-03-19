@@ -45,16 +45,16 @@ const Home = React.createClass({
             <article>
               <ul className="flex-box">
                 <li className="apparel-accessories">
-                  <Link to="/categoryList/10001">Apparel &amp; Accessories</Link>
+                  <Link to="/categoryList/4">Apparel &amp; Accessories</Link>
                 </li>
                 <li className="jewelry">
-                  <Link to="/categoryList/10016">Jewelry</Link>
+                  <Link to="/categoryList/46">Jewelry</Link>
                 </li>
                 <li className="electronics">
-                  <Link to="/categoryList/10005">Electronics</Link>
+                  <Link to="/categoryList/51">Electronics</Link>
                 </li>
                 <li className="beauty-health">
-                  <Link to="/categoryList/10004">Beauty &amp;Health</Link>
+                  <Link to="/categoryList/179">Beauty &amp;Health</Link>
                 </li>
               </ul>
             </article>

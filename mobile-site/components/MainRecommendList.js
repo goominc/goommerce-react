@@ -16,7 +16,7 @@ export default React.createClass({
       if (img) {
         return (
             <li key={product.id}>
-              <Link to={'/products/' + product.id}>
+              <Link to={`/products/${product.id}`}>
                 <div className="product-image">
                   <img src={getProductMainImage(product).url} />
                 </div>
@@ -25,32 +25,31 @@ export default React.createClass({
               </Link>
             </li>
           );
-      } else {
-        return (
-            <li key={product.id}>
-              <Link to={'/products/' + product.id}>
-                <div className="product-image">
-                  <img />
-                </div>
-                <div className="product-cost"><strong>{product.USD} USD</strong> / piece</div>
-                <div className="product-cost">1000 Orders</div>
-              </Link>
-            </li>
-          );
       }
+      return (
+          <li key={product.id}>
+            <Link to={`/products/${product.id}`}>
+              <div className="product-image">
+                <img />
+              </div>
+              <div className="product-cost"><strong>{product.USD} USD</strong> / piece</div>
+              <div className="product-cost">1000 Orders</div>
+            </Link>
+          </li>
+        );
     });
 
     return (
       <section id="today-deals" className="promotion-block today-deals">
         <header>
-          <Link to="/categories/1">Quality Picks</Link>
+          <Link to="/categories/all">Quality Picks</Link>
         </header>
         <article>
           <ul className="clearfix product-container">
             {prodDiv}
           </ul>
         </article>
-        <Link to="/categories/1" id="today-deals-view-more-lnk" className="ui-button ui-button-third">View more&nbsp;</Link>
+        <Link to="/categories/all" className="ui-button ui-button-third">View more&nbsp;</Link>
       </section>
     );
   },

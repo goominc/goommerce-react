@@ -1,4 +1,4 @@
-import { assign, merge, get, set, union, forEach, omit } from 'lodash';
+import { assign } from 'lodash';
 import { combineReducers } from 'redux';
 import CommonReducers from 'commons/redux/reducers';
 
@@ -32,9 +32,18 @@ function sign(state = { show: false, flag: 'sign' }, action) {
   return state;
 }
 
+function search(state = { showSearch: false }, action) {
+  if (action.type === 'TOGGLE_SEARCH') {
+    return assign({}, state, { showSearch: !state.showSearch });
+  }
+  return state;
+}
+
 function header(state = { showLogo: true, showSearch: true, showCart: true, titleText: '' }, action) {
   if (action.type === 'SET_HEADER') {
-    return assign({}, state, { showLogo: action.showLogo, showSearch: action.showSearch, showCart: action.showCart, titleText: action.titleText });
+    return assign({}, state, {
+      showLogo: action.showLogo, showSearch: action.showSearch, showCart: action.showCart, titleText: action.titleText,
+    });
   }
   return state;
 }
@@ -47,7 +56,9 @@ const productListInitialState = {
 
 function pageProductList(state = productListInitialState, action) {
   if (action.type === 'CHANGE_LIST_VIEW') {
-    return assign({}, state, { viewType: { type: state.viewType.next, next: state.viewType.next2, next2: state.viewType.type } });
+    return assign({}, state, {
+      viewType: { type: state.viewType.next, next: state.viewType.next2, next2: state.viewType.type },
+    });
   }
   if (action.type === 'TOGGLE_PRODUCT_SORT') {
     return assign({}, state, { showSort: !state.showSort });
@@ -64,7 +75,7 @@ const productDetailInitialState = {
   selectColor: null,
   selectSize: null,
   selectVariant: null,
-}
+};
 
 function pageProductDetail(state = productDetailInitialState, action) {
   if (action.type === 'TOGGLE_PRODUCT_CART') {
@@ -73,22 +84,28 @@ function pageProductDetail(state = productDetailInitialState, action) {
   if (action.type === 'PRODUCT_VARIANT_SET_COLOR') {
     if (action.color === state.selectColor) {
       return assign({}, state, { selectColor: null, selectVariant: null });
-    } else {
-      return assign({}, state, { selectColor: action.color, selectVariant: (action.color && state.selectSize) ? (action.color + "-" + state.selectSize) : null });
     }
+    return assign({}, state, {
+      selectColor: action.color,
+      selectVariant: (action.color && state.selectSize) ? (`${action.color}-${state.selectSize}`) : null,
+    });
   }
   if (action.type === 'PRODUCT_VARIANT_SET_SIZE') {
     if (action.size === state.selectSize) {
       return assign({}, state, { selectSize: null, selectVariant: null });
-    } else {
-      return assign({}, state, { selectSize: action.size, selectVariant: (state.selectColor && action.size) ? (state.selectColor + "-" + action.size) : null  });
     }
+    return assign({}, state, {
+      selectSize: action.size,
+      selectVariant: (state.selectColor && action.size) ? (`${state.selectColor}-${action.size}`) : null,
+    });
   }
   return state;
 }
 
 const rootReducer = combineReducers(
-  Object.assign({}, CommonReducers.reducers, { errorHandler, checkout, menu, sign, header, pageProductList, pageProductDetail })
+  Object.assign({}, CommonReducers.reducers, {
+    errorHandler, checkout, menu, sign, search, header, pageProductList, pageProductDetail,
+  })
 );
 
 export default (state = {}, action) => {

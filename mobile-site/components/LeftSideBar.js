@@ -31,14 +31,12 @@ export default React.createClass({
           </div>
         );
     }
-    else {
-      return (
-          <div className="drawer-unlogin">
-            <span className="drawer-signin" onClick={this._showSignin}>Sign In</span>
-            <span className="drawer-join" onClick={this._showRegister}>Join Free</span>
-          </div>
-        );
-    }
+    return (
+        <div className="drawer-unlogin">
+          <span className="drawer-signin" onClick={this._showSignin}>Sign In</span>
+          <span className="drawer-join" onClick={this._showRegister}>Join Free</span>
+        </div>
+      );
   },
   renderLogout() {
     const { auth } = this.props;
@@ -49,11 +47,7 @@ export default React.createClass({
           </li>
         );
     }
-    else {
-      return (
-          <li></li>
-        );
-    }
+    return null;
   },
   render() {
     const { show } = this.props;
@@ -73,12 +67,30 @@ export default React.createClass({
           </div>
 
           <ul className="drawer-guide">
-            <li className="drawer-home"><Link to="/" onClick={this.props.toggle}><i className="ms-icon icon-home"></i><span>Home</span></Link></li>
-            <li className="drawer-myOrder"><a className="drawer-myOrder" href="http://m.aliexpress.com/downloadapp/myOrder.htm"><i className="ms-icon icon-order"></i><span>My Orders</span></a></li>
-            <li className="drawer-cart"><Link to="/cart"><i className="ms-icon icon-shippingcart"></i><span>Cart</span></Link></li>
-            <li className="drawer-wishList"><a href="http://m.aliexpress.com/myaccount/wishlist/detail.htm"><i className="ms-icon icon-wishlist"></i><span>Wish List</span></a></li>
+            <li className="drawer-home">
+              <Link to="/" onClick={this.props.toggle}><i className="ms-icon icon-home"></i>
+                <span>Home</span>
+              </Link>
+            </li>
+            <li className="drawer-myOrder">
+              <Link to="/myOrder" onClick={this.props.toggle}><i className="ms-icon icon-order"></i>
+                <span>My Orders</span>
+              </Link>
+            </li>
+            <li className="drawer-cart">
+              <Link to="/cart" onClick={this.props.toggle}><i className="ms-icon icon-shippingcart"></i>
+                <span>Cart</span>
+              </Link>
+            </li>
+            <li className="drawer-wishList">
+              <Link to="/wishlist" onClick={this.props.toggle}><i className="ms-icon icon-wishlist"></i>
+                <span>Wish List</span>
+              </Link>
+            </li>
 
-            <li className="drawer-language"><i className="ms-icon icon-translation"></i><b>Language</b><span>English</span></li>
+            <li className="drawer-language"><i className="ms-icon icon-translation"></i><b>Language</b>
+              <span>English</span>
+            </li>
             {/* <li className="drawer-download"><a href="http://m.aliexpress.com/d.do?p=a4&amp;ck=in_msite_download"><i className="ms-icon icon-downward"></i><span>Download APP</span></a></li>*/}
           </ul>
           <ul className="drawer-feature">

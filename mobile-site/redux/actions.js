@@ -22,11 +22,17 @@ export function toggleMenu() {
   };
 }
 
-export function toggleSignRegister(show, flag) {
+export function toggleSignRegister(show, flag = 'sign') {
   return {
     type: 'TOGGLE_SIGN_REGISTER',
     show,
     flag,
+  };
+}
+
+export function toggleSearch() {
+  return {
+    type: 'TOGGLE_SEARCH',
   };
 }
 
@@ -76,5 +82,5 @@ export function setProductSize(size) {
   return {
     type: 'PRODUCT_VARIANT_SET_SIZE',
     size,
-  }
+  };
 }
