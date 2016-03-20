@@ -39,6 +39,16 @@ function search(state = { showSearch: false }, action) {
   return state;
 }
 
+function menuAddon(state = { showLanguage: false, showCurrency: false }, action) {
+  if (action.type === 'TOGGLE_LANGUAGE') {
+    return assign({}, state, { showLanguage: !state.showLanguage });
+  }
+  if (action.type === 'TOGGLE_CURRENCY') {
+    return assign({}, state, { showCurrency: !state.showCurrency });
+  }
+  return state;
+}
+
 function header(state = { showLogo: true, showSearch: true, showCart: true, titleText: '' }, action) {
   if (action.type === 'SET_HEADER') {
     return assign({}, state, {
@@ -104,7 +114,8 @@ function pageProductDetail(state = productDetailInitialState, action) {
 
 const rootReducer = combineReducers(
   Object.assign({}, CommonReducers.reducers, {
-    errorHandler, checkout, menu, sign, search, header, pageProductList, pageProductDetail,
+    errorHandler, checkout, menu, sign, search, menuAddon, header,
+    pageProductList, pageProductDetail,
   })
 );
 

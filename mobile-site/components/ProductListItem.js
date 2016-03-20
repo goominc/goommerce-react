@@ -8,8 +8,13 @@ export default React.createClass({
     viewType: PropTypes.string.isRequired,
     products: PropTypes.array.isRequired,
   },
+  contextTypes: {
+    activeLocale: PropTypes.string,
+    activeCurrency: PropTypes.string,
+  },
   render() {
     const { viewType, products } = this.props;
+    const { activeCurrency } = this.context;
 
     const prodDivs = products.map((prod) => {
       const image = getProductMainImage(prod.topHit || prod);
@@ -43,13 +48,17 @@ export default React.createClass({
                     <span>20160303 SS </span>
                   </div>
 
-                  <span className="discount-price"><em>US ${prod.USD}</em> / piece</span>
-                  <del className="original-price">US ${prod.USD} / piece</del>
+                  <span className="discount-price"><em>{activeCurrency} {getProductMainPrice(prod, activeCurrency)}</em>
+                    &nbsp;/ piece
+                  </span>
+                  <del className="original-price">{activeCurrency} {getProductMainPrice(prod, activeCurrency)}
+                    &nbsp;/ piece
+                  </del>
 
                   <div className="custom-gallery-view-blank"></div>
 
                   <div className="info-bottom">
-                    <span className="free-shipping">Shipping: US $0.84</span>
+                    { /* <span className="free-shipping">Shipping: US $0.84</span> */ }
                     <span className="order-number">Orders: 999</span>
                   </div>
                 </div>

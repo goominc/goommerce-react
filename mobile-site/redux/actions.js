@@ -36,6 +36,18 @@ export function toggleSearch() {
   };
 }
 
+export function toggleLanguage() {
+  return {
+    type: 'TOGGLE_LANGUAGE',
+  };
+}
+
+export function toggleCurrency() {
+  return {
+    type: 'TOGGLE_CURRENCY',
+  };
+}
+
 export function setHeader(showLogo, showSearch, showCart, titleText) {
   return {
     type: 'SET_HEADER',

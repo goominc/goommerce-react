@@ -5,6 +5,7 @@ export default React.createClass({
   propTypes: {
     show: PropTypes.bool.isRequired,
     toggle: PropTypes.func.isRequired,
+    search: PropTypes.func.isRequired,
   },
   mixins: [LinkedStateMixin],
   getInitialState() {
@@ -15,6 +16,13 @@ export default React.createClass({
       $('.clear-btn').show();
     } else {
       $('.clear-btn').hide();
+    }
+  },
+  handleSearch() {
+    const { keyword } = this.state;
+    if (keyword && keyword.length) {
+      this.props.toggle();
+      this.props.search(keyword);
     }
   },
   render() {
@@ -32,7 +40,7 @@ export default React.createClass({
             />
             <span className="clear-btn" onClick={clearInput}></span>
           </div>
-          <span className="ms-autocomplete-search" onClick={this.props.toggle}></span>
+          <span className="ms-autocomplete-search" onClick={this.handleSearch}></span>
           <span className="ms-autocomplete-cannel" onClick={this.props.toggle}>Cancel</span>
         </div>
         { /* <div className="ms-autocomplete-list">

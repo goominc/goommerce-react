@@ -1,14 +1,22 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import i18n from 'commons/utils/i18n';
 
 export default React.createClass({
   propTypes: {
     show: PropTypes.bool,
     toggle: PropTypes.func.isRequired,
     toggleSignRegister: PropTypes.func.isRequired,
+    toggleLanguage: PropTypes.func.isRequired,
+    toggleCurrency: PropTypes.func.isRequired,
+    locales: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
     cart: PropTypes.object.isRequired,
     logout: PropTypes.func.isRequired,
+  },
+  contextTypes: {
+    activeLocale: PropTypes.string,
+    activeCurrency: PropTypes.string,
   },
   _toggle() {
     this.props.toggle();
@@ -27,7 +35,7 @@ export default React.createClass({
     if (auth.bearer) {
       return (
           <div className="drawer-logined">
-            <div className="drawer-username">Hi, {auth.email}!</div>
+            <div className="drawer-username">{i18n.get('word.hi')} {auth.email}!</div>
           </div>
         );
     }
@@ -50,15 +58,17 @@ export default React.createClass({
     return null;
   },
   render() {
-    const { show } = this.props;
+    const { show, locales } = this.props;
     const showStyle = {
       display: show ? 'block' : 'none',
     };
-    const sideClassName = 'ms-drawer' + (show ? ' open' : '');
+    const sideClassName = `ms-drawer ${show ? ' open' : ''}`;
 
     return (
       <div className="ms-drawer-wrapper">
-        <div className="ms-drawer-mask" style={showStyle} onClick={this.props.toggle}><span className="ms-drawer-back"></span></div>
+        <div className="ms-drawer-mask" style={showStyle} onClick={this.props.toggle}>
+          <span className="ms-drawer-back"></span>
+        </div>
 
         <section className={sideClassName}>
           <div className="ms-drawer-loginInfo">
@@ -84,12 +94,15 @@ export default React.createClass({
             </li>
             <li className="drawer-wishList">
               <Link to="/wishlist" onClick={this.props.toggle}><i className="ms-icon icon-wishlist"></i>
-                <span>Wish List</span>
+                <span>{i18n.get('word.wishlist')}</span>
               </Link>
             </li>
 
             <li className="drawer-language"><i className="ms-icon icon-translation"></i><b>Language</b>
-              <span>English</span>
+              <span onClick={this.props.toggleLanguage}>{locales[this.context.activeLocale]}</span>
+            </li>
+            <li className="drawer-language"><i className="ms-icon icon-amount"></i><b>Currency</b>
+              <span onClick={this.props.toggleCurrency}>{this.context.activeCurrency}</span>
             </li>
             {/* <li className="drawer-download"><a href="http://m.aliexpress.com/d.do?p=a4&amp;ck=in_msite_download"><i className="ms-icon icon-downward"></i><span>Download APP</span></a></li>*/}
           </ul>

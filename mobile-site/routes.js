@@ -26,6 +26,7 @@ export default function configure() {
         <Redirect from="/products" to="/categories/all" />
         { /* <Route path="/products" component={ProductList} /> */ }
         <Route path="/categories/:categoryId" component={ProductList} />
+        <Route path="/search/:query" component={ProductList} />
         <Route path="/brands/:brandId" component={Brand} />
         <Route path="/products/:productId" component={ProductDetail} />
         <Route path="/cart" component={Cart} />

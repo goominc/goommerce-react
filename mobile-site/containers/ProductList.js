@@ -1,16 +1,21 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { get, isEqual, pick, range } from 'lodash';
+import { isEqual, pick } from 'lodash';
 
-import { ApiAction, setHeader, changeViewType, toggleProductSort, toggleProductFilter } from '../redux/actions';
+import { ApiAction, setHeader, changeViewType, toggleProductSort,
+         toggleProductFilter } from '../redux/actions';
 const { searchProducts } = ApiAction;
 
 import ProductListItem from 'components/ProductListItem';
+
+const fetchSize = 10;
 
 const ProductList = React.createClass({
   propTypes: {
     viewType: PropTypes.object.isRequired,
     showSort: PropTypes.bool.isRequired,
+    showFilter: PropTypes.bool,
+    categories: PropTypes.object,
     searchProducts: PropTypes.func.isRequired,
     setHeader: PropTypes.func.isRequired,
     changeViewType: PropTypes.func.isRequired,
@@ -19,30 +24,58 @@ const ProductList = React.createClass({
     params: PropTypes.object,
   },
   getInitialState() {
-    return {};
+    return { currentCount: 0, maxCount: 0 };
   },
   componentDidMount() {
-    /* TODO set header title from params */
-    this.props.setHeader(false, true, true, 'Dresses');
+    this.props.setHeader(false, true, true, '');
     this.doSearch(this.props);
+    $(window).scroll(() => {
+      if ($(window).scrollTop() + window.innerHeight === $(document).height()) {
+        this.doFetch();
+      }
+    });
   },
   componentWillReceiveProps(nextProps) {
-    const props = ['categoryId', 'pageNum'];
+    const props = ['params'];
     if (!isEqual(pick(this.props, props), pick(nextProps, props))) {
       this.doSearch(nextProps);
     }
+    if (nextProps.params.categoryId) {
+      if (nextProps.params.categoryId === 'all') {
+        this.props.setHeader(false, true, true, 'All');
+      } else if (nextProps.categories && Object.keys(nextProps.categories).length) {
+        this.props.setHeader(false, true, true, nextProps.categories[nextProps.params.categoryId].name.en);
+      }
+    } else {
+      this.props.setHeader(false, true, true, 'Search Result');
+    }
   },
   doSearch(props) {
-    //const { query, categoryId, brandId, pageNum } = props;
     const { params } = props;
-    const size = 30;
     this.props.searchProducts({
-      //q: query,
+      q: params.query ? params.query : undefined,
       categoryId: params.categoryId === 'all' ? undefined : params.categoryId,
-      //brandId,
-      from: 0,
-      size,
-    }).then(res => this.setState(res));
+      offset: 0,
+      limit: fetchSize,
+    }).then((res) => {
+      this.setState({ products: res.products, currentCount: res.products.length, maxCount: res.pagination.total });
+    });
+  },
+  doFetch() {
+    const { params } = this.props;
+    const { currentCount, maxCount } = this.state;
+    if (currentCount === maxCount) {
+      return;
+    }
+    this.props.searchProducts({
+      q: params.query ? params.query : undefined,
+      categoryId: params.categoryId === 'all' ? undefined : params.categoryId,
+      offset: currentCount,
+      limit: fetchSize,
+    }).then((res) => {
+      const mergeProducts = this.state.products.concat(res.products);
+      this.setState({ products: mergeProducts, currentCount: mergeProducts.length });
+    });
   },
   render() {
     const { viewType, showSort } = this.props;
@@ -57,10 +90,14 @@ const ProductList = React.createClass({
       <section className="list-main">
         <header className="user-operation">
           <div className="clearfix">
-            <span className={'sort-by ' + (showSort ? 'shrink-arrow clickable' : 'expand-arrow')} onClick={this.props.toggleProductSort}>Sort by</span>
+            <span className={`sort-by ${(showSort ? 'shrink-arrow clickable' : 'expand-arrow')}`}
+              onClick={this.props.toggleProductSort}
+            >
+              Sort by
+            </span>
             <span className="refine-filter">Filter</span>
             <span className="line_between"></span>
-            <span className={'view-switching ' + viewType.next} onClick={this.props.changeViewType}></span>
+            <span className={`view-switching ${viewType.next}`} onClick={this.props.changeViewType}></span>
           </div>
         </header>
         <section className="sort-by-list-wrapper" id="j-sortbar-new" style={sortStyle}>
@@ -72,14 +109,20 @@ const ProductList = React.createClass({
             <li data-type="SC_D">Seller Rating&nbsp;</li>
           </ul>
         </section>
-        <section className="sort-by-mask" id="j-sort-by-mask" style={ { display: showSort ? 'block' : 'none' } } onClick={this.props.toggleProductSort}></section>
-        <ProductListItem viewType={viewType.type} products={this.state.products || []}/>
+        <section className="sort-by-mask" id="j-sort-by-mask" style={ { display: showSort ? 'block' : 'none' } }
+          onClick={this.props.toggleProductSort}
+        />
+        <ProductListItem viewType={viewType.type} products={this.state.products || []} />
       </section>
       );
   },
 });
 
 export default connect(
-  state => ({ viewType: state.pageProductList.viewType, showSort: state.pageProductList.showSort, showFilter: state.pageProductList.showFilter }),
+  (state) => ({
+    viewType: state.pageProductList.viewType,
+    showSort: state.pageProductList.showSort,
+    showFilter: state.pageProductList.showFilter,
+    categories: state.categories }),
   { searchProducts, setHeader, changeViewType, toggleProductSort, toggleProductFilter }
 )(ProductList);

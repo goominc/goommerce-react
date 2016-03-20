@@ -46,6 +46,19 @@ history.listen(() => {
   $('body').scrollTop(0);
 });
 
+require('../commons/utils/i18n').init(store);
+
+function zoomDisable() {
+  $('head meta[name=viewport]').remove();
+  $('head').prepend('<meta name="viewport" content="user-scalable=0" />');
+}
+function zoomEnable() {
+  $('head meta[name=viewport]').remove();
+  $('head').prepend('<meta name="viewport" content="user-scalable=1" />');
+}
+$('input[type=text], textarea').mouseover(zoomDisable).mousedown(zoomEnable);
+
+
 render(
   <Provider store={store}>
     <Router history={history}>
