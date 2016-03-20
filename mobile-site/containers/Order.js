@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import OrderPage from 'components/OrderPage';
 
 import { ApiAction, setHeader } from 'redux/actions';
-const { loadOrder, loadAddresses } = ApiAction;
+const { loadOrder, loadAddresses, inipay } = ApiAction;
 
 const Order = React.createClass({
   propTypes: {
@@ -15,6 +15,7 @@ const Order = React.createClass({
     setHeader: PropTypes.func.isRequired,
     loadOrder: PropTypes.func.isRequired,
     loadAddresses: PropTypes.func.isRequired,
+    inipay: PropTypes.func.isRequired,
   },
   componentDidMount() {
     this.props.setHeader(false, false, false, 'Place Order');
@@ -23,10 +24,9 @@ const Order = React.createClass({
     this.props.loadAddresses();
   },
   render() {
-    const { order, addresses, activeAddressId } = this.props;
     return (
-        <OrderPage order={order} addresses={addresses} activeAddressId={activeAddressId} />
-      );
+      <OrderPage {...this.props} />
+    );
   },
 });
 
@@ -36,5 +36,5 @@ export default connect(
     addresses: state.entities.addresses,
     activeAddressId: state.auth.addressId,
   }),
-  { loadOrder, loadAddresses, setHeader }
+  { loadOrder, loadAddresses, inipay, setHeader }
 )(Order);
