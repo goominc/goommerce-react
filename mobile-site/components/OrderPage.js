@@ -226,7 +226,7 @@ export default React.createClass({
             <input type="hidden" name="P_EMAIL" ref="email" />
             <input type="hidden" name="P_NEXT_URL" ref="nextUrl" />
             <input type="hidden" name="P_NOTI_URL" ref="notiUrl" />
-            <input type="hidden" name="P_HPP_METHOD" value="2" />
+            <input type="hidden" name="P_CHARSET" value="utf8" />
           </form>
           <input
             type="submit"
