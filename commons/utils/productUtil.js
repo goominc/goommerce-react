@@ -1,5 +1,10 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
+import i18n from 'commons/utils/i18n';
+
+exports.getName = (product) => i18n.get(product.data.nickname);
+exports.getAllNames = (product) => product.data.nickname;
+
 exports.initColorsAndSizes = (variants) => {
   const attributes = { colors: {}, sizes: {} };
   variants.forEach((variant) => {

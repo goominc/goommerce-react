@@ -6,6 +6,7 @@ import { getProductMainPrice } from 'util';
 
 import Breadcrumb from 'components/Breadcrumb';
 import brandUtil from 'commons/utils/brandUtil';
+import productUtil from 'commons/utils/productUtil';
 
 export default React.createClass({
   propTypes: {
@@ -87,7 +88,7 @@ export default React.createClass({
       for (let i = 0; i < categoryPath.ko.length; i++) {
         crumbPath.push({ link: 'products', name: categoryPath.ko[i] });
       }
-      crumbPath.push({ name: product.id });
+      crumbPath.push({ name: productUtil.getName(product) });
       return (<Breadcrumb key={`breadcrumb-${index}`} path={crumbPath} />);
     };
 
@@ -132,7 +133,7 @@ export default React.createClass({
     const path = [
       { link: '/', name: { en: 'Home', ko: '홈' } },
       { link: '/products', name: { en: 'Product List', ko: '상품목록' } },
-      { name: { en: product.id, ko: product.id } },
+      { name: productUtil.getAllNames(product) },
     ];
     let price = 0;
     if (selectedVariant) {
@@ -184,9 +185,7 @@ export default React.createClass({
             </div>
           </div>
           <div className="product-detail-right">
-            <span className="product-title">
-              Product: {product.id}
-            </span>
+            <span className="product-title">{productUtil.getName(product)}</span>
             <div className="divider"></div>
             <div className="price-info-box">
               <div className="field-label">Price: </div>

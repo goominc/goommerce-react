@@ -7,6 +7,7 @@ import * as _ from 'lodash';
 import { getProductMainPrice } from 'util';
 import { initColorsAndSizes } from 'commons/utils/productUtil';
 import brandUtil from 'commons/utils/brandUtil';
+import productUtil from 'commons/utils/productUtil';
 
 export default React.createClass({
   propTypes: {
@@ -61,7 +62,7 @@ export default React.createClass({
             </div>
             <Link to={`/products/${item.id}`}>
               <div className="product-title">
-                {item.id} <br />
+                {productUtil.getName(item)} <br />
                 {brandUtil.getName(item.brand)}
               </div>
             </Link>
