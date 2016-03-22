@@ -26,8 +26,7 @@ const Category = React.createClass({
     let currentCategory;
     if (params && params.categoryId && categories[params.categoryId]) {
       currentCategory = categories[params.categoryId];
-    }
-    else {
+    } else {
       currentCategory = categories.tree;
     }
     currentCategory = currentCategory || {};
@@ -38,6 +37,6 @@ const Category = React.createClass({
 });
 
 export default connect(
-  state => ({ categories: state.categories }),
+  (state) => ({ categories: state.categories }),
   { loadCategories, setHeader }
 )(Category);

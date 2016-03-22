@@ -58,7 +58,7 @@ export default React.createClass({
         if (color.variant && color.variant.appImages
         && color.variant.appImages.default && color.variant.appImages.default.length) {
           return (
-            <span className={'sku-color' + (color.color === currentColor ? ' selected' : '') }
+            <span className={`sku-color${(color.color === currentColor ? ' selected' : '')}`}
               key={color.color} onClick={() => this.props.setColor(color.color)}
             >
               <img alt="sku" src={color.variant.appImages.default[0].url} />
@@ -76,7 +76,7 @@ export default React.createClass({
     const { sizes, currentSize } = this.props;
     if (sizes && sizes.length > 0) {
       return sizes.map((size) => (
-          <span className={'sku-text' + (size.size === currentSize ? ' selected' : '') }
+          <span className={`sku-text${(size.size === currentSize ? ' selected' : '')}` }
             key={size.size} onClick={() => this.props.setSize(size.size)}
           >{size.size}</span>
         )
@@ -85,7 +85,7 @@ export default React.createClass({
     return null;
   },
   render() {
-    const { show, variants, colors, sizes, currentColor, currentSize, currentVariant, topImg } = this.props;
+    const { show, currentColor, currentSize, currentVariant, topImg } = this.props;
     let style = {};
     if (show) {
       style = {
@@ -105,10 +105,10 @@ export default React.createClass({
       return null;
     };
 
-    const variantTitle = currentVariant ? (currentColor + ',' + currentSize) : 'please select Color,Size';
+    const variantTitle = currentVariant ? (`${currentColor},${currentSize}`) : 'please select Color,Size';
 
     return (
-      <div className={'ms-panel' + (show ? ' panel-show' : '') } style={ style } id="panel-ai-ilcb30cb">
+      <div className={`ms-panel${(show ? ' panel-show' : '')}` } style={ style } id="panel-ai-ilcb30cb">
         <div className="ms-panel-header">
           <span className="ms-panel-title">Product Specifications</span>
           <span className="ms-panel-cancel" onClick={this.props.toggle}></span>
@@ -118,7 +118,9 @@ export default React.createClass({
             <header className="sku-header">
               {renderTopImg()}
               <div className="sku-detail">
-                <p className="sku-price"><span className="price-span">US $6.40-7.62 </span>/<span className="unit-span">piece</span></p>
+                <p className="sku-price">
+                  <span className="price-span">US $6.40-7.62 </span>/<span className="unit-span">piece</span>
+                </p>
                 <p className="sku-desc">{variantTitle}</p>
               </div>
             </header>
@@ -151,8 +153,11 @@ export default React.createClass({
                 <p className="ms-numberic-wrap">
                   <span className="ms-numberic-container">
                     <span className="ms-numberic">
-                      <span className={'ms-minus' + (this.state.quantity <= 1 ? ' disabled' : '')} onClick={this.minusQuantity}><i className="ms-icon icon-minus"></i></span>
-                        <input type="number" min="1" valueLink={this.linkState('quantity')}/>
+                      <span className={`ms-minus${(this.state.quantity <= 1 ? ' disabled' : '')}`}
+                        onClick={this.minusQuantity}
+                      ><i className="ms-icon icon-minus"></i>
+                      </span>
+                        <input type="number" min="1" valueLink={this.linkState('quantity')} />
                       <span className="ms-plus" onClick={this.addQuantity}><i className="ms-icon icon-plus"></i></span>
                     </span>
                   </span>
@@ -170,7 +175,9 @@ export default React.createClass({
                   </p>
                   <div className="shipping-info">
                     <p>
-                      <span>From</span>&nbsp;<span className="from-span ms-color-link">China (Mainland)</span>&nbsp;<span>to</span> <span className="to-span ms-color-link">KOREA</span>&nbsp;<span>via</span> China Post Registered Air Mail
+                      <span>From</span>&nbsp;<span className="from-span ms-color-link">China (Mainland)</span>
+                        &nbsp;<span>to</span> <span className="to-span ms-color-link">KOREA</span>
+                        &nbsp;<span>via</span> China Post Registered Air Mail
                     </p>
                     <p className="ship-out-days">Ships within 60 business days</p>
                   </div>

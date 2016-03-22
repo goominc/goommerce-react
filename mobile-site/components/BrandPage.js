@@ -223,7 +223,7 @@ export default React.createClass({
           <header className="ms-store-selling-table-title">
             <div className="ms-store-flex">
               <div className="ms-store-flex-item ms-store-selling-table-title-line"></div>
-              <span className="ms-store-flex-item ms-store-selling-table-title-text">&nbsp;&nbsp;Top Selling&nbsp;&nbsp;</span>
+              <span className="ms-store-flex-item ms-store-selling-table-title-text">&nbsp;Top Selling&nbsp;</span>
               <div className="ms-store-flex-item ms-store-selling-table-title-line"></div>
             </div>
           </header>

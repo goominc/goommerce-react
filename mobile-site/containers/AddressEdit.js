@@ -57,7 +57,7 @@ const AddressEdit = React.createClass({
         tel: this.state.tel,
       },
     };
-    this.props.saveAddress(address).then((res) => this.context.router.push('/orders/address/select'));
+    this.props.saveAddress(address).then(() => this.context.router.push('/orders/address/select'));
   },
   render() {
     return (
@@ -90,8 +90,8 @@ const AddressEdit = React.createClass({
           { /*
           <div className="field-item tel">
             <div>
-              <input type="tel" value="+82" name="_fmh.m._0.ph" style="width: 70px;" placeholder="Country code&nbsp;" id="country-code" />
-              <input type="tel" value="01093310212" name="_fmh.m._0.m" style="width: 218px;" placeholder="Mobile Number&nbsp;" />
+              <input type="tel" style="width: 70px;" placeholder="Country code&nbsp;" id="country-code" />
+              <input type="tel" style="width: 218px;" placeholder="Mobile Number&nbsp;" />
             </div>
           </div>
           */ }

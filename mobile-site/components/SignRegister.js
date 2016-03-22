@@ -61,8 +61,7 @@ export default React.createClass({
       signStyle = {
         display: 'block',
       };
-    }
-    else {
+    } else {
       registerClassName = 'tab-actived';
       registerStyle = {
         display: 'block',
@@ -107,7 +106,10 @@ export default React.createClass({
                               <div className="loading-icon"></div>
                               <div className="loading-mask-body"></div>
                             </div>
-                            <input id="fm-login-id" className="fm-text" type="text" name="loginId" tabIndex="1" placeholder="Email address or member ID" autoComplete="off" autoCorrect="off" autoCapitalize="off" valueLink={this.linkState('email')}/>
+                            <input id="fm-login-id" className="fm-text" type="text" tabIndex="1"
+                              placeholder="Email address or member ID" autoComplete="off" autoCorrect="off"
+                              autoCapitalize="off" valueLink={this.linkState('email')}
+                            />
                           </div>
                         </dd>
                       </dl>
@@ -115,21 +117,26 @@ export default React.createClass({
                         <dt className="fm-label">
                           <div className="fm-label-wrap clr">
                             <span className="fm-label-extra">
-                              <a id="forgot-password-link" href="http://accounts.alibaba.com/user/company/forget_password_input_email.htm?lang=en_US&amp;aeHelpFlag=true " target="_blank" data-spm-protocol="i">Forgot Password?</a>
+                              <a id="forgot-password-link" href="http://accounts.alibaba.com/user/company/forget_password_input_email.htm?lang=en_US&amp;aeHelpFlag=true" target="_blank">Forgot Password?</a>
                             </span>
                             <label htmlFor="fm-login-password">Password:</label>
                           </div>
                         </dt>
                         <dd id="fm-login-password-wrap" className="fm-field">
                           <div className="fm-field-wrap">
-                            <input id="fm-login-password" className="fm-text" type="password" name="password" tabIndex="2" autoComplete="off" placeholder="Password" autoCorrect="off" autoCapitalize="off" valueLink={this.linkState('password')}/>
+                            <input id="fm-login-password" className="fm-text" type="password" tabIndex="2"
+                              autoComplete="off" placeholder="Password" autoCorrect="off" autoCapitalize="off"
+                              valueLink={this.linkState('password')}
+                            />
                           </div>
                         </dd>
                       </dl>
                     </div>
                     <div id="login-submit">
                       <input type="hidden" name="event_submit_do_login" value="submit" />
-                      <input id="fm-login-submit" value="Sign In" className="fm-button fm-submit" type="submit" tabIndex="3" name="submit-btn" />
+                      <input id="fm-login-submit" value="Sign In" className="fm-button fm-submit" type="submit"
+                        tabIndex="3" name="submit-btn"
+                      />
                     </div>
                     <div id="login-other">
                       <div className="login-login-links">
@@ -142,29 +149,38 @@ export default React.createClass({
                 <div id="wap-register">
                   <form id="register-form" onSubmit={this.handleRegister}>
                     <div className="form-group">
-                      <input type="text" className="form-control" placeholder="Email" name="email" data-verify-type="email" valueLink={this.linkState('emailNew')} />
+                      <input type="text" className="form-control" placeholder="Email" name="email"
+                        valueLink={this.linkState('emailNew')}
+                      />
                       <div className="ms-msg-error">Please enter a valid Email Address</div>
                       <div className="ms-man-loading"></div>
                     </div>
+                    { /*
                     <div className="form-group">
-                      <input type="text" className="form-control" placeholder="First Name" name="firstName" data-verify-type="userName" />
+                      <input type="text" className="form-control" placeholder="First Name" name="firstName" />
                       <div className="ms-msg-error">Please enter a valid First Name</div>
                     </div>
                     <div className="form-group">
-                      <input type="text" className="form-control" placeholder="Last Name" name="lastName" data-verify-type="userName" />
+                      <input type="text" className="form-control" placeholder="Last Name" name="lastName" />
                       <div className="ms-msg-error">Please enter a valid Last Name</div>
                     </div>
+                    */ }
                     <div className="form-group">
-                      <input type="password" className="form-control" placeholder="Password" name="password" data-verify-type="password" valueLink={this.linkState('passwordNew')} />
+                      <input type="password" className="form-control" placeholder="Password" name="password"
+                        valueLink={this.linkState('passwordNew')}
+                      />
                       <div className="ms-msg-error">Please enter 6 - 20 characters (A-Z, a-z, 0-9 only)</div>
                     </div>
                     <div className="form-group">
-                      <input type="password" className="form-control" placeholder="Reenter Password" name="" data-verify-type="repassword" />
-
+                      <input type="password" className="form-control" placeholder="Reenter Password" name=""
+                        valueLink={this.linkState('passwordNewRepeat')}
+                      />
                       <div className="ms-msg-error">Passwords are not the same</div>
                     </div>
                     <div className="form-group">
-                      <button type="button" onClick={this.handleRegister} className="ms-button-primary" data-stat="joininfree_page::joininfree_create::joininfree_create_button">Agree &amp; Create My Account</button>
+                      <button type="button" onClick={this.handleRegister} className="ms-button-primary">
+                        Agree &amp; Create My Account
+                      </button>
                     </div>
                   </form>
                 </div>

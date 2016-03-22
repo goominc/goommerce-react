@@ -113,7 +113,8 @@ export default React.createClass({
                 </div>
                 { /* <div className="pi-shipping mb-40">
                   <div className="shipping clearfix">
-                    Shipping&nbsp;: <span className="shipping-cost">free shipping&nbsp;<i className="ms-icon icon-arrow-right fr"></i></span>
+                    Shipping&nbsp;: <span className="shipping-cost">free shipping&nbsp;
+                    <i className="ms-icon icon-arrow-right fr"></i></span>
                   </div>
                 </div> */ }
               </li>
@@ -143,7 +144,13 @@ export default React.createClass({
                     </a>
                   </div>
                 </dt>
-                <dd><Link to="/orders"><span className="ui-button ui-button-main buy ">buy all from this seller&nbsp;</span></Link></dd>
+                <dd>
+                  <Link to="/orders">
+                    <span className="ui-button ui-button-main buy ">
+                      buy all from this seller&nbsp;
+                    </span>
+                  </Link>
+                </dd>
               </dl>
             </div> */ }
           </article>
@@ -161,9 +168,9 @@ export default React.createClass({
     }
     return (
       <section className="shopcart-list" id="shopcart-list">
-        <div className="shipto bb p-24 mb-24">Ship my order(s) to
+        { /* <div className="shipto bb p-24 mb-24">Ship my order(s) to
           <span className="ship-to" id="ship-to">South Korea<i className="ms-icon icon-arrow-right fr"></i></span>
-        </div>
+        </div> */ }
         {this.renderCart()}
         <article id="seller-cart-buyall" className="seller-products">
           { /* <div className="seller-cart-buyall seller-costs bt p-24 pb-24">

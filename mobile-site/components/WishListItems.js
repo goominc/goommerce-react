@@ -1,12 +1,17 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { getProductMainImage, getProductMainPrice } from '../../desktop-site/util';
+import productUtil from 'commons/utils/productUtil';
 
 export default React.createClass({
   propTypes: {
     show: PropTypes.bool.isRequired,
     wishes: PropTypes.object,
     delete: PropTypes.func.isRequired,
+  },
+  contextTypes: {
+    activeLocale: PropTypes.string,
+    activeCurrency: PropTypes.string,
   },
   render() {
     const { show, wishes } = this.props;
@@ -41,7 +46,7 @@ export default React.createClass({
               </div>
             </div>
             <div className="right">
-              <div className="prod-name">New Sexy Women Long Dress Solid Round Neck Sleeveless Ankle Length Summer
+              <div className="prod-name">{productUtil.getName(wish.product)}
               </div>
               <div className="prod-price">
                 US ${wish.product.USD}

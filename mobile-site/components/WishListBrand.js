@@ -8,6 +8,10 @@ export default React.createClass({
     brand: PropTypes.array,
     delete: PropTypes.func.isRequired,
   },
+  contextTypes: {
+    activeLocale: PropTypes.string,
+    activeCurrency: PropTypes.string,
+  },
   render() {
     const { show, brand } = this.props;
     const renderBrand = $.map(brand, (item) => {

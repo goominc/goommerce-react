@@ -24,8 +24,8 @@ const Brand = React.createClass({
     const { brandId } = props;
     const size = 30;
     this.props.searchProducts({
-      //q: query,
-      //categoryId: params.categoryId === 'all' ? undefined : params.categoryId,
+      // q: query,
+      // categoryId: params.categoryId === 'all' ? undefined : params.categoryId,
       brandId,
       from: 0,
       size,

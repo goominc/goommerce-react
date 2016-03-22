@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { CloudinaryImage } from 'react-cloudinary';
 import { getProductMainImage, getProductMainPrice } from '../../desktop-site/util';
+import productUtil from 'commons/utils/productUtil';
 
 export default React.createClass({
   propTypes: {
@@ -38,14 +39,14 @@ export default React.createClass({
       return (
           <li className="product-item" key={prod.id}>
             <div className="pro-inner">
-              <Link to={'/products/' + prod.id}>
+              <Link to={`/products/${prod.id}`}>
                 <div className="pic">
                   {renderImage()}
                 </div>
                 <span className="discount-rate">- 50% </span>
                 <div className="infomation">
                   <div className="title">
-                    <span>20160303 SS </span>
+                    <span>{productUtil.getName(prod)}</span>
                   </div>
 
                   <span className="discount-price"><em>{activeCurrency} {getProductMainPrice(prod, activeCurrency)}</em>
@@ -69,7 +70,7 @@ export default React.createClass({
     });
 
     return (
-      <div className={'custom-' + viewType} id="product-main">
+      <div className={`custom-${viewType}`} id="product-main">
         <ul className="product-list clearfix" id="product-list">
           {prodDivs}
         </ul>

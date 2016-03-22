@@ -1,8 +1,10 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import ProductDetailBanner from 'components/ProductDetailBanner';
-import ProductDetailRelated from 'components/ProductDetailRelated';
+// import ProductDetailRelated from 'components/ProductDetailRelated';
 import ProductDetailCart from 'components/ProductDetailCart';
+import brandUtil from 'commons/utils/brandUtil';
+import productUtil from 'commons/utils/productUtil';
 
 export default React.createClass({
   propTypes: {
@@ -21,9 +23,14 @@ export default React.createClass({
     addCart: PropTypes.func.isRequired,
     buyNow: PropTypes.func.isRequired,
   },
+  contextTypes: {
+    activeLocale: PropTypes.string,
+    activeCurrency: PropTypes.string,
+  },
   render() {
-    const { product, images, showCart, variants, colors, sizes, currentColor, currentSize, currentVariant } = this.props;
-    if (!product) {
+    const { product, images, showCart, variants, colors, sizes,
+      currentColor, currentSize, currentVariant } = this.props;
+    if (!product || !Object.keys(product).length) {
       return (
         <div />
         );
@@ -34,7 +41,7 @@ export default React.createClass({
         return (
         <section className="ms-mrg-b12 ms-detail-store">
           <Link to={`/brands/${product.brand.id}`}>
-            <header className="store-title">{product.brand.data.name.en}</header>
+            <header className="store-title">{brandUtil.getName(product.brand)}</header>
             { /* <p className="store-info">
               <img src="http://i01.i.aliimg.com/wimg/feedback/icon/25-s.gif" className="store-level" />
               <span className="store-postive">94.7% positive feedback the past</span>
@@ -53,13 +60,15 @@ export default React.createClass({
       <article className="ms-detail">
         <ProductDetailBanner images={images} />
 
-        <p className="ms-detail-subject ms-pd-lr12">2015 New Autumn Women Dress Zipper Off Shoulder Long Sleeve Dresses Sexy Club Evening Party Bodycon Mini Dresses Black White</p>
+        <p className="ms-detail-subject ms-pd-lr12">{productUtil.getName(product)}</p>
 
         { /* <section className="ms-product-datail-price-tag  ms-app-only-product-detail-price">
           <a className="ms-app-only-price-tag-wrapper j-price-tag">
             <div className="ms-price-tag">
               <span className="ms-price-tag-info"><i className="ms-icon icon-mobile"></i></span>
-              <span className="ms-price-tag-price arrow-right">Price on the app: {product.price_app}<i className="ms-icon icon-dropright-android"></i></span>
+              <span className="ms-price-tag-price arrow-right">Price on the app: {product.price_app}
+                <i className="ms-icon icon-dropright-android"></i>
+              </span>
             </div>
           </a>
         </section> */ }
@@ -77,7 +86,10 @@ export default React.createClass({
         { /* <section className="ms-pd-lr12 ms-detail-discount">
           <span className="discount-p">
             <span className="normal-discount-span">-49%</span>
-            <span className="coupon-discount-span"><Link to="http://m.aliexpress.com/store/storeHome.htm?sellerAdminSeq=201507793">Get a Store Coupon</Link></span>
+            <span className="coupon-discount-span">
+              <Link to="http://m.aliexpress.com/store/storeHome.htm?sellerAdminSeq=201507793">Get a Store Coupon
+              </Link>
+            </span>
             <p></p>
             <p className="bulk-price-p">Bulk Price: get an additional 5% off when you buy 10 piece or more</p>
             <div className="ms-arrow">
@@ -129,7 +141,7 @@ export default React.createClass({
 
         { /* <section className="ms-color-second ms-mrg-b12 ms-feedback">
           <header className="ms-detail-row">
-            <Link to="http://m.aliexpress.com/getSiteProductEvaluation.htm?productId=32490813821&amp;page=1">Feedback(164)</Link>
+            <Link to="/"">Feedback(164)</Link>
             <span className="ms-arrow">
               <span className="ms-icon icon-arrow-right"></span>
             </span>
@@ -145,12 +157,17 @@ export default React.createClass({
           </section>
           <ul>
             <li className="bp-item">
-                <p className="bp-title">Return Policy</p>
-                <p className="bp-desc">Returns accepted if product not as described, buyer pays return shipping; or keep the product &amp; agree refund with seller.</p>
+              <p className="bp-title">Return Policy</p>
+              <p className="bp-desc">
+                Returns accepted if product not as described, buyer pays return shipping;
+                or keep the product &amp; agree refund with seller.
+              </p>
             </li>
             <li className="bp-item">
-                <p className="bp-title">On-time Delivery <span className="ms-bp-days">60</span> days</p>
-                <p className="bp-desc">Full refund if product isn't received in <span className="ms-bp-days">60</span> days</p>
+              <p className="bp-title">On-time Delivery <span className="ms-bp-days">60</span> days</p>
+              <p className="bp-desc">
+                Full refund if product isn't received in <span className="ms-bp-days">60</span> days
+              </p>
             </li>
           </ul>
         </section>

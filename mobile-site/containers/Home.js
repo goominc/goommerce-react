@@ -20,6 +20,7 @@ const Home = React.createClass({
   },
   componentDidMount() {
     this.props.setHeader(true, true, true, '');
+    /* TODO replace with recommend products */
     this.props.searchProducts({
       // q: query,
       // categoryId: params.categoryId === 'all' ? undefined : params.categoryId,
@@ -81,9 +82,6 @@ const Home = React.createClass({
         </div>
 
         <div className="info-area">
-        더배워 - 주문안되면 환불되고 어쩌고<br />
-        결재방법 - visa master<br />
-        따러와 - facebook vk insta<br />
         </div>
       </div>
     );

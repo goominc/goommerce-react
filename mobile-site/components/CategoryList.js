@@ -14,20 +14,20 @@ export default React.createClass({
         return currentCategory.children.map((cat) => {
           let cateLink;
           if (cat.children && cat.children.length === 0) {
-            cateLink = '/categories/' + cat.id;
-          }
-          else {
-            cateLink = '/categoryList/' + cat.id;
+            cateLink = `/categories/${cat.id}`;
+          } else {
+            cateLink = `/categoryList/${cat.id}`;
           }
 
           return (
             <li key={cat.id}>
-              <span className={'icon-' + cat.id}></span>
+              <span className={`icon-${cat.id}`}></span>
               <Link to={cateLink} rel="nofollow">{cat.name.en}</Link>
             </li>
             );
         });
       }
+      return null;
     };
 
     return (

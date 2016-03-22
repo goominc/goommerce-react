@@ -4,19 +4,17 @@ export default React.createClass({
   propTypes: {
     images: PropTypes.array.isRequired,
   },
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate() {
     $('.img-list').owlCarousel({ autoPlay: 10000, items: 1 });
   },
 
   render() {
     const { images } = this.props;
-    const renderImage = images.map((image, index) => {
-      return (
-          <li key={index}>
-            <img src={image.url} alt="product image" />
-          </li>
-        );
-    });
+    const renderImage = images.map((image, index) =>
+        <li key={index}>
+          <img src={image.url} alt="product image" />
+        </li>
+    );
 
     return (
       <section className="ms-detail-slider ms-slider">
