@@ -8,9 +8,19 @@ export default React.createClass({
   propTypes: {
     brand: PropTypes.object.isRequired,
     products: PropTypes.array,
+    addFavoriteBrand: PropTypes.func.isRequired,
+  },
+  contextTypes: {
+    activeLocale: PropTypes.string,
+    activeCurrency: PropTypes.string,
+  },
+  handleFavorite() {
+    const { brand } = this.props;
+    this.props.addFavoriteBrand(brand.id);
   },
   render() {
     const { brand, products } = this.props;
+    const { activeCurrency } = this.context;
 
     const prodDivs = products.map((prod) => {
       const image = getProductMainImage(prod.topHit || prod);
@@ -39,7 +49,7 @@ export default React.createClass({
                   {renderImage()}
                 </div>
                 <div className="ms-gallery-info">
-                  <span className="ms-gallery-price">US ${prod.USD}</span>
+                  <span className="ms-gallery-price">{activeCurrency} {getProductMainPrice(prod, activeCurrency)}</span>
                   <span className="ms-gallery-discount">-31%</span>
                 </div>
               </Link>
@@ -55,7 +65,7 @@ export default React.createClass({
         <section className="ms-store-header">
           <div>
             <div className="ms-store-header-wrap">
-              <p className="ms-store-name">{brand.data.name.en}</p>
+              <p className="ms-store-name">{brandUtil.getName(brand)}</p>
               { /*
               <p className="ms-store-rank">
                 <img src="http:///i01.i.aliimg.com/wimg/feedback/icon/21-s.gif" />
@@ -77,7 +87,7 @@ export default React.createClass({
           <div className="ms-store-stats-item-separation">
           </div>
           <div className="ms-store-stats-item ms-store-flex-item">
-            <a href="http://m.aliexpress.com/store/sellerInfo.htm?sellerAdminSeq=224815799" data-target="blank" title="Feedback">
+            <a href="http://m.aliexpress.com/store/sellerInfo.htm?sellerAdminSeq=224815799" title="Feedback">
               <p className="ms-store-stats-item-number">636</p>
               <p className="ms-store-stats-item-name">Feedbacks</p>
             </a>
@@ -90,17 +100,22 @@ export default React.createClass({
           </div>
         </section>
 
-        { /* contact + add wishlist
         <section className="ms-store-operation ms-store-flex">
           <div className="ms-store-operation-item">
-            <a href="javascript:void(0)" className="ms-button-secondary ms-text-change-by-client" id="ms-store-contact-seller"><span>Contact Seller</span></a>
+            <button className="ms-button-secondary ms-text-change-by-client" id="ms-store-contact-seller">
+              Contact Seller
+            </button>
           </div>
           <div className="ms-store-operation-item">
-            <a href="javascript:void(0)" className="ms-button-secondary j-add-wish-list ms-text-change-by-client"><span>Add to Wish List</span></a>
+            <button className="ms-button-secondary j-add-wish-list ms-text-change-by-client"
+              onClick={this.handleFavorite}
+            >
+              Add to Wish List
+            </button>
           </div>
         </section>
         <section className="ms-space">
-        </section> */ }
+        </section>
 
         <section className="ms-space">
         </section>

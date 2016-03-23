@@ -23,7 +23,7 @@ export default React.createClass({
           <li className="clearfix" key={item.id}>
             <Link to={`/brands/${item.id}`}>
               <div className="store-name">{item.data.name.en}</div>
-              <div className="store-feedback">NO.413596</div>
+              <div className="store-feedback">NO.{item.id}</div>
               <div className="store-feedback-score delete clearfix">
                 100950
                 { /* <img src="http://i01.i.aliimg.com/wimg/feedback/icon/32-s.gif" /> */ }

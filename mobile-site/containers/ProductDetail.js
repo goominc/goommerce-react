@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { ApiAction, setHeader, toggleProductCart, setProductColor, setProductSize } from 'redux/actions';
-const { loadProduct, addCartProduct, createOrder } = ApiAction;
+const { loadProduct, addWish, addCartProduct, createOrder } = ApiAction;
 
 import ProductDetailPage from 'components/ProductDetailPage';
 
@@ -10,6 +10,7 @@ const ProductDetail = React.createClass({
   propTypes: {
     setHeader: PropTypes.func.isRequired,
     loadProduct: PropTypes.func.isRequired,
+    addWish: PropTypes.func.isRequired,
     addCartProduct: PropTypes.func.isRequired,
     createOrder: PropTypes.func.isRequired,
     toggleProductCart: PropTypes.func.isRequired,
@@ -140,7 +141,7 @@ const ProductDetail = React.createClass({
         currentColor={this.props.color} currentSize={this.props.size}
         currentVariant={this.props.variant} showCart={this.props.showCart} toggleCart={this.props.toggleProductCart}
         setColor={this.props.setProductColor} setSize={this.props.setProductSize} addCart={this.wrapAddCart}
-        buyNow={this.wrapOrder}
+        buyNow={this.wrapOrder} addWish={this.props.addWish}
       />
       );
   },
@@ -150,5 +151,6 @@ export default connect(
   (state) => ({ showCart: state.pageProductDetail.showCart,
    color: state.pageProductDetail.selectColor, size: state.pageProductDetail.selectSize,
    variant: state.pageProductDetail.selectVariant }),
-  { loadProduct, addCartProduct, createOrder, setHeader, toggleProductCart, setProductColor, setProductSize }
+  { loadProduct, addWish, addCartProduct, createOrder,
+    setHeader, toggleProductCart, setProductColor, setProductSize }
 )(ProductDetail);

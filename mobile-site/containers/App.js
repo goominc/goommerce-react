@@ -55,7 +55,7 @@ const App = React.createClass({
   },
   componentDidMount() {
     this.props.loadCartIfEmpty();
-    this.props.loadCategories();
+    // this.props.loadCategories();
   },
   _login(email, password) {
     this.props.login(email, password).then(

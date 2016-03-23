@@ -5,6 +5,8 @@ import ProductDetailBanner from 'components/ProductDetailBanner';
 import ProductDetailCart from 'components/ProductDetailCart';
 import brandUtil from 'commons/utils/brandUtil';
 import productUtil from 'commons/utils/productUtil';
+import { getProductMainPrice } from '../../desktop-site/util';
+
 
 export default React.createClass({
   propTypes: {
@@ -22,14 +24,20 @@ export default React.createClass({
     setSize: PropTypes.func.isRequired,
     addCart: PropTypes.func.isRequired,
     buyNow: PropTypes.func.isRequired,
+    addWish: PropTypes.func.isRequired,
   },
   contextTypes: {
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
   },
+  handleAddWish() {
+    // TODO login check
+    this.props.addWish(this.props.product.id);
+  },
   render() {
     const { product, images, showCart, variants, colors, sizes,
       currentColor, currentSize, currentVariant } = this.props;
+    const { activeCurrency } = this.context;
     if (!product || !Object.keys(product).length) {
       return (
         <div />
@@ -58,7 +66,7 @@ export default React.createClass({
 
     return (
       <article className="ms-detail">
-        <ProductDetailBanner images={images} />
+        <ProductDetailBanner images={images} addWish={this.handleAddWish} />
 
         <p className="ms-detail-subject ms-pd-lr12">{productUtil.getName(product)}</p>
 
@@ -75,11 +83,11 @@ export default React.createClass({
 
         <section className="ms-pd-lr12 ms-detail-price">
           <div className="detail-price-container">
-            <span className="price-span">US ${product.USD}</span>
+            <span className="price-span">{activeCurrency} {getProductMainPrice(product, activeCurrency)}</span>
             <span className="unit-span">  /piece</span>
           </div>
           <p className="detail-origin-price">
-            <del>US ${product.USD} /piece</del>
+            <del>{activeCurrency} {getProductMainPrice(product, activeCurrency)} /piece</del>
           </p>
         </section>
 
@@ -179,7 +187,7 @@ export default React.createClass({
         <ProductDetailCart show={showCart} toggle={this.props.toggleCart} topImg={images}
           currentColor={currentColor} currentSize={currentSize} currentVariant={currentVariant}
           variants={variants} colors={colors} sizes={sizes} setColor={this.props.setColor} setSize={this.props.setSize}
-          addCart={this.props.addCart} buyNow={this.props.buyNow}
+          addCart={this.props.addCart} buyNow={this.props.buyNow} product={product}
         />
 
       </article>

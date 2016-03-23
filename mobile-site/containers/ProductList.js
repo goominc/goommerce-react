@@ -4,7 +4,7 @@ import { isEqual, pick } from 'lodash';
 
 import { ApiAction, setHeader, changeViewType, toggleProductSort,
          toggleProductFilter } from '../redux/actions';
-const { searchProducts } = ApiAction;
+const { searchProducts, loadCategories } = ApiAction;
 
 import ProductListItem from 'components/ProductListItem';
 
@@ -17,6 +17,7 @@ const ProductList = React.createClass({
     showFilter: PropTypes.bool,
     categories: PropTypes.object,
     searchProducts: PropTypes.func.isRequired,
+    loadCategories: PropTypes.func.isRequired,
     setHeader: PropTypes.func.isRequired,
     changeViewType: PropTypes.func.isRequired,
     toggleProductSort: PropTypes.func.isRequired,
@@ -27,8 +28,21 @@ const ProductList = React.createClass({
     return { currentCount: 0, maxCount: 0 };
   },
   componentDidMount() {
+    const { params } = this.props;
     this.props.setHeader(false, true, true, '');
     this.doSearch(this.props);
+    if (params.categoryId) {
+      if (params.categoryId === 'all') {
+        this.props.setHeader(false, true, true, 'All');
+      } else {
+        this.props.loadCategories().then(() => {
+          this.props.setHeader(false, true, true, this.props.categories[params.categoryId].name.en);
+        });
+      }
+    } else {
+      this.props.setHeader(false, true, true, 'Search Result');
+    }
+
     $(window).scroll(() => {
       if ($(window).scrollTop() + window.innerHeight === $(document).height()) {
         this.doFetch();
@@ -40,15 +54,9 @@ const ProductList = React.createClass({
     if (!isEqual(pick(this.props, props), pick(nextProps, props))) {
       this.doSearch(nextProps);
     }
-    if (nextProps.params.categoryId) {
-      if (nextProps.params.categoryId === 'all') {
-        this.props.setHeader(false, true, true, 'All');
-      } else if (nextProps.categories && Object.keys(nextProps.categories).length) {
-        this.props.setHeader(false, true, true, nextProps.categories[nextProps.params.categoryId].name.en);
-      }
-    } else {
-      this.props.setHeader(false, true, true, 'Search Result');
-    }
+  },
+  componentWillUnmount() {
+    $(window).unbind('scroll');
   },
   doSearch(props) {
     const { params } = props;
@@ -124,5 +132,5 @@ export default connect(
     showSort: state.pageProductList.showSort,
     showFilter: state.pageProductList.showFilter,
     categories: state.categories }),
-  { searchProducts, setHeader, changeViewType, toggleProductSort, toggleProductFilter }
+  { searchProducts, loadCategories, setHeader, changeViewType, toggleProductSort, toggleProductFilter }
 )(ProductList);

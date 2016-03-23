@@ -14,6 +14,7 @@ const Category = React.createClass({
     params: PropTypes.object,
   },
   componentDidMount() {
+    this.props.loadCategories();
   },
   componentWillReceiveProps(nextProps) {
     const { params, categories } = nextProps;

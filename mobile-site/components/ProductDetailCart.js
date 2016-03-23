@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
+import { getProductMainPrice } from '../../desktop-site/util';
 
 export default React.createClass({
   propTypes: {
     show: PropTypes.bool.isRequired,
     toggle: PropTypes.func.isRequired,
+    product: PropTypes.object.isRequired,
     variants: PropTypes.array,
     colors: PropTypes.array,
     sizes: PropTypes.array,
@@ -16,6 +18,10 @@ export default React.createClass({
     addCart: PropTypes.func.isRequired,
     buyNow: PropTypes.func.isRequired,
     topImg: PropTypes.array,
+  },
+  contextTypes: {
+    activeLocale: PropTypes.string,
+    activeCurrency: PropTypes.string,
   },
   mixins: [LinkedStateMixin],
   getInitialState() {
@@ -85,7 +91,8 @@ export default React.createClass({
     return null;
   },
   render() {
-    const { show, currentColor, currentSize, currentVariant, topImg } = this.props;
+    const { show, product, currentColor, currentSize, currentVariant, topImg } = this.props;
+    const { activeCurrency } = this.context;
     let style = {};
     if (show) {
       style = {
@@ -119,7 +126,8 @@ export default React.createClass({
               {renderTopImg()}
               <div className="sku-detail">
                 <p className="sku-price">
-                  <span className="price-span">US $6.40-7.62 </span>/<span className="unit-span">piece</span>
+                  <span className="price-span">{activeCurrency} {getProductMainPrice(product, activeCurrency)} </span>
+                  / <span className="unit-span">piece</span>
                 </p>
                 <p className="sku-desc">{variantTitle}</p>
               </div>
@@ -161,7 +169,7 @@ export default React.createClass({
                       <span className="ms-plus" onClick={this.addQuantity}><i className="ms-icon icon-plus"></i></span>
                     </span>
                   </span>
-                  <span className="numberic-text">360 pieces Left</span>
+                  { /* <span className="numberic-text">360 pieces Left</span> */ }
                 </p>
               </section>
               { /*

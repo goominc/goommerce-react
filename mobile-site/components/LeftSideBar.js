@@ -15,6 +15,7 @@ export default React.createClass({
     logout: PropTypes.func.isRequired,
   },
   contextTypes: {
+    router: PropTypes.object.isRequired,
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
   },
@@ -29,6 +30,15 @@ export default React.createClass({
   },
   _showRegister() {
     this.props.toggleSignRegister(true, 'register');
+  },
+  handleWithAuth(path) {
+    const { auth } = this.props;
+    if (auth.bearer) {
+      this.props.toggle();
+      return this.context.router.push(path);
+    }
+    this._showSignin();
+    return null;
   },
   renderAuth() {
     const { auth } = this.props;
@@ -83,19 +93,19 @@ export default React.createClass({
               </Link>
             </li>
             <li className="drawer-myOrder">
-              <Link to="/myOrder" onClick={this.props.toggle}><i className="ms-icon icon-order"></i>
+              <div onClick={() => this.handleWithAuth('/myOrder')}><i className="ms-icon icon-order"></i>
                 <span>My Orders</span>
-              </Link>
+              </div>
             </li>
             <li className="drawer-cart">
-              <Link to="/cart" onClick={this.props.toggle}><i className="ms-icon icon-shippingcart"></i>
-                <span>Cart</span>
-              </Link>
+              <div onClick={() => this.handleWithAuth('/cart')}><i className="ms-icon icon-shippingcart"></i>
+                <span>{i18n.get('word.cart')}</span>
+              </div>
             </li>
             <li className="drawer-wishList">
-              <Link to="/wishlist" onClick={this.props.toggle}><i className="ms-icon icon-wishlist"></i>
+              <div onClick={() => this.handleWithAuth('/wishlist')}><i className="ms-icon icon-wishlist"></i>
                 <span>{i18n.get('word.wishlist')}</span>
-              </Link>
+              </div>
             </li>
 
             <li className="drawer-language"><i className="ms-icon icon-translation"></i><b>Language</b>
