@@ -150,12 +150,12 @@ function pagination(state = {}, action) {
 
 function i18n(state = {}, action) {
   if (action.type === 'CHANGE_LANGUAGE') {
-    state.activeLocale = action.locale;
-    return state;
+    return assign({}, state, { activeLocale: action.locale });
   } else if (action.type === 'LOAD_AND_CHANGE_LANGUAGE') {
-    state[action.locale] = action.payload;
     state.activeLocale = action.locale;
-    return state;
+    const next = assign({}, state, { activeLocale: action.locale });
+    next[action.locale] = action.payload;
+    return next;
   }
   return state;
 }

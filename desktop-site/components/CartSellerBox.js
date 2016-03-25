@@ -4,7 +4,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import _ from 'lodash';
 
-import orderUtil from 'commons/utils/orderUtil';
+import brandUtil from 'commons/utils/brandUtil';
 import { getProductThumbnail } from 'util';
 
 export default React.createClass({
@@ -66,7 +66,6 @@ export default React.createClass({
   },
   render() {
     const { brand, removeProduct, buy, children } = this.props;
-    const { activeLocale } = this.context;
     if (!brand) {
       return (
         <div></div>
@@ -101,7 +100,7 @@ export default React.createClass({
     }
     return (
       <div className="cart-seller-box">
-        <div className="cart-seller-title">Brand: {_.get(brand.brand, `data.name.${activeLocale}`)}</div>
+        <div className="cart-seller-title">Brand: {brandUtil.getName(brand.brand)}</div>
         <table>
           <thead>
           {renderHead()}
