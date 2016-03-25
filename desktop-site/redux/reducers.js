@@ -1,4 +1,7 @@
+// Copyright (C) 2016 Goom Inc. All rights reserved.
+
 import { combineReducers } from 'redux';
+import _ from 'lodash';
 
 import CommonReducers from '../../commons/redux/reducers';
 import { initColorsAndSizes } from 'commons/utils/productUtil';
@@ -120,7 +123,15 @@ function pageProductDetail(state = {}, action) {
     const initialVariantState = {
       variants: action.variants, selectedVariant: null, activeColor: null, activeSize: null,
     };
-    return Object.assign({}, state, initialVariantState, initColorsAndSizes(action.variants));
+    // 2016. 03. 25. [heekyu] Select First Color and size
+    const state2 = Object.assign({}, state, initialVariantState, initColorsAndSizes(action.variants));
+    const colors = Object.keys(_.get(state2, 'variantAttributes.colors') || {});
+    const sizes = Object.keys(_.get(state2, 'variantAttributes.sizes') || {});
+    if (colors.length > 0 && sizes.length > 0) {
+      state2.activeColor = colors[0];
+      state2.activeSize = sizes[0];
+    }
+    return colorsAndSizesFromState(state2);
   } else if (action.type === 'PRODUCT_DETAIL_SET_COLOR') {
     const color = action.color;
     if (color === state.activeColor) {
