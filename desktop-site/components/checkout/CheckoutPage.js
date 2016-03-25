@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 import LinkedStateMixin from 'react-addons-linked-state-mixin'; // for manage form input...
+import _ from 'lodash';
 
 import CheckoutStep1 from 'components/checkout/CheckoutStep1';
 import SellerBox from 'components/CartSellerBox';
 import i18n from 'commons/utils/i18n';
-
-const _ = require('lodash');
+import orderUtil from 'commons/utils/orderUtil';
 
 export default React.createClass({
   propTypes: {
@@ -84,11 +84,12 @@ export default React.createClass({
   },
   renderDone() {
     const { order } = this.props;
-    // FIXME
-    const variants = order.orderProducts.map((p) => Object.assign({}, p.productVariant, { count: p.orderedCount }));
+
+    // const variants = order.orderProducts.map((p) => Object.assign({}, p.productVariant, { count: p.orderedCount }));
+    const brands = orderUtil.collectByBrands(order.orderProducts);
     return (
       <div>
-        <SellerBox productVariants={variants} />
+        {brands.map((brand) => (<SellerBox key={brand.brand.id} {...this.props} brand={brand} />))}
         <div>Total: KRW {order.totalEstimationKRW}</div>
         <div>Status: {i18n.get(`enum.order.status.${order.status}`)}</div>
         {this.renderVBank()}

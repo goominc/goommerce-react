@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
 import SellerBox from 'components/CartSellerBox';
+import orderUtil from 'commons/utils/orderUtil';
 
 export default React.createClass({
   propTypes: {
@@ -15,7 +16,7 @@ export default React.createClass({
   render() {
     const { cart, buy } = this.props;
     const { activeCurrency } = this.context;
-    const variants = cart.productVariants || [];
+    const variants = orderUtil.getProductVariantsFromCart(cart);
     const total = cart.total || {};
 
     function buyAll() {
@@ -29,6 +30,8 @@ export default React.createClass({
       }
       return '';
     }
+
+    const brands = cart.brands || [];
     return (
       <div className="container">
         <div className="cart-title-box">
@@ -40,14 +43,13 @@ export default React.createClass({
             <span className="cart-continue-shopping-text">Continue Shopping</span>
           </Link>
         </div>
-        <SellerBox {...this.props} productVariants={variants} canChangeQuantity>
-          <div className="cart-seller-bottom">
-            <div className="cart-total-price-box">
-              Total: <b>{activeCurrency} {total[activeCurrency]}</b>
-            </div>
-            {renderBuyAllButton()}
+        {brands.map((brand) => (<SellerBox key={brand.brand.id} {...this.props} brand={brand} canChangeQuantity />))}
+        <div className="cart-seller-bottom">
+          <div className="cart-total-price-box">
+            Total: <b>{activeCurrency} {total[activeCurrency]}</b>
           </div>
-        </SellerBox>
+          {renderBuyAllButton()}
+        </div>
       </div>
     );
   },

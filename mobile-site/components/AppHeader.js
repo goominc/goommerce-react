@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
+import orderUtil from 'commons/utils/orderUtil';
+
 export default React.createClass({
   propTypes: {
     toggle: PropTypes.func.isRequired,
@@ -10,10 +12,7 @@ export default React.createClass({
   },
   render() {
     const { header, cart } = this.props;
-    let cartCount = 0;
-    if (cart && cart.productVariants) {
-      cartCount = cart.productVariants.length;
-    }
+    const cartCount = orderUtil.getProductVariantsFromCart(cart).length;
     const renderLogo = () => {
       if (header.showLogo) {
         return (

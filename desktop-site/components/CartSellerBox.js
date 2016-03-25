@@ -1,6 +1,10 @@
+// Copyright (C) 2016 Goom Inc. All rights reserved.
+
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import _ from 'lodash';
 
+import orderUtil from 'commons/utils/orderUtil';
 import { getProductThumbnail } from 'util';
 
 export default React.createClass({
@@ -8,7 +12,7 @@ export default React.createClass({
     buy: PropTypes.func,
     canChangeQuantity: PropTypes.bool,
     children: PropTypes.object,
-    productVariants: PropTypes.array.isRequired,
+    brand: PropTypes.object,
     removeProduct: PropTypes.func,
     updateCount: PropTypes.func,
   },
@@ -16,7 +20,7 @@ export default React.createClass({
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
   },
-  renderVariant(variant) {
+  renderVariant(variant, quantity) {
     const { buy, canChangeQuantity, updateCount, removeProduct } = this.props;
     const { activeCurrency } = this.context;
     function handleQuantity(event) {
@@ -42,11 +46,11 @@ export default React.createClass({
       if (canChangeQuantity) {
         return (
           <input type="number" name="quantity" min="1" max="100" onChange={handleQuantity}
-            defaultValue={variant.count}
+            defaultValue={quantity}
           />
         );
       }
-      return (<span>{variant.count}</span>);
+      return (<span>{quantity}</span>);
     };
     return (
       <tr key={`cart-variant-${variant.id}`}>
@@ -61,13 +65,20 @@ export default React.createClass({
     );
   },
   render() {
-    const { productVariants, removeProduct, buy, children } = this.props;
-    if (!productVariants) {
+    const { brand, removeProduct, buy, children } = this.props;
+    const { activeLocale } = this.context;
+    if (!brand) {
       return (
-        <div>Error! No Products!</div>
+        <div></div>
       );
     }
-    const variants = productVariants || [];
+
+    const variants = [];
+    // 2016. 03. 24. [heekyu] TODO collect by product
+    (brand.products || []).forEach((product) => {
+      (product.productVariants || []).forEach((variant) => variants.push(variant));
+    });
+
     function renderHead() {
       const renderBuyCell = () => {
         const buttonCells = [];
@@ -90,13 +101,13 @@ export default React.createClass({
     }
     return (
       <div className="cart-seller-box">
-        <div className="cart-seller-title">Seller: Test</div>
+        <div className="cart-seller-title">Brand: {_.get(brand.brand, `data.name.${activeLocale}`)}</div>
         <table>
           <thead>
           {renderHead()}
           </thead>
           <tbody>
-          {variants.map(this.renderVariant)}
+          {variants.map((variant) => this.renderVariant(variant.productVariant, variant.count))}
           </tbody>
         </table>
         {children}

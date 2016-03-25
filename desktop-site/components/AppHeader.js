@@ -1,6 +1,9 @@
+// Copyright (C) 2016 Goom Inc. All rights reserved.
+
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
+import orderUtil from 'commons/utils/orderUtil';
 import i18n from 'commons/utils/i18n';
 
 const _ = require('lodash');
@@ -63,10 +66,7 @@ export default React.createClass({
     const { auth, handleLogout, handleSearch, cart, categories, changeLocale, changeCurrency } = this.props;
     const { toggleSearchDropdown, selectSearchDropdown, showSearchDropdown, activeCategory, params } = this.props;
     const { activeLocale, activeCurrency } = this.context;
-    let cartCount = 0;
-    if (cart && cart.productVariants) {
-      cartCount = cart.productVariants.length;
-    }
+    const cartCount = orderUtil.getProductVariantsFromCart(cart).length;
     const renderSearchDropdownItems = () => {
       const items = _.get(categories, 'tree.children') || [];
       return items.map((item, index) => {

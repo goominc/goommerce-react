@@ -3,26 +3,23 @@ import { connect } from 'react-redux';
 
 import CartPage from 'components/CartPage';
 
-import { ApiAction } from 'redux/actions';
-const { createOrder, deleteCartProduct, loadCart, updateCartProduct } = ApiAction;
-
 const Cart = React.createClass({
   propTypes: {
     cart: PropTypes.object,
-    createOrder: PropTypes.func.isRequired,
-    deleteCartProduct: PropTypes.func.isRequired,
-    loadCart: PropTypes.func.isRequired,
-    updateCartProduct: PropTypes.func.isRequired,
   },
   contextTypes: {
     router: PropTypes.object.isRequired,
+    ApiAction: PropTypes.object,
   },
   componentDidMount() {
-    this.props.loadCart();
+    this.context.ApiAction.loadCart();
+    // this.context.ApiAction.initCartForBigBuyer();
   },
   render() {
     const { router } = this.context;
-    const { cart, createOrder, deleteCartProduct, updateCartProduct } = this.props; // eslint-disable-line no-shadow
+    const { cart } = this.props; // eslint-disable-line no-shadow
+    const { createOrder, deleteCartProduct, updateCartProduct } = this.context.ApiAction;
+
     function updateCount(variant, value) {
       updateCartProduct(variant.id, value);
     }
@@ -34,7 +31,7 @@ const Cart = React.createClass({
         productVariants = [productVariants];
       }
       createOrder({
-        productVariants: productVariants.map((variant) => ({ id: variant.id, count: variant.count })),
+        productVariants: productVariants.map((variant) => ({ id: variant.productVariant.id, count: variant.count })),
       }).then((order) => router.push(`/orders/${order.id}/checkout`));
     }
     return (
@@ -48,6 +45,5 @@ const Cart = React.createClass({
 });
 
 export default connect(
-  (state) => ({ cart: state.cart }),
-  { loadCart, updateCartProduct, deleteCartProduct, createOrder }
+  (state) => ({ cart: state.cart })
 )(Cart);

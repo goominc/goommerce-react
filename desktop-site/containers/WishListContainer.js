@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import loadEntities from 'commons/redux/util/loadEntities';
+import MyPageLeftbar from 'components/mypage/MyPageLeftbar';
 import WishListPage from 'components/mypage/WishListPage';
 
 const WishList = React.createClass({
@@ -21,7 +22,12 @@ const WishList = React.createClass({
     if (!wishes) {
       return (<div></div>);
     }
-    return (<WishListPage wishes={wishes} deleteWish={(wishId) => this.context.ApiAction.deleteWish(wishId)} />);
+    return (
+      <div className="mypage-contents-container">
+        <MyPageLeftbar />
+        <WishListPage wishes={wishes} deleteWish={(wishId) => this.context.ApiAction.deleteWish(wishId)} />
+      </div>
+    );
   },
 });
 

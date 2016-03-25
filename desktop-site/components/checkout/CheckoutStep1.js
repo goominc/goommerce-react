@@ -6,6 +6,7 @@ import { Link } from 'react-router';
 import AddressEditForm from './AddressEditForm';
 import AddressView from './AddressView';
 import SellerBox from 'components/CartSellerBox';
+import orderUtil from 'commons/utils/orderUtil';
 
 export default React.createClass({
   propTypes: {
@@ -63,16 +64,18 @@ export default React.createClass({
         </div>
       );
     };
-    // FIXME
+/*
     const cartVariants = order.orderProducts.map((orderProduct) =>
       Object.assign({}, orderProduct.productVariant, { count: orderProduct.orderedCount }));
+      */
+    const brands = orderUtil.collectByBrands(order.orderProducts);
     return (
       <div>
         <div className="checkout-section-title">1. Please fill in your shipping address. </div>
         {renderAddresses()}
 
-        <div className="checkout-section-title">2. Review and confirm your order ({cartVariants.length} items):</div>
-        <SellerBox productVariants={cartVariants} />
+        <div className="checkout-section-title">2. Review and confirm your order ({order.orderProducts.length} items):</div>
+        {brands.map((brand) => (<SellerBox key={brand.brand.id} {...this.props} brand={brand} />))}
         <div className="checkout-place-order">
           <span className="all-total-label">All Total:</span>
           <span className="all-total-value">{activeCurrency} {order[`totalEstimation${activeCurrency}`]}</span>

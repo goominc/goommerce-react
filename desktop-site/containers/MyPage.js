@@ -6,6 +6,7 @@ import MyPageHeader from 'components/mypage/MyPageHeader';
 import MyPageLeftbar from 'components/mypage/MyPageLeftbar';
 import MyOrderContainer from 'containers/MyOrderContainer';
 import WishListContainer from 'containers/WishListContainer';
+import Reorder from 'containers/Reorder';
 import FavoriteBrandContainer from 'containers/FavoriteBrandContainer';
 
 const _ = require('lodash');
@@ -13,24 +14,32 @@ const _ = require('lodash');
 export default React.createClass({
   render() {
     const menuName = _.get(this.props, 'params.menuName');
-    const renderSubmenu = () => {
-      if (menuName === 'my_orders') {
-        return (<MyOrderContainer />);
-      } else if (menuName === 'wish_list') {
-        return (<WishListContainer />);
-      } else if (menuName === 'favorite_brands') {
-        return (<FavoriteBrandContainer />);
+    const menus = [
+      { key: 'pcMain.myMenu.myLinkshops', menuName: 'mypage' },
+      { key: 'pcMain.myMenu.myOrders', menuName: 'my_orders' },
+      { key: 'word.wishlist', menuName: 'wish_list' },
+      { key: 'pcMain.myMenu.favoriteBrands', menuName: 'favorite_brands' },
+      { key: 'pcMain.myMenu.reorder', menuName: 'reorder' },
+    ];
+    let menuIndex = 0;
+    for (let i = 1; i < menus.length; i++) {
+      if (menuName === menus[i].menuName) {
+        menuIndex = i;
+        break;
       }
-      return (<div></div>);
-    };
+    }
+    const menuComponents = [
+      <div></div>,
+      <MyOrderContainer />,
+      <WishListContainer />,
+      <FavoriteBrandContainer />,
+      <Reorder />,
+    ];
     const containerStyle = { backgroundColor: '#f2f2f2' };
     return (
       <div style={containerStyle}>
-        <MyPageHeader menuName={menuName} />
-        <div className="mypage-contents-container">
-          <MyPageLeftbar />
-          {renderSubmenu()}
-        </div>
+        <MyPageHeader menus={menus} menuName={menuName} />
+        {menuComponents[menuIndex]}
       </div>
     );
   },

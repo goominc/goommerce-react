@@ -24,7 +24,7 @@ const Cart = React.createClass({
   },
   wrapOrder(productVariants) {
     this.props.createOrder({
-      productVariants: productVariants.map((variant) => ({ id: variant.id, count: variant.count })),
+      productVariants: productVariants.map((variant) => ({ id: variant.productVariant.id, count: variant.count })),
     }).then((order) => this.context.router.push(`/orders/${order.id}`));
   },
   render() {

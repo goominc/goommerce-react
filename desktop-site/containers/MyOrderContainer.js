@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 
 import loadEntities from 'commons/redux/util/loadEntities';
 
+import MyPageLeftbar from 'components/mypage/MyPageLeftbar';
 import OrderListComponent from 'components/OrderListComponent';
 
 import { ApiAction } from 'redux/actions';
@@ -24,7 +25,10 @@ const MyOrderContainer = React.createClass({
       return (<div></div>);
     }
     return (
-      <OrderListComponent orders={orders} />
+      <div className="mypage-contents-container">
+        <MyPageLeftbar />
+        <OrderListComponent orders={orders} />
+      </div>
     );
   },
 });

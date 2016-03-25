@@ -79,7 +79,7 @@ export function loadProduct(id) {
 
 export function loadProductAndThen(id, cb) {
   return (dispatch, getState) => {
-    loadProduct(id) (dispatch, getState).then((res) => {
+    loadProduct(id)(dispatch, getState).then((res) => {
       if (cb) {
         cb(res, dispatch, getState);
       }
@@ -113,7 +113,7 @@ export function loadCart() {
 export function addCartProduct(productVariantId, count) {
   return createFetchAction({
     type: 'UPDATE_CART',
-    endpoint: '/api/v1/carts/product_variants',
+    endpoint: '/api/v1/carts',
     method: 'post',
     body: { productVariantId, count: count || 1 },
   });
@@ -122,7 +122,7 @@ export function addCartProduct(productVariantId, count) {
 export function updateCartProduct(productVariantId, count) {
   return createFetchAction({
     type: 'UPDATE_CART',
-    endpoint: '/api/v1/carts/product_variants',
+    endpoint: '/api/v1/carts',
     method: 'put',
     body: { productVariantId, count },
   });
@@ -131,7 +131,7 @@ export function updateCartProduct(productVariantId, count) {
 export function deleteCartProduct(productVariantId) {
   return createFetchAction({
     type: 'UPDATE_CART',
-    endpoint: '/api/v1/carts/product_variants',
+    endpoint: '/api/v1/carts',
     method: 'delete',
     body: { productVariantId },
   });
@@ -250,7 +250,7 @@ export function loadMyOrders() {
 export function loadCartIfEmpty() {
   return (dispatch, getState) => {
     const state = getState();
-    if (state.auth && state.auth.id && (!state.cart || !state.cart.productVariants)) {
+    if (state.auth && state.auth.id && !state.cart) {
       loadCart()(dispatch, getState);
     }
   };
@@ -353,7 +353,7 @@ export function deleteFavoriteBrand(brandId) {
 export function loadFavoriteBrandProducts() {
   return (dispatch, getState) => {
     const state = getState();
-    if (!state.auth) {
+    if (!_.get(state, 'auth.id')) {
       return;
     }
     const favoriteBrands = state.auth.favoriteBrands || [];
@@ -371,6 +371,18 @@ export function loadFavoriteBrandProducts() {
         type: 'LOAD_FAVORITE_BRAND_PRODUCTS',
         brandProducts: res.map((item) => item.products),
       });
+    });
+  };
+}
+
+export function initCartForBigBuyer() {
+  return (dispatch, getState) => {
+    const state = getState();
+    if (!_.get(state, 'auth.id')) {
+      return;
+    }
+    ajaxReturnPromise(state.auth, 'get', '/api/v1/users/self/orders').then((res) => {
+      console.log(res);
     });
   };
 }

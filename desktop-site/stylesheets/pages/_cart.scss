@@ -64,20 +64,22 @@
       }
     }
   }
-  .cart-seller-bottom {
-    margin-top: 15px;
-    text-align: right;
+}
+
+.cart-seller-bottom {
+  margin: 15px 0;
+  text-align: right;
+}
+.cart-total-price-box {
+  font-size: 14px;
+  b {
+    color: #f60;
   }
-  .cart-total-price-box {
-    b {
-      color: #f60;
-    }
-    margin-bottom: 10px;
-  }
-  .cart-buyall-button {
-    display: inline-block;
-    font-size: 14px;
-    padding: 3px 15px;
-    @include button-default-styles();
-  }
+  margin-bottom: 10px;
+}
+.cart-buyall-button {
+  display: inline-block;
+  font-size: 14px;
+  padding: 3px 15px;
+  @include button-default-styles();
 }

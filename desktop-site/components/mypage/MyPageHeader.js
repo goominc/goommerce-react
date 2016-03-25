@@ -7,15 +7,11 @@ import i18n from 'commons/utils/i18n';
 
 export default React.createClass({
   propTypes: {
+    menus: PropTypes.array,
     menuName: PropTypes.string,
   },
   render() {
-    const menus = [
-      { key: 'pcMain.myMenu.myLinkshops', menuName: 'mypage' },
-      { key: 'pcMain.myMenu.myOrders', menuName: 'my_orders' },
-      { key: 'word.wishlist', menuName: 'wish_list' },
-      { key: 'pcMain.myMenu.favoriteBrands', menuName: 'favorite_brands' },
-    ];
+    const { menus } = this.props;
     const renderMenu = (menu) => {
       let className = 'mypage-nav-menu';
       if (menu.menuName === this.props.menuName) {

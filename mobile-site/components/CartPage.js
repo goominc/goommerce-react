@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
+import orderUtil from 'commons/utils/orderUtil';
+
 export default React.createClass({
   propTypes: {
     cart: PropTypes.object.isRequired,
@@ -10,52 +12,59 @@ export default React.createClass({
   },
   componentDidUpdate() {
     const { cart } = this.props;
-    if (cart && cart.productVariants && cart.productVariants.length) {
-      for (let i = 0; i < cart.productVariants.length; i++) {
-        if (cart.productVariants[i].count <= 1) {
-          $(`#minus-${cart.productVariants[i].id}`).addClass('disabled');
+    const productVariants = orderUtil.getProductVariantsFromCart(cart);
+    if (cart && productVariants && productVariants.length) {
+      for (let i = 0; i < productVariants.length; i++) {
+        const count = productVariants[i].count;
+        const variant = productVariants[i].productVariant;
+        if (count <= 1) {
+          $(`#minus-${variant.id}`).addClass('disabled');
         } else {
-          $(`#minus-${cart.productVariants[i].id}`).removeClass('disabled');
+          $(`#minus-${variant.id}`).removeClass('disabled');
         }
-        if (cart.productVariants[i].count >= 9999) {  // FIXME
-          $(`#plus-${cart.productVariants[i].id}`).addClass('disabled');
+        if (count >= 9999) {  // FIXME
+          $(`#plus-${variant.id}`).addClass('disabled');
         } else {
-          $(`#plus-${cart.productVariants[i].id}`).removeClass('disabled');
+          $(`#plus-${variant.id}`).removeClass('disabled');
         }
       }
     }
   },
   handleBuyAll() {
     const { cart } = this.props;
-    if (cart && cart.productVariants && cart.productVariants.length) {
-      this.props.createOrder(cart.productVariants);
+    const productVariants = orderUtil.getProductVariantsFromCart(cart);
+    if (cart && productVariants && productVariants.length) {
+      this.props.createOrder(productVariants.map(
+        (variant) => ({ id: variant.productVariant.id, count: variant.count }))
+      );
     }
   },
   renderCart() {
     const { cart } = this.props;
-    if (cart && cart.productVariants && cart.productVariants.length) {
-      return cart.productVariants.map((productVariant) => {
+    const productVariants = orderUtil.getProductVariantsFromCart(cart);
+    if (cart && productVariants && productVariants.length) {
+      return productVariants.map((productVariant) => {
         const updateCount = (event) => {
-          this.props.updateCartProduct(productVariant.id, event.target.value);
+          this.props.updateCartProduct(productVariant.productVariant.id, event.target.value);
         };
         const minusCount = () => {
           if (productVariant.count > 1) {
             productVariant.count--;
-            this.props.updateCartProduct(productVariant.id, productVariant.count);
-            $(`#count-${productVariant.id}`).val(productVariant.count);
+            this.props.updateCartProduct(productVariant.productVariant.id, productVariant.count);
+            $(`#count-${productVariant.productVariant.id}`).val(productVariant.count);
           }
         };
         const plusCount = () => {
           productVariant.count++; // FIXME
-          this.props.updateCartProduct(productVariant.id, productVariant.count);
-          $(`#count-${productVariant.id}`).val(productVariant.count);
+          this.props.updateCartProduct(productVariant.productVariant.id, productVariant.count);
+          $(`#count-${productVariant.productVariant.id}`).val(productVariant.count);
         };
         const deleteProduct = () => {
-          this.props.deleteCartProduct(productVariant.id);
+          this.props.deleteCartProduct(productVariant.productVariant.id);
         };
 
         return (
-          <article className="seller-products" key={productVariant.id}>
+          <article className="seller-products" key={productVariant.productVariant.id}>
             { /* <div className="seller bt p-24 pt-24 pb-24">
               <Link to="/brands/">
                 <div className="has-coupon"> Seller: <span className="seller-title">Special lady</span>
@@ -73,13 +82,13 @@ export default React.createClass({
               <li className="p-24">
                 <div className="pi-details mb-24 clearfix">
                   <div className="pi-details-pic">
-                    <Link to={`/products/${productVariant.productId}`}>
-                      <img src={productVariant.appImages.default[0].url} />
+                    <Link to={`/products/${productVariant.productVariant.productId}`}>
+                      <img src={productVariant.productVariant.appImages.default[0].url} />
                     </Link>
                   </div>
                   <div className="pi-details-desc">
                     <div className="pi-details-desc-row">
-                      <Link to={`/products/${productVariant.productId}`}>
+                      <Link to={`/products/${productVariant.productVariant.productId}`}>
                         <div className="details-title">2015 New Fashion Women Summer Dress Vintage Print Flower Strapless Bohemian Dress Causal Long Dress Vestidos Plus Size 4 Color
                         </div>
                       </Link>
@@ -97,13 +106,13 @@ export default React.createClass({
                     <span className="pre">Quantity&nbsp;:</span>
                     <div className="trim">
                       <span className="trim ms-numberic">
-                        <a className="ms-minus" id={`minus-${productVariant.id}`} onClick={minusCount}>
+                        <a className="ms-minus" id={`minus-${productVariant.productVariant.id}`} onClick={minusCount}>
                           <i className="ms-icon icon-minus"></i>
                         </a>
-                        <input id={`count-${productVariant.id}`} type="number" min="1"
+                        <input id={`count-${productVariant.productVariant.id}`} type="number" min="1"
                           defaultValue={productVariant.count} onChange={updateCount}
                         />
-                        <a className="ms-plus" id={`plus-${productVariant.id}`} onClick={plusCount}>
+                        <a className="ms-plus" id={`plus-${productVariant.productVariant.id}`} onClick={plusCount}>
                           <i className="ms-icon icon-plus"></i>
                         </a>
                       </span>
