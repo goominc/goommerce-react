@@ -6,6 +6,9 @@ const handleFavoriteBrandUpdate = (state, action) => {
   if (action.type === 'ADD_FAVORITE_BRAND') {
     const brand = action.payload;
     const newState = assign({}, state);
+    if (!newState.favoriteBrands) {
+      newState.favoriteBrands = [];
+    }
     newState.favoriteBrands.push(brand);
     return newState;
     // return state;
