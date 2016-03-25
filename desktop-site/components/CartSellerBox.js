@@ -2,10 +2,9 @@
 
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-import _ from 'lodash';
 
 import brandUtil from 'commons/utils/brandUtil';
-import { getProductThumbnail } from 'util';
+import { getProductThumbnail } from 'commons/utils/productUtil';
 
 export default React.createClass({
   propTypes: {

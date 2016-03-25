@@ -6,7 +6,7 @@ import ProductListLeft from 'components/ProductListLeft';
 import ProductListItems from 'components/ProductListItems';
 import PageButton from 'components/PageButton';
 
-import { getProductMainImage } from 'util';
+import { getProductMainImage } from 'commons/utils/productUtil';
 
 const _ = require('lodash');
 

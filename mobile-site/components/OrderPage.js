@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-import { getProductMainImage } from 'desktop-site/util';
+import { getProductMainImage } from 'commons/utils/productUtil';
 
 export default React.createClass({
   propTypes: {

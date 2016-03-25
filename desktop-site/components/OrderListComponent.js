@@ -3,7 +3,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-import { getProductThumbnail } from 'util';
+import { getProductThumbnail } from 'commons/utils/productUtil';
 
 import i18n from 'commons/utils/i18n';
 

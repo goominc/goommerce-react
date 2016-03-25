@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { CloudinaryImage } from 'react-cloudinary';
-import { getProductMainImage, getProductMainPrice } from '../../desktop-site/util';
+import { getProductMainImage, getProductMainPrice } from 'commons/utils/productUtil';
 import productUtil from 'commons/utils/productUtil';
 
 export default React.createClass({
