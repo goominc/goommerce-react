@@ -4,9 +4,7 @@ import ProductDetailBanner from 'components/ProductDetailBanner';
 // import ProductDetailRelated from 'components/ProductDetailRelated';
 import ProductDetailCart from 'components/ProductDetailCart';
 import brandUtil from 'commons/utils/brandUtil';
-import productUtil from 'commons/utils/productUtil';
-import { getProductMainPrice } from '../../desktop-site/util';
-
+import productUtil, { getProductMainPrice } from 'commons/utils/productUtil';
 
 export default React.createClass({
   propTypes: {

@@ -2,11 +2,9 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { CloudinaryImage } from 'react-cloudinary';
 
-import { getProductMainPrice } from 'util';
-
 import Breadcrumb from 'components/Breadcrumb';
 import brandUtil from 'commons/utils/brandUtil';
-import productUtil from 'commons/utils/productUtil';
+import productUtil, { getProductMainPrice } from 'commons/utils/productUtil';
 
 export default React.createClass({
   propTypes: {

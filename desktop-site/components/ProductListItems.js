@@ -4,10 +4,8 @@ import { CloudinaryImage } from 'react-cloudinary';
 
 import * as _ from 'lodash';
 
-import { getProductMainPrice } from 'util';
-import { initColorsAndSizes } from 'commons/utils/productUtil';
+import productUtil, { getProductMainPrice, initColorsAndSizes } from 'commons/utils/productUtil';
 import brandUtil from 'commons/utils/brandUtil';
-import productUtil from 'commons/utils/productUtil';
 
 export default React.createClass({
   propTypes: {

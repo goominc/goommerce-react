@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
-import { getProductMainPrice } from '../../desktop-site/util';
+import { getProductMainPrice } from 'commons/utils/productUtil';
 
 export default React.createClass({
   propTypes: {

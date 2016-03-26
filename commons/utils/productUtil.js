@@ -24,7 +24,7 @@ function getImages(product) {
   }
   return product.appImages.default || [];
 }
-export function getProductThumbnail(product) {
+exports.getProductThumbnail = (product) => {
   const defaultImages = getImages(product);
   if (defaultImages.length < 1) {
     return undefined;
@@ -35,9 +35,9 @@ export function getProductThumbnail(product) {
     }
   }
   return defaultImages[0].url;
-}
+};
 
-export function getProductMainImage(product) {
+exports.getProductMainImage = (product) => {
   const defaultImages = getImages(product);
   if (defaultImages.length < 1) {
     return undefined;
@@ -48,13 +48,13 @@ export function getProductMainImage(product) {
     }
   }
   return defaultImages[0];
-}
+};
 
-export function getProductMainPrice(product, currency) {
+exports.getProductMainPrice = (product, currency) => {
   if (!product.productVariants || product.productVariants.length < 1) {
     // TODO handle error
     return 0;
   }
   // TODO find default price
   return product.productVariants[0][currency];
-}
+};
