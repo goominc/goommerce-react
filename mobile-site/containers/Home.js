@@ -25,8 +25,8 @@ const Home = React.createClass({
       // q: query,
       // categoryId: params.categoryId === 'all' ? undefined : params.categoryId,
       // brandId,
-      from: 0,
-      size: 30,
+      offset: 0,
+      limit: 30,
     }).then((res) => this.setState(res));
   },
   render() {
