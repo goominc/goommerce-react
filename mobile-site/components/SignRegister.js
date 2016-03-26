@@ -106,7 +106,7 @@ export default React.createClass({
                               <div className="loading-icon"></div>
                               <div className="loading-mask-body"></div>
                             </div>
-                            <input id="fm-login-id" className="fm-text" type="text" tabIndex="1"
+                            <input id="fm-login-id" className="fm-text" type="email" tabIndex="1"
                               placeholder="Email address or member ID" autoComplete="off" autoCorrect="off"
                               autoCapitalize="off" valueLink={this.linkState('email')}
                             />
@@ -117,7 +117,7 @@ export default React.createClass({
                         <dt className="fm-label">
                           <div className="fm-label-wrap clr">
                             <span className="fm-label-extra">
-                              <a id="forgot-password-link" href="http://accounts.alibaba.com/user/company/forget_password_input_email.htm?lang=en_US&amp;aeHelpFlag=true" target="_blank">Forgot Password?</a>
+                              <a id="forgot-password-link" href="/">Forgot Password?</a>
                             </span>
                             <label htmlFor="fm-login-password">Password:</label>
                           </div>
@@ -149,7 +149,8 @@ export default React.createClass({
                 <div id="wap-register">
                   <form id="register-form" onSubmit={this.handleRegister}>
                     <div className="form-group">
-                      <input type="text" className="form-control" placeholder="Email" name="email"
+                      <input type="email" className="form-control" placeholder="Email" name="email"
+                        autoComplete="off" autoCorrect="off" autoCapitalize="off"
                         valueLink={this.linkState('emailNew')}
                       />
                       <div className="ms-msg-error">Please enter a valid Email Address</div>

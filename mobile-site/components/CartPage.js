@@ -10,6 +10,10 @@ export default React.createClass({
     deleteCartProduct: PropTypes.func.isRequired,
     createOrder: PropTypes.func.isRequired,
   },
+  contextTypes: {
+    activeLocale: PropTypes.string,
+    activeCurrency: PropTypes.string,
+  },
   componentDidUpdate() {
     const { cart } = this.props;
     const productVariants = orderUtil.getProductVariantsFromCart(cart);
@@ -41,7 +45,9 @@ export default React.createClass({
   },
   renderCart() {
     const { cart } = this.props;
+    const { activeLocale, activeCurrency } = this.context;
     const productVariants = orderUtil.getProductVariantsFromCart(cart);
+
     if (cart && productVariants && productVariants.length) {
       return productVariants.map((productVariant) => {
         const updateCount = (event) => {
@@ -89,15 +95,19 @@ export default React.createClass({
                   <div className="pi-details-desc">
                     <div className="pi-details-desc-row">
                       <Link to={`/products/${productVariant.productVariant.productId}`}>
-                        <div className="details-title">2015 New Fashion Women Summer Dress Vintage Print Flower Strapless Bohemian Dress Causal Long Dress Vestidos Plus Size 4 Color
+                        <div className="details-title">
+                          { /* TODO put product name here */ }
+                          {productVariant.productVariant.sku}
                         </div>
                       </Link>
                       <div className="details-price clearfix">
                         <div>
-                          <span className="sell-price">US ${productVariant.USD}</span>
+                          <span className="sell-price">
+                            {activeCurrency}&nbsp;{productVariant.productVariant[activeCurrency]}
+                          </span>
                         </div>
                       </div>
-                      <div className="details-sku ellipsis-multiple">{productVariant.sku}</div>
+                      <div className="details-sku ellipsis-multiple">{productVariant.productVariant.sku}</div>
                     </div>
                   </div>
                 </div>
@@ -171,10 +181,13 @@ export default React.createClass({
 
   render() {
     const { cart } = this.props;
-    let totalCost = 0;
-    if (cart && cart.total) {
-      totalCost = cart.total.USD;
+    const { activeLocale, activeCurrency } = this.context;
+    if (!cart || !cart.total) {
+      return (
+          <div />
+        );
     }
+
     return (
       <section className="shopcart-list" id="shopcart-list">
         { /* <div className="shipto bb p-24 mb-24">Ship my order(s) to
@@ -195,7 +208,7 @@ export default React.createClass({
           <div className="accounts bt bb p-24 pt-24 pb-24 clearfix">
             <div className="total">
               <span>Total&nbsp;:</span>
-              <span className="mt-16 price">US ${totalCost}</span>
+              <span className="mt-16 price">{activeCurrency} {cart.total[activeCurrency]}</span>
             </div>
             <div className="ui-button ui-button-main buyall" onClick={this.handleBuyAll}>Buy All</div>
           </div>

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-import { getProductMainImage } from 'commons/utils/productUtil';
+import { getName, getProductMainImage } from 'commons/utils/productUtil';
 
 export default React.createClass({
   propTypes: {
@@ -10,7 +10,18 @@ export default React.createClass({
     activeAddressId: PropTypes.number,
     inipay: PropTypes.func.isRequired,
   },
+  contextTypes: {
+    activeLocale: PropTypes.string,
+    activeCurrency: PropTypes.string,
+  },
   inipay() {
+    const { addresses, activeAddressId } = this.props;
+    if (!addresses || !Object.keys(addresses).length || !activeAddressId) {
+      // FIXME no alert
+      alert('please input shipping address');
+      return;
+    }
+
     this.props.inipay(this.props.order.id).then((res) => {
       this.refs.mid.value = res.mid;
       this.refs.oid.value = res.oid;
@@ -22,11 +33,11 @@ export default React.createClass({
     });
   },
   renderAddresses() {
-    const { addresses, activeAddressId } = this.props;
+    const { order, addresses, activeAddressId } = this.props;
     if (!addresses || !Object.keys(addresses).length) {
       return (
           <div className="order-section order-shipping-address">
-            <Link id="change-address" to="/orders/address/add">Add Shipping Address</Link>
+            <Link id="change-address" to={`/orders/${order.id}/address/add`}>Add Shipping Address</Link>
           </div>
         );
     }
@@ -51,12 +62,14 @@ export default React.createClass({
             <br /> {selectedAddress.detail.postalCode}
             <br />
           </p>
-          <Link id="change-address" to="/orders/address/select">Change Shipping Address</Link>
+          <Link id="change-address" to={`/orders/${order.id}/address`}>Change Shipping Address</Link>
         </div>
       );
   },
   renderProducts() {
     const { order } = this.props;
+    const { activeLocale, activeCurrency } = this.context;
+    // FIXME orderProduct -> orderProductVariant
     if (order && order.orderProducts && order.orderProducts.length) {
       return order.orderProducts.map((orderProduct) => {
         const renderBrand = () => {
@@ -93,7 +106,7 @@ export default React.createClass({
                   </div>
                 </dt>
                 <dd>
-                  2015 Over Slim Dresses Women Grey Half Sleeve Ruched Wrap Front Dress
+                  {getName(orderProduct.product)}
                 </dd>
               </dl>
 
@@ -106,7 +119,7 @@ export default React.createClass({
 
               <dl className="order-product-cost clearfix">
                 <dt>Price:</dt>
-                <dd><span className="cost"><b>US ${orderProduct.USD}</b></span>
+                <dd><span className="cost"><b>{activeCurrency} {orderProduct[activeCurrency]}</b></span>
                 </dd>
               </dl>
 
@@ -115,7 +128,7 @@ export default React.createClass({
                 <dd>
                   <span className="product-quantity">{orderProduct.orderedCount}</span>
                   <span className="product-unit">piece</span>
-                  <div className="product-error-message">only 9999 units available</div>
+                  { /* <div className="product-error-message">only 9999 units available</div> */ }
                 </dd>
               </dl>
 
@@ -172,7 +185,9 @@ export default React.createClass({
               </li> */ }
               <li className="checkout-total clearfix">
                 <span className="checkout-item"><b>Total:</b></span>
-                <span className="cost checkout-price"><b>US ${orderProduct.totalUSD}</b></span>
+                <span className="cost checkout-price"><b>
+                  {activeCurrency} {orderProduct[`total${activeCurrency}`]}
+                </b></span>
               </li>
             </ul>
           </div>
@@ -183,6 +198,7 @@ export default React.createClass({
   },
   render() {
     const { order } = this.props;
+    const { activeLocale, activeCurrency } = this.context;
     if (!order) {
       return <div />;
     }
@@ -212,7 +228,9 @@ export default React.createClass({
             */ }
             <li className="checkout-total clearfix">
               <span className="checkout-item"><b>Grand total&nbsp;:</b></span>
-              <span id="checkout-price-total" className="cost"><b>US ${order.totalEstimationUSD}</b></span>
+              <span id="checkout-price-total" className="cost"><b>
+                {activeCurrency} {order[`totalEstimation${activeCurrency}`]}
+              </b></span>
             </li>
           </ul>
           <form method="post" acceptCharset="euc-kr" ref="inipay">

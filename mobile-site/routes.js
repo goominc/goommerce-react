@@ -6,6 +6,7 @@ import {
   Category,
   Home,
   Order,
+  OrderDone,
   ProductDetail,
   ProductList,
   Brand,
@@ -31,9 +32,10 @@ export default function configure() {
         <Route path="/products/:productId" component={ProductDetail} />
         <Route path="/cart" component={Cart} />
         <Route path="/orders/:orderId" component={Order} />
-        <Route path="/orders/address/select" component={AddressList} />
-        <Route path="/orders/address/add" component={AddressEdit} />
-        <Route path="/orders/address/change/:addressId" component={AddressEdit} />
+        <Route path="/orders/:orderId/done" component={OrderDone} />
+        <Route path="/orders/:orderId/address" component={AddressList} />
+        <Route path="/orders/:orderId/address/:addressId" component={AddressEdit} />
+        { /* <Route path="/orders/:orderId/address/change/:addressId" component={AddressEdit} /> */ }
         <Route path="/myOrder" component={MyOrder} />
         <Route path="/myOrder/:orderId" component={MyOrderDetail} />
         <Route path="/wishlist" component={WishList} />

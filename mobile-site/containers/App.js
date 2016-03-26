@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 
 import { ApiAction, toggleMenu, toggleSignRegister, toggleSearch,
          toggleLanguage, toggleCurrency } from 'redux/actions';
-const { loadCartIfEmpty, changeLocale, changeCurrency, loadCategories, login, signup, logout } = ApiAction;
+const { loadCartIfEmpty, changeLocale, changeCurrency, loadCategories, searchKeyword,
+        login, signup, logout } = ApiAction;
 
 import AppHeader from 'components/AppHeader';
 import CommonFooter from 'components/CommonFooter';
@@ -30,6 +31,7 @@ const App = React.createClass({
     changeCurrency: PropTypes.func.isRequired,
     changeLocale: PropTypes.func.isRequired,
     loadCategories: PropTypes.func.isRequired,
+    searchKeyword: PropTypes.func.isRequired,
     login: PropTypes.func.isRequired,
     signup: PropTypes.func.isRequired,
     logout: PropTypes.func.isRequired,
@@ -122,7 +124,9 @@ const App = React.createClass({
         <SignRegister show={showSign} toggleSignRegister={this.props.toggleSignRegister}
           login={this._login} register={this._signup}
         />
-        <Search show={showSearch} toggle={this.props.toggleSearch} search={this.handleSearch} />
+        <Search show={showSearch} toggle={this.props.toggleSearch} searchKeyword={this.props.searchKeyword}
+          search={this.handleSearch}
+        />
         <Language locales={locales} activeLocale={activeLocale}
           show={showLanguage} toggle={this.props.toggleLanguage} change={this.props.changeLocale}
         />
@@ -140,6 +144,7 @@ export default connect(
     showLanguage: state.menuAddon.showLanguage, showCurrency: state.menuAddon.showCurrency,
     activeLocale: state.i18n.activeLocale, activeCurrency: state.currency.activeCurrency,
     header: state.header }),
-  { loadCartIfEmpty, changeLocale, changeCurrency, loadCategories, login, signup, logout, toggleMenu,
+  { loadCartIfEmpty, changeLocale, changeCurrency, loadCategories, searchKeyword,
+    login, signup, logout, toggleMenu,
     toggleLanguage, toggleCurrency, toggleSignRegister, toggleSearch }
 )(App);

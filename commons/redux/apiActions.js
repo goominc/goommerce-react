@@ -386,3 +386,11 @@ export function initCartForBigBuyer() {
     });
   };
 }
+
+export function searchKeyword(keyword, type, category, brand) {
+  return createFetchAction({
+    type: 'SEARCH_KEYWORD',
+    endpoint: `/api/v1/complete/${keyword}`,
+    body: { type, category, brand },
+  });
+}

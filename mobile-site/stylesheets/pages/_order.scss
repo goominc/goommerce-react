@@ -346,4 +346,432 @@
   color: #FFF;
   background: #666
 }
+.am-content h5 {
+  margin: 0;
+  padding: 0
+}
+.am-content h3 {
+  font-size: 16px
+}
+.item-gap-content {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  margin-top: 8px
+}
+.item-gap-content:first-child {
+  border-top: 0 none;
+  margin-top: 0
+}
+.am-list-item .item-view {
+  height: 24px;
+  line-height: 24px
+}
+.am-list-item .item-choose {
+  position: relative;
+  margin-top: 5px
+}
+.am-list .am-list-item.selected-method {
+  background: #e5f6ff;
+  overflow: hidden;
+  padding: 0 10px;
+  height: 46px;
+  display: -webkit-box;
+  display: box
+}
+.am-list .am-list-item img {
+  margin-right: 8px
+}
+.am-list .selected-method img {
+  padding: 10px 0
+}
+.am-list .select-name-wrap {
+  display: block;
+  -webkit-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1
+}
+.am-list .select-name-verh {
+  height: 44px;
+  width: 0;
+  vertical-align: middle;
+  display: inline-block
+}
+.am-list .selected-method-name {
+  display: inline-block;
+  vertical-align: middle;
+  white-space: nowrap;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis
+}
+.am-list .selected-method-name .view-tips {
+  display: block;
+  font-size: 10px;
+  color: #999;
+  line-height: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis
+}
+.item-content {
+  padding: 10px;
+  background: #fff
+}
+.fn-hide {
+  display: none!important
+}
+.fn-left {
+  float: left
+}
+.fn-right {
+  float: right
+}
+.am-ft-xxl {
+  font-size: 20px!important
+}
+.am-ft-md {
+  font-size: 16px!important
+}
+.am-ft-sm {
+  font-size: 14px!important
+}
+.am-ft-ssl {
+  font-size: 12px!important
+}
+.am-ft-sssl {
+  font-size: 10px!important
+}
+.am-ft-black {
+  color: #000!important
+}
+.am-ft-gray-dark {
+  color: #666!important
+}
+.am-ft-gray {
+  color: #999!important
+}
+.am-ft-blue {
+  color: #2861d7!important
+}
+.am-ft-orange {
+  color: #f60!important
+}
+.am-ft-green {
+  color: #490!important
+}
+.am-ft-ellipsis {
+  width: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap
+}
+.am-flexbox {
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  text-align: left;
+  display: -webkit-box!important;
+  display: box!important;
+  -webkit-box-orient: horizontal;
+  -ms-box-orient: horizontal;
+  -webkit-box-pack: center;
+  -ms-box-pack: center;
+  -webkit-box-align: center;
+  -ms-box-align: center
+}
+.am-flexbox .am-flexbox-item {
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+  margin-left: 8px;
+  min-width: 20px
+}
+.am-flexbox-item:first-child {
+  margin-left: 0
+}
+.payment-result {
+  position: relative;
+  line-height: 1.2;
+  padding-left: 50px
+}
+.payment-result a {
+  text-decoration: underline
+}
+.payment-result a:link, .payment-result a:visited {
+  color: #999
+}
+.payment-result p {
+  font-size: 14px;
+  margin: 5px 0
+}
+.payment-result .result-icon {
+  position: absolute;
+  left: 4px;
+  top: 8px;
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  background-size: 100% 100%;
+  background-repeat: no-repeat
+}
+.payment-result .icon-success {
+  background-image: url(https://t.alipayobjects.com/images/T1v2NeXX8mXXXXXXXX.png)
+}
+.payment-result .icon-error {
+  background-image: url(https://t.alipayobjects.com/images/T11Q0cXexCXXXXXXXX.png)
+}
+.payment-result .icon-warn {
+  background-image: url(https://t.alipayobjects.com/images/T1ik0cXcXDXXXXXXXX.png)
+}
+.payment-orders-list li {
+  position: relative;
+  padding-left: 24px
+}
+.payment-orders-list li.succ:before, .payment-orders-list li.error:before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 2px;
+  width: 14px;
+  height: 14px;
+  background-size: 100% 100%;
+  background-repeat: no-repeat
+}
+.payment-orders-list li.succ:before {
+  background-image: url(https://t.alipayobjects.com/images/T1wk0cXfl4XXXXXXXX.png)
+}
+.payment-orders-list li.error:before {
+  background-image: url(https://t.alipayobjects.com/images/T1pQ8cXeRzXXXXXXXX.png)
+}
+.payment-result .result-tit {
+  color: #333;
+  font-size: 18px
+}
+.payment-result .pay-money {
+  font-size: 16px;
+  vertical-align: baseline;
+  white-space: nowrap
+}
+.pay-result-review {
+  font-size: 14px;
+  color: #333;
+  padding-top: 10px
+}
+.payment_view {
+  text-align: center;
+  padding-bottom: 15px
+}
+.pay_card {
+  margin: 5px 0 10px
+}
+.pay_card b {
+  display: inline-block;
+  vertical-align: middle;
+  height: 24px;
+  line-height: 24px
+}
+.card_no {
+  font-weight: 700
+}
+.user_profit.am-flexbox {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 12px;
+  line-height: 1.2em;
+  color: #9B9B9B
+}
+.user_profit li.am-flexbox-item {
+  position: relative;
+  width: 33%;
+  padding-top: 38px
+}
+.user_profit li:before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  background-image: url('https://t.alipayobjects.com/images/rmsweb/T1Mf4iXeVjXXXXXXXX.png');
+  background-size: auto 32px;
+  background-repeat: no-repeat
+}
+.user_profit .profit_1_step:before {
+  width: 40px;
+  height: 32px;
+  margin-left: -15px;
+  background-position: 0 0
+}
+.user_profit .profit_compen:before {
+  width: 43px;
+  height: 32px;
+  margin-left: -15px;
+  background-position: -95px 0
+}
+.user_profit .profit_fraud:before {
+  width: 43px;
+  height: 32px;
+  margin-left: -15px;
+  background-position: -47px 0
+}
+.payment_desc {
+  margin-top: 15px;
+  font-size: 12px;
+  color: #9B9B9B;
+  line-height: 1.4em
+}
+.payment_desc u {
+  color: #666;
+  text-decoration: underline
+}
+ul.payment_support.am-flexbox {
+  margin: 10px 10px 0;
+  text-align: center
+}
+.payment_sec_txt {
+  margin: 15px;
+  font-size: 14px;
+  line-height: 1.5em
+}
+.item-content.coupon-pay-list {
+  /*display: -webkit-flex;*/
+  /*display: -webkit-box;*/
+  /*display: flex;*/
+  padding: 0 10px 10px 15px;
+}
+.coupon-pay-item {
+  /*-webkit-flex: 1;*/
+  /*flex: 1;*/
+  /*-webkit-box-flex: 1;*/
+  /*box-flex: 1;*/
+  /*-webkit-box-sizing: border-box;*/
+  /*box-sizing: border-box;*/
+  /*text-align: center;*/
+  color: #fff;
+}
+.coupon-pay {
+  position: relative;
+  margin-bottom: 5px;
+  display: inline-block;
+  text-align: left;
+  width: 140px;
+  height: 73px;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.coupon-tit {
+  position: absolute;
+  font-size: 10px;
+  left: 5px;
+  top: 4px;
+  height: 12px;
+  line-height: 12px;
+  overflow: hidden;
+}
+.coupon-desc {
+  font-size: 22px;
+  text-align: center;
+  padding-top: 16px;
+}
+.coupon-desc b {
+  font-size: 12px;
+  line-height: 12px;
+  ;
+  display: block;
+}
+.coupon-cd {
+  font-size: 11px;
+  text-align: center;
+  padding: 0 5px;
+}
+.coupon-type-AE_COUPON .coupon-pay {
+  background-image: url('https://t.alipayobjects.com/images/rmsweb/T1M3XiXapXXXXXXXXX.png');
+}
+.coupon-type-THIRD_COUPON .coupon-pay {
+  background-image: url('https://t.alipayobjects.com/images/rmsweb/T1efViXXBbXXXXXXXX.png');
+}
+.coupon-type-THIRD_COUPON .coupon-desc b {
+  font-size: 12px;
+}
+.ru_RU .coupon-desc {
+  padding-top: 12px;
+  margin-bottom: -2px;
+}
+.ru_RU .coupon-desc b {
+  display: block;
+  font-size: 11px;
+  margin-bottom: -3px;
+}
+.ru_RU .coupon-type-THIRD_COUPON .coupon-desc {
+  padding-top: 16px;
+}
+.ru_RU .coupon-type-THIRD_COUPON .coupon-desc b {
+  margin: -1px 0 0;
+}
+.list-len-1 .coupon-pay {
+  display: block;
+  margin: 0 auto;
+}
+.list-len-2 {
+  text-align: center;
+}
+.aex-gap {
+  padding: 10px
+}
+.aex-subm {
+  margin: 0 -10px;
+  border: 1px solid #ddd;
+  border-width: 1px 0
+}
+.aex-button {
+  display: inline-block;
+  margin: 0;
+  padding: 4px 8px;
+  width: 100%;
+  text-align: center;
+  font-size: 18px;
+  line-height: 2;
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -webkit-border-bottom-left-radius: 5px;
+  -webkit-border-bottom-right-radius: 5px;
+  border-radius: 5px;
+  border: 0 none;
+  background: #e62e04;
+  color: #fff!important;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box
+}
+.pt_BR .aex-button, .ru_RU .aex-button {
+  font-size: 16px
+}
+.aex-button[disabled=disabled] {
+  background: #ddd
+}
+.aex-button.white-btn {
+  border: 1px solid #999;
+  background: #fff;
+  color: #333!important
+}
+.aex-button.white-btn[disabled=disabled] {
+  color: #bbb!important
+}
+a.aex-button:link, a.aex-button:visited {
+  text-decoration: none
+}
+.aex-gap .aex-button {
+  margin-top: 10px
+}
+.aex-gap .aex-button:first-child {
+  margin-top: 0
+}
+.am-message-sysError {
+  text-align: center;
+  margin-top: 30px;
+  color: #999
+}
+.am-message-sysError img {
+  margin-bottom: 15px
+}
 

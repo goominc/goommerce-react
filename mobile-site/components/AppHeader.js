@@ -22,7 +22,7 @@ export default React.createClass({
           );
       }
       return (
-          <span id="gm-title" className="title">{header.titleText}</span>
+          <Link to="/"><span id="gm-title" className="title">{header.titleText}</span></Link>
         );
     };
     const renderSearch = () => {

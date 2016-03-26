@@ -7,6 +7,7 @@ const { loadAddresses, setActiveAddressId } = ApiAction;
 
 const AddressList = React.createClass({
   propTypes: {
+    params: PropTypes.object.isRequired,
     cart: PropTypes.object,
     addresses: PropTypes.object,
     activeAddressId: PropTypes.number,
@@ -14,20 +15,24 @@ const AddressList = React.createClass({
     loadAddresses: PropTypes.func.isRequired,
     setActiveAddressId: PropTypes.func.isRequired,
   },
+  contextTypes: {
+    router: PropTypes.object.isRequired,
+  },
   componentDidMount() {
     this.props.setHeader(false, false, false, 'Shipping Address');
     this.props.loadAddresses();
   },
   renderAddresses() {
-    const { addresses, activeAddressId } = this.props;
+    const { params, addresses, activeAddressId } = this.props;
     if (addresses && Object.keys(addresses).length) {
       return $.map(addresses, (address) => {
         const handleSetAddress = () => {
           this.props.setActiveAddressId(address.id);
+          this.context.router.push(`/orders/${params.orderId}`);
         };
         return (
           <li key={address.id}>
-            <Link id="manageAddressHref" to={`/orders/address/change/${address.id}`}>
+            <Link id="manageAddressHref" to={`/orders/${params.orderId}/address/${address.id}`}>
               <div className="name">{address.detail.name}
                 <span className="edit-address">Edit Address<i className="ms-icon icon-arrow-right"></i></span>
               </div>
@@ -49,13 +54,14 @@ const AddressList = React.createClass({
     return null;
   },
   render() {
+    const { params } = this.props;
     return (
       <div className="addressList">
         <ul>
           {this.renderAddresses()}
         </ul>
         <div className="add-address">
-          <Link to="/orders/address/add">
+          <Link to={`/orders/${params.orderId}/address/add`}>
             <i className="ms-icon icon-add-circle"></i>Add Shipping Address
           </Link>
         </div>
