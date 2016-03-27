@@ -28,10 +28,6 @@ export default React.createClass({
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
   },
-  handleAddWish() {
-    // TODO login check
-    this.props.addWish(this.props.product.id);
-  },
   render() {
     const { product, images, showCart, variants, colors, sizes,
       currentColor, currentSize, currentVariant } = this.props;
@@ -64,7 +60,7 @@ export default React.createClass({
 
     return (
       <article className="ms-detail">
-        <ProductDetailBanner images={images} addWish={this.handleAddWish} />
+        <ProductDetailBanner images={images} addWish={this.props.addWish} />
 
         <p className="ms-detail-subject ms-pd-lr12">{productUtil.getName(product)}</p>
 

@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { ApiAction, setHeader, toggleProductCart, setProductColor, setProductSize } from 'redux/actions';
+import { ApiAction, setHeader, toggleProductCart,
+         setProductColor, setProductSize, toggleSignRegister } from 'redux/actions';
 const { loadProduct, addWish, addCartProduct, createOrder } = ApiAction;
 
 import ProductDetailPage from 'components/ProductDetailPage';
@@ -16,8 +17,10 @@ const ProductDetail = React.createClass({
     toggleProductCart: PropTypes.func.isRequired,
     setProductColor: PropTypes.func.isRequired,
     setProductSize: PropTypes.func.isRequired,
+    toggleSignRegister: PropTypes.func.isRequired,
     params: PropTypes.object,
     showCart: PropTypes.bool.isRequired,
+    auth: PropTypes.object.isRequired,
     color: PropTypes.string,
     size: PropTypes.string,
     variant: PropTypes.string,
@@ -91,23 +94,40 @@ const ProductDetail = React.createClass({
     return sizes;
   },
   wrapAddCart(count) {
-    if (this.props.variant) {
-      const variants = this.state.productVariants;
-      for (let i = 0; i < variants.length; i++) {
-        if (variants[i].sku.indexOf(this.props.variant) >= 0) {
-          return this.props.addCartProduct(variants[i].id, count);
+    const { auth } = this.props;
+    if (auth.bearer) {
+      if (this.props.variant) {
+        const variants = this.state.productVariants;
+        for (let i = 0; i < variants.length; i++) {
+          if (variants[i].sku.indexOf(this.props.variant) >= 0) {
+            return this.props.addCartProduct(variants[i].id, count);
+          }
         }
       }
+      return null;
     }
-    return null;
+    return this.props.toggleSignRegister(true, 'sign');
   },
   wrapOrder(productVariants) {
-    if (!(productVariants instanceof Array)) {
-      productVariants = [productVariants];
+    const { auth } = this.props;
+    if (auth.bearer) {
+      if (!(productVariants instanceof Array)) {
+        productVariants = [productVariants];
+      }
+      this.props.createOrder({
+        productVariants: productVariants.map((variant) => ({ id: variant.id, count: variant.count })),
+      }).then((order) => this.context.router.push(`/orders/${order.id}`));
+    } else {
+      this.props.toggleSignRegister(true, 'sign');
     }
-    this.props.createOrder({
-      productVariants: productVariants.map((variant) => ({ id: variant.id, count: variant.count })),
-    }).then((order) => this.context.router.push(`/orders/${order.id}`));
+  },
+  wrapWish() {
+    const { auth, params } = this.props;
+    if (auth.bearer) {
+      return this.props.addWish(params.productId);
+    }
+    this.props.toggleSignRegister(true, 'sign');
+    return null;
   },
   buildImages() {
     const { product } = this.state;
@@ -141,16 +161,17 @@ const ProductDetail = React.createClass({
         currentColor={this.props.color} currentSize={this.props.size}
         currentVariant={this.props.variant} showCart={this.props.showCart} toggleCart={this.props.toggleProductCart}
         setColor={this.props.setProductColor} setSize={this.props.setProductSize} addCart={this.wrapAddCart}
-        buyNow={this.wrapOrder} addWish={this.props.addWish}
+        buyNow={this.wrapOrder} addWish={this.wrapWish}
       />
       );
   },
 });
 
 export default connect(
-  (state) => ({ showCart: state.pageProductDetail.showCart,
+  (state) => ({ auth: state.auth,
+    showCart: state.pageProductDetail.showCart,
    color: state.pageProductDetail.selectColor, size: state.pageProductDetail.selectSize,
    variant: state.pageProductDetail.selectVariant }),
   { loadProduct, addWish, addCartProduct, createOrder,
-    setHeader, toggleProductCart, setProductColor, setProductSize }
+    setHeader, toggleProductCart, setProductColor, setProductSize, toggleSignRegister }
 )(ProductDetail);

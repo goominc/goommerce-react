@@ -75,6 +75,7 @@ const ProductList = React.createClass({
     if (currentCount === maxCount) {
       return;
     }
+    $('.list-main .loading').show();
     this.props.searchProducts({
       q: params.query ? params.query : undefined,
       categoryId: params.categoryId === 'all' ? undefined : params.categoryId,
@@ -83,6 +84,7 @@ const ProductList = React.createClass({
     }).then((res) => {
       const mergeProducts = this.state.products.concat(res.products);
       this.setState({ products: mergeProducts, currentCount: mergeProducts.length });
+      $('.list-main .loading').hide();
     });
   },
   render() {
@@ -121,6 +123,7 @@ const ProductList = React.createClass({
           onClick={this.props.toggleProductSort}
         />
         <ProductListItem viewType={viewType.type} products={this.state.products || []} />
+        <div className="loading"></div>
       </section>
       );
   },

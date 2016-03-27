@@ -6,9 +6,13 @@ export default React.createClass({
     categories: PropTypes.object.isRequired,
     currentCategory: PropTypes.object.isRequired,
   },
+  contextTypes: {
+    activeLocale: PropTypes.string,
+  },
 
   render() {
     const { currentCategory } = this.props;
+    const { activeLocale } = this.context;
     const renderCategory = () => {
       if (currentCategory && currentCategory.children) {
         return currentCategory.children.map((cat) => {
@@ -22,7 +26,7 @@ export default React.createClass({
           return (
             <li key={cat.id}>
               <span className={`icon-${cat.id}`}></span>
-              <Link to={cateLink} rel="nofollow">{cat.name.en}</Link>
+              <Link to={cateLink} rel="nofollow">{cat.name[activeLocale]}</Link>
             </li>
             );
         });

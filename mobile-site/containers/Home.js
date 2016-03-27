@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import i18n from 'commons/utils/i18n';
 
 import { ApiAction, setHeader } from 'redux/actions';
 const { searchProducts } = ApiAction;
@@ -40,7 +41,7 @@ const Home = React.createClass({
           <section className="promotion-block categories">
             <header>
               <Link to="/categoryList">
-                All Categories
+                {i18n.get('word.allCategories')}
               </Link>
             </header>
             <article>

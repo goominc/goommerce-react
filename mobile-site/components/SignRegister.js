@@ -20,7 +20,37 @@ export default React.createClass({
   },
   handleRegister(e) {
     e.preventDefault();
-    const { emailNew, passwordNew } = this.state;
+    const { emailNew, passwordNew, passwordNewRepeat } = this.state;
+    const emailRegExp = '/[0-9a-zA-Z][_0-9a-zA-Z-]*@[_0-9a-zA-Z-]+(\.[_0-9a-zA-Z-]+){1,2}$/';
+
+    if (!emailNew.match(emailRegExp)) {
+      $('#reg-email').addClass('verify-error');
+      $('#reg-email .ms-msg-error').show();
+      return;
+    } else {
+      $('#reg-email').removeClass('verify-error');
+      $('#reg-email .ms-msg-error').hide();
+    }
+
+    /* TODO password validation(special char, length, etc)
+    if (passwordNew.length < 6) {
+      $('#reg-password').addClass('verify-error');
+      $('#reg-password .ms-msg-error').show();
+      return;
+    } else {
+      $('#reg-password').removeClass('verify-error');
+      $('#reg-password .ms-msg-error').hide();
+    } */
+
+    if (passwordNew !== passwordNewRepeat) {
+      $('#reg-password-repeat').addClass('verify-error');
+      $('#reg-password-repeat .ms-msg-error').show();
+      return;
+    } else {
+      $('#reg-password-repeat').removeClass('verify-error');
+      $('#reg-password-repeat .ms-msg-error').hide();
+    }
+
     this.props.register({
       email: emailNew,
       password: passwordNew,
@@ -148,7 +178,7 @@ export default React.createClass({
               <div className="tab-pane" style={registerStyle}>
                 <div id="wap-register">
                   <form id="register-form" onSubmit={this.handleRegister}>
-                    <div className="form-group">
+                    <div className="form-group" id="reg-email">
                       <input type="email" className="form-control" placeholder="Email" name="email"
                         autoComplete="off" autoCorrect="off" autoCapitalize="off"
                         valueLink={this.linkState('emailNew')}
@@ -166,13 +196,13 @@ export default React.createClass({
                       <div className="ms-msg-error">Please enter a valid Last Name</div>
                     </div>
                     */ }
-                    <div className="form-group">
+                    <div className="form-group" id="reg-password">
                       <input type="password" className="form-control" placeholder="Password" name="password"
                         valueLink={this.linkState('passwordNew')}
                       />
                       <div className="ms-msg-error">Please enter 6 - 20 characters (A-Z, a-z, 0-9 only)</div>
                     </div>
-                    <div className="form-group">
+                    <div className="form-group" id="reg-password-repeat">
                       <input type="password" className="form-control" placeholder="Reenter Password" name=""
                         valueLink={this.linkState('passwordNewRepeat')}
                       />

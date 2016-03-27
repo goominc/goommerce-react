@@ -6,9 +6,22 @@ import orderUtil from 'commons/utils/orderUtil';
 export default React.createClass({
   propTypes: {
     toggle: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
     cart: PropTypes.object.isRequired,
     header: PropTypes.object.isRequired,
     toggleSearch: PropTypes.func.isRequired,
+    toggleSignRegister: PropTypes.func.isRequired,
+  },
+  contextTypes: {
+    router: PropTypes.object.isRequired,
+  },
+  handleWithAuth(path) {
+    const { auth } = this.props;
+    if (auth.bearer) {
+      return this.context.router.push(path);
+    }
+    this.props.toggleSignRegister(true, 'sign');
+    return null;
   },
   render() {
     const { header, cart } = this.props;
@@ -33,16 +46,16 @@ export default React.createClass({
       }
       return null;
     };
-    function renderCart() {
+    const renderCart = () => {
       if (header.showCart) {
         return (
-          <Link to="/cart" className="cart">
+          <div className="cart" onClick={() => this.handleWithAuth('/cart')}>
             <span className="cart-count">{cartCount}</span>
-          </Link>
+          </div>
           );
       }
       return null;
-    }
+    };
 
     return (
       <header className="gm-header">

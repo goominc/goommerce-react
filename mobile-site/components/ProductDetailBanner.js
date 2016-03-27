@@ -9,9 +9,14 @@ export default React.createClass({
     $('.img-list').owlCarousel({ autoPlay: 10000, items: 1 });
   },
   handleAddWish() {
-    this.props.addWish();
-    $('.icon-wishlist').addClass('icon-wishlist-focus');
-    $('.icon-wishlist-focus').removeClass('icon-wishlist');
+    // TODO check wishlist & remove wish item
+    const promise = this.props.addWish();
+    if (promise) {
+      promise.then(() => {
+        $('.icon-wishlist').addClass('icon-wishlist-focus');
+        $('.icon-wishlist-focus').removeClass('icon-wishlist');
+      });
+    }
   },
   render() {
     const { images } = this.props;

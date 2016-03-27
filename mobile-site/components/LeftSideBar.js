@@ -92,6 +92,11 @@ export default React.createClass({
                 <span>Home</span>
               </Link>
             </li>
+            <li className="drawer-category">
+              <Link to="/categoryList" onClick={this.props.toggle}><i className="ms-icon icon-listsmall"></i>
+                <span>{i18n.get('word.allCategories')}</span>
+              </Link>
+            </li>
             <li className="drawer-myOrder">
               <div onClick={() => this.handleWithAuth('/myOrder')}><i className="ms-icon icon-order"></i>
                 <span>My Orders</span>

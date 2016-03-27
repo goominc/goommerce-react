@@ -12,14 +12,20 @@ const Category = React.createClass({
     loadCategories: PropTypes.func.isRequired,
     setHeader: PropTypes.func.isRequired,
     params: PropTypes.object,
+    activeLocale: PropTypes.string,
   },
   componentDidMount() {
+    this.props.setHeader(false, true, true, '');
     this.props.loadCategories();
   },
   componentWillReceiveProps(nextProps) {
-    const { params, categories } = nextProps;
-    if (params && params.categoryId && categories[params.categoryId]) {
-      this.props.setHeader(false, true, true, categories[params.categoryId].name.en);
+    const { params, categories, activeLocale } = nextProps;
+
+    if ((params && params.categoryId && categories[params.categoryId])
+    || (this.props.activeLocale !== activeLocale)) {
+      this.props.setHeader(false, true, true, categories[params.categoryId].name[activeLocale]);
+    } else {
+      this.props.setHeader(true, true, true, '');
     }
   },
   render() {
@@ -38,6 +44,6 @@ const Category = React.createClass({
 });
 
 export default connect(
-  (state) => ({ categories: state.categories }),
+  (state) => ({ categories: state.categories, activeLocale: state.i18n.activeLocale }),
   { loadCategories, setHeader }
 )(Category);

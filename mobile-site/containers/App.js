@@ -114,7 +114,9 @@ const App = React.createClass({
     }
     return (
       <div id="" style={fixedStyle}>
-        <AppHeader toggle={this.props.toggleMenu} cart={cart} header={header} toggleSearch={this.props.toggleSearch} />
+        <AppHeader toggle={this.props.toggleMenu} auth={auth} cart={cart} header={header}
+          toggleSearch={this.props.toggleSearch} toggleSignRegister={this.props.toggleSignRegister}
+        />
         {children}
         <CommonFooter />
         <LeftSideBar show={showMenu} toggle={this.props.toggleMenu} toggleSignRegister={this.props.toggleSignRegister}
