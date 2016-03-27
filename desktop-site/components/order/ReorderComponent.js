@@ -26,7 +26,7 @@ export default React.createClass({
       <div className="mypage-right-box">
         <h2>ReOrder</h2>
         <div className="order-status-bar">
-          {reorderTabs.map((tab, index) => (<span className={currentIndex === index ? 'active' : ''}>{tab}</span>))}
+          {reorderTabs.map((tab, index) => (<span key={index} className={currentIndex === index ? 'active' : ''}>{tab}</span>))}
         </div>
         <div className="order-list-container">
           {components[currentIndex]}
