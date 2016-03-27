@@ -1,0 +1,105 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to 'reorder' page.
+// -----------------------------------------------------------------------------
+
+.reorder-brands-panel {
+  border-top: 1px solid transparent;
+  margin-bottom: $margin-20 - 2px;
+  width: 100%;
+  .brand-item {
+    $height: 40px;
+    border: 1px solid #e1e4e6;
+    display: inline-block;
+    height: $height;
+    line-height: $height;
+    margin-left: -1px;
+    margin-top: -1px;
+    overflow: hidden;
+    text-align: center;
+    width: 100px;
+    z-index: 0;
+    &:hover,&.active {
+      border-color: #87afd3;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+    }
+  }
+  .plus-button {
+    font-size: 30px;
+  }
+}
+
+.reorder-products-panel {
+  width: 100%;
+  .product-item {
+    $image-width: 50px;
+    $count-width: 53px;
+    $text-height: 30px;
+    $padding: 10px;
+    border: 1px solid #ddd;
+    display: inline-block;
+    margin-right: $margin-15;
+    padding: 0 $padding;
+    width: $image-width + $count-width + $padding * 2 + 5px;
+    .top-name {
+      display: inline-block;
+      height: $text-height;
+      line-height: $text-height;
+      text-align: center;
+      width: 100%;
+    }
+    .img-wrap {
+      // border: 1px solid #ddd;
+      /*
+      box-sizing: content-box;
+      display: inline-block;
+      vertical-align: top;
+      width: $image-width;
+      @include default-responsive-img-wrap();
+      */
+      display: inline-block;
+      position: relative;
+      width: 50px;
+      .dummy {
+        margin-top: 150%;
+      }
+      img {
+        border: 1px solid #ddd;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+      }
+      .img-front1 {
+        top: 2px;
+        left: -2px;
+      }
+    }
+    .right-count {
+      display: inline-block;
+      height: $image-width / 2 * 3;
+      margin-left: 3px;
+      position: relative;
+      width: $count-width;
+      .count-box {
+        $height: 23px;
+        border: 1px solid #aaa;
+        height: $height;
+        margin-top: - $height / 2;
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        @include input-number-contents(32px, 20px, $height);
+      }
+    }
+    .bottom-price {
+      display: inline-block;
+      height: $text-height;
+      line-height: $text-height;
+      text-align: center;
+      width: 100%;
+    }
+  }
+}

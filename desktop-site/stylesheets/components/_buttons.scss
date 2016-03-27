@@ -38,3 +38,82 @@
     }
   }
 }
+
+@mixin input-number-contents($input-width, $arrow-width, $height) {
+  input {
+    border: 0;
+    color: #333;
+    display: inline-block;
+    height: $height - 2px;
+    line-height: $height - 2px;
+    padding: 0;
+    text-align: center;
+    vertical-align: top;
+    width: $input-width;
+  }
+  @mixin arrow() {
+    background-image: url('http://imgs.coupangcdn.com/image/coupang/detail/bg_detail_sprite_160322.png');
+    background-repeat: no-repeat;
+    box-sizing: content-box;
+    cursor: pointer;
+    height: ($height - 3px) / 2;
+  }
+  span {
+    border-left: 1px solid #aaa;
+    display: inline-block;
+    width: $arrow-width - 1px;
+  }
+  .up {
+    @include arrow();
+    background-position: -33px -210px;
+    width: 100%;
+  }
+  .down {
+    @include arrow();
+    background-position: -33px -225px;
+    border-top: 1px solid #aaa;
+    width: 100%;
+  }
+}
+
+.input-number-container {
+  $input-width: 36px;
+  $arrow-width: 20px;
+  $height: 23px;
+  background-color: #fff;
+  border: 1px solid #aaa;
+  display: block;
+  height: $height;
+  position: relative;
+  text-align: left;
+  width: $input-width + $arrow-width;
+  input {
+    border: 0;
+    color: #333;
+    display: inline-block;
+    height: $height - 2px;
+    line-height: $height - 2px;
+    padding: 0;
+    text-align: center;
+    width: $input-width;
+  }
+  @mixin arrow() {
+    background-image: url('http://imgs.coupangcdn.com/image/coupang/detail/bg_detail_sprite_160322.png');
+    background-repeat: no-repeat;
+  }
+  span {
+    display: inline-block;
+    width: $arrow-width - 1px;
+  }
+  .up {
+    @include arrow();
+    background-position: -33px -210px;
+    width: 100%;
+  }
+  .down {
+    @include arrow();
+    background-position: -33px -225px;
+    border-top: 1px solid #aaa;
+    width: 100%;
+  }
+}
