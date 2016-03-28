@@ -48,7 +48,7 @@ export default React.createClass({
             </div>
             <div className="right-count">
               <div className="count-box">
-                <input type="number" defaultValue="1" />
+                <input className="input-number-nospin" type="number" defaultValue="1" />
                 <span>
                   <div className="up"></div>
                   <div className="down"></div>
