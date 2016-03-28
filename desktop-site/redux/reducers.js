@@ -172,9 +172,22 @@ const pageReducers = combineReducers({
 });
 // END page-wide reducers
 
+// {
+//   brandId
+// }
+function reorder(state = {}, action) {
+  const aggregateCart = (cart) => {
+    // B brands, P products, V variants
+  };
+  if (action.type === 'REORDER_SET_BRAND') {
+    return Object.assign({}, state, { brandId: action.brandId });
+  }
+  return state;
+}
+
 const rootReducer = combineReducers(
   Object.assign({}, CommonReducers.reducers,
-    { errorHandler, popup, search, checkout, page: pageReducers })
+    { errorHandler, popup, search, checkout, reorder, page: pageReducers })
 );
 
 export default (state = {}, action) => {

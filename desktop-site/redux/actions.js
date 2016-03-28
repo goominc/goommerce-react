@@ -112,3 +112,10 @@ export function addWishAndPopup(...args) {
   };
 }
 // END Product Detail Page actions
+
+export function setReorderBrandId(brandId) {
+  return {
+    type: 'REORDER_SET_BRAND',
+    brandId,
+  };
+}

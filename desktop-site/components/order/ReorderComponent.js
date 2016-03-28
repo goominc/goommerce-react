@@ -8,14 +8,18 @@ import ReorderNewOrders from './ReorderNewOrders';
 
 export default React.createClass({
   propTypes: {
-    cart: PropTypes.array,
     reorderTab: PropTypes.string,
+    cart: PropTypes.object,
   },
   render() {
     const currentTab = this.props.reorderTab;
     let currentIndex = 0; // default is Cart
     const reorderTabs = ['Cart', 'PastOrder', 'NewOrder'];
-    const components = [<ReorderCart />, <ReorderPastOrders />, <ReorderNewOrders />];
+    const components = [
+      <ReorderCart {...this.props} />,
+      <ReorderPastOrders {...this.props} />,
+      <ReorderNewOrders {...this.props} />
+    ];
     for (let i = 1; i < reorderTabs.length; i++) {
       if (currentTab === reorderTabs[i]) {
         currentIndex = i;
@@ -26,7 +30,8 @@ export default React.createClass({
       <div className="mypage-right-box">
         <h2>ReOrder</h2>
         <div className="order-status-bar">
-          {reorderTabs.map((tab, index) => (<span key={index} className={currentIndex === index ? 'active' : ''}>{tab}</span>))}
+          {reorderTabs.map((tab, index) =>
+            (<span key={index} className={currentIndex === index ? 'active' : ''}>{tab}</span>))}
         </div>
         <div className="order-list-container">
           {components[currentIndex]}

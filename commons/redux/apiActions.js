@@ -250,7 +250,7 @@ export function loadMyOrders() {
 export function loadCartIfEmpty() {
   return (dispatch, getState) => {
     const state = getState();
-    if (state.auth && state.auth.id && !state.cart) {
+    if (_.get(state, 'auth.id') && !_.get(state, 'cart.total')) {
       loadCart()(dispatch, getState);
     }
   };
@@ -393,4 +393,22 @@ export function searchKeyword(keyword, type, category, brand) {
     endpoint: `/api/v1/complete/${keyword}`,
     body: { type, category, brand },
   });
+}
+
+export function createMerchandiseProductAndAddToCart(product) {
+  // product : { Brand, name, price, color, size }
+  return (dispatch, getState) => {
+    const state = getState();
+    if (!_.get(state, 'auth.id')) {
+      return;
+    }
+    const body = _.pick(product, ['brand', 'name', 'price']);
+    ajaxReturnPromise(state.auth, 'post', '/api/v1/merchandise/products', body).then((res) => {
+      const body2 = { price: product.price, data: _.pick(product, ['color', 'size']) };
+      body2.productId = res.id;
+      ajaxReturnPromise(state.auth, 'post', '/api/v1/merchandise/product_variants', body2).then((res2) => {
+        addCartProduct(res2.id, 1)(dispatch, getState);
+      });
+    });
+  };
 }
