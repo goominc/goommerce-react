@@ -296,7 +296,7 @@ $mymenu-margin: 20px;
     .dropdown-box {
       display: none;
     }
-    &:hover {
+    &.open {
       background-color: #fff;
       .dropdown-box {
         @include header-dropdown-box(100%);

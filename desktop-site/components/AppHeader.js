@@ -91,7 +91,7 @@ export default React.createClass({
       }
       const overlayStyle = { backgroundColor: 'transparent', cursor: 'default' };
       return (
-        <div className="search-dropdown-box">
+        <div className="search-dropdown-box" onMouseLeave={() => $('.right-menu-item').removeClass('open')}>
           <div className="popup-overlay" style={overlayStyle}></div>
           <div onClick={() => selectSearchDropdown(null)} className={notSelectedClassName}>
             {i18n.get('word.allCategories')}
@@ -110,7 +110,10 @@ export default React.createClass({
       <div className="dropdown-box">
         {Object.keys(locales).map((key) => (
           <div key={key} className={`dropdown-menu ${key === activeLocale ? 'active' : ''}`}
-            onClick={() => changeLocale(key)}
+            onClick={() => {
+              changeLocale(key);
+              $('.right-menu-item').removeClass('open');
+            }}
           >{locales[key]}</div>
         ))}
       </div>
@@ -121,7 +124,10 @@ export default React.createClass({
         <div className="dropdown-box">
           {currencies.map((obj) => (
             <div key={obj} className={`dropdown-menu ${obj === activeCurrency ? 'active' : ''}`}
-              onClick={() => changeCurrency(obj)}
+              onClick={() => {
+                changeCurrency(obj);
+                $('.right-menu-item').removeClass('open');
+              }}
             >{obj}</div>
           ))}
         </div>
@@ -149,12 +155,18 @@ export default React.createClass({
         <div className="top-helper-bar">
           <div className="container">
             <div className="right-menus">
-              <div className="right-menu-item">
+              <div className="right-menu-item"
+                onMouseEnter={(e) => $(e.target).addClass('open')}
+                onMouseLeave={(e) => $(e.target).closest('.right-menu-item').removeClass('open')}
+              >
                 Language <b>({locales[activeLocale]})</b>
                 {renderLocales()}
               </div>
               <div className="right-menu-divider"></div>
-              <div className="right-menu-item">
+              <div className="right-menu-item"
+                onMouseEnter={(e) => $(e.target).addClass('open')}
+                onMouseLeave={(e) => $(e.target).closest('.right-menu-item').removeClass('open')}
+              >
                 Currency <b>({activeCurrency})</b>
                 {renderCurrencies()}
               </div>
