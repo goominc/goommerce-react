@@ -113,18 +113,25 @@ $product-detail-thumbnail-margin: 15px;
         border: 2px solid $default-active-text-color;
       }
     }
-    img {
-      width: 40px;
-      height: 60px;
+    .img-variant-color {
       border: 1px solid #f2f2f2;
-      padding: 1px;
-      margin-right: 10px;
       cursor: pointer;
       display: inline-block;
+      height: 60px;
+      margin-right: 10px;
+      padding: 1px;
+      width: 40px;
       &.active {
         border: 2px solid $default-active-text-color;
         padding: 0;
       }
+    }
+    .img-brand-logo {
+      border: 1px solid #f2f2f2;
+      display: block;
+      height: 40px;
+      margin: $margin-15 0;
+      width: 40px;
     }
     .disable-item {
       opacity: 0.5;

@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { CloudinaryImage } from 'react-cloudinary';
+import _ from 'lodash';
 
 import Breadcrumb from 'components/Breadcrumb';
 import brandUtil from 'commons/utils/brandUtil';
@@ -93,6 +94,9 @@ export default React.createClass({
     const renderAttributes = (attrName, attrObj, selectFunc) => {
       const renderItem = (key, obj) => {
         let className = '';
+        if (attrName === 'Color') {
+          className = 'img-variant-color';
+        }
         if (!obj.enable) {
           className += ' disable-item';
         }
@@ -144,7 +148,7 @@ export default React.createClass({
       if (brand) {
         const renderFavoriteButton = () => {
           if (likeBrand) {
-            return (<Link to="/mypage/favorite_brands">I like this brand!</Link>);
+            return (<Link to="/mypage/favorite_brands">I like this brand! (Go to Favorite Brands)</Link>);
           }
           return (<a onClick={() => addFavoriteBrand(brand.id)}>Add Favorite Brand</a>);
         };
@@ -152,8 +156,8 @@ export default React.createClass({
           <div className="normal-field-box">
             <div className="field-label">Seller: </div>
             <div className="field-content">
-              {brandUtil.getName(brand)} <br />
-              <Link to={`/brands/${brand.id}`}>Products this seller provide</Link> <br />
+              <Link to={`/brands/${brand.id}`}>{brandUtil.getName(brand)}</Link>
+              <img className="img-brand-logo" src={_.get(brand, 'data.images.logo')} />
               {renderFavoriteButton()}
             </div>
           </div>
