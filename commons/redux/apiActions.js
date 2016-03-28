@@ -120,12 +120,30 @@ export function addCartProduct(productVariantId, count) {
 }
 
 export function updateCartProduct(productVariantId, count) {
-  return createFetchAction({
-    type: 'UPDATE_CART',
-    endpoint: '/api/v1/carts',
-    method: 'put',
-    body: { productVariantId, count },
-  });
+  return (dispatch, getState) => {
+    if (count >= 1) {
+      return createFetchAction({
+        type: 'UPDATE_CART',
+        endpoint: '/api/v1/carts',
+        method: 'put',
+        body: { productVariantId, count },
+      })(dispatch, getState);
+    }
+    const origCart = getState().cart;
+    (origCart.brands || []).forEach((brand) => {
+      (brand.products || []).forEach((product) => {
+        (product.productVariants || []).forEach((variant) => {
+          if (variant.productVariant.id === productVariantId) {
+            variant.count = '';
+          }
+        });
+      });
+    });
+    return dispatch({
+      type: 'UPDATE_CART',
+      payload: origCart,
+    });
+  };
 }
 
 export function deleteCartProduct(productVariantId) {

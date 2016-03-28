@@ -31,7 +31,7 @@ const Reorder = React.createClass({
   */
   render() {
     const { ApiAction } = this.context;
-    const { cart, brandId, setReorderBrandId } = this.props; // no-shadow
+    const { cart, brandId, setReorderBrandId } = this.props; // eslint-disable-line no-shadow
     const createMerchandiseProduct = (product) => ApiAction.createMerchandiseProductAndAddToCart(product);
     return (
       <div className="mypage-contents-container">

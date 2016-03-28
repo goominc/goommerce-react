@@ -54,6 +54,8 @@ export default React.createClass({
         const newQuantity = +e.target.value;
         if (newQuantity > 0) {
           updateCartProduct(variant.id, e.target.value);
+        } else {
+          updateCartProduct(variant.id, 0);
         }
       };
       const price = +(_.get(variant, activeCurrency));
