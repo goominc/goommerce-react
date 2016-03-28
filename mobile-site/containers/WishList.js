@@ -54,7 +54,7 @@ const WishList = React.createClass({
           <WishListBrand show={tabIndex === 2} brand={brand} delete={this.props.deleteFavoriteBrand} />
         </div>
       </div>
-      );
+    );
   },
 });
 
