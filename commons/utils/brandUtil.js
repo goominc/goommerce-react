@@ -2,4 +2,20 @@
 
 import i18n from 'commons/utils/i18n';
 
-exports.getName = (brand) => `[${brand.data.building.name}] ${i18n.get(brand.data.name)}`;
+exports.getName = (brand) => {
+  const data = brand && brand.data;
+  if (!data) {
+    return '';
+  }
+
+  const name = data.name && i18n.get(data.name);
+  if (!name) {
+    return '';
+  }
+
+  const buildingName = data.building && data.building.name;
+  if (buildingName) {
+    return `[${buildingName}] ${name}`;
+  }
+  return name;
+};
