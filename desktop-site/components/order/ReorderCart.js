@@ -8,6 +8,7 @@ export default React.createClass({
     brandId: PropTypes.number,
     setBrandId: PropTypes.func,
     cart: PropTypes.object,
+    addCartProduct: PropTypes.func,
     updateCartProduct: PropTypes.func,
     deleteCartProduct: PropTypes.func,
   },
@@ -16,9 +17,13 @@ export default React.createClass({
     activeLocale: PropTypes.string,
   },
   render() {
-    const { cart, brandId, updateCartProduct, setBrandId } = this.props;
+    const { cart, updateCartProduct, setBrandId } = this.props;
     if (!cart) {
       return (<div></div>);
+    }
+    let brandId = this.props.brandId;
+    if (!brandId) {
+      brandId = _.get(cart, 'brands[0].brand.id');
     }
     const { activeLocale, activeCurrency } = this.context;
 
@@ -38,7 +43,11 @@ export default React.createClass({
       return (
         <div key={brandId2}
           className={`brand-item ${brandId === brandId2 ? 'active' : ''}`}
-          onClick={() => setBrandId(brandId2)}
+          onClick={() => {
+            if (brandId2 !== brandId) {
+              setBrandId(brandId2);
+            }
+          }}
         >
           {_.get(brand, `brand.data.name.${activeLocale}`)}
         </div>
@@ -63,6 +72,9 @@ export default React.createClass({
       return (
         <div key={variant.id} className="product-item">
           <div className="top-name">{_.get(product, `data.nickname.${activeLocale}`)}</div>
+          <div className="top-name">
+            <b>{`[${_.get(variant, 'data.color')}]   [${_.get(variant, 'data.size')}]`}</b>
+          </div>
           <div className="img-wrap">
             <div className="dummy"></div>
             <img src={_.get(variant, 'appImages.default[0].url')} />
@@ -83,6 +95,36 @@ export default React.createClass({
         </div>
       );
     };
+    const renderAddProduct = () => {
+      const fields = [
+        { key: 'name', placeholder: '상품명' },
+        { key: 'price', placeholder: '가격' },
+        { key: 'color', placeholder: 'Color' },
+        { key: 'size', placeholder: 'Size' },
+      ];
+      const addProduct = () => {
+        const product = { brandId };
+        for (let i = 0; i < fields.length; i++) {
+          const field = fields[i];
+          const val = _.get(this.refs, `${field.key}.value`);
+          if (!val) {
+            window.alert(`${field.placeholder} 을/를 입력해 주세요`);
+            return;
+          }
+          product[field.key] = val;
+        }
+        this.props.addCartProduct(product);
+      };
+      return (
+        <div className="reorder-add-product">
+          <div>새 상품 추가:</div>
+          {fields.map((field) =>
+            (<input type="text" ref={field.key} key={field.key} placeholder={field.placeholder} />))
+          }
+          <button className="plus-button" onClick={addProduct}>상품 추가</button>
+        </div>
+      );
+    };
     return (
       <div>
         <div className="reorder-brands-panel">
@@ -90,6 +132,7 @@ export default React.createClass({
           <div className="brand-item plus-button">+</div>
         </div>
         <div className="reorder-products-panel">
+          {renderAddProduct()}
           {items.map((item) => renderProduct(item.product, item.productVariant, item.quantity))}
         </div>
       </div>

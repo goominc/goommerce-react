@@ -413,20 +413,88 @@ export function searchKeyword(keyword, type, category, brand) {
   });
 }
 
+const createMerchandiseVariant = (auth, productId, reorderProduct) => {
+  const body = {
+    productId,
+    price: reorderProduct.price,
+    data: _.pick(reorderProduct, ['color', 'size']),
+  };
+  return ajaxReturnPromise(auth, 'post', '/api/v1/merchandise/product_variants', body);
+};
+
 export function createMerchandiseProductAndAddToCart(product) {
-  // product : { Brand, name, price, color, size }
+  // product : { brandId, name, price, color, size }
   return (dispatch, getState) => {
     const state = getState();
     if (!_.get(state, 'auth.id')) {
+      // TODO alert?
       return;
     }
-    const body = _.pick(product, ['brand', 'name', 'price']);
+    if (!product.brandId) {
+      window.alert('code error! brand must be exist');
+      return;
+    }
+    const body = _.pick(product, ['name', 'price']);
+    body.brand = { id: product.brandId };
     ajaxReturnPromise(state.auth, 'post', '/api/v1/merchandise/products', body).then((res) => {
-      const body2 = { price: product.price, data: _.pick(product, ['color', 'size']) };
-      body2.productId = res.id;
-      ajaxReturnPromise(state.auth, 'post', '/api/v1/merchandise/product_variants', body2).then((res2) => {
+      createMerchandiseVariant(state.auth, res.id, product).then((res2) => {
         addCartProduct(res2.id, 1)(dispatch, getState);
       });
+    });
+  };
+}
+
+export function addCartProductOnReorder(product) {
+  // product : { brandId, name, price, color, size }
+  // when product is real, product.product exists
+  // 1. check if product is real or merchandise
+  return (dispatch, getState) => {
+    const state = getState();
+    if (!_.get(state, 'auth.id')) {
+      // TODO alert?
+      return;
+    }
+    let url = `/api/v1/products/search?q=${product.name}`;
+    if (product.brandId) {
+      url += `&brandId=${product.brandId}`;
+    }
+    const addRealProduct = (realProduct, reorderProduct) => {
+      const realVariants = realProduct.productVariants || [];
+      for (let i = 0; i < realVariants.length; i++) {
+        const realVariant = realVariants[i];
+        const color = _.get(realVariant, 'data.color');
+        const size = _.get(realVariant, 'data.size');
+        if (color === reorderProduct.color && size === reorderProduct.size) {
+          // real variant!
+          console.log('Product is REAL, variant is REAL');
+          addCartProduct(realVariant.id, 1)(dispatch, getState);
+          return;
+        }
+      }
+      // merchandise variant!
+      console.log('Product is REAL, variant is MERCHANDISSE');
+      createMerchandiseVariant(state.auth, realProduct.id, reorderProduct).then((res) => {
+        addCartProduct(res.id, 1)(dispatch, getState);
+      });
+    };
+    if (product.product) {
+      addRealProduct(product.product, product);
+      return;
+    }
+    ajaxReturnPromise(state.auth, 'get', url).then((res) => {
+      // Warning: this API may not return exact product since search results are many
+      const products = res.products || [];
+      for (let i = 0; i < products.length; i++) {
+        const p = products[i];
+        if (_.get(p, 'data.nickname.ko') === product.name) {
+          // real product
+          addRealProduct(p, product);
+          return;
+        }
+      }
+      // merchandise product
+      console.log('Product is MERCHANDISSE, variant is MERCHANDISSE');
+      createMerchandiseProductAndAddToCart(product)(dispatch, getState);
     });
   };
 }

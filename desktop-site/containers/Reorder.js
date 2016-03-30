@@ -20,7 +20,7 @@ const Reorder = React.createClass({
   /*
   componentDidMount() {
     const product = {
-      brand: { id: 29 },
+      brandId: 29 },
       name: 'heekyu',
       price: 121912121232,
       color: 'Red',
@@ -32,14 +32,16 @@ const Reorder = React.createClass({
   render() {
     const { ApiAction } = this.context;
     const { cart, brandId, setReorderBrandId } = this.props; // eslint-disable-line no-shadow
-    const createMerchandiseProduct = (product) => ApiAction.createMerchandiseProductAndAddToCart(product);
+    const addCartProduct = (product) => {
+      ApiAction.addCartProductOnReorder(product);
+    };
     return (
       <div className="mypage-contents-container">
         <MyPageLeftbar />
         <ReorderComponent
           cart={cart}
           brandId={brandId}
-          createMerchandiseProduct={createMerchandiseProduct}
+          addCartProduct={addCartProduct}
           setBrandId={setReorderBrandId}
           updateCartProduct={ApiAction.updateCartProduct}
           deleteCartProduct={ApiAction.deleteCartProduct}

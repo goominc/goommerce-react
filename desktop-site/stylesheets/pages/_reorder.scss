@@ -30,6 +30,27 @@
   }
 }
 
+.reorder-add-product {
+  border: 1px solid #ddd;
+  margin-bottom: $margin-15;
+  padding: 5px 10px;
+  width: 100%;
+  input[type="text"] {
+    border: 0;
+    margin-right: $margin-15;
+    padding: 5px 0;
+  }
+  .plus-button {
+    $height: 30px;
+    @include button-default-styles();
+    display: inline-block;
+    height: $height;
+    line-height: $height;
+    text-align: center;
+    padding: 0 10px;
+  }
+}
+
 .reorder-products-panel {
   width: 100%;
   .product-item {
