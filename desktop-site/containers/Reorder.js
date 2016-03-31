@@ -20,7 +20,7 @@ const Reorder = React.createClass({
   /*
   componentDidMount() {
     const product = {
-      brandId: 29 },
+      brandId: 2038,
       name: 'heekyu',
       price: 121912121232,
       color: 'Red',
@@ -41,6 +41,7 @@ const Reorder = React.createClass({
         <ReorderComponent
           cart={cart}
           brandId={brandId}
+          loadCart={ApiAction.loadCart}
           addCartProduct={addCartProduct}
           setBrandId={setReorderBrandId}
           updateCartProduct={ApiAction.updateCartProduct}

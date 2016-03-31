@@ -23,7 +23,7 @@ function errorHandler(state = {}, action) {
   return state;
 }
 
-function search(state = {}, action) {
+function headerSearchCategory(state = {}, action) {
   if (action.type === 'SET_SEARCH_CATEGORY') {
     return Object.assign({}, state, { activeCategory: action.category });
   } else if (action.type === 'TOGGLE_SEARCH_DROPDOWN') {
@@ -176,9 +176,6 @@ const pageReducers = combineReducers({
 //   brandId
 // }
 function reorder(state = {}, action) {
-  const aggregateCart = (cart) => {
-    // B brands, P products, V variants
-  };
   if (action.type === 'REORDER_SET_BRAND') {
     return Object.assign({}, state, { brandId: action.brandId });
   }
@@ -187,7 +184,7 @@ function reorder(state = {}, action) {
 
 const rootReducer = combineReducers(
   Object.assign({}, CommonReducers.reducers,
-    { errorHandler, popup, search, checkout, reorder, page: pageReducers })
+    { errorHandler, popup, headerSearchCategory, checkout, reorder, page: pageReducers })
 );
 
 export default (state = {}, action) => {

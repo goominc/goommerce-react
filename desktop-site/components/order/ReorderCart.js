@@ -3,11 +3,14 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
+import BrandSearchContainer from 'containers/BrandSearchContainer';
+
 export default React.createClass({
   propTypes: {
     brandId: PropTypes.number,
     setBrandId: PropTypes.func,
     cart: PropTypes.object,
+    loadCart: PropTypes.func, // when refresh
     addCartProduct: PropTypes.func,
     updateCartProduct: PropTypes.func,
     deleteCartProduct: PropTypes.func,
@@ -15,9 +18,10 @@ export default React.createClass({
   contextTypes: {
     activeCurrency: PropTypes.string,
     activeLocale: PropTypes.string,
+    currencySign: PropTypes.object,
   },
   render() {
-    const { cart, updateCartProduct, setBrandId } = this.props;
+    const { cart, loadCart, updateCartProduct, setBrandId } = this.props;
     if (!cart) {
       return (<div></div>);
     }
@@ -25,16 +29,28 @@ export default React.createClass({
     if (!brandId) {
       brandId = _.get(cart, 'brands[0].brand.id');
     }
-    const { activeLocale, activeCurrency } = this.context;
+    const { activeLocale, activeCurrency, currencySign } = this.context;
 
     const items = [];
     (cart.brands || []).forEach((brand) => {
-      if (_.get(brand, 'brand.id') !== brandId) {
-        return;
-      }
+      const currencies = cart.total ? Object.keys(cart.total) : [];
+      brand.total = {};
+      currencies.forEach((cur) => {
+        brand.total[cur] = 0;
+      });
       (brand.products || []).forEach((product) => {
+        if (_.get(brand, 'brand.id') === brandId) {
+          items.push(product);
+        }
         (product.productVariants || []).forEach((variant) => {
-          items.push({ product: product.product, productVariant: variant.productVariant, quantity: variant.count });
+          /*
+          if (_.get(brand, 'brand.id') === brandId) {
+            items.push({ product: product.product, productVariant: variant.productVariant, quantity: variant.count });
+          }
+          */
+          currencies.forEach((cur) => {
+            brand.total[cur] += +(_.get(variant, `productVariant.${cur}`)) * +variant.count;
+          });
         });
       });
     });
@@ -49,11 +65,12 @@ export default React.createClass({
             }
           }}
         >
-          {_.get(brand, `brand.data.name.${activeLocale}`)}
+          {_.get(brand, `brand.data.name.${activeLocale}`)} <br/>
+          {currencySign[activeCurrency]} {brand.total[activeCurrency]}
         </div>
       );
     };
-    const renderProduct = (product, variant, quantity) => {
+    const renderProductVariant = (variant, quantity) => {
       const minusQuantity = () => {
         if (quantity > 1) {
           updateCartProduct(variant.id, quantity - 1);
@@ -67,11 +84,15 @@ export default React.createClass({
           updateCartProduct(variant.id, 0);
         }
       };
+      const onBlurQuantity = (e) => {
+        if (!e.target.value) {
+          loadCart();
+        }
+      };
       const price = +(_.get(variant, activeCurrency));
       const total = price * quantity;
       return (
-        <div key={variant.id} className="product-item">
-          <div className="top-name">{_.get(product, `data.nickname.${activeLocale}`)}</div>
+        <div key={variant.id} className="product-variant-item">
           <div className="top-name">
             <b>{`[${_.get(variant, 'data.color')}]   [${_.get(variant, 'data.size')}]`}</b>
           </div>
@@ -84,6 +105,7 @@ export default React.createClass({
               <input className="input-number-nospin" type="number"
                 value={quantity}
                 onChange={manualChangeQuantity}
+                onBlur={onBlurQuantity}
               />
             <span>
               <div className="up" onClick={() => updateCartProduct(variant.id, +quantity + 1)}></div>
@@ -91,7 +113,22 @@ export default React.createClass({
             </span>
             </div>
           </div>
-          <div className="bottom-price">{activeCurrency} {`${total} (${quantity} X ${price})`}</div>
+          <div className="bottom-price">{currencySign[activeCurrency]} {`${total} (${quantity} X ${price})`}</div>
+        </div>
+      );
+    };
+    const renderProduct = (product) => {
+      const variantWidth = 148;
+      const titleStyle = {
+        display: 'block',
+        width: `${variantWidth * product.productVariants.length}px`,
+      };
+      return (
+        <div key={_.get(product, 'product.id')} className="product-item">
+          <div className="top-name" style={titleStyle}>{_.get(product.product, `data.nickname.${activeLocale}`)}</div>
+          {product.productVariants.map(
+            (variant) => renderProductVariant(variant.productVariant, variant.count)
+          )}
         </div>
       );
     };
@@ -127,13 +164,14 @@ export default React.createClass({
     };
     return (
       <div>
+        <div>총 주문가격: {currencySign[activeCurrency]} {cart.total ? cart.total[activeCurrency] : 0}</div>
         <div className="reorder-brands-panel">
           {(cart.brands || []).map(renderBrandMenu)}
-          <div className="brand-item plus-button">+</div>
+          <BrandSearchContainer />
         </div>
         <div className="reorder-products-panel">
           {renderAddProduct()}
-          {items.map((item) => renderProduct(item.product, item.productVariant, item.quantity))}
+          {items.map((item) => renderProduct(item))}
         </div>
       </div>
     );

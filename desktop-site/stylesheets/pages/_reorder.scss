@@ -6,17 +6,18 @@
   border-top: 1px solid transparent;
   margin-bottom: $margin-20 - 2px;
   width: 100%;
+  $height: 40px;
   .brand-item {
-    $height: 40px;
     border: 1px solid #e1e4e6;
     display: inline-block;
     height: $height;
-    line-height: $height;
     margin-left: -1px;
     margin-top: -1px;
     overflow: hidden;
     text-align: center;
+    padding-top: 3px;
     width: 100px;
+    white-space: nowrap;
     z-index: 0;
     &:hover,&.active {
       border-color: #87afd3;
@@ -25,8 +26,22 @@
       z-index: 1;
     }
   }
-  .plus-button {
-    font-size: 30px;
+  .brand-search-box {
+    display: inline-block;
+    font-size: 15px;
+    height: $height;
+    line-height: $height;
+    margin-left: 30px;
+    margin-top: -1px;
+    position: relative;
+    vertical-align: top;
+    width: 150px;
+    @include dropdown-box(30px);
+  }
+  input[type="text"] {
+    height: 100%;
+    padding: 0 $margin-15;
+    width: 100%;
   }
 }
 
@@ -36,9 +51,31 @@
   padding: 5px 10px;
   width: 100%;
   input[type="text"] {
+    $color: #2a3dd3;
     border: 0;
+    border-bottom: 1px solid #ddd;
+    color: $color;
+    font-size: 14px;
+    font-weight: 500;
     margin-right: $margin-15;
     padding: 5px 0;
+    &:focus {
+      border-color: $color;
+      &::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+        color: $color;
+      }
+      &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color: $color;
+        opacity: 1;
+      }
+      &::-moz-placeholder { /* Mozilla Firefox 19+ */
+        color: $color;
+        opacity: 1;
+      }
+      &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: $color;
+      }
+    }
   }
   .plus-button {
     $height: 30px;
@@ -52,24 +89,28 @@
 }
 
 .reorder-products-panel {
+  $text-height: 30px;
   width: 100%;
+  .top-name {
+    display: inline-block;
+    height: $text-height;
+    line-height: $text-height;
+    text-align: center;
+    width: 100%;
+  }
   .product-item {
-    $image-width: 60px;
-    $count-width: 53px;
-    $text-height: 30px;
-    $padding: 10px;
     border: 1px solid #ddd;
     display: inline-block;
     margin-right: $margin-15;
+  }
+  .product-variant-item {
+    $image-width: 60px;
+    $count-width: 53px;
+    $padding: 10px;
+    // border: 1px solid #ddd;
+    display: inline-block;
     padding: 0 $padding;
     width: $image-width + $count-width + $padding * 2 + 15px;
-    .top-name {
-      display: inline-block;
-      height: $text-height;
-      line-height: $text-height;
-      text-align: center;
-      width: 100%;
-    }
     .img-wrap {
       // border: 1px solid #ddd;
       /*
@@ -101,12 +142,13 @@
     .right-count {
       display: inline-block;
       height: $image-width / 2 * 3;
-      margin-left: 13px;
+      margin-left: 20px;
       position: relative;
       width: $count-width;
       .count-box {
-        $height: 23px;
+        $height: 27px;
         border: 1px solid #aaa;
+        font-size: 15px;
         height: $height;
         margin-top: - $height / 2;
         position: absolute;

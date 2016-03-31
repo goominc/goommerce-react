@@ -1,6 +1,6 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
-import { assign, merge, get, set, union, forEach, omit } from 'lodash';
+import { assign, merge, get, set, union, forEach, omit, pick } from 'lodash';
 
 const handleFavoriteBrandUpdate = (state, action) => {
   if (action.type === 'ADD_FAVORITE_BRAND') {
@@ -50,7 +50,11 @@ function auth(state = {}, action) {
 
 function cart(state = {}, action) {
   if (action.type === 'UPDATE_CART' || action.type === 'LOAD_CART') {
-    return action.payload;
+    return { ...action.payload };
+  } else if (action.type === 'ADD_BRAND_TO_CART') {
+    // 2016. 03. 30. [heekyu] this is local action.
+    state.brands.push({ brand: action.brand, products: [] });
+    return assign({}, state, { brands: state.brands });
   }
   return state;
 }
@@ -183,16 +187,28 @@ function categories(state = {}, action) {
   return newState;
 }
 
+function search(state = { brand: {} }, action) {
+  if (action.type === 'BRAND_SEARCH_RESULT') {
+    const newState = Object.assign({}, state,
+      { brand: pick(action, ['brands', 'offset', 'limit', 'text']) });
+    return newState;
+  } else if (action.type === 'RESET_SEARCH_RESULT') {
+    return omit(state, action.target);
+  }
+  return state;
+}
+
 const reducers = {
   auth,
   cart,
   categories,
   cms,
+  currency,
   entities,
   favoriteBrand,
-  pagination,
   i18n,
-  currency,
+  pagination,
+  search,
 };
 
 exports.reducers = reducers;

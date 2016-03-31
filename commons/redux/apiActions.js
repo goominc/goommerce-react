@@ -155,6 +155,13 @@ export function deleteCartProduct(productVariantId) {
   });
 }
 
+export function addBrandToCart(brand) {
+  return {
+    type: 'ADD_BRAND_TO_CART',
+    brand,
+  };
+}
+
 export function createOrder({ productVariants }) {
   return createFetchAction({
     type: 'CREATE_ORDER',
@@ -495,6 +502,41 @@ export function addCartProductOnReorder(product) {
       // merchandise product
       console.log('Product is MERCHANDISSE, variant is MERCHANDISSE');
       createMerchandiseProductAndAddToCart(product)(dispatch, getState);
+    });
+  };
+}
+
+export function resetSearchResult(target) {
+  // this is local action
+  return {
+    type: 'RESET_SEARCH_RESULT',
+    target,
+  };
+}
+
+export function searchBrands(text, offset, limit) {
+  return (dispatch, getState) => {
+    const state = getState();
+    if (!text) {
+      dispatch(resetSearchResult('brand'));
+      return;
+    }
+    if (!offset) {
+      offset = 0;
+    }
+    if (!limit) {
+      limit = 10; // TODO
+    }
+    const url = `/api/v1/brands/search?q=${text}&offset=${offset}&limit=${limit}`;
+    ajaxReturnPromise(state.auth, 'get', url).then((res) => {
+      dispatch({
+        type: 'BRAND_SEARCH_RESULT',
+        brands: res.brands,
+        // TODO handle pagination info
+        offset,
+        limit,
+        text,
+      });
     });
   };
 }
