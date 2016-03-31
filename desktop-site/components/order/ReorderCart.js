@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
 import BrandSearchContainer from 'containers/BrandSearchContainer';
+import brandUtil from 'commons/utils/brandUtil';
 
 export default React.createClass({
   propTypes: {
@@ -43,16 +44,17 @@ export default React.createClass({
           items.push(product);
         }
         (product.productVariants || []).forEach((variant) => {
-          /*
-          if (_.get(brand, 'brand.id') === brandId) {
-            items.push({ product: product.product, productVariant: variant.productVariant, quantity: variant.count });
-          }
-          */
           currencies.forEach((cur) => {
             brand.total[cur] += +(_.get(variant, `productVariant.${cur}`)) * +variant.count;
           });
         });
       });
+    });
+    let activeBrand;
+    (cart.brands || []).forEach((brand) => {
+      if (_.get(brand, 'brand.id') === brandId) {
+        activeBrand = brand.brand;
+      }
     });
     const renderBrandMenu = (brand) => {
       const brandId2 = _.get(brand, 'brand.id');
@@ -65,7 +67,7 @@ export default React.createClass({
             }
           }}
         >
-          {_.get(brand, `brand.data.name.${activeLocale}`)} <br/>
+          {_.get(brand, `brand.data.name.${activeLocale}`)} <br />
           {currencySign[activeCurrency]} {brand.total[activeCurrency]}
         </div>
       );
@@ -121,6 +123,8 @@ export default React.createClass({
       const variantWidth = 148;
       const titleStyle = {
         display: 'block',
+        fontSize: '16px',
+        fontWeight: '400',
         width: `${variantWidth * product.productVariants.length}px`,
       };
       return (
@@ -164,11 +168,14 @@ export default React.createClass({
     };
     return (
       <div>
-        <div>총 주문가격: {currencySign[activeCurrency]} {cart.total ? cart.total[activeCurrency] : 0}</div>
+        <div className="reorder-title">
+          <b>총 주문가격:</b> {currencySign[activeCurrency]} {cart.total ? cart.total[activeCurrency] : 0}
+        </div>
         <div className="reorder-brands-panel">
           {(cart.brands || []).map(renderBrandMenu)}
           <BrandSearchContainer />
         </div>
+        <div className="reorder-title"><b>{brandUtil.getName(activeBrand)}</b></div>
         <div className="reorder-products-panel">
           {renderAddProduct()}
           {items.map((item) => renderProduct(item))}

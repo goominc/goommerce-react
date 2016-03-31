@@ -53,6 +53,9 @@ function cart(state = {}, action) {
     return { ...action.payload };
   } else if (action.type === 'ADD_BRAND_TO_CART') {
     // 2016. 03. 30. [heekyu] this is local action.
+    if (!state.brands) {
+      state.brands = [];
+    }
     state.brands.push({ brand: action.brand, products: [] });
     return assign({}, state, { brands: state.brands });
   }
