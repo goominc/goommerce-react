@@ -27,7 +27,7 @@ const ProductList = React.createClass({
     return { pageNum: '1' };
   },
   getInitialState() {
-    return {};
+    return { latest: false };
   },
   componentDidMount() {
     this.doSearch(this.props);
@@ -41,13 +41,17 @@ const ProductList = React.createClass({
   doSearch(props) {
     const { query, categoryId, brandId, pageNum } = props;
     const limit = 30;
-    this.context.ApiAction.searchProducts({
+    const queryOptions = {
       q: query,
       categoryId: categoryId === 'all' ? undefined : categoryId,
       brandId,
       offset: Math.max((pageNum - 1) * limit, 0),
       limit,
-    }).then((res) => this.setState(res));
+    };
+    if (props.latest) {
+      queryOptions.sorts = '-id';
+    }
+    this.context.ApiAction.searchProducts(queryOptions).then((res) => this.setState(res));
   },
   breadCrumbPath() {
     const { categories } = this.props;
@@ -89,12 +93,22 @@ const ProductList = React.createClass({
       }
     };
 
+    const toggleLatest = () => {
+      this.doSearch(_.assign({}, this.props, { latest: !this.state.latest }));
+      console.log(this.state);
+      this.setState({ latest: !this.state.latest });
+    };
+
     return (
       <div className="container-table">
         <ProductListLeft {...this.props} aggs={aggs} brand={brand || null} />
         <div className="product-list-right-box">
           <Breadcrumb path={path} />
-          <div className="product-list-search-box"></div>
+          <div className="product-list-search-box">
+            <div className={`sort-item ${this.state.latest ? 'active' : ''}`} onClick={toggleLatest}>
+              최신 순
+            </div>
+          </div>
           <ProductListItems products={products} changeMainImage={changeMainImage} />
           <PageButton
             pagination={this.state.pagination}
