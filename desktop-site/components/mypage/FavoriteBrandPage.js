@@ -3,6 +3,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
+import ResponsiveImage from 'components/snippet/ResponsiveImage';
 import brandUtil from 'commons/utils/brandUtil';
 
 const _ = require('lodash');
@@ -30,9 +31,7 @@ export default React.createClass({
       }
       const renderProduct = (product) => (
         <Link key={product.id} to={`/products/${product.id}`} className="product-item">
-          <div className="img-wrap">
-            <img src={_.get(product, 'appImages.default[0].url')} />
-          </div>
+          <ResponsiveImage image={_.get(product, 'appImages.default[0]')} />
           <span>{product.id}</span> <br />
           <span className="price-number">{`${activeCurrency} ${product[activeCurrency]}`}</span>
           <span className="price-unit"> / piece</span>

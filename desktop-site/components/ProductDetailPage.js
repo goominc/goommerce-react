@@ -77,7 +77,7 @@ export default React.createClass({
       }
       return (
         <span className={className} key={image.url} onMouseEnter={() => this.handleMouseEnterThumbnail(image)}>
-          {renderImage(image)}
+          <div className="inner-wrap">{renderImage(image)}</div>
         </span>
       );
     };
@@ -169,7 +169,7 @@ export default React.createClass({
     return (
       <div className="container">
         <Breadcrumb key="breadcrumb-default" path={path} />
-        {product.data && product.data.categoryPath ? product.data.categoryPath.map(renderPath) : []}
+        {/* TODO product.data && product.data.categoryPath ? product.data.categoryPath.map(renderPath) : [] */}
         <div className="container-table">
           <div className="product-detail-left">
             <div className="left-thumbnail-container">

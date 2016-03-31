@@ -18,6 +18,7 @@ $product-detail-thumbnail-margin: 15px;
       display: block;
       width: $product-detail-thumbnail-width + 2px;
       @include default-responsive-img-wrap();
+      padding-top: 140%; // TODO this is magic number... fix this
       border: 2px solid #dedede;
       margin-bottom: $product-detail-thumbnail-margin;
     }
@@ -29,15 +30,14 @@ $product-detail-thumbnail-margin: 15px;
     display: inline-block;
     position: relative;
     width: 450px;
-    height: 675px;
+    height: 587px;
     overflow: hidden;
     border: 1px solid #dedede;
     img {
-      position: absolute;
-      top: 0;
       display: block;
-      width: 100%;
-      height: auto;
+      height: 100%;
+      margin: auto;
+      width: auto;
     }
   }
   .enlarge-image-box {
@@ -46,14 +46,13 @@ $product-detail-thumbnail-margin: 15px;
     top: 0;
     left: 100%;
     width: 450px;
-    height: 675px;
+    height: 587px;
     overflow: hidden;
     img {
-      position: absolute;
-      top: 0;
       display: block;
-      width: 200%;
-      height: auto;
+      height: 200%;
+      margin: auto;
+      width: auto;
     }
   }
 }
