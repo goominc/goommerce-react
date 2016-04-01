@@ -57,6 +57,7 @@
   margin-bottom: $margin-15;
   padding: 5px 10px;
   width: 100%;
+  $input-width: 120px;
   input[type="text"] {
     $color: #2a3dd3;
     border: 0;
@@ -66,6 +67,7 @@
     font-weight: 500;
     margin-right: $margin-15;
     padding: 5px 0;
+    width: $input-width;
     &:focus {
       border-color: $color;
       &::-webkit-input-placeholder { /* WebKit, Blink, Edge */
@@ -83,6 +85,11 @@
         color: $color;
       }
     }
+  }
+  .product-search-box {
+    position: relative;
+    width: $input-width;
+    @include dropdown-box(25px);
   }
   .plus-button {
     $height: 30px;

@@ -177,7 +177,9 @@ const pageReducers = combineReducers({
 // }
 function reorder(state = {}, action) {
   if (action.type === 'REORDER_SET_BRAND') {
-    return Object.assign({}, state, { brandId: action.brandId });
+    return Object.assign({}, state, { brand: action.brand });
+  } else if (action.type === 'REORDER_SET_PRODUCT') {
+    return Object.assign({}, state, { product: action.product });
   }
   return state;
 }

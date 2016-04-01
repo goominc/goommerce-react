@@ -6,14 +6,9 @@ import _ from 'lodash';
 
 import MyPageLeftbar from 'components/mypage/MyPageLeftbar';
 import ReorderComponent from 'components/order/ReorderComponent';
-import { setReorderBrandId } from 'redux/actions';
+import { setReorderBrand } from 'redux/actions';
 
 const Reorder = React.createClass({
-  propTypes: {
-    brandId: PropTypes.number,
-    cart: PropTypes.object,
-    setReorderBrandId: PropTypes.func,
-  },
   contextTypes: {
     ApiAction: PropTypes.object,
   },
@@ -31,7 +26,6 @@ const Reorder = React.createClass({
   */
   render() {
     const { ApiAction } = this.context;
-    const { cart, brandId, setReorderBrandId } = this.props; // eslint-disable-line no-shadow
     const addCartProduct = (product) => {
       ApiAction.addCartProductOnReorder(product);
     };
@@ -39,11 +33,9 @@ const Reorder = React.createClass({
       <div className="mypage-contents-container">
         <MyPageLeftbar />
         <ReorderComponent
-          cart={cart}
-          brandId={brandId}
+          {...this.props}
           loadCart={ApiAction.loadCart}
           addCartProduct={addCartProduct}
-          setBrandId={setReorderBrandId}
           updateCartProduct={ApiAction.updateCartProduct}
           deleteCartProduct={ApiAction.deleteCartProduct}
         />
@@ -55,7 +47,8 @@ const Reorder = React.createClass({
 export default connect(
   (state) => ({
     cart: state.cart,
-    brandId: _.get(state, 'reorder.brandId'),
+    brand: _.get(state, 'reorder.brand'),
+    activeProduct: _.get(state, 'reorder.product'),
   }),
-  { setReorderBrandId }
+  { setReorderBrand }
 )(Reorder);

@@ -3,8 +3,8 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import i18n from 'commons/utils/i18n';
 
-import { ApiAction, setHeader } from 'redux/actions';
-const { searchProducts } = ApiAction;
+import { setHeader } from 'redux/actions';
+import { ajaxReturnPromise } from 'commons/redux/util/ajaxUtil';
 
 import loadEntities from 'commons/redux/util/loadEntities';
 
@@ -92,6 +92,7 @@ const Home = React.createClass({
 export default connect(
   (state) => ({
     ...loadEntities(state, 'products', 'products'),
+    searchProducts: (query) => ajaxReturnPromise(state.auth, `/api/v1/products/search?${$.param(query)}`, 'get'),
   }),
-  { searchProducts, setHeader }
+  { setHeader }
 )(Home);

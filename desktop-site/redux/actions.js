@@ -113,9 +113,16 @@ export function addWishAndPopup(...args) {
 }
 // END Product Detail Page actions
 
-export function setReorderBrandId(brandId) {
+export function setReorderBrand(brand) {
   return {
     type: 'REORDER_SET_BRAND',
-    brandId,
+    brand,
+  };
+}
+
+export function setReorderProduct(product) {
+  return {
+    type: 'REORDER_SET_PRODUCT',
+    product,
   };
 }

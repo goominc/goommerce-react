@@ -1,18 +1,17 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
-/**
- * 2016. 03. 30. [heekyu]
- * This is currently used in Reorder
- */
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
 import AutoComplete from 'components/snippet/AutoComplete';
+import searchUtil from 'commons/utils/searchUtil';
+import { setReorderProduct } from 'redux/actions';
 
-const BrandSearch = React.createClass({
+const ProductSearch = React.createClass({
   propTypes: {
     searchResult: PropTypes.object,
+    setReorderProduct: PropTypes.func,
   },
   contextTypes: {
     ApiAction: PropTypes.object,
@@ -21,38 +20,27 @@ const BrandSearch = React.createClass({
   render() {
     const { searchResult } = this.props;
     const { ApiAction, activeLocale } = this.context;
-    const boxClassName = 'brand-search-box';
-    const getItems = () => {
-      const res = [];
-      if (!searchResult) {
-        return res;
-      }
-      const count = Math.min((searchResult.brands || []).length, 10);
-      for (let i = 0; i < count; i++) {
-        const brand = searchResult.brands[i];
-        res.push({ text: _.get(brand, `data.name.${activeLocale}`), brand });
-      }
-      return res;
-    };
+    const boxClassName = 'product-search-box';
+    const dataKey = `data.nickname.${activeLocale}`;
     const onSelectItem = (item) => {
-      const brand = item.brand;
-      ApiAction.addBrandToCart(brand);
-      ApiAction.resetSearchResult('brand');
-      $(`${boxClassName} input`).val('');
+      const product = item.item;
+      this.props.setReorderProduct(product);
+      ApiAction.resetSearchResult('product');
+      $(`.${boxClassName} input`).val(_.get(product, dataKey));
     };
     const onChangeText = (text) => {
       if (!searchResult || text !== searchResult.text) {
-        ApiAction.searchBrands(text, 0, 7);
+        ApiAction.searchProducts(text, 0, 7);
       }
     };
-
+    const items = searchUtil.getSearchItems(searchResult ? searchResult.products : [], dataKey);
     return (
       <AutoComplete
         boxClassName={boxClassName}
-        items={getItems()}
+        items={items}
         onChangeText={onChangeText}
         onSelectItem={onSelectItem}
-        placeholder="브랜드 추가"
+        placeholder="상품 추가"
         text={searchResult ? searchResult.text : ''}
       />
     );
@@ -61,6 +49,7 @@ const BrandSearch = React.createClass({
 
 export default connect(
   (state) => ({
-    searchResult: _.get(state, 'search.brand'),
-  })
-)(BrandSearch);
+    searchResult: _.get(state, 'search.product'),
+  }),
+  { setReorderProduct }
+)(ProductSearch);

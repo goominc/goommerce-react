@@ -2,7 +2,8 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 import { ApiAction, setHeader } from 'redux/actions';
-const { searchProducts, addFavoriteBrand } = ApiAction;
+const { addFavoriteBrand } = ApiAction;
+import { ajaxReturnPromise } from 'commons/redux/util/ajaxUtil';
 
 import BrandPage from 'components/BrandPage';
 
@@ -75,6 +76,7 @@ const Brand = React.createClass({
 export default connect(
   (state, ownProps) => ({
     brandId: ownProps.params.brandId,
+    searchProducts: (query) => ajaxReturnPromise(state.auth, `/api/v1/products/search?${$.param(query)}`, 'get'),
   }),
-  { searchProducts, addFavoriteBrand, setHeader }
+  { addFavoriteBrand, setHeader }
 )(Brand);

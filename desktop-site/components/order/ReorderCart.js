@@ -3,13 +3,15 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
-import BrandSearchContainer from 'containers/BrandSearchContainer';
+import SearchBrandContainer from 'containers/SearchBrandContainer';
+import SearchProductContainer from 'containers/SearchProductContainer';
 import brandUtil from 'commons/utils/brandUtil';
 
 export default React.createClass({
   propTypes: {
-    brandId: PropTypes.number,
-    setBrandId: PropTypes.func,
+    brand: PropTypes.object,
+    activeProduct: PropTypes.object,
+    setReorderBrand: PropTypes.func,
     cart: PropTypes.object,
     loadCart: PropTypes.func, // when refresh
     addCartProduct: PropTypes.func,
@@ -22,15 +24,21 @@ export default React.createClass({
     currencySign: PropTypes.object,
   },
   render() {
-    const { cart, loadCart, updateCartProduct, setBrandId } = this.props;
+    const { cart, loadCart, updateCartProduct, setReorderBrand } = this.props;
     if (!cart) {
       return (<div></div>);
     }
-    let brandId = this.props.brandId;
-    if (!brandId) {
-      brandId = _.get(cart, 'brands[0].brand.id');
+    let activeBrand = this.props.brand;
+    if (!activeBrand) {
+      activeBrand = _.get(cart, 'brands[0].brand');
     }
+    if (!activeBrand) {
+      return (<div></div>);
+    }
+    const brandId = activeBrand.id;
     const { activeLocale, activeCurrency, currencySign } = this.context;
+
+    const { activeProduct } = this.props;
 
     const items = [];
     (cart.brands || []).forEach((brand) => {
@@ -50,12 +58,6 @@ export default React.createClass({
         });
       });
     });
-    let activeBrand;
-    (cart.brands || []).forEach((brand) => {
-      if (_.get(brand, 'brand.id') === brandId) {
-        activeBrand = brand.brand;
-      }
-    });
     const renderBrandMenu = (brand) => {
       const brandId2 = _.get(brand, 'brand.id');
       return (
@@ -63,7 +65,7 @@ export default React.createClass({
           className={`brand-item ${brandId === brandId2 ? 'active' : ''}`}
           onClick={() => {
             if (brandId2 !== brandId) {
-              setBrandId(brandId2);
+              setReorderBrand(brand.brand);
             }
           }}
         >
@@ -142,6 +144,7 @@ export default React.createClass({
         { key: 'price', placeholder: '가격' },
         { key: 'color', placeholder: 'Color' },
         { key: 'size', placeholder: 'Size' },
+        { key: 'count', placeholder: '개수' },
       ];
       const addProduct = () => {
         const product = { brandId };
@@ -159,10 +162,11 @@ export default React.createClass({
       return (
         <div className="reorder-add-product">
           <div>새 상품 추가:</div>
-          {fields.map((field) =>
-            (<input type="text" ref={field.key} key={field.key} placeholder={field.placeholder} />))
+          {/* fields.map((field) =>
+            (<input type="text" ref={field.key} key={field.key} placeholder={field.placeholder} />))*/
           }
-          <button className="plus-button" onClick={addProduct}>상품 추가</button>
+          <SearchProductContainer />
+          { /* <button className="plus-button" onClick={addProduct}>상품 추가</button> */ }
         </div>
       );
     };
@@ -173,7 +177,7 @@ export default React.createClass({
         </div>
         <div className="reorder-brands-panel">
           {(cart.brands || []).map(renderBrandMenu)}
-          <BrandSearchContainer />
+          <SearchBrandContainer />
         </div>
         <div className="reorder-title"><b>{brandUtil.getName(activeBrand)}</b></div>
         <div className="reorder-products-panel">

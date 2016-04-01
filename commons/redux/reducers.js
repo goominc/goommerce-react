@@ -193,10 +193,16 @@ function categories(state = {}, action) {
 function search(state = { brand: {} }, action) {
   if (action.type === 'BRAND_SEARCH_RESULT') {
     const newState = Object.assign({}, state,
-      { brand: pick(action, ['brands', 'offset', 'limit', 'text']) });
+      { brand: pick(action, ['brands', 'offset', 'limit', 'text']) }
+    );
     return newState;
   } else if (action.type === 'RESET_SEARCH_RESULT') {
     return omit(state, action.target);
+  } else if (action.type === 'PRODUCT_SEARCH_RESULT') {
+    const newState = Object.assign({}, state,
+      { product: pick(action, ['products', 'offset', 'limit', 'text']) }
+    );
+    return newState;
   }
   return state;
 }

@@ -87,14 +87,6 @@ export function loadProductAndThen(id, cb) {
   };
 }
 
-export function searchProducts(query) {
-  return createFetchAction({
-    type: 'SEARCH_PRODUCTS',
-    endpoint: `/api/v1/products/search?${$.param(query)}`,
-    doDispatch: false,
-  });
-}
-
 export function inipay(orderId) {
   return createFetchAction({
     type: 'INIPAY',
@@ -514,29 +506,30 @@ export function resetSearchResult(target) {
   };
 }
 
+const doSearch = (text, offset = 0, limit = 10, key, actionType) => (dispatch, getState) => {
+  const state = getState();
+  if (!text) {
+    dispatch(resetSearchResult(key));
+    return;
+  }
+  const url = `/api/v1/${key}s/search?q=${text}&offset=${offset}&limit=${limit}`;
+  ajaxReturnPromise(state.auth, 'get', url).then((res) => {
+    const action = {
+      type: actionType,
+      // TODO handle pagination info
+      offset,
+      limit,
+      text,
+    };
+    action[`${key}s`] = res[`${key}s`];
+    dispatch(action);
+  });
+};
+
 export function searchBrands(text, offset, limit) {
-  return (dispatch, getState) => {
-    const state = getState();
-    if (!text) {
-      dispatch(resetSearchResult('brand'));
-      return;
-    }
-    if (!offset) {
-      offset = 0;
-    }
-    if (!limit) {
-      limit = 10; // TODO
-    }
-    const url = `/api/v1/brands/search?q=${text}&offset=${offset}&limit=${limit}`;
-    ajaxReturnPromise(state.auth, 'get', url).then((res) => {
-      dispatch({
-        type: 'BRAND_SEARCH_RESULT',
-        brands: res.brands,
-        // TODO handle pagination info
-        offset,
-        limit,
-        text,
-      });
-    });
-  };
+  return doSearch(text, offset, limit, 'brand', 'BRAND_SEARCH_RESULT');
+}
+
+export function searchProducts(text, offset, limit) {
+  return doSearch(text, offset, limit, 'product', 'PRODUCT_SEARCH_RESULT');
 }

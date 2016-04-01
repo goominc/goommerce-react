@@ -4,7 +4,8 @@ import { isEqual, pick } from 'lodash';
 
 import { ApiAction, setHeader, changeViewType, toggleProductSort,
          toggleProductFilter } from '../redux/actions';
-const { searchProducts, loadCategories } = ApiAction;
+const { loadCategories } = ApiAction;
+import { ajaxReturnPromise } from 'commons/redux/util/ajaxUtil';
 
 import ProductListItem from 'components/ProductListItem';
 
@@ -134,6 +135,8 @@ export default connect(
     viewType: state.pageProductList.viewType,
     showSort: state.pageProductList.showSort,
     showFilter: state.pageProductList.showFilter,
-    categories: state.categories }),
-  { searchProducts, loadCategories, setHeader, changeViewType, toggleProductSort, toggleProductFilter }
+    categories: state.categories,
+    searchProducts: (query) => ajaxReturnPromise(state.auth, `/api/v1/products/search?${$.param(query)}`, 'get'),
+  }),
+  { loadCategories, setHeader, changeViewType, toggleProductSort, toggleProductFilter }
 )(ProductList);

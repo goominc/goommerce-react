@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
+import { ajaxReturnPromise } from 'commons/redux/util/ajaxUtil';
 import Breadcrumb from 'components/Breadcrumb';
 import ProductListLeft from 'components/ProductListLeft';
 import ProductListItems from 'components/ProductListItems';
@@ -19,6 +20,7 @@ const ProductList = React.createClass({
     genLink: PropTypes.func.isRequired,
     category: PropTypes.object,
     categories: PropTypes.object.isRequired,
+    searchProducts: PropTypes.func,
   },
   contextTypes: {
     ApiAction: PropTypes.object,
@@ -51,7 +53,7 @@ const ProductList = React.createClass({
     if (props.latest) {
       queryOptions.sorts = '-id';
     }
-    this.context.ApiAction.searchProducts(queryOptions).then((res) => this.setState(res));
+    this.props.searchProducts(queryOptions).then((res) => this.setState(res));
   },
   breadCrumbPath() {
     const { categories } = this.props;
@@ -95,7 +97,6 @@ const ProductList = React.createClass({
 
     const toggleLatest = () => {
       this.doSearch(_.assign({}, this.props, { latest: !this.state.latest }));
-      console.log(this.state);
       this.setState({ latest: !this.state.latest });
     };
 
@@ -125,6 +126,7 @@ export default connect(
   (state, ownProps) => {
     const { categoryId = 'tree' } = ownProps;
     return {
+      searchProducts: (query) => ajaxReturnPromise(state.auth, 'get', `/api/v1/products/search?${$.param(query)}`),
       categories: state.categories,
       category: state.categories[categoryId === 'all' ? 'tree' : categoryId],
     };
