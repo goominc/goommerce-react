@@ -112,9 +112,9 @@
     position: absolute;
     top: 100%;
     width: 100%;
-    z-index: 10;
     &.open {
       display: block;
+      z-index: $dropdown-z-index;
     }
     .dropdown-item {
       border: 1px solid #c6c6c6;
@@ -125,6 +125,7 @@
       padding: 0 $margin-15;
       position: relative;
       width: 100%;
+      z-index: $dropdown-z-index;
       &:hover {
         background-color: #ddd;
       }

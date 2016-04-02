@@ -28,6 +28,13 @@ export default React.createClass({
     if (!cart) {
       return (<div></div>);
     }
+    if (!cart.brands || cart.brands.length < 1) {
+      return (
+        <div className="reorder-brands-panel">
+          <SearchBrandContainer />
+        </div>
+      );
+    }
     let activeBrand = this.props.brand;
     if (!activeBrand) {
       activeBrand = _.get(cart, 'brands[0].brand');
@@ -140,14 +147,19 @@ export default React.createClass({
     };
     const renderAddProduct = () => {
       const fields = [
-        { key: 'name', placeholder: '상품명' },
-        { key: 'price', placeholder: '가격' },
+        { key: 'price', placeholder: '가격', type: 'number' },
         { key: 'color', placeholder: 'Color' },
         { key: 'size', placeholder: 'Size' },
-        { key: 'count', placeholder: '개수' },
+        { key: 'count', placeholder: '개수', type: 'number' },
       ];
       const addProduct = () => {
         const product = { brandId };
+        const currentProductName = $('.product-search-box input').val();
+        if (!currentProductName) {
+          window.alert('상품 이름을 입력해 주세요');
+          return;
+        }
+        product.name = currentProductName;
         for (let i = 0; i < fields.length; i++) {
           const field = fields[i];
           const val = _.get(this.refs, `${field.key}.value`);
@@ -156,17 +168,42 @@ export default React.createClass({
             return;
           }
           product[field.key] = val;
+          if (field.type === 'number') {
+            product[field.key] = +product[field.key];
+          }
         }
         this.props.addCartProduct(product);
+      };
+      const renderActiveProduct = () => {
+        if (activeProduct) {
+          const convertedProduct = {
+            product: activeProduct,
+            productVariants: activeProduct.productVariants.map((variant) => ({ count: 0, productVariant: variant })),
+          };
+          return (
+            <div className="reorder-products-panel" style={({ marginTop: '-1px' })}>
+              {renderProduct(convertedProduct)}
+            </div>
+          );
+        }
+        return null;
       };
       return (
         <div className="reorder-add-product">
           <div>새 상품 추가:</div>
+          <SearchProductContainer />
           {/* fields.map((field) =>
             (<input type="text" ref={field.key} key={field.key} placeholder={field.placeholder} />))*/
           }
-          <SearchProductContainer />
-          { /* <button className="plus-button" onClick={addProduct}>상품 추가</button> */ }
+          <div className="product-variant-add-box">
+            {renderActiveProduct()}
+            <div className="product-variant-add-item">
+              {fields.map((field) =>
+                (<input type="text" ref={field.key} key={field.key} placeholder={field.placeholder} />)
+              )}
+              {<button className="plus-button" onClick={addProduct}>상품 추가</button>}
+            </div>
+          </div>
         </div>
       );
     };

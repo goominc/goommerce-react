@@ -79,3 +79,6 @@ $margin-20: 20px;
 
 /// default colors
 $default-active-text-color: #f60;
+
+$dropdown-z-index: 5000;
+$dropdown-overlay-z-index: $dropdown-z-index - 10;

@@ -2,6 +2,7 @@
 /**
  * 2016. 03. 30. [heekyu]
  * This is currently used in Reorder
+ * TODO for general case
  */
 
 import React, { PropTypes } from 'react';
@@ -25,10 +26,13 @@ const BrandSearch = React.createClass({
     const { searchResult } = this.props;
     const { ApiAction, activeLocale } = this.context;
     const boxClassName = 'brand-search-box';
+    const resetDropdown = () => {
+      ApiAction.resetSearchResult('brand');
+    };
     const onSelectItem = (item) => {
       const brand = item.item;
       ApiAction.addBrandToCart(brand);
-      ApiAction.resetSearchResult('brand');
+      resetDropdown();
       this.props.setReorderBrand(brand);
       $(`.${boxClassName} input`).val('');
     };
@@ -46,6 +50,7 @@ const BrandSearch = React.createClass({
         onChangeText={onChangeText}
         onSelectItem={onSelectItem}
         placeholder="브랜드 추가"
+        resetDropdown={resetDropdown}
         text={searchResult ? searchResult.text : ''}
       />
     );

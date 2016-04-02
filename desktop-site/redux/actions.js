@@ -114,6 +114,8 @@ export function addWishAndPopup(...args) {
 // END Product Detail Page actions
 
 export function setReorderBrand(brand) {
+  // 2016. 04. 01. [heekyu] TODO better way...
+  $('.product-search-box input').val('');
   return {
     type: 'REORDER_SET_BRAND',
     brand,

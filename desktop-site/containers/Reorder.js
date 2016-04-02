@@ -9,11 +9,14 @@ import ReorderComponent from 'components/order/ReorderComponent';
 import { setReorderBrand } from 'redux/actions';
 
 const Reorder = React.createClass({
+  propTypes: {
+    setReorderBrand: PropTypes.func,
+  },
   contextTypes: {
     ApiAction: PropTypes.object,
   },
-  /*
   componentDidMount() {
+    /*
     const product = {
       brandId: 2038,
       name: 'heekyu',
@@ -22,8 +25,8 @@ const Reorder = React.createClass({
       size: 'XL',
     };
     this.context.ApiAction.createMerchandiseProductAndAddToCart(product);
+    */
   },
-  */
   render() {
     const { ApiAction } = this.context;
     const addCartProduct = (product) => {

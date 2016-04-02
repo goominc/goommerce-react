@@ -55,7 +55,7 @@
 .reorder-add-product {
   border: 1px solid #ddd;
   margin-bottom: $margin-15;
-  padding: 5px 10px;
+  padding: 10px $margin-20;
   width: 100%;
   $input-width: 120px;
   input[type="text"] {
@@ -87,9 +87,18 @@
     }
   }
   .product-search-box {
+    display: inline-block;
     position: relative;
     width: $input-width;
     @include dropdown-box(25px);
+  }
+  .product-variant-add-box {
+    display: block;
+    width: 100%;
+  }
+  .product-variant-add-item {
+    display: inline-block;
+    width: 100%;
   }
   .plus-button {
     $height: 30px;
@@ -117,15 +126,16 @@
     border: 1px solid #ddd;
     display: inline-block;
     margin-right: $margin-15;
+    margin-bottom: $margin-15;
   }
   .product-variant-item {
-    $image-width: 60px;
+    $image-width: 50px;
     $count-width: 53px;
     $padding: 10px;
     // border: 1px solid #ddd;
     display: inline-block;
     padding: 0 $padding;
-    width: $image-width + $count-width + $padding * 2 + 15px;
+    width: $image-width + $count-width + $padding * 2 + 25px;
     .img-wrap {
       // border: 1px solid #ddd;
       /*

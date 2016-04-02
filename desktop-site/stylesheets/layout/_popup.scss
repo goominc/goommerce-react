@@ -7,8 +7,12 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 10000;
+  z-index: $dropdown-overlay-z-index;
   background-color: rgba(0, 0, 0, 0.6);
+  &.transparent {
+    background-color: transparent;
+    cursor: default;
+  }
 }
 $padding-horizontal: 40px;
 $padding-vertical: 20px;

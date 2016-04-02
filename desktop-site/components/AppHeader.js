@@ -92,7 +92,7 @@ export default React.createClass({
       const overlayStyle = { backgroundColor: 'transparent', cursor: 'default' };
       return (
         <div className="search-dropdown-box" onMouseLeave={() => $('.right-menu-item').removeClass('open')}>
-          <div className="popup-overlay" style={overlayStyle}></div>
+          <div className="popup-overlay transparent"></div>
           <div onClick={() => selectSearchDropdown(null)} className={notSelectedClassName}>
             {i18n.get('word.allCategories')}
           </div>

@@ -96,10 +96,22 @@ export function inipay(orderId) {
 }
 
 export function loadCart() {
-  return createFetchAction({
-    type: 'LOAD_CART',
-    endpoint: '/api/v1/carts',
-  });
+  return (dispatch, getState) => {
+    createFetchAction({
+      type: 'LOAD_CART',
+      endpoint: '/api/v1/carts',
+    })(dispatch, getState).then(() => {
+      // 2016. 04. 01. [heekyu] set default brand for reorder
+      const state = getState();
+      const defaultReorderBrand = _.get(state.cart, 'brands[0].brand');
+      if (defaultReorderBrand) {
+        dispatch({
+          type: 'REORDER_SET_BRAND',
+          brand: defaultReorderBrand,
+        });
+      }
+    });
+  };
 }
 
 export function addCartProduct(productVariantId, count) {
@@ -114,12 +126,30 @@ export function addCartProduct(productVariantId, count) {
 export function updateCartProduct(productVariantId, count) {
   return (dispatch, getState) => {
     if (count >= 1) {
+      const type = 'UPDATE_CART';
+      ajaxReturnPromise(getState().auth, 'put', '/api/v1/carts', { productVariantId, count }).then((res) => {
+        dispatch({
+          type,
+          payload: res,
+        });
+      }, (err) => {
+        // 2016. 04. 02. [heekyu] try add product
+        ajaxReturnPromise(getState().auth, 'post', '/api/v1/carts', { productVariantId, count }).then((res) => {
+          dispatch({
+            type,
+            payload: res,
+          });
+        }, () => dispatch({ type, error: err.responseJSON }) // TODO enhance error handling
+        );
+      });
+      /*
       return createFetchAction({
         type: 'UPDATE_CART',
         endpoint: '/api/v1/carts',
         method: 'put',
         body: { productVariantId, count },
       })(dispatch, getState);
+      */
     }
     const origCart = getState().cart;
     (origCart.brands || []).forEach((brand) => {
@@ -437,7 +467,7 @@ export function createMerchandiseProductAndAddToCart(product) {
     body.brand = { id: product.brandId };
     ajaxReturnPromise(state.auth, 'post', '/api/v1/merchandise/products', body).then((res) => {
       createMerchandiseVariant(state.auth, res.id, product).then((res2) => {
-        addCartProduct(res2.id, 1)(dispatch, getState);
+        addCartProduct(res2.id, product.count || 1)(dispatch, getState);
       });
     });
   };
@@ -506,20 +536,22 @@ export function resetSearchResult(target) {
   };
 }
 
-const doSearch = (text, offset = 0, limit = 10, key, actionType) => (dispatch, getState) => {
+const doSearch = (query, offset = 0, limit = 10, key, actionType) => (dispatch, getState) => {
   const state = getState();
-  if (!text) {
+  if (!query || !query.q) {
     dispatch(resetSearchResult(key));
     return;
   }
-  const url = `/api/v1/${key}s/search?q=${text}&offset=${offset}&limit=${limit}`;
+  query.offset = offset;
+  query.limit = limit;
+  const url = `/api/v1/${key}s/search?${$.param(query)}`;
   ajaxReturnPromise(state.auth, 'get', url).then((res) => {
     const action = {
       type: actionType,
       // TODO handle pagination info
       offset,
       limit,
-      text,
+      text: query.q,
     };
     action[`${key}s`] = res[`${key}s`];
     dispatch(action);
@@ -527,9 +559,9 @@ const doSearch = (text, offset = 0, limit = 10, key, actionType) => (dispatch, g
 };
 
 export function searchBrands(text, offset, limit) {
-  return doSearch(text, offset, limit, 'brand', 'BRAND_SEARCH_RESULT');
+  return doSearch({ q: text }, offset, limit, 'brand', 'BRAND_SEARCH_RESULT');
 }
 
-export function searchProducts(text, offset, limit) {
-  return doSearch(text, offset, limit, 'product', 'PRODUCT_SEARCH_RESULT');
+export function searchProducts(query, offset, limit) {
+  return doSearch(query, offset, limit, 'product', 'PRODUCT_SEARCH_RESULT');
 }

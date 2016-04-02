@@ -10,9 +10,11 @@ export default React.createClass({
     onSelectItem: PropTypes.func,
     placeholder: PropTypes.string,
     text: PropTypes.string,
+    resetDropdown: PropTypes.func,
   },
   render() {
-    const { items, boxClassName, placeholder, onSelectItem, text, onChangeText } = this.props;
+    const { items, boxClassName, placeholder, onSelectItem, resetDropdown,
+      text, onChangeText } = this.props;
     const renderItem = (item) => (
       <div key={item.text} className="dropdown-item" onClick={() => onSelectItem(item)}>
         {item.text}
@@ -20,11 +22,12 @@ export default React.createClass({
     );
     const renderDropdown = () => {
       if (items && items.length > 0) {
-        return (
-          <div className="dropdown-box open">
+        return [
+          (<div key="dropdown-box" className="dropdown-box open">
             {items.map((item) => renderItem(item))}
-          </div>
-        );
+           </div>),
+          (<div key="dropdown-overlay" className="popup-overlay transparent" onClick={resetDropdown}></div>)
+        ];
       }
       return (<div></div>);
     };
