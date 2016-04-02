@@ -127,7 +127,7 @@ export function updateCartProduct(productVariantId, count) {
   return (dispatch, getState) => {
     if (count >= 1) {
       const type = 'UPDATE_CART';
-      ajaxReturnPromise(getState().auth, 'put', '/api/v1/carts', { productVariantId, count }).then((res) => {
+      return ajaxReturnPromise(getState().auth, 'put', '/api/v1/carts', { productVariantId, count }).then((res) => {
         dispatch({
           type,
           payload: res,
@@ -142,14 +142,6 @@ export function updateCartProduct(productVariantId, count) {
         }, () => dispatch({ type, error: err.responseJSON }) // TODO enhance error handling
         );
       });
-      /*
-      return createFetchAction({
-        type: 'UPDATE_CART',
-        endpoint: '/api/v1/carts',
-        method: 'put',
-        body: { productVariantId, count },
-      })(dispatch, getState);
-      */
     }
     const origCart = getState().cart;
     (origCart.brands || []).forEach((brand) => {

@@ -120,7 +120,9 @@
     height: $text-height;
     line-height: $text-height;
     text-align: center;
+    overflow: hidden;
     width: 100%;
+    white-space: nowrap;
   }
   .product-item {
     border: 1px solid #ddd;
@@ -149,7 +151,7 @@
       position: relative;
       width: 50px;
       .dummy {
-        margin-top: 150%;
+        margin-top: 130%;
       }
       img {
         border: 1px solid #ddd;
@@ -166,20 +168,20 @@
     }
     .right-count {
       display: inline-block;
-      height: $image-width / 2 * 3;
+      height: $image-width / 10 * 13;
       margin-left: 20px;
       position: relative;
       width: $count-width;
+      $count-box-height: 27px;
       .count-box {
-        $height: 27px;
         border: 1px solid #aaa;
         font-size: 15px;
-        height: $height;
-        margin-top: - $height / 2;
+        height: $count-box-height;
+        margin-top: - $count-box-height / 2;
         position: absolute;
         top: 50%;
         width: 100%;
-        @include input-number-contents(32px, 20px, $height);
+        @include input-number-contents(32px, 20px, $count-box-height);
       }
     }
     .bottom-price {
@@ -189,6 +191,18 @@
       overflow-x: hidden;
       text-align: center;
       width: 100%;
+    }
+    .delete-button {
+      background-color: #e12a5d;
+      border: 1px solid #e10433;
+      color: #fff;
+      cursor: pointer;
+      display: inline;
+      font-size: 14px;
+      padding: 1px 5px;
+      text-align: center;
+      vertical-align: middle;
+      width: 50px;
     }
   }
 }

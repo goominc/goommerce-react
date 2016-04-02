@@ -24,7 +24,7 @@ export default React.createClass({
     currencySign: PropTypes.object,
   },
   render() {
-    const { cart, loadCart, updateCartProduct, setReorderBrand } = this.props;
+    const { cart, loadCart, updateCartProduct, deleteCartProduct, setReorderBrand } = this.props;
     if (!cart) {
       return (<div></div>);
     }
@@ -106,6 +106,10 @@ export default React.createClass({
         <div key={variant.id} className="product-variant-item">
           <div className="top-name">
             <b>{`[${_.get(variant, 'data.color')}]   [${_.get(variant, 'data.size')}]`}</b>
+            &nbsp; &nbsp; &nbsp;
+            <div className="delete-button" onClick={() => deleteCartProduct(variant.id)}>
+              X
+            </div>
           </div>
           <div className="img-wrap">
             <div className="dummy"></div>
