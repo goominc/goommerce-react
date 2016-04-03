@@ -6,7 +6,7 @@ import _ from 'lodash';
 
 import MyPageLeftbar from 'components/mypage/MyPageLeftbar';
 import ReorderComponent from 'components/order/ReorderComponent';
-import { setReorderBrand } from 'redux/actions';
+import { setReorderBrand, setReorderProduct } from 'redux/actions';
 
 const Reorder = React.createClass({
   propTypes: {
@@ -53,5 +53,5 @@ export default connect(
     brand: _.get(state, 'reorder.brand'),
     activeProduct: _.get(state, 'reorder.product'),
   }),
-  { setReorderBrand }
+  { setReorderBrand, setReorderProduct }
 )(Reorder);

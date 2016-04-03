@@ -12,6 +12,7 @@ export default React.createClass({
     brand: PropTypes.object,
     activeProduct: PropTypes.object,
     setReorderBrand: PropTypes.func,
+    setReorderProduct: PropTypes.func,
     cart: PropTypes.object,
     loadCart: PropTypes.func, // when refresh
     addCartProduct: PropTypes.func,
@@ -57,9 +58,11 @@ export default React.createClass({
       });
       (brand.products || []).forEach((product) => {
         if (_.get(brand, 'brand.id') === brandId) {
-          items.push(product);
           if (activeProduct && activeProduct.id === _.get(product, 'product.id')) {
             activeProductInCart = product;
+            items.splice(0, 0, product);
+          } else {
+            items.push(product);
           }
         }
         (product.productVariants || []).forEach((variant) => {
@@ -213,13 +216,17 @@ export default React.createClass({
         }
         return null;
       };
+      const renderActiveProductReset = () => {
+        if (activeProduct) {
+          return (<button onClick={() => this.props.setReorderProduct(null)}>초기화</button>);
+        }
+        return null;
+      };
       return (
         <div className="reorder-add-product">
           <div>새 상품 추가:</div>
           <SearchProductContainer />
-          {/* fields.map((field) =>
-            (<input type="text" ref={field.key} key={field.key} placeholder={field.placeholder} />))*/
-          }
+          {renderActiveProductReset()}
           <div className="product-variant-add-box">
             {renderActiveProduct()}
             <div className="product-variant-add-item">
