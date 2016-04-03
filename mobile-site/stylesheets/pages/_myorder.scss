@@ -1,0 +1,132 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the brand page.
+// -----------------------------------------------------------------------------
+#myorder-container {
+  background-color: #eee;
+  header {
+    background-color: white;
+    font-size: 16px;
+    position: relative;
+    margin-bottom: 8px;
+  }
+  .order-filter {
+    padding-left: 10px;
+    height: 44px;
+    line-height: 44px;
+  }
+  .expand-arrow:after {
+    position: absolute;
+    top: 0;
+    right: 8px;
+    width: 12px;
+    height: 44px;
+    content: "";
+    background: url('data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAABgAAABYCAMAAADY8cemAAAAPFBMVEUAAADmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgRaV1LkAAAAE3RSTlMAet8gDQXL+r+xil8V06WXaVJOB8o4jAAAAHFJREFUSMftyUkOhDAQQ1FXZiCMvv9dW40IpYg9C1RvZX3DGPN9suJpFWDh+OgjFyAO96N9iDgf6bqc/f8UStdLvGYo3O6+sQQ0IXG65sTUuj7aVZ25A9g5V/SqyweO7FpX3mXJzkPpQ+39kzyMMS/7AdMoA1sG1fVZAAAAAElFTkSuQmCC') no-repeat center center;
+    background-size: 100% 100%
+  }
+}
+.order-list {
+  background-color: white;
+  padding: 10px;
+}
+.order-props {
+  color: #666;
+  font-size: 14px;
+}
+.order-product-item {
+  padding: 5px;
+  font-size: 14px;
+  img {
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 10px;
+  }
+  .order-product-wrap {
+    display: inline-block;
+    vertical-align: top;
+    min-height: 60px;
+    .order-product-price {
+      margin: 0;
+      color: #666;
+      .price {
+        color: #f55;
+      }
+    }
+  }
+}
+.order-product-showmore {
+  height: 40px;
+  line-height: 40px;
+  font-size: 14px;
+  position: relative;
+  .expand-arrow:after {
+    position: absolute;
+    top: 0;
+    right: 8px;
+    width: 12px;
+    height: 40px;
+    content: "";
+    background: url('data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAABgAAABYCAMAAADY8cemAAAAPFBMVEUAAADmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgRaV1LkAAAAE3RSTlMAet8gDQXL+r+xil8V06WXaVJOB8o4jAAAAHFJREFUSMftyUkOhDAQQ1FXZiCMvv9dW40IpYg9C1RvZX3DGPN9suJpFWDh+OgjFyAO96N9iDgf6bqc/f8UStdLvGYo3O6+sQQ0IXG65sTUuj7aVZ25A9g5V/SqyweO7FpX3mXJzkPpQ+39kzyMMS/7AdMoA1sG1fVZAAAAAElFTkSuQmCC') no-repeat center center;
+    background-size: 100% 100%
+  }
+}
+.order-quantity {
+  color: #666;
+  position: relative;
+  padding: 3px 0;
+  font-size: 14px;
+  .quantity-right {
+    position: absolute;
+    right: 0;
+    color: #222;
+  }
+  .price-right {
+    position: absolute;
+    right: 0;
+    color: #f55;
+  }
+}
+#order-detail-container {
+  background-color: #eee;
+  header {
+    background-color: white;
+    font-size: 14px;
+    margin-bottom: 8px;
+    padding: 10px;
+  }
+  .orange {
+    color: #fa5;
+  }
+  .seller-info {
+    background-color: white;
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+.detail-actions {
+  background-color: white;
+  margin-bottom: 5px;
+  font-size: 14px;
+  a {
+    display: block;
+    position: relative;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+  }
+}
+.detail-info {
+  background-color: white;
+  margin-bottom: 8px;
+  padding: 10px;
+}
+
+.seller-header {
+  margin-bottom: 10px;
+}
+.seller-link {
+  position: relative;
+  display: block;
+}

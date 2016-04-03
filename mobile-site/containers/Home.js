@@ -28,12 +28,19 @@ const Home = React.createClass({
       // brandId,
       offset: 0,
       limit: 30,
-    }).then((res) => this.setState(res));
+    }).then((res) => {
+      console.log(res);
+      this.setState(res);
+    });
   },
   render() {
-    if (!this.state.products) {
-      return (<div></div>);
-    }
+    const renderProducts = () => {
+      if (!this.state.products) {
+        return null;
+      }
+      return <MainRecommendList products={this.state.products} />;
+    };
+
     return (
       <div className="main-container">
         <MainBanner />
@@ -79,8 +86,9 @@ const Home = React.createClass({
               </ul>
             </article>
           </section>
-          <MainRecommendList products={this.state.products} />
+
         </div>
+        {renderProducts()}
 
         <div className="info-area">
         </div>

@@ -13,7 +13,7 @@ export default React.createClass({
             Status: The seller has shipped your order
           </div>
           <div className="order-status">
-            Reminder: In <span className="orange">5 days 23 hours 8 minutes</span>Purchase Protection will end.
+            Reminder: In <span className="orange">5 days 23 hours 8 minutes</span> Purchase Protection will end.
           </div>
         </header>
         <div className="detail-actions">
@@ -35,32 +35,47 @@ export default React.createClass({
           <ul>
             <li className="order-product-item">
               <img />
-              <div className="order-product-name">
-                2016 casual shirts dress...
-              </div>
-              <div className="order-product-variants">
-                Properties: <span>Purple+M+China</span>
-              </div>
-              <div className="order-product-price">
-                <span className="price">US $ 11.72</span><span className="amount">X 1</span>
+              <div className="order-product-wrap">
+                <div className="order-product-name">
+                  2016 casual shirts dress...
+                </div>
+                <div className="order-product-variants">
+                  Properties: <span>Purple+M+China</span>
+                </div>
+                <div className="order-product-price">
+                  <span className="price">US $ 11.72</span><span className="amount">X 1</span>
+                </div>
               </div>
             </li>
             <li className="order-product-item">
               <img />
-              <div className="order-product-name">
-                2016 casual shirts dress...
+              <div className="order-product-wrap">
+                <div className="order-product-name">
+                  2016 casual shirts dress...
+                </div>
+                <div className="order-product-variants">
+                  Properties: <span>Navi+M+China</span>
+                </div>
+                <div className="order-product-price">
+                  <span className="price">US $ 11.72</span><span className="amount">X 1</span>
+                </div>
               </div>
-              <div className="order-product-variants">
-                Properties: <span>Navi+M+China</span>
-              </div>
-              <div className="order-product-price">
-                <span className="price">US $ 11.72</span><span className="amount">X 1</span>
-              </div>
+              <li className="order-product-item">
+                <img />
+                <div className="order-product-wrap">
+                  <div className="order-product-name">
+                    2016 casual shirts dress...
+                  </div>
+                  <div className="order-product-variants">
+                    Properties: <span>Navi+M+China</span>
+                  </div>
+                  <div className="order-product-price">
+                    <span className="price">US $ 11.72</span><span className="amount">X 1</span>
+                  </div>
+                </div>
+              </li>
             </li>
           </ul>
-          <div className="order-product-showmore">
-            Display 3 items remaining<span className="shrink-arrow"></span>
-          </div>
           <div className="order-quantity">
             Quantity
             <span className="quantity-right">5</span>
@@ -72,8 +87,8 @@ export default React.createClass({
         </div>
 
         <div className="seller-info">
-          Seller Info
-          <Link to={'/brands/21'}>
+          <div className="seller-header">Seller Info</div>
+          <Link className="seller-link" to={'/brands/21'}>
             <div className="order-status">Store: J's Style</div>
             <div className="order-status">Seller: angel wang</div>
             <span className="ms-arrow">
