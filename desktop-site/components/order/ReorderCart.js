@@ -12,6 +12,7 @@ export default React.createClass({
     brand: PropTypes.object,
     activeProduct: PropTypes.object,
     setReorderBrand: PropTypes.func,
+    setReorderProduct: PropTypes.func,
     cart: PropTypes.object,
     loadCart: PropTypes.func, // when refresh
     addCartProduct: PropTypes.func,
@@ -46,6 +47,7 @@ export default React.createClass({
     const { activeLocale, activeCurrency, currencySign } = this.context;
 
     const { activeProduct } = this.props;
+    let activeProductInCart = null;
 
     const items = [];
     (cart.brands || []).forEach((brand) => {
@@ -56,7 +58,12 @@ export default React.createClass({
       });
       (brand.products || []).forEach((product) => {
         if (_.get(brand, 'brand.id') === brandId) {
-          items.push(product);
+          if (activeProduct && activeProduct.id === _.get(product, 'product.id')) {
+            activeProductInCart = product;
+            items.splice(0, 0, product);
+          } else {
+            items.push(product);
+          }
         }
         (product.productVariants || []).forEach((variant) => {
           currencies.forEach((cur) => {
@@ -81,7 +88,7 @@ export default React.createClass({
         </div>
       );
     };
-    const renderProductVariant = (variant, quantity) => {
+    const renderProductVariant = (variant, quantity, disableDelete) => {
       const minusQuantity = () => {
         if (quantity > 1) {
           updateCartProduct(variant.id, quantity - 1);
@@ -102,14 +109,20 @@ export default React.createClass({
       };
       const price = +(_.get(variant, activeCurrency));
       const total = price * quantity;
+      const renderDeleteButton = () => {
+        if (!disableDelete) {
+          return (
+            <div className="delete-button" onClick={() => deleteCartProduct(variant.id)}>X</div>
+          );
+        }
+        return null;
+      };
       return (
         <div key={variant.id} className="product-variant-item">
           <div className="top-name">
             <b>{`[${_.get(variant, 'data.color')}]   [${_.get(variant, 'data.size')}]`}</b>
             &nbsp; &nbsp; &nbsp;
-            <div className="delete-button" onClick={() => deleteCartProduct(variant.id)}>
-              X
-            </div>
+            {renderDeleteButton()}
           </div>
           <div className="img-wrap">
             <div className="dummy"></div>
@@ -144,7 +157,7 @@ export default React.createClass({
         <div key={_.get(product, 'product.id')} className="product-item">
           <div className="top-name" style={titleStyle}>{_.get(product.product, `data.nickname.${activeLocale}`)}</div>
           {product.productVariants.map(
-            (variant) => renderProductVariant(variant.productVariant, variant.count)
+            (variant) => renderProductVariant(variant.productVariant, variant.count, variant.disableDelete)
           )}
         </div>
       );
@@ -182,8 +195,19 @@ export default React.createClass({
         if (activeProduct) {
           const convertedProduct = {
             product: activeProduct,
-            productVariants: activeProduct.productVariants.map((variant) => ({ count: 0, productVariant: variant })),
+            productVariants: activeProduct.productVariants.map(
+              (variant) => ({ count: 0, productVariant: variant, disableDelete: true })),
           };
+          if (activeProductInCart) {
+            activeProductInCart.productVariants.forEach((v1) => {
+              convertedProduct.productVariants.forEach((v2) => {
+                if (_.get(v1, 'productVariant.id') === _.get(v2, 'productVariant.id')) {
+                  v2.count = v1.count;
+                  v2.disableDelete = false;
+                }
+              });
+            });
+          }
           return (
             <div className="reorder-products-panel" style={({ marginTop: '-1px' })}>
               {renderProduct(convertedProduct)}
@@ -192,13 +216,17 @@ export default React.createClass({
         }
         return null;
       };
+      const renderActiveProductReset = () => {
+        if (activeProduct) {
+          return (<button onClick={() => this.props.setReorderProduct(null)}>초기화</button>);
+        }
+        return null;
+      };
       return (
         <div className="reorder-add-product">
           <div>새 상품 추가:</div>
           <SearchProductContainer />
-          {/* fields.map((field) =>
-            (<input type="text" ref={field.key} key={field.key} placeholder={field.placeholder} />))*/
-          }
+          {renderActiveProductReset()}
           <div className="product-variant-add-box">
             {renderActiveProduct()}
             <div className="product-variant-add-item">
