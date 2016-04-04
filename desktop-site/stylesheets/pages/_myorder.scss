@@ -3,10 +3,11 @@
 // -----------------------------------------------------------------------------
 
 .order-list-container {
-  width: 100%;
   border: 1px solid #e8e8e8;
   background-color: #fff;
+  min-height: 200px;
   padding: $margin-15;
+  width: 100%;
   .order-box {
     width: 100%;
     display: block;

@@ -125,3 +125,7 @@
     opacity: 0.9;
   }
 }
+
+.btn.default {
+  @include button-default-styles();
+}

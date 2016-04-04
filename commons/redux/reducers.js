@@ -49,7 +49,7 @@ function auth(state = {}, action) {
 }
 
 function cart(state = {}, action) {
-  if (action.type === 'UPDATE_CART' || action.type === 'LOAD_CART') {
+  if (action.type === 'UPDATE_CART' || action.type === 'LOAD_CART' || action.type === 'UPDATE_CART_MULTIPLE') {
     return { ...action.payload };
   } else if (action.type === 'ADD_BRAND_TO_CART') {
     // 2016. 03. 30. [heekyu] this is local action.

@@ -123,6 +123,16 @@ export function addCartProduct(productVariantId, count) {
   });
 }
 
+export function addCartProducts(productVariants) {
+  // 2016. 04. 04. [heekyu] TODO add multiple variants in a call
+  return createFetchAction({
+    type: 'UPDATE_CART_MULTIPLE',
+    endpoint: '/api/v1/carts',
+    method: 'post',
+    body: productVariants,
+  });
+}
+
 export function updateCartProduct(productVariantId, count) {
   return (dispatch, getState) => {
     if (count >= 1) {
@@ -182,6 +192,15 @@ export function createOrder({ productVariants }) {
     endpoint: '/api/v1/orders',
     method: 'post',
     body: { productVariants },
+    transform: ({ data }) => normalize(data, schemas.order),
+  });
+}
+
+export function createOrderFromCart() {
+  return createFetchAction({
+    type: 'CREATE_ORDER',
+    endpoint: '/api/v1/orders/big',
+    method: 'post',
     transform: ({ data }) => normalize(data, schemas.order),
   });
 }
@@ -465,6 +484,7 @@ export function createMerchandiseProductAndAddToCart(product) {
   };
 }
 
+// 2016. 03. 30. [heekyu] brand, product, productVariant may be real or virtual
 export function addCartProductOnReorder(product) {
   // product : { brandId, name, price, color, size }
   // when product is real, product.product exists

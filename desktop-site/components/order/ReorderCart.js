@@ -9,15 +9,18 @@ import brandUtil from 'commons/utils/brandUtil';
 
 export default React.createClass({
   propTypes: {
-    brand: PropTypes.object,
     activeProduct: PropTypes.object,
+    brand: PropTypes.object,
+    cart: PropTypes.object,
+    createOrder: PropTypes.func,
     setReorderBrand: PropTypes.func,
     setReorderProduct: PropTypes.func,
-    cart: PropTypes.object,
     loadCart: PropTypes.func, // when refresh
-    addCartProduct: PropTypes.func,
+    addCartProductOnReorder: PropTypes.func,
+    addCartProducts: PropTypes.func,
     updateCartProduct: PropTypes.func,
     deleteCartProduct: PropTypes.func,
+    yesterdayOrderInfo: PropTypes.object,
   },
   contextTypes: {
     activeCurrency: PropTypes.string,
@@ -25,13 +28,36 @@ export default React.createClass({
     currencySign: PropTypes.object,
   },
   render() {
-    const { cart, loadCart, updateCartProduct, deleteCartProduct, setReorderBrand } = this.props;
+    const { cart, createOrder, loadCart, updateCartProduct, deleteCartProduct,
+      setReorderBrand, yesterdayOrderInfo, addCartProductOnReorder, addCartProducts } = this.props;
     if (!cart) {
       return (<div></div>);
     }
+    const renderYesterdayOrder = () => {
+      if (yesterdayOrderInfo && yesterdayOrderInfo.variantCount) {
+        const price = _.get(yesterdayOrderInfo, 'totalPrice.KRW');
+        const B = yesterdayOrderInfo.brands.size;
+        const V = yesterdayOrderInfo.variantCount;
+        return (
+          <div>
+            <div><b>{`어제 주문 내역에 추가로 ${V}개의 상품이 있습니다. (총 가격 ${price}원, ${B}개의 브랜드)`}</b></div>
+            <div style={({ marginBottom: '15px' })}>
+              <b>카트에 추가하시겠습니까?</b>
+              <button className="btn default" style={({ marginLeft: '15px' })}
+                onClick={() => addCartProducts(yesterdayOrderInfo.productVariants)}
+              >
+                추가
+              </button>
+            </div>
+          </div>
+        );
+      }
+      return null;
+    };
     if (!cart.brands || cart.brands.length < 1) {
       return (
         <div className="reorder-brands-panel">
+          {renderYesterdayOrder()}
           <SearchBrandContainer />
         </div>
       );
@@ -189,7 +215,7 @@ export default React.createClass({
             product[field.key] = +product[field.key];
           }
         }
-        this.props.addCartProduct(product);
+        addCartProductOnReorder(product);
       };
       const renderActiveProduct = () => {
         if (activeProduct) {
@@ -218,7 +244,7 @@ export default React.createClass({
       };
       const renderActiveProductReset = () => {
         if (activeProduct) {
-          return (<button onClick={() => this.props.setReorderProduct(null)}>초기화</button>);
+          return (<button className="btn default" onClick={() => this.props.setReorderProduct(null)}>초기화</button>);
         }
         return null;
       };
@@ -239,10 +265,18 @@ export default React.createClass({
         </div>
       );
     };
+    const totalPrice = cart.total ? cart.total[activeCurrency] : 0;
+    const renderOrderButton = () => {
+      if (totalPrice > 0) {
+        return (<button className="btn default" style={({ marginLeft: '20px' })} onClick={createOrder}>주문하기</button>);
+      }
+      return null;
+    };
     return (
       <div>
         <div className="reorder-title">
-          <b>총 주문가격:</b> {currencySign[activeCurrency]} {cart.total ? cart.total[activeCurrency] : 0}
+          <b>총 주문가격:</b> {currencySign[activeCurrency]} {totalPrice}
+          {renderOrderButton()}
         </div>
         <div className="reorder-brands-panel">
           {(cart.brands || []).map(renderBrandMenu)}

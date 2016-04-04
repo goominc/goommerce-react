@@ -49,3 +49,49 @@ exports.getProductVariantsFromCart = (cart) => {
   });
   return res;
 };
+
+const getInfoFromOrders = (orders, excludeVariantIdSet) => {
+  const orderInfo = {
+    brands: new Set(),
+    products: new Set(),
+    variantCount: 0,
+    variantPieces: 0,
+    totalPrice: { KRW: 0, USD: 0, CNY: 0 },
+    productVariants: [], // 2016. 04. 04. [heekyu] use when addCartProducts
+  };
+  orders.forEach((order) => {
+    (order.orderProducts || []).forEach((orderProduct) => {
+      if (excludeVariantIdSet.has(_.get(orderProduct, 'productVariant.id'))) {
+        return;
+      }
+      orderInfo.variantCount++;
+      orderInfo.variantPieces += orderProduct.orderedCount;
+      const brandId = _.get(orderProduct, 'brand.id');
+      const productId = _.get(orderProduct, 'product.id');
+      if (brandId) {
+        orderInfo.brands.add(brandId);
+      }
+      if (productId) {
+        orderInfo.products.add(productId);
+      }
+      Object.keys(orderInfo.totalPrice).forEach((currency) => {
+        orderInfo.totalPrice[currency] += +orderProduct[`total${currency}`];
+      });
+      orderInfo.productVariants.push(
+        { productVariantId: orderProduct.productVariant.id, count: orderProduct.orderedCount });
+    });
+  });
+  return orderInfo;
+};
+
+exports.getInfoFromOrdersNotInCart = (orders, cart) => {
+  const variantIdsInCart = new Set();
+  (cart.brands || []).forEach((brand) => {
+    (brand.products || []).forEach((product) => {
+      (product.productVariants || []).forEach((variant) => {
+        variantIdsInCart.add(variant.productVariant.id);
+      });
+    });
+  });
+  return getInfoFromOrders(orders, variantIdsInCart);
+};

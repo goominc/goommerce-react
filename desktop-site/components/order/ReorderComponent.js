@@ -18,7 +18,7 @@ export default React.createClass({
     const components = [
       <ReorderCart {...this.props} />,
       <ReorderPastOrders {...this.props} />,
-      <ReorderNewOrders {...this.props} />
+      <ReorderNewOrders {...this.props} />,
     ];
     for (let i = 1; i < reorderTabs.length; i++) {
       if (currentTab === reorderTabs[i]) {
@@ -29,10 +29,10 @@ export default React.createClass({
     return (
       <div className="mypage-right-box">
         <h2>ReOrder</h2>
-        <div className="order-status-bar">
+        {/* <div className="order-status-bar">
           {reorderTabs.map((tab, index) =>
             (<span key={index} className={currentIndex === index ? 'active' : ''}>{tab}</span>))}
-        </div>
+        </div> */}
         <div className="order-list-container">
           {components[currentIndex]}
         </div>
