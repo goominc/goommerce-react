@@ -61,9 +61,12 @@ const getInfoFromOrders = (orders, excludeVariantIdSet) => {
   };
   orders.forEach((order) => {
     (order.orderProducts || []).forEach((orderProduct) => {
-      if (excludeVariantIdSet.has(_.get(orderProduct, 'productVariant.id'))) {
+      const variantId = _.get(orderProduct, 'productVariant.id');
+      if (excludeVariantIdSet.has(variantId)) {
         return;
       }
+      // 2016. 04. 04. [heekyu] same variant must be added only once
+      excludeVariantIdSet.add(variantId);
       orderInfo.variantCount++;
       orderInfo.variantPieces += orderProduct.orderedCount;
       const brandId = _.get(orderProduct, 'brand.id');

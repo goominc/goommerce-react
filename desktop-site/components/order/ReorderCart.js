@@ -172,12 +172,10 @@ export default React.createClass({
       );
     };
     const renderProduct = (product) => {
-      const variantWidth = 148;
       const titleStyle = {
         display: 'block',
         fontSize: '16px',
         fontWeight: '400',
-        width: `${variantWidth * product.productVariants.length}px`,
       };
       return (
         <div key={_.get(product, 'product.id')} className="product-item">
