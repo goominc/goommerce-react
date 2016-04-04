@@ -29,7 +29,7 @@ export default React.createClass({
       removeProduct(variant);
     }
     function handleBuy() {
-      buy(variant);
+      buy({ productVariant: variant, count: quantity });
     }
     function renderBuyButton() {
       const buttonCells = [];

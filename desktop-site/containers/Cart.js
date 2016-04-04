@@ -27,7 +27,7 @@ const Cart = React.createClass({
       deleteCartProduct(variant.id);
     }
     function buy(productVariants) {
-      if (!productVariants instanceof Array) {
+      if (!(productVariants instanceof Array)) {
         productVariants = [productVariants];
       }
       createOrder({
