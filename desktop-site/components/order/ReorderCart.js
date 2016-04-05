@@ -109,7 +109,7 @@ export default React.createClass({
             }
           }}
         >
-          {_.get(brand, `brand.data.name.${activeLocale}`)} <br />
+          {_.get(brand, `brand.name.${activeLocale}`)} <br />
           {currencySign[activeCurrency]} {brand.total[activeCurrency]}
         </div>
       );

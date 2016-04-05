@@ -73,11 +73,11 @@ export default React.createClass({
     if (order && order.orderProducts && order.orderProducts.length) {
       return order.orderProducts.map((orderProduct) => {
         const renderBrand = () => {
-          if (orderProduct.brand && orderProduct.brand.data && orderProduct.brand.data.name) {
+          if (orderProduct.brand && orderProduct.brand.name) {
             return (
               <h3>Seller:
                 <Link className="company-name" to={`/brand/${orderProduct.brand.id}`}>
-                  {orderProduct.brand.data.name.en}
+                  {orderProduct.brand.name.en}
                 </Link>
               </h3>
               );

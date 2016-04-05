@@ -5,12 +5,12 @@ import _ from 'lodash';
 import i18n from 'commons/utils/i18n';
 
 const brandName = (brand) => {
-  const data = brand && brand.data;
-  if (!data) {
+  const name = brand && brand.name;
+  if (!name) {
     return '';
   }
 
-  return data.name && i18n.get(data.name);
+  return name && i18n.get(name);
 };
 
 exports.getName = (brand) => {
