@@ -46,7 +46,8 @@ const ProductSearch = React.createClass({
         ApiAction.searchProducts(query, 0, 7);
       }
     };
-    const items = searchUtil.getSearchItems(searchResult ? searchResult.products : [], dataKey);
+    const fnGetText = (item) => _.get(item, dataKey);
+    const items = searchUtil.getSearchItems(searchResult ? searchResult.products : [], fnGetText);
     return (
       <AutoComplete
         boxClassName={boxClassName}

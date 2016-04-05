@@ -11,6 +11,7 @@ import _ from 'lodash';
 
 import AutoComplete from 'components/snippet/AutoComplete';
 import { setReorderBrand } from 'redux/actions';
+import brandUtil from 'commons/utils/brandUtil';
 import searchUtil from 'commons/utils/searchUtil';
 
 const BrandSearch = React.createClass({
@@ -42,7 +43,9 @@ const BrandSearch = React.createClass({
       }
     };
 
-    const items = searchUtil.getSearchItems(searchResult ? searchResult.brands : [], `data.name.${activeLocale}`);
+    const fnGetText = (item) => brandUtil.getNameWithAllBuildingInfo(item);
+
+    const items = searchUtil.getSearchItems(searchResult ? searchResult.brands : [], fnGetText);
     return (
       <AutoComplete
         boxClassName={boxClassName}
