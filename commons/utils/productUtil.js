@@ -2,8 +2,8 @@
 
 import i18n from 'commons/utils/i18n';
 
-exports.getName = (product) => i18n.get(product.data.nickname);
-exports.getAllNames = (product) => product.data.nickname;
+exports.getName = (product) => i18n.get(product.name);
+exports.getAllNames = (product) => product.name;
 
 exports.initColorsAndSizes = (variants) => {
   const attributes = { colors: {}, sizes: {} };

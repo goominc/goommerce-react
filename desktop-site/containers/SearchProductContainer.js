@@ -27,7 +27,7 @@ const ProductSearch = React.createClass({
     const { brand, searchResult } = this.props;
     const { ApiAction, activeLocale } = this.context;
     const boxClassName = 'product-search-box';
-    const dataKey = `data.nickname.${activeLocale}`;
+    const dataKey = `name.${activeLocale}`;
     const resetDropdown = () => {
       ApiAction.resetSearchResult('product');
     };

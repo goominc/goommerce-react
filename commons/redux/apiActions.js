@@ -527,7 +527,7 @@ export function addCartProductOnReorder(product) {
       const products = res.products || [];
       for (let i = 0; i < products.length; i++) {
         const p = products[i];
-        if (_.get(p, 'data.nickname.ko') === product.name) {
+        if (_.get(p, 'name.ko') === product.name) {
           // real product
           addRealProduct(p, product);
           return;

@@ -179,7 +179,7 @@ export default React.createClass({
       };
       return (
         <div key={_.get(product, 'product.id')} className="product-item">
-          <div className="top-name" style={titleStyle}>{_.get(product.product, `data.nickname.${activeLocale}`)}</div>
+          <div className="top-name" style={titleStyle}>{_.get(product.product, `name.${activeLocale}`)}</div>
           {product.productVariants.map(
             (variant) => renderProductVariant(variant.productVariant, variant.count, variant.disableDelete)
           )}
