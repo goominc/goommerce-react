@@ -550,10 +550,6 @@ export function resetSearchResult(target) {
 
 const doSearch = (query, offset = 0, limit = 10, key, actionType) => (dispatch, getState) => {
   const state = getState();
-  if (!query || !query.q) {
-    dispatch(resetSearchResult(key));
-    return;
-  }
   query.offset = offset;
   query.limit = limit;
   const url = `/api/v1/${key}s/search?${$.param(query)}`;
@@ -571,7 +567,15 @@ const doSearch = (query, offset = 0, limit = 10, key, actionType) => (dispatch, 
 };
 
 export function searchBrands(text, offset, limit) {
-  return doSearch({ q: text }, offset, limit, 'brand', 'BRAND_SEARCH_RESULT');
+  return (dispatch, getState) => {
+    const query = { q: text };
+    const key = 'brand';
+    if (!query || !query.q) {
+      dispatch(resetSearchResult(key));
+      return;
+    }
+    doSearch(query, offset, limit, key, 'BRAND_SEARCH_RESULT')(dispatch, getState);
+  };
 }
 
 export function searchProducts(query, offset, limit) {

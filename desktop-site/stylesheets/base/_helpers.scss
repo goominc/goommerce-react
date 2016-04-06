@@ -103,7 +103,7 @@
   z-index: 10010;
 }
 
-@mixin dropdown-box($item-height) {
+@mixin dropdown-box() {
   .dropdown-box {
     background-color: #fff;
     border-top: 1px solid #c6c6c6;
@@ -120,18 +120,23 @@
       border: 1px solid #c6c6c6;
       margin-top: -1px;
       cursor: pointer;
-      height: $item-height;
-      line-height: $item-height;
       position: relative;
       z-index: $dropdown-z-index;
-      &:hover {
-        background-color: #ddd;
+      &:hover, &.cursor {
+        // background-color: #ddd;
+        color: #ffffff;
+        text-decoration: none;
+        outline: 0;
+        background-color: #337ab7;
+        .dropdown-item-content {
+          color: #ffffff;
+        }
       }
     }
     .dropdown-item-content {
       color: #333;
       line-height: 1.42857143;
-      padding: 3px 20px;
+      padding: 5px 20px;
       white-space: nowrap;
     }
   }

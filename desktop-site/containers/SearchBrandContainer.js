@@ -21,11 +21,10 @@ const BrandSearch = React.createClass({
   },
   contextTypes: {
     ApiAction: PropTypes.object,
-    activeLocale: PropTypes.string,
   },
   render() {
     const { searchResult } = this.props;
-    const { ApiAction, activeLocale } = this.context;
+    const { ApiAction } = this.context;
     const boxClassName = 'brand-search-box';
     const resetDropdown = () => {
       ApiAction.resetSearchResult('brand');
@@ -36,6 +35,12 @@ const BrandSearch = React.createClass({
       resetDropdown();
       this.props.setReorderBrand(brand);
       $(`.${boxClassName} input`).val('');
+
+      // 2016. 04. 06. [heekyu] reorder specifix logic...
+      //                        TODO please get out this
+      setTimeout(() => {
+        $('.product-search-box input').focus();
+      }, 100);
     };
     const onChangeText = (text) => {
       if (!searchResult || text !== searchResult.text) {

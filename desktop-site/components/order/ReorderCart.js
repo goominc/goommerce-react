@@ -280,7 +280,7 @@ export default React.createClass({
           {(cart.brands || []).map(renderBrandMenu)}
           <SearchBrandContainer />
         </div>
-        <div className="reorder-title"><b>{brandUtil.getName(activeBrand)}</b></div>
+        <div className="reorder-title"><b>{brandUtil.getNameWithAllBuildingInfo(activeBrand)}</b></div>
         <div className="reorder-products-panel">
           {renderAddProduct()}
           {items.map((item) => renderProduct(item))}

@@ -12,31 +12,74 @@ export default React.createClass({
     text: PropTypes.string,
     resetDropdown: PropTypes.func,
   },
+  getInitialState() {
+    return { cursorPosition: -1 };
+  },
   render() {
     const { items, boxClassName, placeholder,
       onSelectItem, resetDropdown, text, onChangeText } = this.props;
-    const renderItem = (item) => (
-      <div key={item.text} className="dropdown-item" onClick={() => onSelectItem(item)}>
+
+    let cursorPosition = this.state.cursorPosition;
+
+    const renderItem = (item, index) => (
+      <div key={item.text}
+        className={`dropdown-item ${cursorPosition === index ? 'cursor' : ''}`}
+        onClick={() => onSelectItem(item)}
+      >
         <div className="dropdown-item-content">{item.text}</div>
       </div>
     );
     const renderDropdown = () => {
       if (items && items.length > 0) {
         return [
-          (<div key="dropdown-box" className="dropdown-box open">
-            {items.map((item) => renderItem(item))}
+          (<div key={`${boxClassName}-dropdown-box`} className="dropdown-box open">
+            {items.map(renderItem)}
            </div>),
-          (<div key="dropdown-overlay" className="popup-overlay transparent" onClick={resetDropdown}></div>),
+          (<div key={`${boxClassName}-dropdown-box-overlay`} className="popup-overlay transparent" onClick={resetDropdown}></div>), // eslint-disable-line
         ];
       }
       return (<div></div>);
+    };
+    const onKeyEvent = (e) => {
+      const keyCode = e.keyCode;
+      const changeCuror = (next) => {
+        if (next !== cursorPosition) {
+          this.setState({ cursorPosition: next });
+          // $(`.${boxClassName} input`).val(items[next].text);
+        }
+      };
+      if (keyCode === 38) {
+        // arrow up
+        changeCuror(Math.max(cursorPosition - 1, -1));
+      } else if (keyCode === 40) {
+        // arrow down
+        changeCuror(Math.min(cursorPosition + 1, items.length - 1));
+      } else if (keyCode === 13) {
+        // enter
+        if (cursorPosition === -1) {
+          cursorPosition = 0;
+        }
+        onSelectItem(items[cursorPosition]);
+      }
+    };
+    const onChange = (e) => {
+      onChangeText(e.target.value);
+      if (this.state.cursorPosition >= 0) {
+        this.setState({ cursorPosition: -1 });
+      }
+    };
+    const onFocus = (e) => {
+      console.log('1');
+      onChangeText(e.target.value);
     };
     return (
       <div className={boxClassName}>
         <input type="text"
           placeholder={placeholder}
           defaultValue={text}
-          onChange={(e) => onChangeText(e.target.value)}
+          onFocus={onFocus}
+          onChange={onChange}
+          onKeyDown={onKeyEvent} // onKeyPress does not work for arrow up(38), down(40)
         />
         {renderDropdown()}
       </div>

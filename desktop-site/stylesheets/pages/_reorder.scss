@@ -43,7 +43,7 @@
     position: relative;
     vertical-align: top;
     width: 150px;
-    @include dropdown-box(30px);
+    @include dropdown-box();
   }
   input[type="text"] {
     height: 100%;
@@ -88,9 +88,10 @@
   }
   .product-search-box {
     display: inline-block;
+    font-size: 14px;
     position: relative;
     width: $input-width;
-    @include dropdown-box(25px);
+    @include dropdown-box();
   }
   .product-variant-add-box {
     display: block;

@@ -38,13 +38,12 @@ const ProductSearch = React.createClass({
       $(`.${boxClassName} input`).val(_.get(product, dataKey));
     };
     const onChangeText = (text) => {
-      if (!searchResult || text !== searchResult.text) {
-        const query = { q: text };
-        if (brand) {
-          query.brandId = brand.id;
-        }
-        ApiAction.searchProducts(query, 0, 7);
+      // 2016. 04. 06. [heekyu] do not call API if same brand and same text
+      const query = { q: text };
+      if (brand) {
+        query.brandId = brand.id;
       }
+      ApiAction.searchProducts(query, 0, 7);
     };
     const fnGetText = (item) => _.get(item, dataKey);
     const items = searchUtil.getSearchItems(searchResult ? searchResult.products : [], fnGetText);
