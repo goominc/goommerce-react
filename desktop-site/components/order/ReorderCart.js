@@ -99,6 +99,18 @@ export default React.createClass({
         });
       });
     });
+    const fields = [
+      { key: 'price', placeholder: '가격', type: 'number' },
+      { key: 'count', placeholder: '개수', type: 'number' },
+      { key: 'color', placeholder: 'Color', enableEmpty: true },
+      { key: 'size', placeholder: 'Size', defaultValue: 'Free', enableEmpty: true },
+    ];
+    const resetFields = () => {
+      for (let i = 0; i < fields.length; i++) {
+        const field = fields[i];
+        $('.product-variant-add-item input').eq(i).val(field.defaultValue || '');
+      }
+    };
     const renderBrandMenu = (brand) => {
       const brandId2 = _.get(brand, 'brand.id');
       return (
@@ -106,6 +118,7 @@ export default React.createClass({
           className={`brand-item ${brandId === brandId2 ? 'active' : ''}`}
           onClick={() => {
             if (brandId2 !== brandId) {
+              resetFields();
               setReorderBrand(brand.brand);
             }
           }}
@@ -191,12 +204,6 @@ export default React.createClass({
       );
     };
     const renderAddProduct = () => {
-      const fields = [
-        { key: 'price', placeholder: '가격', type: 'number' },
-        { key: 'count', placeholder: '개수', type: 'number' },
-        { key: 'color', placeholder: 'Color', enableEmpty: true },
-        { key: 'size', placeholder: 'Size', defaultValue: 'Free', enableEmpty: true },
-      ];
       const addProduct = () => {
         const product = { brandId };
         const currentProductName = $('.product-search-box input').val();
@@ -218,6 +225,7 @@ export default React.createClass({
           }
         }
         addCartProductOnReorder(product);
+        resetFields();
       };
       const renderActiveProduct = () => {
         if (activeProduct) {
@@ -245,8 +253,12 @@ export default React.createClass({
         return null;
       };
       const renderActiveProductReset = () => {
+        const onClick = () => {
+          resetFields();
+          this.props.setReorderProduct(null);
+        };
         if (activeProduct) {
-          return (<button className="btn default" onClick={() => this.props.setReorderProduct(null)}>초기화</button>);
+          return (<button className="btn default" onClick={onClick}>초기화</button>);
         }
         return null;
       };
@@ -259,7 +271,13 @@ export default React.createClass({
             {renderActiveProduct()}
             <div className="product-variant-add-item">
               {fields.map((field) =>
-                (<input type="text" ref={field.key} key={field.key} placeholder={field.placeholder} defaultValue={field.defaultValue} />)
+                (<input className={field.type === 'number' ? 'input-number-nospin' : ''}
+                  type={field.type || 'text'}
+                  ref={field.key}
+                  key={field.key}
+                  placeholder={field.placeholder}
+                  defaultValue={field.defaultValue}
+                />)
               )}
               {<button className="plus-button" onClick={addProduct}>상품 추가</button>}
             </div>
