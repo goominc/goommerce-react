@@ -6,6 +6,7 @@ import _ from 'lodash';
 import SearchBrandContainer from 'containers/SearchBrandContainer';
 import SearchProductContainer from 'containers/SearchProductContainer';
 import brandUtil from 'commons/utils/brandUtil';
+import stringUtil from 'commons/utils/stringUtil';
 
 export default React.createClass({
   propTypes: {
@@ -143,10 +144,13 @@ export default React.createClass({
         }
         return null;
       };
+      const maxLength = 7;
+      const color = stringUtil.shorten(_.get(variant, 'data.color'), maxLength) || '';
+      const size = stringUtil.shorten(_.get(variant, 'data.size'), maxLength) || '';
       return (
         <div key={variant.id} className="product-variant-item">
           <div className="top-name">
-            <b>{`[${_.get(variant, 'data.color')}]   [${_.get(variant, 'data.size')}]`}</b>
+            <b>{`[${color}] [${size}]`}</b>
             &nbsp; &nbsp; &nbsp;
             {renderDeleteButton()}
           </div>
@@ -189,9 +193,9 @@ export default React.createClass({
     const renderAddProduct = () => {
       const fields = [
         { key: 'price', placeholder: '가격', type: 'number' },
-        { key: 'color', placeholder: 'Color' },
-        { key: 'size', placeholder: 'Size' },
         { key: 'count', placeholder: '개수', type: 'number' },
+        { key: 'color', placeholder: 'Color', enableEmpty: true },
+        { key: 'size', placeholder: 'Size', defaultValue: 'Free', enableEmpty: true },
       ];
       const addProduct = () => {
         const product = { brandId };
@@ -204,7 +208,7 @@ export default React.createClass({
         for (let i = 0; i < fields.length; i++) {
           const field = fields[i];
           const val = _.get(this.refs, `${field.key}.value`);
-          if (!val) {
+          if (!val && !field.enableEmpty) {
             window.alert(`${field.placeholder} 을/를 입력해 주세요`);
             return;
           }
@@ -255,7 +259,7 @@ export default React.createClass({
             {renderActiveProduct()}
             <div className="product-variant-add-item">
               {fields.map((field) =>
-                (<input type="text" ref={field.key} key={field.key} placeholder={field.placeholder} />)
+                (<input type="text" ref={field.key} key={field.key} placeholder={field.placeholder} defaultValue={field.defaultValue} />)
               )}
               {<button className="plus-button" onClick={addProduct}>상품 추가</button>}
             </div>
