@@ -157,7 +157,7 @@ export default React.createClass({
             <div className="field-label">Seller: </div>
             <div className="field-content">
               <Link to={`/brands/${brand.id}`}>{brandUtil.getName(brand)}</Link>
-              <img className="img-brand-logo" src={_.get(brand, 'data.images.logo')} />
+              <img className="img-brand-logo" src={_.get(brand, 'data.images.logo.url')} />
               {renderFavoriteButton()}
             </div>
           </div>
