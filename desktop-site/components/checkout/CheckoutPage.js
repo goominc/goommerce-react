@@ -41,7 +41,7 @@ export default React.createClass({
     };
     return (
       <form id="checkout" method="POST">
-        <div>{activeCurrency} {order[`totalEstimation${activeCurrency}`]}</div>
+        <div>{activeCurrency} {order[`total${activeCurrency}`]}</div>
         <select name="gopaymethod" ref="gopaymethod">
           <option value="">[ 결제방법 선택 ]</option>
           <option value="Card">신용카드 결제</option>
@@ -85,12 +85,12 @@ export default React.createClass({
   renderDone() {
     const { order } = this.props;
 
-    // const variants = order.orderProducts.map((p) => Object.assign({}, p.productVariant, { count: p.orderedCount }));
+    // const variants = order.orderProducts.map((p) => Object.assign({}, p.productVariant, { count: p.quantity }));
     const brands = orderUtil.collectByBrands(order.orderProducts);
     return (
       <div>
         {brands.map((brand) => (<SellerBox key={brand.brand.id} {...this.props} brand={brand} />))}
-        <div>Total: KRW {order.totalEstimationKRW}</div>
+        <div>Total: KRW {order.totalKRW}</div>
         <div>Status: {i18n.get(`enum.order.status.${order.status}`)}</div>
         {this.renderVBank()}
       </div>

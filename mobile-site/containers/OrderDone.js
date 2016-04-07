@@ -40,7 +40,7 @@ const OrderDone = React.createClass({
                 <h5 className="result-tit">Thank you for your purchase!</h5>
                 <p>We have received your payment.</p>
                 <p>Amount:
-                  <span className="pay-money">{activeCurrency} {order[`totalEstimation${activeCurrency}`]}</span>
+                  <span className="pay-money">{activeCurrency} {order[`total${activeCurrency}`]}</span>
                 </p>
                 <div></div>
             </div>

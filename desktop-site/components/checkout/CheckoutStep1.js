@@ -66,7 +66,7 @@ export default React.createClass({
     };
 /*
     const cartVariants = order.orderProducts.map((orderProduct) =>
-      Object.assign({}, orderProduct.productVariant, { count: orderProduct.orderedCount }));
+      Object.assign({}, orderProduct.productVariant, { count: orderProduct.quantity }));
       */
     const brands = orderUtil.collectByBrands(order.orderProducts);
     return (
@@ -78,7 +78,7 @@ export default React.createClass({
         {brands.map((brand) => (<SellerBox key={brand.brand.id} {...this.props} brand={brand} />))}
         <div className="checkout-place-order">
           <span className="all-total-label">All Total:</span>
-          <span className="all-total-value">{activeCurrency} {order[`totalEstimation${activeCurrency}`]}</span>
+          <span className="all-total-value">{activeCurrency} {order[`total${activeCurrency}`]}</span>
           <br />
           <Link to={`/orders/${order.id}/checkout/payment`}>
             <button className="place-order-button">Place Order</button>

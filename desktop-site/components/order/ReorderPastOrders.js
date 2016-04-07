@@ -20,7 +20,7 @@ export default React.createClass({
     orders.forEach((order) => {
       allInfo.variantCount += order.orderProducts.length;
       (order.orderProducts || []).forEach((orderProduct) => {
-        allInfo.totalPieces += orderProduct.orderedCount;
+        allInfo.totalPieces += orderProduct.quantity;
         const brandId = _.get(orderProduct, 'brand.id');
         const productId = _.get(orderProduct, 'product.id');
         if (!brandId) {

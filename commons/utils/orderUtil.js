@@ -31,7 +31,7 @@ exports.collectByBrands = (orderProductVariants) => {
       brandProducts.push(_.assign({}, { product: orderProductVariant.product }, { productVariants: [] }));
     }
     brandProducts[idx].productVariants.push(
-      { productVariant: orderProductVariant.productVariant, count: orderProductVariant.orderedCount }
+      { productVariant: orderProductVariant.productVariant, count: orderProductVariant.quantity }
     );
   });
   return res;
@@ -68,7 +68,7 @@ const getInfoFromOrders = (orders, excludeVariantIdSet) => {
       // 2016. 04. 04. [heekyu] same variant must be added only once
       excludeVariantIdSet.add(variantId);
       orderInfo.variantCount++;
-      orderInfo.variantPieces += orderProduct.orderedCount;
+      orderInfo.variantPieces += orderProduct.quantity;
       const brandId = _.get(orderProduct, 'brand.id');
       const productId = _.get(orderProduct, 'product.id');
       if (brandId) {
@@ -81,7 +81,7 @@ const getInfoFromOrders = (orders, excludeVariantIdSet) => {
         orderInfo.totalPrice[currency] += +orderProduct[`total${currency}`];
       });
       orderInfo.productVariants.push(
-        { productVariantId: orderProduct.productVariant.id, count: orderProduct.orderedCount });
+        { productVariantId: orderProduct.productVariant.id, count: orderProduct.quantity });
     });
   });
   return orderInfo;

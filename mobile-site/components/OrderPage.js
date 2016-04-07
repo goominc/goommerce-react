@@ -126,7 +126,7 @@ export default React.createClass({
               <dl className="order-product-quantity clearfix">
                 <dt>Quantity:</dt>
                 <dd>
-                  <span className="product-quantity">{orderProduct.orderedCount}</span>
+                  <span className="product-quantity">{orderProduct.quantity}</span>
                   <span className="product-unit">piece</span>
                   { /* <div className="product-error-message">only 9999 units available</div> */ }
                 </dd>
@@ -229,7 +229,7 @@ export default React.createClass({
             <li className="checkout-total clearfix">
               <span className="checkout-item"><b>Grand total&nbsp;:</b></span>
               <span id="checkout-price-total" className="cost"><b>
-                {activeCurrency} {order[`totalEstimation${activeCurrency}`]}
+                {activeCurrency} {order[`total${activeCurrency}`]}
               </b></span>
             </li>
           </ul>

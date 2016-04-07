@@ -26,7 +26,7 @@ export default React.createClass({
           <div className="content-box">
             {variant.sku} <br />
             Price / piece : {product.KRW} <br />
-            Count: {product.orderedCount} <br />
+            Count: {product.quantity} <br />
             Total Price : {product.totalKRW} <br />
           </div>
         </div>
