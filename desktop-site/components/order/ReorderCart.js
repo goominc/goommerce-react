@@ -101,8 +101,8 @@ export default React.createClass({
     });
     const fields = [
       { key: 'price', placeholder: '가격', type: 'number' },
-      { key: 'count', placeholder: '개수', type: 'number' },
       { key: 'color', placeholder: 'Color', enableEmpty: true },
+      { key: 'count', placeholder: '개수', type: 'number' },
       { key: 'size', placeholder: 'Size', defaultValue: 'Free', enableEmpty: true },
     ];
     const resetFields = () => {
