@@ -100,9 +100,15 @@ module.exports = (opts) => {
           initialState.i18n = req.i18n;
           initialState.i18n.activeLocale = req.locale;
         }
-        // TODO redirect for mobile page?
-        if (host.startsWith(config.mobileHostPrefix) || (md.mobile() && !md.tablet())) {
+        if (host === config.mobileSite) {
           return sendMobile(initialState);
+        }
+        const mobileRedirectKey = 'mobile_redirect';
+        if (!req.cookies[mobileRedirectKey] && config.mobileSite && md.mobile() && !md.tablet()) {
+          req.cookies[mobileRedirectKey] = true;
+          // 2016. 04. 08. [heekyu] Use this on local test
+          // return sendMobile(initialState);
+          return res.redirect(`http://${config.mobileSite}/`);
         }
         return send(initialState);
       });
