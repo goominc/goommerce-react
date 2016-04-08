@@ -109,7 +109,7 @@ export default React.createClass({
             </li>
             <li className="drawer-wishList">
               <div onClick={() => this.handleWithAuth('/wishlist')}><i className="ms-icon icon-wishlist"></i>
-                <span>{i18n.get('word.wishlist')}</span>
+                <span>{i18n.get('word.wishList')}</span>
               </div>
             </li>
 
