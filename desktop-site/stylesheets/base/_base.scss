@@ -18,7 +18,7 @@ html {
  */
 *, *::before, *::after {
   box-sizing: inherit;
-  font-family: Arial, 돋움, dotum, Helvetica, sans-senif, SimSun, 宋体;
+  font-family: Arial, 돋움, dotum, Helvetica, 'Roboto', sans-senif, SimSun, 宋体;
 } 
 
 /**
@@ -29,9 +29,10 @@ a {
   color: $text-color;
   text-decoration: none;
 
-  @include on-event {
-    color: $brand-color;
-    text-decoration: underline;
+  // @include on-event {
+  &:hover {
+    color: $default-active-text-color;
+    // text-decoration: underline;
   }
 }
 

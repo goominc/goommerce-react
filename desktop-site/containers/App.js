@@ -17,6 +17,7 @@ cloudinaryConfig({ cloud_name: 'linkshops', crop: 'limit' });
 
 const App = React.createClass({
   propTypes: {
+    auth: PropTypes.object,
     children: PropTypes.node,
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
@@ -38,13 +39,17 @@ const App = React.createClass({
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
     currencySign: PropTypes.object,
+    isLogin: PropTypes.func,
+    hasRole: PropTypes.func,
     ApiAction: PropTypes.object,
   },
   getChildContext() {
     const res = {
       activeLocale: this.props.activeLocale,
       activeCurrency: this.props.activeCurrency,
-      currencySign: { KRW: '￦', USD: '$', CNY: '￥' },
+      currencySign: { KRW: '￦', USD: '$', CNY: '￥' }, // TODO remove
+      isLogin: this.isLogin,
+      hasRole: () => true, // TODO
     };
     const actions = {};
     const apiFuncs = Object.keys(ApiAction);
@@ -55,9 +60,14 @@ const App = React.createClass({
     return res;
   },
   componentDidMount() {
-    this.props.loadCartIfEmpty();
+    if (this.isLogin()) {
+      this.props.loadCartIfEmpty();
+    }
     this.props.loadCategories();
     this.props.loadCMSData('main_categories');
+  },
+  isLogin() {
+    return !!this.props.auth.id;
   },
   handleLogout() {
     this.props.logout().then(() => { window.location.href = '/'; });

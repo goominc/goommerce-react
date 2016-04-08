@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 
 import orderUtil from 'commons/utils/orderUtil';
 import i18n from 'commons/utils/i18n';
+import { constants } from 'commons/utils/constants';
 
 const _ = require('lodash');
 
@@ -26,41 +27,12 @@ export default React.createClass({
   contextTypes: {
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
+    isLogin: PropTypes.func,
   },
   componentWillReceiveProps(nextProps) {
     if (nextProps.params.query !== this.props.params.query) {
       this.refs.searchQuery.value = nextProps.params.query || '';
     }
-  },
-  renderAccount() {
-    const { auth } = this.props;
-    const getName = (email) => {
-      const idx = email.indexOf('@');
-      if (idx > 0) {
-        return email.substring(0, idx);
-      }
-      return email;
-    };
-    if (auth.bearer) {
-      return (
-        <div className="account-menus-wrap">
-          <span>{i18n.get('word.hi')} </span>
-          <div className="my-linkshops">
-            <span>{getName(auth.email)}</span>
-          </div>
-        </div>
-      );
-    }
-    return (
-      <div className="account-menus-wrap">
-        <Link to="/accounts/signin"><span>Sign In</span></Link>
-        <span className="ua-line">|</span>
-        <Link to="/accounts/signup"><span>Join</span></Link>
-        <div className="my-linkshops">
-          <span>My Linkshops</span>
-        </div>
-      </div>
-    );
   },
   render() {
     const { auth, handleLogout, handleSearch, cart, categories, changeLocale, changeCurrency } = this.props;
@@ -85,15 +57,14 @@ export default React.createClass({
       if (!showSearchDropdown) {
         return (<div></div>);
       }
-      let notSelectedClassName = 'search-dropdown-item';
+      let allCategoriesClassName = 'search-dropdown-item';
       if (!activeCategory) {
-        notSelectedClassName += ' active';
+        allCategoriesClassName += ' active';
       }
-      const overlayStyle = { backgroundColor: 'transparent', cursor: 'default' };
       return (
-        <div className="search-dropdown-box" onMouseLeave={() => $('.right-menu-item').removeClass('open')}>
+        <div className="search-dropdown-box" onMouseLeave={() => $('.helper-menu-item').removeClass('open')}>
           <div className="popup-overlay transparent"></div>
-          <div onClick={() => selectSearchDropdown(null)} className={notSelectedClassName}>
+          <div onClick={() => selectSearchDropdown(null)} className={allCategoriesClassName}>
             {i18n.get('word.allCategories')}
           </div>
           {renderSearchDropdownItems()}
@@ -101,10 +72,10 @@ export default React.createClass({
       );
     };
     const locales = {
-      ko: '한국어',
-      en: 'English',
-      'zh-cn': '简体',
-      'zh-tw': '繁體',
+      ko: { img: `${constants.resourceRoot}/header/flag-kor.png`, name: '한국어' },
+      en: { img: `${constants.resourceRoot}/header/flag-eng.png`, name: 'ENGLISH' },
+      'zh-cn': { img: `${constants.resourceRoot}/header/flag-chi.png`, name: '简体' },
+      'zh-tw': { img: `${constants.resourceRoot}/header/flag-tai.png`, name: '繁體' },
     };
     const renderLocales = () => (
       <div className="dropdown-box">
@@ -112,69 +83,135 @@ export default React.createClass({
           <div key={key} className={`dropdown-menu ${key === activeLocale ? 'active' : ''}`}
             onClick={() => {
               changeLocale(key);
-              $('.right-menu-item').removeClass('open');
+              $('.left-menu-item').removeClass('open');
             }}
-          >{locales[key]}</div>
+          ><img src={locales[key].img} /> {locales[key].name}</div>
         ))}
       </div>
     );
+    const currencies = constants.currencies;
     const renderCurrencies = () => {
-      const currencies = ['KRW', 'USD', 'CNY'];
       return (
         <div className="dropdown-box">
           {currencies.map((obj) => (
-            <div key={obj} className={`dropdown-menu ${obj === activeCurrency ? 'active' : ''}`}
+            <div key={obj.name} className={`dropdown-menu ${obj.name === activeCurrency ? 'active' : ''}`}
               onClick={() => {
-                changeCurrency(obj);
-                $('.right-menu-item').removeClass('open');
+                changeCurrency(obj.name);
+                $('.left-menu-item').removeClass('open');
               }}
-            >{obj}</div>
+            >
+              <img src={obj.img} /> {obj.name}
+            </div>
           ))}
         </div>
       );
     };
-    const dropDown = (
-      <div className="dropdown-box">
-        <div className="dropdown-menu" onClick={handleLogout}>{i18n.get('pcMain.myMenu.logout')}</div>
-        <div className="dropdown-menu"><Link to="/mypage">{i18n.get('pcMain.myMenu.myLinkshops')}</Link></div>
-        <div className="dropdown-menu"><Link to="/mypage/my_orders">{i18n.get('pcMain.myMenu.myOrders')}</Link></div>
-        <div className="dropdown-menu">
-          <Link to="/mypage/favorite_brands">{i18n.get('pcMain.myMenu.favoriteBrands')}</Link>
+    const getLocaleImg = () => {
+      return locales[activeLocale].img;
+    };
+    const getCurrencyImg = () => {
+      for (let i = 0; i < currencies.length; i++) {
+        if (currencies[i].name === activeCurrency) {
+          return currencies[i].img;
+        }
+      }
+      return '';
+    };
+    const renderMypageMenus = () => {
+      const menus = [
+        { link: '/mypage', text: i18n.get('pcMain.myMenu.myLinkshops') },
+        { link: '/mypage/my_orders', text: i18n.get('pcMain.myMenu.myOrders') },
+        { link: '/mypage/reorder', text: i18n.get('pcMain.myMenu.reorder') },
+      ];
+      const renderMenu = (menu) => (
+        <div key={menu.link}
+          className="dropdown-menu"
+          onClick={() => {
+            $('.helper-menu-item').removeClass('open');
+          }}
+        >
+          <Link to={menu.link}>{menu.text}</Link>
         </div>
-      </div>
-    );
+      );
+      return (
+        <div className="dropdown-box">
+          {menus.map(renderMenu)}
+        </div>
+      );
+    };
 
     const handleSearchSubmit = (e) => {
       e.preventDefault();
       handleSearch(this.refs.searchQuery.value);
     };
 
+    const renderTopHelperRightMenus = () => {
+      if (this.context.isLogin()) {
+        const getName = (email) => {
+          const idx = email.indexOf('@');
+          if (idx > 0) {
+            return email.substring(0, idx);
+          }
+          return email;
+        };
+        return [
+          <div key="app-header-hi" className="helper-menu-item">
+            <Link to="/mypage">{i18n.get('word.hi')} {getName(auth.email)}</Link>
+          </div>,
+          <div key="app-header-mypage" className="helper-menu-item"
+            onMouseEnter={(e) => $(e.target).addClass('open')}
+            onMouseLeave={(e) => $(e.target).closest('.helper-menu-item').removeClass('open')}
+          >
+            {i18n.get('word.myPage')}
+            {renderMypageMenus()}
+          </div>,
+          <div key="app-header-customer-center" className="helper-menu-item">{i18n.get('word.customerCenter')}</div>,
+          <div key="app-header-logout" className="helper-menu-item" onClick={handleLogout}>
+            {i18n.get('word.logout')}
+          </div>,
+        ];
+      }
+      return [
+        <Link key="app-header-signin" to="/accounts/signin">
+          <div className="helper-menu-item">{i18n.get('word.login')}</div>
+        </Link>,
+        <Link key="app-header-signup" to="/accounts/signup">
+          <div className="helper-menu-item">{i18n.get('word.register')}</div>
+        </Link>,
+        <div key="app-header-customer-center" className="helper-menu-item">{i18n.get('word.customerCenter')}</div>,
+      ];
+    };
+
+    const headerRightMenuItemClassName = `menu-item ${activeLocale}`;
+    const leftMenuItemClassName = 'left-menu-item';
+
     return (
       <div className="header-wide-container">
         <div className="top-banner"></div>
         <div className="top-helper-bar">
-          <div className="container">
-            <div className="right-menus">
-              <div className="right-menu-item"
+          <div className="container no-padding">
+            <div className="left-menus">
+              <div className={leftMenuItemClassName}
                 onMouseEnter={(e) => $(e.target).addClass('open')}
-                onMouseLeave={(e) => $(e.target).closest('.right-menu-item').removeClass('open')}
+                onMouseLeave={(e) => $(e.target).closest(`.${leftMenuItemClassName}`).removeClass('open')}
               >
-                Language <b>({locales[activeLocale]})</b>
+                <img src={getLocaleImg()} />언어
                 {renderLocales()}
               </div>
-              <div className="right-menu-divider"></div>
-              <div className="right-menu-item"
+              <div className={leftMenuItemClassName}
                 onMouseEnter={(e) => $(e.target).addClass('open')}
-                onMouseLeave={(e) => $(e.target).closest('.right-menu-item').removeClass('open')}
+                onMouseLeave={(e) => $(e.target).closest(`.${leftMenuItemClassName}`).removeClass('open')}
               >
-                Currency <b>({activeCurrency})</b>
+                <img src={getCurrencyImg()} />통화
                 {renderCurrencies()}
               </div>
-              <div className="right-menu-divider"></div>
+            </div>
+            <div className="right-menus">
+              {renderTopHelperRightMenus()}
             </div>
           </div>
         </div>
-        <div className="container header">
+        <div className="container no-padding">
           <div className="header-wrap">
             <Link className="header-item" to="/">
               <img className="header-logo"
@@ -183,37 +220,32 @@ export default React.createClass({
             </Link>
             <form onSubmit={handleSearchSubmit}>
               <div className="header-search-box">
-                <input ref="searchQuery" placeholder={i18n.get('pcMain.search.placeHolder')}
-                  defaultValue={params.query || ''}
-                />
                 <div className="header-search-category-box" onClick={toggleSearchDropdown}>
                   <div className="search-divider"></div>
                   <div className="arrow-down"></div>
                   {activeCategory ? activeCategory.name[activeLocale] : i18n.get('word.allCategories')}
                   {renderSearchDropdown()}
                 </div>
+                <input ref="searchQuery" placeholder={i18n.get('pcMain.search.placeHolder')}
+                  defaultValue={params.query || ''}
+                />
                 <button className="header-search-button" type="submit"></button>
               </div>
             </form>
-            <div className="header-mymenu-wrap">
-              <Link className="header-item" to="/cart">
-                <div className="header-mymenu-cart">
-                  <div className="cart-icon"></div>
+            <div className="header-right-menus">
+              <Link to="/mypage/wish_list">
+                <div className={headerRightMenuItemClassName}>{i18n.get('word.wishList')}</div>
+              </Link>
+              <Link to="/mypage/favorite_brands">
+                <div className={headerRightMenuItemClassName}>{i18n.get('word.favoriteBrand')}</div>
+              </Link>
+              <Link to="/cart">
+                <div className={headerRightMenuItemClassName}>
+                  {i18n.get('word.cart')}
+                  <img src={`${constants.resourceRoot}/header/ico_cart.png`} />
                   <span className="cart-count">{cartCount}</span>
-                  <span>{i18n.get('word.cart')}</span>
                 </div>
               </Link>
-              <Link className="header-item" to="/mypage/wish_list">
-                <div className="header-mymenu-cart">
-                  <div className="wishlist-icon"></div>
-                  <span className="wishlist-text">{i18n.get('word.wishlist')}</span>
-                </div>
-              </Link>
-              <div className="header-mymenu-account">
-                <div className="account-icon"></div>
-                {this.renderAccount()}
-                {auth.bearer && dropDown}
-              </div>
             </div>
           </div>
         </div>

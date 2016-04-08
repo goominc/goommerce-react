@@ -1,12 +1,19 @@
 {
   "word": {
-    "categories": "CATEGORIES",
     "allCategories": "All Categories",
     "brands": "Brands",
+    "categories": "CATEGORIES",
+    "customerCenter": "customer center",
     "cart": "Cart",
+    "favoriteBrand": "favoriate brand",
     "hi": "Hi,",
+    "login": "login",
+    "logout": "logout",
+    "myPage": "my page",
     "relatedCategories": "Related Categories",
+    "reorder": "reorder",
+    "register": "register",
     "seeAll": "See All",
-    "wishlist": "Wish List"
+    "wishList": "wish list"
   }
 }

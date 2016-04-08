@@ -34,6 +34,12 @@
   @include container-style;
   display: table;
 }
+.no-margin {
+  margin: 0;
+}
+.no-padding {
+  padding: 0;
+}
 
 /**
  * Hide text while making it readable for screen readers

@@ -8,7 +8,6 @@ const defaultConfig = {
     version: 'b9dde5176529a64fbff9031a61a492be4909ad67',
   },
   mobileSite: 'm.localhost:3000',
-  resourceRoot: 'https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource',
 };
 
 const environmentConfig = {
