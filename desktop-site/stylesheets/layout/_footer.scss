@@ -2,30 +2,106 @@
 // This file contains all styles related to the footer of the site/application.
 // -----------------------------------------------------------------------------
 
+.footer-slogan {
+  background-color: #fff;
+  border-top: 2px solid #aaa;
+  display: block;
+  margin: auto;
+  .slogan-container {
+    background: url('https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/footer/dotline4.gif') repeat-y 100% 0;
+  }
+  .slogan-item {
+    background: url('https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/footer/dotline4.gif') repeat-y;
+    display: inline-block;
+    letter-spacing: -1px;
+    padding: 20px 0;
+    width: 300px;
+    .icon {
+      display: inline-block;
+      margin-left: 40px;
+      margin-right: 30px;
+    }
+    img {
+      height: 70px;
+      width: 70px;
+    }
+    .text-box {
+      display: inline-block;
+      .title {
+        color: #333;
+        display: block;
+        height: 30px;
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .content {
+        color: #777;
+        font-size: 13px;
+        line-height: 17px;
+      }
+    }
+  }
+}
+
+.slogan-link-wide-container {
+  $height: 30px;
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  height: $height;
+  .slogan-link-container {
+    background: url('https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/footer/line_ccc.gif') repeat-y 100% 0;
+  }
+  .slogan-link-item {
+    background: url('https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/footer/line_ccc.gif') repeat-y;
+    color: #333;
+    display: inline-block;
+    font-size: 13px;
+    font-weight: bold;
+    height: $height;
+    letter-spacing: -1px;
+    line-height: $height;
+    text-align: center;
+    width: 300px;
+  }
+}
+
 .footer-linkshops {
   background-color: #e8e8e8;
-  padding-top: 30px;
+  padding-top: 20px;
   .info-box {
-    width: 50%;
+    width: 25%;
     display: inline-block;
-    margin-bottom: $margin-20;
+    padding-bottom: 30px;
+    padding-left: 20px;
     vertical-align: top;
   }
   .info-title {
-    color: #333;
-    font-size: 16px;
+    color: #555;
+    display: block;
+    font-size: 13px;
+    font-weight: bold;
+    height: 26px;
+    letter-spacing: -1px;
     line-height: 28px;
-    margin-bottom: 5px;
   }
   .info-content {
-    color: #999;
+    color: #777;
     line-height: 18px;
-    font-size: 13px;
+    font-size: 12px;
+  }
+}
+.footer-external-link {
+  text-align: center;
+  .item {
+    height: 50px;
+    width: 120px;
   }
 }
 .footer-copywrite {
-  background-color: #333;
-  color: #999;
-  height: 35px;
-  line-height: 35px;
+  padding: 20px 0;
+  font: normal 10px 'Roboto';
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
 }

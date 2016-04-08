@@ -1,7 +1,10 @@
+// Copyright (C) 2016 Goom Inc. All rights reserved.
+
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
+import { constants } from 'commons/utils/constants';
 import loadEntities from 'commons/redux/util/loadEntities';
 import i18n from 'commons/utils/i18n';
 
@@ -197,41 +200,64 @@ const Home = React.createClass({
           </div>
           {renderCurationTopic()}
         </div>
-        <div className="main-slogan">
-          <div className="container">
+        <div className="footer-slogan">
+          <div className="container no-padding slogan-container">
             <div className="slogan-item">
-              <i className="icon i-great"></i>
-              <h3>Great Value</h3>
-              <p>We offer competitive prices on our 100 million plus product range.</p>
+              <div className="icon">
+                <img src={`${constants.resourceRoot}/footer/main/keyword_ico01.png`} />
+              </div>
+              <div className="text-box">
+                <div className="title">서비스 소개</div>
+                <div className="content">
+                  믿고 거래하는<br />
+                  No.1 온라인 도매시장
+                </div>
+              </div>
             </div>
             <div className="slogan-item">
-              <i className="icon i-delivery"></i>
-              <h3>Worldwide Delivery</h3>
-              <p>With sites in 5 languages, we ship to over 200 countries &amp; regions.</p>
+              <div className="icon">
+                <img src={`${constants.resourceRoot}/footer/main/keyword_ico02.png`} />
+              </div>
+              <div className="text-box">
+                <div className="title">회원가입 안내</div>
+                <div className="content">
+                  고객 우선 원칙<br />
+                  회원 시스템
+                </div>
+              </div>
             </div>
             <div className="slogan-item">
-              <i className="icon i-payment"></i>
-              <h3>Safe Payment</h3>
-              <p>Pay with the world’s most popular and secure payment methods.</p>
+              <div className="icon">
+                <img src={`${constants.resourceRoot}/footer/main/keyword_ico03.png`} />
+              </div>
+              <div className="text-box">
+                <div className="title">주문 배송</div>
+                <div className="content">
+                  원하는 브랜드 및 상품<br />
+                  사입 요청 가능
+                </div>
+              </div>
             </div>
             <div className="slogan-item">
-              <i className="icon i-confidence"></i>
-              <h3>Shop with Confidence</h3>
-              <p>Our Buyer Protection covers your purchase from click to delivery.</p>
+              <div className="icon">
+                <img src={`${constants.resourceRoot}/footer/main/keyword_ico04.png`} />
+              </div>
+              <div className="text-box">
+                <div className="title">고객지원 센터</div>
+                <div className="content">
+                  편리한 소통을 위한<br />
+                  언어별 고객지원 센터
+                </div>
+              </div>
             </div>
-            <div className="slogan-item">
-              <i className="icon i-help"></i>
-              <h3>24/7 Help Center</h3>
-              <p>Round-the-clock assistance for a smooth shopping experience.</p>
-            </div>
-            <div className="slogan-item">
-              <i className="icon i-shop"></i>
-              <h3>Shop On-The-Go</h3>
-              <p>
-                <a rel="nofollow" href="">Download the app</a>
-                and get the world of AliExpress at your fingertips.
-              </p>
-            </div>
+          </div>
+        </div>
+        <div className="slogan-link-wide-container">
+          <div className="container no-padding slogan-link-container">
+            <div className="slogan-link-item">회사소개</div>
+            <div className="slogan-link-item">이용약관</div>
+            <div className="slogan-link-item">개인정보 취급방침</div>
+            <div className="slogan-link-item">제휴안내</div>
           </div>
         </div>
       </div>
