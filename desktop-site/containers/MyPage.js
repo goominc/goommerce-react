@@ -18,8 +18,8 @@ export default React.createClass({
       { key: 'pcMain.myMenu.myLinkshops', menuName: 'mypage' },
       { key: 'pcMain.myMenu.myOrders', menuName: 'my_orders' },
       { key: 'word.wishList', menuName: 'wish_list' },
-      { key: 'pcMain.myMenu.favoriteBrands', menuName: 'favorite_brands' },
-      { key: 'pcMain.myMenu.reorder', menuName: 'reorder' },
+      { key: 'word.favoriteBrand', menuName: 'favorite_brands' },
+      { key: 'word.reorder', menuName: 'reorder' },
     ];
     let menuIndex = 0;
     for (let i = 1; i < menus.length; i++) {
