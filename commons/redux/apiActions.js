@@ -308,7 +308,8 @@ export function loadMyOrders() {
 export function loadCartIfEmpty() {
   return (dispatch, getState) => {
     const state = getState();
-    if (_.get(state, 'auth.id') && !_.get(state, 'cart.total')) {
+    // TODO check if buyer role
+    if (_.get(state, 'auth.id') && _.get(state, 'auth.roles') && !_.get(state, 'cart.total')) {
       loadCart()(dispatch, getState);
     }
   };
