@@ -3,21 +3,27 @@ import { connect } from 'react-redux';
 
 import SigninHeader from 'components/user/SigninHeader';
 import SignupPage from 'components/user/SignupPage';
+import SignupStep1 from 'components/user/SignupStep1';
+import SignupStep3 from 'components/user/SignupStep3';
 
 import { ApiAction } from 'redux/actions';
 const { signup } = ApiAction;
 
 const Signup = React.createClass({
   propTypes: {
+    auth: PropTypes.object,
     signup: PropTypes.func.isRequired,
   },
   contextTypes: {
     router: PropTypes.object.isRequired,
   },
+  getInitialState() {
+    return { step: 1 };
+  },
   handleSubmit(newUser) {
-    const { email, password, passwordConfirm } = newUser;
+    const { email, password, data, passwordConfirm } = newUser;
     // 2016. 02. 23. [heekyu] interactive
-    if (!password || password === '') {
+    if (!password) {
       alert('type password'); // eslint-disable-line no-alert
       return;
     }
@@ -28,22 +34,46 @@ const Signup = React.createClass({
     this.props.signup({
       email,
       password,
+      data,
     }).then(
-      () => this.context.router.push('/'),
+      () => this.setState({ step: 3 }),
       (err) => alert(err.message) // eslint-disable-line no-alert
     );
   },
-  render: function render() {
+  render() {
+    const step1Back = () => console.log('where to go?');
+    const step1Next = (flags) => {
+      const keys = Object.keys(flags);
+      for (let i = 0; i < keys.length; i++) {
+        const key = keys[i];
+        if (!flags[key].value) {
+          window.alert(flags[key].errorMessage);
+          return;
+        }
+      }
+      this.setState({ step: 2 });
+    };
+    const step2Back = () => {
+      this.setState({ step: 1 });
+    };
+    const renderStep = () => {
+      if (this.state.step === 2) {
+        return (<SignupPage goBack={step2Back} handleSignup={this.handleSubmit} />);
+      } else if (this.state.step === 3) {
+        return (<SignupStep3 auth={this.props.auth} goNext={() => this.context.router.push('/')} />);
+      }
+      return (<SignupStep1 goBack={step1Back} goNext={step1Next} />);
+    };
     return (
-      <div className="container">
+      <div className="signup-global-container">
         <SigninHeader />
-        <SignupPage handleSignup={this.handleSubmit} />
+        {renderStep()}
       </div>
     );
   },
 });
 
 export default connect(
-  undefined,
+  (state) => ({ auth: state.auth }),
   { signup }
 )(Signup);

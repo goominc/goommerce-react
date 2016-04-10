@@ -72,3 +72,21 @@ a {
   -webkit-appearance: none;
   margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
+
+input[type="checkbox"] {
+  display:none;
+  & + label {
+    display:inline-block;
+    width:17px;
+    height:17px;
+    background-image: url("https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/main/checkbox_unchecked.png");
+    vertical-align: top;
+    zoom: 1;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    cursor:pointer;
+  }
+  &:checked + label {
+    background-image: url("https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/main/checkbox_checked.png");
+  }
+}

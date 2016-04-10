@@ -3,25 +3,15 @@
 // -----------------------------------------------------------------------------
 $padding-top: 15px;
 $padding-bottom: 5px;
-$img-height: 30px;
+$img-height: 40px;
 .signin-header-box {
-  width: 100%;
+  // border-bottom: 1px solid #e5e5e5;
   padding: $padding-top 0 $padding-bottom;
-  border-bottom: 1px solid #e5e5e5;
+  text-align: center;
+  width: 100%;
   img {
-    height: $img-height;
+    display: inline-block;
     width: $img-height * 5;
-    display: block;
-  }
-  span {
-    color: #999;
-    font-weight: 400;
-    font-size: 12px;
-    display: block;
-    margin-top: 5px;
-  }
-  a:hover {
-    text-decoration: none;
   }
 }
 .signin-content-container {

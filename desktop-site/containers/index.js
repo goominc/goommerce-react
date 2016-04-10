@@ -14,3 +14,6 @@ export { default as Cart } from 'containers/Cart';
 export { default as OrderDetail } from 'containers/OrderDetail';
 export { default as MyOrderContainer } from 'containers/MyOrderContainer';
 export { default as MyPage } from 'containers/MyPage';
+
+export { default as UserTerms } from 'components/user/UserTerms';
+// export { default as UserTerms } from 'components/user/UserTerms';
