@@ -136,7 +136,7 @@ export default connect(
     showSort: state.pageProductList.showSort,
     showFilter: state.pageProductList.showFilter,
     categories: state.categories,
-    searchProducts: (query) => ajaxReturnPromise(state.auth, `/api/v1/products/search?${$.param(query)}`, 'get'),
+    searchProducts: (query) => ajaxReturnPromise(state.auth, 'get', `/api/v1/products/search?${$.param(query)}`),
   }),
   { loadCategories, setHeader, changeViewType, toggleProductSort, toggleProductFilter }
 )(ProductList);

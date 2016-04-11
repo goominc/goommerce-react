@@ -76,7 +76,7 @@ const Brand = React.createClass({
 export default connect(
   (state, ownProps) => ({
     brandId: ownProps.params.brandId,
-    searchProducts: (query) => ajaxReturnPromise(state.auth, `/api/v1/products/search?${$.param(query)}`, 'get'),
+    searchProducts: (query) => ajaxReturnPromise(state.auth, 'get', `/api/v1/products/search?${$.param(query)}`),
   }),
   { addFavoriteBrand, setHeader }
 )(Brand);
