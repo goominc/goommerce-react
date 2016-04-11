@@ -215,20 +215,6 @@ const Home = React.createClass({
     };
     return (
       <div className="main-wide-container">
-        { /*<div className="main-menu-bar">
-          <div className="container no-horizontal-padding">
-            <div className="category-title">{i18n.get('word.categories')}
-              <a href="/products">{i18n.get('word.seeAll')}</a>
-            </div>
-            <div className="menu-box">
-              <div className="menu-item">Super Deals</div>
-              <div className="menu-item">Super Market</div>
-              <div className="menu-item">Featured Brands</div>
-              <div className="menu-item">Best Selling</div>
-              <div className="menu-item">IT Company</div>
-            </div>
-          </div>
-        </div> */}
         <div className="container no-horizontal-padding">
           <div className="main-banner-wrap">
             {renderCategories()}
@@ -244,44 +230,48 @@ const Home = React.createClass({
               <img src={`${constants.resourceRoot}/banner/banner_event_20160408.jpg`} />
             </div>
           </div>
-          <div className="home-building-title">
-            <strong>상가별</strong> 매장정보
-          </div>
-          <div className="home-building-container">
-            <div className="item item-top"><img src={`${constants.resourceRoot}/banner/build_apm.jpg`} /></div>
-            <div className="item item-top"><img src={`${constants.resourceRoot}/banner/build_apmluxe.jpg`} /></div>
-            <div className="item item-top"><img src={`${constants.resourceRoot}/banner/build_belpost.jpg`} /></div>
-            <div className="item item-top"><img src={`${constants.resourceRoot}/banner/build_designerclub.jpg`} /></div>
-            <div className="item item-top"><img src={`${constants.resourceRoot}/banner/build_theot.jpg`} /></div>
-            <div className="item item-top-right"><img src={`${constants.resourceRoot}/banner/build_nuzzon.jpg`} /></div>
-            <div className="item"><img src={`${constants.resourceRoot}/banner/build_techno.jpg`} /></div>
-            <div className="item"><img src={`${constants.resourceRoot}/banner/build_cph.jpg`} /></div>
-            <div className="item"><img src={`${constants.resourceRoot}/banner/build_uus.jpg`} /></div>
-            <div className="item"><img src={`${constants.resourceRoot}/banner/build_queens.jpg`} /></div>
-            <div className="item"><img src={`${constants.resourceRoot}/banner/build_shose.jpg`} /></div>
-            <div className="item item-right">
-              <div className="more-shops">
-                <div className="content">
-                  <strong>시장별 상가</strong><br />
-                  더보기
+        </div>
+        <div className="home-center-wrap">
+          <div className="container no-horizontal-padding">
+            <div className="home-building-title">
+              <strong>상가별</strong> 매장정보
+            </div>
+            <div className="home-building-container">
+              <div className="item item-top"><img src={`${constants.resourceRoot}/banner/build_apm.jpg`} /></div>
+              <div className="item item-top"><img src={`${constants.resourceRoot}/banner/build_apmluxe.jpg`} /></div>
+              <div className="item item-top"><img src={`${constants.resourceRoot}/banner/build_belpost.jpg`} /></div>
+              <div className="item item-top"><img src={`${constants.resourceRoot}/banner/build_designerclub.jpg`} /></div>
+              <div className="item item-top"><img src={`${constants.resourceRoot}/banner/build_theot.jpg`} /></div>
+              <div className="item item-top-right"><img src={`${constants.resourceRoot}/banner/build_nuzzon.jpg`} /></div>
+              <div className="item"><img src={`${constants.resourceRoot}/banner/build_techno.jpg`} /></div>
+              <div className="item"><img src={`${constants.resourceRoot}/banner/build_cph.jpg`} /></div>
+              <div className="item"><img src={`${constants.resourceRoot}/banner/build_uus.jpg`} /></div>
+              <div className="item"><img src={`${constants.resourceRoot}/banner/build_queens.jpg`} /></div>
+              <div className="item"><img src={`${constants.resourceRoot}/banner/build_shose.jpg`} /></div>
+              <div className="item item-right">
+                <div className="more-shops">
+                  <div className="content">
+                    <strong>시장별 상가</strong><br />
+                    더보기
+                  </div>
+                  <img src={`${constants.resourceRoot}/main/ico_right4_w.gif`} />
                 </div>
-                <img src={`${constants.resourceRoot}/main/ico_right4_w.gif`} />
               </div>
             </div>
-          </div>
-          <div className="home-building-title">
-            <strong>트렌드</strong> 컬렉션
-          </div>
-          <div className="home-trend-container">
-            <div className="left-big">
-              <img src={`${constants.resourceRoot}/banner/trandpick.jpg`} />
-              <div className="text-bar">
-                <strong>티셔츠 / 맨투맨</strong>
-                <span>간절기 데일리 아이템</span>
-              </div>
+            <div className="home-building-title">
+              <strong>트렌드</strong> 컬렉션
             </div>
-            <div className="trend-right">
-              {trendPicks.map(renderTrendPickItem)}
+            <div className="home-trend-container">
+              <div className="left-big">
+                <img src={`${constants.resourceRoot}/banner/trandpick.jpg`} />
+                <div className="text-bar">
+                  <strong>티셔츠 / 맨투맨</strong>
+                  <span>간절기 데일리 아이템</span>
+                </div>
+              </div>
+              <div className="trend-right">
+                {trendPicks.map(renderTrendPickItem)}
+              </div>
             </div>
           </div>
         </div>
