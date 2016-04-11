@@ -48,8 +48,6 @@ const Home = React.createClass({
       );
       const slideItems = [
         { img: 'https://img.alicdn.com/tps/TB1Lqf1LFXXXXbVXpXXXXXXXXXX-480-550.jpg' },
-        { img: 'http://img.alicdn.com/tps/i2/TB1UHPPLFXXXXc0XpXXL2TJPFXX-480-550.jpg' },
-        { img: 'http://img.alicdn.com/tps/i3/TB19sDBLFXXXXaOaXXXL2TJPFXX-480-550.jpg' },
       ];
       const renderSlideItem = (item) => (
         <a key={item.img} href="/products">
@@ -112,6 +110,29 @@ const Home = React.createClass({
       );
     };
     const renderCategories = () => {
+      console.log('eslint...');
+      return (
+        <div className="category-frame">
+          <div className="category-bar">
+            카테고리
+            <Link to="/categories/all"><div className="category-all">전체보기</div></Link>
+          </div>
+          <div className="category-main">
+            <Link to="/categories/11"><div className="item">여성 상의</div></Link>
+            <Link to="/categories/12"><div className="item">여성 하의</div></Link>
+            <Link to="/categories/13"><div className="item">여성 원피스 & 세트</div></Link>
+            <Link to="/categories/41"><div className="item edge">여성 아웃웨어</div></Link>
+            <Link to="/categories/180"><div className="item">남성 상의</div></Link>
+            <Link to="/categories/181"><div className="item">남성 하의</div></Link>
+            <Link to="/categories/183"><div className="item edge">남성 아웃웨어</div></Link>
+            <Link to="/categories/all"><div className="item">아동복(없..)</div></Link>
+            <Link to="/categories/51"><div className="item">신발</div></Link>
+            <Link to="/categories/all"><div className="item">잡화(없..)</div></Link>
+          </div>
+        </div>
+      );
+    };
+    const renderCategoriesOld = () => {
       const { main_categories } = this.props;
       if (!main_categories) {
         return (<div></div>);
@@ -170,9 +191,31 @@ const Home = React.createClass({
         </div>
       );
     };
+    const trendPicks = [
+      { img: `${constants.resourceRoot}/banner/trandpick1.jpg`, name: '엘루다 포스트 맨투맨', price: 19800 },
+      { img: `${constants.resourceRoot}/banner/trandpick2.jpg`, name: '메르시 꽃무니 맨투맨', price: 19800 },
+      { img: `${constants.resourceRoot}/banner/trandpick3.jpg`, name: '신화 핑크 맨투맨', price: 19800 },
+      { img: `${constants.resourceRoot}/banner/trandpick4.jpg`, name: '신화 민트 맨투맨', price: 19800 },
+      { img: `${constants.resourceRoot}/banner/trandpick5.jpg`, name: '파풀러 하늘색 브이넥', price: 19800 },
+      { img: `${constants.resourceRoot}/banner/trandpick6.jpg`, name: '사치 미키 맨투맨', price: 19800 },
+      { img: `${constants.resourceRoot}/banner/trandpick7.jpg`, name: '사치 인디언 맨투맨', price: 19800 },
+      { img: `${constants.resourceRoot}/banner/trandpick8.jpg`, name: '네버비 일러스트 맨투맨', price: 19800 },
+    ];
+    const renderTrendPickItem = (trend, index) => {
+      const className = index < 4 ? 'trend-top' : 'trend-bottom';
+      return (
+        <div className={className}>
+          <img src={trend.img} />
+          <div className="product-name">
+            {trend.name}<br />
+            ￦<span className="price">{trend.price}</span>
+          </div>
+        </div>
+      );
+    };
     return (
       <div className="main-wide-container">
-        <div className="main-menu-bar">
+        { /*<div className="main-menu-bar">
           <div className="container no-horizontal-padding">
             <div className="category-title">{i18n.get('word.categories')}
               <a href="/products">{i18n.get('word.seeAll')}</a>
@@ -185,20 +228,62 @@ const Home = React.createClass({
               <div className="menu-item">IT Company</div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="container no-horizontal-padding">
           <div className="main-banner-wrap">
             {renderCategories()}
+            <div className="home-stylepick-banner">
+              <strong>스타일 픽</strong>
+              <span>스타일리스트의</span>
+              <span>추천 스타일</span>
+            </div>
             <div className="main-banner">
-              <img src="http://img.alicdn.com/tps/i3/TB1Gh.zLpXXXXXMXVXXVpvE2pXX-750-400.jpg" />
-              <img src="https://img.alicdn.com/tps/TB12FmSLFXXXXXeapXXXXXXXXXX-750-400.jpg" />
-              <img src="https://img.alicdn.com/tps/TB10vWZLFXXXXcpXFXXXXXXXXXX-750-400.jpg" />
+              <img src={`${constants.resourceRoot}/banner/banner_intro_kor_20160408.jpg`} />
             </div>
             <div className="right-banner">
-              <img src="http://img.alicdn.com/tps/i1/TB1o1laLFXXXXb7aXXXJTjSZVXX-320-400.jpg" />
+              <img src={`${constants.resourceRoot}/banner/banner_event_20160408.jpg`} />
             </div>
           </div>
-          {renderCurationTopic()}
+          <div className="home-building-title">
+            <strong>상가별</strong> 매장정보
+          </div>
+          <div className="home-building-container">
+            <div className="item item-top"><img src={`${constants.resourceRoot}/banner/build_apm.jpg`} /></div>
+            <div className="item item-top"><img src={`${constants.resourceRoot}/banner/build_apmluxe.jpg`} /></div>
+            <div className="item item-top"><img src={`${constants.resourceRoot}/banner/build_belpost.jpg`} /></div>
+            <div className="item item-top"><img src={`${constants.resourceRoot}/banner/build_designerclub.jpg`} /></div>
+            <div className="item item-top"><img src={`${constants.resourceRoot}/banner/build_theot.jpg`} /></div>
+            <div className="item item-top-right"><img src={`${constants.resourceRoot}/banner/build_nuzzon.jpg`} /></div>
+            <div className="item"><img src={`${constants.resourceRoot}/banner/build_techno.jpg`} /></div>
+            <div className="item"><img src={`${constants.resourceRoot}/banner/build_cph.jpg`} /></div>
+            <div className="item"><img src={`${constants.resourceRoot}/banner/build_uus.jpg`} /></div>
+            <div className="item"><img src={`${constants.resourceRoot}/banner/build_queens.jpg`} /></div>
+            <div className="item"><img src={`${constants.resourceRoot}/banner/build_shose.jpg`} /></div>
+            <div className="item item-right">
+              <div className="more-shops">
+                <div className="content">
+                  <strong>시장별 상가</strong><br />
+                  더보기
+                </div>
+                <img src={`${constants.resourceRoot}/main/ico_right4_w.gif`} />
+              </div>
+            </div>
+          </div>
+          <div className="home-building-title">
+            <strong>트렌드</strong> 컬렉션
+          </div>
+          <div className="home-trend-container">
+            <div className="left-big">
+              <img src={`${constants.resourceRoot}/banner/trandpick.jpg`} />
+              <div className="text-bar">
+                <strong>티셔츠 / 맨투맨</strong>
+                <span>간절기 데일리 아이템</span>
+              </div>
+            </div>
+            <div className="trend-right">
+              {trendPicks.map(renderTrendPickItem)}
+            </div>
+          </div>
         </div>
         <div className="footer-slogan">
           <div className="container no-padding slogan-container">

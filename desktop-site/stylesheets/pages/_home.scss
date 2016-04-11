@@ -53,12 +53,13 @@ $main-category-item-height: 30px;
 }
 $main-banner-height: 400px;
 .main-banner-wrap {
-  width: 100%;
-  position: relative;
   display: block;
+  height: 400px;
   margin-bottom: 20px;
+  position: relative;
+  width: 100%;
   .main-banner {
-    width: 750px;
+    width: 720px;
     height: $main-banner-height;
     display: inline-block !important;
     cursor: pointer;
@@ -72,7 +73,7 @@ $main-banner-height: 400px;
     top: 0;
     right: 0;
     z-index: 10;
-    width: 320px;
+    width: 260px;
     height: $main-banner-height;
     img {
       width: 100%;
@@ -152,6 +153,243 @@ $main-banner-height: 400px;
     }
     .category-hover-box {
       display: block;
+    }
+  }
+}
+
+.category-frame {
+  background-color: #eee;
+  border: 3px solid #f73;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  display: inline-block;
+  height: 317px;
+  margin-right: 20px;
+  vertical-align: top;
+  width: 200px;
+  .category-bar {
+    background: #f73 url('//s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/main/ico_menu2.png') no-repeat 10px 10px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 15px;
+    letter-spacing: -1px;
+    padding: 5px 5px 6px 35px;
+  }
+  .category-all {
+    background-color: #fff;
+    border-radius: 3px;
+    color: #f73;
+    float: right;
+    font-weight: bold;
+    font-size: 11px;
+    line-height: 17px;
+    margin-top: 1px;
+    padding: 1px 6px;
+    &:hover {
+      background-color: #333;
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+  .category-main {
+    background-color: #fff;
+    .item {
+      $height: 28px;
+      cursor: pointer;
+      display: block;
+      font-size: 13px;
+      font-weight: bold;
+      height: $height;
+      letter-spacing: -1px;
+      line-height: $height;
+      padding-left: 20px;
+      &.edge {
+        border-bottom: 1px solid #ccc;
+      }
+    }
+  }
+}
+
+.home-stylepick-banner {
+  background: url('https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/banner/banner_stylepick.jpg') no-repeat;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  bottom: 0;
+  box-sizing: content-box;
+  display: block;
+  height: 60px;
+  left: 0;
+  padding: 7px 0 0 0;
+  position: absolute;
+  text-align: right;
+  width: 200px;
+  strong {
+    background: url('https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/main/ico_right2.gif') no-repeat 190px 7px;
+    color: $default-active-text-color;
+    display: block;
+    font-size: 16px;
+    letter-spacing: -1px;
+    padding-right: 17px;
+  }
+  span {
+    color: #777;
+    display: block;
+    font-size: 11px;
+    line-height: 13px;
+    padding-right: 17px;
+  }
+}
+
+.home-building-title {
+  color: #555;
+  font-weight: 700;
+  font-size: 23px;
+  letter-spacing: -3px;
+  margin-bottom: 10px;
+  strong {
+    color: $default-active-text-color;
+  }
+}
+.home-building-container {
+  background-color: #fff;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  display: block;
+  margin: 0 auto 50px;
+  width: 100%;
+  .item {
+    background: url('https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/main/dotline4.gif') repeat-y 100% 0;
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px 0;
+    text-align: center;
+    vertical-align: top;
+    width: 200px;
+    &:hover {
+      box-shadow: 0 3px 6px 3px rgba(51, 51, 51, 0.3);
+      background: none;
+      z-index: 100;
+    }
+  }
+  .item-top {
+    background: url('https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/main/dotline4.gif') repeat-y 100% 0, url('https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/main/dotline3.gif') repeat-x 0 100%;
+  }
+  .item-top-right {
+    background: url('https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/main/dotline3.gif') repeat-x 0 100%;
+  }
+  .item-right {
+    background: none;
+  }
+  .more-shops {
+    background-color: #ccc;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    height: 75px; // TODO remove magic number
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: left;
+    .content {
+      display: inline-block;
+      color: #fff;
+      font-size: 14px;
+      letter-spacing: -1px;
+      line-height: 20px;
+      padding-left: 30px;
+      padding-top: 16px;
+      text-align: right;
+      width: 80px + 30px;
+      strong {
+        font-size: 18px;
+      }
+    }
+    img {
+      margin-left: $margin-20;
+    }
+    &:hover {
+      background-color: $default-active-text-color;
+    }
+  }
+}
+
+.home-trend-container {
+  background-color: #fff;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  display: block;
+  height: 520px;
+  margin-bottom: 50px;
+  width: 100%;
+  .left-big {
+    cursor: pointer;
+    display: inline-block;
+    height: 100%;
+    padding: 10px;
+    position: relative;
+    &:hover {
+      box-shadow: 0 3px 6px 3px rgba(51, 51, 51, 0.3);
+      z-index: 100;
+    }
+    .text-bar {
+      background-color: rgba(255, 130, 0, 0.8);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      box-sizing: content-box;
+      left: 20px;
+      padding: 10px 20px;
+      position: absolute;
+      top: 420px;
+      width: 240px;
+      strong {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+        color: #fff;
+        display: block;
+        font-size: 23px;
+        letter-spacing: -2px;
+        text-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+        padding: 0 10px 3px 10px;
+      }
+      span {
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        color: rgba(0, 0, 0, 0.6);
+        font-weight: bold;
+        font-size: 12px;
+        letter-spacing: -1px;
+        padding: 1px 10px 0 10px;
+      }
+    }
+  }
+  .trend-right {
+    display: inline-block;
+    vertical-align: top;
+    width: 880px;
+    @mixin trend-item() {
+      box-sizing: content-box;
+      cursor: pointer;
+      display: inline-block;
+      height: 240px;
+      padding: 10px;
+      vertical-align: top;
+      width: 199px;
+      &:hover {
+        box-shadow: 0 3px 6px 3px rgba(51, 51, 51, 0.3);
+        z-index: 100;
+      }
+      .product-name {
+        color: #333;
+        font-size: 11px;
+        text-align: center;
+      }
+      .price {
+        font: 500 12px /14px 'Roboto';
+        color: #333;
+        text-align: center;
+      }
+    }
+    .trend-top {
+      @include trend-item();
+      border-left: 1px solid #f0f0f0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    .trend-bottom {
+      @include trend-item();
+      border-left: 1px solid #f0f0f0;
     }
   }
 }
