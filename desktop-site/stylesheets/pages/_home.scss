@@ -207,8 +207,9 @@ $main-banner-height: 400px;
       &.edge {
         border-bottom: 1px solid #ccc;
       }
-      &:hover {
+      &:hover, &.active {
         background: url($base-url + '/main/ico_right3.gif') no-repeat 185px 11px;
+        color: $default-active-text-color;
       }
     }
   }

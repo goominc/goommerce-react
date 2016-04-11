@@ -118,9 +118,14 @@ const Home = React.createClass({
         const onMouseEnter = () => {
           this.setState({ hoverCategory: c });
         };
+        let className = 'item';
+        const { cursor, hoverCategory } = this.state;
+        if (cursor === 'categoryHover' && hoverCategory && c.id === hoverCategory.id) {
+          className += ' active';
+        }
         return (
           <Link key={`${c.id}-${index}`} to={`/categories/${c.id}`}>
-            <div className="item" onMouseEnter={onMouseEnter}>{c.name[activeLocale]}</div>
+            <div className={className} onMouseEnter={onMouseEnter}>{c.name[activeLocale]}</div>
           </Link>
         );
       };
@@ -152,7 +157,10 @@ const Home = React.createClass({
           <div className="category-main">
             {categories.map(renderCategory)}
           </div>
-          <div className="category-hover-box">
+          <div className="category-hover-box"
+            onMouseEnter={() => this.setState({ cursor: 'categoryHover' })}
+            onMouseLeave={() => this.setState({ cursor: 'none' })}
+          >
             {hoverItems}
           </div>
         </div>
