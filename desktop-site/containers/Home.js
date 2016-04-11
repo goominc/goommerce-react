@@ -110,7 +110,39 @@ const Home = React.createClass({
       );
     };
     const renderCategories = () => {
-      console.log('eslint...');
+      if (!this.props.main_categories) {
+        return (<div></div>);
+      }
+      const categories = this.props.main_categories;
+      const renderCategory = (c, index) => {
+        const onMouseEnter = () => {
+          this.setState({ hoverCategory: c });
+        };
+        return (
+          <Link key={`${c.id}-${index}`} to={`/categories/${c.id}`}>
+            <div className="item" onMouseEnter={onMouseEnter}>{c.name[activeLocale]}</div>
+          </Link>
+        );
+      };
+      const hoverItems = [];
+      if (this.state.hoverCategory) {
+        (this.state.hoverCategory.children || []).forEach((child, index) => {
+          if (index >= 2) {
+            return;
+          }
+          hoverItems.push(
+            <Link to={`/categories/${child.id}`}><div key={`depth1-${child.id}`} className="title-item">{child.name[activeLocale]}</div></Link> // eslint-disable-line
+          );
+          (child.children || []).forEach((child2, index2) => {
+            if (index2 >= 3) {
+              return;
+            }
+            hoverItems.push(
+              <Link to={`/categories/${child2.id}`}><div key={`depth2-${child2.id}`} className="sub-item">{child2.name[activeLocale]}</div></Link> // eslint-disable-line
+            );
+          });
+        });
+      }
       return (
         <div className="category-frame">
           <div className="category-bar">
@@ -118,16 +150,10 @@ const Home = React.createClass({
             <Link to="/categories/all"><div className="category-all">전체보기</div></Link>
           </div>
           <div className="category-main">
-            <Link to="/categories/11"><div className="item">여성 상의</div></Link>
-            <Link to="/categories/12"><div className="item">여성 하의</div></Link>
-            <Link to="/categories/13"><div className="item">여성 원피스 & 세트</div></Link>
-            <Link to="/categories/41"><div className="item edge">여성 아웃웨어</div></Link>
-            <Link to="/categories/180"><div className="item">남성 상의</div></Link>
-            <Link to="/categories/181"><div className="item">남성 하의</div></Link>
-            <Link to="/categories/183"><div className="item edge">남성 아웃웨어</div></Link>
-            <Link to="/categories/all"><div className="item">아동복(없..)</div></Link>
-            <Link to="/categories/51"><div className="item">신발</div></Link>
-            <Link to="/categories/all"><div className="item">잡화(없..)</div></Link>
+            {categories.map(renderCategory)}
+          </div>
+          <div className="category-hover-box">
+            {hoverItems}
           </div>
         </div>
       );
@@ -204,7 +230,7 @@ const Home = React.createClass({
     const renderTrendPickItem = (trend, index) => {
       const className = index < 4 ? 'trend-top' : 'trend-bottom';
       return (
-        <div className={className}>
+        <div key={trend.name} className={className}>
           <img src={trend.img} />
           <div className="product-name">
             {trend.name}<br />
