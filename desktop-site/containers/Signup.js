@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import App from 'containers/App'
 import SigninHeader from 'components/user/SigninHeader';
 import SignupPage from 'components/user/SignupPage';
 import SignupStep1 from 'components/user/SignupStep1';
 import SignupStep3 from 'components/user/SignupStep3';
+import SignupFooter from 'components/user/SignupFooter';
 
 import { ApiAction } from 'redux/actions';
 const { signup } = ApiAction;
@@ -70,6 +70,7 @@ const Signup = React.createClass({
       <div className="signup-global-container">
         <SigninHeader />
         {renderStep()}
+        <SignupFooter />
       </div>
     );
   },

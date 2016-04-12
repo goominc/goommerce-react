@@ -269,3 +269,26 @@
     }
   }
 }
+
+.signup-footer-link-line {
+  letter-spacing: -1px;
+  margin: 30px 0 10px 0;
+  text-align: center;
+  width: 100%;
+  .item {
+    display: inline;
+    padding: 0 10px;
+    font-size: 13px;
+    text-align: center;
+    & + .item {
+      border-left: 1px solid #bbb;
+    }
+  }
+}
+.signup-footer-copywrite {
+  letter-spacing: 1px;
+  font-size: 10px;
+  margin: 10px 0;
+  text-align: center;
+  width: 100%;
+}
