@@ -169,3 +169,73 @@
     margin-top:7px;
   }
 }
+
+@media all and (min-width:1024px) and (max-width:1920px) {
+
+  #wrap_priv{
+    max-width:767px;
+    margin: 15px auto;
+  }
+  .priv-01{
+    margin:10px;
+    font:normal 12px /15px '나눔고딕''NanumGothic', 'dotum';
+    line-height:20px;
+    letter-spacing:-1px;
+    color:#666;
+  }
+    .priv-01 title{
+        font-size: 18px;
+        color:#000;
+    }
+    .priv-01 .subtitle{
+        font-size: 14px;
+        color:#333;
+
+    }
+    .priv-head{
+        padding-left:10px;
+    }
+    .priv-head span{
+
+        font-size:large;
+    }
+    .level1 {
+
+        padding-left:12px;
+    }
+    .level1 li{
+        list-style-type: none;
+        margin:0 0 0 20px;
+        padding:0;
+    }
+
+    .level1 li span{
+        margin:0 0 0 -13px;
+    }
+	.level1-1 {
+		margin:0;
+		padding:5px;
+	}
+	.level1-1 li{
+		list-style-type:none;
+		margin:0 0 0 20px;
+		padding:0;
+	}
+	.level2 {
+		padding-left:30px;
+	}
+	.level2 li{
+	list-style-type: none;
+	margin: 0px;
+	padding-left: 10px;
+	padding-bottom: 3px;
+	padding-top: 3px;
+	}
+    .space0{
+        letter-spacing: 0;
+    }
+	.block{
+		margin:0 10px;
+	}
+
+}

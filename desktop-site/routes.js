@@ -17,6 +17,7 @@ import {
   ProductDetail,
   MyPage,
   UserTerms,
+  UserPolicies,
 } from 'containers';
 
 export default function configure({ getAuth }) { // eslint-disable-line
@@ -41,6 +42,7 @@ export default function configure({ getAuth }) { // eslint-disable-line
       <Route path="/accounts/signup" component={Signup} />
       <Route path="/accounts/forgot" component={ForgotPassword} />
       <Route path="/user/terms" component={UserTerms} />
+      <Route path="/user/policies" component={UserPolicies} />
     </Route>
   );
 }

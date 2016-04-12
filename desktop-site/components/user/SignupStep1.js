@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react';
 
 import { constants } from 'commons/utils/constants';
 import UserTerms from './UserTerms';
+import UserPolicies from './UserPolicies';
 
 export default React.createClass({
   propTypes: {
@@ -38,7 +39,7 @@ export default React.createClass({
             <span style={({ marginLeft: '15px' })}>개인정보 수집방침 동의</span>
           </div>
           <div className="content-box">
-            <UserTerms />
+            <UserPolicies />
           </div>
         </div>
         <div className="button-line">
