@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
+import App from 'containers/App'
 import SigninHeader from 'components/user/SigninHeader';
 import SignupPage from 'components/user/SignupPage';
 import SignupStep1 from 'components/user/SignupStep1';
@@ -18,10 +19,10 @@ const Signup = React.createClass({
     router: PropTypes.object.isRequired,
   },
   getInitialState() {
-    return { step: 1 };
+    return { step: 2 };
   },
   handleSubmit(newUser) {
-    const { email, password, data, passwordConfirm } = newUser;
+    const { email, password, name, data, passwordConfirm } = newUser;
     // 2016. 02. 23. [heekyu] interactive
     if (!password) {
       alert('type password'); // eslint-disable-line no-alert
@@ -35,9 +36,10 @@ const Signup = React.createClass({
       email,
       password,
       data,
+      name,
     }).then(
       () => this.setState({ step: 3 }),
-      (err) => alert(err.message) // eslint-disable-line no-alert
+      (err) => alert(err) // eslint-disable-line no-alert
     );
   },
   render() {
@@ -74,6 +76,6 @@ const Signup = React.createClass({
 });
 
 export default connect(
-  (state) => ({ auth: state.auth }),
+  (state) => ({ auth: state.auth, error: state.errorHandler.error }),
   { signup }
 )(Signup);

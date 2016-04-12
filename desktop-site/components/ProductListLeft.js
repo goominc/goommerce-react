@@ -22,7 +22,6 @@ export default React.createClass({
     activeLocale: PropTypes.string,
   },
   renderBrands() {
-    const { activeLocale } = this.context;
     const { aggs: { brands = [] }, genLink } = this.props;
 
     if (this.props.brand) {
@@ -59,6 +58,7 @@ export default React.createClass({
     if (!category || !categories) {
       return undefined;
     }
+    console.log(categories);
 
     const categoryLink = (categoryId) => genLink(Object.assign(pick(this.props, ['query', 'brandId']), { categoryId }));
 
@@ -106,7 +106,7 @@ export default React.createClass({
   render() {
     return (
       <div className="product-list-left-box">
-        <div className="product-list-category-title">{i18n.get('word.relatedCategories')}</div>
+        <div className="title">카테고리</div>
         {this.renderCategories()}
         {this.renderBrands()}
       </div>

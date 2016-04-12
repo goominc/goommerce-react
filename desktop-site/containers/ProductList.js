@@ -101,21 +101,28 @@ const ProductList = React.createClass({
     };
 
     return (
-      <div className="container-table">
-        <ProductListLeft {...this.props} aggs={aggs} brand={brand || null} />
-        <div className="product-list-right-box">
-          <Breadcrumb path={path} />
-          <div className="product-list-search-box">
-            <div className={`sort-item ${this.state.latest ? 'active' : ''}`} onClick={toggleLatest}>
-              최신 순
-            </div>
+      <div className="product-list-wide-container">
+        <div className="product-list-titlebar">
+          <div className="right"></div>
+          <div className="inner">
           </div>
-          <ProductListItems products={products} changeMainImage={changeMainImage} />
-          <PageButton
-            pagination={this.state.pagination}
-            genLink={(pageNum) => this.props.genLink({ ...this.props, pageNum })}
-            pageNum={this.props.pageNum}
-          />
+        </div>
+        <div className="container-table no-padding">
+          <ProductListLeft {...this.props} aggs={aggs} brand={brand || null} />
+          <div className="product-list-right-box">
+            <Breadcrumb path={path} />
+            <div className="product-list-search-box">
+              <div className={`sort-item ${this.state.latest ? 'active' : ''}`} onClick={toggleLatest}>
+                최신 순
+              </div>
+            </div>
+            <ProductListItems products={products} changeMainImage={changeMainImage} />
+            <PageButton
+              pagination={this.state.pagination}
+              genLink={(pageNum) => this.props.genLink({ ...this.props, pageNum })}
+              pageNum={this.props.pageNum}
+            />
+          </div>
         </div>
       </div>
     );

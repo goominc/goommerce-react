@@ -14,15 +14,29 @@ export default React.createClass({
   },
   // only used when two-way binding is used. form input is that case
   getInitialState() {
-    return {};
+    return { activeAreaCodeIndex: 0 };
   },
   render() {
     const { goBack, handleSignup } = this.props;
     const t = (key) => i18n.get(`pcMain.signup.${key}`);
     const renderBody = () => {
+      const areaCodes = [
+        { img: `${constants.resourceRoot}/main/country-kor.png`, name: 'Korea', number: '+82' },
+        { img: `${constants.resourceRoot}/main/country-china.png`, name: 'China', number: '+86' },
+        { img: `${constants.resourceRoot}/main/country-china.png`, name: 'Hongkong', number: '+886' },
+        { img: `${constants.resourceRoot}/main/country-england.png`, name: 'United Kingdom', number: '+214' },
+        { img: `${constants.resourceRoot}/main/country-usa.png`, name: 'Newyork', number: '+615' },
+        { img: `${constants.resourceRoot}/main/country-taiwan.png`, name: 'Taiwan', number: '+423' },
+      ];
       const clickSignup = (e) => {
         e.preventDefault();
         const user = _.pick(this.state, ['email', 'password', 'passwordConfirm', 'data']);
+        if (this.state.activeAreaCodeIndex >= 0 && _.get(user, 'data.tel')) {
+          user.data.areaCode = areaCodes[this.state.activeAreaCodeIndex].number;
+        }
+        if (user.data.firstName && user.data.lastName) {
+          user.name = `${user.data.lastName} ${user.data.firstName}`;
+        }
         handleSignup(user);
       };
       const onChange = (e, key) => {
@@ -74,10 +88,35 @@ export default React.createClass({
         return null;
       };
       const renderPasswordConfirmWarning = () => {
-        if (this.state.password && this.state.password != this.state.passwordConfirm) {
+        if (this.state.password && this.state.password !== this.state.passwordConfirm) {
           return (<div className="form-input-warning">비밀번호가 일치해야 합니다</div>);
         }
         return null;
+      };
+      // TODO area code none
+      const activeAreaCodeIndex = this.state.activeAreaCodeIndex || 0;
+      const toggleNumberDropdown = () => {
+        const target = $('.signup-form-section .form-tel .dropdown-box');
+        const display = target.css('display');
+        if (display === 'none') {
+          target.css('display', 'block');
+        } else {
+          target.css('display', 'none');
+        }
+      };
+      const renderAreaCodeDropdown = (ac, index) => {
+        if (index === activeAreaCodeIndex) {
+          return null;
+        }
+        const onClick = () => {
+          toggleNumberDropdown();
+          this.setState({ activeAreaCodeIndex: index });
+        };
+        return (
+          <div key={ac.name} onClick={onClick} className="dropdown-item">
+            <img src={ac.img} /> {ac.name} <span className="number">{ac.number}</span>
+          </div>
+        );
       };
       return (
         <form onSubmit={clickSignup} className="signup-container">
@@ -124,11 +163,14 @@ export default React.createClass({
             <div className="form-group">
               <label><span className="required">*</span>연락처</label>
               <div className="form-tel">
-                <div className="area-code">
-                  +82
+                <div className="area-code" onClick={toggleNumberDropdown}>
+                  <img src={areaCodes[activeAreaCodeIndex].img} /> {areaCodes[activeAreaCodeIndex].number}
                   <div className="arrow-down"></div>
                 </div>
                 <input onChange={(e) => onChange(e, 'data.tel')} type="text" placeholder="연락처를 입력해 주세요" />
+                <div className="dropdown-box">
+                  {areaCodes.map(renderAreaCodeDropdown)}
+                </div>
               </div>
             </div>
           </div>

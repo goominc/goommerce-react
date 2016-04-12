@@ -1,11 +1,54 @@
 // -----------------------------------------------------------------------------
 // This file contains styles that are specific to the product list page.
 // -----------------------------------------------------------------------------
+
+.product-list-wide-container {
+  background-color: #f8f8f8;
+}
+.product-list-titlebar {
+  background-color: #f73;
+  height: 50px;
+  margin-bottom: $margin-20;
+  position: relative;
+  width: 100%;
+  .right {
+    background-color: #ff6367;
+    height: 50px;
+    left: 50%;
+    position: absolute;
+    top: 0;
+    width: 50%;
+    z-index: 10;
+  }
+  .inner {
+    background: url($base-url + '/product/product_list_titlebar.jpg') no-repeat 100% 0;
+    height: 50px;
+    left: 50%;
+    margin-left: -600px;
+    position: absolute;
+    top: 0;
+    width: 1200px;
+    z-index: 20;
+  }
+}
+
 .product-list-left-box {
-  width: 180px;
+  background-color: #fff;
+  border-top: 3px solid #f50;
   display: table-cell;
-  padding: 0 8px 20px 0;
-  border-right: 1px solid #ddd;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 200px;
+  .title {
+    border-bottom: 1px solid #ddd;
+    color: $default-active-text-color;
+    height: 30px;
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 28px;
+    letter-spacing: -1px;
+    padding: 0 10px;
+  }
   .category-arrow {
     display: inline-block;
     height: 16px;

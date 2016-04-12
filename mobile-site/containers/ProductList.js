@@ -126,7 +126,7 @@ const ProductList = React.createClass({
         <ProductListItem viewType={viewType.type} products={this.state.products || []} />
         <div className="loading"></div>
       </section>
-      );
+    );
   },
 });
 
