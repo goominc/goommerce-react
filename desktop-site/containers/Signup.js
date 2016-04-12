@@ -19,7 +19,7 @@ const Signup = React.createClass({
     router: PropTypes.object.isRequired,
   },
   getInitialState() {
-    return { step: 2 };
+    return { step: 1 };
   },
   handleSubmit(newUser) {
     const { email, password, name, data, passwordConfirm } = newUser;
