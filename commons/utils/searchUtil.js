@@ -17,6 +17,9 @@ exports.getSearchItems = (searchResult, fnGetText) => {
 };
 
 exports.getProductsFromMerchandise = (brandId, merchandise, q) => {
+  if (!merchandise || !merchandise.products) {
+    return [];
+  }
   const res = [];
   (Object.keys(merchandise.products) || []).forEach((productId) => {
     const product = merchandise.products[productId];
