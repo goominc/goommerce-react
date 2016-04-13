@@ -50,9 +50,11 @@ export default React.createClass({
       };
       if (keyCode === 38) {
         // arrow up
+        e.preventDefault();
         changeCuror(Math.max(cursorPosition - 1, -1));
       } else if (keyCode === 40) {
         // arrow down
+        e.preventDefault();
         changeCuror(Math.min(cursorPosition + 1, items.length - 1));
       } else if (keyCode === 13) {
         // enter
@@ -69,7 +71,6 @@ export default React.createClass({
       }
     };
     const onFocus = (e) => {
-      console.log('1');
       onChangeText(e.target.value);
     };
     return (

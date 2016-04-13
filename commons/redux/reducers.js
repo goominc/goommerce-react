@@ -207,6 +207,13 @@ function search(state = { brand: {} }, action) {
   return state;
 }
 
+function merchandise(state = {}, action) {
+  if (action.type === 'LOAD_MERCHANDISE') {
+    return Object.assign({}, state, action.payload);
+  }
+  return state;
+}
+
 const reducers = {
   auth,
   cart,
@@ -216,6 +223,7 @@ const reducers = {
   entities,
   favoriteBrand,
   i18n,
+  merchandise,
   pagination,
   search,
 };

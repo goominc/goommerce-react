@@ -29,8 +29,8 @@ export default React.createClass({
     currencySign: PropTypes.object,
   },
   render() {
-    const { cart, createOrder, loadCart, updateCartProduct, deleteCartProduct,
-      setReorderBrand, yesterdayOrderInfo, addCartProductOnReorder, addCartProducts } = this.props;
+    const { cart, createOrder, loadCart, updateCartProduct, deleteCartProduct, setReorderProduct } = this.props;
+    const { setReorderBrand, yesterdayOrderInfo, addCartProductOnReorder, addCartProducts } = this.props;
     if (!cart) {
       return (<div></div>);
     }
@@ -225,6 +225,7 @@ export default React.createClass({
           }
         }
         addCartProductOnReorder(product);
+        setReorderProduct(null);
         resetFields();
       };
       const renderActiveProduct = () => {
@@ -255,7 +256,7 @@ export default React.createClass({
       const renderActiveProductReset = () => {
         const onClick = () => {
           resetFields();
-          this.props.setReorderProduct(null);
+          setReorderProduct(null);
         };
         if (activeProduct) {
           return (<button className="btn default" onClick={onClick}>초기화</button>);

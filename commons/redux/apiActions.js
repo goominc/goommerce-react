@@ -454,6 +454,13 @@ export function searchKeyword(keyword, type, category, brand) {
   });
 }
 
+export function loadMerchandiseProducts() {
+  return createFetchAction({
+    type: 'LOAD_MERCHANDISE',
+    endpoint: '/api/v1/merchandise',
+  });
+}
+
 const createMerchandiseVariant = (auth, productId, reorderProduct) => {
   const body = {
     productId,
@@ -480,6 +487,8 @@ export function createMerchandiseProductAndAddToCart(product) {
     ajaxReturnPromise(state.auth, 'post', '/api/v1/merchandise/products', body).then((res) => {
       createMerchandiseVariant(state.auth, res.id, product).then((res2) => {
         addCartProduct(res2.id, product.count || 1)(dispatch, getState);
+        // 2016. 04. 13. [heekyu] load merchandise concurrently
+        loadMerchandiseProducts()(dispatch, getState);
       });
     });
   };
@@ -517,6 +526,8 @@ export function addCartProductOnReorder(product) {
       console.log('Product is REAL, variant is MERCHANDISSE');
       createMerchandiseVariant(state.auth, realProduct.id, reorderProduct).then((res) => {
         addCartProduct(res.id, 1)(dispatch, getState);
+        // 2016. 04. 13. [heekyu] load merchandise concurrently
+        loadMerchandiseProducts()(dispatch, getState);
       });
     };
     if (product.product) {

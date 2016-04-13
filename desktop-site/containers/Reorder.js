@@ -49,9 +49,9 @@ const Reorder = React.createClass({
 
 export default connect(
   (state) => ({
-    cart: state.cart,
-    brand: _.get(state, 'reorder.brand'),
     activeProduct: _.get(state, 'reorder.product'),
+    brand: _.get(state, 'reorder.brand'),
+    cart: state.cart,
     ...loadEntities(state, 'myOrders', 'orders'),
   }),
   { setReorderBrand, setReorderProduct }

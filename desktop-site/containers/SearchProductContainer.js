@@ -16,6 +16,8 @@ import { setReorderProduct } from 'redux/actions';
 const ProductSearch = React.createClass({
   propTypes: {
     brand: PropTypes.object,
+    cart: PropTypes.object,
+    merchandise: PropTypes.object,
     searchResult: PropTypes.object,
     setReorderProduct: PropTypes.func,
   },
@@ -23,8 +25,11 @@ const ProductSearch = React.createClass({
     ApiAction: PropTypes.object,
     activeLocale: PropTypes.string,
   },
+  componentDidMount() {
+    this.context.ApiAction.loadMerchandiseProducts();
+  },
   render() {
-    const { brand, searchResult } = this.props;
+    const { brand, merchandise, searchResult } = this.props;
     const { ApiAction, activeLocale } = this.context;
     const boxClassName = 'product-search-box';
     const dataKey = `name.${activeLocale}`;
@@ -38,14 +43,22 @@ const ProductSearch = React.createClass({
       $(`.${boxClassName} input`).val(_.get(product, dataKey));
     };
     const onChangeText = (text) => {
-      // 2016. 04. 06. [heekyu] do not call API if same brand and same text
+      // 2016. 04. 06. [heekyu] TODO do not call API if same brand and same text
       const query = { q: text };
       if (brand) {
         query.brandId = brand.id;
       }
-      ApiAction.searchProducts(query, 0, 7);
+      const limit = 50;
+      ApiAction.searchProducts(query, 0, limit);
     };
     const fnGetText = (item) => _.get(item, dataKey);
+
+    if (brand && searchResult) {
+      const productsInMerchandise = searchUtil.getProductsFromMerchandise(brand.id, merchandise, searchResult.text);
+      if (productsInMerchandise) {
+        searchResult.products = productsInMerchandise.concat((searchResult.products || []));
+      }
+    }
     const items = searchUtil.getSearchItems(searchResult ? searchResult.products : [], fnGetText);
     return (
       <AutoComplete
@@ -63,8 +76,10 @@ const ProductSearch = React.createClass({
 
 export default connect(
   (state) => ({
-    searchResult: _.get(state, 'search.product'),
     brand: _.get(state, 'reorder.brand'),
+    cart: state.cart,
+    merchandise: state.merchandise,
+    searchResult: _.get(state, 'search.product'),
   }),
   { setReorderProduct }
 )(ProductSearch);
