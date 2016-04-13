@@ -7,6 +7,7 @@ import { ajaxReturnPromise } from 'commons/redux/util/ajaxUtil';
 import Breadcrumb from 'components/Breadcrumb';
 import ProductListLeft from 'components/product/ProductListLeft';
 import ProductListItems from 'components/product/ProductListItems';
+import ProductListSearchBar from 'components/product/ProductListSearchBar';
 import PageButton from 'components/PageButton';
 
 import { getProductMainImage } from 'commons/utils/productUtil';
@@ -147,32 +148,10 @@ const ProductList = React.createClass({
           </div>
         </div>
         <div className="container-table no-padding">
-          <ProductListLeft {...this.props} aggs={aggs} brand={brand || null} />
+          <ProductListLeft {...this.props} aggs={aggs} />
           <div className="product-list-right-box">
             <Breadcrumb path={path} />
-            <div className="product-list-search-box">
-              <div className="search-row">
-                <div className="search-label">가격</div>
-                <div className="search-control">
-                  <div className="button-item">0 ~ 9,999</div>
-                  <div className="button-item">10,000 ~ 19,999</div>
-                  <div className="button-item">20,000 ~ 29,999</div>
-                  <div className="button-item">30,000 ~ </div>
-                </div>
-              </div>
-              <div className="search-row">
-                <div className="search-label">단골 브랜드</div>
-                <div className="search-control">
-                  <div className="button-item">abc</div>
-                </div>
-              </div>
-              <div className="search-row">
-                하이루
-                <div className="sort-item-box">
-                  {sortItemViews}
-                </div>
-              </div>
-            </div>
+            <ProductListSearchBar {...this.props} aggs={aggs} brand={brand || null} />
             <ProductListItems
               products={products}
               changeMainImage={changeMainImage}

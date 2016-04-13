@@ -21,37 +21,6 @@ export default React.createClass({
   contextTypes: {
     activeLocale: PropTypes.string,
   },
-  renderBrands() {
-    const { aggs: { brands = [] }, genLink } = this.props;
-
-    if (this.props.brand) {
-      const link = genLink(pick(this.props, ['query', 'categoryId', 'pageNum']));
-      return (
-        <div className="product-list-category-title">
-          Selected Brand:
-          <div>
-            {brandUtil.getName(this.props.brand)}
-            <Link to={link}><span>(X)</span></Link>
-          </div>
-        </div>
-      );
-    }
-
-    const brandLink = (brandId) => genLink(Object.assign(pick(this.props, ['query', 'categoryId']), { brandId }));
-
-    return (
-      <div>
-        <div className="product-list-category-title">{i18n.get('word.brands')}</div>
-        {brands.map((brand) => (
-          <div key={brand.id} className="product-list-category-depth1">
-            <Link to={brandLink(brand.id)}>
-              {brandUtil.getName(brand)} ({brand.doc_count})
-            </Link>
-          </div>
-        ))}
-      </div>
-    );
-  },
   renderCategories() {
     const { activeLocale } = this.context;
     const { aggs, category, categories, genLink } = this.props;
@@ -108,7 +77,6 @@ export default React.createClass({
       <div className="product-list-left-box">
         <div className="title">카테고리</div>
         {this.renderCategories()}
-        {this.renderBrands()}
       </div>
     );
   },

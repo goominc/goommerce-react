@@ -111,6 +111,7 @@ $product-list-margin: 20px;
     .search-control {
       border-left: 1px solid #ccc;
       display: inline-block;
+      max-width: 800px;
       padding: 0 0 10px 20px;
     }
     .button-item {
@@ -126,7 +127,7 @@ $product-list-margin: 20px;
       padding: 0 7px;
       text-align: center;
       white-space: nowrap;
-      &:hover {
+      &:hover, &.active {
         border: 2px solid #333;
         color: #333;
         margin: 2px;
