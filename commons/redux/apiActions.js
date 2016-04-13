@@ -205,6 +205,15 @@ export function createOrderFromCart() {
   });
 }
 
+export function startOrderProcessing(orderId) {
+  return createFetchAction({
+    type: 'START_ORDER_PROCESSING',
+    endpoint: `/api/v1/orders/${orderId}/start_processing`,
+    method: 'post',
+    transform: ({ data }) => normalize(data, schemas.order),
+  });
+}
+
 export function loadOrder(id) {
   return createFetchAction({
     type: 'LOAD_ORDER',

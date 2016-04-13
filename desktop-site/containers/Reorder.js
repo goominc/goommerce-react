@@ -28,7 +28,9 @@ const Reorder = React.createClass({
     const orders = this.props.orders || [];
     const yesterdayOrderInfo = orderUtil.getInfoFromOrdersNotInCart(orders, this.props.cart);
     const createOrder = () => {
-      ApiAction.createOrderFromCart().then((order) => this.context.router.push(`/orders/${order.id}`));
+      ApiAction.createOrderFromCart()
+        .then((order) => ApiAction.startOrderProcessing(order.id))
+        .then((order) => this.context.router.push(`/orders/${order.id}`));
     };
     return (
       <div className="mypage-contents-container">
