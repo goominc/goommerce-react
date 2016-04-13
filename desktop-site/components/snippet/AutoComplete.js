@@ -51,10 +51,12 @@ export default React.createClass({
       if (keyCode === 38) {
         // arrow up
         e.preventDefault();
+        $(e.target).val(e.target.value);
         changeCuror(Math.max(cursorPosition - 1, -1));
       } else if (keyCode === 40) {
         // arrow down
         e.preventDefault();
+        $(e.target).val(e.target.value);
         changeCuror(Math.min(cursorPosition + 1, items.length - 1));
       } else if (keyCode === 13) {
         // enter
