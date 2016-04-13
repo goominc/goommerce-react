@@ -91,6 +91,15 @@
     position: relative;
     width: $input-width;
     @include dropdown-box();
+    .dropdown-box {
+      border: 0;
+      width: 760px;
+      .dropdown-item {
+        display: inline-block;
+        margin-left: -1px;
+        margin-top: -1px;
+      }
+    }
   }
   .product-variant-add-box {
     display: block;

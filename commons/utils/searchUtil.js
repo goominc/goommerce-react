@@ -7,8 +7,7 @@ exports.getSearchItems = (searchResult, fnGetText) => {
   if (!searchResult) {
     return res;
   }
-  const maxResultCount = 10;
-  const count = Math.min((searchResult || []).length, maxResultCount);
+  const count = (searchResult || []).length;
   for (let i = 0; i < count; i++) {
     const item = searchResult[i];
     res.push({ text: fnGetText(item), item });
