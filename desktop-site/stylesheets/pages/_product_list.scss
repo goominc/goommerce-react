@@ -91,45 +91,90 @@ $product-list-margin: 20px;
 // TODO
 .product-list-search-box {
   background-color: #eee;
-  height: 150px;
-  padding: $margin-15;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 30px;
   width: 100%;
-  .sort-item {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    cursor: pointer;
-    font-size: 14px;
-    text-align: center;
-    padding: 5px 10px;
-    width: 100px;
-    &.active {
-      border: 1px solid $default-active-text-color;
-      color: $default-active-text-color;
+  .search-row {
+    padding: 10px;
+    position: relative;
+    width: 100%;
+    .search-label {
+      display: inline-block;
+      font-size: 13px;
+      font-weight: bold;
+      margin: 0 $margin-20;
+      text-align: right;
+      vertical-align: top;
+      width: 100px;
+    }
+    .search-control {
+      border-left: 1px solid #ccc;
+      display: inline-block;
+      padding: 0 0 10px 20px;
+    }
+    .button-item {
+      background-color: #fff;
+      border: 1px solid #aaa;
+      box-sizing: content-box;
+      cursor: pointer;
+      display: inline-block;
+      height: 22px;
+      font-size: 11px;
+      line-height: 22px;
+      margin: 3px;
+      padding: 0 7px;
+      text-align: center;
+      white-space: nowrap;
+      &:hover {
+        border: 2px solid #333;
+        color: #333;
+        margin: 2px;
+      }
+    }
+    & + .search-row {
+      background: url($base-url + '/main/dotline1.gif') repeat-x;
+    }
+  }
+  .sort-item-box {
+    font-size: 12px;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    .sort-item {
+      padding: 0 10px;
+      & + .sort-item {
+        border-left: 1px solid #aaa;
+      }
+      &.active {
+        background: url($base-url + '/main/ico_check.png') no-repeat 10px 0;
+        font-weight: bold;
+        padding-left: 25px;
+      }
     }
   }
 }
 
 $product-in-row: 4;
 .product-list-item-wrap {
-  width: 100% / $product-in-row;
-  vertical-align: top;
-  text-align: center;
   display: inline-block;
+  height: 300px;
   margin-top: $product-list-margin;
-  overflow-y: visible;
-  height: 330px;
   margin-bottom: 30px;
+  overflow-y: visible;
+  text-align: center;
+  vertical-align: top;
+  width: 100% / $product-in-row;
 }
 .product-list-first-item {
   margin-top: 0;
 }
 .product-list-item-box {
-  padding: 30px 20px 15px 20px;
-  width: 200px;
-  background-color: #fff;
+  $width: 210px;
+  border: 1px solid transparent;
   display: inline-block;
   position: relative;
-  border: 1px solid transparent;
+  width: $width;
   .img-wrap {
     width: 100%;
     @include default-responsive-img-wrap();
@@ -138,40 +183,49 @@ $product-in-row: 4;
     text-decoration: none;
   }
   .product-title {
-    height: 32px;
-    overflow: hidden;
+    margin-top: 5px;
+    font-size: 12px;
+    letter-spacing: -1px;
   }
   .product-price {
-    margin-top: $product-list-margin;
-    color: #f60;
-    font-weight: 700;
-    font-size: 16px;
+    font-size: 12px;
+    strong {
+      font: 500 16px 'Roboto';
+    }
   }
   .variant-image-container {
     display: none;
   }
   &:hover {
-    border: 1px solid #ccc;
-    box-shadow: 2px 2px 4px rgba(0,0,0,.13);
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    margin-top: -10px;
+    padding-top: 10px;
+    $padding: 10px;
+    padding-left: $padding;
+    padding-right: $padding;
+    width: $width + $padding * 2;
     z-index: 20;
-    .product-title {
-      height: auto;
-    }
     a {
       color: $brand-color;
     }
     .variant-image-container {
+      background: url($base-url + '/main/dotline2.gif') repeat-x;
       display: block;
+      padding: 10px;
+      position: relative;
       width: 100%;
       .variant-item {
         cursor: pointer;
         display: inline-block;
+        text-align: center;
+        // width: percentage(1/3);
+        width: 60px;
         span {
           overflow-x: hidden;
           white-space: nowrap;
         }
-        text-align: center;
-        width: percentage(1/3);
         .img-wrap {
           width: 100%;
           @include default-responsive-img-wrap();
@@ -179,6 +233,21 @@ $product-in-row: 4;
         &:hover {
           color: $brand-color;
         }
+      }
+      @mixin variant-arrow() {
+        cursor: pointer;
+        position: absolute;
+        top: 50%;
+      }
+      .arrow-left {
+        @include simple-arrow-left(8px, #333);
+        @include variant-arrow();
+        left: 2px;
+      }
+      .arrow-right {
+        @include simple-arrow-right(8px, #333);
+        @include variant-arrow();
+        right: 2px;
       }
     }
   }

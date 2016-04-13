@@ -95,11 +95,6 @@ const ProductList = React.createClass({
       }
     };
 
-    const toggleLatest = () => {
-      this.doSearch(_.assign({}, this.props, { latest: !this.state.latest }));
-      this.setState({ latest: !this.state.latest });
-    };
-
     return (
       <div className="product-list-wide-container">
         <div className="product-list-titlebar">
@@ -112,8 +107,28 @@ const ProductList = React.createClass({
           <div className="product-list-right-box">
             <Breadcrumb path={path} />
             <div className="product-list-search-box">
-              <div className={`sort-item ${this.state.latest ? 'active' : ''}`} onClick={toggleLatest}>
-                최신 순
+              <div className="search-row">
+                <div className="search-label">가격</div>
+                <div className="search-control">
+                  <div className="button-item">0 ~ 10,000</div>
+                  <div className="button-item">10,001 ~ 20,000</div>
+                  <div className="button-item">20,001 ~ 30,000</div>
+                  <div className="button-item">30,001 ~ </div>
+                </div>
+              </div>
+              <div className="search-row">
+                <div className="search-label">단골 브랜드</div>
+                <div className="search-control">
+                  <div className="button-item">abc</div>
+                </div>
+              </div>
+              <div className="search-row">
+                하이루
+                <div className="sort-item-box">
+                  <a className="sort-item">낮은가격 순</a>
+                  <strong className="sort-item active">높은 가격 순</strong>
+                  <a className="sort-item">최신등록 순</a>
+                </div>
               </div>
             </div>
             <ProductListItems products={products} changeMainImage={changeMainImage} />

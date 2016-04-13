@@ -2,6 +2,8 @@
 
 import i18n from 'commons/utils/i18n';
 
+import numberUtil from './numberUtil';
+
 exports.getName = (product) => i18n.get(product.name);
 exports.getAllNames = (product) => product.name;
 
@@ -56,5 +58,9 @@ exports.getProductMainPrice = (product, currency) => {
     return 0;
   }
   // TODO find default price
-  return product.productVariants[0][currency];
+  const res = product[currency];
+  if (currency === 'KRW') {
+    return numberUtil.format(res);
+  }
+  return res;
 };
