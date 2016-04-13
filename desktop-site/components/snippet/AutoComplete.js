@@ -50,13 +50,9 @@ export default React.createClass({
       };
       if (keyCode === 38) {
         // arrow up
-        e.preventDefault();
-        $(e.target).val(e.target.value);
         changeCuror(Math.max(cursorPosition - 1, -1));
       } else if (keyCode === 40) {
         // arrow down
-        e.preventDefault();
-        $(e.target).val(e.target.value);
         changeCuror(Math.min(cursorPosition + 1, items.length - 1));
       } else if (keyCode === 13) {
         // enter
@@ -67,7 +63,9 @@ export default React.createClass({
       }
     };
     const onChange = (e) => {
-      onChangeText($(e.target).val());
+      console.log('2');
+      console.log(e.target.value);
+      onChangeText(e.target.value);
       if (this.state.cursorPosition >= 0) {
         this.setState({ cursorPosition: -1 });
       }
@@ -82,7 +80,7 @@ export default React.createClass({
           defaultValue={text}
           onFocus={onFocus}
           onChange={onChange}
-          onKeyDown={onKeyEvent} // onKeyPress does not work for arrow up(38), down(40)
+          onKeyUp={onKeyEvent} // onKeyPress does not work for arrow up(38), down(40)
         />
         {renderDropdown()}
       </div>

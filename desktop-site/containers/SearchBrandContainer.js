@@ -43,9 +43,10 @@ const BrandSearch = React.createClass({
       }, 100);
     };
     const onChangeText = (text) => {
-      if (!searchResult || text !== searchResult.text) {
-        ApiAction.searchBrands(text, 0, 7);
-      }
+      // 2016. 04. 13. [heekyu] window chrome strange trigger for korean
+      // if (!searchResult || text !== searchResult.text) {
+      ApiAction.searchBrands(text, 0, 7);
+      // }
     };
 
     const fnGetText = (item) => brandUtil.getNameWithAllBuildingInfo(item);
