@@ -1,13 +1,16 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
+import loadEntities from 'commons/redux/util/loadEntities';
 import { ajaxReturnPromise } from 'commons/redux/util/ajaxUtil';
 import Breadcrumb from 'components/Breadcrumb';
-import ProductListLeft from 'components/ProductListLeft';
-import ProductListItems from 'components/ProductListItems';
+import ProductListLeft from 'components/product/ProductListLeft';
+import ProductListItems from 'components/product/ProductListItems';
 import PageButton from 'components/PageButton';
 
 import { getProductMainImage } from 'commons/utils/productUtil';
+import i18n from 'commons/utils/i18n';
 
 const _ = require('lodash');
 
@@ -21,28 +24,31 @@ const ProductList = React.createClass({
     category: PropTypes.object,
     categories: PropTypes.object.isRequired,
     searchProducts: PropTypes.func,
+    wishes: PropTypes.array,
   },
   contextTypes: {
     ApiAction: PropTypes.object,
+    router: PropTypes.object,
   },
   getDefaultProps() {
     return { pageNum: '1' };
   },
   getInitialState() {
-    return { latest: false };
+    return { sorts: null };
   },
   componentDidMount() {
     this.doSearch(this.props);
+    this.context.ApiAction.loadWishlist();
   },
   componentWillReceiveProps(nextProps) {
-    const props = ['query', 'categoryId', 'brandId', 'pageNum'];
+    const props = ['query', 'categoryId', 'brandId', 'pageNum', 'sorts'];
     if (!_.isEqual(_.pick(this.props, props), _.pick(nextProps, props))) {
       this.doSearch(nextProps);
     }
   },
   doSearch(props) {
-    const { query, categoryId, brandId, pageNum } = props;
-    const limit = 30;
+    const { query, categoryId, brandId, pageNum, sorts } = props;
+    const limit = 4 * 7;
     const queryOptions = {
       q: query,
       categoryId: categoryId === 'all' ? undefined : categoryId,
@@ -50,8 +56,8 @@ const ProductList = React.createClass({
       offset: Math.max((pageNum - 1) * limit, 0),
       limit,
     };
-    if (props.latest) {
-      queryOptions.sorts = '-id';
+    if (sorts) {
+      queryOptions.sorts = sorts;
     }
     this.props.searchProducts(queryOptions).then((res) => this.setState(res));
   },
@@ -71,12 +77,21 @@ const ProductList = React.createClass({
     return path;
   },
   render() {
+    const { wishes = [], genLink } = this.props;
     const { products = [], aggs = {}, brand } = this.state;
+    const { ApiAction } = this.context;
     const path = this.breadCrumbPath();
 
     products.forEach((product) => {
       if (!product.mainImage) {
         product.mainImage = getProductMainImage(product.topHit || product);
+      }
+      product.wish = 0;
+      for (let i = 0; i < wishes.length; i++) {
+        if (wishes[i].product.id === product.id) {
+          product.wish = wishes[i].id;
+          break;
+        }
       }
     });
 
@@ -95,6 +110,35 @@ const ProductList = React.createClass({
       }
     };
 
+    const toggleWish = (product) => {
+      if (product.wish) {
+        ApiAction.deleteWish(product.wish);
+      } else {
+        ApiAction.addWish(product.id);
+      }
+    };
+    const sortItems = [
+      { name: i18n.get('pcMain.productList.sortLowPrice'), sorts: 'KRW.num' },
+      { name: i18n.get('pcMain.productList.sortHighPrice'), sorts: '-KRW.num' },
+      { name: i18n.get('pcMain.productList.sortLatest'), sorts: '-id' },
+    ];
+    const sortItemViews = sortItems.map((item) => {
+      if (this.props.sorts === item.sorts) {
+        return (
+          <Link key={sortItems.sorts} to={genLink({ ...this.props, sorts: null, pageNum: 1 })}>
+            <strong className="sort-item active">
+              {item.name}
+            </strong>
+          </Link>
+        );
+      }
+      return (
+        <Link key={sortItems.sorts} to={genLink({ ...this.props, sorts: item.sorts, pageNum: 1 })} className="sort-item">
+          {item.name}
+        </Link>
+      );
+    });
+
     return (
       <div className="product-list-wide-container">
         <div className="product-list-titlebar">
@@ -110,10 +154,10 @@ const ProductList = React.createClass({
               <div className="search-row">
                 <div className="search-label">가격</div>
                 <div className="search-control">
-                  <div className="button-item">0 ~ 10,000</div>
-                  <div className="button-item">10,001 ~ 20,000</div>
-                  <div className="button-item">20,001 ~ 30,000</div>
-                  <div className="button-item">30,001 ~ </div>
+                  <div className="button-item">0 ~ 9,999</div>
+                  <div className="button-item">10,000 ~ 19,999</div>
+                  <div className="button-item">20,000 ~ 29,999</div>
+                  <div className="button-item">30,000 ~ </div>
                 </div>
               </div>
               <div className="search-row">
@@ -125,16 +169,18 @@ const ProductList = React.createClass({
               <div className="search-row">
                 하이루
                 <div className="sort-item-box">
-                  <a className="sort-item">낮은가격 순</a>
-                  <strong className="sort-item active">높은 가격 순</strong>
-                  <a className="sort-item">최신등록 순</a>
+                  {sortItemViews}
                 </div>
               </div>
             </div>
-            <ProductListItems products={products} changeMainImage={changeMainImage} />
+            <ProductListItems
+              products={products}
+              changeMainImage={changeMainImage}
+              toggleWish={toggleWish}
+            />
             <PageButton
               pagination={this.state.pagination}
-              genLink={(pageNum) => this.props.genLink({ ...this.props, pageNum })}
+              genLink={(pageNum) => genLink({ ...this.props, pageNum })}
               pageNum={this.props.pageNum}
             />
           </div>
@@ -151,6 +197,7 @@ export default connect(
       searchProducts: (query) => ajaxReturnPromise(state.auth, 'get', `/api/v1/products/search?${$.param(query)}`),
       categories: state.categories,
       category: state.categories[categoryId === 'all' ? 'tree' : categoryId],
+      ...loadEntities(state, 'wishes', 'wishes'),
     };
   }
 )(ProductList);

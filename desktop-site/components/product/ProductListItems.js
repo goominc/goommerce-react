@@ -2,7 +2,7 @@
 
 import React, { PropTypes } from 'react';
 
-import ProductListItem from './product/ProductListItem';
+import ProductListItem from './ProductListItem';
 
 export default React.createClass({
   propTypes: {
@@ -15,7 +15,14 @@ export default React.createClass({
     return (
       <div className="container no-padding">
         <div className="product-list-item-row">
-          {products.map((product) => (<ProductListItem item={product} changeMainImage={changeMainImage} />))}
+          {products.map((product) => (
+            <ProductListItem
+              key={product.id}
+              changeMainImage={changeMainImage}
+              item={product}
+              toggleWish={this.props.toggleWish} // eslint-disable-line
+            />
+          ))}
         </div>
       </div>
     );

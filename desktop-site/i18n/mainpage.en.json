@@ -18,6 +18,11 @@
       "bizNumberPlaceHolder": "사업자번호를 입력해주세요",
       "returnAccountBankPlaceHolder": "**은행",
       "returnAccountOwnerPlaceHolder": "예금주를 입력해 주세요"
+    },
+    "productList": {
+      "sortLowPrice": "낮은가격 순",
+      "sortHighPrice": "높은가격 순",
+      "sortLatest": "최신등록 순"
     }
   }
 }

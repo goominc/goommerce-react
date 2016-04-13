@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import * as _ from 'lodash';
 
-import ProductDetailPage from 'components/ProductDetailPage';
+import ProductDetailPage from 'components/product/ProductDetailPage';
 import { getProductMainImage } from 'commons/utils/productUtil';
 
 import { selectColor, selectSize, setActiveImage, wrapLogin, addCartAndPopup, addWishAndPopup } from 'redux/actions';

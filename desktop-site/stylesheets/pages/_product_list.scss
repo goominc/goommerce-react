@@ -170,7 +170,7 @@ $product-in-row: 4;
   margin-top: 0;
 }
 .product-list-item-box {
-  $width: 210px;
+  $width: 220px;
   border: 1px solid transparent;
   display: inline-block;
   position: relative;
@@ -193,6 +193,19 @@ $product-in-row: 4;
       font: 500 16px 'Roboto';
     }
   }
+  .heart-it {
+    background: url($base-url + '/main/heart.png') no-repeat;
+    cursor: pointer;
+    height: 32px;
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    width: 35px;
+    z-index: 100;
+    &.active {
+      background: url($base-url + '/main/heart_o.png') no-repeat;
+    }
+  }
   .variant-image-container {
     display: none;
   }
@@ -206,9 +219,13 @@ $product-in-row: 4;
     padding-left: $padding;
     padding-right: $padding;
     width: $width + $padding * 2;
-    z-index: 20;
+    z-index: $dropdown-z-index;
     a {
       color: $brand-color;
+    }
+    .heart-it {
+      right: 10px + $padding;
+      top: 5px + $padding;
     }
     .variant-image-container {
       background: url($base-url + '/main/dotline2.gif') repeat-x;
@@ -234,20 +251,41 @@ $product-in-row: 4;
           color: $brand-color;
         }
       }
-      @mixin variant-arrow() {
+      @mixin variant-arrow-wrap() {
+        background-color: #fff;
         cursor: pointer;
+        display: inline-block;
+        $height: 30px;
+        height: $height;
+        line-height: $height;
+        margin-top: -$height / 2;
         position: absolute;
         top: 50%;
+        width: 15px;
       }
-      .arrow-left {
-        @include simple-arrow-left(8px, #333);
-        @include variant-arrow();
-        left: 2px;
+      $arrow-width: 10px;
+      $arrow-color: #333;
+      .arrow-left-wrap {
+        @include variant-arrow-wrap();
+        left: 0;
+        .arrow {
+          @include simple-arrow-left($arrow-width, $arrow-color);
+          position: absolute;
+          top: 50%;
+          right: 4px;
+          margin-top: -$arrow-width;
+        }
       }
-      .arrow-right {
-        @include simple-arrow-right(8px, #333);
-        @include variant-arrow();
-        right: 2px;
+      .arrow-right-wrap {
+        @include variant-arrow-wrap();
+        right: 0;
+        .arrow {
+          @include simple-arrow-right($arrow-width, $arrow-color);
+          position: absolute;
+          left: 4px;
+          top: 50%;
+          margin-top: -$arrow-width;
+        }
       }
     }
   }

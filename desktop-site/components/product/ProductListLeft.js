@@ -58,7 +58,7 @@ export default React.createClass({
     if (!category || !categories) {
       return undefined;
     }
-    console.log(categories);
+    // console.log(categories);
 
     const categoryLink = (categoryId) => genLink(Object.assign(pick(this.props, ['query', 'brandId']), { categoryId }));
 

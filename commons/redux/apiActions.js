@@ -371,24 +371,6 @@ export function loadCMSData(name) {
   });
 }
 
-export function addWish(productId) {
-  return createFetchAction({
-    type: 'ADD_WISH_LIST',
-    endpoint: '/api/v1/users/self/wishes',
-    method: 'post',
-    body: { productId },
-  });
-}
-
-export function deleteWish(wishId) {
-  return createFetchAction({
-    type: 'DELETE_WISH_LIST',
-    endpoint: `/api/v1/users/self/wishes/${wishId}`,
-    method: 'delete',
-    success: { wishId },
-  });
-}
-
 export function loadWishlist() {
   return createFetchAction({
     type: 'LOAD_WISH_LIST',
@@ -398,6 +380,27 @@ export function loadWishlist() {
       pagination: { key: 'wishes', type: 'REFRESH' },
     },
   });
+}
+
+export function addWish(productId) {
+  return (dispatch, getState) => {
+    const state = getState();
+    return ajaxReturnPromise(state.auth, 'post', '/api/v1/users/self/wishes', { productId }).then(() => {
+      loadWishlist()(dispatch, getState);
+    });
+  };
+}
+
+export function deleteWish(wishId) {
+  return (dispatch, getState) => {
+    const state = getState();
+    return ajaxReturnPromise(state.auth, 'delete', `/api/v1/users/self/wishes/${wishId}`).then(() => {
+      dispatch({
+        type: 'DELETE_WISH_LIST',
+        wishId,
+      });
+    });
+  };
 }
 
 export function addFavoriteBrand(brandId) {
