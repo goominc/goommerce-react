@@ -224,6 +224,9 @@ export default React.createClass({
             product[field.key] = +product[field.key];
           }
         }
+        if (!product.color) {
+          product.color = 'None';
+        }
         addCartProductOnReorder(product);
         setReorderProduct(null);
         resetFields();
