@@ -67,7 +67,7 @@ export default React.createClass({
       }
     };
     const onChange = (e) => {
-      onChangeText(e.target.value);
+      onChangeText($(e.target).val());
       if (this.state.cursorPosition >= 0) {
         this.setState({ cursorPosition: -1 });
       }
