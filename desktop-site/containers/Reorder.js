@@ -22,6 +22,7 @@ const Reorder = React.createClass({
   },
   componentDidMount() {
     this.context.ApiAction.loadMyOrders();
+    this.context.ApiAction.loadCart();
   },
   render() {
     const { ApiAction } = this.context;
