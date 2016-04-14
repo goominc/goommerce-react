@@ -24,11 +24,18 @@ export default React.createClass({
   renderCategories() {
     const { activeLocale } = this.context;
     const { aggs, category, categories, genLink } = this.props;
-    if (!category || !categories) {
+    if (!category || !categories || !aggs) {
       return undefined;
     }
     const tree = categories.tree;
     console.log(aggs);
+
+    const categoryCount = (categoryId) => {
+      if (!aggs || !aggs.categories || !aggs.categories[categoryId]) {
+        return '';
+      }
+      return `(${aggs.categories[categoryId].doc_count})`;
+    };
 
     const categoryLink = (categoryId) => genLink(Object.assign(pick(this.props, ['query', 'sorts']), { categoryId }));
     const renderTop = (root) => {
@@ -39,7 +46,7 @@ export default React.createClass({
         return children.filter((child) => child.isActive).map((child) => (
           <div key={child.id} className="product-list-category-indent">
             <Link className="product-list-category-item sub" to={categoryLink(child.id)}>
-              {child.name[activeLocale]}
+              {child.name[activeLocale]} {categoryCount(child.id)}
             </Link>
           </div>
         ));
@@ -49,7 +56,7 @@ export default React.createClass({
           return (
             <div key={child.id} className="product-list-category-indent">
               <Link className="product-list-category-item active" to={categoryLink(child.id)}>
-                {child.name[activeLocale]}
+                {child.name[activeLocale]} {categoryCount(child.id)}
               </Link>
               {renderChildOfCategory(child.children)}
             </div>
@@ -84,7 +91,7 @@ export default React.createClass({
       return (
         <div className="product-list-top-category">
           <Link className={`product-list-category-title ${root.id === category.id ? 'active' : ''}`} to={categoryLink(root.id)}>
-            {root.name[activeLocale]}
+            {root.name[activeLocale]} {`${root.id === category.id ? categoryCount(root.id) : ''}`}
           </Link>
           {renderChildren()}
         </div>
