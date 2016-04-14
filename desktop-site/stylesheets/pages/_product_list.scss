@@ -35,12 +35,11 @@
 .product-list-left-box {
   background-color: #fff;
   border-top: 3px solid #f50;
-  display: table-cell;
+  display: inline-block;
   padding-left: 10px;
   padding-right: 10px;
   width: 200px;
   .title {
-    border-bottom: 1px solid #ddd;
     color: $default-active-text-color;
     height: 30px;
     font-weight: bold;
@@ -55,8 +54,43 @@
     width: 10px;
   }
 }
+.product-list-top-category {
+  display: block;
+  width: 100%;
+}
 .product-list-category-title {
-  font: normal normal bold normal 16px / 20px 'Open Sans', Arial, Helvetica, sans-senif, SimSun, 宋体;
+  border-top: 1px solid #ccc;
+  display: block;
+  font-weight: bold;
+  font-size: 13px;
+  height: 30px;
+  line-height: 28px;
+  letter-spacing: -1px;
+  padding: 0 10px;
+  &:hover,&.active {
+    color: $default-active-text-color;
+  }
+}
+.product-list-category-indent {
+  margin-left: 10px;
+}
+.product-list-category-item {
+  display: block;
+  height: 22px;
+  font-size: 12px;
+  line-height: 22px;
+  padding: 0 10px 0 13px;
+  background: url($base-url + '/main/ico_right1.gif') no-repeat 5px 7px;
+  &:hover,&.active {
+    background: url($base-url + '/main/ico_right1_o.gif') no-repeat 5px 7px;
+    color: $default-active-text-color;
+  }
+  &.sub {
+    background: url($base-url + '/main/ico_right2.gif') no-repeat 5px 7px;
+    &:hover {
+      background: url($base-url + '/main/ico_right2_o.gif') no-repeat 5px 7px;
+    }
+  }
 }
 
 .product-list-category-depth1 {
@@ -96,6 +130,7 @@ $product-list-margin: 20px;
   margin-bottom: 30px;
   width: 100%;
   .search-row {
+    min-height: 38px;
     padding: 10px;
     position: relative;
     width: 100%;

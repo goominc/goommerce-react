@@ -10,7 +10,8 @@ import configureRoutes from 'routes';
 import reducer from 'redux/reducers';
 
 const store = configureStore(reducer, window.__INITIAL_STATE__);
-const history = useScroll(() => browserHistory)();
+// const history = useScroll(() => browserHistory)();
+const history = browserHistory;
 
 if (module.hot) {
   // Enable Webpack hot module replacement for reducers

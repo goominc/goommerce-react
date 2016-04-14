@@ -27,10 +27,75 @@ export default React.createClass({
     if (!category || !categories) {
       return undefined;
     }
-    // console.log(categories);
+    const tree = categories.tree;
+    console.log(aggs);
 
-    const categoryLink = (categoryId) => genLink(Object.assign(pick(this.props, ['query', 'brandId']), { categoryId }));
-
+    const categoryLink = (categoryId) => genLink(Object.assign(pick(this.props, ['query', 'sorts']), { categoryId }));
+    const renderTop = (root) => {
+      const renderChildOfCategory = (children) => {
+        if (!children) {
+          return null;
+        }
+        return children.filter((child) => child.isActive).map((child) => (
+          <div key={child.id} className="product-list-category-indent">
+            <Link className="product-list-category-item sub" to={categoryLink(child.id)}>
+              {child.name[activeLocale]}
+            </Link>
+          </div>
+        ));
+      };
+      const dfs = (child) => {
+        if (child.id === category.id) {
+          return (
+            <div key={child.id} className="product-list-category-indent">
+              <Link className="product-list-category-item active" to={categoryLink(child.id)}>
+                {child.name[activeLocale]}
+              </Link>
+              {renderChildOfCategory(child.children)}
+            </div>
+          );
+        }
+        if (!child.isActive || !child.children || child.children.length < 1) {
+        // if (!child.children || child.children.length < 1) {
+          return null;
+        }
+        for (let i = 0; i < child.children.length; i++) {
+          const child2 = child.children[i];
+          const c = dfs(child2);
+          if (c) {
+            return (
+              <div key={child.id} className="product-list-category-indent">
+                <Link className="product-list-category-item" to={categoryLink(child.id)}>
+                  {child.name[activeLocale]}
+                </Link>
+                {c}
+              </div>
+            );
+          }
+        }
+        return null;
+      };
+      const renderChildren = () => {
+        if (root.id === category.id) {
+          return renderChildOfCategory(root.children);
+        }
+        return (root.children || []).map((child) => dfs(child));
+      };
+      return (
+        <div className="product-list-top-category">
+          <Link className={`product-list-category-title ${root.id === category.id ? 'active' : ''}`} to={categoryLink(root.id)}>
+            {root.name[activeLocale]}
+          </Link>
+          {renderChildren()}
+        </div>
+      );
+    };
+    return (
+      <div>
+        {tree.children.map(renderTop)}
+      </div>
+    );
+/*
     const childCategories = category.children
       .filter((c) => get(aggs, `categories.${c.id}.doc_count`))
       .map((c, index) => (
@@ -71,6 +136,7 @@ export default React.createClass({
     };
 
     return render(ancestor(category));
+    */
   },
   render() {
     return (

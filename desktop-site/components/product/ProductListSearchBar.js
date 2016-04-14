@@ -79,12 +79,12 @@ export default React.createClass({
           </div>
         </div>
         <div className="search-row">
-          <select>
+          {/*<select>
             <option>20개씩</option>
             <option>40개씩</option>
             <option>60개씩</option>
             <option>80개씩</option>
-          </select>
+          </select>*/}
           <div className="sort-item-box">
             {sortItemViews}
           </div>
