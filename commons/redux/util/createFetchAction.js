@@ -1,4 +1,4 @@
-import merge from 'lodash/object/merge';
+import _ from 'lodash';
 
 export default function createFetchAction(options) {
   const {
@@ -33,7 +33,7 @@ export default function createFetchAction(options) {
       contentType: 'application/json',
     }).then((data, textStatus, jqXHR) => {
       if (doDispatch) {
-        dispatch(merge({
+        dispatch(_.merge({
           type,
           payload: transform ? transform({ data, state }) : data,
         }, resolve(success)));
@@ -51,7 +51,7 @@ export default function createFetchAction(options) {
             error = { message: 'Unknown Error' };
           }
         }
-        dispatch(merge({
+        dispatch(_.merge({
           type,
           error,
         }, resolve(failure)));
