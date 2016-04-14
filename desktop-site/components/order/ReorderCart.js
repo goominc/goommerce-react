@@ -178,10 +178,10 @@ export default React.createClass({
                 onChange={manualChangeQuantity}
                 onBlur={onBlurQuantity}
               />
-            <span>
-              <div className="up" onClick={() => updateCartProduct(variant.id, +quantity + 1)}></div>
-              <div className="down" onClick={minusQuantity}></div>
-            </span>
+              <span>
+                <div className="up" onClick={() => updateCartProduct(variant.id, +quantity + 1)}></div>
+                <div className="down" onClick={minusQuantity}></div>
+              </span>
             </div>
           </div>
           <div className="bottom-price">{currencySign[activeCurrency]} {`${total} (${quantity} X ${price})`}</div>
