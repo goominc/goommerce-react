@@ -374,7 +374,7 @@ export function loadCMSData(name) {
 export function loadWishlist() {
   return createFetchAction({
     type: 'LOAD_WISH_LIST',
-    endpoint: '/api/v1/users/self/wishes',
+    endpoint: '/api/v1/users/self/wishes?limit=200',
     transform: ({ data }) => normalize(data.wishes, schemas.wishes),
     success: {
       pagination: { key: 'wishes', type: 'REFRESH' },
