@@ -4,7 +4,6 @@ import React from 'react';
 
 export default React.createClass({
   render() {
-    console.log(1);
     return (
       <div id="wrap_priv">
         <div className="priv-01" >

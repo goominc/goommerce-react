@@ -594,8 +594,6 @@ export function searchBrands(text, offset, limit) {
   return (dispatch, getState) => {
     const query = { q: text };
     const key = 'brand';
-    console.log(1);
-    console.log(query);
     if (!query || !query.q) {
       dispatch(resetSearchResult(key));
       return;
