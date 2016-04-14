@@ -85,7 +85,7 @@ export default React.createClass({
               changeLocale(key);
               $('.left-menu-item').removeClass('open');
             }}
-          ><img src={locales[key].img} /> {locales[key].name}</div>
+          ><img src={locales[key].img} /> <span>{locales[key].name}</span></div>
         ))}
       </div>
     );
@@ -100,7 +100,7 @@ export default React.createClass({
                 $('.left-menu-item').removeClass('open');
               }}
             >
-              <img src={obj.img} /> {obj.name}
+              <img src={obj.img} /> <span>{obj.name}</span>
             </div>
           ))}
         </div>
@@ -195,14 +195,14 @@ export default React.createClass({
                 onMouseEnter={(e) => $(e.target).addClass('open')}
                 onMouseLeave={(e) => $(e.target).closest(`.${leftMenuItemClassName}`).removeClass('open')}
               >
-                <img src={getLocaleImg()} />언어
+                <img src={getLocaleImg()} /> <span>언어</span>
                 {renderLocales()}
               </div>
               <div className={leftMenuItemClassName}
                 onMouseEnter={(e) => $(e.target).addClass('open')}
                 onMouseLeave={(e) => $(e.target).closest(`.${leftMenuItemClassName}`).removeClass('open')}
               >
-                <img src={getCurrencyImg()} />통화
+                <img src={getCurrencyImg()} /> <span>통화</span>
                 {renderCurrencies()}
               </div>
             </div>
@@ -241,7 +241,7 @@ export default React.createClass({
               </Link>
               <Link to="/cart">
                 <div className={headerRightMenuItemClassName}>
-                  {i18n.get('word.cart')}
+                  <span>{i18n.get('word.cart')}</span>
                   <img src={`${constants.resourceRoot}/header/ico_cart.png`} />
                   <span className="cart-count">{cartCount}</span>
                 </div>

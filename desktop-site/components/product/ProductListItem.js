@@ -10,6 +10,7 @@ import brandUtil from 'commons/utils/brandUtil';
 
 export default React.createClass({
   propTypes: {
+    firstRow: PropTypes.bool,
     item: PropTypes.object,
     changeMainImage: PropTypes.func,
     toggleWish: PropTypes.func,
@@ -22,7 +23,7 @@ export default React.createClass({
     return { variantImageIndex: 0 };
   },
   render() {
-    const { item, changeMainImage, toggleWish } = this.props;
+    const { firstRow, item, changeMainImage, toggleWish } = this.props;
     const { activeCurrency, currencySign } = this.context;
     const image = item.mainImage;
     const parsed = initColorsAndSizes(item.productVariants || []);
@@ -66,10 +67,10 @@ export default React.createClass({
       }
       return null;
     };
-    const className = 'product-list-item-box';
+    const className = `product-list-item-wrap ${firstRow ? 'product-list-first-item' : ''}`;
     return (
-      <div key={item.id} className="product-list-item-wrap product-list-first-item">
-        <div className={className}>
+      <div key={item.id} className={className}>
+        <div className="product-list-item-box">
           <div className={`heart-it ${item.wish ? 'active' : ''}`} onClick={() => toggleWish(item)}></div>
           <ResponsiveImage image={image} link={`/products/${item.id}`} width={220} />
           <Link to={`/products/${item.id}`}>
