@@ -12,6 +12,9 @@ const defaultConfig = {
 
 const environmentConfig = {
   ubuntu: {
+    mobileSite: 'mt.linkshops.com',
+  },
+  production: {
     mobileSite: 'm.linkshops.com',
   },
 }[process.env.NODE_ENV || 'development'];
