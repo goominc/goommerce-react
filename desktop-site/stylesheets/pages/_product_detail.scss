@@ -1,36 +1,70 @@
 // -----------------------------------------------------------------------------
 // This file contains styles that are specific to the product detail page.
 // -----------------------------------------------------------------------------
-$product-detail-thumbnail-width: 50px;
+$product-detail-thumbnail-width: 60px;
 $product-detail-thumbnail-margin: 15px;
 .product-detail-left {
   display: inline-block;
-  margin-right: $margin-20;
+  margin-right: $margin-15;
   position: relative;
   vertical-align: top;
-  width: 550px;
+  width: 600px;
   .left-thumbnail-container {
     display: inline-block;
     width: $product-detail-thumbnail-width + 2px;
     margin-right: $product-detail-thumbnail-margin;
     vertical-align: top;
+    .thumbnail-container {
+      height: 560px;
+      overflow-y: hidden;
+      width: 100%;
+    }
     span {
-      display: block;
-      width: $product-detail-thumbnail-width + 2px;
       @include default-responsive-img-wrap();
-      padding-top: 140%; // TODO this is magic number... fix this
-      border: 2px solid #dedede;
-      margin-bottom: $product-detail-thumbnail-margin;
+      .inner-wrap img {
+        border-radius: 3px;
+      }
+      border: 2px solid #ccc;
+      border-radius: 3px;
+      cursor: pointer;
+      display: block;
+      margin-bottom: 10px;
+      width: $product-detail-thumbnail-width + 2px;
     }
     .image-active {
-      border: 2px solid #FCAB42;
+      border: 2px solid $default-active-text-color;
+      border-radius: 3px;
+    }
+    @mixin arrow-box() {
+      border: none;
+      cursor: pointer;
+      display: block;
+      height: 15px;
+      margin: 10px 0;
+      padding: 0;
+      width: 100%;
+    }
+    $arrow-background-position: center 0;
+    .arrow-up {
+      @include arrow-box();
+      background: url($base-url + '/main/ico_prev1.gif') no-repeat $arrow-background-position;
+      &:hover {
+        background: url($base-url + '/main/ico_prev1_over.gif') no-repeat $arrow-background-position;
+      }
+    }
+    .arrow-down {
+      @include arrow-box();
+      background: url($base-url + '/main/ico_next1.gif') no-repeat $arrow-background-position;
+      &:hover {
+        background: url($base-url + '/main/ico_next1_over.gif') no-repeat $arrow-background-position;
+      }
     }
   }
   .main-image-box {
     display: inline-block;
     position: relative;
-    width: 450px;
-    height: 587px;
+    width: 500px;
+    height: 650px;
     overflow: hidden;
     border: 1px solid #dedede;
     img {
@@ -42,12 +76,14 @@ $product-detail-thumbnail-margin: 15px;
   }
   .enlarge-image-box {
     display: none;
+    background-color: #fff;
+    height: 650px;
+    left: 100%;
+    overflow: hidden;
     position: absolute;
     top: 0;
-    left: 100%;
-    width: 450px;
-    height: 587px;
-    overflow: hidden;
+    width: 500px;
+    z-index: 100;
     img {
       display: block;
       height: 200%;
@@ -61,65 +97,116 @@ $product-detail-thumbnail-margin: 15px;
   vertical-align: top;
   width: 100%;
   .product-title {
-    color: rgb(51, 51, 51);
-    height: 44px;
-    width: 600px;
-    perspective-origin: 307.5px 22px;
-    transform-origin: 307.5px 22px;
-    border: 0px none rgb(51, 51, 51);
-    font: normal normal normal normal 18px / 22px Arial, Helvetica, sans-senif, SimSun, 宋体;
-    margin: 0px 0px 8px;
-    outline: rgb(51, 51, 51) none 0px;
-    padding: 0px 0px 0px 15px;
+    border-bottom: 2px solid #555;
+    display: block;
+    height: 60px;
+    font-size: 26px;
+    letter-spacing: -2px;
+    line-height: 46px;
+    padding-left: 10px;
+    position: relative;
+    .wish-button {
+      background: url($base-url + '/main/heart1.png') no-repeat;
+      cursor: pointer;
+      height: 38px;
+      position: absolute;
+      right: 5px;
+      top: 7px;
+      width: 41px;
+      &.active {
+        background: url($base-url + '/main/heart1_o.png') no-repeat;
+      }
+    }
   }
   .divider {
     @include horizontal-divider(20px);
   }
   .price-info-box {
-    width: 100%;
-    height: 80px;
-    background-color: #f5f5f5;
-    padding: 10px 20px;
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    height: 60px;
+    line-height: 60px;
+    margin-bottom: 20px;
   }
   .normal-field-box {
+    $height: 20px;
+    height: $height;
+    line-height: $height;
+    margin-bottom: $margin-15;
     width: 100%;
-    padding: 10px 20px;
     input[type="number"] {
       padding: 5px;
       width: 70px;
     }
   }
+  .color-line {
+    height: 90px;
+    line-height: 90px;
+    margin-bottom: $margin-15;
+    width: 100%;
+  }
+  .size-line {
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: $margin-15;
+    width: 100%;
+  }
+  .quantity-line {
+    $height: 27px;
+    height: $height;
+    line-height: $height;
+    margin-bottom: $margin-20;
+    width: 100%;
+    .count-box {
+      border: 1px solid #aaa;
+      display: inline-block;
+      font-size: 15px;
+      height: $height;
+      @include input-number-contents(42px, 20px, $height);
+    }
+  }
   .field-label {
-    width: 20%;
-    min-width: 30px;
-    padding-right: 10px;
+    color: #888;
     display: inline-block;
+    font-size: 13px;
+    letter-spacing: -1px;
+    min-width: 30px;
+    padding-right: 20px;
+    text-align: right;
     vertical-align: top;
-    color: #999;
+    width: 100px;
   }
   .field-content {
-    width: 80%;
     display: inline-block;
+    font-size: 14px;
+    width: 80%;
+    b {
+      font-size: 16px;
+      font-weight: 500;
+    }
     .attribute-item-text {
       $padding: 5px;
       border: 1px solid #000;
-      display: inline-block;
-      padding: 1px $padding;
-      margin-right: 10px;
       cursor: pointer;
+      display: inline-block;
+      margin-right: 10px;
+      min-width: 30px;
+      padding: 1px $padding;
+      text-align: center;
       &.active {
-        padding: 0 $padding - 1px;
         border: 2px solid $default-active-text-color;
+        padding: 0 $padding - 1px;
       }
     }
     .img-variant-color {
-      border: 1px solid #f2f2f2;
+      border: 1px solid #ccc;
+      border-radius: 3px;
       cursor: pointer;
       display: inline-block;
-      height: 60px;
+      height: 91px;
       margin-right: 10px;
       padding: 1px;
-      width: 40px;
+      width: 70px;
       &.active {
         border: 2px solid $default-active-text-color;
         padding: 0;
@@ -137,38 +224,52 @@ $product-detail-thumbnail-margin: 15px;
     }
   }
   .price-value {
+    color: $default-active-text-color;
     b {
-      color: #f60;
-      font-size: 18px;
+      font-size: 30px;
+      font-weight: 700;
     }
-    color: #666;
-    font-size: 14px;
+    span {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 500;
+      vertical-align: top;
+    }
   }
+}
+
+.product-detail-action-line {
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+  text-align: right;
 }
 
 $product-button-height: 32px;
 @mixin product-detail-button() {
-  width: 150px;
-  display: inline-block;
-  margin-right: $margin-20;
-  padding: 0;
-  height: $product-button-height;
-  line-height: $product-button-height;
-  font-size: 16px;
-  font-weight: 700;
+  border: 1px solid transparent;
+  border-radius: 3px;
   color: #fff;
-  border-radius: 1px;
-  &:hover {
-    opacity: 0.8;
-  }
+  display: inline-block;
+  margin-left: 10px;
+  width: 150px;
+  height: 50px;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 48px;
+  letter-spacing: -1px;
+  text-align: center;
 }
 .product-buy-now-button {
   @include product-detail-button();
-  border: 1px solid #f29720;
-  background-color: #fd9729;
+  background-color: #aaa;
+  &:hover {
+    background-color: #888;
+  }
 }
 .product-add-to-cart-button {
   @include product-detail-button();
-  border:1px solid #eb4e01;
-  background-color: #f35000;
+  background-color: $default-active-text-color;
+  &:hover {
+    background-color: #f20;
+  }
 }
