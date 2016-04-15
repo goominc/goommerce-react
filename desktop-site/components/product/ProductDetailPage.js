@@ -32,11 +32,9 @@ export default React.createClass({
   },
   componentDidMount() {
     // 2016. 04. 14. [heekyu] timing issue
-    console.log('1');
     setTimeout(() => this.adjustScroll(this.props), 100);
   },
   componentWillReceiveProps(nextProps) {
-    console.log('2');
     this.adjustScroll(nextProps);
   },
   handleMouseEnterThumbnail(image) {
@@ -236,16 +234,15 @@ export default React.createClass({
       if (brand) {
         const renderFavoriteButton = () => {
           if (isLikeBrand) {
-            return (<Link to="/mypage/favorite_brands">I like this brand! (Go to Favorite Brands)</Link>);
+            return null;
           }
-          return (<a onClick={() => addFavoriteBrand(brand.id)}>Add Favorite Brand</a>);
+          return (<span className="add-favorite-brand" onClick={() => addFavoriteBrand(product.brand.id)}>단골 브랜드 추가</span>);
         };
         return (
           <div className="normal-field-box">
             <div className="field-label">Seller: </div>
             <div className="field-content">
-              <Link to={`/brands/${brand.id}`}>{brandUtil.getName(brand)}</Link>
-              <img className="img-brand-logo" src={_.get(brand, 'data.images.logo.url')} />
+              <Link to={`/brands/${brand.id}`}>{_.get(brand, `name.${activeLocale}`)}</Link>
               {renderFavoriteButton()}
             </div>
           </div>
@@ -302,10 +299,7 @@ export default React.createClass({
               <div className="field-label">상가건물</div>
               <div className="field-content">디자이너 클럽</div>
             </div>
-            <div className="normal-field-box">
-              <div className="field-label">브랜드</div>
-              <div className="field-content">{_.get(product, `brand.name.${activeLocale}`) || ''}</div>
-            </div>
+            {renderBrand()}
             {renderAllAttributes()}
             {/*
             <div className="normal-field-box">

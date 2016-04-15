@@ -29,7 +29,17 @@ $product-detail-thumbnail-margin: 15px;
       cursor: pointer;
       display: block;
       margin-bottom: 10px;
+      position: relative;
       width: $product-detail-thumbnail-width + 2px;
+      &:after {
+        background-image: url($base-url + '/main/ico_right4_o.gif');
+        height: 13px;
+        left: 100%;
+        margin-top: -6.5px;
+        position: absolute;
+        top: 50%;
+        width: 7px;
+      }
     }
     .image-active {
       border: 2px solid $default-active-text-color;
@@ -242,6 +252,24 @@ $product-detail-thumbnail-margin: 15px;
   border-top: 1px solid #ccc;
   padding-top: 10px;
   text-align: right;
+}
+
+.add-favorite-brand {
+  background: #fff url($base-url + '/main/ico_right2.gif') no-repeat 10px 5px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 12px;
+  letter-spacing: -1px;
+  margin-left: 10px;
+  padding: 2px 10px 2px 20px;
+  &:hover {
+    background: #f50 url($base-url + '/main/ico_right2_w.gif') no-repeat 10px 5px;
+    border: 1px solid #f50;
+    color: #fff;
+  }
 }
 
 $product-button-height: 32px;
