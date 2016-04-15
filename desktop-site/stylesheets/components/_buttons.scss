@@ -61,6 +61,7 @@
   span {
     border-left: 1px solid #aaa;
     display: inline-block;
+    vertical-align: top;
     width: $arrow-width - 1px;
   }
   .up {
@@ -74,6 +75,19 @@
     border-top: 1px solid #aaa;
     width: 100%;
   }
+}
+
+.input-number-count-box-center {
+  $height: 27px;
+  border: 1px solid #aaa;
+  font-size: 15px;
+  height: $height;
+  margin-top: - $height / 2;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: - (42px + 20px) / 2;
+  @include input-number-contents(42px, 20px, $height);
 }
 
 .input-number-container {
