@@ -1,0 +1,23 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to 'xxx' page.
+// -----------------------------------------------------------------------------
+
+@mixin simple-icon($icon-name) {
+  background-image: url($base-url + '/main/' + $icon-name + '.png');
+  display: inline-block;
+  height: 38px;
+  width: 38px;
+}
+
+$icons: ('icon-cart', 'icon-payment', 'icon-check');
+
+@mixin generate-icons {
+  @for $i from 1 through length($icons) {
+    $icon: nth($icons, $i);
+    .#{$icon} {
+      @include simple-icon($icon);
+    }
+  }
+}
+
+@include generate-icons();

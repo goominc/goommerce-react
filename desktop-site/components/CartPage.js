@@ -101,7 +101,7 @@ export default React.createClass({
     return (
       <div className="cart-conatiner">
         <div className="cart-title-box">
-          장바구니
+          <i className="icon-cart"></i> <span>장바구니</span>
         </div>
         <div className="cart-info-container">
           <div className="title-row">

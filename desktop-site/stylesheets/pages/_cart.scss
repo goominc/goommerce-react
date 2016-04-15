@@ -8,12 +8,16 @@
   width: 1050px;
 }
 .cart-title-box {
-  border-bottom: 1px solid #eee;
-  display: inline-block;
+  color: #222;
+  display: block;
   font-size: 24px;
-  padding: 10px 0 20px;
+  font-weight: 500;
+  padding: 10px 0 0 0;
   text-align: left;
   width: 100%;
+  span {
+    vertical-align: top;
+  }
 }
 .cart-top-box {
   width: 100%;
