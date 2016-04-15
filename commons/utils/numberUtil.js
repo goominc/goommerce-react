@@ -1,7 +1,6 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
 exports.format = (number) => {
-  number = number;
   let res = '';
   let sign = '';
   if (number < 0) {
