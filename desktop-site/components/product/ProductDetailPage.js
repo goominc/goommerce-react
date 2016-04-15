@@ -240,7 +240,7 @@ export default React.createClass({
         };
         return (
           <div className="normal-field-box">
-            <div className="field-label">Seller: </div>
+            <div className="field-label">브랜드</div>
             <div className="field-content">
               <Link to={`/brands/${brand.id}`}>{_.get(brand, `name.${activeLocale}`)}</Link>
               {renderFavoriteButton()}
