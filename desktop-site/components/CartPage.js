@@ -27,6 +27,17 @@ export default React.createClass({
       buy(variants);
     }
 
+    const renderBuyButton = () => {
+      if (cart.brands && cart.brands.length) {
+        return (
+          <div className="cart-button-order" onClick={buyAll}>
+            주문하기
+          </div>
+        );
+      }
+      return null;
+    };
+
     const formatPrice = numberUtil.formatPrice(total[activeCurrency], activeCurrency, currencySign);
     return (
       <div className="cart-conatiner">
@@ -52,9 +63,7 @@ export default React.createClass({
             <div className="label">결제금액</div>
             <div className="control">{formatPrice}</div>
           </div>
-          <div className="cart-button-order" onClick={buyAll}>
-            주문하기
-          </div>
+          {renderBuyButton()}
         </div>
       </div>
     );
