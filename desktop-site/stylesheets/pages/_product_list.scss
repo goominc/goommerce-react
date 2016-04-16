@@ -38,6 +38,7 @@
   display: inline-block;
   padding-left: 10px;
   padding-right: 10px;
+  overflow: hidden;
   width: 200px;
   .title {
     color: $default-active-text-color;
@@ -75,12 +76,13 @@
   margin-left: 10px;
 }
 .product-list-category-item {
+  background: url($base-url + '/main/ico_right1.gif') no-repeat 5px 7px;
   display: block;
-  height: 22px;
   font-size: 12px;
+  height: 22px;
   line-height: 22px;
   padding: 0 10px 0 13px;
-  background: url($base-url + '/main/ico_right1.gif') no-repeat 5px 7px;
+  white-space: nowrap;
   &:hover,&.active {
     background: url($base-url + '/main/ico_right1_o.gif') no-repeat 5px 7px;
     color: $default-active-text-color;

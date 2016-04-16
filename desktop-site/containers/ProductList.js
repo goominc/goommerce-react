@@ -59,6 +59,7 @@ const ProductList = React.createClass({
       offset: Math.max((pageNum - 1) * limit, 0),
       limit,
       KRW,
+      aggs: 'categories:50',
     };
     if (sorts) {
       queryOptions.sorts = sorts;
