@@ -88,7 +88,7 @@ export default React.createClass({
         <div key={brand.brand.id} className="row">
           <div className="brand"><div className="centered">{brandUtil.getName(brand.brand)}</div></div>
           <div className="product-container">
-            {brand.products.map((p) =>
+            {(brand.products || []).map((p) =>
               p.productVariants.map((variant, index) => renderVariant(p.product, variant, index)))}
           </div>
         </div>
@@ -104,7 +104,7 @@ export default React.createClass({
           <div className="quantity">수량</div>
           <div className="price">가격</div>
         </div>
-        {brands.map(renderBrand)}
+        {(brands || []).map(renderBrand)}
       </div>
     );
   },
