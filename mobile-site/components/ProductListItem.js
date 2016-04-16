@@ -43,24 +43,24 @@ export default React.createClass({
                 <div className="pic">
                   {renderImage()}
                 </div>
-                <span className="discount-rate">- 50% </span>
+                { /* <span className="discount-rate">- 50% </span> */ }
                 <div className="infomation">
                   <div className="title">
                     <span>{productUtil.getName(prod)}</span>
                   </div>
 
                   <span className="discount-price"><em>{activeCurrency} {getProductMainPrice(prod, activeCurrency)}</em>
-                    &nbsp;/ piece
+
                   </span>
-                  <del className="original-price">{activeCurrency} {getProductMainPrice(prod, activeCurrency)}
-                    &nbsp;/ piece
-                  </del>
+                  { /* <del className="original-price">{activeCurrency} {getProductMainPrice(prod, activeCurrency)}
+
+                  </del> */ }
 
                   <div className="custom-gallery-view-blank"></div>
 
                   <div className="info-bottom">
                     { /* <span className="free-shipping">Shipping: US $0.84</span> */ }
-                    <span className="order-number">Orders: 999</span>
+                    { /* <span className="order-number">Orders: 999</span> */ }
                   </div>
                 </div>
               </Link>

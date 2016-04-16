@@ -76,6 +76,13 @@ export function toggleProductFilter() {
   };
 }
 
+export function sortProduct(sorts) {
+  return {
+    type: 'SORT_PRODUCT',
+    sorts,
+  };
+}
+
 /* ProductDetail */
 export function toggleProductCart() {
   return {

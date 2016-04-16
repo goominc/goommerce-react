@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { isEqual, pick } from 'lodash';
 
 import { ApiAction, setHeader, changeViewType, toggleProductSort,
-         toggleProductFilter } from '../redux/actions';
+         sortProduct, toggleProductFilter } from '../redux/actions';
 const { loadCategories } = ApiAction;
 import { ajaxReturnPromise } from 'commons/redux/util/ajaxUtil';
+import i18n from 'commons/utils/i18n';
 
 import ProductListItem from 'components/ProductListItem';
 
@@ -15,6 +16,7 @@ const ProductList = React.createClass({
   propTypes: {
     viewType: PropTypes.object.isRequired,
     showSort: PropTypes.bool.isRequired,
+    sorts: PropTypes.string.isRequired,
     showFilter: PropTypes.bool,
     categories: PropTypes.object,
     searchProducts: PropTypes.func.isRequired,
@@ -22,6 +24,7 @@ const ProductList = React.createClass({
     setHeader: PropTypes.func.isRequired,
     changeViewType: PropTypes.func.isRequired,
     toggleProductSort: PropTypes.func.isRequired,
+    sortProduct: PropTypes.func.isRequired,
     toggleProductFilter: PropTypes.func.isRequired,
     params: PropTypes.object,
   },
@@ -51,7 +54,7 @@ const ProductList = React.createClass({
     });
   },
   componentWillReceiveProps(nextProps) {
-    const props = ['params'];
+    const props = ['params', 'sorts'];
     if (!isEqual(pick(this.props, props), pick(nextProps, props))) {
       this.doSearch(nextProps);
     }
@@ -60,18 +63,25 @@ const ProductList = React.createClass({
     $(window).unbind('scroll');
   },
   doSearch(props) {
-    const { params } = props;
+    const { params, sorts } = props;
     this.props.searchProducts({
       q: params.query ? params.query : undefined,
       categoryId: params.categoryId === 'all' ? undefined : params.categoryId,
       offset: 0,
       limit: fetchSize,
+      sorts,
+      aggs: 'categories:50',
     }).then((res) => {
-      this.setState({ products: res.products, currentCount: res.products.length, maxCount: res.pagination.total });
+      this.setState({
+        products: res.products,
+        currentCount: res.products.length,
+        maxCount: res.pagination.total,
+        aggs: res.aggs,
+      });
     });
   },
   doFetch() {
-    const { params } = this.props;
+    const { params, sorts } = this.props;
     const { currentCount, maxCount } = this.state;
     if (currentCount === maxCount) {
       return;
@@ -82,6 +92,7 @@ const ProductList = React.createClass({
       categoryId: params.categoryId === 'all' ? undefined : params.categoryId,
       offset: currentCount,
       limit: fetchSize,
+      sorts,
     }).then((res) => {
       const mergeProducts = this.state.products.concat(res.products);
       this.setState({ products: mergeProducts, currentCount: mergeProducts.length });
@@ -89,13 +100,27 @@ const ProductList = React.createClass({
     });
   },
   render() {
-    const { viewType, showSort } = this.props;
+    const { viewType, showSort, sorts } = this.props;
 
     let sortStyle = {};
     if (showSort) {
       const xPos = $('.user-operation').position().top + $('.user-operation').height();
       sortStyle = { display: 'block', top: xPos };
     }
+    const sortItems = [
+      { name: i18n.get('pcMain.productList.sortLowPrice'), sorts: 'KRW.num' },
+      { name: i18n.get('pcMain.productList.sortHighPrice'), sorts: '-KRW.num' },
+      { name: i18n.get('pcMain.productList.sortLatest'), sorts: '-id' },
+    ];
+    const renderSort = () =>
+      sortItems.map((item) =>
+          <li className={sorts === item.sorts ? 'selected' : ''} key={item.sorts}
+            onClick={() => this.props.sortProduct(item.sorts)}
+          >
+            {item.name}
+          </li>
+      );
+
 
     return (
       <section className="list-main">
@@ -113,11 +138,7 @@ const ProductList = React.createClass({
         </header>
         <section className="sort-by-list-wrapper" id="j-sortbar-new" style={sortStyle}>
           <ul className="sort-by-list">
-            <li data-type="MAIN" className="selected">Best Match&nbsp;</li>
-            <li data-type="PP_A">Lowest Price First</li>
-            <li data-type="PP_D">Highest Price First</li>
-            <li data-type="TC_D">No. of orders</li>
-            <li data-type="SC_D">Seller Rating&nbsp;</li>
+            {renderSort()}
           </ul>
         </section>
         <section className="sort-by-mask" id="j-sort-by-mask" style={ { display: showSort ? 'block' : 'none' } }
@@ -135,8 +156,9 @@ export default connect(
     viewType: state.pageProductList.viewType,
     showSort: state.pageProductList.showSort,
     showFilter: state.pageProductList.showFilter,
+    sorts: state.pageProductList.sorts,
     categories: state.categories,
     searchProducts: (query) => ajaxReturnPromise(state.auth, 'get', `/api/v1/products/search?${$.param(query)}`),
   }),
-  { loadCategories, setHeader, changeViewType, toggleProductSort, toggleProductFilter }
+  { loadCategories, setHeader, changeViewType, sortProduct, toggleProductSort, toggleProductFilter }
 )(ProductList);

@@ -62,6 +62,7 @@ const productListInitialState = {
   viewType: { type: 'list-view', next: 'gallery-view', next2: 'bigPic-view' },
   showSort: false,
   showFilter: false,
+  sorts: '-id',
 };
 
 function pageProductList(state = productListInitialState, action) {
@@ -75,6 +76,9 @@ function pageProductList(state = productListInitialState, action) {
   }
   if (action.type === 'TOGGLE_PRODUCT_FILTER') {
     return assign({}, state, { showFilter: !state.showFilter });
+  }
+  if (action.type === 'SORT_PRODUCT') {
+    return assign({}, state, { sorts: action.sorts });
   }
 
   return state;
