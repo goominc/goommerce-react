@@ -29,9 +29,11 @@ export default React.createClass({
     const renderLogo = () => {
       if (header.showLogo) {
         return (
-            <Link to="/" className="logo">
-              <img className="logo-img" src="https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/extra/01_linkshops_logo.png" />
-            </Link>
+          <Link to="/" className="logo">
+            <img className="logo-img"
+              src="https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/extra/01_linkshops_logo.png"
+            />
+          </Link>
           );
       }
       return (
