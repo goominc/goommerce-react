@@ -117,12 +117,11 @@
 }
 
 @mixin button-default-styles() {
+  border: 0;
+  background-color: $default-active-text-color;
   color: #fff;
-  background-color: #f8af23;
-  background-image: -webkit-linear-gradient(top,#ffbc35,#f2a210);
-  border: 1px solid #e87b0e;
   &:hover {
-    opacity: 0.9;
+    background-color: #f20;
   }
 }
 

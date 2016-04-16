@@ -14,13 +14,15 @@ export default React.createClass({
     const { addressForEdit, addressFields, submitAddress, cancelEditAddress } = this.props;
     const renderFormField = (obj) => (
       <div key={obj.objKey} className="form-box">
-        <div className="form-label">{`${obj.text}: `}</div>
-        <input type="text" defaultValue={_.get(addressForEdit, obj.key)} ref={obj.objKey} />
+        <div className="form-label">{`${obj.text}`}</div>
+        <div className="form-control">
+          <input type="text" defaultValue={_.get(addressForEdit, obj.key)} ref={obj.objKey} />
+        </div>
       </div>
     );
     const handleSubmitAddress = (e) => {
       e.preventDefault();
-      const addressForSave = {};
+      const addressForSave = { countryCode: 'KR' };
       if (addressForEdit.id) {
         addressForSave.id = addressForEdit.id;
       }
@@ -30,12 +32,14 @@ export default React.createClass({
       submitAddress(addressForSave);
     };
     return (
-      <form onSubmit={handleSubmitAddress}>
+      <form className="form-address-edit" onSubmit={handleSubmitAddress}>
         {addressFields.map((field) => renderFormField(field))}
         <div className="form-box">
           <div className="form-label"></div>
-          <button className="save-button" type="submit">Save and ship to this address</button>
-          <button className="cancel-button" type="reset" onClick={cancelEditAddress}>Cancel</button>
+          <div className="form-control">
+            <button className="save-button" type="submit">등록</button>
+            <button className="cancel-button" type="reset" onClick={cancelEditAddress}>취소</button>
+          </div>
         </div>
       </form>
     );

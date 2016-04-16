@@ -2,7 +2,8 @@ import React, { PropTypes } from 'react';
 import LinkedStateMixin from 'react-addons-linked-state-mixin'; // for manage form input...
 import _ from 'lodash';
 
-import CheckoutStep1 from 'components/checkout/CheckoutStep1';
+import AddressEditForm from './AddressEditForm';
+import AddressView from './AddressView';
 import SellerBox from 'components/CartSellerBox';
 import i18n from 'commons/utils/i18n';
 import CartProduct from 'components/CartProduct';
@@ -26,11 +27,6 @@ export default React.createClass({
   mixins: [LinkedStateMixin],
   getInitialState() {
     return { paymentMethod: 0 };
-  },
-  renderCheckoutInformations() {
-    return (
-      <CheckoutStep1 {...this.props} />
-    );
   },
   renderVBank() {
     const { order } = this.props;
@@ -63,33 +59,52 @@ export default React.createClass({
     );
   },
   render() {
-    const { order, step } = this.props;
+    const { order } = this.props;
+    const { activeAddressId, addresses, isEditMode,
+      checkoutNewAddress, setActiveAddressId } = this.props;
     const { activeCurrency, currencySign } = this.context;
     if (!order) {
       return (
         <div></div>
       );
     }
-    function getProgressbarClass(progress) {
-      return `checkout-progress-arrow progress-${progress} ${step === progress ? 'progress-active' : ''}`;
-    }
 
-    const getContent = () => {
-      switch (step) {
-        case 'review': { // eslint-disable-line indent
-          return this.renderCheckoutInformations();
-        }
-        case 'payment': { // eslint-disable-line indent
-          return this.renderPayments();
-        }
-        case 'done': { // eslint-disable-line indent
-          return this.renderDone();
-        }
-        default: { // eslint-disable-line indent
-          window.alert('Invalid Checkout Page State!'); // eslint-disable-line no-alert
+    const renderAddresses = () => {
+      if (isEditMode) {
+        return (
+          <AddressEditForm {...this.props} />
+        );
+      }
+      const renderAddress = (address) => (
+        <AddressView key={address.id}
+          {...this.props}
+          address={address}
+          isActive={activeAddressId === address.id}
+          onClickMe={(address2) => setActiveAddressId(address2.id)}
+        />
+      );
+      const addressIds = Object.keys(addresses);
+      for (let i = 0; i < addressIds.length; i++) {
+        const addressId = addressIds[i];
+        if (addressId.toString() === activeAddressId.toString()) {
+          for (let j = i - 1; j >= 0; j--) {
+            addressIds[j + 1] = addressIds[j];
+          }
+          addressIds[0] = addressId;
+          break;
         }
       }
-      return '';
+      return (
+        <div className="address-container">
+          {addressIds.map((addressId) => renderAddress(addresses[addressId]))}
+          <div className="item">
+            <div className="title">배송지 추가</div>
+            <div className="add-address-box">
+              <div className="add-address-button" onClick={checkoutNewAddress}></div>
+            </div>
+          </div>
+        </div>
+      );
     };
 
     const paymentMethods = [
@@ -146,6 +161,7 @@ export default React.createClass({
         </div>
         <div className="checkout-left-container">
           <div className="title">배송 정보</div>
+          {renderAddresses()}
           <div className="title">주문 내역</div>
           <CartProduct brands={brands} />
         </div>

@@ -83,12 +83,12 @@ const Checkout = React.createClass({
       return (<div>Loading...</div>);
     }
     const fields = [
-      { key: 'detail.name', objKey: 'name', text: 'Contact Name' },
-      { key: 'countryCode', objKey: 'countryCode', text: 'Country/Region' },
-      { key: 'detail.streetAddress', objKey: 'street', text: 'Street Address' },
-      { key: 'detail.city', objKey: 'city', text: 'City' },
-      { key: 'detail.postalCode', objKey: 'postalCode', text: 'Zip/Postal Code' },
-      { key: 'detail.tel', objKey: 'tel', text: 'Tel' },
+      { key: 'detail.alias', objKey: 'alias', text: '별명' },
+      { key: 'detail.name', objKey: 'name', text: '받는 분' },
+      { key: 'detail.tel', objKey: 'tel', text: '연락처' },
+      { key: 'detail.postalCode', objKey: 'postalCode', text: '우편 번호' },
+      { key: 'detail.address.base', objKey: 'address1', text: '주소' },
+      { key: 'detail.address.detail', objKey: 'address2', text: '상세 주소' },
     ];
     const { order, addresses, isEditMode, isNewAddress, activeAddressId,
       checkoutToggleEditAddress, saveAddressAndThen } = this.props;
