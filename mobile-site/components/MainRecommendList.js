@@ -26,7 +26,6 @@ export default React.createClass({
                 </div>
                 <div className="product-cost">
                   <strong>{getProductMainPrice(product, activeCurrency)} {activeCurrency}</strong>
-                  &nbsp;/ piece
                 </div>
                 { /* <div className="product-cost">1000 Orders</div> */ }
               </Link>
@@ -41,7 +40,6 @@ export default React.createClass({
               </div>
               <div className="product-cost">
                 <strong>{getProductMainPrice(product, activeCurrency)} {activeCurrency}</strong>
-                &nbsp;/ piece
               </div>
               { /* <div className="product-cost">1000 Orders</div> */ }
             </Link>

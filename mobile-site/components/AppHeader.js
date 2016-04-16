@@ -30,7 +30,7 @@ export default React.createClass({
       if (header.showLogo) {
         return (
             <Link to="/" className="logo">
-              <img className="logo-img" src="http://img.alicdn.com/tps/i4/TB1cCb4HpXXXXcZXVXXyo3wIXXX-220-54.png" />
+              <img className="logo-img" src="https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/extra/01_linkshops_logo.png" />
             </Link>
           );
       }

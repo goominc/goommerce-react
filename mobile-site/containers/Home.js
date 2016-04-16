@@ -29,7 +29,7 @@ const Home = React.createClass({
       offset: 0,
       limit: 30,
     }).then((res) => {
-      console.log(res);
+      // console.log(res);
       this.setState(res);
     });
   },
@@ -53,17 +53,14 @@ const Home = React.createClass({
             </header>
             <article>
               <ul className="flex-box">
-                <li className="apparel-accessories">
-                  <Link to="/categoryList/4">Apparel &amp; Accessories</Link>
+                <li className="women">
+                  <Link to="/categoryList/4">여성복</Link>
                 </li>
-                <li className="jewelry">
-                  <Link to="/categoryList/46">Jewelry</Link>
+                <li className="men">
+                  <Link to="/categoryList/179">남성복</Link>
                 </li>
-                <li className="electronics">
-                  <Link to="/categoryList/51">Electronics</Link>
-                </li>
-                <li className="beauty-health">
-                  <Link to="/categoryList/179">Beauty &amp;Health</Link>
+                <li className="shoes">
+                  <Link to="/categoryList/51">신발</Link>
                 </li>
               </ul>
             </article>
@@ -72,17 +69,40 @@ const Home = React.createClass({
             <article>
               <ul className="flex-box top-spread-2">
                 <li>
-                <Link to="http://m.aliexpress.com/column/recommend.htm?fromapp=false">
-                  <img src="//img.alicdn.com/tps/i3/TB1hht3FVXXXXaTaXXXtXFo3FXX-296-264.jpg" />
-                  <p className="evt-title">Quality Picks</p>
-                </Link>
+                  <span className="evt-icon evt-icon-1" />
+                  <p className="evt-title">서비스 소개</p>
+                  <p className="evt-desc">
+                    믿고 거래하는<br />
+                    No.1 온라인 도매시장
+                  </p>
                 </li>
                 <li>
-                <Link to="http://activities.aliexpress.com/superdeals_mobile.php">
-                  <img src="//img.alicdn.com/tpsSuperDeals/i2/TB1CcuOFVXXXXcDXFXXtXFo3FXX-296-264.jpg" />
-                  <p className="evt-title">Super Deals</p>
-                </Link>
+                  <span className="evt-icon evt-icon-2" />
+                  <p className="evt-title">회원가입 안내</p>
+                  <p className="evt-desc">
+                    고객 우선 원칙<br />
+                    회원 시스템
+                  </p>
                 </li>
+              </ul>
+              <ul className="flex-box top-spread-2">
+                <li>
+                  <span className="evt-icon evt-icon-3" />
+                  <p className="evt-title">주문배송</p>
+                  <p className="evt-desc">
+                    원하는 브랜드 및 상품<br />
+                    사입 요청 가능
+                  </p>
+                </li>
+                <li>
+                  <span className="evt-icon evt-icon-4" />
+                  <p className="evt-title">고객지원 센터</p>
+                  <p className="evt-desc">
+                    편리한 소통을 위한<br />
+                    언어별 고객지원센터
+                  </p>
+                </li>
+
               </ul>
             </article>
           </section>
