@@ -11,7 +11,7 @@ import ResponsiveImage from 'components/snippet/ResponsiveImage';
 
 export default React.createClass({
   propTypes: {
-    brands: PropTypes.object,
+    brands: PropTypes.array,
     removeProduct: PropTypes.func,
     updateCount: PropTypes.func,
     canUpdate: PropTypes.bool,
@@ -85,7 +85,7 @@ export default React.createClass({
         );
       };
       return (
-        <div className="row">
+        <div key={brand.brand.id} className="row">
           <div className="brand"><div className="centered">{brandUtil.getName(brand.brand)}</div></div>
           <div className="product-container">
             {brand.products.map((p) =>

@@ -11,6 +11,7 @@ export default React.createClass({
     submitAddress: PropTypes.func,
   },
   render() {
+    // TODO defaults with auth values
     const { addressForEdit, addressFields, submitAddress, cancelEditAddress } = this.props;
     const renderFormField = (obj) => (
       <div key={obj.objKey} className="form-box">

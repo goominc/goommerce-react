@@ -395,3 +395,78 @@ $active-progress-color: #f90;
     }
   }
 }
+
+.order-done-container {
+  margin: 30px auto;
+  width: 800px;
+  .title-box {
+    color: #222;
+    display: block;
+    font-size: 24px;
+    font-weight: 500;
+    padding: 10px 0 0 0;
+    text-align: left;
+    width: 100%;
+    span {
+      vertical-align: top;
+    }
+  }
+  .message {
+    font-size: 30px;
+    font-weight: 400;
+    margin: $margin-20 0;
+    text-align: center;
+    width: 100%;
+  }
+  .title {
+    color: #555;
+    font-weight: 500;
+    font-size: 20px;
+  }
+  .simple-key-value-container {
+    border: 1px solid #aaa;
+    letter-spacing: -1px;
+    margin-bottom: 30px;
+    width: 100%;
+    .row {
+      height: 30px;
+      line-height: 30px;
+    }
+    .label {
+      background-color: #eee;
+      border-bottom: 1px solid #aaa;
+      display: inline-block;
+      font-size: 13px;
+      font-weight: bold;
+      padding: 0 $margin-15;
+      vertical-align: top;
+      width: 150px;
+    }
+    .control {
+      background-color: #fff;
+      border-left: 1px solid #aaa;
+      border-bottom: 1px solid #aaa;
+      color: #777;
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 400;
+      padding: 0 $margin-15;
+      vertical-align: top;
+      width: 648px;
+    }
+  }
+  .price {
+    color: $default-active-text-color !important;
+  }
+  .go-order-list-button {
+    @include button-default-styles();
+    display: block;
+    height: 50px;
+    line-height: 50px;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 20px auto;
+    text-align: center;
+    width: 200px;
+  }
+}

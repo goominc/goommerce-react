@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import CheckoutPage from 'components/checkout/CheckoutPage';
+import OrderDone from 'components/checkout/OrderDone';
 
 import { ApiAction } from 'redux/actions';
 const { loadOrder } = ApiAction;
@@ -23,7 +23,7 @@ const OrderDetail = React.createClass({
       return (<div></div>);
     }
     return (
-      <CheckoutPage {...this.props} step="done" />
+      <OrderDone {...this.props} />
     );
   },
 });

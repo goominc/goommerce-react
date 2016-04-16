@@ -7,7 +7,6 @@ import CheckoutPage from 'components/checkout/CheckoutPage';
 import { ApiAction, checkoutNewAddress, checkoutToggleEditAddress, saveAddressAndThen } from 'redux/actions';
 const { inipay, loadOrder, loadAddresses,
   saveOrderAddress, setActiveAddressId, saveDefaultAddressOnCreateOrder } = ApiAction;
-const _ = require('lodash');
 
 const Checkout = React.createClass({
   propTypes: {
@@ -25,11 +24,10 @@ const Checkout = React.createClass({
     checkoutNewAddress: PropTypes.func,
     checkoutToggleEditAddress: PropTypes.func,
     saveAddressAndThen: PropTypes.func,
-    step: PropTypes.string,
   },
   mixins: [ReactScriptLoaderMixin],
   getDefaultProps() {
-    return { step: 'review' };
+    return {};
   },
   getInitialState() {
     return { scriptLoaded: false };
@@ -131,7 +129,6 @@ const Checkout = React.createClass({
 export default connect(
   (state, ownProps) => ({
     orderId: ownProps.params.orderId,
-    step: ownProps.params.step,
     order: state.entities.orders[ownProps.params.orderId],
     activeAddressId: state.auth.addressId,
     addresses: state.entities.addresses,

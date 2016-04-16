@@ -12,6 +12,7 @@ export { default as ForgotPassword } from 'containers/ForgotPassword';
 export { default as ResetPassword } from 'containers/ResetPassword';
 export { default as Cart } from 'containers/Cart';
 export { default as OrderDetail } from 'containers/OrderDetail';
+export { default as OrderDoneContainer } from 'containers/OrderDoneContainer';
 export { default as MyOrderContainer } from 'containers/MyOrderContainer';
 export { default as MyPage } from 'containers/MyPage';
 

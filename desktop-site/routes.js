@@ -9,6 +9,7 @@ import {
   ForgotPassword,
   Home,
   OrderDetail,
+  OrderDoneContainer,
   MyOrderContainer,
   ResetPassword,
   Search,
@@ -31,7 +32,8 @@ export default function configure({ getAuth }) { // eslint-disable-line
         <Route path="/cart" component={Cart} />
         <Route path="/orders" component={MyOrderContainer} />
         <Route path="/orders/:orderId" component={OrderDetail} />
-        <Route path="/orders/:orderId/checkout(/:step)" component={Checkout} />
+        <Route path="/orders/:orderId/checkout" component={Checkout} />
+        <Route path="/orders/:orderId/done" component={OrderDoneContainer} />
         <Route path="/brands/:brandId(/:pageNum)" component={Brand} />
         <Route path="/categories/:categoryId(/:pageNum)" component={Category} />
         <Route path="/search/:query(/:pageNum)" component={Search} />
