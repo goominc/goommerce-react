@@ -11,7 +11,7 @@ import ResponsiveImage from 'components/snippet/ResponsiveImage';
 
 export default React.createClass({
   propTypes: {
-    cart: PropTypes.object,
+    brands: PropTypes.object,
     removeProduct: PropTypes.func,
     updateCount: PropTypes.func,
     canUpdate: PropTypes.bool,
@@ -20,9 +20,8 @@ export default React.createClass({
     activeCurrency: PropTypes.string,
   },
   render() {
-    const { cart, removeProduct, updateCount, canUpdate } = this.props;
+    const { brands, removeProduct, updateCount, canUpdate } = this.props;
     const { activeCurrency } = this.context;
-    const brands = cart.brands || [];
 
     const renderBrand = (brand) => {
       const renderVariant = (product, variant, index) => {

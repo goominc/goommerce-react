@@ -27,28 +27,22 @@ export default React.createClass({
       buy(variants);
     }
 
-    const renderPrice = (price) => {
-      if (activeCurrency === 'KRW') {
-        return `${numberUtil.format(price)}원`;
-      }
-      return `${currencySign[activeCurrency]} ${price}`;
-    };
-
+    const formatPrice = numberUtil.formatPrice(total[activeCurrency], activeCurrency, currencySign);
     return (
       <div className="cart-conatiner">
         <div className="cart-title-box">
           <i className="icon-cart"></i> <span>장바구니</span>
         </div>
-        <CartProduct {...this.props} canUpdate />
+        <CartProduct {...this.props} brands={cart.brands} canUpdate />
         <div className="cart-payment-container">
           <div className="title">결제 정보</div>
           <div className="row">
             <div className="label">상품금액</div>
-            <div className="control">{renderPrice(total[activeCurrency])}</div>
+            <div className="control">{formatPrice}</div>
           </div>
           <div className="row">
             <div className="label">부가세</div>
-            <div className="control">{renderPrice(total[activeCurrency] / 10)}</div>
+            <div className="control">{numberUtil.formatPrice(total[activeCurrency] / 10, activeCurrency, currencySign)}</div>
           </div>
           <div className="row">
             <div className="label">배송비</div>
@@ -56,9 +50,9 @@ export default React.createClass({
           </div>
           <div className="total-row">
             <div className="label">결제금액</div>
-            <div className="control">{renderPrice(total[activeCurrency])}</div>
+            <div className="control">{formatPrice}</div>
           </div>
-          <div className="button-order" onClick={buyAll}>
+          <div className="cart-button-order" onClick={buyAll}>
             주문하기
           </div>
         </div>

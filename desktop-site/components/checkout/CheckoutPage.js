@@ -5,6 +5,8 @@ import _ from 'lodash';
 import CheckoutStep1 from 'components/checkout/CheckoutStep1';
 import SellerBox from 'components/CartSellerBox';
 import i18n from 'commons/utils/i18n';
+import CartProduct from 'components/CartProduct';
+import numberUtil from 'commons/utils/numberUtil';
 import orderUtil from 'commons/utils/orderUtil';
 
 export default React.createClass({
@@ -18,52 +20,16 @@ export default React.createClass({
   contextTypes: {
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
+    currencySign: PropTypes.object,
     router: PropTypes.object.isRequired,
   },
   mixins: [LinkedStateMixin],
   getInitialState() {
-    return {};
+    return { paymentMethod: 0 };
   },
   renderCheckoutInformations() {
     return (
       <CheckoutStep1 {...this.props} />
-    );
-  },
-  renderPayments() {
-    const { order, doCheckout } = this.props;
-    const { activeCurrency } = this.context;
-    const handleCheckout = () => {
-      if (this.refs.gopaymethod.value) {
-        doCheckout(order.id, this.refs);
-      } else {
-        window.alert('Please select a pay method.'); // eslint-disable-line no-alert
-      }
-    };
-    return (
-      <form id="checkout" method="POST">
-        <div>{activeCurrency} {order[`total${activeCurrency}`]}</div>
-        <select name="gopaymethod" ref="gopaymethod">
-          <option value="">[ 결제방법 선택 ]</option>
-          <option value="Card">신용카드 결제</option>
-          <option value="VBank">무통장 입금</option>
-        </select>
-        <input type="hidden" name="version" value="1.0" />
-        <input type="hidden" name="mid" ref="mid" />
-        <input type="hidden" name="oid" ref="oid" />
-        <input type="hidden" name="goodname" value="의류" />
-        <input type="hidden" name="price" ref="price" />
-        <input type="hidden" name="currency" value="WON" />
-        <input type="hidden" name="buyername" value="LINKSHOPS" />
-        <input type="hidden" name="buyertel" value="010-2000-1234" />
-        <input type="hidden" name="buyeremail" ref="buyeremail" />
-        <input type="hidden" name="timestamp" ref="timestamp" />
-        <input type="hidden" name="signature" ref="signature" />
-        <input type="hidden" name="returnUrl" ref="returnUrl" />
-        <input type="hidden" name="mKey" ref="mKey" />
-        <button type="button" className="btn btn-default" onClick={handleCheckout}>
-          CHECKOUT
-        </button>
-      </form>
     );
   },
   renderVBank() {
@@ -98,6 +64,7 @@ export default React.createClass({
   },
   render() {
     const { order, step } = this.props;
+    const { activeCurrency, currencySign } = this.context;
     if (!order) {
       return (
         <div></div>
@@ -125,30 +92,122 @@ export default React.createClass({
       return '';
     };
 
-    const handleClickStep = (newStep) => {
-      if (step !== 'done' && newStep !== 'done' && step !== newStep) {
-        this.context.router.push(`/orders/${order.id}/checkout/${newStep}`);
-      }
-    };
-    const endClassName = `checkout-progress-end ${step === 'done' ? 'progress-active' : ''}`;
-
-    return (
-      <div className="checkout-container-wrap">
-        <div className="checkout-container">
-          <div className={getProgressbarClass('review')} onClick={() => handleClickStep('review')}>
-            checkout informations
-          </div>
-          <div className="checkout-progress-shadow progress-1-shadow"></div>
-          <div className={getProgressbarClass('payment')} onClick={() => handleClickStep('payment')}>
-            payment
-          </div>
-          <div className="checkout-progress-shadow progress-2-shadow"></div>
-          <div className={getProgressbarClass('done')} onClick={() => handleClickStep('done')}>
-            done
-          </div>
-          <div className={endClassName}></div>
-          {getContent()}
+    const paymentMethods = [
+      { icon: 'icon-inicis', name: '무통장 입금', method: 'VBank' },
+      { icon: 'icon-credit-card', name: '신용 카드', method: 'Card' },
+    ];
+    const renderPaymentMethod = (method, index) => (
+      <div className={`row ${index === this.state.paymentMethod ? 'active' : ''}`} onClick={() => this.setState({ paymentMethod: index })}>
+        <i className={`label ${method.icon}`}></i>
+        <div className="control">
+          {method.name}
+          <span className="payment-check"></span>
         </div>
+      </div>
+    );
+
+    const renderPayments = () => {
+      const { doCheckout } = this.props;
+      const handleCheckout = () => {
+        const method = paymentMethods[this.state.paymentMethod].method;
+        $('form input[name=gopaymethod]').val(method);
+        doCheckout(order.id, Object.assign({}, this.refs,
+          { gopaymethod: { value: method } }));
+      };
+      return (
+        <form id="checkout" method="POST">
+          <input type="hidden" name="gopaymethod" />
+          <input type="hidden" name="version" value="1.0" />
+          <input type="hidden" name="mid" ref="mid" />
+          <input type="hidden" name="oid" ref="oid" />
+          <input type="hidden" name="goodname" value="의류" />
+          <input type="hidden" name="price" ref="price" />
+          <input type="hidden" name="currency" value="WON" />
+          <input type="hidden" name="buyername" value="LINKSHOPS" />
+          <input type="hidden" name="buyertel" value="010-2000-1234" />
+          <input type="hidden" name="buyeremail" ref="buyeremail" />
+          <input type="hidden" name="timestamp" ref="timestamp" />
+          <input type="hidden" name="signature" ref="signature" />
+          <input type="hidden" name="returnUrl" ref="returnUrl" />
+          <input type="hidden" name="mKey" ref="mKey" />
+          <button type="submit" className="cart-button-order" onClick={handleCheckout}>
+            결제하기
+          </button>
+        </form>
+      );
+    };
+
+    const brands = orderUtil.collectByBrands(order.orderProducts);
+    const formatPrice = numberUtil.formatPrice(+order[`total${activeCurrency}`], activeCurrency, currencySign);
+    return (
+      <div className="cart-conatiner">
+        <div className="cart-title-box">
+          <i className="icon-payment"></i> <span>결제</span>
+        </div>
+        <div className="checkout-left-container">
+          <div className="title">배송 정보</div>
+          <div className="title">주문 내역</div>
+          <CartProduct brands={brands} />
+        </div>
+        <div className="checkout-right-container">
+          <div className="payment-info-box">
+            <div className="title">결제 정보</div>
+            <div className="row">
+              <div className="label">상품금액</div>
+              <div className="control">{formatPrice}</div>
+            </div>
+            <div className="row">
+              <div className="label">부가세</div>
+              <div className="control">{numberUtil.formatPrice(+order[`total${activeCurrency}`] / 10, activeCurrency, currencySign)}</div>
+            </div>
+            <div className="row">
+              <div className="label">배송비</div>
+              <div className="control">0</div>
+            </div>
+            <div className="total-row">
+              <div className="label">결제금액</div>
+              <div className="control">{formatPrice}</div>
+            </div>
+          </div>
+          <div className="payment-method-box">
+            <div className="title">결제 수단</div>
+            {paymentMethods.map(renderPaymentMethod)}
+            {renderPayments()}
+            {/*
+            <div className="row">
+              <i className="label icon-alipay"></i>
+              <div className="control">알리페이</div>
+            </div>
+            <div className="row">
+              <i className="label icon-union-pay"></i>
+              <div className="control">은련카드</div>
+            </div>
+            <div className="row">
+              <i className="label icon-tenpay"></i>
+              <div className="control">텐페이</div>
+            </div>
+             */}
+          </div>
+        </div>
+        { /*
+         <div className="checkout-container-wrap">
+         <div className="checkout-container">
+         <div className={getProgressbarClass('review')} onClick={() => handleClickStep('review')}>
+         checkout informations
+         </div>
+         <div className="checkout-progress-shadow progress-1-shadow"></div>
+         <div className={getProgressbarClass('payment')} onClick={() => handleClickStep('payment')}>
+         payment
+         </div>
+         <div className="checkout-progress-shadow progress-2-shadow"></div>
+         <div className={getProgressbarClass('done')} onClick={() => handleClickStep('done')}>
+         done
+         </div>
+         <div className={endClassName}></div>
+         {getContent()}
+         </div>
+         </div>
+         */ }
       </div>
     );
   },

@@ -162,3 +162,107 @@ $active-progress-color: #f90;
     margin: $margin-20 0;
   }
 }
+
+// 2016. 04. 15. [heekyu] New UI
+.checkout-left-container {
+  display: inline-block;
+  width: 800px;
+  .title {
+    color: #555;
+    font-weight: 500;
+    font-size: 20px;
+  }
+}
+.checkout-right-container {
+  border-bottom: 1px solid #aaa;
+  display: inline-block;
+  margin-left: 30px;
+  vertical-align: top;
+  width: 210px;
+  .payment-info-box {
+    // margin-top: $margin-15;
+    @include cart-info-snippet();
+    .row {
+      background-color: #fff;
+      border-left: 1px solid #aaa;
+      border-right: 1px solid #aaa;
+      padding: 3px 15px;
+      .label {
+        display: inline-block;
+        font-size: 13px;
+        font-weight: 500;
+        width: 30%;
+      }
+      .control {
+        display: inline-block;
+        font-size: 14px;
+        text-align: right;
+        width: 70%;
+      }
+    }
+    .total-row {
+      background-color: #fff;
+      border: 1px solid #aaa;
+      height: 40px;
+      line-height: 40px;
+      padding: 0 15px;
+      .label {
+        display: inline-block;
+        font-size: 13px;
+        font-weight: 500;
+        vertical-align: top;
+        width: 30%;
+      }
+      .control {
+        display: inline-block;
+        font-size: 20px;
+        font-weight: bold;
+        color: $default-active-text-color;
+        text-align: right;
+        vertical-align: top;
+        width: 70%;
+      }
+    }
+  }
+  .payment-method-box {
+    margin-top: $margin-15;
+    @include cart-info-snippet();
+    .row {
+      background-color: #fff;
+      border-left: 1px solid #aaa;
+      border-right: 1px solid #aaa;
+      border-bottom: 1px solid #aaa;
+      cursor: pointer;
+      height: 40px;
+      line-height: 40px;
+      padding: 0 15px;
+      &:hover {
+        background-color: #fdebe2;
+      }
+      &.active {
+        background-color: #fdebe2;
+        .payment-check {
+          background-image: url($base-url + '/main/payment-check.png');
+        }
+      }
+      .label {
+        display: inline-block;
+        vertical-align: middle;
+        width: 30%;
+      }
+      .control {
+        display: inline-block;
+        font-size: 15px;
+        text-align: right;
+        width: 70%;
+      }
+      .payment-check {
+        display: inline-block;
+        height: 13px;
+        margin-left: 5px;
+        vertical-align: middle;
+        width: 17px;
+      }
+    }
+  }
+}

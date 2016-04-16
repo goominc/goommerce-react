@@ -1,6 +1,6 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
-exports.format = (number) => {
+const format = (number) => {
   let res = '';
   let sign = '';
   if (number < 0) {
@@ -27,4 +27,13 @@ exports.format = (number) => {
     number = Math.floor(number / 1000);
   }
   return `${sign}${res}`;
+};
+
+exports.format = format;
+
+exports.formatPrice = (price, currency, currencySign) => {
+  if (currency === 'KRW') {
+    return `${format(price)}원`;
+  }
+  return `${currencySign[currency]} ${price}`;
 };

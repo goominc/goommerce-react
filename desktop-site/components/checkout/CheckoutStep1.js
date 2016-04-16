@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 
 import AddressEditForm from './AddressEditForm';
 import AddressView from './AddressView';
-import SellerBox from 'components/CartSellerBox';
+import CartProduct from 'components/CartProduct';
 import orderUtil from 'commons/utils/orderUtil';
 
 export default React.createClass({
@@ -75,7 +75,7 @@ export default React.createClass({
         {renderAddresses()}
 
         <div className="checkout-section-title">2. Review and confirm your order ({order.orderProducts.length} items):</div>
-        {brands.map((brand) => (<SellerBox key={brand.brand.id} {...this.props} brand={brand} />))}
+        <CartProduct brands={brands} />
         <div className="checkout-place-order">
           <span className="all-total-label">All Total:</span>
           <span className="all-total-value">{activeCurrency} {order[`total${activeCurrency}`]}</span>

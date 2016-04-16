@@ -2,22 +2,42 @@
 // This file contains styles that are specific to 'xxx' page.
 // -----------------------------------------------------------------------------
 
-@mixin simple-icon($icon-name) {
+@mixin simple-icon($icon-name, $width, $height) {
   background-image: url($base-url + '/main/' + $icon-name + '.png');
+  background-repeat: no-repeat;
   display: inline-block;
-  height: 38px;
-  width: 38px;
+  height: $height;
+  width: $width;
 }
 
-$icons: ('icon-cart', 'icon-payment', 'icon-check');
+$icons: ('icon-cart', 'icon-payment', 'icon-check',
+         'icon-alipay', 'icon-credit-cart', 'icon-inicis', 'icon-tenpay', 'icon-union-pay' );
 
 @mixin generate-icons {
   @for $i from 1 through length($icons) {
     $icon: nth($icons, $i);
     .#{$icon} {
-      @include simple-icon($icon);
+      @include simple-icon($icon, 38px, 38px);
     }
   }
 }
 
 @include generate-icons();
+
+$payment-icons: (
+  ('icon-alipay', 43px, 14px),
+  ('icon-credit-card', 34px, 23px),
+  ('icon-inicis', 49px, 25px),
+  ('icon-tenpay', 44px, 15px),
+  ('icon-union-pay', 43px, 27px),
+);
+
+@mixin generate-payment-icons {
+  @for $i from 1 through length($payment-icons) {
+    $icon: nth($payment-icons, $i);
+    .#{nth($icon, 1)} {
+      @include simple-icon(nth($icon, 1), nth($icon, 2), nth($icon, 3));
+    }
+  }
+}
+@include generate-payment-icons();
