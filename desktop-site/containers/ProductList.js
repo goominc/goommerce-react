@@ -24,7 +24,9 @@ const ProductList = React.createClass({
     genLink: PropTypes.func.isRequired,
     category: PropTypes.object,
     categories: PropTypes.object.isRequired,
+    KRW: PropTypes.string,
     searchProducts: PropTypes.func,
+    sorts: PropTypes.string,
     wishes: PropTypes.array,
   },
   contextTypes: {
@@ -42,13 +44,13 @@ const ProductList = React.createClass({
     this.context.ApiAction.loadWishlist();
   },
   componentWillReceiveProps(nextProps) {
-    const props = ['query', 'categoryId', 'brandId', 'pageNum', 'sorts'];
+    const props = ['query', 'categoryId', 'brandId', 'pageNum', 'sorts', 'KRW'];
     if (!_.isEqual(_.pick(this.props, props), _.pick(nextProps, props))) {
       this.doSearch(nextProps);
     }
   },
   doSearch(props) {
-    const { query, categoryId, brandId, pageNum, sorts } = props;
+    const { query, categoryId, brandId, pageNum, sorts, KRW } = props;
     const limit = 4 * 7;
     const queryOptions = {
       q: query,
@@ -56,6 +58,7 @@ const ProductList = React.createClass({
       brandId,
       offset: Math.max((pageNum - 1) * limit, 0),
       limit,
+      KRW,
     };
     if (sorts) {
       queryOptions.sorts = sorts;
@@ -79,7 +82,7 @@ const ProductList = React.createClass({
   },
   render() {
     const { wishes = [], genLink } = this.props;
-    const { products = [], aggs = {}, brand } = this.state;
+    const { products = [], aggs = {} } = this.state;
     const { ApiAction } = this.context;
     const path = this.breadCrumbPath();
 
@@ -118,27 +121,6 @@ const ProductList = React.createClass({
         ApiAction.addWish(product.id);
       }
     };
-    const sortItems = [
-      { name: i18n.get('pcMain.productList.sortLowPrice'), sorts: 'KRW.num' },
-      { name: i18n.get('pcMain.productList.sortHighPrice'), sorts: '-KRW.num' },
-      { name: i18n.get('pcMain.productList.sortLatest'), sorts: '-id' },
-    ];
-    const sortItemViews = sortItems.map((item) => {
-      if (this.props.sorts === item.sorts) {
-        return (
-          <Link key={sortItems.sorts} to={genLink({ ...this.props, sorts: null, pageNum: 1 })}>
-            <strong className="sort-item active">
-              {item.name}
-            </strong>
-          </Link>
-        );
-      }
-      return (
-        <Link key={sortItems.sorts} to={genLink({ ...this.props, sorts: item.sorts, pageNum: 1 })} className="sort-item">
-          {item.name}
-        </Link>
-      );
-    });
 
     return (
       <div className="product-list-wide-container">
@@ -151,7 +133,7 @@ const ProductList = React.createClass({
           <ProductListLeft {...this.props} aggs={aggs} />
           <div className="product-list-right-box">
             <Breadcrumb path={path} />
-            <ProductListSearchBar {...this.props} aggs={aggs} brand={brand || null} />
+            <ProductListSearchBar {...this.props} aggs={aggs} brandIds={this.props.brandId && this.props.brandId.split(',')} />
             <ProductListItems
               products={products}
               changeMainImage={changeMainImage}

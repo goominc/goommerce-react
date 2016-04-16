@@ -9,9 +9,9 @@ export default React.createClass({
     params: PropTypes.object.isRequired,
   },
   render() {
-    const genLink = ({ pageNum, brandId, categoryId, sorts }) => ({
+    const genLink = ({ pageNum, brandId, categoryId, sorts, KRW }) => ({
       pathname: `/categories/${categoryId}${pageNum ? `/${pageNum}` : ''}`,
-      query: { brandId, sorts },
+      query: { brandId, sorts, KRW },
     });
     const { params, location } = this.props;
     const query = defaults({}, params, location.query);

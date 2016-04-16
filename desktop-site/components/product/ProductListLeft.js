@@ -28,7 +28,6 @@ export default React.createClass({
       return undefined;
     }
     const tree = categories.tree;
-    console.log(aggs);
 
     const categoryCount = (categoryId) => {
       if (!aggs || !aggs.categories || !aggs.categories[categoryId]) {
@@ -89,7 +88,7 @@ export default React.createClass({
         return (root.children || []).map((child) => dfs(child));
       };
       return (
-        <div className="product-list-top-category">
+        <div key={root.id} className="product-list-top-category">
           <Link className={`product-list-category-title ${root.id === category.id ? 'active' : ''}`} to={categoryLink(root.id)}>
             {root.name[activeLocale]} {`${root.id === category.id ? categoryCount(root.id) : ''}`}
           </Link>
@@ -148,7 +147,7 @@ export default React.createClass({
   render() {
     return (
       <div className="product-list-left-box">
-        <div className="title">카테고리</div>
+        <Link to="/categories/all" className="title">카테고리</Link>
         {this.renderCategories()}
       </div>
     );
