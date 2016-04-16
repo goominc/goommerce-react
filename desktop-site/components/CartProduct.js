@@ -42,8 +42,8 @@ export default React.createClass({
                     onChange={(e) => changeQuantity(e.target.value)}
                   />
                 <span>
-                  <div className="up" onClick={() => changeQuantity(variant.count + 1)}></div>
-                  <div className="down" onClick={() => changeQuantity(variant.count - 1)}></div>
+                  <div className="up" onClick={() => changeQuantity(+variant.count + 1)}></div>
+                  <div className="down" onClick={() => changeQuantity(+variant.count - 1)}></div>
                 </span>
                 </div>
               </div>
