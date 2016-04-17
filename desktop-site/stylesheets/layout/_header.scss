@@ -20,6 +20,7 @@
 $header-height: 40px;
 $header-margin: 15px;
 .header-wrap {
+  min-width: 900px;
   padding: $header-margin 0;
   position: relative;
   .header-item {

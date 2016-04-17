@@ -22,8 +22,10 @@ const Home = React.createClass({
     return {};
   },
   componentDidMount() {
+    /*
     $('.main-banner').owlCarousel({ autoPlay: 10000, items: 1 });
     $('.center-slide').owlCarousel({ autoPlay: 10000, items: 1 });
+    */
   },
   render() {
     const { activeLocale } = this.props;
