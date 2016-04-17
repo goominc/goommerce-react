@@ -30,10 +30,30 @@ export default React.createClass({
         */
         { img: `${constants.resourceRoot}/main/country-taiwan.png`, name: 'Taiwan', number: '+423' },
       ];
+      let cannotSignupMessage = null;
       const clickSignup = (e) => {
         e.preventDefault();
+        if (cannotSignupMessage) {
+          window.alert(cannotSignupMessage);
+          return;
+        }
+        const requiredFields = [
+          { key: 'data.lastName', errorMsg: '성을 입력해 주세요' },
+          { key: 'data.firstName', errorMsg: '이름을 입력해 주세요' },
+          { key: 'data.tel', errorMsg: '전화번호를 입력해 주세요' },
+          { key: 'data.bizName', errorMsg: '사업자명을 입력해 주세요' },
+          { key: 'data.bizNumber', errorMsg: '사업자 번호를 입력해 주세요' },
+        ];
         const user = _.pick(this.state, ['email', 'password', 'passwordConfirm', 'data']);
-        if (this.state.activeAreaCodeIndex >= 0 && _.get(user, 'data.tel')) {
+        for (let i = 0; i < requiredFields.length; i++) {
+          const field = requiredFields[i];
+          if (!_.get(user, field.key)) {
+            window.alert(field.errorMsg);
+            $(`#${field.key.split('.').splice(-1)[0]}`).focus();
+            return;
+          }
+        }
+        if (this.state.activeAreaCodeIndex >= 0) {
           user.data.areaCode = areaCodes[this.state.activeAreaCodeIndex].number;
         }
         if (user.data.firstName && user.data.lastName) {
@@ -50,7 +70,7 @@ export default React.createClass({
         <div key={field.name} className="form-group">
           <label><span className="required">{field.isRequired ? '*' : ''}</span>{field.name}</label>
           <div className="form-input">
-            <input onChange={(e) => onChange(e, field.key)} type="text" placeholder={field.placeholder} />
+            <input id={field.key.split('.').slice(-1)[0]} onChange={(e) => onChange(e, field.key)} type="text" placeholder={field.placeholder} />
           </div>
         </div>
       );
@@ -82,17 +102,23 @@ export default React.createClass({
             return re.test(email);
           };
           if (!validateEmail()) {
+            cannotSignupMessage = '이메일을 올바르게 입력해 주세요';
             return (
               <div className="form-input-warning">이메일 형식으로 입력해 주세요</div>
             );
           }
+          cannotSignupMessage = null;
+          return null;
         }
+        cannotSignupMessage = '이메일을 입력해 주세요';
         return null;
       };
       const renderPasswordConfirmWarning = () => {
         if (this.state.password && this.state.password !== this.state.passwordConfirm) {
+          cannotSignupMessage = '비밀번호가 일치해야 합니다';
           return (<div className="form-input-warning">비밀번호가 일치해야 합니다</div>);
         }
+        cannotSignupMessage = null;
         return null;
       };
       // TODO area code none
@@ -156,10 +182,10 @@ export default React.createClass({
             <div className="form-group">
               <label><span className="required">*</span>성함</label>
               <div className="input-lastname">
-                <input onChange={(e) => onChange(e, 'data.lastName')} type="text" placeholder="성" />
+                <input id="lastName" onChange={(e) => onChange(e, 'data.lastName')} type="text" placeholder="성" />
               </div>
               <div className="input-firstname">
-                <input onChange={(e) => onChange(e, 'data.firstName')} type="text" placeholder="이름" />
+                <input id="firstName" onChange={(e) => onChange(e, 'data.firstName')} type="text" placeholder="이름" />
               </div>
             </div>
             <div className="form-group">
@@ -169,7 +195,7 @@ export default React.createClass({
                   <img src={areaCodes[activeAreaCodeIndex].img} /> {areaCodes[activeAreaCodeIndex].number}
                   <div className="arrow-down"></div>
                 </div>
-                <input onChange={(e) => onChange(e, 'data.tel')} type="text" placeholder="연락처를 입력해 주세요" />
+                <input id="tel" onChange={(e) => onChange(e, 'data.tel')} type="text" placeholder="연락처를 입력해 주세요" />
                 <div className="dropdown-box">
                   {areaCodes.map(renderAreaCodeDropdown)}
                 </div>
