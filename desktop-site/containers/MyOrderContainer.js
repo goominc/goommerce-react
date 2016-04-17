@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 
 import loadEntities from 'commons/redux/util/loadEntities';
 
-import MyPageLeftbar from 'components/mypage/MyPageLeftbar';
-import OrderListComponent from 'components/OrderListComponent';
+import OrderListComponent from 'components/order/OrderListComponent';
 
 import { ApiAction } from 'redux/actions';
 const { loadMyOrders } = ApiAction;
