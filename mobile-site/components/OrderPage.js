@@ -14,6 +14,23 @@ export default React.createClass({
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
   },
+  getInitialState() {
+    return { showPay: false };
+  },
+  toggle() {
+    if (!this.state.showPay) {
+      $('#root').css({
+        height: $(window).height(),
+        overflow: 'hidden',
+      });
+    } else {
+      $('#root').css({
+        height: 'auto',
+        overflow: 'auto',
+      });
+    }
+    this.setState({ showPay: !this.state.showPay });
+  },
   inipay() {
     const { addresses, activeAddressId } = this.props;
     if (!addresses || !Object.keys(addresses).length || !activeAddressId) {
@@ -269,10 +286,34 @@ export default React.createClass({
             id="create-order"
             value="place order&nbsp;"
             className="ui-button ui-button-main"
-            onClick={this.inipay}
+            onClick={this.toggle}
           />
         </div>
+        <div className="pay-wrap" style={{ display: this.state.showPay ? 'block' : 'none' }}>
+          <div className="pay-header">
+            <span className="pay-title">Payment Method</span>
+            <span className="pay-cancel" onClick={this.toggle}></span>
+          </div>
+          <ul className="pay-method-list">
+            <li onClick={this.inipay}>
+              <span className="pay-title">신용카드</span>
+              <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
+            </li>
+            <li>
+              <span className="pay-title">핸드폰 결제</span>
+              <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
+            </li>
+            <li>
+              <span className="pay-title">계좌이체</span>
+              <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
+            </li>
+            <li>
+              <span className="pay-title">무통장입금</span>
+              <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
+            </li>
+          </ul>
 
+        </div>
       </section>
     );
   },

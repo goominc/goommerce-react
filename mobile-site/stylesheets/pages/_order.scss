@@ -774,4 +774,49 @@ a.aex-button:link, a.aex-button:visited {
 .am-message-sysError img {
   margin-bottom: 15px
 }
+.pay-wrap {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  .pay-header {
+    position: relative;
+    width: 100%;
+    height: 48px;
+    text-align:center;
+    line-height: 48px;
+    font-size: 18px;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+
+    .pay-cancel {
+      background: url('data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeBAMAAADJHrORAAAAG1BMVEUAAABmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZ8aTmeAAAACHRSTlMAb0X2VldYYZ26vlYAAACMSURBVBjTRdEhDsJQEEXR16QEX4VEsIIqloAsCiRLwJDgCTDLhk5u3vtucq6YyZcm5V2k4bX3uKm7djV7vtb3P68BXB8NVbO5bkowrqwEp2YCM4GZAHYAOzg0Jzg2J4AT1KK8sXwFq7GkmcB8JoDfvWR44QqzCGCuCBOECWAHcIKnWf03WzN/91DepB+/ckpiQmNfgQAAAABJRU5ErkJggg==') no-repeat 0 center;
+      width: 15px;
+      height: 100%;
+      position: absolute;
+      right: 12px;
+      top: 0;
+      display: block;
+      background-size: 100% auto;
+    }
+  }
+  .pay-method-list {
+    color: #333;
+    li {
+      position: relative;
+      height: 40px;
+      line-height: 40px;
+      padding-left: 10px;
+      font-size: 14px;
+      border-bottom: 1px solid #ddd;
+      .ms-arrow {
+        margin-top: -10px;
+      }
+
+    }
+  }
+}
 
