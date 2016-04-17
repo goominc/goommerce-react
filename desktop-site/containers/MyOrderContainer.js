@@ -25,10 +25,7 @@ const MyOrderContainer = React.createClass({
       return (<div></div>);
     }
     return (
-      <div className="mypage-contents-container">
-        <MyPageLeftbar />
-        <OrderListComponent orders={orders} />
-      </div>
+      <OrderListComponent orders={orders} />
     );
   },
 });

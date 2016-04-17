@@ -2,8 +2,10 @@
 
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import _ from 'lodash';
 
 import { getProductThumbnail } from 'commons/utils/productUtil';
+import numberUtil from 'commons/utils/numberUtil';
 
 import i18n from 'commons/utils/i18n';
 
@@ -11,11 +13,14 @@ export default React.createClass({
   propTypes: {
     orders: PropTypes.array.isRequired,
   },
+  contextTypes: {
+    activeLocale: PropTypes.string,
+    activeCurrency: PropTypes.string,
+    currencySign: PropTypes.object,
+  },
   render() {
-    function formatDate(date) {
-      return new Date(date).toString();
-    }
     const { orders } = this.props;
+    const { activeLocale, activeCurrency, currencySign } = this.context;
 
     const renderOrderProduct = (product) => {
       const variant = product.productVariant;
@@ -32,7 +37,38 @@ export default React.createClass({
         </div>
       );
     };
+    console.log(orders);
+    const getSummary = (order) => {
+      const brands = new Set();
+      let representitiveBrandName = '';
+      let quantities = 0;
+      for (let i = 0; i < order.orderProducts.length; i++) {
+        const variant = order.orderProducts[i];
+        const brandId = _.get(variant, 'brand.id');
+        if (brandId) {
+          if (!representitiveBrandName) {
+            representitiveBrandName = _.get(variant, `brand.name.${activeLocale}`);
+          }
+          brands.add(brandId);
+        }
+        quantities += +(variant.quantity || 0);
+      }
+      const displayBrand = brands.size > 1 ?
+        `${representitiveBrandName} 포함 ${brands.size}개 브랜드` :
+        `${representitiveBrandName}에서 구매한`;
+      return `${displayBrand} ${order.orderProducts.length}종, ${quantities}개의 상품 구매내역`;
+    };
     const renderOrder = (order) => (
+      <div key={order.id}>
+        <div className="row">
+          <div className="cell date-cell">{numberUtil.formatDate(order.createdAt, true)}</div>
+          <div className="cell summary-cell"><Link to={`/orders/${order.id}`}>{getSummary(order)}</Link></div>
+          <div className="cell quantity-cell">수량</div>
+          <div className="cell price-cell">{numberUtil.formatPrice(order[`total${activeCurrency}`], activeCurrency, currencySign)}</div>
+          <div className="cell status-cell">{i18n.get(`enum.order.status.${order.status}`)}</div>
+        </div>
+      </div>
+        /*
       <div key={order.id} className="order-box">
         <div className="order-head">
           <span>Order Id: {order.id} </span> <Link to={`/orders/${order.id}`} >View Detail</Link> <br />
@@ -47,25 +83,19 @@ export default React.createClass({
           Status: {i18n.get(`enum.order.status.${order.status}`)}
         </div>
       </div>
+      */
     );
 
     return (
-      <div className="mypage-right-box">
-        <h2>Orders</h2>
-        <div className="order-status-bar">
-          <span>Before Payment</span>
-          <span className="active">Before shipping</span>
-          <span>On Delivery</span>
-          <span>Complete</span>
+      <div className="order-list-container">
+        <div className="title-row">
+          <div className="cell date-cell">주문날짜</div>
+          <div className="cell summary-cell">주문내용</div>
+          <div className="cell quantity-cell">수량</div>
+          <div className="cell price-cell">결제금액</div>
+          <div className="cell status-cell">주문상태</div>
         </div>
-        <div className="order-search-bar">
-          Order Number: <input type="text" />
-          Product: <input type="text" />
-          <button>Search</button>
-        </div>
-        <div className="order-list-container">
-          {orders.map(renderOrder)}
-        </div>
+        {orders.map(renderOrder)}
       </div>
     );
   },

@@ -15,7 +15,6 @@ export default React.createClass({
   render() {
     const menuName = _.get(this.props, 'params.menuName');
     const menus = [
-      { key: 'pcMain.myMenu.myLinkshops', menuName: 'mypage' },
       { key: 'pcMain.myMenu.myOrders', menuName: 'my_orders' },
       { key: 'word.wishList', menuName: 'wish_list' },
       { key: 'word.favoriteBrand', menuName: 'favorite_brands' },
@@ -29,15 +28,13 @@ export default React.createClass({
       }
     }
     const menuComponents = [
-      <div></div>,
       <MyOrderContainer />,
       <WishListContainer />,
       <FavoriteBrandContainer />,
       <Reorder />,
     ];
-    const containerStyle = { backgroundColor: '#f2f2f2' };
     return (
-      <div style={containerStyle}>
+      <div>
         <MyPageHeader menus={menus} menuName={menuName} />
         {menuComponents[menuIndex]}
       </div>

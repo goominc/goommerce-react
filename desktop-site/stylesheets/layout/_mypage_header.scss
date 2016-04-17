@@ -7,7 +7,7 @@
   height: $height;
   line-height: $height;
   margin: 0 0 20px 0;
-  background: #e62e04;
+  background: #cc2a19;
   color: #fff;
   width: 100%;
   a {
@@ -15,25 +15,32 @@
   }
 }
 .mypage-nav-container {
+  border-left: 1px solid transparent;
+  border-right: 1px solid transparent;
+  display: block;
   max-width: 1200px;
   margin: auto;
-  display: block;
   .mypage-nav-menu {
-    text-align: center;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
     display: inline-block;
-    padding: 0 20px;
-    font-size: 14px;
     cursor: pointer;
+    font-size: 15px;
+    letter-spacing: -1px;
+    padding: 0 $margin-15;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    width: 150px;
     &:hover {
       background-color: #c71801;
     }
     &.active {
-      background-color: #a63c24;
+      background-color: #822417;
     }
   }
 }
 .mypage-contents-container {
-  background-color: #f2f2f2;
+  background-color: #fff;
   display: block;
   margin: auto;
   max-width: 1200px;

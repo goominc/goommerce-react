@@ -37,3 +37,26 @@ exports.formatPrice = (price, currency, currencySign) => {
   }
   return `${currencySign[currency]} ${price}`;
 };
+
+exports.formatDate = (date, isDateOnly) => {
+  if (!(date instanceof Date)) {
+    date = new Date(date);
+  }
+  const yyyy = date.getFullYear().toString();
+  function appendLeadingZeroIfNeeded(str) {
+    if (str[1]) {
+      return str;
+    }
+    return `0${str}`;
+  }
+  const mm = appendLeadingZeroIfNeeded((date.getMonth() + 1).toString()); // getMonth() is zero-based
+  const dd = appendLeadingZeroIfNeeded(date.getDate().toString());
+  if (isDateOnly) {
+    return `${yyyy}-${mm}-${dd}`;
+  }
+
+  const HH = appendLeadingZeroIfNeeded(date.getHours().toString());
+  const MM = appendLeadingZeroIfNeeded(date.getMinutes().toString());
+  const SS = appendLeadingZeroIfNeeded(date.getSeconds().toString());
+  return `${yyyy}-${mm}-${dd} ${HH}:${MM}:${SS}`;
+};
