@@ -202,6 +202,7 @@ export default React.createClass({
     if (!order) {
       return <div />;
     }
+
     return (
       <section id="place-order">
         <div className="order-panel">
@@ -212,14 +213,30 @@ export default React.createClass({
         <div id="order-summary">
           <h3>order summary&nbsp;</h3>
           <ul className="order-product-checkout">
-            { /* <li className="clearfix">
-              <span className="checkout-item">Subtotal:</span>
-              <span className="cost"><b>US $6.84</b></span>
+            <li className="clearfix">
+              <span className="checkout-item">상품금액:</span>
+              <span className="cost"><b>
+                {activeCurrency} {order[`subtotal${activeCurrency}`]}
+              </b></span>
             </li>
             <li className="clearfix">
-              <span className="checkout-item">Shipping:</span>
-              <span className="cost"><b>US $0.84</b></span>
-            </li> */ }
+              <span className="checkout-item">부가세:</span>
+              <span className="cost"><b>
+                {activeCurrency} {order[`tax${activeCurrency}`]}
+              </b></span>
+            </li>
+            <li className="clearfix">
+              <span className="checkout-item">사입비:</span>
+              <span className="cost"><b>
+                {activeCurrency} {order[`handlingFee${activeCurrency}`]}
+              </b></span>
+            </li>
+            <li className="clearfix">
+              <span className="checkout-item">배송비:</span>
+              <span className="cost"><b>
+                {activeCurrency} {order[`shippingCost${activeCurrency}`]}
+              </b></span>
+            </li>
             { /*
             <li className="clearfix">
               <span className="checkout-item">AliExpress Coupon:</span>
