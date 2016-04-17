@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import { isEqual, pick } from 'lodash';
 
 import { ApiAction, setHeader, changeViewType, toggleProductSort,
-         sortProduct, toggleProductFilter } from '../redux/actions';
+         sortProduct, filterProduct, toggleProductFilter } from '../redux/actions';
 const { loadCategories } = ApiAction;
 import { ajaxReturnPromise } from 'commons/redux/util/ajaxUtil';
 import i18n from 'commons/utils/i18n';
 
 import ProductListItem from 'components/ProductListItem';
+import ProductListFilter from 'components/ProductListFilter';
 
 const fetchSize = 10;
 
@@ -17,7 +18,7 @@ const ProductList = React.createClass({
     viewType: PropTypes.object.isRequired,
     showSort: PropTypes.bool.isRequired,
     sorts: PropTypes.string.isRequired,
-    showFilter: PropTypes.bool,
+    showFilter: PropTypes.bool.isRequired,
     categories: PropTypes.object,
     searchProducts: PropTypes.func.isRequired,
     loadCategories: PropTypes.func.isRequired,
@@ -25,7 +26,10 @@ const ProductList = React.createClass({
     changeViewType: PropTypes.func.isRequired,
     toggleProductSort: PropTypes.func.isRequired,
     sortProduct: PropTypes.func.isRequired,
+    filterProduct: PropTypes.func.isRequired,
     toggleProductFilter: PropTypes.func.isRequired,
+    filterPrice: PropTypes.string,
+    filterBrand: PropTypes.number,
     params: PropTypes.object,
   },
   getInitialState() {
@@ -54,19 +58,42 @@ const ProductList = React.createClass({
     });
   },
   componentWillReceiveProps(nextProps) {
-    const props = ['params', 'sorts'];
+    const props = ['params', 'filterPrice', 'filterBrand'];
     if (!isEqual(pick(this.props, props), pick(nextProps, props))) {
+      // reset state for clear filter args
+      if (!isEqual(pick(this.props, ['params']), pick(nextProps, ['params']))) {
+        this.props.filterProduct();
+      }
+      this.setState({ currentCount: 0, maxCount: 0 });
+      this.doSearch(nextProps);
+    }
+    if (!isEqual(this.props.sorts, nextProps.sorts)) {
       this.doSearch(nextProps);
     }
   },
   componentWillUnmount() {
     $(window).unbind('scroll');
   },
+  setFilterPrice(key) {
+    this.setState({ filterPrice: key });
+  },
+  setFilterBrand(key) {
+    this.setState({ filterBrand: key });
+  },
+  resetFilter() {
+    this.setState({ filterPrice: null, filterBrand: null });
+  },
+  applyFilter() {
+    // TODO update URL and integrate filter props into params
+    this.props.toggleProductFilter();
+    this.props.filterProduct(this.state.filterPrice, this.state.filterBrand);
+  },
   doSearch(props) {
-    const { params, sorts } = props;
+    const { params, sorts, filterBrand } = props;
     this.props.searchProducts({
       q: params.query ? params.query : undefined,
       categoryId: params.categoryId === 'all' ? undefined : params.categoryId,
+      brandId: filterBrand,
       offset: 0,
       limit: fetchSize,
       sorts,
@@ -81,7 +108,7 @@ const ProductList = React.createClass({
     });
   },
   doFetch() {
-    const { params, sorts } = this.props;
+    const { params, sorts, filterBrand } = this.props;
     const { currentCount, maxCount } = this.state;
     if (currentCount === maxCount) {
       return;
@@ -90,6 +117,7 @@ const ProductList = React.createClass({
     this.props.searchProducts({
       q: params.query ? params.query : undefined,
       categoryId: params.categoryId === 'all' ? undefined : params.categoryId,
+      brandId: filterBrand,
       offset: currentCount,
       limit: fetchSize,
       sorts,
@@ -100,7 +128,7 @@ const ProductList = React.createClass({
     });
   },
   render() {
-    const { viewType, showSort, sorts } = this.props;
+    const { viewType, showSort, sorts, showFilter } = this.props;
 
     let sortStyle = {};
     if (showSort) {
@@ -131,7 +159,9 @@ const ProductList = React.createClass({
             >
               Sort by
             </span>
-            <span className="refine-filter">Filter</span>
+            <span className="refine-filter" onClick={this.props.toggleProductFilter}>
+              Filter
+            </span>
             <span className="line_between"></span>
             <span className={`view-switching ${viewType.next}`} onClick={this.props.changeViewType}></span>
           </div>
@@ -143,6 +173,11 @@ const ProductList = React.createClass({
         </section>
         <section className="sort-by-mask" id="j-sort-by-mask" style={ { display: showSort ? 'block' : 'none' } }
           onClick={this.props.toggleProductSort}
+        />
+        <ProductListFilter show={showFilter} toggle={this.props.toggleProductFilter} aggs={this.state.aggs}
+          filterPrice={this.state.filterPrice} filterBrand={this.state.filterBrand}
+          setPrice={this.setFilterPrice} setBrand={this.setFilterBrand} reset={this.resetFilter}
+          apply={this.applyFilter}
         />
         <ProductListItem viewType={viewType.type} products={this.state.products || []} />
         <div className="loading"></div>
@@ -157,8 +192,11 @@ export default connect(
     showSort: state.pageProductList.showSort,
     showFilter: state.pageProductList.showFilter,
     sorts: state.pageProductList.sorts,
+    filterPrice: state.pageProductList.filterPrice,
+    filterBrand: state.pageProductList.filterBrand,
     categories: state.categories,
     searchProducts: (query) => ajaxReturnPromise(state.auth, 'get', `/api/v1/products/search?${$.param(query)}`),
   }),
-  { loadCategories, setHeader, changeViewType, sortProduct, toggleProductSort, toggleProductFilter }
+  { loadCategories, setHeader, changeViewType, sortProduct, filterProduct,
+    toggleProductSort, toggleProductFilter }
 )(ProductList);

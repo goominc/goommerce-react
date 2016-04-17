@@ -80,6 +80,9 @@ function pageProductList(state = productListInitialState, action) {
   if (action.type === 'SORT_PRODUCT') {
     return assign({}, state, { sorts: action.sorts });
   }
+  if (action.type === 'FILTER_PRODUCT') {
+    return assign({}, state, { filterPrice: action.price, filterBrand: action.brand });
+  }
 
   return state;
 }

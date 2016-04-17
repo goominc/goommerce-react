@@ -83,6 +83,14 @@ export function sortProduct(sorts) {
   };
 }
 
+export function filterProduct(price, brand) {
+  return {
+    type: 'FILTER_PRODUCT',
+    price,
+    brand,
+  };
+}
+
 /* ProductDetail */
 export function toggleProductCart() {
   return {
