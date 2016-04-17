@@ -1,6 +1,7 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 
 import CartProduct from 'components/CartProduct';
 import orderUtil from 'commons/utils/orderUtil';
@@ -41,6 +42,7 @@ export default React.createClass({
         <div className="title">배송 정보</div>
         <AddressInfo order={order} />
         <CartProduct brands={brands} />
+        <Link to="/mypage/my_orders"><div className="go-order-list-button">목록으로</div></Link>
       </div>
     );
   },
