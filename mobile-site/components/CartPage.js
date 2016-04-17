@@ -2,10 +2,14 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
 import orderUtil from 'commons/utils/orderUtil';
+import brandUtil from 'commons/utils/brandUtil';
+import productUtil from 'commons/utils/productUtil';
 
 export default React.createClass({
   propTypes: {
     cart: PropTypes.object.isRequired,
+    checkBuy: PropTypes.bool.isRequired,
+    toggleBuy: PropTypes.func.isRequired,
     updateCartProduct: PropTypes.func.isRequired,
     deleteCartProduct: PropTypes.func.isRequired,
     createOrder: PropTypes.func.isRequired,
@@ -35,7 +39,13 @@ export default React.createClass({
     }
   },
   handleBuyAll() {
-    const { cart } = this.props;
+    const { cart, checkBuy } = this.props;
+    if (!checkBuy) {
+      $('.check-forbuy').addClass('warning');
+      return;
+    }
+    $('.check-forbuy').removeClass('warning');
+
     const productVariants = orderUtil.getProductVariantsFromCart(cart);
     if (cart && productVariants && productVariants.length) {
       this.props.createOrder(productVariants.map(
@@ -46,97 +56,120 @@ export default React.createClass({
   renderCart() {
     const { cart } = this.props;
     const { activeLocale, activeCurrency } = this.context;
-    const productVariants = orderUtil.getProductVariantsFromCart(cart);
+    // const productVariants = orderUtil.getProductVariantsFromCart(cart);
 
-    if (cart && productVariants && productVariants.length) {
-      return productVariants.map((productVariant) => {
-        const updateCount = (event) => {
-          this.props.updateCartProduct(productVariant.productVariant.id, event.target.value);
+    if (cart && cart.brands && cart.brands.length) {
+      return cart.brands.map((brand) => {
+        const renderVariants = () => {
+          if (brand.products && brand.products.length) {
+            return brand.products.map((product) => {
+              if (product.product && product.productVariants && product.productVariants.length) {
+                return product.productVariants.map((productVariant) => {
+                  const updateCount = (event) => {
+                    this.props.updateCartProduct(productVariant.productVariant.id, event.target.value);
+                  };
+                  const minusCount = () => {
+                    if (productVariant.count > 1) {
+                      productVariant.count--;
+                      this.props.updateCartProduct(productVariant.productVariant.id, productVariant.count);
+                      $(`#count-${productVariant.productVariant.id}`).val(productVariant.count);
+                    }
+                  };
+                  const plusCount = () => {
+                    productVariant.count++; // FIXME
+                    this.props.updateCartProduct(productVariant.productVariant.id, productVariant.count);
+                    $(`#count-${productVariant.productVariant.id}`).val(productVariant.count);
+                  };
+                  const deleteProduct = () => {
+                    this.props.deleteCartProduct(productVariant.productVariant.id);
+                  };
+
+                  return (
+                    <li className="p-24" key={productVariant.productVariant.id}>
+                      <div className="pi-details mb-24 clearfix">
+                        <div className="pi-details-pic">
+                          <Link to={`/products/${productVariant.productVariant.productId}`}>
+                            <img src={productVariant.productVariant.appImages.default[0].url} />
+                          </Link>
+                        </div>
+                        <div className="pi-details-desc">
+                          <div className="pi-details-desc-row">
+                            <Link to={`/products/${productVariant.productVariant.productId}`}>
+                              <div className="details-title">
+                                {productUtil.getName(product.product)}
+                              </div>
+                            </Link>
+                            <div className="details-price clearfix">
+                              <div>
+                                <span className="sell-price">
+                                  {activeCurrency}&nbsp;{productVariant.productVariant[activeCurrency]}
+                                </span>
+                              </div>
+                            </div>
+                            <div className="details-sku ellipsis-multiple">{productVariant.productVariant.sku}</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="pi-quantity mb-48 clearfix">
+                        <div className="clearfix">
+                          <span className="pre">Quantity&nbsp;:</span>
+                          <div className="trim">
+                            <span className="trim ms-numberic">
+                              <a className="ms-minus" id={`minus-${productVariant.productVariant.id}`}
+                                onClick={minusCount}
+                              >
+                                <i className="ms-icon icon-minus"></i>
+                              </a>
+                              <input id={`count-${productVariant.productVariant.id}`} type="number" min="1"
+                                defaultValue={productVariant.count} onChange={updateCount}
+                              />
+                              <a className="ms-plus" id={`plus-${productVariant.productVariant.id}`}
+                                onClick={plusCount}
+                              >
+                                <i className="ms-icon icon-plus"></i>
+                              </a>
+                            </span>
+                          </div>
+                          <span className="delete" onClick={deleteProduct}>
+                            <i className="ms-icon icon-remove fr"></i>
+                          </span>
+                        </div>
+                      </div>
+                      { /* <div className="pi-shipping mb-40">
+                        <div className="shipping clearfix">
+                          Shipping&nbsp;: <span className="shipping-cost">free shipping&nbsp;
+                          <i className="ms-icon icon-arrow-right fr"></i></span>
+                        </div>
+                      </div> */ }
+                    </li>
+                    );
+                });
+              } // end if productvariants
+              return null;
+            });
+          } // end if brand.product
+          return null;
         };
-        const minusCount = () => {
-          if (productVariant.count > 1) {
-            productVariant.count--;
-            this.props.updateCartProduct(productVariant.productVariant.id, productVariant.count);
-            $(`#count-${productVariant.productVariant.id}`).val(productVariant.count);
-          }
-        };
-        const plusCount = () => {
-          productVariant.count++; // FIXME
-          this.props.updateCartProduct(productVariant.productVariant.id, productVariant.count);
-          $(`#count-${productVariant.productVariant.id}`).val(productVariant.count);
-        };
-        const deleteProduct = () => {
-          this.props.deleteCartProduct(productVariant.productVariant.id);
-        };
+
 
         return (
-          <article className="seller-products" key={productVariant.productVariant.id}>
-            { /* <div className="seller bt p-24 pt-24 pb-24">
+          <article className="seller-products" key={brand.brand.id}>
+            <div className="seller bt p-24 pt-24 pb-24">
               <Link to="/brands/">
-                <div className="has-coupon"> Seller: <span className="seller-title">Special lady</span>
+                <div className="has-coupon"> Seller:
+                  <span className="seller-title">{brandUtil.getName(brand.brand)}</span>
                   <i className="ms-icon icon-arrow-right fr"></i>
-                  <div className="coupon big-coupon">
+                  { /* <div className="coupon big-coupon">
                     <span className="left-bg"></span>
                     <span className="coupon-info">
                       US $2.00 off US $18.00
                     </span>
-                  </div>
+                  </div> */ }
                 </div>
               </Link>
-            </div> */ }
+            </div>
             <ul className="product bt">
-              <li className="p-24">
-                <div className="pi-details mb-24 clearfix">
-                  <div className="pi-details-pic">
-                    <Link to={`/products/${productVariant.productVariant.productId}`}>
-                      <img src={productVariant.productVariant.appImages.default[0].url} />
-                    </Link>
-                  </div>
-                  <div className="pi-details-desc">
-                    <div className="pi-details-desc-row">
-                      <Link to={`/products/${productVariant.productVariant.productId}`}>
-                        <div className="details-title">
-                          { /* TODO put product name here */ }
-                          {productVariant.productVariant.sku}
-                        </div>
-                      </Link>
-                      <div className="details-price clearfix">
-                        <div>
-                          <span className="sell-price">
-                            {activeCurrency}&nbsp;{productVariant.productVariant[activeCurrency]}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="details-sku ellipsis-multiple">{productVariant.productVariant.sku}</div>
-                    </div>
-                  </div>
-                </div>
-                <div className="pi-quantity mb-48 clearfix">
-                  <div className="clearfix">
-                    <span className="pre">Quantity&nbsp;:</span>
-                    <div className="trim">
-                      <span className="trim ms-numberic">
-                        <a className="ms-minus" id={`minus-${productVariant.productVariant.id}`} onClick={minusCount}>
-                          <i className="ms-icon icon-minus"></i>
-                        </a>
-                        <input id={`count-${productVariant.productVariant.id}`} type="number" min="1"
-                          defaultValue={productVariant.count} onChange={updateCount}
-                        />
-                        <a className="ms-plus" id={`plus-${productVariant.productVariant.id}`} onClick={plusCount}>
-                          <i className="ms-icon icon-plus"></i>
-                        </a>
-                      </span>
-                    </div>
-                    <span className="delete" onClick={deleteProduct}><i className="ms-icon icon-remove fr"></i></span>
-                  </div>
-                </div>
-                { /* <div className="pi-shipping mb-40">
-                  <div className="shipping clearfix">
-                    Shipping&nbsp;: <span className="shipping-cost">free shipping&nbsp;
-                    <i className="ms-icon icon-arrow-right fr"></i></span>
-                  </div>
-                </div> */ }
-              </li>
+              {renderVariants()}
             </ul>
             { /* <div className="seller-costs bt p-24 ">
               <dl className="seller-costs-subtotal mt-24 clearfix">
@@ -173,14 +206,14 @@ export default React.createClass({
               </dl>
             </div> */ }
           </article>
-          );
+        );
       });
-    }
+    } // end if cart.brand
     return null;
   },
 
   render() {
-    const { cart } = this.props;
+    const { cart, checkBuy } = this.props;
     const { activeLocale, activeCurrency } = this.context;
     if (!cart || !cart.total) {
       return (
@@ -194,6 +227,11 @@ export default React.createClass({
           <span className="ship-to" id="ship-to">South Korea<i className="ms-icon icon-arrow-right fr"></i></span>
         </div> */ }
         {this.renderCart()}
+        <div className="check-forbuy">
+          <span className={`checkbox ${checkBuy ? 'checked' : ''}`} onClick={this.props.toggleBuy}></span>
+          <p className="check-title">주문동의</p>
+          <p className="check-desc">환불불가 및 품절상품의 경우 배송되지 않을 수 있습니다.</p>
+        </div>
         <article id="seller-cart-buyall" className="seller-products">
           { /* <div className="seller-cart-buyall seller-costs bt p-24 pb-24">
             <dl className="seller-costs-subtotal mt-24 clearfix">

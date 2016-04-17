@@ -18,6 +18,9 @@ const Cart = React.createClass({
   contextTypes: {
     router: PropTypes.object.isRequired,
   },
+  getInitialState() {
+    return { checkBuy: false };
+  },
   componentDidMount() {
     this.props.setHeader(false, true, false, 'Cart');
     this.props.loadCart();
@@ -32,7 +35,8 @@ const Cart = React.createClass({
     return (
       <CartPage cart={cart}
         updateCartProduct={this.props.updateCartProduct} deleteCartProduct={this.props.deleteCartProduct}
-        createOrder={this.wrapOrder}
+        createOrder={this.wrapOrder} checkBuy={this.state.checkBuy}
+        toggleBuy={() => this.setState({ checkBuy: !this.state.checkBuy })}
       />
       );
   },
