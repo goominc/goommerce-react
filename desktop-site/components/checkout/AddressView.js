@@ -38,7 +38,7 @@ export default React.createClass({
     return (
       <div className={`item ${isActive ? 'active' : ''}`}>
         <div className="title title-address">
-          <input type="radio" checked={isActive} onClick={onClick} />
+          <input type="radio" checked={isActive} onClick={onClick} readOnly />
           {_.get(address, 'detail.alias') || '주소'}
         </div>
         <div className="add-address-box">

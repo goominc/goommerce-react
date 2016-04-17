@@ -10,7 +10,7 @@ const { inipay, loadOrder, loadAddresses,
 
 const Checkout = React.createClass({
   propTypes: {
-    activeAddressId: PropTypes.string,
+    activeAddressId: PropTypes.number,
     addresses: PropTypes.object,
     isEditMode: PropTypes.bool,
     isNewAddress: PropTypes.bool,

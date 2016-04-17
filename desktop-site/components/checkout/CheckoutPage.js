@@ -12,10 +12,10 @@ import orderUtil from 'commons/utils/orderUtil';
 
 export default React.createClass({
   propTypes: {
+    activeAddressId: PropTypes.number,
     addressFields: PropTypes.array,
     addresses: PropTypes.object,
     doCheckout: PropTypes.func,
-    step: PropTypes.string.isRequired,
     order: PropTypes.object.isRequired,
   },
   contextTypes: {
@@ -112,7 +112,7 @@ export default React.createClass({
       { icon: 'icon-credit-card', name: '신용 카드', method: 'Card' },
     ];
     const renderPaymentMethod = (method, index) => (
-      <div className={`row ${index === this.state.paymentMethod ? 'active' : ''}`} onClick={() => this.setState({ paymentMethod: index })}>
+      <div key={index} className={`row ${index === this.state.paymentMethod ? 'active' : ''}`} onClick={() => this.setState({ paymentMethod: index })}>
         <i className={`label ${method.icon}`}></i>
         <div className="control">
           {method.name}
@@ -152,8 +152,15 @@ export default React.createClass({
       );
     };
 
+    const formatPrice = (type) =>
+      numberUtil.formatPrice(order[`${type}${activeCurrency}`], activeCurrency, currencySign);
+
     const brands = orderUtil.collectByBrands(order.orderProducts);
-    const formatPrice = numberUtil.formatPrice(+order[`total${activeCurrency}`], activeCurrency, currencySign);
+    const subtotalPrice = formatPrice('subtotal');
+    const handlingFeePrice = formatPrice('handlingFee');
+    const shippingCostPrice = formatPrice('shippingCost');
+    const taxPrice = formatPrice('tax');
+    const totalPrice = formatPrice('total');
     return (
       <div className="cart-conatiner">
         <div className="cart-title-box">
@@ -170,19 +177,23 @@ export default React.createClass({
             <div className="title">결제 정보</div>
             <div className="row">
               <div className="label">상품금액</div>
-              <div className="control">{formatPrice}</div>
+              <div className="control">{subtotalPrice}</div>
             </div>
             <div className="row">
-              <div className="label">부가세</div>
-              <div className="control">{numberUtil.formatPrice(+order[`total${activeCurrency}`] / 10, activeCurrency, currencySign)}</div>
+              <div className="label">사입비</div>
+              <div className="control">{handlingFeePrice}</div>
             </div>
             <div className="row">
               <div className="label">배송비</div>
-              <div className="control">0</div>
+              <div className="control">{shippingCostPrice}</div>
+            </div>
+            <div className="row">
+              <div className="label">부가세</div>
+              <div className="control">{taxPrice}</div>
             </div>
             <div className="total-row">
               <div className="label">결제금액</div>
-              <div className="control">{formatPrice}</div>
+              <div className="control">{totalPrice}</div>
             </div>
           </div>
           <div className="payment-method-box">

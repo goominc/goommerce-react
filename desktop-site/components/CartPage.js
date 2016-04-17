@@ -57,7 +57,7 @@ export default React.createClass({
           </div>
           <div className="row">
             <div className="label">배송비</div>
-            <div className="control">0</div>
+            <div className="control">주문 시 계산됩니다</div>
           </div>
           <div className="total-row">
             <div className="label">결제금액</div>
