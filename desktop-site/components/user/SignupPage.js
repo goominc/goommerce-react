@@ -24,8 +24,10 @@ export default React.createClass({
         { img: `${constants.resourceRoot}/main/country-kor.png`, name: 'Korea', number: '+82' },
         { img: `${constants.resourceRoot}/main/country-china.png`, name: 'China', number: '+86' },
         { img: `${constants.resourceRoot}/main/country-china.png`, name: 'Hongkong', number: '+886' },
+        /*
         { img: `${constants.resourceRoot}/main/country-england.png`, name: 'United Kingdom', number: '+214' },
         { img: `${constants.resourceRoot}/main/country-usa.png`, name: 'Newyork', number: '+615' },
+        */
         { img: `${constants.resourceRoot}/main/country-taiwan.png`, name: 'Taiwan', number: '+423' },
       ];
       const clickSignup = (e) => {
