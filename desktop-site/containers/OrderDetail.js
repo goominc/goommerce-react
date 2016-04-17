@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import OrderDone from 'components/checkout/OrderDone';
+import OrderDone from 'components/order/OrderDone';
 
 import { ApiAction } from 'redux/actions';
 const { loadOrder } = ApiAction;
