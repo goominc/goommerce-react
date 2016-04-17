@@ -469,4 +469,61 @@ $active-progress-color: #f90;
     text-align: center;
     width: 200px;
   }
+
+  .payment-info-container {
+    border: 1px solid #aaa;
+    margin-bottom: 30px;
+    width: 100%;
+    .row {
+      display: table;
+      width: 100%;
+    }
+    .cell {
+      border-top: 1px solid #aaa;
+      display: table-cell;
+      vertical-align: top;
+      width: 25%;
+      & + .cell {
+        border-left: 1px solid #aaa;
+      }
+    }
+    .title-cell {
+      background-color: #eee;
+      height: 45px;
+      line-height: 45px;
+      padding: 0 $margin-15;
+      .title {
+        display: inline-block;
+        font-size: 13px;
+        font-weight: 400;
+        text-align: left;
+        vertical-align: top;
+        width: 30%;
+      }
+      .price {
+        color: $default-active-text-color;
+        display: inline-block;
+        font-size: 20px;
+        text-align: right;
+        width: 70%;
+      }
+    }
+    .content-cell {
+      background-color: #fff;
+      font-size: 12px;
+      padding: 10px $margin-15;
+      .left {
+        display: inline-block;
+        text-align: left;
+        vertical-align: top;
+        width: 15%;
+      }
+      .right {
+        display: inline-block;
+        text-align: right;
+        vertical-align: top;
+        width: 85%;
+      }
+    }
+  }
 }

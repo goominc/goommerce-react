@@ -5,6 +5,8 @@ import { Link } from 'react-router';
 import _ from 'lodash';
 
 import CartProduct from 'components/CartProduct';
+import AddressInfo from './AddressInfo';
+import PaymentInfo from './PaymentInfo';
 import i18n from 'commons/utils/i18n';
 import numberUtil from 'commons/utils/numberUtil';
 import orderUtil from 'commons/utils/orderUtil';
@@ -36,12 +38,6 @@ export default React.createClass({
       return null;
     }
     const brands = orderUtil.collectByBrands(order.orderProducts);
-    const addressFields = [
-      { label: '받는 분', value: _.get(order, 'address.detail.name') || '' },
-      { label: '연락처', value: _.get(order, 'address.detail.tel') || '' },
-      { label: '우편번호', value: _.get(order, 'address.detail.postalCode') || '' },
-      { label: '주소', value: _.get(order, 'address.detail.address.base') || '' },
-    ];
     const renderField = (field) => (
       <div key={field.label} className="row">
         <div className="label">{field.label}</div>
@@ -79,10 +75,10 @@ export default React.createClass({
         </div>
         <div className="title">입금 정보</div>
         {renderVBank()}
+        <div className="title">결제 정보</div>
+        <PaymentInfo order={order} />
         <div className="title">배송 정보</div>
-        <div className="simple-key-value-container">
-          {addressFields.map(renderField)}
-        </div>
+        <AddressInfo order={order} />
         <CartProduct brands={brands} />
         <Link to="/mypage/my_orders"><div className="go-order-list-button">주문 목록</div></Link>
       </div>

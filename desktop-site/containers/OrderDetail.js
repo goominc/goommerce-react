@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import OrderDone from 'components/order/OrderDone';
+import OrderDetailPage from 'components/order/OrderDetailPage';
 
 import { ApiAction } from 'redux/actions';
 const { loadOrder } = ApiAction;
@@ -23,7 +23,7 @@ const OrderDetail = React.createClass({
       return (<div></div>);
     }
     return (
-      <OrderDone {...this.props} />
+      <OrderDetailPage {...this.props} />
     );
   },
 });

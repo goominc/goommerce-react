@@ -38,7 +38,7 @@ exports.formatPrice = (price, currency, currencySign) => {
   return `${currencySign[currency]} ${price}`;
 };
 
-exports.formatDate = (date, isDateOnly) => {
+const formatDate = (date, isDateOnly) => {
   if (!(date instanceof Date)) {
     date = new Date(date);
   }
@@ -59,4 +59,12 @@ exports.formatDate = (date, isDateOnly) => {
   const MM = appendLeadingZeroIfNeeded(date.getMinutes().toString());
   const SS = appendLeadingZeroIfNeeded(date.getSeconds().toString());
   return `${yyyy}-${mm}-${dd} ${HH}:${MM}:${SS}`;
+};
+
+exports.formatDate = formatDate;
+
+exports.formatDateKor = (date) => {
+  const d = formatDate(date, true);
+  const split = d.split('-');
+  return `${split[0]}년 ${split[1]}월 ${split[2]}일`;
 };

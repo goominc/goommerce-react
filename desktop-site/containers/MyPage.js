@@ -13,7 +13,7 @@ const _ = require('lodash');
 
 export default React.createClass({
   render() {
-    const menuName = _.get(this.props, 'params.menuName');
+    let menuName = _.get(this.props, 'params.menuName');
     const menus = [
       { key: 'pcMain.myMenu.myOrders', menuName: 'my_orders' },
       { key: 'word.wishList', menuName: 'wish_list' },
@@ -27,6 +27,8 @@ export default React.createClass({
         break;
       }
     }
+    // 2016. 04. 17. [heekyu] handle when default
+    menuName = menus[menuIndex].menuName;
     const menuComponents = [
       <MyOrderContainer />,
       <WishListContainer />,
