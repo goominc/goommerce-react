@@ -4,6 +4,7 @@ import LinkedStateMixin from 'react-addons-linked-state-mixin';
 
 import SigninHeader from 'components/user/SigninHeader';
 import SigninForm from 'components/user/SigninForm';
+import SignupFooter from 'components/user/SignupFooter';
 
 import { ApiAction } from 'redux/actions';
 const { login } = ApiAction;
@@ -30,16 +31,13 @@ const Signin = React.createClass({
       this.context.router.push('/accounts/forgot');
     };
     return (
-      <div className="container">
+      <div className="signup-global-container">
         <SigninHeader />
-        <div className="signin-content-container">
-          <div className="banner-title">The Best Value Online</div>
-          <div className="banner-text">Enjoy unbeatable prices and free shipping <br />
-            on almost all products!
-          </div>
+        <div className="signup-container">
           <div className="signin-form-box">
             <SigninForm handleSubmit={this.handleSubmit} goForgotPassword={goForgotPassword} />
           </div>
+          <SignupFooter />
         </div>
       </div>
     );

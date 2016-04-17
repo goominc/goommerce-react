@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
 
 import SigninHeader from 'components/user/SigninHeader';
+import SignupFooter from 'components/user/SignupFooter';
 
 import { ApiAction } from 'redux/actions';
 const { forgotPassword } = ApiAction;
@@ -24,30 +25,26 @@ const ForgotPassword = React.createClass({
   },
   render: function render() {
     return (
-      <div className="container">
+      <div className="signup-global-container">
         <SigninHeader />
-        <div className="signin-content-container">
-          <div className="banner-title">Smart shopping</div>
-          <div className="banner-text">Fashion Leader!
-          </div>
+        <div className="signup-container">
           <div className="signin-form-box">
             <form onSubmit={this.handleSubmit}>
-              <h2>Please enter your email</h2>
-              <label htmlFor="inputEmail">Email address</label>
               <input
                 type="email"
                 id="inputEmail"
                 className="form-control"
-                placeholder="Email address"
+                placeholder="아이디(이메일 주소)"
                 required
                 autoFocus
                 valueLink={this.linkState('email')}
               />
-              <Link to="/accounts/signin">Sign in?</Link>
-              <Link to="/accounts/signup">Sign up?</Link>
-              <button className="btn-signin" type="submit">Forgot Password</button>
+              <Link to="/accounts/signin">로그인</Link>
+              <Link to="/accounts/signup">회원가입</Link>
+              <button className="btn-signin" type="submit">비밀번호 찾기</button>
             </form>
           </div>
+          <SignupFooter />
         </div>
       </div>
     );

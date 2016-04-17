@@ -43,7 +43,9 @@ const Signup = React.createClass({
     );
   },
   render() {
-    const step1Back = () => console.log('where to go?');
+    const step1Back = () => {
+      this.context.router.push('/accounts/signin');
+    };
     const step1Next = (flags) => {
       const keys = Object.keys(flags);
       for (let i = 0; i < keys.length; i++) {

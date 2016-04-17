@@ -1,6 +1,7 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 
 export default React.createClass({
   propTypes: {
@@ -15,31 +16,26 @@ export default React.createClass({
     };
     return (
       <form onSubmit={onSubmit}>
-        <h2>Please log in</h2>
-        <label htmlFor="inputEmail">Email address</label>
         <input
           type="email"
           id="inputEmail"
           className="form-control"
-          placeholder="Email address"
+          placeholder="아이디(이메일)"
           required
           autoFocus
           ref="email"
         />
-        <label htmlFor="inputPassword">Password</label>
         <input
           type="password"
           id="inputPassword"
           className="form-control"
-          placeholder="Password"
+          placeholder="비밀번호"
           required
           ref="password"
         />
-        <a onClick={goForgotPassword}>forgot password?</a>
-        <div className="remember-me">
-          <input type="checkbox" value="remember-me" /> Remember me
-        </div>
-        <button className="btn-signin" type="submit">Sign in</button>
+        <button className="btn-signin" type="submit">로그인</button>
+        <Link to="/accounts/signup">회원가입</Link>
+        <Link to="/accounts/forgot">비밀번호 찾기</Link>
       </form>
     );
   },

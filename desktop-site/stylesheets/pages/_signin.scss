@@ -39,7 +39,6 @@ $img-height: 40px;
 }
 $sign-form-width: 450px;
 @mixin signin-form-inner() {
-  border: 1px solid #c1cee0;
   padding: 20px;
   width: $sign-form-width;
   background-color: #ffffff;
@@ -47,10 +46,11 @@ $sign-form-width: 450px;
     font: 700 12px arial;
   }
   input:not([type="checkbox"]) {
-    width: 100%;
-    margin: 5px 0 15px;
     border: 1px solid #a6a6a6;
-    padding: 4px 6px;
+    font-size: 14px;
+    margin: 10px 0 15px;
+    padding: 10px 15px;
+    width: 100%;
     &:hover {
       border: 1px solid #000;
     }
@@ -64,25 +64,24 @@ $sign-form-width: 450px;
     margin: 10px 0;
   }
   .btn-signin {
-    width: 100%;
+    @include button-default-styles();
     color: #fff;
-    padding: 5px 0;
+    margin: 10px 0 $margin-20 0;
     font-size: 14px;
     font-weight: 700;
-    background-color: #ff7e00;
-    border: 1px solid #ff2855;
+    padding: 7px 0;
+    width: 100%;
   }
 }
+// 2016. 04. 17. [heekyu] New UI
 .signin-form-box {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 50px 80px;
-  z-index: 10;
+  // 2016. 04. 17. [heekyu] New UI
   @include signin-form-inner();
+  width: 100%;
 }
 
 .signin-popup {
   @include popup-body($sign-form-width, inherit);
   @include signin-form-inner();
+  border: 1px solid #aaa;
 }
