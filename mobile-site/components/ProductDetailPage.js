@@ -40,10 +40,14 @@ export default React.createClass({
 
     const renderBrand = () => {
       if (product && product.brand && product.brand.data) {
+        const { building } = product.brand.data;
         return (
-        <section className="ms-mrg-b12 ms-detail-store">
+        <section className="ms-detail-store">
           <Link to={`/brands/${product.brand.id}`}>
             <header className="store-title">{brandUtil.getName(product.brand)}</header>
+            <p className="store-info">
+              {`${building.name} ${building.floor} ${building.flatNumber}`}
+            </p>
             { /* <p className="store-info">
               <img src="http://i01.i.aliimg.com/wimg/feedback/icon/25-s.gif" className="store-level" />
               <span className="store-postive">94.7% positive feedback the past</span>
@@ -78,11 +82,11 @@ export default React.createClass({
         <section className="ms-pd-lr12 ms-detail-price">
           <div className="detail-price-container">
             <span className="price-span">{activeCurrency} {getProductMainPrice(product, activeCurrency)}</span>
-            <span className="unit-span">  /piece</span>
+            <span className="unit-span"></span>
           </div>
-          <p className="detail-origin-price">
+          { /* <p className="detail-origin-price">
             <del>{activeCurrency} {getProductMainPrice(product, activeCurrency)} /piece</del>
-          </p>
+          </p> */ }
         </section>
 
         { /* <section className="ms-pd-lr12 ms-detail-discount">
@@ -113,6 +117,8 @@ export default React.createClass({
           </div>
         </section> */ }
 
+        {renderBrand()}
+
         <section className="ms-detail-sku ms-sku-row ms-color-second" onClick={this.props.toggleCart}>
           <p id="detail-sku-bar">
               Color
@@ -132,14 +138,14 @@ export default React.createClass({
           <button className="ms-button-primary" onClick={this.props.toggleCart}>Buy now&nbsp;</button>
         </section>
 
-        <section className="ms-detail-description ms-detail-row ms-color-second">
+        { /* <section className="ms-detail-description ms-detail-row ms-color-second">
           <Link to="/">
             <p>Description&nbsp;</p>
           </Link>
           <span className="ms-arrow">
             <span className="ms-icon icon-arrow-right"></span>
           </span>
-        </section>
+        </section> */ }
 
         { /* <section className="ms-color-second ms-mrg-b12 ms-feedback">
           <header className="ms-detail-row">
@@ -150,7 +156,7 @@ export default React.createClass({
           </header>
         </section> */ }
 
-        <section className="ms-detail-bp">
+        { /* <section className="ms-detail-bp">
           <section className="ms-detail-row">
             <p><Link to="/">Buyer Protection</Link></p>
             <span className="ms-arrow">
@@ -172,9 +178,7 @@ export default React.createClass({
               </p>
             </li>
           </ul>
-        </section>
-
-        {renderBrand()}
+        </section> */ }
 
         { /* <ProductDetailRelated /> */ }
 

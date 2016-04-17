@@ -100,7 +100,7 @@ export default React.createClass({
         </section> */ }
 
         <section className="ms-store-operation ms-store-flex">
-          <div className="ms-store-operation-item">
+          <div className="ms-store-operation-item" style={{ visibility: 'hidden'}}>
             <button className="ms-button-secondary ms-text-change-by-client" id="ms-store-contact-seller">
               Contact Seller
             </button>
