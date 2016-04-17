@@ -49,7 +49,7 @@ export default React.createClass({
                 </div>
                 <div className="ms-gallery-info">
                   <span className="ms-gallery-price">{activeCurrency} {getProductMainPrice(prod, activeCurrency)}</span>
-                  <span className="ms-gallery-discount">-31%</span>
+                  { /* <span className="ms-gallery-discount">-31%</span> */ }
                 </div>
               </Link>
             </div>
@@ -76,7 +76,7 @@ export default React.createClass({
           </div>
 
         </section>
-        <section className="ms-store-stats ms-store-flex">
+        { /* <section className="ms-store-stats ms-store-flex">
           <div className="ms-store-stats-item ms-store-flex-item">
             <a href="http://m.aliexpress.com/search.htm?sellerAdminSeq=224815799&amp;sortType=TC3_D">
               <p className="ms-store-stats-item-number">417</p>
@@ -97,7 +97,7 @@ export default React.createClass({
             <p className="ms-store-stats-item-number">65</p>
             <p className="ms-store-stats-item-name">Wish List</p>
           </div>
-        </section>
+        </section> */ }
 
         <section className="ms-store-operation ms-store-flex">
           <div className="ms-store-operation-item">
@@ -113,20 +113,18 @@ export default React.createClass({
             </button>
           </div>
         </section>
-        <section className="ms-space">
-        </section>
 
         <section className="ms-space">
         </section>
 
-        <section className="ms-store-searchinstore">
+        { /* <section className="ms-store-searchinstore">
           <div>
             <span className="ms-store-searchinstore-text">Search in Store</span>
             <i className="ms-icon icon-search-android ms-store-searchinstore-icon"></i>
           </div>
         </section>
         <section className="ms-space">
-        </section>
+        </section> */ }
 
         { /*
         <section className="ms-store-fixed-bar">
@@ -205,34 +203,6 @@ export default React.createClass({
         </section>
         <section className="ms-space">
         </section> */ }
-
-        <header className="ms-store-title">
-          <a href="http://m.aliexpress.com/store/customModule.htm?sellerAdminSeq=224815799&amp;moduleIndex=1" data-target="blank" title="2016 NEW ">
-            <span className="ms-store-title-text">2016 NEW  (<span className="ms-store-title-num">417</span>)</span>
-            <i className="ms-store-more ms-icon icon-more-android"></i>
-          </a>
-        </header>
-        <section className="ms-store-product-list">
-          <a href="http://m.aliexpress.com/store/customModule.htm?sellerAdminSeq=224815799&amp;moduleIndex=1" data-target="blank" title="2016 NEW ">
-            <div className="ms-store-product-wrap ms-store-flex">
-              <div className="ms-store-product-item ">
-                <div className="ms-store-product-inner">
-                  <img className="ms-store-product-pic" src="http://g03.a.alicdn.com/kf/HTB1wEHmLVXXXXXZXXXXq6xXFXXXx/2016-Summer-Womens-Short-Sleeve-White-Chiffon-Blouse-Shirt-Ladies-Elegant-Sexy-V-Neck-Blouses-Female.jpg_350x350.jpg" />
-                  <span className="ms-store-product-text">US $8.37</span>
-                </div>
-              </div>
-              <div className="ms-store-product-item ">
-                <div className="ms-store-product-inner">
-                  <img className="ms-store-product-pic" src="http://g02.a.alicdn.com/kf/HTB12Eu6LVXXXXafXpXXq6xXFXXXO/ZANZEA-2016-Summer-Women-Bohemia-Casual-Loose-Dress-Short-Sleeve-Irregular-Collar-Long-Party-Solid-Dress.jpg_350x350.jpg" />
-                  <span className="ms-store-product-text">US $9.76</span>
-                </div>
-              </div>
-            </div>
-          </a>
-        </section>
-        <section className="ms-space">
-        </section>
-
         <section className="ms-store-selling-table">
           <header className="ms-store-selling-table-title">
             <div className="ms-store-flex">

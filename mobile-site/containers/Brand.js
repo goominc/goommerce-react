@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import { ApiAction, setHeader } from 'redux/actions';
+import { ApiAction, toggleSignRegister, setHeader } from 'redux/actions';
 const { addFavoriteBrand } = ApiAction;
 import { ajaxReturnPromise } from 'commons/redux/util/ajaxUtil';
 
@@ -14,7 +14,9 @@ const Brand = React.createClass({
     setHeader: PropTypes.func.isRequired,
     searchProducts: PropTypes.func.isRequired,
     addFavoriteBrand: PropTypes.func.isRequired,
+    toggleSignRegister: PropTypes.func.isRequired,
     params: PropTypes.object.isRequired,
+    auth: PropTypes.object.isRequired,
     brandId: PropTypes.string.isRequired,
   },
   getInitialState() {
@@ -41,7 +43,7 @@ const Brand = React.createClass({
       offset: 0,
       fetchSize,
     }).then((res) => {
-      this.setState({ aggs: res.aggs, brand: res.brand, pagination: res.pagination,
+      this.setState({ aggs: res.aggs, brand: res.aggs.brands[0], pagination: res.pagination,
         products: res.products, currentCount: res.products.length, maxCount: res.pagination.total });
     });
   },
@@ -62,21 +64,30 @@ const Brand = React.createClass({
       this.setState({ products: mergeProducts, currentCount: mergeProducts.length });
     });
   },
+  wrapFavorite(id) {
+    const { auth } = this.props;
+    if (auth.bearer) {
+      return this.props.addFavoriteBrand(id);
+    }
+    this.props.toggleSignRegister(true, 'sign');
+    return null;
+  },
   render() {
     const { brand, products } = this.state;
     if (!brand) {
       return (<div />);
     }
     return (
-      <BrandPage brand={brand} products={products} addFavoriteBrand={this.props.addFavoriteBrand} />
+      <BrandPage brand={brand} products={products} addFavoriteBrand={this.wrapFavorite} />
       );
   },
 });
 
 export default connect(
   (state, ownProps) => ({
+    auth: state.auth,
     brandId: ownProps.params.brandId,
     searchProducts: (query) => ajaxReturnPromise(state.auth, 'get', `/api/v1/products/search?${$.param(query)}`),
   }),
-  { addFavoriteBrand, setHeader }
+  { addFavoriteBrand, toggleSignRegister, setHeader }
 )(Brand);
