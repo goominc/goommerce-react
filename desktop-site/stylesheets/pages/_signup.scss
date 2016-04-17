@@ -82,6 +82,7 @@
     $height: 30px;
     display: table;
     margin: 10px 0;
+    position: relative;
     width: 100%;
     label {
       color: #444;
@@ -137,6 +138,33 @@
       input {
         @include signup-input();
       }
+    }
+    .input-biz-image {
+      display: inline-block;
+      border: 1px solid #ddd;
+      border-radius: 1px;
+      font-size: 14px;
+      padding: 7px 15px;
+      vertical-align: top;
+      width: 220px;
+      input {
+        cursor: pointer;
+        height: 34px;
+        top: 0;
+        right: 0;
+        opacity: 0;
+        position: absolute;
+        width: 55px;
+      }
+    }
+    .biz-file-input {
+      background-image: url($base-url + '/main/signup-file-upload.png');
+      height: 32px;
+      position: absolute;
+      pointer-events: none;
+      right: 0;
+      top: 1px;
+      width: 55px;
     }
     .form-tel {
       @include signup-input();

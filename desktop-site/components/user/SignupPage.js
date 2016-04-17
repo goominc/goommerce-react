@@ -6,6 +6,7 @@ const _ = require('lodash');
 
 import { constants } from 'commons/utils/constants';
 import i18n from 'commons/utils/i18n';
+import uploadUtil from 'commons/utils/uploadUtil';
 
 export default React.createClass({
   propTypes: {
@@ -53,13 +54,21 @@ export default React.createClass({
             return;
           }
         }
-        if (this.state.activeAreaCodeIndex >= 0) {
-          user.data.areaCode = areaCodes[this.state.activeAreaCodeIndex].number;
+        if (!this.state.bizImageUrl) {
+          window.alert('사업자 등록증을 선택해 주세요');
+          return;
         }
-        if (user.data.firstName && user.data.lastName) {
-          user.name = `${user.data.lastName} ${user.data.firstName}`;
-        }
-        handleSignup(user);
+        const cb = (result) => {
+          user.data.bizImage = result;
+          if (this.state.activeAreaCodeIndex >= 0) {
+            user.data.areaCode = areaCodes[this.state.activeAreaCodeIndex].number;
+          }
+          if (user.data.firstName && user.data.lastName) {
+            user.name = `${user.data.lastName} ${user.data.firstName}`;
+          }
+          handleSignup(user);
+        };
+        uploadUtil.uploadFile(this.state.bizImageUrl, cb);
       };
       const onChange = (e, key) => {
         const nextState = {};
@@ -84,12 +93,28 @@ export default React.createClass({
           { name: t('returnAccountBank'), placeholder: t('returnAccountBankPlaceHolder'), key: 'data.returnAccountBank' }, // eslint-disable-line
           { name: t('returnAccountOwner'), placeholder: t('returnAccountOwnerPlaceHolder'), key: 'data.returnAccountOwner' }, // eslint-disable-line
         ];
+        const onSelectFile = (e) => {
+          const r = new FileReader();
+          const bizImageName = e.target.files[0].name;
+          r.onload = (event) => {
+            this.setState({ bizImageUrl: event.target.result, bizImageName });
+          };
+          r.readAsDataURL(e.target.files[0]);
+        };
         return (
           <div className="signup-form-section">
             <div className="title">
               사업자정보
             </div>
             {fields1.map(renderField)}
+            <div className="form-group">
+              <label><span className="required">*</span>사업자 등록증</label>
+              <div className="input-biz-image">
+                {this.state.bizImageName || '선택된 파일이 없습니다'}
+                <input type="file" accept="images/*" onChange={onSelectFile} />
+              </div>
+              <div className="biz-file-input"></div>
+            </div>
             {fields2.map(renderField)}
           </div>
         );
