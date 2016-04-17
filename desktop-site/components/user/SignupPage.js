@@ -8,6 +8,8 @@ import { constants } from 'commons/utils/constants';
 import i18n from 'commons/utils/i18n';
 import uploadUtil from 'commons/utils/uploadUtil';
 
+import InputPersonalInfo from './InputPersonalInfo';
+
 export default React.createClass({
   propTypes: {
     goBack: PropTypes.func,
@@ -15,22 +17,12 @@ export default React.createClass({
   },
   // only used when two-way binding is used. form input is that case
   getInitialState() {
-    return { activeAreaCodeIndex: 0 };
+    return {};
   },
   render() {
     const { goBack, handleSignup } = this.props;
     const t = (key) => i18n.get(`pcMain.signup.${key}`);
     const renderBody = () => {
-      const areaCodes = [
-        { img: `${constants.resourceRoot}/main/country-kor.png`, name: 'Korea', number: '+82' },
-        { img: `${constants.resourceRoot}/main/country-china.png`, name: 'China', number: '+86' },
-        { img: `${constants.resourceRoot}/main/country-china.png`, name: 'Hongkong', number: '+886' },
-        /*
-        { img: `${constants.resourceRoot}/main/country-england.png`, name: 'United Kingdom', number: '+214' },
-        { img: `${constants.resourceRoot}/main/country-usa.png`, name: 'Newyork', number: '+615' },
-        */
-        { img: `${constants.resourceRoot}/main/country-taiwan.png`, name: 'Taiwan', number: '+423' },
-      ];
       let cannotSignupMessage = null;
       const clickSignup = (e) => {
         e.preventDefault();
@@ -60,9 +52,6 @@ export default React.createClass({
         }
         const cb = (result) => {
           user.data.bizImage = result;
-          if (this.state.activeAreaCodeIndex >= 0) {
-            user.data.areaCode = areaCodes[this.state.activeAreaCodeIndex].number;
-          }
           if (user.data.firstName && user.data.lastName) {
             user.name = `${user.data.lastName} ${user.data.firstName}`;
           }
@@ -146,31 +135,6 @@ export default React.createClass({
         cannotSignupMessage = null;
         return null;
       };
-      // TODO area code none
-      const activeAreaCodeIndex = this.state.activeAreaCodeIndex || 0;
-      const toggleNumberDropdown = () => {
-        const target = $('.signup-form-section .form-tel .dropdown-box');
-        const display = target.css('display');
-        if (display === 'none') {
-          target.css('display', 'block');
-        } else {
-          target.css('display', 'none');
-        }
-      };
-      const renderAreaCodeDropdown = (ac, index) => {
-        if (index === activeAreaCodeIndex) {
-          return null;
-        }
-        const onClick = () => {
-          toggleNumberDropdown();
-          this.setState({ activeAreaCodeIndex: index });
-        };
-        return (
-          <div key={ac.name} onClick={onClick} className="dropdown-item">
-            <img src={ac.img} /> {ac.name} <span className="number">{ac.number}</span>
-          </div>
-        );
-      };
       return (
         <form onSubmit={clickSignup} className="signup-container">
           <img className="signup-progress-img" src={`${constants.resourceRoot}/main/signup-step2.png`} />
@@ -200,64 +164,12 @@ export default React.createClass({
               </div>
             </div>
           </div>
-          <div className="signup-form-section">
-            <div className="title">
-              개인정보
-            </div>
-            <div className="form-group">
-              <label><span className="required">*</span>성함</label>
-              <div className="input-lastname">
-                <input id="lastName" onChange={(e) => onChange(e, 'data.lastName')} type="text" placeholder="성" />
-              </div>
-              <div className="input-firstname">
-                <input id="firstName" onChange={(e) => onChange(e, 'data.firstName')} type="text" placeholder="이름" />
-              </div>
-            </div>
-            <div className="form-group">
-              <label><span className="required">*</span>연락처</label>
-              <div className="form-tel">
-                <div className="area-code" onClick={toggleNumberDropdown}>
-                  <img src={areaCodes[activeAreaCodeIndex].img} /> {areaCodes[activeAreaCodeIndex].number}
-                  <div className="arrow-down"></div>
-                </div>
-                <input id="tel" onChange={(e) => onChange(e, 'data.tel')} type="text" placeholder="연락처를 입력해 주세요" />
-                <div className="dropdown-box">
-                  {areaCodes.map(renderAreaCodeDropdown)}
-                </div>
-              </div>
-            </div>
-          </div>
+          <InputPersonalInfo onChange={onChange} />
           {renderBizInfo()}
           <div className="button-line">
             <button type="reset" className="button-back" onClick={goBack}>뒤로</button>
             <button type="submit" className="button-next">다음</button>
           </div>
-          {/*
-           <form onSubmit={clickSignup} className="signup-form-body">
-           <div className="form-group">
-           <div className="field-label">Email <span className="required"> * </span></div>
-           <input type="email" placeholder="enter email"
-           value={this.state.email}
-           onChange={(e) => this.setState({ email: e.target.value })}
-           />
-           </div>
-           <div className="form-group">
-           <div className="field-label">Password <span className="required"> * </span></div>
-           <input type="password" placeholder="password"
-           value={this.state.password}
-           onChange={(e) => this.setState({ password: e.target.value })}
-           />
-           </div>
-           <div className="form-group">
-           <div className="field-label">Password Confirm <span className="required"> * </span></div>
-           <input type="password" placeholder="password(again)"
-           value={this.state.passwordConfirm}
-           onChange={(e) => this.setState({ passwordConfirm: e.target.value })}
-           />
-           </div>
-           <button className="next-button" type="submit">Next</button>
-           </form>
-           */}
         </form>
       );
     };
