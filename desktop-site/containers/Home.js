@@ -127,10 +127,15 @@ const Home = React.createClass({
         }
         return (
           <Link key={`${c.id}-${index}`} to={`/categories/${c.id}`}>
-            <div className={className} onMouseEnter={onMouseEnter}>{c.name[activeLocale]}</div>
+            <div className={className}
+              onMouseEnter={onMouseEnter}
+            >
+              {c.name[activeLocale]}
+            </div>
           </Link>
         );
       };
+      let categoryHoverBox = null;
       const hoverItems = [];
       if (this.state.hoverCategory) {
         (this.state.hoverCategory.children || []).forEach((child, index) => {
@@ -138,18 +143,26 @@ const Home = React.createClass({
             return;
           }
           hoverItems.push(
-            <Link to={`/categories/${child.id}`}><div key={`depth1-${child.id}`} className="title-item">{child.name[activeLocale]}</div></Link> // eslint-disable-line
+            <Link key={child.id} to={`/categories/${child.id}`}><div key={`depth1-${child.id}`} className="title-item">{child.name[activeLocale]}</div></Link> // eslint-disable-line
           );
           (child.children || []).forEach((child2, index2) => {
             if (index2 >= 3) {
               return;
             }
             hoverItems.push(
-              <Link to={`/categories/${child2.id}`}><div key={`depth2-${child2.id}`} className="sub-item">{child2.name[activeLocale]}</div></Link> // eslint-disable-line
+              <Link key={child2.id} to={`/categories/${child2.id}`}><div key={`depth2-${child2.id}`} className="sub-item">{child2.name[activeLocale]}</div></Link> // eslint-disable-line
             );
           });
         });
-      }
+        categoryHoverBox = (
+          <div className="category-hover-box"
+            onMouseEnter={() => this.setState({ cursor: 'categoryHover' })}
+            onMouseLeave={() => this.setState({ cursor: 'none' })}
+          >
+            {hoverItems}
+          </div>
+        );
+      };
       return (
         <div className="category-frame">
           <div className="category-bar">
@@ -159,71 +172,7 @@ const Home = React.createClass({
           <div className="category-main">
             {categories.map(renderCategory)}
           </div>
-          <div className="category-hover-box"
-            onMouseEnter={() => this.setState({ cursor: 'categoryHover' })}
-            onMouseLeave={() => this.setState({ cursor: 'none' })}
-          >
-            {hoverItems}
-          </div>
-        </div>
-      );
-    };
-    const renderCategoriesOld = () => {
-      const { main_categories } = this.props;
-      if (!main_categories) {
-        return (<div></div>);
-      }
-      const renderHoverCategory = () => {
-        const { hoverCategory } = this.state;
-        if (hoverCategory) {
-          const children = hoverCategory.children || [];
-          // FIXME
-          return (
-            <div className="category-hover-box">
-              {children.map((c, i) => (
-                <div className="child-box" key={i}>
-                  <Link to={`/categories/${c.id}`}>
-                    <div className="child-item"><b>{c.name[activeLocale]}</b></div>
-                  </Link>
-                  <div className="separator"></div>
-                  {(c.children || []).map((gc, gi) => (
-                    <Link key={gi} to={`/categories/${gc.id}`}>
-                      <div className="child-item">{gc.name[activeLocale]}</div>
-                    </Link>
-                  ))}
-                </div>
-              ))}
-            </div>
-          );
-        }
-        return '';
-      };
-      const topCategories = main_categories;
-      const renderCategoryItem = (c, i) => {
-        let className = 'category-dropdown-item';
-        if (i === 0) {
-          className += ' top-item';
-        } else if (i === topCategories.length - 1) {
-          className += ' bottom-item';
-        }
-        const handleMouseEnter = (e) => {
-          $('.category-dropdown-item').removeClass('active');
-          $(e.target).addClass('active');
-          this.setState({ hoverCategory: c });
-        };
-        return (
-          <Link key={i} to={`/categories/${c.id}`}>
-            <div
-              className={className}
-              onMouseEnter={handleMouseEnter}
-            >{c.name[activeLocale]}</div>
-          </Link>
-        );
-      };
-      return (
-        <div className="category-dropdown-box">
-          {topCategories.map(renderCategoryItem)}
-          {renderHoverCategory()}
+          {categoryHoverBox}
         </div>
       );
     };
