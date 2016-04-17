@@ -3,7 +3,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-import MyPageLeftbar from 'components/mypage/MyPageLeftbar';
 import FavoriteBrandPage from 'components/mypage/FavoriteBrandPage';
 
 const FavoriteBrand = React.createClass({
@@ -16,7 +15,6 @@ const FavoriteBrand = React.createClass({
   render() {
     return (
       <div className="mypage-contents-container">
-        <MyPageLeftbar />
         <FavoriteBrandPage {...this.props} deleteFavoriteBrand={this.context.ApiAction.deleteFavoriteBrand} />
       </div>
     );
