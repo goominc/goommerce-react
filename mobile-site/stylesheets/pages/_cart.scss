@@ -287,7 +287,7 @@
 .shopcart-list .product .pi-details .pi-details-pic a {
   position: relative;
   width: 90px;
-  height: 90px;
+  // height: 90px;
   display: table-cell;
   vertical-align: middle;
   text-align: center;
@@ -295,7 +295,7 @@
 }
 .pi-details-pic a img {
   width: 100%;
-  height: 100%;
+  height: auto;
 }
 .shopcart-list .product .pi-details .pi-details-desc {
   margin-left: -90px;
