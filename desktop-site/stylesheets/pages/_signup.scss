@@ -131,10 +131,8 @@
       }
     }
     .input-firstname {
-      display: inline-block;
-      margin-left: $margin-20;
+      display: table-cell;
       vertical-align: top;
-      width: 174px; // TODO remove magic number...
       input {
         @include signup-input();
       }

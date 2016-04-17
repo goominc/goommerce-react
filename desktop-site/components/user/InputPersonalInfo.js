@@ -1,12 +1,14 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
 import React, { PropTypes } from 'react';
+import _ from 'lodash';
 
 import { constants } from 'commons/utils/constants';
 
 export default React.createClass({
   propTypes: {
-    onChange: PropTypes.func,
+    auth: PropTypes.object,
+    onChange: PropTypes.func.isRequired,
   },
   getInitialState() {
     return { activeAreaCodeIndex: 0 };
@@ -15,7 +17,7 @@ export default React.createClass({
     this.props.onChange({ target: { value: '+82' } }, 'data.areaCode');
   },
   render() {
-    const { onChange } = this.props;
+    const { auth, onChange } = this.props;
     const areaCodes = [
       { img: `${constants.resourceRoot}/main/country-kor.png`, name: 'Korea', number: '+82' },
       { img: `${constants.resourceRoot}/main/country-china.png`, name: 'China', number: '+86' },
@@ -57,22 +59,31 @@ export default React.createClass({
           개인정보
         </div>
         <div className="form-group">
-          <label><span className="required">*</span>성함</label>
+          <label><span className="required">{auth ? '' : '*'}</span>성함</label>
           <div className="input-lastname">
-            <input id="lastName" onChange={(e) => onChange(e, 'data.lastName')} type="text" placeholder="성" />
+            <input id="lastName" onChange={(e) => onChange(e, 'data.lastName')}
+              defaultValue={auth ? _.get(auth, 'data.lastName') : ''}
+              type="text" placeholder="성"
+            />
           </div>
           <div className="input-firstname">
-            <input id="firstName" onChange={(e) => onChange(e, 'data.firstName')} type="text" placeholder="이름" />
+            <input id="firstName" onChange={(e) => onChange(e, 'data.firstName')}
+              defaultValue={auth ? _.get(auth, 'data.firstName') : ''}
+              type="text" placeholder="이름"
+            />
           </div>
         </div>
         <div className="form-group">
-          <label><span className="required">*</span>연락처</label>
+          <label><span className="required">{auth ? '' : '*'}</span>연락처</label>
           <div className="form-tel">
             <div className="area-code" onClick={toggleNumberDropdown}>
               <img src={areaCodes[activeAreaCodeIndex].img} /> {areaCodes[activeAreaCodeIndex].number}
               <div className="arrow-down"></div>
             </div>
-            <input id="tel" onChange={(e) => onChange(e, 'data.tel')} type="text" placeholder="연락처를 입력해 주세요" />
+            <input id="tel" onChange={(e) => onChange(e, 'data.tel')}
+              defaultValue={auth ? _.get(auth, 'data.tel') : ''}
+              type="text" placeholder="연락처를 입력해 주세요"
+            />
             <div className="dropdown-box">
               {areaCodes.map(renderAreaCodeDropdown)}
             </div>

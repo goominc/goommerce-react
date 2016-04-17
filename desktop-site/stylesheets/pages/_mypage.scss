@@ -1,0 +1,45 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to 'xxx' page.
+// -----------------------------------------------------------------------------
+
+.user-info-container {
+  background-color: #fff;
+  margin: 0 auto 30px auto;
+  padding: 0 50px;
+  width: 550px;
+  /*
+  .title {
+    border-bottom: 1px solid #aaa;
+    font-size: 16px;
+    font-weight: 400;
+    padding-top: 30px;
+    margin-bottom: $margin-15;
+  }
+  */
+  .row {
+    margin: 5px 0;
+    width: 100%;
+    @mixin cell-common() {
+      display: inline-block;
+      height: 35px;
+      line-height: 35px;
+      vertical-align: top;
+    }
+    .label {
+      @include cell-common();
+      font-size: 13px;
+      width: 100px;
+    }
+    .control {
+      @include cell-common();
+      width: 350px;
+      input {
+        border: 0;
+        font-size: 14px;
+        height: 100%;
+        padding: 0 $margin-15;
+        width: 100%;
+      }
+    }
+  }
+}

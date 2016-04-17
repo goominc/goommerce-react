@@ -148,3 +148,8 @@
     }
   }
 }
+
+input[type="text"][disabled], input[type="text"][readonly] {
+  background-color: #ddd;
+  opacity: 1;
+}

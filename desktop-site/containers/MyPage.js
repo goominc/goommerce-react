@@ -3,9 +3,9 @@
 import React from 'react';
 
 import MyPageHeader from 'components/mypage/MyPageHeader';
-import MyPageLeftbar from 'components/mypage/MyPageLeftbar';
 import MyOrderContainer from 'containers/MyOrderContainer';
 import WishListContainer from 'containers/WishListContainer';
+import UserInfoContainer from 'containers/UserInfoContainer';
 import Reorder from 'containers/Reorder';
 import FavoriteBrandContainer from 'containers/FavoriteBrandContainer';
 
@@ -16,9 +16,17 @@ export default React.createClass({
     let menuName = _.get(this.props, 'params.menuName');
     const menus = [
       { key: 'pcMain.myMenu.myOrders', menuName: 'my_orders' },
+      { key: 'pcMain.myMenu.userInfo', menuName: 'user_info' },
       { key: 'word.wishList', menuName: 'wish_list' },
       { key: 'word.favoriteBrand', menuName: 'favorite_brands' },
       { key: 'word.reorder', menuName: 'reorder' },
+    ];
+    const menuComponents = [
+      <MyOrderContainer />,
+      <UserInfoContainer />,
+      <WishListContainer />,
+      <FavoriteBrandContainer />,
+      <Reorder />,
     ];
     let menuIndex = 0;
     for (let i = 1; i < menus.length; i++) {
@@ -29,12 +37,6 @@ export default React.createClass({
     }
     // 2016. 04. 17. [heekyu] handle when default
     menuName = menus[menuIndex].menuName;
-    const menuComponents = [
-      <MyOrderContainer />,
-      <WishListContainer />,
-      <FavoriteBrandContainer />,
-      <Reorder />,
-    ];
     return (
       <div>
         <MyPageHeader menus={menus} menuName={menuName} />

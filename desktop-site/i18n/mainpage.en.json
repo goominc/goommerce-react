@@ -3,7 +3,8 @@
     "myMenu": {
       "myLinkshops": "My Linkshops",
       "myOrders": "My Orders",
-      "reorder": "Reorder"
+      "reorder": "Reorder",
+      "userInfo": "User Info"
     },
     "search": {
       "placeHolder": "I'm shopping for..."
