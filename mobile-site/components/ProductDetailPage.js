@@ -23,10 +23,15 @@ export default React.createClass({
     addCart: PropTypes.func.isRequired,
     buyNow: PropTypes.func.isRequired,
     addWish: PropTypes.func.isRequired,
+    addFavorite: PropTypes.func.isRequired,
   },
   contextTypes: {
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
+  },
+  handleFavorite(brandId) {
+    this.props.addFavorite(brandId);
+    $('.add-favorite').addClass('active');
   },
   render() {
     const { product, images, showCart, variants, colors, sizes,
@@ -52,10 +57,8 @@ export default React.createClass({
               <img src="http://i01.i.aliimg.com/wimg/feedback/icon/25-s.gif" className="store-level" />
               <span className="store-postive">94.7% positive feedback the past</span>
             </p> */ }
-            <span className="ms-arrow">
-              <span className="ms-icon icon-arrow-right"></span>
-            </span>
           </Link>
+          <div className="add-favorite" onClick={() => this.handleFavorite(product.brand.id)}>단골 브랜드</div>
         </section>
         );
       }

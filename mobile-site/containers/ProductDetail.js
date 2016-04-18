@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { ApiAction, setHeader, toggleProductCart,
          setProductColor, setProductSize, toggleSignRegister } from 'redux/actions';
-const { loadProduct, addWish, addCartProduct, createOrder } = ApiAction;
+const { loadProduct, addWish, addFavoriteBrand, addCartProduct, createOrder } = ApiAction;
 
 import ProductDetailPage from 'components/ProductDetailPage';
 
@@ -12,6 +12,7 @@ const ProductDetail = React.createClass({
     setHeader: PropTypes.func.isRequired,
     loadProduct: PropTypes.func.isRequired,
     addWish: PropTypes.func.isRequired,
+    addFavoriteBrand: PropTypes.func.isRequired,
     addCartProduct: PropTypes.func.isRequired,
     createOrder: PropTypes.func.isRequired,
     toggleProductCart: PropTypes.func.isRequired,
@@ -129,6 +130,14 @@ const ProductDetail = React.createClass({
     this.props.toggleSignRegister(true, 'sign');
     return null;
   },
+  wrapFavorite(brandId) {
+    const { auth } = this.props;
+    if (auth.bearer) {
+      return this.props.addFavoriteBrand(brandId);
+    }
+    this.props.toggleSignRegister(true, 'sign');
+    return null;
+  },
   buildImages() {
     const { product } = this.state;
     const images = [];
@@ -161,7 +170,7 @@ const ProductDetail = React.createClass({
         currentColor={this.props.color} currentSize={this.props.size}
         currentVariant={this.props.variant} showCart={this.props.showCart} toggleCart={this.props.toggleProductCart}
         setColor={this.props.setProductColor} setSize={this.props.setProductSize} addCart={this.wrapAddCart}
-        buyNow={this.wrapOrder} addWish={this.wrapWish}
+        buyNow={this.wrapOrder} addWish={this.wrapWish} addFavorite={this.wrapFavorite}
       />
       );
   },
@@ -172,6 +181,6 @@ export default connect(
     showCart: state.pageProductDetail.showCart,
    color: state.pageProductDetail.selectColor, size: state.pageProductDetail.selectSize,
    variant: state.pageProductDetail.selectVariant }),
-  { loadProduct, addWish, addCartProduct, createOrder,
+  { loadProduct, addWish, addFavoriteBrand, addCartProduct, createOrder,
     setHeader, toggleProductCart, setProductColor, setProductSize, toggleSignRegister }
 )(ProductDetail);
