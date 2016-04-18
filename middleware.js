@@ -75,8 +75,8 @@ module.exports = (opts) => {
             <title>${config.title}</title>
             <link rel="stylesheet" href="${path('app.css')}">
             <link rel="stylesheet" href="${cdn}/vendor/owl.carousel.css">
-            <link href='//s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/font/noto_sans.css' rel='stylesheet' type='text/css'>
-	        <link href='//s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/font/roboto.css' rel='stylesheet' type='text/css'>
+            <link href="//fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet" type="text/css">
+	        <link href="//fonts.googleapis.com/css?family=Roboto:400,500,700|Roboto+Condensed:400,700" rel="stylesheet" type="text/css">
           </head>
           <body>
             <div id='root'></div>
