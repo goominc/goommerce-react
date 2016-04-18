@@ -84,7 +84,7 @@ module.exports = (opts) => {
             <script src="${cdn}/vendor/owl.carousel.min.js"></script>
             <script>window.__INITIAL_STATE__ = ${serialize(initialState)};</script>
             <script src="${path('app.bundle.js')}"></script>
-            <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+            <script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>
           </body>
         </html>
       `);
