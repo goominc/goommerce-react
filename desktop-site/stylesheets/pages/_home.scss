@@ -293,19 +293,21 @@ $main-banner-height: 400px;
   background-color: #fff;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
   display: block;
-  height: 520px;
+  height: 481px;
   margin-bottom: 50px;
   width: 100%;
   .left-big {
-    cursor: pointer;
     display: inline-block;
     height: 100%;
     padding: 10px;
     position: relative;
+    /*
     &:hover {
       box-shadow: 0 3px 6px 3px rgba(51, 51, 51, 0.3);
+      cursor: pointer;
       z-index: 100;
     }
+    */
     .text-bar {
       background-color: rgba(255, 130, 0, 0.8);
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
@@ -342,8 +344,8 @@ $main-banner-height: 400px;
       box-sizing: content-box;
       cursor: pointer;
       display: inline-block;
-      height: 240px;
-      padding: 10px;
+      height: 210px;
+      padding: 15px 10px;
       vertical-align: top;
       width: 199px;
       &:hover {

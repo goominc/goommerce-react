@@ -95,25 +95,21 @@ const Home = React.createClass({
       );
     };
     const trendPicks = [
-      { img: `${constants.resourceRoot}/banner/trandpick1.jpg`, name: '엘루다 포스트 맨투맨', price: 19800 },
-      { img: `${constants.resourceRoot}/banner/trandpick2.jpg`, name: '메르시 꽃무니 맨투맨', price: 19800 },
-      { img: `${constants.resourceRoot}/banner/trandpick3.jpg`, name: '신화 핑크 맨투맨', price: 19800 },
-      { img: `${constants.resourceRoot}/banner/trandpick4.jpg`, name: '신화 민트 맨투맨', price: 19800 },
-      { img: `${constants.resourceRoot}/banner/trandpick5.jpg`, name: '파풀러 하늘색 브이넥', price: 19800 },
-      { img: `${constants.resourceRoot}/banner/trandpick6.jpg`, name: '사치 미키 맨투맨', price: 19800 },
-      { img: `${constants.resourceRoot}/banner/trandpick7.jpg`, name: '사치 인디언 맨투맨', price: 19800 },
-      { img: `${constants.resourceRoot}/banner/trandpick8.jpg`, name: '네버비 일러스트 맨투맨', price: 19800 },
+      { img: `${constants.resourceRoot}/banner/trandpick1.jpg`, link: '/products/87299' },
+      { img: `${constants.resourceRoot}/banner/trandpick2.jpg`, link: '/products/87299' },
+      { img: `${constants.resourceRoot}/banner/trandpick3.jpg`, link: '/products/84874' },
+      { img: `${constants.resourceRoot}/banner/trandpick4.jpg`, link: '/products/91472' },
+      { img: `${constants.resourceRoot}/banner/trandpick5.jpg`, link: '/products/90831' },
+      { img: `${constants.resourceRoot}/banner/trandpick6.jpg`, link: '/products/89069' },
+      { img: `${constants.resourceRoot}/banner/trandpick7.jpg`, link: '/products/93900' },
+      { img: `${constants.resourceRoot}/banner/trandpick8.jpg`, link: '/products/90827' },
     ];
     const renderTrendPickItem = (trend, index) => {
       const className = index < 4 ? 'trend-top' : 'trend-bottom';
       return (
-        <div key={trend.name} className={className}>
+        <Link to={trend.link} key={`trend${index}`} className={className}>
           <img src={trend.img} />
-          <div className="product-name">
-            {trend.name}<br />
-            ￦<span className="price">{trend.price}</span>
-          </div>
-        </div>
+        </Link>
       );
     };
     return (
@@ -163,15 +159,11 @@ const Home = React.createClass({
               </div>
             </div>
             <div className="home-building-title">
-              <strong>트렌드</strong> 컬렉션
+              <strong>트렌드</strong> 톡
             </div>
             <div className="home-trend-container">
               <div className="left-big">
                 <img src={`${constants.resourceRoot}/banner/trandpick.jpg`} />
-                <div className="text-bar">
-                  <strong>티셔츠 / 맨투맨</strong>
-                  <span>간절기 데일리 아이템</span>
-                </div>
               </div>
               <div className="trend-right">
                 {trendPicks.map(renderTrendPickItem)}
