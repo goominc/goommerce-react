@@ -14,7 +14,7 @@ export default React.createClass({
     const { address, editAddress, isActive, onClickMe } = this.props;
     const renderEditButton = () => {
       if (isActive) {
-        return (<div className="edit-box"><a onClick={() => editAddress(address)}>Edit</a></div>);
+        return (<a className="edit-box" onClick={() => editAddress(address)}>정보수정</a>);
       }
       return null;
     };
@@ -40,6 +40,7 @@ export default React.createClass({
         <div className="title title-address">
           <input type="radio" checked={isActive} onClick={onClick} readOnly />
           {_.get(address, 'detail.alias') || '주소'}
+          {renderEditButton()}
         </div>
         <div className="add-address-box">
           {fields.map((field) => (
@@ -49,27 +50,6 @@ export default React.createClass({
             </div>
           ))}
         </div>
-        {/*
-         <div onClick={onClick} className={`checkout-address-box${isActive ? ' selected' : ''}`}>
-         <div className="field-box">
-         <div className="field-label">name</div>
-         <div className="field-text">{address.detail.name}</div>
-         </div>
-         <div className="field-box">
-         <div className="field-label">C.C.</div>
-         <div className="field-text">{address.countryCode}</div>
-         </div>
-         <div className="field-box">
-         <div className="field-label">A.D.</div>
-         <div className="field-text">{address.detail.streetAddress}</div>
-         </div>
-         <div className="field-box">
-         <div className="field-label"></div>
-         <div className="field-text">{address.detail.city}</div>
-         </div>
-         {renderEditButton()}
-         </div>
-         */}
       </div>
     );
   },
