@@ -5,7 +5,7 @@
 .user-info-container {
   background-color: #fff;
   margin: 0 auto 30px auto;
-  padding: 0 50px;
+  padding: 10px 50px 20px 50px;
   width: 550px;
   /*
   .title {
@@ -40,6 +40,32 @@
         padding: 0 $margin-15;
         width: 100%;
       }
+    }
+  }
+
+  .button-line {
+    $height: 48px;
+    margin: 20px 0;
+    text-align: center;
+    width: 100%;
+    @mixin button() {
+      border: 0;
+      border-radius: 5px;
+      color: #fff;
+      display: inline-block;
+      font-size: 16px;
+      height: $height;
+      line-height: $height;
+      margin: 0 $margin-15;
+      width: 96px;
+    }
+    .button-modify {
+      @include button();
+      @include button-default-styles();
+    }
+    .button-cancel {
+      @include button();
+      background-color: #aaa;
     }
   }
 }

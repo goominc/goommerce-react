@@ -1,9 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import _ from 'lodash';
 
-import { get, pick } from 'lodash';
-
-import brandUtil from 'commons/utils/brandUtil';
 import i18n from 'commons/utils/i18n';
 
 export default React.createClass({
@@ -36,7 +34,7 @@ export default React.createClass({
       return `(${aggs.categories[categoryId].doc_count})`;
     };
 
-    const categoryLink = (categoryId) => genLink(Object.assign(pick(this.props, ['query', 'sorts']), { categoryId }));
+    const categoryLink = (categoryId) => genLink(Object.assign(_.pick(this.props, ['query', 'sorts']), { categoryId }));
     const renderTop = (root) => {
       if (!root.isActive) {
         return null;
@@ -108,7 +106,7 @@ export default React.createClass({
   render() {
     return (
       <div className="product-list-left-box">
-        <Link to="/categories/all" className="title">카테고리</Link>
+        <Link to="/categories/all" className="title">{i18n.get('word.category')}</Link>
         {this.renderCategories()}
       </div>
     );

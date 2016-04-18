@@ -38,6 +38,16 @@ export function signup(params) {
   });
 }
 
+export function updateUser(params) {
+  return createFetchAction({
+    type: 'LOGIN',
+    endpoint: '/api/v1/users/self',
+    method: 'put',
+    body: params,
+    transform: ({ data }) => ({ auth: data }),
+  });
+}
+
 export function forgotPassword({ email, resetBaseUrl }) {
   return createFetchAction({
     type: 'FORGOT_PASSWORD',
