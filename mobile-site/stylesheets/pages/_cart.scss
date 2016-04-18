@@ -325,10 +325,11 @@
 }
 .shopcart-list .product .pi-details .pi-details-desc .pi-details-desc-row .details-title {
   margin-bottom: 4px;
-  font-size: 12px;
+  font-size: 13px;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis
+  text-overflow: ellipsis;
+  color: black;
 }
 .shopcart-list .product .pi-details .pi-details-desc .pi-details-desc-row .details-title .logfor20151111 {
   background-color: #F44336;
@@ -356,9 +357,10 @@
   line-height: 18px
 }
 .shopcart-list .product .pi-details .pi-details-desc .pi-details-desc-row .details-price .sell-price {
-  float: right;
-  font-size: 15px;
-  color: #333;
+  // float: right;
+  font-size: 14px;
+  font-weight: 700;
+  color: #e62e04;
   height: 18px;
   line-height: 18px
 }
@@ -371,7 +373,14 @@
   line-height: 18px
 }
 .shopcart-list .product .pi-details .pi-details-desc .pi-details-desc-row .details-sku {
-  font-size: 11px
+  font-size: 13px;
+  margin-bottom: 4px;
+  color: #999;
+}
+.shopcart-list .product .pi-details .pi-details-desc .pi-details-desc-row .details-variant {
+  font-size: 13px;
+  margin-bottom: 20px;
+  color: #666;
 }
 .shopcart-list .product .pi-quantity .pre {
   width: 84px
@@ -628,3 +637,7 @@ input.ui-button {
   color: #333
 }
 
+.empty-cart {
+  min-height: 400px;
+  background-color: #eee;
+}

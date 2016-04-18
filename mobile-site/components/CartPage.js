@@ -54,7 +54,7 @@ export default React.createClass({
     }
   },
   renderCart() {
-    const { cart } = this.props;
+    const { cart, checkBuy } = this.props;
     const { activeLocale, activeCurrency } = this.context;
     // const productVariants = orderUtil.getProductVariantsFromCart(cart);
 
@@ -83,6 +83,9 @@ export default React.createClass({
                   const deleteProduct = () => {
                     this.props.deleteCartProduct(productVariant.productVariant.id);
                   };
+                  const skuIdx = productVariant.productVariant.sku.indexOf('-');
+                  const skuStr = productVariant.productVariant.sku.substr(0, skuIdx);
+                  const variantStr = productVariant.productVariant.sku.substr(skuIdx + 1);
 
                   return (
                     <li className="p-24" key={productVariant.productVariant.id}>
@@ -99,6 +102,8 @@ export default React.createClass({
                                 {productUtil.getName(product.product)}
                               </div>
                             </Link>
+                            <div className="details-sku ellipsis-multiple">{skuStr}</div>
+                            <div className="details-variant ellipsis-multiple">{variantStr}</div>
                             <div className="details-price clearfix">
                               <div>
                                 <span className="sell-price">
@@ -106,7 +111,6 @@ export default React.createClass({
                                 </span>
                               </div>
                             </div>
-                            <div className="details-sku ellipsis-multiple">{productVariant.productVariant.sku}</div>
                           </div>
                         </div>
                       </div>
@@ -205,19 +209,27 @@ export default React.createClass({
                 </dd>
               </dl>
             </div> */ }
+            <div className="check-forbuy">
+              <span className={`checkbox ${checkBuy ? 'checked' : ''}`} onClick={this.props.toggleBuy}></span>
+              <p className="check-title">주문동의</p>
+              <p className="check-desc">환불불가 및 품절상품의 경우 배송되지 않을 수 있습니다.</p>
+            </div>
           </article>
         );
       });
     } // end if cart.brand
-    return null;
+    return (
+      <div className="empty-cart">
+      </div>
+      );
   },
 
   render() {
-    const { cart, checkBuy } = this.props;
+    const { cart } = this.props;
     const { activeLocale, activeCurrency } = this.context;
     if (!cart || !cart.total) {
       return (
-          <div />
+          <div className="empty-cart" />
         );
     }
 
@@ -227,11 +239,7 @@ export default React.createClass({
           <span className="ship-to" id="ship-to">South Korea<i className="ms-icon icon-arrow-right fr"></i></span>
         </div> */ }
         {this.renderCart()}
-        <div className="check-forbuy">
-          <span className={`checkbox ${checkBuy ? 'checked' : ''}`} onClick={this.props.toggleBuy}></span>
-          <p className="check-title">주문동의</p>
-          <p className="check-desc">환불불가 및 품절상품의 경우 배송되지 않을 수 있습니다.</p>
-        </div>
+
         <article id="seller-cart-buyall" className="seller-products">
           { /* <div className="seller-cart-buyall seller-costs bt p-24 pb-24">
             <dl className="seller-costs-subtotal mt-24 clearfix">
