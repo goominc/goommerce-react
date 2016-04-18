@@ -46,21 +46,9 @@ export default React.createClass({
         </div>
         <CartProduct {...this.props} brands={cart.brands} canUpdate />
         <div className="cart-payment-container">
-          <div className="title">결제 정보</div>
-          <div className="row">
-            <div className="label">상품금액</div>
-            <div className="control">{formatPrice}</div>
-          </div>
-          <div className="row">
-            <div className="label">부가세</div>
-            <div className="control">{numberUtil.formatPrice(total[activeCurrency] / 10, activeCurrency, currencySign)}</div>
-          </div>
-          <div className="row">
-            <div className="label">배송비</div>
-            <div className="control">주문 시 계산됩니다</div>
-          </div>
+          <div className="title">총 금액</div>
           <div className="total-row">
-            <div className="label">결제금액</div>
+            <div className="label">상품금액</div>
             <div className="control">{formatPrice}</div>
           </div>
           {renderBuyButton()}
