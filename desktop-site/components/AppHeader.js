@@ -177,7 +177,6 @@ export default React.createClass({
         <Link key="app-header-signup" to="/accounts/signup">
           <div className="helper-menu-item">{i18n.get('word.register')}</div>
         </Link>,
-        <div key="app-header-customer-center" className="helper-menu-item">{i18n.get('word.customerCenter')}</div>,
       ];
     };
 
