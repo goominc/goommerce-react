@@ -29,88 +29,6 @@ const Home = React.createClass({
   },
   render() {
     const { activeLocale } = this.props;
-    const renderCurationTopic = () => {
-      const linkItems = [
-        { link: '/products', text: 'Fall Dresses', colorNum: 0 },
-        { link: '/products', text: 'Casual Dresses', colorNum: 1 },
-        { link: '/products', text: 'Cardigans', colorNum: 0 },
-        { link: '/products', text: 'Summer Dresses', colorNum: 1 },
-        { link: '/products', text: 'Blazers', colorNum: 0 },
-        { link: '/products', text: 'Jumpsuits', colorNum: 0 },
-        { link: '/products', text: 'Blouses & Shirts', colorNum: 1 },
-        { link: '/products', text: 'T-Shirts', colorNum: 0 },
-        { link: '/products', text: 'Sunglasses', colorNum: 1 },
-        { link: '/products', text: 'Scarves', colorNum: 0 },
-        { link: '/products', text: 'Hair Accessories', colorNum: 0 },
-      ];
-      const renderItem = (item) => (
-        <a href={item.link} key={item.text} className={`left-category-item item-color-${item.colorNum}`}>
-          {item.text}
-        </a>
-      );
-      const slideItems = [
-        { img: 'https://img.alicdn.com/tps/TB1Lqf1LFXXXXbVXpXXXXXXXXXX-480-550.jpg' },
-      ];
-      const renderSlideItem = (item) => (
-        <a key={item.img} href="/products">
-          <div className="img-wrap">
-            <img src={item.img} />
-          </div>
-        </a>
-      );
-      const smallBanners = [
-        {
-          title: 'New in 2016 Spring',
-          subTitle: 'For Her',
-          img: 'https://img.alicdn.com/tps/TB1oh4kLFXXXXcqXXXXXXXXXXXX-180-195.png',
-        },
-        {
-          title: 'New in 2016 April',
-          subTitle: 'Vintage Style',
-          img: 'https://img.alicdn.com/tps/TB1gdcLLpXXXXbpXpXXXXXXXXXX-180-195.jpg',
-        },
-        {
-          title: 'New in 2015 Spring',
-          subTitle: 'For You',
-          img: 'https://img.alicdn.com/tps/TB1n15zKXXXXXcLXVXXXXXXXXXX-180-195.jpg',
-        },
-        {
-          title: 'New in 2014 Spring',
-          subTitle: 'For Me',
-          img: 'https://img.alicdn.com/tps/TB1LYMJLpXXXXbxXpXXXXXXXXXX-180-195.jpg',
-        },
-      ];
-      const renderSmallBanner = (item) => (
-        <a key={item.title} href="/products">
-          <div className="small-banner hover-highlight">
-            <div className="title">{item.title}</div>
-            <div className="sub-title">{item.subTitle}</div>
-            <div className="img-wrap">
-              <img src={item.img} />
-            </div>
-          </div>
-        </a>
-      );
-      return (
-        <div className="curation-topic-box">
-          <div className="left-category">
-            <div className="left-category-title hover-highlight">WOMENS CLOTHING</div>
-            {linkItems.map((item) => renderItem(item))}
-          </div>
-          <div className="center-slide hover-highlight">
-            {slideItems.map((item) => renderSlideItem(item))}
-          </div>
-          <div className="right-banner">
-            <a href="/products">
-              <div className="large-banner hover-highlight">
-                <img src="http://img.alicdn.com/tps/i4/TB1QaHJLFXXXXXhXVXXxLrJSXXX-380-255.jpg" />
-              </div>
-            </a>
-            {smallBanners.map((item) => renderSmallBanner(item))}
-          </div>
-        </div>
-      );
-    };
     const renderCategories = () => {
       if (!this.props.main_categories) {
         return (<div></div>);
@@ -166,8 +84,8 @@ const Home = React.createClass({
       return (
         <div className="category-frame">
           <div className="category-bar">
-            카테고리
-            <Link to="/categories/all"><div className="category-all">전체보기</div></Link>
+            {i18n.get('word.category')}
+            <Link to="/categories/all"><div className="category-all">{i18n.get('word.seeAll')}</div></Link>
           </div>
           <div className="category-main">
             {categories.map(renderCategory)}

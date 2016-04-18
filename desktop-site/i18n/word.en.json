@@ -1,19 +1,23 @@
+// first character is capital
 {
   "word": {
     "allCategories": "All Categories",
+    "brand": "Brand",
     "brands": "Brands",
+    "category": "Category",
     "categories": "CATEGORIES",
-    "customerCenter": "customer center",
+    "customerCenter": "Customer Center",
     "cart": "Cart",
-    "favoriteBrand": "favoriate brand",
+    "favoriteBrand": "Favoriate Brand",
     "hi": "Hi,",
-    "login": "login",
-    "logout": "logout",
-    "myPage": "my page",
+    "login": "Login",
+    "logout": "Logout",
+    "myPage": "My Page",
     "relatedCategories": "Related Categories",
-    "reorder": "reorder",
-    "register": "register",
+    "reorder": "Reorder",
+    "register": "Register",
+    "price": "Price",
     "seeAll": "See All",
-    "wishList": "wish list"
+    "wishList": "Wish list"
   }
 }

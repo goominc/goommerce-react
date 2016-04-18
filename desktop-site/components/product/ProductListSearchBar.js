@@ -43,6 +43,7 @@ export default React.createClass({
   },
   render() {
     const { genLink, KRW } = this.props;
+    const t = (key) => i18n.get(`pcMain.productList.${key}`);
     const sortItems = [
       { name: i18n.get('pcMain.productList.sortLowPrice'), sorts: 'KRW.num' },
       { name: i18n.get('pcMain.productList.sortHighPrice'), sorts: '-KRW.num' },
@@ -52,10 +53,10 @@ export default React.createClass({
       const priceLink = (nextKRW) =>
         genLink(Object.assign(_.pick(this.props, ['query', 'categoryId', 'sorts', 'brandId']), { KRW: nextKRW }));
       const filterPrices = [
-        { name: '1만원 미만', filter: '0:10000' },
-        { name: '1만원 이상', filter: '10000:20000' },
-        { name: '2만원 이상', filter: '20000:30000' },
-        { name: '3만원 이상', filter: '30000' },
+        { name: t('filterUnder10000'), filter: '0:10000' },
+        { name: t('filterOver10000'), filter: '10000:20000' },
+        { name: t('filterOver20000'), filter: '20000:30000' },
+        { name: t('filterOver30000'), filter: '30000' },
       ];
       const renderFilter = (f) => (
         <Link key={f.filter}
@@ -86,13 +87,13 @@ export default React.createClass({
     return (
       <div className="product-list-search-box">
         <div className="search-row">
-          <div className="search-label">가격</div>
+          <div className="search-label">{i18n.get('word.price')}</div>
           <div className="search-control">
             {renderPriceFilters()}
           </div>
         </div>
         <div className="search-row">
-          <div className="search-label">브랜드</div>
+          <div className="search-label">{i18n.get('word.brand')}</div>
           <div className="search-control">
             {this.renderBrands()}
           </div>
