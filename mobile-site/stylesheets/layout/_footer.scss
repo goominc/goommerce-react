@@ -11,7 +11,7 @@
     font-size: 10px;
     line-height: 26px;
     a {
-     color: #999;
+      color: #999;
     }
     .text-link {
       color: #06c;
@@ -27,48 +27,27 @@
 .footer-linkshops {
   background-color: #e8e8e8;
   padding-top: 20px;
+  font-size: 12px;
   .footer-info-box {
     padding: 2px;
+    text-align: center;
   }
-  .info-box {
-    width: 50%;
-    display: inline-block;
-    padding-bottom: 5px;
-    padding-left: 3px;
-    vertical-align: top;
-    text-align: left;
+  .info-gray {
+    color: #666;
+  }
+  .info-black {
+    color: black;
   }
   .info-title {
-    color: #555;
-    display: block;
-    font-size: 11px;
+    font-size: 14px;
     font-weight: bold;
-    height: 26px;
-    letter-spacing: -1px;
-    line-height: 28px;
-    img {
-      height: 15px;
-      margin-top: 7px;
-    }
-  }
-  .info-content {
-    color: #777;
-    letter-spacing: -1px;
-    // line-height: 18px;
-    font-size: 10px;
-  }
-}
-.footer-external-link {
-  text-align: center;
-  .item {
-    height: 50px;
-    width: 120px;
+    margin: 15px 0;
   }
 }
 .footer-copyright {
+  font-size: 11px;
   padding: 20px 0;
-  font: normal 10px 'Roboto';
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  text-align: center;
+  color: #666;
+  // font: normal 10px 'Roboto';
 }
+
