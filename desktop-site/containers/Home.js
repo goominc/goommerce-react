@@ -122,9 +122,7 @@ const Home = React.createClass({
             </div>
             <div className="home-stylepick-banner">
               <strong>스타일 픽</strong>
-              <span>스타일리스트의</span>
-              <span>추천 스타일이</span>
-              <span>곧 찾아옵니다</span>
+              <span>COMING SOON</span>
             </div>
             <div className="right-banner">
               <img src={`${constants.resourceRoot}/banner/banner_event_20160408.jpg`} />
