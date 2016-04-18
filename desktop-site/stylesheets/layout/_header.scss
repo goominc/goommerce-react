@@ -182,13 +182,6 @@ $mymenu-margin: 20px;
   line-height: $header-height;
   display: inline-block;
 }
-@mixin header-icon-sprites() {
-  display: inline-block;
-  margin-right: $mymenu-margin / 2;
-  overflow: hidden;
-  background: url("http://i.alicdn.com/ae-header/20151124174454/buyer/common/img/header-sprite.png");
-  background-repeat: no-repeat;
-}
 
 @mixin header-dropdown-box() {
   background-color: #fff;
