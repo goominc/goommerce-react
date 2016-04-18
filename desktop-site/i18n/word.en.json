@@ -1,10 +1,7 @@
-// first character is capital
 {
   "word": {
     "allCategories": "All Categories",
-    "brand": "Brand",
     "brands": "Brands",
-    "category": "Category",
     "categories": "CATEGORIES",
     "customerCenter": "Customer Center",
     "cart": "Cart",

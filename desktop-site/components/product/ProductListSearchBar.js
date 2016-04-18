@@ -93,7 +93,7 @@ export default React.createClass({
           </div>
         </div>
         <div className="search-row">
-          <div className="search-label">{i18n.get('word.brand')}</div>
+          <div className="search-label">{i18n.get('word.brands')}</div>
           <div className="search-control">
             {this.renderBrands()}
           </div>
