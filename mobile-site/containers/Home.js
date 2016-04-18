@@ -70,37 +70,37 @@ const Home = React.createClass({
               <ul className="flex-box top-spread-2">
                 <li>
                   <span className="evt-icon evt-icon-1" />
-                  <p className="evt-title">서비스 소개</p>
-                  <p className="evt-desc">
+                  <div className="evt-desc">
+                    <p className="evt-title">서비스 소개</p>
                     믿고 거래하는<br />
                     No.1 온라인 도매시장
-                  </p>
+                  </div>
                 </li>
                 <li>
                   <span className="evt-icon evt-icon-2" />
-                  <p className="evt-title">회원가입 안내</p>
-                  <p className="evt-desc">
+                  <div className="evt-desc">
+                    <p className="evt-title">회원가입 안내</p>
                     고객 우선 원칙<br />
                     회원 시스템
-                  </p>
+                  </div>
                 </li>
               </ul>
               <ul className="flex-box top-spread-2">
                 <li>
                   <span className="evt-icon evt-icon-3" />
-                  <p className="evt-title">주문배송</p>
-                  <p className="evt-desc">
+                  <div className="evt-desc">
+                    <p className="evt-title">주문배송</p>
                     원하는 브랜드 및 상품<br />
                     사입 요청 가능
-                  </p>
+                  </div>
                 </li>
                 <li>
                   <span className="evt-icon evt-icon-4" />
-                  <p className="evt-title">고객지원 센터</p>
-                  <p className="evt-desc">
+                  <div className="evt-desc">
+                    <p className="evt-title">고객지원 센터</p>
                     편리한 소통을 위한<br />
                     언어별 고객지원센터
-                  </p>
+                  </div>
                 </li>
 
               </ul>
