@@ -1,6 +1,6 @@
 const defaultConfig = {
   port: 3000,
-  title: 'GOOMMERCE',
+  title: 'LinkShops',
   cloudfront: {
     domain: 'd1v1n6p63zq2b9.cloudfront.net',
   },
