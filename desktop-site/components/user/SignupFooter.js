@@ -9,8 +9,8 @@ export default React.createClass({
       <div>
         <div className="signup-footer-link-line">
           <Link className="item" to="/">회사소개</Link>
-          <Link className="item" to="/">이용약관</Link>
-          <Link className="item" to="/">개인정보 취급방침</Link>
+          <Link className="item" to="/user/terms">이용약관</Link>
+          <Link className="item" to="/user/policies">개인정보 취급방침</Link>
           <Link className="item" to="/">제휴안내</Link>
         </div>
         <div className="signup-footer-copywrite">
