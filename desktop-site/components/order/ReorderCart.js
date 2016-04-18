@@ -296,7 +296,7 @@ export default React.createClass({
       if (totalPrice > 0) {
         return (
           <button className="btn default" style={({ marginLeft: '20px' })} onClick={createOrder}>
-            ${i18n.get('word.doOrder')}
+            {i18n.get('word.doOrder')}
           </button>
         );
       }

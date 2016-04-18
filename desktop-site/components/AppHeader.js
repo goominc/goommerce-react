@@ -119,9 +119,9 @@ export default React.createClass({
     };
     const renderMypageMenus = () => {
       const menus = [
-        { link: '/mypage', text: i18n.get('pcMain.myMenu.myLinkshops') },
         { link: '/mypage/my_orders', text: i18n.get('pcMain.myMenu.myOrders') },
-        { link: '/mypage/reorder', text: i18n.get('pcMain.myMenu.reorder') },
+        { link: '/mypage/user_info', text: i18n.get('pcMain.myMenu.userInfo') },
+        { link: '/mypage/reorder', text: i18n.get('word.reorder') },
       ];
       const renderMenu = (menu) => (
         <div key={menu.link}
