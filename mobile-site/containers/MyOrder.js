@@ -29,8 +29,14 @@ const MyOrder = React.createClass({
     this.props.setHeader(false, true, true, 'My Orders');
   },
   render() {
+    const { orders } = this.state;
+    if (!orders || !orders.length) {
+      return (
+        <div />
+        );
+    }
     return (
-      <MyOrderPage orders={this.state.orders} />
+      <MyOrderPage orders={orders} />
       );
   },
 });

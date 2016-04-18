@@ -1,100 +1,67 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import i18n from 'commons/utils/i18n';
 
 export default React.createClass({
   propTypes: {
     order: PropTypes.object,
   },
+  contextTypes: {
+    activeLocale: PropTypes.string,
+    activeCurrency: PropTypes.string,
+  },
   render() {
+    const { order } = this.props;
+    const { activeCurrency } = this.context;
+    console.log(order);
     return (
-      <section id="order-detail-container">
-        <header>
-          <div className="order-status">
-            Status: The seller has shipped your order
+      <section id="myorder-detail-container">
+        <div className="myorder-box">
+          <div className="box-header">
+            주문정보
           </div>
-          <div className="order-status">
-            Reminder: In <span className="orange">5 days 23 hours 8 minutes</span> Purchase Protection will end.
-          </div>
-        </header>
-        <div className="detail-actions">
-          <Link to="/">Delivery Information
-            <span className="ms-arrow">
-              <span className="ms-icon icon-arrow-right"></span>
-            </span>
-          </Link>
-          <Link to="/">Order Message
-            <span className="ms-arrow">
-              <span className="ms-icon icon-arrow-right"></span>
-            </span>
-          </Link>
-        </div>
-
-        <div className="detail-info">
-          <div className="order-props">Order ID: 393734FF</div>
-          <div className="order-props">Order Time: 2016-03-05 19:55</div>
-          <ul>
-            <li className="order-product-item">
-              <img />
-              <div className="order-product-wrap">
-                <div className="order-product-name">
-                  2016 casual shirts dress...
-                </div>
-                <div className="order-product-variants">
-                  Properties: <span>Purple+M+China</span>
-                </div>
-                <div className="order-product-price">
-                  <span className="price">US $ 11.72</span><span className="amount">X 1</span>
-                </div>
-              </div>
-            </li>
-            <li className="order-product-item">
-              <img />
-              <div className="order-product-wrap">
-                <div className="order-product-name">
-                  2016 casual shirts dress...
-                </div>
-                <div className="order-product-variants">
-                  Properties: <span>Navi+M+China</span>
-                </div>
-                <div className="order-product-price">
-                  <span className="price">US $ 11.72</span><span className="amount">X 1</span>
-                </div>
-              </div>
-              <li className="order-product-item">
-                <img />
-                <div className="order-product-wrap">
-                  <div className="order-product-name">
-                    2016 casual shirts dress...
-                  </div>
-                  <div className="order-product-variants">
-                    Properties: <span>Navi+M+China</span>
-                  </div>
-                  <div className="order-product-price">
-                    <span className="price">US $ 11.72</span><span className="amount">X 1</span>
-                  </div>
-                </div>
-              </li>
-            </li>
-          </ul>
-          <div className="order-quantity">
-            Quantity
-            <span className="quantity-right">5</span>
-          </div>
-          <div className="order-quantity">
-            Total Amount
-            <span className="price-right">US $ 58.60</span>
+          <div className="box-detail">
+            <p className="order-info-black">주문일 : {order.createdAt.substr(0, 10)}</p>
+            <p className="order-info-black">주문번호 : {order.id}</p>
+            <p className="order-info-red">{i18n.get(`enum.order.status.${order.status}`)}</p>
           </div>
         </div>
-
-        <div className="seller-info">
-          <div className="seller-header">Seller Info</div>
-          <Link className="seller-link" to={'/brands/21'}>
-            <div className="order-status">Store: J's Style</div>
-            <div className="order-status">Seller: angel wang</div>
-            <span className="ms-arrow">
-              <span className="ms-icon icon-arrow-right"></span>
-            </span>
-          </Link>
+        <div className="myorder-box">
+          <div className="box-header">
+            결제정보
+          </div>
+          <div className="box-detail">
+            <div className="order-price-black">
+              <span className="checkout-item">상품금액</span>
+              <span className="cost">
+                {activeCurrency} {order[`subtotal${activeCurrency}`]}
+              </span>
+            </div>
+            <div className="order-price-black">
+              <span className="checkout-item">부가세</span>
+              <span className="cost">
+                {activeCurrency} {order[`tax${activeCurrency}`]}
+              </span>
+            </div>
+            <div className="order-price-black">
+              <span className="checkout-item">사입비</span>
+              <span className="cost">
+                {activeCurrency} {order[`handlingFee${activeCurrency}`]}
+              </span>
+            </div>
+            <div className="order-price-black">
+              <span className="checkout-item">배송비</span>
+              <span className="cost">
+                {activeCurrency} {order[`shippingCost${activeCurrency}`]}
+              </span>
+            </div>
+            <div className="order-price-red">
+              <span className="checkout-item"><strong>최종 결제금액</strong></span>
+              <span className="cost"><strong>
+                {activeCurrency} {order[`total${activeCurrency}`]}
+              </strong></span>
+            </div>
+          </div>
         </div>
       </section>
     );

@@ -22,15 +22,21 @@ const MyOrderDetail = React.createClass({
     const { params } = this.props;
     if (params.orderId) {
       this.props.loadOrder(params.orderId)
-      .then((res) => this.setState(res));
+      .then((res) => this.setState({ order: res }));
     } else {
       this.context.router.push('/');
     }
     this.props.setHeader(false, true, true, 'Order Detail');
   },
   render() {
+    const { order } = this.state;
+    if (!order) {
+      return (
+        <div />
+        );
+    }
     return (
-      <MyOrderDetailPage order={this.state.order} />
+      <MyOrderDetailPage order={order} />
       );
   },
 });

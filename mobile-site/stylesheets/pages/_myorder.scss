@@ -3,7 +3,7 @@
 // -----------------------------------------------------------------------------
 #myorder-container {
   background-color: #eee;
-  header {
+  /*header {
     background-color: white;
     font-size: 16px;
     position: relative;
@@ -23,110 +23,87 @@
     content: "";
     background: url('data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAABgAAABYCAMAAADY8cemAAAAPFBMVEUAAADmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgRaV1LkAAAAE3RSTlMAet8gDQXL+r+xil8V06WXaVJOB8o4jAAAAHFJREFUSMftyUkOhDAQQ1FXZiCMvv9dW40IpYg9C1RvZX3DGPN9suJpFWDh+OgjFyAO96N9iDgf6bqc/f8UStdLvGYo3O6+sQQ0IXG65sTUuj7aVZ25A9g5V/SqyweO7FpX3mXJzkPpQ+39kzyMMS/7AdMoA1sG1fVZAAAAAElFTkSuQmCC') no-repeat center center;
     background-size: 100% 100%
-  }
+  }*/
 }
-.order-list {
+.myorder-list {
   background-color: white;
-  padding: 10px;
+  padding-left: 10px;
 }
-.order-props {
-  color: #666;
-  font-size: 14px;
-}
-.order-product-item {
-  padding: 5px;
-  font-size: 14px;
-  img {
-    width: 60px;
-    height: 60px;
-    display: inline-block;
-    vertical-align: top;
-    margin-right: 10px;
+.myorder-listitem {
+  display: block;
+  border-bottom: 1px solid #eee;
+  .myorder-ymd {
+    font-size: 12px;
+    color: black;
+    margin-top: 15px;
   }
-  .order-product-wrap {
-    display: inline-block;
-    vertical-align: top;
-    min-height: 60px;
-    .order-product-price {
-      margin: 0;
-      color: #666;
-      .price {
-        color: #f55;
-      }
+  .myorder-info {
+    position: relative;
+    color: black;
+    margin: 15px 0;
+  }
+  .myorder-title {
+    font-size: 15px;
+    width: 70%;
+  }
+  .myorder-status {
+    position: absolute;
+    top: 0;
+    left: 70%;
+    height: 100%;
+    margin-top: 3px;
+    font-size: 13px;
+    max-width: 25%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .myorder-price {
+    font-size: 15px;
+    font-weight: bold;
+    color: #e62e04;
+    margin-bottom: 15px;
+  }
+}
+#myorder-detail-container {
+  background-color: #eee;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.myorder-box {
+  background-color: white;
+  border: 1px solid #ddd;
+  font-size: 13px;
+  margin-bottom: 15px;
+  .box-header {
+    border-bottom: 1px solid #ddd;
+    color: black;
+    font-weight: bold;
+    padding: 5px 10px;
+  }
+  .box-detail {
+    padding: 5px 10px;
+    .order-info-black {
+      margin-bottom: 5px;
+      color: black;
+    }
+    .order-info-red {
+      color: #e62e04;
+    }
+    .order-price-black {
+      clear: both;
+      color: black;
+      margin-top: 10px;
+    }
+    .order-price-red {
+      clear: both;
+      color: #e62e04;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .cost {
+      float: right;
     }
   }
 }
-.order-product-showmore {
-  height: 40px;
-  line-height: 40px;
-  font-size: 14px;
-  position: relative;
-  .expand-arrow:after {
-    position: absolute;
-    top: 0;
-    right: 8px;
-    width: 12px;
-    height: 40px;
-    content: "";
-    background: url('data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAABgAAABYCAMAAADY8cemAAAAPFBMVEUAAADmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgTmLgRaV1LkAAAAE3RSTlMAet8gDQXL+r+xil8V06WXaVJOB8o4jAAAAHFJREFUSMftyUkOhDAQQ1FXZiCMvv9dW40IpYg9C1RvZX3DGPN9suJpFWDh+OgjFyAO96N9iDgf6bqc/f8UStdLvGYo3O6+sQQ0IXG65sTUuj7aVZ25A9g5V/SqyweO7FpX3mXJzkPpQ+39kzyMMS/7AdMoA1sG1fVZAAAAAElFTkSuQmCC') no-repeat center center;
-    background-size: 100% 100%
-  }
-}
-.order-quantity {
-  color: #666;
-  position: relative;
-  padding: 3px 0;
-  font-size: 14px;
-  .quantity-right {
-    position: absolute;
-    right: 0;
-    color: #222;
-  }
-  .price-right {
-    position: absolute;
-    right: 0;
-    color: #f55;
-  }
-}
-#order-detail-container {
-  background-color: #eee;
-  header {
-    background-color: white;
-    font-size: 14px;
-    margin-bottom: 8px;
-    padding: 10px;
-  }
-  .orange {
-    color: #fa5;
-  }
-  .seller-info {
-    background-color: white;
-    font-size: 14px;
-    padding: 10px;
-  }
-}
-.detail-actions {
-  background-color: white;
-  margin-bottom: 5px;
-  font-size: 14px;
-  a {
-    display: block;
-    position: relative;
-    height: 40px;
-    line-height: 40px;
-    padding: 0 10px;
-  }
-}
-.detail-info {
-  background-color: white;
-  margin-bottom: 8px;
-  padding: 10px;
-}
 
-.seller-header {
-  margin-bottom: 10px;
-}
-.seller-link {
-  position: relative;
-  display: block;
-}

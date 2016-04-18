@@ -1,68 +1,81 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import i18n from 'commons/utils/i18n';
+import _ from 'lodash';
 
 export default React.createClass({
   propTypes: {
     orders: PropTypes.array,
   },
+  contextTypes: {
+    activeLocale: PropTypes.string,
+    activeCurrency: PropTypes.string,
+  },
   render() {
+    const { orders } = this.props;
+    const { activeLocale, activeCurrency } = this.context;
+
+    const renderOrder = () => {
+
+      return orders.map((order) => {
+        const getSummary = () => {
+          const brands = new Set();
+          let representitiveBrandName = '';
+          let quantities = 0;
+          for (let i = 0; i < order.orderProducts.length; i++) {
+            const variant = order.orderProducts[i];
+            const brandId = _.get(variant, 'brand.id');
+            if (brandId) {
+              if (!representitiveBrandName) {
+                representitiveBrandName = _.get(variant, `brand.name.${activeLocale}`);
+              }
+              brands.add(brandId);
+            }
+            quantities += +(variant.quantity || 0);
+          }
+          const displayBrand = brands.size > 1 ?
+            `${representitiveBrandName} 외 ${brands.size - 1}개 브랜드의` :
+            `${representitiveBrandName}의`;
+          return `${displayBrand} ${quantities}개 상품 구매내역`;
+        };
+
+        return (
+          <li className="myorder-listitem" key={order.id}>
+            <div className="myorder-ymd">
+              {order.createdAt.substr(0, 10)}
+            </div>
+            <Link to={`/myOrder/${order.id}`}>
+              <div className="myorder-info">
+                <div className="myorder-title">
+                  {getSummary()}
+                </div>
+                <div className="myorder-status">
+                  {i18n.get(`enum.order.status.${order.status}`)}
+                </div>
+                <span className="ms-arrow">
+                  <span className="ms-icon icon-arrow-right"></span>
+                </span>
+              </div>
+            </Link>
+            <div className="myorder-price">
+              {activeCurrency} {order[`total${activeCurrency}`]}
+            </div>
+          </li>
+          );
+      });
+    };
+
     return (
       <section id="myorder-container">
-        <header>
+        { /* <header>
           <div className="order-filter">
             All
           </div>
           <span className="expand-arrow"></span>
-        </header>
-        <div className="order-list">
+        </header> */ }
+        <div className="myorder-list">
           <ul>
-            <li className="order-listitem">
-              <Link className="order-link" to={'/myOrder/1'}>
-                <div className="order-props">Order ID: 393734FF</div>
-                <div className="order-props">Order Time: 2016-03-05 19:55</div>
-              </Link>
-              <ul>
-                <li className="order-product-item">
-                  <img />
-                  <div className="order-product-wrap">
-                    <div className="order-product-name">
-                      2016 casual shirts dress...
-                    </div>
-                    <div className="order-product-variants">
-                      Properties: <span>Purple+M+China</span>
-                    </div>
-                    <div className="order-product-price">
-                      <span className="price">US $ 11.72</span> <span className="amount">X 1</span>
-                    </div>
-                  </div>
-                </li>
-                <li className="order-product-item">
-                  <img />
-                  <div className="order-product-wrap">
-                    <div className="order-product-name">
-                      2016 casual shirts dress...
-                    </div>
-                    <div className="order-product-variants">
-                      Properties: <span>Navi+M+China</span>
-                    </div>
-                    <div className="order-product-price">
-                      <span className="price">US $ 11.72</span> <span className="amount">X 1</span>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-              <div className="order-product-showmore">
-                Display 3 items remaining<span className="expand-arrow"></span>
-              </div>
-              <div className="order-quantity">
-                Quantity
-                <span className="quantity-right">5</span>
-              </div>
-              <div className="order-quantity">
-                Total Amount
-                <span className="price-right">US $ 58.60</span>
-              </div>
-            </li>
+            {renderOrder()}
           </ul>
         </div>
       </section>
