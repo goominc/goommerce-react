@@ -123,7 +123,8 @@ export default React.createClass({
 
     const renderPayments = () => {
       const { doCheckout } = this.props;
-      const handleCheckout = () => {
+      const handleCheckout = (e) => {
+        e.preventDefault();
         const method = paymentMethods[this.state.paymentMethod].method;
         $('form input[name=gopaymethod]').val(method);
         doCheckout(order.id, Object.assign({}, this.refs,
