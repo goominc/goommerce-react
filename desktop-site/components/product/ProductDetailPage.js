@@ -234,9 +234,13 @@ export default React.createClass({
       if (brand) {
         const renderFavoriteButton = () => {
           if (isLikeBrand) {
-            return null;
+            return (
+              <Link to={`/brands/${brand.id}`} className="favorite-brand">♥  단골 브랜드</Link>
+            );
           }
-          return (<span className="add-favorite-brand" onClick={() => addFavoriteBrand(product.brand.id)}>단골 브랜드 추가</span>);
+          return (
+            <span className="add-favorite-brand" onClick={() => addFavoriteBrand(product.brand.id)}>단골 브랜드 추가</span>
+          );
         };
         return (
           <div className="normal-field-box">
