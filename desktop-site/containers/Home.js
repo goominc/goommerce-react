@@ -95,7 +95,7 @@ const Home = React.createClass({
       );
     };
     const trendPicks = [
-      { img: `${constants.resourceRoot}/banner/trandpick1.jpg`, link: '/products/87299' },
+      { img: `${constants.resourceRoot}/banner/trandpick1.jpg`, link: '/products/100442' },
       { img: `${constants.resourceRoot}/banner/trandpick2.jpg`, link: '/products/87299' },
       { img: `${constants.resourceRoot}/banner/trandpick3.jpg`, link: '/products/84874' },
       { img: `${constants.resourceRoot}/banner/trandpick4.jpg`, link: '/products/91472' },
