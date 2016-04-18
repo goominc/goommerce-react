@@ -299,6 +299,7 @@ export default React.createClass({
               <span className="pay-title">신용카드</span>
               <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
             </li>
+            { /* TODO
             <li>
               <span className="pay-title">핸드폰 결제</span>
               <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
@@ -310,7 +311,7 @@ export default React.createClass({
             <li>
               <span className="pay-title">무통장입금</span>
               <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
-            </li>
+            </li> */ }
           </ul>
 
         </div>
