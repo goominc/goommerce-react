@@ -165,7 +165,6 @@ export default React.createClass({
             {i18n.get('word.myPage')}
             {renderMypageMenus()}
           </div>,
-          <div key="app-header-customer-center" className="helper-menu-item">{i18n.get('word.customerCenter')}</div>,
           <div key="app-header-logout" className="helper-menu-item" onClick={handleLogout}>
             {i18n.get('word.logout')}
           </div>,
@@ -215,7 +214,7 @@ export default React.createClass({
           <div className="header-wrap">
             <Link className="header-item" to="/">
               <img className="header-logo"
-                src="http://www.linkshops.com/skin/frontend/linkshops2nd/default/images/logo.png" alt="Linkshops"
+                src="//s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/header/logo.png" alt="Linkshops"
               />
             </Link>
             <form onSubmit={handleSearchSubmit}>
