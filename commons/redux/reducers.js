@@ -123,6 +123,13 @@ function entities(state = { users: {}, products: {}, orders: {}, addresses: {}, 
 function favoriteBrand(state = {}, action) {
   if (action.type === 'LOAD_FAVORITE_BRAND_PRODUCTS') {
     return Object.assign({}, state, { brandProducts: action.brandProducts });
+  } else if (action.type === 'DELETE_FAVORITE_BRAND_PRODUCTS') {
+    for (let i = 0; i < state.brandProducts.length; i++) {
+      if (state.brandProducts[i][0].brand.id !== action.brandId) {
+        return { brandProducts: state.brandProducts.splice(i, 1) };
+      }
+    }
+    return state;
   }
   return state;
 }

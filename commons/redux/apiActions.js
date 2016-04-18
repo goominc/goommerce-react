@@ -422,15 +422,6 @@ export function addFavoriteBrand(brandId) {
   });
 }
 
-export function deleteFavoriteBrand(brandId) {
-  return createFetchAction({
-    type: 'DELETE_FAVORITE_BRAND',
-    endpoint: `/api/v1/users/self/favoriteBrands/${brandId}`,
-    method: 'delete',
-    success: { brandId },
-  });
-}
-
 export function loadFavoriteBrandProducts() {
   return (dispatch, getState) => {
     const state = getState();
@@ -439,6 +430,10 @@ export function loadFavoriteBrandProducts() {
     }
     const favoriteBrands = state.auth.favoriteBrands || [];
     if (favoriteBrands.length < 1) {
+      dispatch({
+        type: 'LOAD_FAVORITE_BRAND_PRODUCTS',
+        brandProducts: [],
+      });
       return;
     }
     const promises = [];
@@ -451,6 +446,24 @@ export function loadFavoriteBrandProducts() {
       dispatch({
         type: 'LOAD_FAVORITE_BRAND_PRODUCTS',
         brandProducts: res.map((item) => item.products),
+      });
+    });
+  };
+}
+
+export function deleteFavoriteBrand(brandId) {
+  return (dispatch, getState) => {
+    const state = getState();
+    // TODO handle error
+    return ajaxReturnPromise(state.auth, 'delete', `/api/v1/users/self/favoriteBrands/${brandId}`).then(() => {
+      dispatch({
+        type: 'DELETE_FAVORITE_BRAND',
+        brandId,
+      });
+      // loadFavoriteBrandProducts()(dispatch, getState);
+      dispatch({
+        type: 'DELETE_FAVORITE_BRAND_PRODUCTS',
+        brandId,
       });
     });
   };
