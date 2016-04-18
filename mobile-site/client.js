@@ -36,11 +36,14 @@ if (module.hot) {
   });
 }
 
+/*
 const routes = configureRoutes({
   getAuth() {
     return store.getState().auth;
   },
 });
+*/
+const routes = configureRoutes(store);
 
 history.listen(() => {
   $('body').scrollTop(0);

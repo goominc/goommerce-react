@@ -24,10 +24,10 @@ export default React.createClass({
                 <div className="product-image">
                   <img src={getProductMainImage(product).url} />
                 </div>
-                <div className="product-cost">
+                { /*<div className="product-cost">
                   <strong>{getProductMainPrice(product, activeCurrency)} {activeCurrency}</strong>
                 </div>
-                { /* <div className="product-cost">1000 Orders</div> */ }
+                 <div className="product-cost">1000 Orders</div> */ }
               </Link>
             </li>
           );
@@ -38,10 +38,10 @@ export default React.createClass({
               <div className="product-image">
                 <img />
               </div>
-              <div className="product-cost">
+              { /*<div className="product-cost">
                 <strong>{getProductMainPrice(product, activeCurrency)} {activeCurrency}</strong>
               </div>
-              { /* <div className="product-cost">1000 Orders</div> */ }
+               <div className="product-cost">1000 Orders</div> */ }
             </Link>
           </li>
         );
