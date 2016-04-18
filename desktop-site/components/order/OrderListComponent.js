@@ -54,9 +54,9 @@ export default React.createClass({
         quantities += +(variant.quantity || 0);
       }
       const displayBrand = brands.size > 1 ?
-        `${representitiveBrandName} 포함 ${brands.size}개 브랜드` :
-        `${representitiveBrandName}에서 구매한`;
-      return `${displayBrand} ${order.orderProducts.length}종, ${quantities}개의 상품 구매내역`;
+        `${representitiveBrandName} 외 ${brands.size - 1}개 브랜드의` :
+        `${representitiveBrandName}의`;
+      return `${displayBrand} ${quantities}개 상품 구매내역`;
     };
     const renderOrder = (order) => (
       <div key={order.id}>

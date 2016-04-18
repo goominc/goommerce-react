@@ -193,14 +193,14 @@ export default React.createClass({
                 onMouseEnter={(e) => $(e.target).addClass('open')}
                 onMouseLeave={(e) => $(e.target).closest(`.${leftMenuItemClassName}`).removeClass('open')}
               >
-                <img src={getLocaleImg()} /> <span>언어</span>
+                <img src={getLocaleImg()} /> <span>{i18n.get('word.language')}</span>
                 {renderLocales()}
               </div>
               <div className={leftMenuItemClassName}
                 onMouseEnter={(e) => $(e.target).addClass('open')}
                 onMouseLeave={(e) => $(e.target).closest(`.${leftMenuItemClassName}`).removeClass('open')}
               >
-                <img src={getCurrencyImg()} /> <span>통화</span>
+                <img src={getCurrencyImg()} /> <span>{i18n.get('word.currency')}</span>
                 {renderCurrencies()}
               </div>
             </div>

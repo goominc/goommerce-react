@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 
 import ResponsiveImage from 'components/snippet/ResponsiveImage';
 import brandUtil from 'commons/utils/brandUtil';
+import i18n from 'commons/utils/i18n';
 
 const _ = require('lodash');
 
@@ -56,10 +57,7 @@ export default React.createClass({
     };
     return (
       <div className="mypage-right-box">
-        <h2>All My Favorite Brands</h2>
-        <div className="favorite-brand-search-box">
-          <input type="text" placeholder="search brands" />
-        </div>
+        <h2>{i18n.get('word.favoriteBrand')}</h2>
         {brands.map((brand, index) => renderBrand(brand, index))}
       </div>
     );
