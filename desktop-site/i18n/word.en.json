@@ -1,18 +1,22 @@
 {
   "word": {
+    "add": "Add",
     "allCategories": "All Categories",
     "brands": "Brands",
     "categories": "CATEGORIES",
     "customerCenter": "Customer Center",
     "cart": "Cart",
+    "doOrder": "주문하기",
     "favoriteBrand": "Favoriate Brand",
     "hi": "Hi,",
     "login": "Login",
     "logout": "Logout",
     "myPage": "My Page",
+    "quantity": "수량",
     "relatedCategories": "Related Categories",
     "reorder": "Reorder",
     "register": "Register",
+    "product": "Product",
     "price": "Price",
     "seeAll": "See All",
     "wishList": "Wish list"

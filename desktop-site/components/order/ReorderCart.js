@@ -5,8 +5,10 @@ import _ from 'lodash';
 
 import SearchBrandContainer from 'containers/SearchBrandContainer';
 import SearchProductContainer from 'containers/SearchProductContainer';
+
 import brandUtil from 'commons/utils/brandUtil';
 import stringUtil from 'commons/utils/stringUtil';
+import i18n from 'commons/utils/i18n';
 
 export default React.createClass({
   propTypes: {
@@ -100,9 +102,9 @@ export default React.createClass({
       });
     });
     const fields = [
-      { key: 'price', placeholder: '가격', type: 'number' },
+      { key: 'price', placeholder: i18n.get('word.price'), type: 'number' },
       { key: 'color', placeholder: 'Color', enableEmpty: true },
-      { key: 'count', placeholder: '개수', type: 'number' },
+      { key: 'count', placeholder: i18n.get('word.quantity'), type: 'number' },
       { key: 'size', placeholder: 'Size', defaultValue: 'Free', enableEmpty: true },
     ];
     const resetFields = () => {
@@ -268,7 +270,7 @@ export default React.createClass({
       };
       return (
         <div className="reorder-add-product">
-          <div>새 상품 추가:</div>
+          <div>새 상품 추가</div>
           <SearchProductContainer />
           {renderActiveProductReset()}
           <div className="product-variant-add-box">
@@ -283,7 +285,7 @@ export default React.createClass({
                   defaultValue={field.defaultValue}
                 />)
               )}
-              {<button className="plus-button" onClick={addProduct}>상품 추가</button>}
+              {<button className="plus-button" onClick={addProduct}>{`${i18n.get('word.product')} ${i18n.get('word.add')}`}</button>}
             </div>
           </div>
         </div>
@@ -292,14 +294,18 @@ export default React.createClass({
     const totalPrice = cart.total ? cart.total[activeCurrency] : 0;
     const renderOrderButton = () => {
       if (totalPrice > 0) {
-        return (<button className="btn default" style={({ marginLeft: '20px' })} onClick={createOrder}>주문하기</button>);
+        return (
+          <button className="btn default" style={({ marginLeft: '20px' })} onClick={createOrder}>
+            ${i18n.get('word.doOrder')}
+          </button>
+        );
       }
       return null;
     };
     return (
       <div>
         <div className="reorder-title">
-          <b>총 주문가격:</b> {currencySign[activeCurrency]} {totalPrice}
+          <b>총 주문가격</b> {currencySign[activeCurrency]} {totalPrice}
           {renderOrderButton()}
         </div>
         <div className="reorder-brands-panel">
