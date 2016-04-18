@@ -42,11 +42,6 @@ export default React.createClass({
         <div key={brand.id} className="favorite-brand-box">
           <div className="brand-info">
             <span className="title">{brandUtil.getName(brand)}</span>
-          <span className="main-products">
-            Main products: <br />
-            Apparel & Accessories
-          </span>
-            <a href="/" target="_blank"><button>Visit Store</button></a>
           </div>
           <div className="brand-products">
             {products.map((product) => renderProduct(product))}

@@ -29,7 +29,7 @@ export default React.createClass({
             <span style={({ marginLeft: '15px' })}>이용약관 동의</span>
           </div>
           <div className="content-box">
-            <iframe src="/user/terms" />
+            <UserTerms />
           </div>
         </div>
         <div className="signup-terms-section">
@@ -39,7 +39,7 @@ export default React.createClass({
             <span style={({ marginLeft: '15px' })}>개인정보 수집방침 동의</span>
           </div>
           <div className="content-box">
-            <iframe src="/user/policies" />
+            <UserPolicies />
           </div>
         </div>
         <div className="button-line">

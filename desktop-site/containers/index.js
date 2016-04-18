@@ -16,5 +16,5 @@ export { default as OrderDoneContainer } from 'containers/OrderDoneContainer';
 export { default as MyOrderContainer } from 'containers/MyOrderContainer';
 export { default as MyPage } from 'containers/MyPage';
 
-export { default as UserTerms } from 'components/user/UserTerms';
-export { default as UserPolicies } from 'components/user/UserPolicies';
+export { default as UserTermsContainer } from 'containers/UserTermsContainer';
+export { default as UserPoliciesContainer } from 'containers/UserPoliciesContainer';

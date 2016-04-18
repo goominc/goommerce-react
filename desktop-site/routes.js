@@ -19,8 +19,8 @@ import {
   Signup,
   ProductDetail,
   MyPage,
-  UserTerms,
-  UserPolicies,
+  UserTermsContainer,
+  UserPoliciesContainer,
 } from 'containers';
 
 export default function configure({ getAuth }) { // eslint-disable-line
@@ -55,12 +55,12 @@ export default function configure({ getAuth }) { // eslint-disable-line
         <Route path="/categories/:categoryId(/:pageNum)" component={Category} onEnter={checkRole} />
         <Route path="/search/:query(/:pageNum)" component={Search} onEnter={checkRole} />
         <Route path="/mypage(/:menuName)" component={MyPage} onEnter={checkRole} />
+        <Route path="/user/terms" component={UserTermsContainer} />
+        <Route path="/user/policies" component={UserPoliciesContainer} />
       </Route>
       <Route path="/accounts/signin" component={Signin} />
       <Route path="/accounts/signup" component={Signup} />
       <Route path="/accounts/forgot" component={ForgotPassword} />
-      <Route path="/user/terms" component={UserTerms} />
-      <Route path="/user/policies" component={UserPolicies} />
     </Route>
   );
 }
