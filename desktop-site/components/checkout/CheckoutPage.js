@@ -139,8 +139,8 @@ export default React.createClass({
           <input type="hidden" name="goodname" value="의류" />
           <input type="hidden" name="price" ref="price" />
           <input type="hidden" name="currency" value="WON" />
-          <input type="hidden" name="buyername" value="LINKSHOPS" />
-          <input type="hidden" name="buyertel" value="010-2000-1234" />
+          <input type="hidden" name="buyername" ref="buyername" />
+          <input type="hidden" name="buyertel" ref="buyertel" />
           <input type="hidden" name="buyeremail" ref="buyeremail" />
           <input type="hidden" name="timestamp" ref="timestamp" />
           <input type="hidden" name="signature" ref="signature" />

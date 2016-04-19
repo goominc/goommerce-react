@@ -44,6 +44,8 @@ export default React.createClass({
       this.refs.oid.value = res.oid;
       this.refs.amt.value = res.price;
       this.refs.email.value = res.buyeremail;
+      this.refs.mobile.value = res.buyertel;
+      this.refs.uname.value = res.buyername;
       this.refs.nextUrl.value = res.returnUrl;
       this.refs.inipay.action = `https://mobile.inicis.com/smart/${'wcard'}/`;
       this.refs.inipay.submit();
@@ -269,12 +271,12 @@ export default React.createClass({
           </ul>
           <form method="post" acceptCharset="euc-kr" ref="inipay">
             <input type="hidden" name="P_MID" ref="mid" />
-            <input type="hidden" name="P_OID" ref="oid" value="1234abcdef-1234" />
-            <input type="hidden" name="P_AMT" ref="amt" value="1000" />
-            <input type="hidden" name="P_MNAME" ref="name" value="LINKSHOPS" />
-            <input type="hidden" name="P_UNAME" ref="name" value="LINKSHOPS" />
+            <input type="hidden" name="P_OID" ref="oid" />
+            <input type="hidden" name="P_AMT" ref="amt" />
+            <input type="hidden" name="P_MNAME" ref="mname" value="LINKSHOPS" />
+            <input type="hidden" name="P_UNAME" ref="uname" />
             <input type="hidden" name="P_GOODS" ref="goods" value="의류" />
-            <input type="hidden" name="P_MOBILE" ref="mobile" value="010-2000-1234" />
+            <input type="hidden" name="P_MOBILE" ref="mobile" />
             <input type="hidden" name="P_EMAIL" ref="email" />
             <input type="hidden" name="P_NEXT_URL" ref="nextUrl" />
             <input type="hidden" name="P_NOTI_URL" ref="notiUrl" />
