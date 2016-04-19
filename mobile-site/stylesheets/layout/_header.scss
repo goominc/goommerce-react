@@ -22,7 +22,7 @@
     left: 0;
     top: 0;
     background-image: url($base-url + '/03_icon_001.png');
-    background-size: 44px 28px;
+    background-size: 60%;
     background-position: center center;
     background-repeat: no-repeat;
   }
@@ -56,9 +56,9 @@
     height: 48px;
     width: 44px;
     padding: 10px 0;
-    margin-right: 1px;
+    margin-right: -5px;
     background-image: url($base-url + '/03_icon_002.png');
-    background-size: 44px 28px;
+    background-size: 60%;
     background-position: center center;
     background-repeat: no-repeat;
   }
@@ -70,7 +70,7 @@
     position: relative;
     display: block;
     background-image: url($base-url + '/03_icon_003.png');
-    background-size: 44px 28px;
+    background-size: 60%;
     background-position: center center;
     background-repeat: no-repeat;
   }
