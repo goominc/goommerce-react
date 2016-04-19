@@ -61,6 +61,7 @@ export default function configure({ getAuth }) { // eslint-disable-line
       <Route path="/accounts/signin" component={Signin} />
       <Route path="/accounts/signup" component={Signup} />
       <Route path="/accounts/forgot" component={ForgotPassword} />
+      <Redirect from="*" to="/" />
     </Route>
   );
 }
