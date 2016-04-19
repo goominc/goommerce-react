@@ -142,7 +142,7 @@ export default React.createClass({
 
     const handleSearchSubmit = (e) => {
       e.preventDefault();
-      handleSearch(this.refs.searchQuery.value);
+      handleSearch(this.refs.searchQuery.value, activeCategory && activeCategory.id);
     };
 
     const renderTopHelperRightMenus = () => {

@@ -72,9 +72,9 @@ const App = React.createClass({
   handleLogout() {
     this.props.logout().then(() => { window.location.href = '/'; });
   },
-  handleSearch(query) {
+  handleSearch(query, categoryId) {
     if (query) {
-      this.context.router.push(`/search/${query}`);
+      this.context.router.push(`/search/${query}${categoryId ? `?categoryId=${categoryId}` : ''}`);
     }
   },
   render() {
