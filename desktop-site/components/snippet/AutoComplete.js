@@ -72,12 +72,7 @@ export default React.createClass({
       onChangeText(e.target.value);
     };
     const onBlur = () => {
-      if (items && items.length === 1) {
-        // 2016. 04. 19. [heekyu] select it if only one
-        onSelectItem(items[0]);
-      } else {
-        resetDropdown();
-      }
+      resetDropdown();
     };
     return (
       <div className={boxClassName}>
