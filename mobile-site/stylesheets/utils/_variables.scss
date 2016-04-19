@@ -70,4 +70,4 @@ $breakpoints: (
 /// @type String
 /// @example scss - When using a CDN
 ///   $base-url: 'http://cdn.example.com/assets/';
-$base-url: '/assets/' !default;
+$base-url: '//s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/mobile' !default;
