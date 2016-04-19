@@ -272,12 +272,13 @@ $main-banner-height: 400px;
       font-size: 14px;
       letter-spacing: -1px;
       line-height: 20px;
-      padding-left: 30px;
+      padding-left: 25px;
       padding-top: 16px;
       text-align: right;
       width: 80px + 30px;
       strong {
         font-size: 18px;
+        white-space: nowrap;
       }
     }
     img {
