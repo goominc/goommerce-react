@@ -34,6 +34,11 @@ module.exports = (opts) => {
   middlewares.push((req, res) => {
     const cdn = `//${config.cloudfront.domain}`;
     function path(name) {
+      // 2016. 04. 19. [heekyu] do not use goommerce-react's build config
+      // use gommerce's config(opts.cdnPath)
+      if (opts.cdnPath) {
+        return `${opts.cdnPath}/${name}`;
+      }
       if (opts.hot || opts.localBundle) {
         return `/${name}`;
       }
@@ -73,7 +78,6 @@ module.exports = (opts) => {
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <title>${config.title}</title>
-            <link rel="stylesheet" href="${path('app.css')}">
             <link rel="stylesheet" href="${cdn}/vendor/owl.carousel.css">
             <link href="//fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet" type="text/css">
 	        <link href="//fonts.googleapis.com/css?family=Roboto:400,500,700|Roboto+Condensed:400,700" rel="stylesheet" type="text/css">
