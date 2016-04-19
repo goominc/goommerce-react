@@ -122,7 +122,8 @@ const Home = React.createClass({
             </div>
             <div className="home-stylepick-banner">
               <strong>스타일 픽</strong>
-              <span>COMING SOON</span>
+              <span>COMING</span>
+              <span>SOON</span>
             </div>
             <div className="right-banner">
               <img src={`${constants.resourceRoot}/banner/banner_event_20160408.jpg`} />
