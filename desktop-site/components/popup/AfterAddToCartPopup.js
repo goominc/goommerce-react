@@ -17,7 +17,7 @@ export default React.createClass({
             <span>A new item has been added to your Shopping Cart. You now have 1 items in your Shopping Cart.</span>
             <div className="button-line">
               <Link to="/cart" onClick={closePopup}><button>View Shopping Cart</button></Link>
-              <Link to="/categories/all" onClick={closePopup}><button>Continue Shopping</button></Link>
+              <button onClick={closePopup}>Continue Shopping</button>
             </div>
             <div className="popup-close-button" onClick={this.props.closePopup}>X</div>
           </div>
