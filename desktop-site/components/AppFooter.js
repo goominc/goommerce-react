@@ -24,7 +24,7 @@ export default React.createClass({
             <div className="info-title">
             </div>
             <div className="info-content">
-              Tel. 02-2272-1121 <br />
+              Tel. 02-2272-1122 <br />
               Fax. 02-2233-5911 <br />
               E-mail <a href="mailto:cs@linkshops.com">cs@linkshops.com</a> <br />
               개인정보관리책임자 오영지 <br />

@@ -19,7 +19,7 @@ export default React.createClass({
               평일 - 오전 10:00 ~ 오후 18:00<br />
               점심시간 - 오전 12:30 ~ 오후 13:30<br />
               주말, 공휴일 제외(한국기준)<br /><br />
-              Tel - 02-2272-1121<br />
+              Tel - 02-2272-1122<br />
               Fax - 02-2233-5911<br />
               E-mail - cs@linkshops.com<br />
               바이어 상담 카카오톡 ID - linkshops<br />
