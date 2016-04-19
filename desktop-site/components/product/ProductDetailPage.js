@@ -8,6 +8,8 @@ import brandUtil from 'commons/utils/brandUtil';
 import productUtil from 'commons/utils/productUtil';
 import numberUtil from 'commons/utils/numberUtil';
 
+import ResponsiveImage from 'components/snippet/ResponsiveImage';
+
 export default React.createClass({
   propTypes: {
     activeImage: PropTypes.object,
@@ -109,9 +111,10 @@ export default React.createClass({
       if (activeImage && image.url === activeImage.url) {
         className = 'image-active';
       }
+      // <div className="inner-wrap">{renderImage(image)}</div>
       return (
         <span className={className} key={image.url} onClick={() => this.handleMouseEnterThumbnail(image)}>
-          <div className="inner-wrap">{renderImage(image)}</div>
+          <ResponsiveImage image={image} width={120} />
         </span>
       );
     };
@@ -164,7 +167,7 @@ export default React.createClass({
             key={key}
             onClick={() => fnOnSelect(key)}
             publicId={obj.img.publicId}
-            options={{ width: 60, height: 78, crop: 'scale' }}
+            options={{ width: 120, crop: 'scale' }}
           />);
         }
         return (<img className={className} key={key} onClick={() => fnOnSelect(key)} src={obj.img.url} />);

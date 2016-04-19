@@ -35,7 +35,7 @@ export default React.createClass({
         );
       }
       return res;
-    }
+    };
     return (
       <div className="img-wrap">
         {renderInner()}

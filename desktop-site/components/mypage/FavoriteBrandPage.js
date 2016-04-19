@@ -32,7 +32,7 @@ export default React.createClass({
       }
       const renderProduct = (product) => (
         <Link key={product.id} to={`/products/${product.id}`} className="product-item">
-          <ResponsiveImage image={_.get(product, 'appImages.default[0]')} />
+          <ResponsiveImage image={_.get(product, 'appImages.default[0]')} width={440} />
           <span>{product.id}</span> <br />
           <span className="price-number">{`${activeCurrency} ${product[activeCurrency]}`}</span>
           <span className="price-unit"> / piece</span>

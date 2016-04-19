@@ -1,7 +1,6 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
 import React, { PropTypes } from 'react';
-import { CloudinaryImage } from 'react-cloudinary';
 import { Link } from 'react-router';
 
 import ResponsiveImage from 'components/snippet/ResponsiveImage';
@@ -29,7 +28,7 @@ export default React.createClass({
 
         return (
           <Link className="img-box" to={`/products/${wish.product.id}`}>
-            <ResponsiveImage image={thumbnailImage} width={120} />
+            <ResponsiveImage image={thumbnailImage} width={440} />
           </Link>
         );
       };

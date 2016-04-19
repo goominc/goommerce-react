@@ -33,7 +33,7 @@ export default React.createClass({
     const renderVariantImages = () => {
       const renderColorImage = (color) => (
         <div key={color} className="variant-item" onClick={() => changeMainImage(item.id, colors[color].img)}>
-          <ResponsiveImage image={colors[color].img} width={220} />
+          <ResponsiveImage image={colors[color].img} width={440} />
         </div>
       );
       const res = [];
@@ -72,7 +72,7 @@ export default React.createClass({
       <div key={item.id} className={className}>
         <div className="product-list-item-box">
           <div className={`heart-it ${item.wish ? 'active' : ''}`} onClick={() => toggleWish(item)}></div>
-          <ResponsiveImage image={image} link={`/products/${item.id}`} width={220} />
+          <ResponsiveImage image={image} link={`/products/${item.id}`} width={440} />
           <Link to={`/products/${item.id}`}>
             <div className="product-title">
               {productUtil.getName(item)} <br />

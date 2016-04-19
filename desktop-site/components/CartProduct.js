@@ -69,7 +69,7 @@ export default React.createClass({
           <div key={variant.productVariant.id} className={index === 0 ? 'product-row' : 'variant-row'}>
             <div className="product-info-content">
               <div className="img-box">
-                <ResponsiveImage image={_.get(variant.productVariant, 'appImages.default[0]')} width={60} />
+                <ResponsiveImage image={_.get(variant.productVariant, 'appImages.default[0]')} width={120} />
               </div>
               <div className="content-wrap">
                 <div className="item"><strong>{productUtil.getName(product)}</strong></div>
