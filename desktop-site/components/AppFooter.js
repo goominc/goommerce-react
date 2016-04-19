@@ -45,8 +45,8 @@ export default React.createClass({
               <img src={`${constants.resourceRoot}/footer/logo_kakao.png`} />
             </div>
             <div className="info-content">
-              바이어 상담 카카오톡linkshops <br />
-              브랜드 상담 카카오톡linkshops_brand <br />
+              구매회원 상담 Linkshops<br />
+              판매회원 상담 Linkshops_brand<br />
             </div>
           </div>
         </div>
