@@ -63,8 +63,6 @@ export default React.createClass({
       }
     };
     const onChange = (e) => {
-      console.log('2');
-      console.log(e.target.value);
       onChangeText(e.target.value);
       if (this.state.cursorPosition >= 0) {
         this.setState({ cursorPosition: -1 });
@@ -72,6 +70,14 @@ export default React.createClass({
     };
     const onFocus = (e) => {
       onChangeText(e.target.value);
+    };
+    const onBlur = () => {
+      if (items && items.length === 1) {
+        // 2016. 04. 19. [heekyu] select it if only one
+        onSelectItem(items[0]);
+      } else {
+        resetDropdown();
+      }
     };
     return (
       <div className={boxClassName}>
@@ -81,6 +87,7 @@ export default React.createClass({
           onFocus={onFocus}
           onChange={onChange}
           onKeyUp={onKeyEvent} // onKeyPress does not work for arrow up(38), down(40)
+          onBlur={onBlur}
         />
         {renderDropdown()}
       </div>
