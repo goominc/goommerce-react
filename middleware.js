@@ -69,7 +69,7 @@ module.exports = (opts) => {
       `);
     }
 
-    function send(initialState) {
+    function send(initialState, gaid) {
       res.send(`
         <!DOCTYPE html>
         <html>
@@ -87,6 +87,7 @@ module.exports = (opts) => {
             <script src="${cdn}/vendor/jquery-1.11.3.min.js"></script>
             <script src="${cdn}/vendor/owl.carousel.min.js"></script>
             <script>window.__INITIAL_STATE__ = ${serialize(initialState)};</script>
+            ${gaid ? `<script>window.gaid="${gaid}"</script>` : ''}
             <script src="${path('app.bundle.js')}"></script>
             <script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>
           </body>
@@ -117,7 +118,19 @@ module.exports = (opts) => {
           // return sendMobile(initialState);
           return res.redirect(`//${config.mobileSite}/`);
         }
-        return send(initialState);
+        var gaid = config.ga; // eslint-disable-line
+        if (gaid) {
+          // 2016. 04. 19. [heekyu] TODO remove common logic
+          for (var i = 0; i < (auth.roles || []).length; i++) { // eslint-disable-line
+            const role = auth.roles[i];
+            if (role.type === 'admin') {
+              gaid = null;
+              break;
+            }
+          }
+        }
+
+        return send(initialState, gaid);
       });
     }
   });
