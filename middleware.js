@@ -119,7 +119,7 @@ module.exports = (opts) => {
           return res.redirect(`//${config.mobileSite}/`);
         }
         var gaid = config.ga; // eslint-disable-line
-        if (gaid) {
+        if (gaid && auth) {
           // 2016. 04. 19. [heekyu] TODO remove common logic
           for (var i = 0; i < (auth.roles || []).length; i++) { // eslint-disable-line
             const role = auth.roles[i];
