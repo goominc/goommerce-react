@@ -2,6 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
+import Decimal from 'decimal.js-light';
 
 import SearchBrandContainer from 'containers/SearchBrandContainer';
 import SearchProductContainer from 'containers/SearchProductContainer';
@@ -83,7 +84,7 @@ export default React.createClass({
       const currencies = cart.total ? Object.keys(cart.total) : [];
       brand.total = {};
       currencies.forEach((cur) => {
-        brand.total[cur] = 0;
+        brand.total[cur] = new Decimal(0);
       });
       (brand.products || []).forEach((product) => {
         if (_.get(brand, 'brand.id') === brandId) {
@@ -96,9 +97,14 @@ export default React.createClass({
         }
         (product.productVariants || []).forEach((variant) => {
           currencies.forEach((cur) => {
-            brand.total[cur] += +(_.get(variant, `productVariant.${cur}`)) * +variant.count;
+            const price = new Decimal(_.get(variant, `productVariant.${cur}`, 0));
+            const total = price.mul(variant.count || 0).toFixed(cur === 'KRW' ? 0 : 2);
+            brand.total[cur] = brand.total[cur].add(total);
           });
         });
+      });
+      currencies.forEach((cur) => {
+        brand.total[cur] = brand.total[cur].toFixed(cur === 'KRW' ? 0 : 2);
       });
     });
     const fields = [
@@ -150,7 +156,7 @@ export default React.createClass({
         }
       };
       const price = +(_.get(variant, activeCurrency));
-      const total = price * quantity;
+      const total = new Decimal(price).mul(quantity).toFixed(activeCurrency === 'KRW' ? 0 : 2);
       const renderDeleteButton = () => {
         if (!disableDelete) {
           return (
