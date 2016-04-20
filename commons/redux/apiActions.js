@@ -60,6 +60,15 @@ export function forgotPassword({ email, resetBaseUrl }) {
 }
 
 export function resetPassword({ access_token, password }) {
+  return () => {
+    // 2016. 04. 21. [heekyu] do not use 'dispatch' nor 'getState'
+    return ajaxReturnPromise({ bearer: access_token }, 'put', '/api/v1/users/self/reset_password', { password })
+      .then((data) => data
+        // , (jqXHR, textStatus, errorThrown) => handleErrorAlert(jqXHR, textStatus, errorThrown));
+        // TODO server must return right message
+        , () => window.alert('인증 토큰이 만료되었습니다. 비밀번호 찾기를 다시 시도해 주세요'));
+  };
+  /*
   return createFetchAction({
     type: 'RESET_PASSWORD',
     endpoint: '/api/v1/users/self/reset_password',
@@ -67,6 +76,7 @@ export function resetPassword({ access_token, password }) {
     body: { access_token, password },
     transform: ({ data }) => ({ auth: data }),
   });
+  */
 }
 
 export function loadProducts() {

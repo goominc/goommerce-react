@@ -36,7 +36,6 @@ export default function configure({ getAuth }) { // eslint-disable-line
     <Route>
       <Route component={App}>
         <Route path="/" component={Home} />
-        <Route path="/accounts/reset" component={ResetPassword} />
         <Redirect from="/products" to="/categories/all" />
         <Route path="/products/:productId" component={ProductDetail} onEnter={onEnter} />
         <Route path="/cart" component={Cart} onEnter={onEnter} />
@@ -55,6 +54,7 @@ export default function configure({ getAuth }) { // eslint-disable-line
       <Route path="/accounts/signin" component={Signin} />
       <Route path="/accounts/signup" component={Signup} />
       <Route path="/accounts/forgot" component={ForgotPassword} />
+      <Route path="/accounts/reset" component={ResetPassword} />
       <Redirect from="*" to="/" />
     </Route>
   );
