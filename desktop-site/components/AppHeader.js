@@ -168,6 +168,9 @@ export default React.createClass({
           <div key="app-header-logout" className="helper-menu-item" onClick={handleLogout}>
             {i18n.get('word.logout')}
           </div>,
+          <div key="app-header-customer1" className="helper-menu-item">
+            <Link to="/service/info/customer_center">{i18n.get('word.customerCenter')}</Link>
+          </div>,
         ];
       }
       return [
@@ -176,6 +179,9 @@ export default React.createClass({
         </Link>,
         <Link key="app-header-signup" to="/accounts/signup">
           <div className="helper-menu-item">{i18n.get('word.register')}</div>
+        </Link>,
+        <Link key="app-header-customer2" to="/service/info/customer_center">
+          <div className="helper-menu-item">{i18n.get('word.customerCenter')}</div>
         </Link>,
       ];
     };

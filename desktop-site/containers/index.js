@@ -18,3 +18,5 @@ export { default as MyPage } from 'containers/MyPage';
 
 export { default as UserTermsContainer } from 'containers/UserTermsContainer';
 export { default as UserPoliciesContainer } from 'containers/UserPoliciesContainer';
+
+export { default as ServiceInfoContainer } from 'containers/ServiceInfoContainer';

@@ -224,10 +224,10 @@ const Home = React.createClass({
         </div>
         <div className="slogan-link-wide-container">
           <div className="container no-padding slogan-link-container">
-            <div className="slogan-link-item">회사소개</div>
+            <div className="slogan-link-item"><Link to="/service/info/intro">회사소개</Link></div>
             <div className="slogan-link-item"><Link to="/user/terms">이용약관</Link></div>
             <div className="slogan-link-item"><Link to="/user/policies">개인정보 취급방침</Link></div>
-            <div className="slogan-link-item">제휴안내</div>
+            <div className="slogan-link-item"><Link to="/service/info/signup">제휴안내</Link></div>
           </div>
         </div>
       </div>

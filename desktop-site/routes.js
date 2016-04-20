@@ -21,6 +21,7 @@ import {
   MyPage,
   UserTermsContainer,
   UserPoliciesContainer,
+  ServiceInfoContainer,
 } from 'containers';
 
 import roleUtil from 'commons/utils/roleUtil';
@@ -49,6 +50,7 @@ export default function configure({ getAuth }) { // eslint-disable-line
         <Route path="/mypage(/:menuName)" component={MyPage} onEnter={onEnter} />
         <Route path="/user/terms" component={UserTermsContainer} />
         <Route path="/user/policies" component={UserPoliciesContainer} />
+        <Route path="/service/info(/:section)" component={ServiceInfoContainer} />
       </Route>
       <Route path="/accounts/signin" component={Signin} />
       <Route path="/accounts/signup" component={Signup} />

@@ -1,0 +1,39 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to 'xxx' page.
+// -----------------------------------------------------------------------------
+
+.service-info-container {
+  background-color: #fff;
+  margin: 0 auto;
+  min-width: 1200px;
+  width: 1200px;
+  .section {
+    display: block;
+    padding-bottom: 90px;
+    width: 100%;
+  }
+  .title {
+    background-color: #fe7d15;
+    color: #fff;
+    padding: 70px 0 30px 70px;
+    vertical-align: bottom;
+    width: 100%;
+    strong {
+      font-size: 55px;
+      padding-right: 30px;
+    }
+    span {
+      font-size: 30px;
+    }
+  }
+  .content {
+    margin-top: 60px;
+    position: relative;
+    right: 50%;
+    text-align: center;
+    img {
+      display: inline-block;
+      margin-right: -100%;
+    }
+  }
+}
