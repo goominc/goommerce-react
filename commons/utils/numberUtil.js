@@ -20,7 +20,7 @@ const format = (number) => {
   };
   while (number > 0) {
     if (number >= 1000) {
-      res = `,${numToString(number % 1000, 3)}`;
+      res = `,${numToString(number % 1000, 3)}${res}`;
     } else {
       res = `${number}${res}`;
     }
@@ -31,12 +31,14 @@ const format = (number) => {
 
 exports.format = format;
 
-exports.formatPrice = (price, currency, currencySign) => {
+const formatPrice = (price, currency, currencySign) => {
   if (currency === 'KRW') {
     return `${format(price)}원`;
   }
   return `${currencySign[currency]} ${price}`;
 };
+
+exports.formatPrice = formatPrice;
 
 const formatDate = (date, isDateOnly) => {
   if (!(date instanceof Date)) {
