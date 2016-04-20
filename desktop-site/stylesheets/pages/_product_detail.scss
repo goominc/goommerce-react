@@ -150,10 +150,12 @@ $product-detail-thumbnail-margin: 15px;
     }
   }
   .color-line {
-    height: 90px;
-    line-height: 90px;
     margin-bottom: $margin-15;
     width: 100%;
+    .field-label {
+      height: 90px;
+      line-height: 90px;
+    }
   }
   .size-line {
     height: 30px;
