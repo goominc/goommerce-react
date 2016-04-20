@@ -45,5 +45,11 @@ const Cart = React.createClass({
 });
 
 export default connect(
-  (state) => ({ cart: state.cart })
+  // NOTE: DO NOT CHANGE CODE:
+  // using '(state) => ({ cart: state.cart })'
+  // makes Cart would not be updated even though the context is changed.
+  // we should investigate this more. it seems there's a bug in connect.shouldComponentUpdate().
+  (state, ownProps) => {
+    return { cart: state.cart };
+  }
 )(Cart);
