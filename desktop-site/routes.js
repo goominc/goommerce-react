@@ -23,21 +23,13 @@ import {
   UserPoliciesContainer,
 } from 'containers';
 
+import roleUtil from 'commons/utils/roleUtil';
+
 export default function configure({ getAuth }) { // eslint-disable-line
-  const checkRole = (nextState, replaceState) => {
-    const auth = getAuth();
-    if (!auth || !auth.id) {
-      replaceState(null, '/accounts/signin');
-      return;
-    }
-    const roles = auth.roles || [];
-    for (let i = 0; i < roles.length; i++) {
-      if (roles[i].type === 'admin' || roles[i].type === 'buyer' || roles[i].type === 'bigBuyer') {
-        return;
-      }
-    }
-    window.alert('바이어 인증 이후에 서비스 이용하실 수 있습니다');
-    replaceState(null, '/');
+  const onEnter = (nextState, replaceState) => {
+    const onNotLogin = () => replaceState(null, '/accounts/signin');
+    const onNotRole = () => replaceState(null, '/');
+    roleUtil.checkRole(nextState, replaceState, getAuth(), onNotLogin, onNotRole);
   };
   return (
     <Route>
@@ -45,16 +37,16 @@ export default function configure({ getAuth }) { // eslint-disable-line
         <Route path="/" component={Home} />
         <Route path="/accounts/reset" component={ResetPassword} />
         <Redirect from="/products" to="/categories/all" />
-        <Route path="/products/:productId" component={ProductDetail} onEnter={checkRole} />
-        <Route path="/cart" component={Cart} onEnter={checkRole} />
-        <Route path="/orders" component={MyOrderContainer} onEnter={checkRole} />
-        <Route path="/orders/:orderId" component={OrderDetail} onEnter={checkRole} />
-        <Route path="/orders/:orderId/checkout" component={Checkout} onEnter={checkRole} />
-        <Route path="/orders/:orderId/done" component={OrderDoneContainer} onEnter={checkRole} />
-        <Route path="/brands/:brandId(/:pageNum)" component={Brand} onEnter={checkRole} />
-        <Route path="/categories/:categoryId(/:pageNum)" component={Category} onEnter={checkRole} />
-        <Route path="/search/:query(/:pageNum)" component={Search} onEnter={checkRole} />
-        <Route path="/mypage(/:menuName)" component={MyPage} onEnter={checkRole} />
+        <Route path="/products/:productId" component={ProductDetail} onEnter={onEnter} />
+        <Route path="/cart" component={Cart} onEnter={onEnter} />
+        <Route path="/orders" component={MyOrderContainer} onEnter={onEnter} />
+        <Route path="/orders/:orderId" component={OrderDetail} onEnter={onEnter} />
+        <Route path="/orders/:orderId/checkout" component={Checkout} onEnter={onEnter} />
+        <Route path="/orders/:orderId/done" component={OrderDoneContainer} onEnter={onEnter} />
+        <Route path="/brands/:brandId(/:pageNum)" component={Brand} onEnter={onEnter} />
+        <Route path="/categories/:categoryId(/:pageNum)" component={Category} onEnter={onEnter} />
+        <Route path="/search/:query(/:pageNum)" component={Search} onEnter={onEnter} />
+        <Route path="/mypage(/:menuName)" component={MyPage} onEnter={onEnter} />
         <Route path="/user/terms" component={UserTermsContainer} />
         <Route path="/user/policies" component={UserPoliciesContainer} />
       </Route>
