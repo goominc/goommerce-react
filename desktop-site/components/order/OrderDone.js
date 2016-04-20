@@ -46,7 +46,7 @@ export default React.createClass({
     );
     const renderVBank = () => {
       if (order.status === 0) {
-        const payment = _.find(order.payments, (p) => p.type === 0 && p.status === 2 && p.data.payMethod === 'VBank');
+        const payment = _.find(order.payments, (p) => p.type === 3 && p.status === 2 && p.data.payMethod === 'VBank');
         if (payment) {
           const price = numberUtil.formatPrice(order[`total${activeCurrency}`], activeCurrency, currencySign);
           const accountFields = [

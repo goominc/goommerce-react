@@ -18,7 +18,6 @@ export default React.createClass({
     const formatPrice = (type) => {
       return numberUtil.formatPrice(order[`${type}${activeCurrency}`], activeCurrency, currencySign);
     };
-    console.log(order);
     const orderPrice = numberUtil.formatPrice(
       +(order[`tax${activeCurrency}`] || 0) + +(order[`handlingFee${activeCurrency}`] || 0) + +(order[`shippingCost${activeCurrency}`] || 0),
       activeCurrency,

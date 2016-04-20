@@ -30,7 +30,7 @@ export default React.createClass({
   renderVBank() {
     const { order } = this.props;
     if (order.status === 1) {
-      const payment = _.find(order.payments, (p) => p.type === 0 && p.status === 2 && p.data.payMethod === 'VBank');
+      const payment = _.find(order.payments, (p) => p.type === 3 && p.status === 2 && p.data.payMethod === 'VBank');
       if (payment) {
         return (
           <div>
