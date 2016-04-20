@@ -1,4 +1,5 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
+import Decimal from 'decimal.js-light';
 
 const format = (number) => {
   let res = '';
@@ -20,11 +21,12 @@ const format = (number) => {
   };
   while (number > 0) {
     if (number >= 1000) {
-      res = `,${numToString(number % 1000, 3)}${res}`;
+      const mod = new Decimal(number).mod(1000).toNumber();
+      res = `,${numToString(mod, 3)}${res}`;
     } else {
       res = `${number}${res}`;
     }
-    number = Math.floor(number / 1000);
+    number = new Decimal(number).divToInt(1000).toNumber();
   }
   return `${sign}${res}`;
 };

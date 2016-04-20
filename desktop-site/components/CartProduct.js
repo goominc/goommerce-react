@@ -2,6 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
+import Decimal from 'decimal.js-light';
 
 import brandUtil from 'commons/utils/brandUtil';
 import numberUtil from 'commons/utils/numberUtil';
@@ -65,6 +66,8 @@ export default React.createClass({
           }
           return null;
         };
+        const total = pricePerUnit &&
+          new Decimal(pricePerUnit).mul(variant.count || 0).toFixed(activeCurrency === 'KRW' ? 0 : 2);
         return (
           <div key={variant.productVariant.id} className={index === 0 ? 'product-row' : 'variant-row'}>
             <div className="product-info-content">
@@ -79,7 +82,7 @@ export default React.createClass({
             </div>
             <div className="quantity">{numberUtil.format(pricePerUnit)}</div>
             {renderQuantity()}
-            <div className="price">{numberUtil.format(+variant.count * pricePerUnit)}</div>
+            <div className="price">{numberUtil.format(total)}</div>
             {renderDeleteButton()}
           </div>
         );
