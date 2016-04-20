@@ -62,7 +62,7 @@ export function forgotPassword({ email, resetBaseUrl }) {
 export function resetPassword({ access_token, password }) {
   return createFetchAction({
     type: 'RESET_PASSWORD',
-    endpoint: '/api/v1/reset',
+    endpoint: '/api/v1/users/self/reset_password',
     method: 'put',
     body: { access_token, password },
     transform: ({ data }) => ({ auth: data }),
