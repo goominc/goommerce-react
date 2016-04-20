@@ -38,8 +38,7 @@ const Signup = React.createClass({
       data,
       name,
     }).then(
-      () => this.setState({ step: 3 }),
-      (err) => alert(err) // eslint-disable-line no-alert
+      () => this.setState({ step: 3 })
     );
   },
   render() {

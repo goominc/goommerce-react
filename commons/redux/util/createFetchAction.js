@@ -40,6 +40,7 @@ export default function createFetchAction(options) {
       }
       return data;
     }, (jqXHR, textStatus, errorThrown) => {
+      // TODO change this to ajaxUtil.handleErrorDispatch
       if (doDispatch) {
         let error = jqXHR.responseJSON;
         if (!error) {

@@ -3,21 +3,20 @@
 import { normalize } from 'normalizr';
 import createFetchAction from './util/createFetchAction';
 import * as schemas from './schemas';
-import { simpleNotify, ajaxReturnPromise } from './util/ajaxUtil';
+import { simpleNotify, ajaxReturnPromise, handleErrorAlert } from './util/ajaxUtil';
 
 const _ = require('lodash');
 
 export function login(email, password) {
-  return createFetchAction({
-    type: 'LOGIN',
-    endpoint: '/api/v1/login',
-    method: 'post',
-    body: {
-      email,
-      password,
-    },
-    transform: ({ data }) => ({ auth: data }),
-  });
+  return (dispatch, getState) => {
+    const state = getState();
+    return ajaxReturnPromise(state.auth, 'post', '/api/v1/login', { email, password }).then((data) => {
+      dispatch({
+        type: 'LOGIN',
+        auth: data,
+      });
+    });
+  };
 }
 
 export function logout() {
@@ -29,13 +28,15 @@ export function logout() {
 }
 
 export function signup(params) {
-  return createFetchAction({
-    type: 'LOGIN',
-    endpoint: '/api/v1/users',
-    method: 'post',
-    body: params,
-    transform: ({ data }) => ({ auth: data }),
-  });
+  return (dispatch, getState) => {
+    const state = getState();
+    return ajaxReturnPromise(state.auth, 'post', '/api/v1/users', params).then((data) => {
+      dispatch({
+        type: 'LOGIN',
+        auth: data,
+      });
+    }, (jqXHR, textStatus, errorThrown) => handleErrorAlert(jqXHR, textStatus, errorThrown));
+  };
 }
 
 export function updateUser(params) {
