@@ -13,7 +13,6 @@ import orderUtil from 'commons/utils/orderUtil';
 export default React.createClass({
   propTypes: {
     activeAddressId: PropTypes.number,
-    addressFields: PropTypes.array,
     addresses: PropTypes.object,
     doCheckout: PropTypes.func,
     order: PropTypes.object.isRequired,
@@ -76,7 +75,7 @@ export default React.createClass({
         );
       }
       const renderAddress = (address) => (
-        <AddressView key={address.id}
+        <AddressView key={`address-view-${address.id}`}
           {...this.props}
           address={address}
           isActive={activeAddressId === address.id}
@@ -112,7 +111,7 @@ export default React.createClass({
       { icon: 'icon-credit-card', name: '신용 카드', method: 'Card' },
     ];
     const renderPaymentMethod = (method, index) => (
-      <div key={index} className={`row ${index === this.state.paymentMethod ? 'active' : ''}`} onClick={() => this.setState({ paymentMethod: index })}>
+      <div key={`payment-${index}`} className={`row ${index === this.state.paymentMethod ? 'active' : ''}`} onClick={() => this.setState({ paymentMethod: index })}>
         <i className={`label ${method.icon}`}></i>
         <div className="control">
           {method.name}

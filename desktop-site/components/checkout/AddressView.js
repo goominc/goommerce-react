@@ -3,6 +3,8 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
+import stringUtil from 'commons/utils/stringUtil';
+
 export default React.createClass({
   propTypes: {
     address: PropTypes.object,
@@ -23,15 +25,16 @@ export default React.createClass({
         onClickMe(address);
       }
     };
+    const getString = (key) => stringUtil.shorten(_.get(address, key) || '', 13);
     const fields = [
       { label: '받는 분', value: _.get(address, 'detail.name') },
       { label: '연락처', value: _.get(address, 'detail.tel') },
       { label: '우편번호', value: _.get(address, 'detail.postalCode') },
-      { label: '주소', value: [_.get(address, 'detail.address.base') || '', _.get(address, 'detail.address.detail') || ''] },
+      { label: '주소', value: [getString('detail.address.base'), getString('detail.address.detail')] },
     ];
     const renderValue = (value) => {
       if (value instanceof Array) {
-        return value.map((v) => (<span key={v}>{v} <br /></span>));
+        return value.map((v, index) => (<span key={`val-${index}`}>{v} <br /></span>));
       }
       return value;
     };

@@ -221,8 +221,8 @@ $active-progress-color: #f90;
     border: 1px solid #999;
     display: block;
     margin-bottom: $margin-20;
-    padding-top: $margin-15;
-    width: 450px;
+    padding: $margin-15 0;
+    width: 520px;
     .form-box {
       padding: 5px 15px;
       width: 100%;
@@ -231,25 +231,42 @@ $active-progress-color: #f90;
       display: inline-block;
       font-size: 14px;
       text-align: left;
-      width: 30%;
+      width: 20%;
     }
     .form-control {
       display: inline-block;
+      position: relative;
       text-align: left;
-      width: 70%;
+      width: 80%;
       input[type="text"] {
         border: 1px solid #aaa;
         width: 100%;
         padding: 5px 10px;
+        &.input-postal-code {
+          display: inline-block;
+          width: 220px;
+        }
+      }
+      .btn-postal-code {
+        @include button-default-styles();
+        border: 1px solid $default-active-text-color;
+        display: inline-block;
+        min-width: 120px;
+        max-width: 150px;
+        padding: 5px $margin-15;
+        position: absolute;
+        right: 0;
+        top: 0;
       }
     }
     .save-button {
       @include button-default-styles();
       color: #fff;
       display: inline-block;
+      font-size: 16px;
       height: 40px;
       line-height: 40px;
-      font-size: 16px;
+      padding: 0;
       text-align: center;
       width: 100px;
     }
@@ -258,10 +275,11 @@ $active-progress-color: #f90;
       border: 0;
       color: #fff;
       display: inline-block;
-      margin-left: $margin-20;
+      font-size: 16px;
       height: 40px;
       line-height: 40px;
-      font-size: 16px;
+      margin-left: $margin-20;
+      padding: 0;
       text-align: center;
       vertical-align: top;
       width: 100px;

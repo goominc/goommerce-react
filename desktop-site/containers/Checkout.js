@@ -82,14 +82,6 @@ const Checkout = React.createClass({
     if (!this.props.order) {
       return (<div>Loading...</div>);
     }
-    const fields = [
-      { key: 'detail.alias', objKey: 'alias', text: '별명' },
-      { key: 'detail.name', objKey: 'name', text: '받는 분' },
-      { key: 'detail.tel', objKey: 'tel', text: '연락처' },
-      { key: 'detail.postalCode', objKey: 'postalCode', text: '우편 번호' },
-      { key: 'detail.address.base', objKey: 'address1', text: '주소' },
-      { key: 'detail.address.detail', objKey: 'address2', text: '상세 주소' },
-    ];
     const { order, addresses, isEditMode, isNewAddress, activeAddressId,
       checkoutToggleEditAddress, saveAddressAndThen } = this.props;
 
@@ -119,7 +111,6 @@ const Checkout = React.createClass({
         {...this.props}
         doCheckout={this.doCheckout}
         addressForEdit={addressForEdit}
-        addressFields={fields}
         cancelEditAddress={cancelEditAddress}
         editAddress={editAddress}
         submitAddress={(address) => saveAddressAndThen(order, address)}
