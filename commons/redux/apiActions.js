@@ -13,7 +13,7 @@ export function login(email, password) {
     return ajaxReturnPromise(state.auth, 'post', '/api/v1/login', { email, password }).then((data) => {
       dispatch({
         type: 'LOGIN',
-        auth: data,
+        payload: { auth: data },
       });
     });
   };
@@ -33,7 +33,7 @@ export function signup(params) {
     return ajaxReturnPromise(state.auth, 'post', '/api/v1/users', params).then((data) => {
       dispatch({
         type: 'LOGIN',
-        auth: data,
+        payload: { auth: data },
       });
     }, (jqXHR, textStatus, errorThrown) => handleErrorAlert(jqXHR, textStatus, errorThrown));
   };
