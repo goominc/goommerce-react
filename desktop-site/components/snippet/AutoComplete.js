@@ -40,6 +40,9 @@ export default React.createClass({
       }
       return (<div></div>);
     };
+    const onBlur = () => {
+      resetDropdown();
+    };
     const onKeyEvent = (e) => {
       const keyCode = e.keyCode;
       const changeCuror = (next) => {
@@ -54,6 +57,11 @@ export default React.createClass({
       } else if (keyCode === 40) {
         // arrow down
         changeCuror(Math.min(cursorPosition + 1, items.length - 1));
+      } else if (keyCode === 9) {
+        // tab
+        // 2016. 04. 20. [heekyu] blur event fires before dropdown click event
+        // so, handle blur event manually
+        onBlur();
       } else if (keyCode === 13) {
         // enter
         if (cursorPosition === -1) {
@@ -71,9 +79,6 @@ export default React.createClass({
     const onFocus = (e) => {
       onChangeText(e.target.value);
     };
-    const onBlur = () => {
-      resetDropdown();
-    };
     return (
       <div className={boxClassName}>
         <input type="text"
@@ -81,8 +86,7 @@ export default React.createClass({
           defaultValue={text}
           onFocus={onFocus}
           onChange={onChange}
-          onKeyUp={onKeyEvent} // onKeyPress does not work for arrow up(38), down(40)
-          onBlur={onBlur}
+          onKeyDown={onKeyEvent} // onKeyPress does not work for arrow up(38), down(40)
         />
         {renderDropdown()}
       </div>
