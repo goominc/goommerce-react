@@ -181,14 +181,15 @@ $product-list-margin: 20px;
     right: 10px;
     top: 10px;
     .sort-item {
-      padding: 0 10px;
+      display: inline-block;
+      padding-left: 15px;
+      padding-right: 10px;
       & + .sort-item {
         border-left: 1px solid #aaa;
       }
       &.active {
-        background: url($base-url + '/main/ico_check.png') no-repeat 10px 0;
+        background: url($base-url + '/main/ico_check.png') no-repeat 0 0;
         font-weight: bold;
-        padding-left: 25px;
       }
     }
   }

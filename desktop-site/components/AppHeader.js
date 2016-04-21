@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
 import orderUtil from 'commons/utils/orderUtil';
+import roleUtil from 'commons/utils/roleUtil';
 import i18n from 'commons/utils/i18n';
 import { constants } from 'commons/utils/constants';
 
@@ -145,7 +146,16 @@ export default React.createClass({
       handleSearch(this.refs.searchQuery.value, activeCategory && activeCategory.id);
     };
 
+    const brandId = roleUtil.getBrandIdIfSeller(auth);
     const renderTopHelperRightMenus = () => {
+      if (brandId) {
+        // seller does not need my page
+        return (
+          <div key="app-header-logout" className="helper-menu-item" onClick={handleLogout}>
+            {i18n.get('word.logout')}
+          </div>
+        );
+      }
       if (this.context.isLogin()) {
         const getName = (email) => {
           const idx = email.indexOf('@');
@@ -188,6 +198,31 @@ export default React.createClass({
 
     const headerRightMenuItemClassName = `menu-item ${activeLocale}`;
     const leftMenuItemClassName = 'left-menu-item';
+
+    const renderMyMenus = () => {
+      if (brandId) {
+        return (
+          <Link to={`/brands/${brandId}`}>
+            <div className={headerRightMenuItemClassName}>상품 조회</div>
+          </Link>
+        );
+      }
+      return [
+        <Link key="mypage_wish_list" to="/mypage/wish_list">
+          <div className={headerRightMenuItemClassName}>{i18n.get('word.wishList')}</div>
+        </Link>,
+        <Link key="mypage_favorite_brands" to="/mypage/favorite_brands">
+          <div className={headerRightMenuItemClassName}>{i18n.get('word.favoriteBrand')}</div>
+        </Link>,
+        <Link key="mypage_cart" to="/cart">
+          <div className={headerRightMenuItemClassName}>
+            <span>{i18n.get('word.cart')}</span>
+            <img src={`${constants.resourceRoot}/header/ico_cart.png`} />
+            <span className="cart-count">{cartCount}</span>
+          </div>
+        </Link>,
+      ];
+    };
 
     return (
       <div className="header-wide-container">
@@ -237,19 +272,7 @@ export default React.createClass({
               </form>
             </div>
             <div className="header-right-menus">
-              <Link to="/mypage/wish_list">
-                <div className={headerRightMenuItemClassName}>{i18n.get('word.wishList')}</div>
-              </Link>
-              <Link to="/mypage/favorite_brands">
-                <div className={headerRightMenuItemClassName}>{i18n.get('word.favoriteBrand')}</div>
-              </Link>
-              <Link to="/cart">
-                <div className={headerRightMenuItemClassName}>
-                  <span>{i18n.get('word.cart')}</span>
-                  <img src={`${constants.resourceRoot}/header/ico_cart.png`} />
-                  <span className="cart-count">{cartCount}</span>
-                </div>
-              </Link>
+              {renderMyMenus()}
             </div>
           </div>
         </div>

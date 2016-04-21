@@ -68,14 +68,15 @@ export default React.createClass({
       );
       return filterPrices.map(renderFilter);
     };
+    const sorts = this.props.sorts || '-id';
     const sortItemViews = sortItems.map((item) => {
-      if (this.props.sorts === item.sorts) {
+      if (sorts === item.sorts) {
         return (
-          <Link key={item.sorts} to={genLink({ ...this.props, sorts: null, pageNum: 1 })}>
+          <a className="sort-item" key={item.sorts}>
             <strong className="sort-item active">
               {item.name}
             </strong>
-          </Link>
+          </a>
         );
       }
       return (

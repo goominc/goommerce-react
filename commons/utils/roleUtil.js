@@ -16,3 +16,13 @@ exports.checkRole = (nextState, replaceState, auth, onNotLogin, onNotRole) => {
   window.alert(message);
   onNotRole();
 };
+
+exports.getBrandIdIfSeller = (auth) => {
+  for (let i = 0; i < (auth.roles || []).length; i++) {
+    const role = auth.roles[i];
+    if (role.type === 'owner') {
+      return role.brand.id;
+    }
+  }
+  return null;
+};

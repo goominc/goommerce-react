@@ -27,10 +27,25 @@ import {
 import roleUtil from 'commons/utils/roleUtil';
 
 export default function configure({ getAuth }) { // eslint-disable-line
-  const onEnter = (nextState, replaceState) => {
-    const onNotLogin = () => replaceState(null, '/accounts/signin');
-    const onNotRole = () => replaceState(null, '/');
-    roleUtil.checkRole(nextState, replaceState, getAuth(), onNotLogin, onNotRole);
+  const onEnter = (nextState, fnReplaceState) => {
+    const onNotLogin = () => fnReplaceState(null, '/accounts/signin');
+    const onNotRole = () => fnReplaceState(null, '/');
+    roleUtil.checkRole(nextState, fnReplaceState, getAuth(), onNotLogin, onNotRole);
+  };
+  const checkBrand = (nextState, fnReplaceState) => {
+    const auth = getAuth();
+    const brandId = roleUtil.getBrandIdIfSeller(auth);
+    const onNotLogin = () => fnReplaceState(null, '/accounts/signin');
+    const onNotRole = () => fnReplaceState(null, '/');
+    if (brandId) {
+      if (+nextState.params.brandId !== +brandId) {
+        // 2016. 04. 21. [heekyu] allow only my brand
+        window.alert('상품 조회 권한이 없습니다');
+        onNotRole();
+      }
+    } else {
+      roleUtil.checkRole(nextState, fnReplaceState, getAuth(), onNotLogin, onNotRole);
+    }
   };
   return (
     <Route>
@@ -43,7 +58,7 @@ export default function configure({ getAuth }) { // eslint-disable-line
         <Route path="/orders/:orderId" component={OrderDetail} onEnter={onEnter} />
         <Route path="/orders/:orderId/checkout" component={Checkout} onEnter={onEnter} />
         <Route path="/orders/:orderId/done" component={OrderDoneContainer} onEnter={onEnter} />
-        <Route path="/brands/:brandId(/:pageNum)" component={Brand} onEnter={onEnter} />
+        <Route path="/brands/:brandId(/:pageNum)" component={Brand} onEnter={checkBrand} />
         <Route path="/categories/:categoryId(/:pageNum)" component={Category} onEnter={onEnter} />
         <Route path="/search/:query(/:pageNum)" component={Search} onEnter={onEnter} />
         <Route path="/mypage(/:menuName)" component={MyPage} onEnter={onEnter} />
