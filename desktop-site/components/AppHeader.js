@@ -222,20 +222,20 @@ export default React.createClass({
                 src="//s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/header/logo.png" alt="Linkshops"
               />
             </Link>
-            <form onSubmit={handleSearchSubmit}>
-              <div className="header-search-box">
-                <div className="header-search-category-box" onClick={toggleSearchDropdown}>
-                  <div className="search-divider"></div>
-                  <div className="arrow-down"></div>
-                  {activeCategory ? activeCategory.name[activeLocale] : i18n.get('word.allCategories')}
-                  {renderSearchDropdown()}
-                </div>
-                <input ref="searchQuery" placeholder={i18n.get('pcMain.search.placeHolder')}
-                  defaultValue={params.query || ''}
-                />
-                <button className="header-search-button" type="submit"></button>
+            <div className="header-search-box">
+              <form onSubmit={handleSearchSubmit}>
+              <div className="header-search-category-box" onClick={toggleSearchDropdown}>
+                <div className="search-divider"></div>
+                <div className="arrow-down"></div>
+                {activeCategory ? activeCategory.name[activeLocale] : i18n.get('word.allCategories')}
+                {renderSearchDropdown()}
               </div>
-            </form>
+              <input ref="searchQuery" placeholder={i18n.get('pcMain.search.placeHolder')}
+                defaultValue={params.query || ''}
+              />
+              <button className="header-search-button" type="submit"></button>
+              </form>
+            </div>
             <div className="header-right-menus">
               <Link to="/mypage/wish_list">
                 <div className={headerRightMenuItemClassName}>{i18n.get('word.wishList')}</div>
