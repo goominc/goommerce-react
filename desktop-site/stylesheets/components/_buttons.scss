@@ -39,6 +39,13 @@
   }
 }
 
+@mixin arrow($height) {
+  background-image: url('http://imgs.coupangcdn.com/image/coupang/detail/bg_detail_sprite_160322.png');
+  background-repeat: no-repeat;
+  box-sizing: content-box;
+  cursor: pointer;
+  height: ($height - 3px) / 2;
+}
 @mixin input-number-contents($input-width, $arrow-width, $height) {
   input {
     border: 0;
@@ -51,13 +58,6 @@
     vertical-align: top;
     width: $input-width;
   }
-  @mixin arrow() {
-    background-image: url('http://imgs.coupangcdn.com/image/coupang/detail/bg_detail_sprite_160322.png');
-    background-repeat: no-repeat;
-    box-sizing: content-box;
-    cursor: pointer;
-    height: ($height - 3px) / 2;
-  }
   span {
     border-left: 1px solid #aaa;
     display: inline-block;
@@ -65,12 +65,12 @@
     width: $arrow-width - 1px;
   }
   .up {
-    @include arrow();
+    @include arrow($height);
     background-position: -33px -210px;
     width: 100%;
   }
   .down {
-    @include arrow();
+    @include arrow($height);
     background-position: -33px -225px;
     border-top: 1px solid #aaa;
     width: 100%;
