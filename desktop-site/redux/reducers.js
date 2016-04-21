@@ -124,6 +124,8 @@ function pageProductDetail(state = {}, action) {
       variants: action.variants, selectedVariant: null, activeColor: null, activeSize: null,
     };
     // 2016. 03. 25. [heekyu] Select First Color and size
+    return Object.assign({}, state, initialVariantState, initColorsAndSizes(action.variants));
+    /*
     const state2 = Object.assign({}, state, initialVariantState, initColorsAndSizes(action.variants));
     const colors = Object.keys(_.get(state2, 'variantAttributes.colors') || {});
     const sizes = Object.keys(_.get(state2, 'variantAttributes.sizes') || {});
@@ -132,6 +134,7 @@ function pageProductDetail(state = {}, action) {
       state2.activeSize = sizes[0];
     }
     return colorsAndSizesFromState(state2);
+    */
   } else if (action.type === 'PRODUCT_DETAIL_SET_COLOR') {
     const color = action.color;
     if (color === state.activeColor) {

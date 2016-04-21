@@ -150,6 +150,8 @@ export default React.createClass({
       return (<Breadcrumb key={`breadcrumb-${index}`} path={crumbPath} />);
     };
 
+    let isColorSelected = false;
+    let isSizeSelected = false;
     const renderColor = (attrObj, fnOnSelect) => {
       const keys = Object.keys(attrObj);
       const render = (key) => {
@@ -160,6 +162,7 @@ export default React.createClass({
         }
         if (obj.selected) {
           className += ' active';
+          isColorSelected = true;
         }
         if (obj.img.publicId) {
           return (<CloudinaryImage
@@ -191,6 +194,7 @@ export default React.createClass({
         }
         if (obj.selected) {
           className += ' active';
+          isSizeSelected = true;
         }
         return (
           <div key={key} onClick={() => fnOnSelect(key)} className={`attribute-item-text${className}`}>{key}</div>
@@ -218,8 +222,6 @@ export default React.createClass({
 
       return res;
     };
-
-    const buttonClassName = !!selectedVariant ? '' : 'button-disabled';
 
     const path = [
       { link: '/', name: { en: 'Home', ko: '홈' } },
@@ -263,6 +265,58 @@ export default React.createClass({
         return (<div className="field-content price-value"><b>{numberUtil.format(price)}</b> <span>원</span></div>);
       }
       return (<div className="field-content price-value"><b>{currencySign[activeCurrency]} {price}</b></div>);
+    };
+
+    let animation = null;
+    const isAttributesSelected = () => {
+      const doAnimation = (elem, borderSize) => {
+        let opacity = 10;
+        if (animation) {
+          clearInterval(animation);
+        }
+        animation = setInterval(() => {
+          if (opacity === 0) {
+            clearInterval(animation);
+            animation = null;
+            elem.css('border', '');
+            return;
+          }
+          elem.css('border', `${borderSize}px solid rgba(240, 80, 0, ${opacity / 10}`);
+          opacity -= 1;
+        }, 200);
+      };
+      if (!isColorSelected) {
+        doAnimation($('.color-line img'), 2);
+        return false;
+      }
+      if (!isSizeSelected) {
+        doAnimation($('.size-line .attribute-item-text'), 2);
+        return false;
+      }
+      // TODO is there attributes other than color, size ?
+      return true;
+    };
+    const onBuyNow = () => {
+      if (!isAttributesSelected()) {
+        return;
+      }
+      buyNow(selectedVariant.id, this.refs.quantity.value);
+    };
+
+    const onAddCart = () => {
+      if (!isAttributesSelected()) {
+        return;
+      }
+      addCartProduct(selectedVariant.id, this.refs.quantity.value);
+    };
+    const renderWarning = () => {
+      if (!isColorSelected) {
+        return (<div className="product-detail-attr-warning">색상을 선택해 주세요</div>);
+      }
+      if (!isSizeSelected) {
+        return (<div className="product-detail-attr-warning">사이즈를 선택해 주세요</div>);
+      }
+      return null;
     };
 
     return (
@@ -328,16 +382,15 @@ export default React.createClass({
                 </div>
               </div>
             </div>
+            {renderWarning()}
             <div className="product-detail-action-line">
-              <button className={`product-buy-now-button ${buttonClassName}`}
-                disabled={!selectedVariant}
-                onClick={() => buyNow(selectedVariant.id, this.refs.quantity.value)}
+              <button className="product-buy-now-button"
+                onClick={onBuyNow}
               >
                 바로 구매하기
               </button>
-              <button className={`product-add-to-cart-button ${buttonClassName}`}
-                disabled={!selectedVariant}
-                onClick={() => addCartProduct(selectedVariant.id, this.refs.quantity.value)}
+              <button className="product-add-to-cart-button"
+                onClick={onAddCart}
               >
                 장바구니 담기
               </button>
