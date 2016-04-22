@@ -2,6 +2,9 @@
 import Decimal from 'decimal.js-light';
 
 const format = (number) => {
+  if (+number === 0) {
+    return '0';
+  }
   let res = '';
   let sign = '';
   if (number < 0) {
