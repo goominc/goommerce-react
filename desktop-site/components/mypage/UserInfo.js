@@ -26,9 +26,9 @@ export default React.createClass({
         { name: t('bizNumber'), placeholder: t('bizNumberPlaceHolder'), key: 'data.bizNumber', isReadOnly: true },
       ];
       const fields2 = [
-        { name: t('returnAccountNumber'), placeholder: '123-456-123456', key: 'data.returnAccountNumber' }, // eslint-disable-line
-        { name: t('returnAccountBank'), placeholder: t('returnAccountBankPlaceHolder'), key: 'data.returnAccountBank' }, // eslint-disable-line
-        { name: t('returnAccountOwner'), placeholder: t('returnAccountOwnerPlaceHolder'), key: 'data.returnAccountOwner' }, // eslint-disable-line
+        { name: t('returnAccountNumber'), placeholder: '', key: 'data.returnAccountNumber', isReadOnly: true }, // eslint-disable-line
+        { name: t('returnAccountBank'), placeholder: '', key: 'data.returnAccountBank', isReadOnly: true }, // eslint-disable-line
+        { name: t('returnAccountOwner'), placeholder: '', key: 'data.returnAccountOwner', isReadOnly: true }, // eslint-disable-line
       ];
       const renderField = (field) => (
         <div key={field.name} className="form-group">
@@ -53,7 +53,6 @@ export default React.createClass({
         </div>
       );
     };
-    console.log(auth);
     return (
       <div className="user-info-container">
         <div className="signup-form-section">
