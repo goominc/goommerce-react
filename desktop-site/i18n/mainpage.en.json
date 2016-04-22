@@ -9,7 +9,7 @@
       "placeHolder": "I'm shopping for..."
     },
     "signup": {
-      "bizName": "사업자명",
+      "bizName": "상호(법인명)",
       "bizNumber": "사업자번호",
       "returnAccountNumber": "환불계좌번호",
       "returnAccountBank": "은행명",
