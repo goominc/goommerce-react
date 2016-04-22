@@ -124,6 +124,10 @@ export default React.createClass({
       const { doCheckout } = this.props;
       const handleCheckout = (e) => {
         e.preventDefault();
+        if (!activeAddressId) {
+          window.alert('주소를 입력해 주세요');
+          return;
+        }
         const method = paymentMethods[this.state.paymentMethod].method;
         $('form input[name=gopaymethod]').val(method);
         doCheckout(order.id, Object.assign({}, this.refs,
@@ -180,16 +184,16 @@ export default React.createClass({
               <div className="control">{subtotalPrice}</div>
             </div>
             <div className="row">
+              <div className="label">부가세</div>
+              <div className="control">{taxPrice}</div>
+            </div>
+            <div className="row">
               <div className="label">사입비</div>
               <div className="control">{handlingFeePrice}</div>
             </div>
             <div className="row">
               <div className="label">배송비</div>
               <div className="control">{shippingCostPrice}</div>
-            </div>
-            <div className="row">
-              <div className="label">부가세</div>
-              <div className="control">{taxPrice}</div>
             </div>
             <div className="total-row">
               <div className="label">결제금액</div>
