@@ -227,7 +227,7 @@ const Home = React.createClass({
             <div className="slogan-link-item"><Link to="/service/info/intro">회사소개</Link></div>
             <div className="slogan-link-item"><Link to="/user/terms">이용약관</Link></div>
             <div className="slogan-link-item"><Link to="/user/policies">개인정보 취급방침</Link></div>
-            <div className="slogan-link-item"><Link to="/service/info/signup">제휴안내</Link></div>
+            <div className="slogan-link-item"><Link to="/service/info/signup">회원가입 안내</Link></div>
           </div>
         </div>
       </div>
