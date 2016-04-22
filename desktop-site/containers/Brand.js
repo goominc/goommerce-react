@@ -16,6 +16,9 @@ export default React.createClass({
     });
     const { params, location } = this.props;
     const query = defaults({}, params, location.query);
+    if (!query.sorts) {
+      query.sorts = '-id';
+    }
     return (
       <ProductList {...query} genLink={genLink} />
     );

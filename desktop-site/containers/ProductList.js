@@ -37,7 +37,7 @@ const ProductList = React.createClass({
     return { pageNum: '1' };
   },
   getInitialState() {
-    return { sorts: null };
+    return {};
   },
   componentDidMount() {
     this.doSearch(this.props);
