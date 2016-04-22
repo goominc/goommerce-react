@@ -48,6 +48,9 @@ export default React.createClass({
       this.refs.uname.value = res.buyername;
       this.refs.nextUrl.value = res.returnUrl;
       this.refs.inipay.action = `https://mobile.inicis.com/smart/${'wcard'}/`;
+      // FIXME
+      // this.refs.notiUrl.value = 'https://www.linkshops.com/api/v1/inipay/vacct_mobile';
+      // this.refs.inipay.action = `https://mobile.inicis.com/smart/${'vbank'}/`;
       this.refs.inipay.submit();
     });
   },
