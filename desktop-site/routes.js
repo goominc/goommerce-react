@@ -30,7 +30,7 @@ export default function configure({ getAuth }) { // eslint-disable-line
   const onEnter = (nextState, fnReplaceState) => {
     const onNotLogin = () => fnReplaceState(null, '/accounts/signin');
     const onNotRole = () => fnReplaceState(null, '/');
-    roleUtil.checkRole(nextState, fnReplaceState, getAuth(), onNotLogin, onNotRole);
+    roleUtil.checkRoleOnEnter(nextState, fnReplaceState, getAuth(), onNotLogin, onNotRole);
   };
   const checkBrand = (nextState, fnReplaceState) => {
     const auth = getAuth();
@@ -44,7 +44,7 @@ export default function configure({ getAuth }) { // eslint-disable-line
         onNotRole();
       }
     } else {
-      roleUtil.checkRole(nextState, fnReplaceState, getAuth(), onNotLogin, onNotRole);
+      roleUtil.checkRoleOnEnter(nextState, fnReplaceState, getAuth(), onNotLogin, onNotRole);
     }
   };
   return (

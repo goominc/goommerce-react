@@ -31,7 +31,7 @@ export default function configure(store) {
     const onNotRole = () => {
       replaceState(null, '/');
     };
-    roleUtil.checkRole(nextState, replaceState, store.getState().auth, onNotLogin, onNotRole);
+    roleUtil.checkRoleOnEnter(nextState, replaceState, store.getState().auth, onNotLogin, onNotRole);
   };
   return (
     <Route>
