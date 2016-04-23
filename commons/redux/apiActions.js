@@ -7,6 +7,8 @@ import { simpleNotify, ajaxReturnPromise, handleErrorAlert } from './util/ajaxUt
 
 const _ = require('lodash');
 
+import roleUtil from 'commons/utils/roleUtil';
+
 export function login(email, password) {
   return (dispatch, getState) => {
     const state = getState();
@@ -339,7 +341,7 @@ export function loadCartIfEmpty() {
   return (dispatch, getState) => {
     const state = getState();
     // TODO check if buyer role
-    if (_.get(state, 'auth.id') && _.get(state, 'auth.roles') && !_.get(state, 'cart.total')) {
+    if (roleUtil.hasBuyerRole(state.auth) && !_.get(state, 'cart.total')) {
       loadCart()(dispatch, getState);
     }
   };
