@@ -122,8 +122,10 @@ export default React.createClass({
       const menus = [
         { link: '/mypage/my_orders', text: i18n.get('pcMain.myMenu.myOrders') },
         { link: '/mypage/user_info', text: i18n.get('pcMain.myMenu.userInfo') },
-        { link: '/mypage/reorder', text: i18n.get('word.reorder') },
       ];
+      if (roleUtil.hasRole(auth, ['bigBuyer', 'admin'])) {
+        menus.push({ link: '/mypage/reorder', text: i18n.get('word.reorder') });
+      }
       const renderMenu = (menu) => (
         <div key={menu.link}
           className="dropdown-menu"
