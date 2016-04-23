@@ -107,7 +107,7 @@ export default React.createClass({
     };
 
     const paymentMethods = [
-      // { icon: 'icon-inicis', name: '무통장 입금', method: 'VBank' },
+      { icon: 'icon-inicis', name: '무통장 입금', method: 'VBank' },
       { icon: 'icon-credit-card', name: '신용 카드', method: 'Card' },
     ];
     const renderPaymentMethod = (method, index) => (
