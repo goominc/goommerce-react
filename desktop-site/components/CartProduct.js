@@ -28,9 +28,12 @@ export default React.createClass({
       const renderVariant = (product, variant, index) => {
         const pricePerUnit = +variant.productVariant[activeCurrency];
         const changeQuantity = (quantity) => {
+          // 2016. 04. 23. [heekyu] empty quantity must be display in client side
+          /*
           if (quantity < 1) {
             return;
           }
+          */
           updateCount(variant.productVariant, quantity);
         };
         const renderQuantity = () => {

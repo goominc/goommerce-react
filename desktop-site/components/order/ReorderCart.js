@@ -156,7 +156,9 @@ export default React.createClass({
         }
       };
       const price = +(_.get(variant, activeCurrency));
-      const total = new Decimal(price).mul(quantity).toFixed(activeCurrency === 'KRW' ? 0 : 2);
+      const total = quantity ?
+        new Decimal(price).mul(quantity).toFixed(activeCurrency === 'KRW' ? 0 : 2)
+        : 0;
       const renderDeleteButton = () => {
         if (!disableDelete) {
           return (
@@ -182,9 +184,10 @@ export default React.createClass({
           <div className="right-count">
             <div className="count-box">
               <input className="input-number-nospin" type="number"
-                value={quantity}
+                min="0"
                 onChange={manualChangeQuantity}
                 onBlur={onBlurQuantity}
+                value={quantity}
               />
               <span>
                 <div className="up" onClick={() => updateCartProduct(variant.id, +quantity + 1)}></div>
