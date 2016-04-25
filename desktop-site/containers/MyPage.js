@@ -16,7 +16,7 @@ const _ = require('lodash');
 
 const MyPage = React.createClass({
   propTypes: {
-    auth: PropTypes.auth,
+    auth: PropTypes.object,
   },
   render() {
     const { auth } = this.props;
