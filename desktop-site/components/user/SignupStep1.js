@@ -2,7 +2,6 @@
 
 import React, { PropTypes } from 'react';
 
-import ieCompat from 'commons/utils/ieCompat';
 import { constants } from 'commons/utils/constants';
 import UserTerms from './UserTerms';
 import UserPolicies from './UserPolicies';
