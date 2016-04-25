@@ -1,6 +1,7 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
-import React from 'react';
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 
 import MyPageHeader from 'components/mypage/MyPageHeader';
 import MyOrderContainer from 'containers/MyOrderContainer';
@@ -9,18 +10,27 @@ import UserInfoContainer from 'containers/UserInfoContainer';
 import Reorder from 'containers/Reorder';
 import FavoriteBrandContainer from 'containers/FavoriteBrandContainer';
 
+import roleUtil from 'commons/utils/roleUtil';
+
 const _ = require('lodash');
 
-export default React.createClass({
+const MyPage = React.createClass({
+  propTypes: {
+    auth: PropTypes.auth,
+  },
   render() {
+    const { auth } = this.props;
     let menuName = _.get(this.props, 'params.menuName');
     const menus = [
       { key: 'pcMain.myMenu.myOrders', menuName: 'my_orders' },
       { key: 'pcMain.myMenu.userInfo', menuName: 'user_info' },
       { key: 'word.wishList', menuName: 'wish_list' },
       { key: 'word.favoriteBrand', menuName: 'favorite_brands' },
-      { key: 'word.reorder', menuName: 'reorder' },
     ];
+    if (roleUtil.hasRole(auth, ['bigBuyer', 'admin'])) {
+      menus.push({ key: 'word.reorder', menuName: 'reorder' });
+    }
+
     const menuComponents = [
       <MyOrderContainer />,
       <UserInfoContainer />,
@@ -45,3 +55,7 @@ export default React.createClass({
     );
   },
 });
+
+export default connect(
+  (state) => ({ auth: state.auth }),
+)(MyPage);
