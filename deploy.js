@@ -1,6 +1,6 @@
 /* eslint-disable no-console, no-shadow */
 const webpackConfig = require('./webpack.prod.config');
-// const nodegit = require('nodegit');
+const nodegit = require('nodegit');
 
 const fs = require('fs');
 const AWS = require('aws-sdk');
@@ -9,11 +9,10 @@ const s3 = new AWS.S3({
   region: 'ap-northeast-2',
 });
 
-/*
 function open() {
   return nodegit.Repository.open(__dirname);
 }
-*/
+
 function getVersion() {
   return open()
     .then((repo) => repo.getHeadCommit())
@@ -23,7 +22,7 @@ function getVersion() {
 function getStatus() {
   return open().then((repo) => repo.getStatus());
 }
-/*
+
 function commit() {
   return open()
     .then((repo) => {
@@ -43,7 +42,7 @@ function push() {
       }))
     );
 }
-*/
+
 function replaceBundleVersion(version) {
   process.env.NODE_ENV = 'production';
   const configPath = './config.js';
@@ -137,7 +136,7 @@ function upload() {
     */
   });
 }
-/*
+
 function run() {
   return webpack()
     .then(() => upload())
@@ -147,7 +146,7 @@ function run() {
     .then(null, console.log);
 }
 
-
+/*
 getStatus().then((status) => {
   if (status.length) {
     console.error('please commit all changes.');
