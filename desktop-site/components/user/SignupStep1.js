@@ -2,6 +2,7 @@
 
 import React, { PropTypes } from 'react';
 
+import ieCompat from 'commons/utils/ieCompat';
 import { constants } from 'commons/utils/constants';
 import UserTerms from './UserTerms';
 import UserPolicies from './UserPolicies';
@@ -25,7 +26,7 @@ export default React.createClass({
         <div className="signup-terms-section">
           <div className="title">
             <input id="terms_title" type="checkbox" ref="terms" />
-            <label htmlFor="terms_title"></label>
+            <label htmlFor="terms_title" onClick={() => ieCompat.onCheckboxLabel($('#terms_title'))}></label>
             <span style={({ marginLeft: '15px' })}>이용약관 동의</span>
           </div>
           <div className="content-box">
@@ -35,7 +36,7 @@ export default React.createClass({
         <div className="signup-terms-section">
           <div className="title">
             <input id="policies_title" type="checkbox" ref="policies" />
-            <label htmlFor="policies_title"></label>
+            <label htmlFor="policies_title" onClick={() => ieCompat.onCheckboxLabel($('#policies_title'))}></label>
             <span style={({ marginLeft: '15px' })}>개인정보 수집방침 동의</span>
           </div>
           <div className="content-box">
