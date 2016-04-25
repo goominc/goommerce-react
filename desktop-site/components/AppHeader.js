@@ -8,6 +8,8 @@ import roleUtil from 'commons/utils/roleUtil';
 import i18n from 'commons/utils/i18n';
 import { constants } from 'commons/utils/constants';
 
+import FakeLoginContainer from 'containers/FakeLoginContainer';
+
 const _ = require('lodash');
 
 export default React.createClass({
@@ -139,6 +141,7 @@ export default React.createClass({
       return (
         <div className="dropdown-box">
           {menus.map(renderMenu)}
+          <FakeLoginContainer />
         </div>
       );
     };

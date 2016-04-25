@@ -641,3 +641,15 @@ export function searchBrands(text, offset, limit) {
 export function searchProducts(query, offset, limit) {
   return doSearch(query, offset, limit, 'product', 'PRODUCT_SEARCH_RESULT');
 }
+
+export function fakeLogin(userId) {
+  return (dispatch, getState) => {
+    const state = getState();
+    ajaxReturnPromise(state.auth, 'get', `/api/v1/users/${userId}`).then((data) => {
+      dispatch({
+        type: 'LOGIN',
+        payload: { auth: data },
+      });
+    });
+  };
+}
