@@ -24,6 +24,7 @@ export default React.createClass({
     addCartProducts: PropTypes.func,
     updateCartProduct: PropTypes.func,
     deleteCartProduct: PropTypes.func,
+    deleteCartAllProduct: PropTypes.func,
     yesterdayOrderInfo: PropTypes.object,
   },
   contextTypes: {
@@ -32,7 +33,7 @@ export default React.createClass({
     currencySign: PropTypes.object,
   },
   render() {
-    const { cart, createOrder, loadCart, updateCartProduct, deleteCartProduct, setReorderProduct } = this.props;
+    const { cart, createOrder, loadCart, updateCartProduct, deleteCartProduct, deleteCartAllProduct, setReorderProduct } = this.props;
     const { setReorderBrand, yesterdayOrderInfo, addCartProductOnReorder, addCartProducts } = this.props;
     if (!cart) {
       return (<div></div>);
@@ -303,11 +304,14 @@ export default React.createClass({
     const totalPrice = cart.total ? cart.total[activeCurrency] : 0;
     const renderOrderButton = () => {
       if (totalPrice > 0) {
-        return (
-          <button className="btn default" style={({ marginLeft: '20px' })} onClick={createOrder}>
+        return [
+          <button key="reorder-do-order" className="btn default" style={({ marginLeft: '20px' })} onClick={createOrder}>
             {i18n.get('word.doOrder')}
-          </button>
-        );
+          </button>,
+          <button key="reorder-clear-cart" className="btn default" style={({ marginLeft: '20px' })} onClick={deleteCartAllProduct}>
+            카트 전체 삭제
+          </button>,
+        ];
       }
       return null;
     };

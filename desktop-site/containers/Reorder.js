@@ -43,6 +43,7 @@ const Reorder = React.createClass({
           addCartProducts={ApiAction.addCartProducts}
           updateCartProduct={ApiAction.updateCartProduct}
           deleteCartProduct={ApiAction.deleteCartProduct}
+          deleteCartAllProduct={ApiAction.deleteCartAllProduct}
           yesterdayOrderInfo={yesterdayOrderInfo}
         />
       </div>

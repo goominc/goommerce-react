@@ -202,6 +202,20 @@ export function deleteCartProduct(productVariantId) {
   });
 }
 
+export function deleteCartAllProduct() {
+  return (dispatch, getState) => {
+    if (window.confirm('카트의 모든 상품이 삭제됩니다')) {
+      const state = getState();
+      ajaxReturnPromise(state.auth, 'delete', '/api/v1/carts').then((data) => {
+        dispatch({
+          type: 'UPDATE_CART',
+          payload: data,
+        });
+      });
+    }
+  };
+}
+
 export function addBrandToCart(brand) {
   return {
     type: 'ADD_BRAND_TO_CART',
