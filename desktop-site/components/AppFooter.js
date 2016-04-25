@@ -1,6 +1,7 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
 import React from 'react';
+import { Link } from 'react-router';
 
 import { constants } from 'commons/utils/constants';
 
@@ -28,6 +29,8 @@ export default React.createClass({
               Fax. 02-2233-5911 <br />
               E-mail <a href="mailto:cs@linkshops.com">cs@linkshops.com</a> <br />
               개인정보관리책임자 오영지 <br />
+              <Link to="user/policies">개인정보취급방침</Link> <br />
+              <Link to="user/terms">이용약관</Link> <br />
             </div>
           </div>
           <div className="info-box">

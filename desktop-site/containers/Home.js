@@ -222,6 +222,7 @@ const Home = React.createClass({
             </div>
           </div>
         </div>
+        {/*
         <div className="slogan-link-wide-container">
           <div className="container no-padding slogan-link-container">
             <div className="slogan-link-item"><Link to="/service/info/intro">회사소개</Link></div>
@@ -230,6 +231,7 @@ const Home = React.createClass({
             <div className="slogan-link-item"><Link to="/service/info/signup">회원가입 안내</Link></div>
           </div>
         </div>
+         */}
       </div>
     );
   },
