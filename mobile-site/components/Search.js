@@ -23,6 +23,12 @@ export default React.createClass({
       $('.clear-btn').hide();
     }
   },
+  handleSearch(e) {
+    e.preventDefault();
+    this.props.toggle();
+    this.props.search(this.state.keyword);
+    this.refs.search.blur();
+  },
   render() {
     const { show } = this.props;
     const clearInput = () => {
@@ -49,10 +55,12 @@ export default React.createClass({
       <section className="ms-autocomplete expand" id="ms-autocomplete" style={{ display: show ? 'block' : 'none' }}>
         <div className="ms-autocomplete-main">
           <div className="ms-input-search-wrapper">
-            <input type="search" placeholder="I'm shopping for..." className="ms-text-primary" name="keywords"
-              spellCheck="false" autoComplete="off" autoCorrect="off" autoCapitalize="off"
-              valueLink={this.linkState('keyword')}
-            />
+            <form onSubmit={this.handleSearch} action="">
+              <input type="search" placeholder="I'm shopping for..." className="ms-text-primary" name="search"
+                spellCheck="false" autoComplete="off" autoCorrect="off" autoCapitalize="off" ref="search"
+                valueLink={this.linkState('keyword')}
+              />
+            </form>
             <span className="clear-btn" onClick={clearInput}></span>
           </div>
           { /* <span className="ms-autocomplete-search" onClick={this.handleSearch}></span> */ }
