@@ -25,6 +25,9 @@ const Checkout = React.createClass({
     checkoutToggleEditAddress: PropTypes.func,
     saveAddressAndThen: PropTypes.func,
   },
+  contextTypes: {
+    ApiAction: PropTypes.object,
+  },
   mixins: [ReactScriptLoaderMixin],
   getDefaultProps() {
     return {};
@@ -114,6 +117,7 @@ const Checkout = React.createClass({
         cancelEditAddress={cancelEditAddress}
         editAddress={editAddress}
         submitAddress={(address) => saveAddressAndThen(order, address)}
+        deleteAddress={this.context.ApiAction.deleteAddress}
       />
     );
   },

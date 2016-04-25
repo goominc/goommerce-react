@@ -9,11 +9,12 @@ export default React.createClass({
   propTypes: {
     address: PropTypes.object,
     editAddress: PropTypes.func,
+    deleteAddress: PropTypes.func,
     isActive: PropTypes.bool,
     onClickMe: PropTypes.func,
   },
   render() {
-    const { address, editAddress, isActive, onClickMe } = this.props;
+    const { address, editAddress, deleteAddress, isActive, onClickMe } = this.props;
     const renderEditButton = () => {
       if (isActive) {
         return (<a className="edit-box" onClick={() => editAddress(address)}>정보수정</a>);
@@ -38,12 +39,20 @@ export default React.createClass({
       }
       return value;
     };
+    const onDelete = () => {
+      if (window.confirm(`(${_.get(address, 'detail.alias') || '주소'}) 을/를 삭제하시겠습니까?`)) {
+        deleteAddress(address);
+      }
+    };
     return (
       <div className={`item ${isActive ? 'active' : ''}`}>
         <div className="title title-address">
           <input type="radio" checked={isActive} onClick={onClick} readOnly />
           {_.get(address, 'detail.alias') || '주소'}
-          {renderEditButton()}
+          <div className="action-line">
+            {renderEditButton()}
+            <a key={`delete-address-${address.id}`} className="edit-box" onClick={onDelete}>삭제</a>
+          </div>
         </div>
         <div className="add-address-box">
           {fields.map((field) => (

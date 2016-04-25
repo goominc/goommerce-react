@@ -271,6 +271,7 @@ export function loadAddresses() {
     type: 'LOAD_ADDRESS',
     endpoint: '/api/v1/users/self/addresses',
     transform: ({ data }) => normalize(data.addresses, schemas.addresses),
+    success: { meta: { clear: true } },
   });
 }
 
@@ -337,6 +338,24 @@ export function saveDefaultAddressOnCreateOrder(order, addresses) {
         return;
       }
     }
+  };
+}
+
+export function deleteAddress(address) {
+  return (dispatch, getState) => {
+    let state = getState();
+    const addressId = address.id;
+    return ajaxReturnPromise(state.auth, 'delete', `/api/v1/users/self/addresses/${addressId}`).then(() => {
+      return loadAddresses()(dispatch, getState).then(() => {
+        state = getState(); // state will be updated
+        if (state.auth.addressId === addressId) {
+          const addressIds = Object.keys(state.entities.addresses);
+          if (addressIds.length) {
+            setActiveAddressId(+addressIds[0])(dispatch, getState);
+          }
+        }
+      });
+    });
   };
 }
 

@@ -108,14 +108,11 @@ function entities(state = { users: {}, products: {}, orders: {}, addresses: {}, 
   }
   const nextState = assign({}, state);
   forEach(get(action, 'payload.entities'), (val, key) => {
-    if (get(action, 'meta.entities.update')) {
-      const next = nextState[key] = assign({}, state[key]);
-      forEach(val, (entity, id) => {
-        next[id] = merge({}, next[id], entity);
-      });
-    } else {
-      nextState[key] = assign({}, state[key], val);
+    if (get(action, 'meta.clear')) {
+      nextState[key] = val;
+      return;
     }
+    nextState[key] = assign({}, state[key], val);
   });
   return nextState;
 }
