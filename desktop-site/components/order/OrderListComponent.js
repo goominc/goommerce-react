@@ -37,7 +37,6 @@ export default React.createClass({
         </div>
       );
     };
-    console.log(orders);
     const getSummary = (order) => {
       const brands = new Set();
       let representitiveBrandName = '';
