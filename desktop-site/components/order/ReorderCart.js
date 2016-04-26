@@ -15,6 +15,7 @@ import i18n from 'commons/utils/i18n';
 export default React.createClass({
   propTypes: {
     activeProduct: PropTypes.object,
+    activeCurrency: PropTypes.string,
     brand: PropTypes.object,
     cart: PropTypes.object,
     createOrder: PropTypes.func,
@@ -29,16 +30,19 @@ export default React.createClass({
     yesterdayOrderInfo: PropTypes.object,
   },
   contextTypes: {
-    activeCurrency: PropTypes.string,
+    // 2016. 04. 26. [heekyu] context Type does not propagate properly
+    //                        MyPage does not re-rendered
+    // activeCurrency: PropTypes.string,
     activeLocale: PropTypes.string,
     currencySign: PropTypes.object,
   },
   render() {
     const { cart, createOrder, loadCart, updateCartProduct, deleteCartProduct, deleteCartAllProduct, setReorderProduct } = this.props;
-    const { setReorderBrand, yesterdayOrderInfo, addCartProductOnReorder, addCartProducts } = this.props;
+    const { activeCurrency, setReorderBrand, yesterdayOrderInfo, addCartProductOnReorder, addCartProducts } = this.props;
     if (!cart) {
       return (<div></div>);
     }
+    const { activeLocale, currencySign } = this.context;
     const renderYesterdayOrder = () => {
       if (yesterdayOrderInfo && yesterdayOrderInfo.variantCount) {
         const price = numberUtil.formatPrice(_.get(yesterdayOrderInfo, 'totalPrice.KRW'), activeCurrency, currencySign);
@@ -76,9 +80,6 @@ export default React.createClass({
       return (<div></div>);
     }
     const brandId = activeBrand.id;
-    const { activeLocale, activeCurrency, currencySign } = this.context;
-
-    console.log(activeCurrency);
 
     const { activeProduct } = this.props;
     let activeProductInCart = null;

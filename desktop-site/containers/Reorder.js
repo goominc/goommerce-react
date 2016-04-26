@@ -57,6 +57,7 @@ export default connect(
     brand: _.get(state, 'reorder.brand'),
     cart: state.cart,
     ...loadEntities(state, 'myOrders', 'orders'),
+    activeCurrency: _.get(state, 'currency.activeCurrency'),
   }),
   { setReorderBrand, setReorderProduct }
 )(Reorder);
