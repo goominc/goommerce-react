@@ -1,7 +1,7 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
 // 2016. 04. 08. [heekyu] this is client only config
-const resourceRoot = 'https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource';
+const resourceRoot = '//d3f03u7lex6hmc.cloudfront.net/front/resource';
 const constants = {
   resourceRoot,
   currencies: [
