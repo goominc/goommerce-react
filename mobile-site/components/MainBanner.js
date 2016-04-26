@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+import { constants } from 'commons/utils/constants';
+
 export default React.createClass({
   componentDidMount() {
-    // $('.kv-container').owlCarousel({ autoPlay: 10000, items: 1 });
+    $('.kv-container').owlCarousel({ autoPlay: 10000, items: 1 });
   },
 
   render() {
@@ -26,7 +28,10 @@ export default React.createClass({
         <div id="kv-container" className="kv-container">
           {/* bannerTop */}
           <div className="kv-item">
-            <img src="https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/extra/02_main_banner.png" />
+            <img src={`${constants.resourceRoot}/mobile/banner/mobile_main1_20160426.jpg`} />
+          </div>
+          <div className="kv-item">
+            <img src={`${constants.resourceRoot}/mobile/banner/mobile_main2_20160426.jpg`} />
           </div>
         </div>
       </section>
