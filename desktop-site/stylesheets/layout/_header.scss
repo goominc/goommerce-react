@@ -2,14 +2,14 @@
 // This file contains all styles related to the header of the site/application.
 // -----------------------------------------------------------------------------
 .top-banner {
-  min-width: 720px;
-  height: 80px;
-  width: 100%;
   background-image: url($base-url + '/banner/top_banner_20160426.png');
   background-position: center top;
   background-repeat: no-repeat;
   background-color: #79c5dc;
-  cursor: pointer;
+  // cursor: pointer;
+  height: 80px;
+  min-width: 720px;
+  width: 100%;
 }
 .header-wide-container {
   background-color: #fff;

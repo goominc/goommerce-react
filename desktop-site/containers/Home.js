@@ -125,9 +125,9 @@ const Home = React.createClass({
               <span>COMING</span>
               <span>SOON</span>
             </div>
-            <div className="right-banner">
+            <Link to="/service/info/service_info" className="right-banner">
               <img src={`${constants.resourceRoot}/banner/main_right_20160426.png`} />
-            </div>
+            </Link>
           </div>
         </div>
         <div className="home-center-wrap">
