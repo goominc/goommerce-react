@@ -57,16 +57,20 @@ export default React.createClass({
         `${representitiveBrandName}의`;
       return `${displayBrand} ${quantities}개 상품 구매내역`;
     };
-    const renderOrder = (order) => (
-      <div key={order.id}>
-        <div className="row">
-          <div className="cell date-cell">{numberUtil.formatDate(order.createdAt, true)}</div>
-          <div className="cell summary-cell"><Link to={`/orders/${order.id}`}>{getSummary(order)}</Link></div>
-          <div className="cell quantity-cell">수량</div>
-          <div className="cell price-cell">{numberUtil.formatPrice(order[`total${activeCurrency}`], activeCurrency, currencySign)}</div>
-          <div className="cell status-cell">{i18n.get(`enum.order.status.${order.status}`)}</div>
+    const renderOrder = (order) => {
+      const quantity = _.reduce(order.orderProducts, (sum, o) => (sum + o.quantity), 0);
+      return (
+        <div key={order.id}>
+          <div className="row">
+            <div className="cell date-cell">{numberUtil.formatDate(order.createdAt, true)}</div>
+            <div className="cell summary-cell"><Link to={`/orders/${order.id}`}>{getSummary(order)}</Link></div>
+            <div className="cell quantity-cell">{quantity}</div>
+            <div className="cell price-cell">{numberUtil.formatPrice(order[`total${activeCurrency}`], activeCurrency, currencySign)}</div>
+            <div className="cell status-cell">{i18n.get(`enum.order.status.${order.status}`)}</div>
+          </div>
         </div>
-      </div>
+      );
+    };
         /*
       <div key={order.id} className="order-box">
         <div className="order-head">
@@ -83,7 +87,6 @@ export default React.createClass({
         </div>
       </div>
       */
-    );
 
     return (
       <div className="order-list-container">
