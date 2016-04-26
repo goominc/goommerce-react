@@ -1,6 +1,7 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 import _ from 'lodash';
 import Decimal from 'decimal.js-light';
 
@@ -14,9 +15,9 @@ import ResponsiveImage from 'components/snippet/ResponsiveImage';
 export default React.createClass({
   propTypes: {
     brands: PropTypes.array,
+    canUpdate: PropTypes.bool,
     removeProduct: PropTypes.func,
     updateCount: PropTypes.func,
-    canUpdate: PropTypes.bool,
   },
   contextTypes: {
     activeCurrency: PropTypes.string,
@@ -75,9 +76,9 @@ export default React.createClass({
         return (
           <div key={variant.productVariant.id} className={index === 0 ? 'product-row' : 'variant-row'}>
             <div className="product-info-content">
-              <div className="img-box">
+              <Link to={`/products/${product.id}`} className="img-box">
                 <ResponsiveImage image={_.get(variant.productVariant, 'appImages.default[0]')} width={120} />
-              </div>
+              </Link>
               <div className="content-wrap">
                 <div className="item"><strong>{productUtil.getName(product)}</strong></div>
                 <div className="item">{_.get(variant.productVariant, 'data.color')}</div>
