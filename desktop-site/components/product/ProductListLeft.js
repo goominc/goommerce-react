@@ -106,7 +106,7 @@ export default React.createClass({
   render() {
     return (
       <div className="product-list-left-box">
-        <Link to="/categories/all" className="title">{i18n.get('word.categories')}</Link>
+        <Link to="/categories/4" className="title">{i18n.get('word.categories')}</Link>
         {this.renderCategories()}
       </div>
     );

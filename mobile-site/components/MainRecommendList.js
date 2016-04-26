@@ -50,14 +50,14 @@ export default React.createClass({
     return (
       <section id="today-deals" className="promotion-block today-deals">
         <header>
-          <Link to="/categories/all">Quality Picks</Link>
+          <Link to="/categories/4">Quality Picks</Link>
         </header>
         <article>
           <ul className="clearfix product-container">
             {prodDiv}
           </ul>
         </article>
-        <Link to="/categories/all" className="ui-button ui-button-third">View more&nbsp;</Link>
+        <Link to="/categories/4" className="ui-button ui-button-third">View more&nbsp;</Link>
       </section>
     );
   },

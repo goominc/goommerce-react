@@ -85,7 +85,7 @@ const Home = React.createClass({
         <div className="category-frame">
           <div className="category-bar">
             {i18n.get('word.categories')}
-            <Link to="/categories/all"><div className="category-all">{i18n.get('word.seeAll')}</div></Link>
+            <Link to="/categories/4"><div className="category-all">{i18n.get('word.seeAll')}</div></Link>
           </div>
           <div className="category-main">
             {categories.map(renderCategory)}

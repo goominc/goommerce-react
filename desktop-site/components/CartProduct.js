@@ -7,6 +7,7 @@ import Decimal from 'decimal.js-light';
 import brandUtil from 'commons/utils/brandUtil';
 import numberUtil from 'commons/utils/numberUtil';
 import productUtil from 'commons/utils/productUtil';
+import { constants } from 'commons/utils/constants';
 
 import ResponsiveImage from 'components/snippet/ResponsiveImage';
 
@@ -62,7 +63,7 @@ export default React.createClass({
             return (
               <div className="action-column">
                 <img onClick={() => removeProduct(variant.productVariant)}
-                  src="//s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/main/cart-delete-button.png"
+                  src={`${constants.resourceRoot}/main/cart-delete-button.png`}
                 />
               </div>
             );
