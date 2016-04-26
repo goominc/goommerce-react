@@ -654,7 +654,9 @@ const doSearch = (query, offset = 0, limit = 10, key, actionType) => (dispatch, 
       limit,
       text: query.q,
     };
-    action[`${key}s`] = res[`${key}s`];
+    action[`${key}s`] = res[`${key}s`].sort((a, b) => (
+      (_.get(a, 'name.ko') || '').localeCompare(_.get(b, 'name.ko') || '')
+    ));
     dispatch(action);
   });
 };
