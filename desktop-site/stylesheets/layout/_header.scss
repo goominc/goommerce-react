@@ -5,10 +5,10 @@
   min-width: 720px;
   height: 80px;
   width: 100%;
-  background-image: url('//s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/banner/top_banner_20160408.jpg');
+  background-image: url($base-url + '/banner/top_banner_20160426.png');
   background-position: center top;
   background-repeat: no-repeat;
-  background-color: #ffde6b;
+  background-color: #79c5dc;
   cursor: pointer;
 }
 .header-wide-container {
@@ -124,7 +124,7 @@ $header-margin: 15px;
   }
 
   .header-search-button {
-    background: url("https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/header/ico_search.png") no-repeat;
+    background: url($base-url + '/header/ico_search.png') no-repeat;
     border: 0;
     display: inline-block;
     height: $header-height;

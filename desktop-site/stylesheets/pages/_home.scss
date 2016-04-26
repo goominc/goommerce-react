@@ -88,7 +88,7 @@ $main-banner-height: 400px;
 
 .category-frame {
   background-color: #eee;
-  border: 3px solid #f73;
+  border: 3px solid #269dd9;
   box-sizing: content-box;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
   display: inline-block;
@@ -98,7 +98,7 @@ $main-banner-height: 400px;
   vertical-align: top;
   width: 194px;
   .category-bar {
-    background: #f73 url('//s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/main/ico_menu2.png') no-repeat 10px 10px;
+    background: #269dd9 url($base-url + '/main/ico_menu2.png') no-repeat 10px 10px;
     color: #fff;
     font-weight: bold;
     font-size: 15px;
@@ -108,7 +108,7 @@ $main-banner-height: 400px;
   .category-all {
     background-color: #fff;
     border-radius: 3px;
-    color: #f73;
+    color: #269dd9;
     float: right;
     font-weight: bold;
     font-size: 11px;
@@ -144,7 +144,7 @@ $main-banner-height: 400px;
   }
   .category-hover-box {
     background: #f8f8f8 url($base-url + '/main/dotline4.gif') repeat-y;
-    border: 3px solid #f73;
+    border: 3px solid #269dd9;
     border-left: none;
     display: none;
     height: 262px;
@@ -197,7 +197,7 @@ $main-banner-height: 400px;
   text-align: right;
   width: 200px;
   strong {
-    background: url('https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/main/ico_right2.gif') no-repeat 190px 7px;
+    background: url($base-url + '/main/ico_right2.gif') no-repeat 190px 7px;
     color: $default-active-text-color;
     display: block;
     font-size: 16px;
@@ -235,7 +235,7 @@ $main-banner-height: 400px;
   margin: 0 auto 50px;
   width: 100%;
   .item {
-    background: url('https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/main/dotline4.gif') repeat-y 100% 0;
+    background: url($base-url + '/main/dotline4.gif') repeat-y 100% 0;
     cursor: pointer;
     display: inline-block;
     padding: 10px 0;
@@ -249,10 +249,10 @@ $main-banner-height: 400px;
     }
   }
   .item-top {
-    background: url('https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/main/dotline4.gif') repeat-y 100% 0, url('https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/main/dotline3.gif') repeat-x 0 100%;
+    background: url($base-url + '/main/dotline4.gif') repeat-y 100% 0, url($base-url + '/main/dotline3.gif') repeat-x 0 100%;
   }
   .item-top-right {
-    background: url('https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/main/dotline3.gif') repeat-x 0 100%;
+    background: url($base-url + '/main/dotline3.gif') repeat-x 0 100%;
   }
   .item-right {
     background: none;

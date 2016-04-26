@@ -79,7 +79,7 @@ input[type="checkbox"] {
     display:inline-block;
     width:17px;
     height:17px;
-    background-image: url("https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/main/checkbox_unchecked.png");
+    background-image: url($base-url + '/main/checkbox_unchecked.png');
     vertical-align: top;
     zoom: 1;
     text-align: center;
@@ -87,6 +87,6 @@ input[type="checkbox"] {
     cursor:pointer;
   }
   &:checked + label {
-    background-image: url("https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/main/checkbox_checked.png");
+    background-image: url($base-url + '/main/checkbox_checked.png');
   }
 }

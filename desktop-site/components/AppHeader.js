@@ -259,7 +259,7 @@ export default React.createClass({
           <div className="header-wrap">
             <Link className="header-item" to="/">
               <img className="header-logo"
-                src="//s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/header/logo.png" alt="Linkshops"
+                src={`${constants.resourceRoot}/header/logo.png`} alt="Linkshops"
               />
             </Link>
             <div className="header-search-box">

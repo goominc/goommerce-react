@@ -8,10 +8,10 @@
   display: block;
   margin: auto;
   .slogan-container {
-    background: url('https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/footer/dotline4.gif') repeat-y 100% 0;
+    background: url($base-url + '/footer/dotline4.gif') repeat-y 100% 0;
   }
   .slogan-item {
-    background: url('https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/footer/dotline4.gif') repeat-y;
+    background: url($base-url + '/footer/dotline4.gif') repeat-y;
     display: inline-block;
     letter-spacing: -1px;
     padding: 20px 0;
@@ -50,10 +50,10 @@
   border-bottom: 1px solid #ccc;
   height: $height;
   .slogan-link-container {
-    background: url('https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/footer/line_ccc.gif') repeat-y 100% 0;
+    background: url($base-url + '/footer/line_ccc.gif') repeat-y 100% 0;
   }
   .slogan-link-item {
-    background: url('https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/footer/line_ccc.gif') repeat-y;
+    background: url($base-url + '/footer/line_ccc.gif') repeat-y;
     color: #333;
     display: inline-block;
     font-size: 13px;

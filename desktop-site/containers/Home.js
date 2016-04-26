@@ -118,7 +118,7 @@ const Home = React.createClass({
           <div className="main-banner-wrap">
             {renderCategories()}
             <div className="main-banner">
-              <img src={`${constants.resourceRoot}/banner/banner_intro_kor_20160408.jpg`} />
+              <img src={`${constants.resourceRoot}/banner/main_20160426.jpg`} />
             </div>
             <div className="home-stylepick-banner">
               <strong>스타일 픽</strong>
@@ -126,7 +126,7 @@ const Home = React.createClass({
               <span>SOON</span>
             </div>
             <div className="right-banner">
-              <img src={`${constants.resourceRoot}/banner/banner_event_20160408.jpg`} />
+              <img src={`${constants.resourceRoot}/banner/main_right_20160426.png`} />
             </div>
           </div>
         </div>
