@@ -8,6 +8,7 @@ import SearchBrandContainer from 'containers/SearchBrandContainer';
 import SearchProductContainer from 'containers/SearchProductContainer';
 
 import brandUtil from 'commons/utils/brandUtil';
+import numberUtil from 'commons/utils/numberUtil';
 import stringUtil from 'commons/utils/stringUtil';
 import i18n from 'commons/utils/i18n';
 
@@ -40,7 +41,7 @@ export default React.createClass({
     }
     const renderYesterdayOrder = () => {
       if (yesterdayOrderInfo && yesterdayOrderInfo.variantCount) {
-        const price = _.get(yesterdayOrderInfo, 'totalPrice.KRW');
+        const price = numberUtil.formatPrice(_.get(yesterdayOrderInfo, 'totalPrice.KRW'), activeCurrency, currencySign);
         const B = yesterdayOrderInfo.brands.size;
         const V = yesterdayOrderInfo.variantCount;
         return (
@@ -77,6 +78,8 @@ export default React.createClass({
     const brandId = activeBrand.id;
     const { activeLocale, activeCurrency, currencySign } = this.context;
 
+    console.log(activeCurrency);
+
     const { activeProduct } = this.props;
     let activeProductInCart = null;
 
@@ -100,6 +103,7 @@ export default React.createClass({
           currencies.forEach((cur) => {
             const price = new Decimal(_.get(variant, `productVariant.${cur}`, 0));
             const total = price.mul(variant.count || 0).toFixed(cur === 'KRW' ? 0 : 2);
+            numberUtil.formatPrice(total, cur, currencySign);
             brand.total[cur] = brand.total[cur].add(total);
           });
         });
@@ -109,7 +113,7 @@ export default React.createClass({
       });
     });
     const fields = [
-      { key: 'price', placeholder: i18n.get('word.price'), type: 'number' },
+      { key: 'price', placeholder: i18n.get('word.price'), type: 'number', notRefresh: true, },
       { key: 'color', placeholder: 'Color', enableEmpty: true },
       { key: 'count', placeholder: i18n.get('word.quantity'), type: 'number' },
       { key: 'size', placeholder: 'Size', defaultValue: 'Free', enableEmpty: true },
@@ -117,7 +121,9 @@ export default React.createClass({
     const resetFields = () => {
       for (let i = 0; i < fields.length; i++) {
         const field = fields[i];
-        $('.product-variant-add-item input').eq(i).val(field.defaultValue || '');
+        if (!field.notRefresh) {
+          $('.product-variant-add-item input').eq(i).val(field.defaultValue || '');
+        }
       }
     };
     const renderBrandMenu = (brand) => {
@@ -133,7 +139,7 @@ export default React.createClass({
           }}
         >
           {_.get(brand, `brand.name.${activeLocale}`)} <br />
-          {currencySign[activeCurrency]} {brand.total[activeCurrency]}
+          {numberUtil.formatPrice(brand.total[activeCurrency], activeCurrency, currencySign)}
         </div>
       );
     };
@@ -196,7 +202,7 @@ export default React.createClass({
               </span>
             </div>
           </div>
-          <div className="bottom-price">{currencySign[activeCurrency]} {`${total} (${quantity} X ${price})`}</div>
+          <div className="bottom-price">{`${numberUtil.formatPrice(total, activeCurrency, currencySign)} (${quantity} X ${numberUtil.formatPrice(price, activeCurrency, currencySign)})`}</div>
         </div>
       );
     };
@@ -318,7 +324,7 @@ export default React.createClass({
     return (
       <div>
         <div className="reorder-title">
-          <b>총 주문가격</b> {currencySign[activeCurrency]} {totalPrice}
+          <b>총 주문가격</b> {numberUtil.formatPrice(totalPrice, activeCurrency, currencySign)}
           {renderOrderButton()}
         </div>
         <div className="reorder-brands-panel">
