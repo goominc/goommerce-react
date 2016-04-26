@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import _ from 'lodash';
 
+import { vBankCodeToName } from 'commons/utils/inipay';
 import { ApiAction, setHeader } from 'redux/actions';
 const { loadOrder } = ApiAction;
 
@@ -21,9 +23,55 @@ const OrderDone = React.createClass({
     const { orderId } = this.props.params;
     this.props.loadOrder(orderId);
   },
-  render() {
+  renderVBank() {
+    const { order } = this.props;
+    if (order.paymentStatus === 200) {
+      const payment = _.find(order.payments, (p) => p.type === 3 && p.status === 2);
+      console.log(order);
+      if (payment) {
+        const { P_AMT, P_VACT_NAME, P_VACT_NUM, P_VACT_BANK_CODE, P_UNAME } = payment.data;
+        return (
+          <div>
+            <h5 className="result-tit">Thank you for your purchase!</h5>
+            <p>입금금액:
+            <span className="pay-money">{P_AMT}</span>
+            </p>
+            <p>입금은행:
+            <span className="pay-money">{vBankCodeToName(P_VACT_BANK_CODE)}</span>
+            </p>
+            <p>입금계좌번호:
+            <span className="pay-money">{P_VACT_NUM}</span>
+            </p>
+            <p>입금주명:
+            <span className="pay-money">{P_VACT_NAME}</span>
+            </p>
+            <p>송금자명:
+            <span className="pay-money">{P_UNAME}</span>
+            </p>
+          </div>
+        );
+      }
+    }
+    return null;
+  },
+  renderCard() {
     const { order } = this.props;
     const { activeCurrency } = this.context;
+    if (order.paymentStatus === 100) {
+      return (
+        <div>
+          <h5 className="result-tit">Thank you for your purchase!</h5>
+          <p>We have received your payment.</p>
+          <p>Amount:
+          <span className="pay-money">{activeCurrency} {order[`total${activeCurrency}`]}</span>
+          </p>
+        </div>
+      );
+    }
+    return null;
+  },
+  render() {
+    const { order } = this.props;
     if (!order || !Object.keys(order).length) {
       return (
         <div className="am-message-sysError">
@@ -37,11 +85,8 @@ const OrderDone = React.createClass({
         <div className="item-content am-ft-gray">
             <div className="payment-result">
                 <div className="result-icon icon-success"></div>
-                <h5 className="result-tit">Thank you for your purchase!</h5>
-                <p>We have received your payment.</p>
-                <p>Amount:
-                  <span className="pay-money">{activeCurrency} {order[`total${activeCurrency}`]}</span>
-                </p>
+                {this.renderVBank()}
+                {this.renderCard()}
                 <div></div>
             </div>
         </div>

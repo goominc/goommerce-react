@@ -31,7 +31,7 @@ export default React.createClass({
     }
     this.setState({ showPay: !this.state.showPay });
   },
-  inipay() {
+  inipay(method) {
     const { addresses, activeAddressId } = this.props;
     if (!addresses || !Object.keys(addresses).length || !activeAddressId) {
       // FIXME no alert
@@ -47,10 +47,10 @@ export default React.createClass({
       this.refs.mobile.value = res.buyertel;
       this.refs.uname.value = res.buyername;
       this.refs.nextUrl.value = res.returnUrl;
-      this.refs.inipay.action = `https://mobile.inicis.com/smart/${'wcard'}/`;
-      // FIXME
-      // this.refs.notiUrl.value = 'https://www.linkshops.com/api/v1/inipay/vacct_mobile';
-      // this.refs.inipay.action = `https://mobile.inicis.com/smart/${'vbank'}/`;
+      this.refs.inipay.action = `https://mobile.inicis.com/smart/${method}/`;
+      if (method === 'vbank') {
+        this.refs.notiUrl.value = 'https://www.linkshops.com/api/v1/inipay/vacct_mobile';
+      }
       this.refs.inipay.submit();
     });
   },
@@ -300,25 +300,15 @@ export default React.createClass({
             <span className="pay-cancel" onClick={this.toggle}></span>
           </div>
           <ul className="pay-method-list">
-            <li onClick={this.inipay}>
+            <li onClick={() => this.inipay('wcard')}>
               <span className="pay-title">신용카드</span>
               <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
             </li>
-            { /* TODO
-            <li>
-              <span className="pay-title">핸드폰 결제</span>
-              <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
-            </li>
-            <li>
-              <span className="pay-title">계좌이체</span>
-              <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
-            </li>
-            <li>
+            <li onClick={() => this.inipay('vbank')}>
               <span className="pay-title">무통장입금</span>
               <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
-            </li> */ }
+            </li>
           </ul>
-
         </div>
       </section>
     );
