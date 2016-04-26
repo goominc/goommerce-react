@@ -6,34 +6,964 @@
   background-color: #fff;
   margin: 0 auto;
   min-width: 1200px;
+  padding-bottom: 70px;
   width: 1200px;
-  .section {
-    display: block;
-    padding-bottom: 90px;
-    width: 100%;
+  & * {
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: content-box;
   }
-  .title {
-    background-color: #fe7d15;
-    color: #fff;
-    padding: 70px 0 30px 70px;
-    vertical-align: bottom;
-    width: 100%;
-    strong {
-      font-size: 55px;
-      padding-right: 30px;
-    }
-    span {
-      font-size: 30px;
-    }
+  .keycolor{
+    color:#ff5500;
   }
-  .content {
-    margin-top: 60px;
-    position: relative;
-    right: 50%;
+  .blackcolor{
+    color:#111;
+  }
+  .color777{
+    color:#777;
+  }
+  .color999{
+    color:#999;
+  }
+  #wrapper {
+    width:1200px;
+  }
+  .title_box{
+    margin:0 auto;
+    padding:0;
+    height:156px;
+
+  }
+
+
+  .title{
+    text-indent: 70px;
+    width: 330px;
+    height: 156px;
+    background-color: #5fbdd5;
+    padding-left:0px;
+    font-size: 55px;
+    font-weight: bold;
+    color:#ffffff;
+    line-height:190px;
+    text-align:left;
+    margin:0 auto;
+    float:left;
+    list-style: none;
+    letter-spacing:-4px;
+
+  }
+  .sub_title{
+    text-indent: 20px;
+    list-style: none;
+    margin:0;
+    float:right;
+    letter-spacing: -1px;
+
+    background-color: #5fbdd5;
+    width: 870px;
+    height: 156px;
+    font: bold 20px 'Noto Sans', sans-serif;
+    line-height:225px;
+    color:#ffffff;
+  }
+  .title_line{
+    font-family: Roboto;
+    font-weight:300;
+    font-size:24px;
+
+  }
+  .service{
+    float: left;
+    width: 1200px;
+
+    height:397px;
+    background-color: #ffffff;
+
+  }
+  .service_text{
+    margin: 0 auto;
+    text-align: left;
+    width:911px;
+    height:280px;
+    font-size:23px;
+    letter-spacing: -2px;
+
+    list-style: none;
+    margin-top:117px;
+
+  }
+  .service_img{
+
+    padding-left:600px;
+    width:311px;
+    height:277px;
+
+  }
+  .service_line_01 {
+    font-size:44px;
+    font-weight:bold;
+    width: 600px;
+    margin: 0;
+    float: left;
+  }
+  .service_line_02 {
+    width: 600px;
+    margin: 10px 0 0 0;
+    float: left;
+  }
+  .service_line_03 {
+    color:#535353;
+    font-weight: bold;
+    width: 600px;
+    margin: 28px 0 0 0;
+    float: left;
+  }
+  .service_line_04{
+    color:#535353;
+    font-weight: bold;
+    width:600px;
+    margin:0;
+    float: left;
+  }
+  .service_line_05 {
+    color:#535353;
+    width: 600px;
+    margin: 20px 0 0 0;
+    float: left;
+  }
+  .service_line_06{
+    color:#535353;
+    width:600px;
+    margin:0;
+    float: left;
+  }
+  .text_orange{
+    color:#ff5500;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  .why{
+    clear: both;
+    height: 60px;
+    width:1200px;
     text-align: center;
-    img {
-      display: inline-block;
-      margin-right: -100%;
-    }
+    font-size:45px;
+    font-weight: lighter;
+    color:#5fbbd5;
+    letter-spacing: -1px;
+    line-height: 60px;
+    padding-top:120px;
+    margin-bottom: 100px;
+  }
+  .why_str{
+    font-size:60px;
+
+  }
+  .ur_buyer{
+    margin-top:55px;
+
+    width:820px;
+    text-align: center;
+    height:34px;
+    background-image: url("//d3f03u7lex6hmc.cloudfront.net/front/resource/banner/site_keywords/box.png");
+    background-repeat: no-repeat;
+    color:#ffffff;
+    font-size:18px;
+    line-height:34px;
+
+
+  }
+  .why_card{
+    width:270px;
+    height:190px;
+    float:left;
+    text-align: center;
+    font-size:18px;
+    font-weight: bold;
+  }
+  .why_text_box {
+    border-right:solid 1px #999999;
+  }
+  .card_wrap{
+    width:820px;
+    text-align: center;
+    height:190px;
+  }
+  .why_subtitle {
+    color:#ff5500;
+    font-size:18px;
+  }
+
+  .why_cont1{
+    line-height: 26px;
+    text-align: left;
+    font-size:16px;
+    margin-top:20px;
+    text-indent:40px;
+  }
+  .why_cont2{
+    line-height: 26px;
+    text-align: left;
+    font-size:16px;
+    margin-top:20px;
+    text-indent:40px;
+  }
+  .why_cont3{
+    line-height: 26px;
+    text-align: left;
+    font-size:16px;
+    margin-top:20px;
+    text-indent:60px;
+  }
+  .why_cont4{
+    line-height: 26px;
+    text-align: left;
+    font-size:16px;
+    margin-top:20px;
+    text-indent:30px;
+  }
+  .why_cont5{
+    line-height: 26px;
+    text-align: left;
+    font-size:16px;
+    margin-top:20px;
+    text-indent:68px;
+  }
+  .why_cont6{
+    line-height: 26px;
+    text-align: left;
+    font-size:16px;
+    margin-top:20px;
+    text-indent:30px;
+  }
+  .what_buyer{
+    width: 820px;
+    height: 53px;
+    text-align: center;
+    line-height: 60px;
+    font-size:14px;
+    font-weight: bold;
+    color:#777;
+    padding:10px 0;
+
+  }
+  .sign_in_text{
+    width:1200px;
+    height:60px;
+    font-size:22px;
+    font-weight: 500;
+    text-align: center;
+    line-height:26px;
+    margin-top:68px;
+    letter-spacing: -0.5px;
+  }
+  .sign_in_str{
+    font-weight:bold;
+  }
+  .sign_in_sub_text{
+    font-size:14px;
+    font-weight: bold;
+    color:#555;
+
+  }
+  .sign_in_buyer{
+    margin-top:70px;
+    width:1061px;
+    height:413px;
+    border:solid 1px #ccc;
+  }
+  .sign_in_box{
+    text-indent:-5px;
+    background-image: url("//d3f03u7lex6hmc.cloudfront.net/front/resource/banner/site_keywords/box_242.png");
+    width:242px;
+    height:34px;
+    z-index:1;
+    position:relative;
+    top:-17px;
+    text-align: center;
+    line-height: 34px;
+    font-size:20px;
+    font-weight: bold;
+    color:#fff;
+
+  }
+  .sign_in_buyer_01{
+    width:83px;
+    height:39px;
+    border-bottom: solid 1px #ccc;
+    float:left;
+    font-size:25px;
+    font-weight: bold;
+    color:#5fbdd5;
+    margin:0 188px 0 67px;
+  }
+  .sign_in_buyer_02{
+    width:83px;
+    height:39px;
+    border-bottom: solid 1px #ccc;
+    float:left;
+    font-size:25px;
+    font-weight: bold;
+    color:#5fbdd5;
+    margin-right: 188px;
+  }
+  .sign_in_buyer_03{
+    width:83px;
+    height:39px;
+    border-bottom: solid 1px #ccc;
+    float:left;
+    font-size:25px;
+    font-weight: bold;
+    color:#5fbdd5;
+    margin-right:368px;
+  }
+  .sign_in_buyer_04{
+    width:83px;
+    height:39px;
+    line-height: 22px;
+    float:left;
+    font-size:18px;
+    font-weight: bold;
+    margin:10px 188px 0 67px;
+  }
+  .sign_in_buyer_05{
+    width:83px;
+    height:39px;
+    line-height: 22px;
+    float:left;
+    font-size:18px;
+    font-weight: bold;
+    margin-top:10px;
+    margin-right: 188px;
+  }
+  .sign_in_buyer_06{
+    width:83px;
+    height:39px;
+    line-height: 22px;
+    float:left;
+    font-size:18px;
+    font-weight: bold;
+    margin-top:10px;
+    margin-right:368px;
+  }
+  .sign_in_buyer_img{
+    width:749px;
+    height:132px;
+    margin:23px 0 0 61px;
+    background-image: url("//d3f03u7lex6hmc.cloudfront.net/front/resource/banner/site_keywords/sign_in_buyer.png");
+    float: left;
+  }
+  .sign_in_buyer_button{
+    margin:23px 0 0 47px;
+    width:132px;
+    height:132px;
+    background-image: url("//d3f03u7lex6hmc.cloudfront.net/front/resource/banner/site_keywords/sign_in_buyer_button01.png");
+    float: left;
+    text-align: center;
+    font-weight: bold;
+    color:#fff;
+  }
+  .sign_in_buyer_button:hover{
+    background-image: url("//d3f03u7lex6hmc.cloudfront.net/front/resource/banner/site_keywords/sign_in_buyer_button02.png");
+  }
+  .sign_in_button_text{
+    position: relative;
+    top:38px;
+    width:87px;
+    height:64px;
+    margin-top:30px;
+    font-size:20px;
+  }
+  .sign_in_button_text_small{
+    font-size:14px;
+  }
+  .sign_in_buyer_01_text{
+    font-size:14px;
+    font-weight:bold;
+    color:#555;
+    width:220px;
+    height:98px;
+    float:left;
+    margin:14px 0 0 67px;
+    line-height: 20px;
+    letter-spacing: -1px;
+  }
+
+  .sign_in_buyer_01_text span{
+    position: relative;
+    left:-6.5px;
+  }
+
+  .sign_in_buyer_02_text{
+    font-size:14px;
+    font-weight:bold;
+    color:#555;
+    width:174px;
+    height:98px;
+    float:left;
+    margin:14px 0 0 46px;
+    line-height: 20px;
+    letter-spacing: -1px;
+  }
+
+  .sign_in_buyer_02_text span{
+    position: relative;
+    left:-6.5px;
+  }
+  .sign_in_buyer_03_text{
+    font-size:14px;
+    font-weight:bold;
+    color:#555;
+    width:165px;
+    height:98px;
+    float:left;
+    margin:14px 0 0 92px;
+    line-height: 20px;
+    letter-spacing: -1px;
+  }
+
+  .sign_in_buyer_03_text span{
+    position: relative;
+    left:-6.5px;
+  }
+
+  /*회원가입 판매회원*/
+
+  .sign_in_seller_01{
+    width:83px;
+    height:39px;
+    border-bottom: solid 1px #ccc;
+    float:left;
+    font-size:25px;
+    font-weight: bold;
+    color:#5fbdd5;
+    margin:0 188px 0 67px;
+  }
+  .sign_in_seller_02{
+    width:83px;
+    height:39px;
+    border-bottom: solid 1px #ccc;
+    float:left;
+    font-size:25px;
+    font-weight: bold;
+    color:#5fbdd5;
+    margin-right: 188px;
+  }
+  .sign_in_seller_03{
+    width:83px;
+    height:39px;
+    border-bottom: solid 1px #ccc;
+    float:left;
+    font-size:25px;
+    font-weight: bold;
+    color:#5fbdd5;
+    margin-right:368px;
+  }
+  .sign_in_seller_04{
+    width:83px;
+    height:39px;
+    line-height: 22px;
+    float:left;
+    font-size:18px;
+    font-weight: bold;
+    margin:10px 188px 0 67px;
+  }
+  .sign_in_seller_05{
+    width:83px;
+    height:39px;
+    line-height: 22px;
+    float:left;
+    font-size:18px;
+    font-weight: bold;
+    margin-top:10px;
+    margin-right: 188px;
+  }
+  .sign_in_seller_06{
+    width:83px;
+    height:39px;
+    line-height: 22px;
+    float:left;
+    font-size:18px;
+    font-weight: bold;
+    margin-top:10px;
+    margin-right:368px;
+  }
+  .sign_in_seller_img02{
+    width:749px;
+    height:132px;
+    margin:23px 0 0 61px;
+    background-image: url("//d3f03u7lex6hmc.cloudfront.net/front/resource/banner/site_keywords/sign_in_buyer02.png");
+    float: left;
+  }
+  .sign_in_seller_button{
+    margin:23px 0 0 47px;
+    width:132px;
+    height:132px;
+    background-image: url("//d3f03u7lex6hmc.cloudfront.net/front/resource/banner/site_keywords/sign_in_buyer_button01.png");
+    float: left;
+    text-align: center;
+    font-weight: bold;
+    color:#fff;
+  }
+  .sign_in_seller_button:hover{
+    background-image: url("//d3f03u7lex6hmc.cloudfront.net/front/resource/banner/site_keywords/sign_in_buyer_button02.png");
+  }
+  .sign_in_button_text{
+    position: relative;
+    top:38px;
+    width:87px;
+    height:64px;
+    margin-top:30px;
+    font-size:20px;
+  }
+  .sign_in_button_text_small{
+    font-size:14px;
+  }
+  .sign_in_seller_01_text{
+    font-size:14px;
+    font-weight:bold;
+    color:#555;
+    width:220px;
+    height:98px;
+    float:left;
+    margin:14px 0 0 67px;
+    line-height: 20px;
+    letter-spacing: -1px;
+  }
+
+  .sign_in_seller_01_text span{
+    position: relative;
+    left:-6.5px;
+  }
+
+  .sign_in_seller_02_text{
+    font-size:14px;
+    font-weight:bold;
+    color:#555;
+    width:174px;
+    height:98px;
+    float:left;
+    margin:14px 0 0 46px;
+    line-height: 20px;
+    letter-spacing: -1px;
+  }
+
+  .sign_in_seller_02_text span{
+    position: relative;
+    left:-6.5px;
+  }
+  .sign_in_seller_03_text{
+    font-size:14px;
+    font-weight:bold;
+    color:#555;
+    width:165px;
+    height:98px;
+    float:left;
+    margin:14px 0 0 92px;
+    line-height: 20px;
+    letter-spacing: -1px;
+  }
+
+  .sign_in_seller_03_text span{
+    position: relative;
+    left:-6.5px;
+  }
+  /*스마트 배송 시스템*/
+  .smart_deli_title{
+
+    position: relative;
+    top:-34px;
+    background-image: url("//d3f03u7lex6hmc.cloudfront.net/front/resource/banner/site_keywords/box_242.png");
+    width:242px;
+    height:34px;
+    float:left;
+    text-align: center;
+    line-height: 34px;
+    font-size:18px;
+    font-weight: bold;
+    text-indent: -20px;
+    color:#fff;
+  }
+  .smart_deli{
+    margin-top: 126px;
+    background-color: #eee;
+    width:894px;
+    height:536px;
+  }
+  .deli_img{
+    clear: both;
+    padding-top: 42px;
+    width:740px;
+    height:70px;
+  }
+  .deli_img_text_box{
+    float:left;
+    width:78px;
+    height:23px;
+    border-radius: 2px;
+    background-color: #000;
+    color:#fff;
+    font-size:13px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height:23px;
+    text-align: center;
+    margin:20px 0 0 76px;
+
+  }
+  .deli_text_center{
+    padding-top:40px;
+    font-size:20px;
+    font-weight: bold;
+    color:#333;
+    clear: both;
+    width:894px;
+    height:34px;
+    text-align: center;
+    letter-spacing: -1px;
+  }
+  .deli_text_center span{
+    padding-bottom:1px;
+    border-bottom:solid 1px #ff5500;
+    color:#ff5500;
+  }
+  .deli_list{
+    line-height: 26px;
+    margin:63px 0 0 55px;
+    float:left;
+    letter-spacing: -1px;
+    width:136px;
+    height:70px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .deli_text{
+    line-height: 26px;
+    margin:63px 0 0 0;
+    letter-spacing: -0.5px;
+    float:left;
+    color:#333;
+    font-size:16px;
+    font-weight: bold;
+  }
+  .deli_text span{
+    font-weight: normal;
+    color:#555;
+
+
+  }
+  /*다양한 결제*/
+  .variaty_pay {
+    margin-top: 126px;
+    background-color: #eee;
+    width: 894px;
+    height: 189px;
+  }
+  .variaty_pay_title{
+
+    position: relative;
+    top:-34px;
+    background-image: url("//d3f03u7lex6hmc.cloudfront.net/front/resource/banner/site_keywords/box_242.png");
+    width:242px;
+    height:34px;
+    float:left;
+    text-align: center;
+    line-height: 34px;
+    font-size:18px;
+    font-weight: bold;
+    text-indent: -20px;
+    color:#fff;
+    margin-right:652px;
+  }
+  .pay_list{
+    line-height: 26px;
+    float: left;
+    margin:12px 0 0 55px;
+    letter-spacing: -1px;
+    width:136px;
+    height:56px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .pay_text{
+    width: 701px;
+    height:56px;
+    line-height: 26px;
+    margin:12px 0px 0 0;
+    letter-spacing: -0.5px;
+    float: left;
+    color:#333;
+    font-size:16px;
+    font-weight: bold;
+  }
+  /*고객센터 운영 정보*/
+  .cs_info {
+    margin-top: 126px;
+    background-color: #fff;
+    width: 894px;
+    height: 282px;
+  }
+  .cs_info_title{
+
+    position: relative;
+    top:-34px;
+    background-image: url("//d3f03u7lex6hmc.cloudfront.net/front/resource/banner/site_keywords/box_242.png");
+    width:242px;
+    height:34px;
+    float:left;
+    text-align: center;
+    line-height: 34px;
+    font-size:18px;
+    font-weight: bold;
+    text-indent: -20px;
+    color:#fff;
+    margin-right:652px;
+  }
+  .cs_info_list{
+    line-height: 24px;
+    float: left;
+    margin:12px 0 0 55px;
+    letter-spacing: -1px;
+    width:185px;
+    height:112px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .cs_info_text{
+    width: 280px;
+    height:112px;
+    line-height:24px;
+    margin:12px 0px 0 0;
+    letter-spacing: -0.5px;
+    float: left;
+    color:#333;
+    font-size:16px;
+    font-weight: bold;
+
+  }
+  .cs_info_box{
+    float:left;
+    margin:0;
+    width:528px;
+    height:225px;
+  }
+  .cs_icon_box{
+    float: left;
+    width:21px;
+    height:144px;
+  }
+  .cs_icon{
+    margin-bottom:11px;
+    padding-top:1.5px;
+    float:left;
+    width:21px;
+    height:21px;
+  }
+  .cs_text{
+    float: left;
+    margin-bottom: 10px;
+    margin-left:8px;
+    text-align: left;
+
+  }
+  .cs_text span{
+    color:#aaa;
+    font-weight: 500;
+  }
+  .linkshops_cs{
+    margin:20px 0 0 86px;
+    float:left;
+    width:208px;
+    height:223px;
+  }
+  /*faq*/
+  .faq {
+    margin-top: 126px;
+    background-color: #fff;
+    width: 894px;
+    height: 282px;
+  }
+  .faq_title{
+
+    position: relative;
+    top:-34px;
+    background-image: url("//d3f03u7lex6hmc.cloudfront.net/front/resource/banner/site_keywords/box_242.png");
+    width:242px;
+    height:34px;
+    float:left;
+    text-align: center;
+    line-height: 34px;
+    font-size:18px;
+    font-weight: bold;
+    text-indent: -20px;
+    color:#fff;
+    margin-right:652px;
+  }
+  .faq_list{
+    line-height: 24px;
+    clear: both;
+    margin:12px 0 0 55px;
+    letter-spacing: -1px;
+    width:894px;
+    height:52px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .faq_list span{
+    margin-left:10px;
+    font-size:14px;
+    color:#999;
+  }
+  .faq_01{
+    font-size:16px;
+    font-weight: bold;
+    border-bottom: solid 1px #333;
+    width:709px;
+    height:30px;
+    margin-bottom:10px;
+  }
+  .faq_01 span{
+    padding-right:5px;
+    font-size:20px;
+
+  }
+  .faq_02{
+    font-size:16px;
+    font-weight: bold;
+    border-bottom: solid 1px #333;
+    width:709px;
+    height:30px;
+    margin-bottom:10px;
+  }
+  .faq_02 span{
+    padding-right:5px;
+    font-size:20px;
+
+  }
+  .faq_03{
+    font-size:16px;
+    font-weight: bold;
+    border-bottom: solid 1px #333;
+    width:709px;
+    height:30px;
+    margin-bottom:10px;
+  }
+  .faq_03 span{
+    padding-right:5px;
+    font-size:20px;
+
+  }
+  .faq_04{
+    font-size:16px;
+    font-weight: bold;
+    border-bottom: solid 1px #333;
+    width:709px;
+    height:30px;
+    margin-bottom:10px;
+  }
+  .faq_04 span{
+    padding-right:5px;
+    font-size:20px;
+
+  }
+  .v{
+    float:right;
+    padding-top:6px;
+
+  }
+  .Answer_01{
+
+    line-height: 20px;
+    text-align:left;
+    font-size:14px;
+    font-weight:bold;
+    color:#777;
+    width:709px;
+    height:105px;
+
+  }
+  .Answer_01 strong{
+    font-size:20px;
+    color:#ff5500;
+
+  }
+  .Answer_02{
+
+    line-height: 20px;
+    text-align:left;
+    font-size:14px;
+    font-weight:bold;
+    color:#777;
+    width:709px;
+    height:105px;
+
+  }
+  .Answer_02 strong{
+    font-size:20px;
+    color:#ff5500;
+
+  }
+  .Answer_03{
+
+    line-height: 20px;
+    text-align:left;
+    font-size:14px;
+    font-weight:bold;
+    color:#777;
+    width:709px;
+    height:105px;
+
+  }
+  .Answer_03 strong{
+    font-size:20px;
+    color:#ff5500;
+
+  }
+  .Answer_04{
+
+    line-height: 20px;
+    text-align:left;
+    font-size:14px;
+    font-weight:bold;
+    color:#777;
+    width:709px;
+    height:105px;
+
+  }
+  .Answer_04 strong{
+    font-size:20px;
+    color:#ff5500;
+
+  }
+  .A{
+    width:20px;
+    height:105px;
+    float:left;
+    padding-right:4px;
+  }
+  .faq_cont01{
+    padding-left:150px;
+    width:709px;
+    height:110px;
+    float:left;
+  }
+  .faq_cont02{
+    padding-left:150px;
+    width:709px;
+    height:130px;
+    float:left;
+  }
+  .faq_cont03{
+    padding-left:150px;
+    width:709px;
+    height:150px;
+    float:left;
+  }
+  .faq_cont04{
+    padding-left:150px;
+    width:709px;
+    height:100px;
+    float:left;
   }
 }

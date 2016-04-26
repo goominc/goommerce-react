@@ -172,7 +172,7 @@ const Home = React.createClass({
         </div>
         <div className="footer-slogan">
           <div className="container no-padding slogan-container">
-            <div className="slogan-item">
+            <Link to="/service/info/service_info" className="slogan-item">
               <div className="icon">
                 <img src={`${constants.resourceRoot}/footer/main/keyword_ico01.png`} />
               </div>
@@ -183,8 +183,8 @@ const Home = React.createClass({
                   No.1 온라인 도매시장
                 </div>
               </div>
-            </div>
-            <div className="slogan-item">
+            </Link>
+            <Link to="/service/info/signup_info" className="slogan-item">
               <div className="icon">
                 <img src={`${constants.resourceRoot}/footer/main/keyword_ico02.png`} />
               </div>
@@ -195,8 +195,8 @@ const Home = React.createClass({
                   회원 시스템
                 </div>
               </div>
-            </div>
-            <div className="slogan-item">
+            </Link>
+            <Link to="/service/info/order_info" className="slogan-item">
               <div className="icon">
                 <img src={`${constants.resourceRoot}/footer/main/keyword_ico03.png`} />
               </div>
@@ -207,8 +207,8 @@ const Home = React.createClass({
                   사입 요청 가능
                 </div>
               </div>
-            </div>
-            <div className="slogan-item">
+            </Link>
+            <Link to="/service/info/customer_center" className="slogan-item">
               <div className="icon">
                 <img src={`${constants.resourceRoot}/footer/main/keyword_ico04.png`} />
               </div>
@@ -219,7 +219,7 @@ const Home = React.createClass({
                   언어별 고객지원 센터
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
         {/*
