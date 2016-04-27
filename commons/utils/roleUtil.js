@@ -15,7 +15,7 @@ const hasBuyerRole = (auth) => {
 
 exports.hasBuyerRole = hasBuyerRole;
 
-const message = '바이어 인증 이후에 서비스 이용하실 수 있습니다';
+const message = '구매회원 인증 이후에 서비스 이용하실 수 있습니다';
 exports.checkRoleOnEnter = (nextState, replaceState, auth, onNotLogin, onNotRole) => {
   if (!auth || !auth.id) {
     onNotLogin();

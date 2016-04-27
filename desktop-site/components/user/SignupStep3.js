@@ -20,7 +20,7 @@ export default React.createClass({
             <b>{stringUtil.getUserName(auth)}</b> 님 가입을 환영합니다!
           </div>
           <div className="description">
-            바이어 회원 승인 절차를 위해 약 <b>24시간</b> 정도 소요될 예정입니다.<br />
+            구매회원 승인 절차를 위해 약 <b>24시간</b> 정도 소요될 예정입니다.<br />
             승인여부에 대한 안내는 가입시 입력하신 이메일<br />
             <b>{auth.email}</b> 로 전달 드릴 예정입니다.<br />
             기타 가입 절차에 대한 문의는 아래 연락처로 문의해주시기 바랍니다.<br />

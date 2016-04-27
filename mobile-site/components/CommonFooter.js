@@ -22,8 +22,8 @@ export default React.createClass({
               Tel - 02-2272-1122<br />
               Fax - 02-2233-5911<br />
               E-mail - cs@linkshops.com<br />
-              바이어 상담 카카오톡 ID - linkshops<br />
-              브랜드 상담 카카오톡 ID - linkshops_brand<br />
+              구매회원 상담 카카오톡 ID - linkshops<br />
+              판매회원 상담 카카오톡 ID - linkshops_brand<br />
             </div>
           </div>
 
