@@ -9,6 +9,7 @@ import numberUtil from 'commons/utils/numberUtil';
 
 import AddressInfo from './AddressInfo';
 import PaymentInfo from './PaymentInfo';
+import VBankInfo from './VBankInfo';
 
 export default React.createClass({
   propTypes: {
@@ -37,6 +38,8 @@ export default React.createClass({
         <div className="simple-key-value-container">
           {orderFields.map(renderField)}
         </div>
+        {order.paymentStatus === 200 && <div className="title">입금 정보</div>}
+        <VBankInfo order={order} />
         <div className="title">결제 정보</div>
         <PaymentInfo order={order} />
         <div className="title">배송 정보</div>
