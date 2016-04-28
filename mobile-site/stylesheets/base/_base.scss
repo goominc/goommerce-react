@@ -24,6 +24,7 @@ html {
  */
 a {
   color: $text-color;
+  cursor: pointer;
   text-decoration: none;
 
   @include on-event {

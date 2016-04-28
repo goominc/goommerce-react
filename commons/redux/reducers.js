@@ -219,6 +219,13 @@ function merchandise(state = {}, action) {
   return state;
 }
 
+function misc(state = {}, action) {
+  if (action.type === 'AFTER_LOGIN_PAGE') {
+    return Object.assign({}, state, { nextState: action.nextState });
+  }
+  return state;
+}
+
 const reducers = {
   auth,
   cart,
@@ -229,6 +236,7 @@ const reducers = {
   favoriteBrand,
   i18n,
   merchandise,
+  misc,
   pagination,
   search,
 };

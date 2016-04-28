@@ -15,6 +15,9 @@ import {
   AddressEdit,
   MyOrder,
   MyOrderDetail,
+  Signin,
+  ForgotPassword,
+  Signup,
   WishList,
 } from 'containers';
 
@@ -25,11 +28,14 @@ import { toggleSignRegister } from './redux/actions';
 export default function configure(store) {
   const onEnter = (nextState, replaceState) => {
     const onNotLogin = () => {
-      store.dispatch(toggleSignRegister(true, 'sign'));
-      replaceState(null, '/');
+      store.dispatch({
+        type: 'AFTER_LOGIN_PAGE',
+        nextState,
+      });
+      replaceState('/accounts/signin');
     };
     const onNotRole = () => {
-      replaceState(null, '/');
+      replaceState('/');
     };
     roleUtil.checkRoleOnEnter(nextState, replaceState, store.getState().auth, onNotLogin, onNotRole);
   };
@@ -54,6 +60,12 @@ export default function configure(store) {
         <Route path="/myOrder/:orderId" component={MyOrderDetail} onEnter={onEnter} />
         <Route path="/wishlist" component={WishList} onEnter={onEnter} />
       </Route>
+      <Route path="/accounts/signin" component={Signin} />
+      <Route path="/accounts/signup" component={Signup} />
+      <Route path="/accounts/forgot" component={ForgotPassword} />
+      {/*
+      <Route path="/accounts/reset" component={ResetPassword} />
+       */}
     </Route>
   );
 }

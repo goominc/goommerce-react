@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import LinkedStateMixin from 'react-addons-linked-state-mixin';
 
 import SigninHeader from 'components/user/SigninHeader';
 import SigninForm from 'components/user/SigninForm';
@@ -16,15 +15,11 @@ const Signin = React.createClass({
   contextTypes: {
     router: PropTypes.object.isRequired,
   },
-  mixins: [LinkedStateMixin],
   getInitialState() {
     return {};
   },
   handleSubmit(email, password) {
-    this.props.login(email, password).then(
-      () => this.context.router.push('/'),
-      () => alert('Invalid username/password.') // eslint-disable-line no-alert
-    );
+    this.props.login(email, password, this.context.router);
   },
   render: function render() {
     const goForgotPassword = () => {

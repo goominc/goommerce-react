@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
 import orderUtil from 'commons/utils/orderUtil';
+import { constants } from 'commons/utils/constants';
 
 export default React.createClass({
   propTypes: {
@@ -31,7 +32,7 @@ export default React.createClass({
         return (
           <Link to="/" className="logo">
             <img className="logo-img"
-              src="https://s3.ap-northeast-2.amazonaws.com/linkshops/front/resource/extra/01_linkshops_logo.png"
+              src={`${constants.resourceRoot}/extra/01_linkshops_logo.png`}
             />
           </Link>
           );

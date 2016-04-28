@@ -9,7 +9,7 @@ const _ = require('lodash');
 
 import roleUtil from 'commons/utils/roleUtil';
 
-export function login(email, password) {
+export function login(email, password, router) {
   return (dispatch, getState) => {
     const state = getState();
     return ajaxReturnPromise(state.auth, 'post', '/api/v1/login', { email, password }).then((data) => {
@@ -17,7 +17,18 @@ export function login(email, password) {
         type: 'LOGIN',
         payload: { auth: data },
       });
-    });
+      if (router) {
+        let nextLocation = '/';
+        if (_.get(state, 'misc.nextState.location')) {
+          nextLocation = state.misc.nextState.location;
+          dispatch({
+            type: 'AFTER_LOGIN_PAGE',
+            nextState: null,
+          });
+        }
+        router.push(nextLocation);
+      }
+    }, () => window.alert('Invalid username/password'));
   };
 }
 

@@ -22,13 +22,21 @@ import {
   UserTermsContainer,
   UserPoliciesContainer,
   ServiceInfoContainer,
+  // ShopByBuildingContainer,
 } from 'containers';
 
 import roleUtil from 'commons/utils/roleUtil';
 
-export default function configure({ getAuth }) { // eslint-disable-line
+export default function configure(store) { // eslint-disable-line
+  const getAuth = () => store.getState().auth;
   const onEnter = (nextState, fnReplaceState) => {
-    const onNotLogin = () => fnReplaceState(null, '/accounts/signin');
+    const onNotLogin = () => {
+      store.dispatch({
+        type: 'AFTER_LOGIN_PAGE',
+        nextState,
+      });
+      fnReplaceState('/accounts/signin');
+    };
     const onNotRole = () => fnReplaceState(null, '/');
     roleUtil.checkRoleOnEnter(nextState, fnReplaceState, getAuth(), onNotLogin, onNotRole);
   };
@@ -51,7 +59,7 @@ export default function configure({ getAuth }) { // eslint-disable-line
     <Route>
       <Route component={App}>
         <Route path="/" component={Home} />
-        <Redirect from="/products" to="/categories/all" />
+        <Redirect from="/products" to="/categories/4" />
         <Route path="/products/:productId" component={ProductDetail} onEnter={onEnter} />
         <Route path="/cart" component={Cart} onEnter={onEnter} />
         <Route path="/orders" component={MyOrderContainer} onEnter={onEnter} />
@@ -65,6 +73,7 @@ export default function configure({ getAuth }) { // eslint-disable-line
         <Route path="/user/terms" component={UserTermsContainer} />
         <Route path="/user/policies" component={UserPoliciesContainer} />
         <Route path="/service/info(/:section)" component={ServiceInfoContainer} />
+        {/*<Route path="/shops/buildings(/:building)" component={ShopByBuildingContainer} />*/}
       </Route>
       <Route path="/accounts/signin" component={Signin} />
       <Route path="/accounts/signup" component={Signup} />

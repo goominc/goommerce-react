@@ -23,11 +23,7 @@ if (module.hot) {
 
 require('../commons/utils/i18n').init(store);
 
-const routes = configureRoutes({
-  getAuth() {
-    return store.getState().auth;
-  },
-});
+const routes = configureRoutes(store);
 
 if (window.gaid) {
   const ga = require('react-ga');

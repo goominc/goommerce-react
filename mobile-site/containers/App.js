@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 
 import { ApiAction, toggleMenu, toggleSignRegister, toggleSearch,
          toggleLanguage, toggleCurrency } from 'redux/actions';
-const { loadCartIfEmpty, changeLocale, changeCurrency, loadCategories, searchKeyword,
-        login, signup, logout } = ApiAction;
 
 import AppHeader from 'components/AppHeader';
 import CommonFooter from 'components/CommonFooter';
@@ -47,12 +45,19 @@ const App = React.createClass({
   childContextTypes: {
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
+    ApiAction: PropTypes.object,
   },
   getChildContext() {
     const res = {
       activeLocale: this.props.activeLocale,
       activeCurrency: this.props.activeCurrency,
     };
+    const actions = {};
+    const apiFuncs = Object.keys(ApiAction);
+    apiFuncs.forEach((api) => {
+      actions[api] = this.props[api];
+    });
+    res.ApiAction = actions;
     return res;
   },
   componentDidMount() {
@@ -146,7 +151,5 @@ export default connect(
     showLanguage: state.menuAddon.showLanguage, showCurrency: state.menuAddon.showCurrency,
     activeLocale: state.i18n.activeLocale, activeCurrency: state.currency.activeCurrency,
     header: state.header }),
-  { loadCartIfEmpty, changeLocale, changeCurrency, loadCategories, searchKeyword,
-    login, signup, logout, toggleMenu,
-    toggleLanguage, toggleCurrency, toggleSignRegister, toggleSearch }
+  Object.assign({}, ApiAction, { toggleMenu, toggleLanguage, toggleCurrency, toggleSignRegister, toggleSearch })
 )(App);
