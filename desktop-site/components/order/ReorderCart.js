@@ -27,6 +27,7 @@ export default React.createClass({
     updateCartProduct: PropTypes.func,
     deleteCartProduct: PropTypes.func,
     deleteCartAllProduct: PropTypes.func,
+    updateBrandAdjustment: PropTypes.func,
     yesterdayOrderInfo: PropTypes.object,
   },
   contextTypes: {
@@ -38,7 +39,7 @@ export default React.createClass({
   },
   render() {
     const { cart, createOrder, loadCart, updateCartProduct, deleteCartProduct, deleteCartAllProduct, setReorderProduct } = this.props;
-    const { activeCurrency, setReorderBrand, yesterdayOrderInfo, addCartProductOnReorder, addCartProducts } = this.props;
+    const { activeCurrency, setReorderBrand, yesterdayOrderInfo, addCartProductOnReorder, addCartProducts, updateBrandAdjustment } = this.props;
     if (!cart) {
       return (<div></div>);
     }
@@ -85,12 +86,16 @@ export default React.createClass({
     let activeProductInCart = null;
 
     const items = [];
+    const adjustment = {};
     (cart.brands || []).forEach((brand) => {
       const currencies = cart.total ? Object.keys(cart.total) : [];
       brand.total = {};
       currencies.forEach((cur) => {
         brand.total[cur] = new Decimal(0);
       });
+      if (_.get(brand, 'brand.id') === brandId) {
+        _.assign(adjustment, brand.adjustment);
+      }
       (brand.products || []).forEach((product) => {
         if (_.get(brand, 'brand.id') === brandId) {
           if (activeProduct && activeProduct.id === _.get(product, 'product.id')) {
@@ -110,11 +115,12 @@ export default React.createClass({
         });
       });
       currencies.forEach((cur) => {
+        brand.total[cur] = brand.total[cur].add(_.get(brand, `adjustment.${cur}`, 0));
         brand.total[cur] = brand.total[cur].toFixed(cur === 'KRW' ? 0 : 2);
       });
     });
     const fields = [
-      { key: 'price', placeholder: i18n.get('word.price'), type: 'number', notRefresh: true, },
+      { key: 'price', placeholder: i18n.get('word.price'), type: 'number', notRefresh: true },
       { key: 'color', placeholder: 'Color', enableEmpty: true },
       { key: 'count', placeholder: i18n.get('word.quantity'), type: 'number' },
       { key: 'size', placeholder: 'Size', defaultValue: 'Free', enableEmpty: true },
@@ -318,6 +324,26 @@ export default React.createClass({
       }
       return null;
     };
+    const renderAdjustment = () => {
+      const onSave = () => {
+        updateBrandAdjustment(brandId, this.refs.adjustment.value);
+      };
+      return (
+        <div className="reorder-add-product">
+          <div>가격 조정</div>
+          <input
+            className="input-number-nospin"
+            type="number"
+            placeholder="가격 조정"
+            defaultValue={adjustment.KRW}
+            ref="adjustment"
+            key={brandId}
+          />
+          <span>원</span>
+          <button className="plus-button" onClick={onSave}>Save</button>
+        </div>
+      );
+    };
     return (
       <div>
         <div className="reorder-title">
@@ -330,6 +356,7 @@ export default React.createClass({
         </div>
         <div className="reorder-title"><b>{brandUtil.getNameWithAllBuildingInfo(activeBrand)}</b></div>
         <div className="reorder-products-panel">
+          {renderAdjustment()}
           {renderAddProduct()}
           {items.map((item) => renderProduct(item))}
         </div>

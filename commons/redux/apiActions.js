@@ -227,6 +227,15 @@ export function deleteCartAllProduct() {
   };
 }
 
+export function updateBrandAdjustment(brandId, KRW) {
+  return createFetchAction({
+    type: 'UPDATE_CART',
+    endpoint: '/api/v1/carts/adjustment',
+    method: 'put',
+    body: { brandId, KRW },
+  });
+}
+
 export function addBrandToCart(brand) {
   return {
     type: 'ADD_BRAND_TO_CART',
