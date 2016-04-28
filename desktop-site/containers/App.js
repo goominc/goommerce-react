@@ -80,10 +80,12 @@ const App = React.createClass({
   },
   render() {
     const { children, error, login, popup } = this.props;
+    /*
     const stopped = true;
     if (stopped) {
       return (<ServiceStopped />);
     }
+    */
     const renderError = () => {
       if (error && error.message) {
         return (
