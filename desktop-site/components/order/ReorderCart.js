@@ -226,10 +226,6 @@ export default React.createClass({
       const addProduct = () => {
         const product = { brandId };
         const currentProductName = $('.product-search-box input').val();
-        if (!currentProductName) {
-          window.alert('상품 이름을 입력해 주세요');
-          return;
-        }
         product.name = currentProductName;
         for (let i = 0; i < fields.length; i++) {
           const field = fields[i];

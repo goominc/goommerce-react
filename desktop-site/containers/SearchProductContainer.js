@@ -60,10 +60,11 @@ const ProductSearch = React.createClass({
       }
     }
     const items = searchUtil.getSearchItems(searchResult ? searchResult.products : [], fnGetText);
+    const filteredItems = _.filter(items, (i) => i.text);
     return (
       <AutoComplete
         boxClassName={boxClassName}
-        items={items}
+        items={filteredItems}
         onChangeText={onChangeText}
         onSelectItem={onSelectItem}
         placeholder="상품 추가"
