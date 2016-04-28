@@ -43,7 +43,7 @@ export default React.createClass({
         <div className="service">
           <div className="service_text">
             <div className="service_line_01">링크샵스</div>
-            <div className="service_line_02">전 세계 어디서든 <span className="text_orange">온라인 동대문</span>을 만나보세요.</div>
+            <div className="service_line_02">365일 닫히지 않는 <span className="text_orange">온라인 동대문</span>을 만나보세요.</div>
             <div className="service_line_03">주문만 하세요!</div>
             <div className="service_line_04">픽업부터 배송까지 책임지겠습니다.</div>
             <div className="service_line_05"><img src="//d3f03u7lex6hmc.cloudfront.net/front/resource/banner/site_keywords/check_orange.png" /> 매일 업데이트 되는 동대문 신상품을 만나보실수 있습니다.</div>
@@ -151,7 +151,7 @@ export default React.createClass({
           <span className="sign_in_str">회원가입</span> 및 <span className="sign_in_str">입점신청</span>은 아래와 같이 진행 됩니다. <br /> <span className="sign_in_sub_text">* 비회원의 경우 상품 정보 조회가 어려운 점 양해 부탁 드립니다.</span>
         </p>
         <div className="sign_in_buyer">
-          <div className="sign_in_box">구매회원</div>
+          <div className="sign_in_box">구매회원(소매)</div>
           <div className="sign_in_buyer_01">01</div>
           <div className="sign_in_buyer_02">02</div>
           <div className="sign_in_buyer_03">03</div>
@@ -166,7 +166,7 @@ export default React.createClass({
         </div>
 
         <div className="sign_in_buyer" style={({ marginBottom: '100px' })}>
-          <div className="sign_in_box">판매회원</div>
+          <div className="sign_in_box">판매회원(도매)</div>
           <div className="sign_in_seller_01">01</div>
           <div className="sign_in_seller_02">02</div>
           <div className="sign_in_seller_03">03</div>
@@ -174,30 +174,32 @@ export default React.createClass({
           <div className="sign_in_seller_05">상담 진행</div>
           <div className="sign_in_seller_06">입점 및<br />상품 등록</div>
           <div className="sign_in_seller_img02"></div>
-          <div className="sign_in_seller_button"><span className="sign_in_button_text">판매회원<p className="sign_in_button_text_small">회원가입</p><p className="sign_in_button_text_small">하러가기</p></span></div>
+          <div className="sign_in_seller_button"><span className="sign_in_button_text2">입점 신청하기<p className="sign_in_button_text_small2_1">02-2272-1122</p><p className="sign_in_button_text_small2_2">이메일 : CS@linkshops.com</p><p className="sign_in_button_text_small2_3">카카오톡ID : Linkshops_brand</p></span></div>
           <div className="sign_in_seller_01_text"><span>- 오프라인 도매매장을</span><br />운영하는 도매사업자에<br />한해 신청이 가능합니다.<br /><strong style={({ fontSize: '12px' })}>(현재 동대문, 도매 사업자에 한해 가능)</strong></div>
           <div className="sign_in_seller_02_text"><span>- 유선 및 방문 상담을 통해</span><br />링크샵스 서비스 이용방법에<br />대하여 자세히 안내 드립니다.</div>
           <div className="sign_in_seller_03_text"><span>- 입점과 동시에 샘플 촬영 및</span><br />상품등록이 진행 됩니다.<br />이후 판매회원 전용 페이지가<br />개설 됩니다.</div>
         </div>
 
         <ul className="title_box" id="order_info">
-          <li className="title" style={({ width: '400px' })}>
-            배송 결제 안내
+          <li className="title" style={({ width: '394px' })}>
+            주문배송 안내
           </li>
 
-          <li className="sub_title" style={({ width: '800px' })}>
+          <li className="sub_title" style={({ width: '806px' })}>
             <span className="title_line">I</span>&nbsp;&nbsp;&nbsp;&nbsp;편리하고 안전한 배송결제 시스템
           </li>
         </ul>
         <div className="smart_deli">
-          <div className="smart_deli_title">스마트 배송 시스템</div>
+          <div className="smart_deli_title">원스톱 주문배송 시스템</div>
           <div className="deli_img"><img src="//d3f03u7lex6hmc.cloudfront.net/front/resource/banner/site_keywords/smart_deli.png" /> </div>
           <div className="deli_img_text_box">주문 및 결제</div>
           <div className="deli_img_text_box" style={({ marginLeft: '90px' })}>매장 픽업</div>
           <div className="deli_img_text_box" style={({ marginLeft: '84px' })}>송장 입력</div>
           <div className="deli_img_text_box" style={({ marginLeft: '96px' })}>빠른 배송</div>
           <div className="deli_img_text_box" style={({ marginLeft: '84px' })}>수령 완료</div>
-          <div className="deli_text_center"><img src="//d3f03u7lex6hmc.cloudfront.net/front/resource/banner/site_keywords/check_2.png" />구매 매장 수와 상관 없이 픽업 후 <span>묶음배송</span> 해 드립니다 </div>
+          <div className="deli_text_center_01"><img src="//d3f03u7lex6hmc.cloudfront.net/front/resource/banner/site_keywords/check_2.png" />구매 매장 수와 상관 없이 픽업 후 <span>묶음배송</span> 해 드립니다 </div>
+          <div className="deli_text_center_02"><img src="//d3f03u7lex6hmc.cloudfront.net/front/resource/banner/site_keywords/check_2.png" />원하는 매장 및 상품 <span>등록 요청</span>이 가능합니다 </div>
+          <div className="deli_text_center_03">( 고객센터로 문의 해주세요 )</div>
           <div className="home_deil">
             <div className="deli_list"><img src="//d3f03u7lex6hmc.cloudfront.net/front/resource/banner/site_keywords/list_orange.png" /> 국내배송</div>
             <div className="deli_text">국내 택배 배송의 경우,결제확인 후 2~3일 정도의 배송기간이 소요됩니다.<br />주말,공휴일 기간 혹은 제주/도서산간 지역의 경우 1~2일의 추가 배송기간이 소요됩니다.<br /><span>*자연재해, 제조/판매자 재고 사정, 배송업체 사정 등으로 예기치 않게 추가 지연될 수 있습니다.</span></div>
@@ -211,7 +213,7 @@ export default React.createClass({
             <div className="pay_list"><img src="//d3f03u7lex6hmc.cloudfront.net/front/resource/banner/site_keywords/list_orange.png" /> 국내결제</div>
             <div className="pay_text">무통장입금, 신용카드 결제 가능</div>
             <div className="pay_list" style={({ marginTop: 0 })}><img src="//d3f03u7lex6hmc.cloudfront.net/front/resource/banner/site_keywords/list_orange.png" /> 해외결제</div>
-            <div className="pay_text" style={({ marginTop: 0 })}>글로벌 신용카드 (American Express, Visa, Master) 결제가능<br />알리페이, 텐페이, 유니온페이 결제 가능</div>
+            <div className="pay_text" style={({ marginTop: 0 })}>글로벌 신용카드 (VISA, MasterCard, JCB) 결제 가능<br />알리페이, 텐페이, 유니온페이, 페이팔 결제 가능</div>
           </div>
         </div>
 

@@ -497,18 +497,16 @@
     float: left;
   }
   .sign_in_seller_button{
-    margin:23px 0 0 47px;
-    width:132px;
+    margin:14px 0 0 30px;
+    width:200px;
     height:132px;
-    background-image: url("//d3f03u7lex6hmc.cloudfront.net/front/resource/banner/site_keywords/sign_in_buyer_button01.png");
+
     float: left;
-    text-align: center;
+    text-align: left;
     font-weight: bold;
-    color:#fff;
+    color:#333;
   }
-  .sign_in_seller_button:hover{
-    background-image: url("//d3f03u7lex6hmc.cloudfront.net/front/resource/banner/site_keywords/sign_in_buyer_button02.png");
-  }
+
   .sign_in_button_text{
     position: relative;
     top:38px;
@@ -517,8 +515,31 @@
     margin-top:30px;
     font-size:20px;
   }
+  .sign_in_button_text2{
+
+    position: relative;
+    top:38px;
+    width:87px;
+    height:64px;
+    margin-top:30px;
+    font-size:20px;
+    color:#ff5500;
+  }
   .sign_in_button_text_small{
     font-size:14px;
+  }
+  .sign_in_button_text_small2_1{
+    margin-top:-4px;
+    font-size:20px;
+    color:#555;
+  }
+  .sign_in_button_text_small2_2{
+    font-size:14px;
+    color:#555;
+  }
+  .sign_in_button_text_small2_3{
+    font-size:14px;
+    color:#555;
   }
   .sign_in_seller_01_text{
     font-size:14px;
@@ -589,7 +610,7 @@
     margin-top: 126px;
     background-color: #eee;
     width:894px;
-    height:536px;
+    height:606px;
   }
   .deli_img{
     clear: both;
@@ -612,8 +633,8 @@
     margin:20px 0 0 76px;
 
   }
-  .deli_text_center{
-    padding-top:40px;
+  .deli_text_center_01{
+    padding-top:50px;
     font-size:20px;
     font-weight: bold;
     color:#333;
@@ -623,10 +644,34 @@
     text-align: center;
     letter-spacing: -1px;
   }
-  .deli_text_center span{
+  .deli_text_center_02{
+    padding-left:202px;
+    padding-top:10px;
+    font-size:20px;
+    font-weight: bold;
+    color:#333;
+    clear: both;
+    width:894px;
+    height:34px;
+    text-align:left;
+    letter-spacing: -1px;
+  }
+  .deli_text_center_01 span{
     padding-bottom:1px;
     border-bottom:solid 1px #ff5500;
     color:#ff5500;
+  }
+  .deli_text_center_02 span{
+    padding-bottom:1px;
+    border-bottom:solid 1px #ff5500;
+    color:#ff5500;
+  }
+  .deli_text_center_03{
+    font-size:12px;
+    font-weight: bold;
+    color:#555;
+    padding-left:236px;
+    letter-spacing: -1px;
   }
   .deli_list{
     line-height: 26px;
