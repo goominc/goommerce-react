@@ -1,8 +1,10 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
 import React, { PropTypes } from 'react';
+import _ from 'lodash';
 
 import numberUtil from 'commons/utils/numberUtil';
+import orderUtil from 'commons/utils/orderUtil';
 
 export default React.createClass({
   propTypes: {
@@ -23,7 +25,17 @@ export default React.createClass({
       activeCurrency,
       currencySign,
     );
+    const brands = _.groupBy(order.orderProducts.map((o) => o.brand), 'id');
+    const brandName = (brandId) => _.get(brands, [brandId, 0, 'name', 'ko'], brandId);
+    const renderAdjustment = (adjustment) =>
+    (
+      <div key={adjustment.id}>
+        <div className="left">+</div>
+        <div className="right">{brandName(adjustment.brandId)}: {numberUtil.formatPrice(adjustment[activeCurrency], activeCurrency, currencySign)}</div>
+      </div>
+    );
     const subtotalPrice = formatPrice('subtotal');
+    const adjustmentPrice = formatPrice('adjustmentTotal');
     const taxPrice = formatPrice('tax');
     const handlingFeePrice = formatPrice('handlingFee');
     const shippingCostPrice = formatPrice('shippingCost');
@@ -41,7 +53,7 @@ export default React.createClass({
           </div>
           <div className="cell title-cell">
             <div className="title">기타</div>
-            <div className="price">0</div>
+            <div className="price">{adjustmentPrice}</div>
           </div>
           <div className="cell title-cell">
             <div className="title">결제금액</div>
@@ -62,6 +74,7 @@ export default React.createClass({
             <div className="right">부가세: {taxPrice}</div>
           </div>
           <div className="cell content-cell">
+            {_.get(order, 'adjustments', []).map(renderAdjustment)}
           </div>
           <div className="cell content-cell">
             <div className="left">=</div>
