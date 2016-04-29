@@ -38,7 +38,7 @@ export default React.createClass({
       return null;
     };
 
-    const formatPrice = numberUtil.formatPrice(total[activeCurrency], activeCurrency, currencySign);
+    const formatPrice = numberUtil.formatPrice(total[activeCurrency] || 0, activeCurrency, currencySign);
     return (
       <div className="cart-conatiner">
         <div className="cart-title-box">
