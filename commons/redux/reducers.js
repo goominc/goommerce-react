@@ -1,6 +1,6 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
-import { assign, merge, get, set, union, forEach, omit, pick } from 'lodash';
+import { assign, clone, merge, get, set, union, forEach, omit, pick, sortBy } from 'lodash';
 
 const handleFavoriteBrandUpdate = (state, action) => {
   if (action.type === 'ADD_FAVORITE_BRAND') {
@@ -53,11 +53,9 @@ function cart(state = {}, action) {
     return { ...action.payload };
   } else if (action.type === 'ADD_BRAND_TO_CART') {
     // 2016. 03. 30. [heekyu] this is local action.
-    if (!state.brands) {
-      state.brands = [];
-    }
-    state.brands.push({ brand: action.brand, products: [] });
-    return assign({}, state, { brands: state.brands });
+    const brands = clone(state.brands) || [];
+    brands.push({ brand: action.brand, products: [] });
+    return assign({}, state, { brands: sortBy(brands, 'brand.name.ko') });
   }
   return state;
 }
