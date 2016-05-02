@@ -17,12 +17,16 @@ export default React.createClass({
     router: PropTypes.object.isRequired,
   },
   handleWithAuth(path) {
+    // 2016. 05. 02. [heekyu] router will be go signin page if not logged in
+    return this.context.router.push(path);
+    /*
     const { auth } = this.props;
     if (auth.bearer) {
       return this.context.router.push(path);
     }
     this.props.toggleSignRegister(true, 'sign');
     return null;
+    */
   },
   render() {
     const { header, cart } = this.props;
