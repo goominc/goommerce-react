@@ -62,7 +62,7 @@ export default React.createClass({
       const bizImageField = (
         <div key="signup-biz-image" className="signup-biz-image-line">
           <img src={this.state.bizImageUrl ? this.state.bizImageUrl : ''} alt="사업자 등록증" />
-          <input type="file" onChange={onSelectFile} />
+          <input type="file" accept="image/*" onChange={onSelectFile} />
         </div>
       );
       return fields1.map(renderField).concat([bizImageField]).concat(fields2.map(renderField));
