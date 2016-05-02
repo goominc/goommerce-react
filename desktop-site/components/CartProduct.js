@@ -21,10 +21,11 @@ export default React.createClass({
   },
   contextTypes: {
     activeCurrency: PropTypes.string,
+    currencySign: PropTypes.object,
   },
   render() {
     const { brands, removeProduct, updateCount, canUpdate } = this.props;
-    const { activeCurrency } = this.context;
+    const { activeCurrency, currencySign } = this.context;
 
     const renderBrand = (brand) => {
       const renderVariant = (product, variant, index) => {
@@ -85,9 +86,9 @@ export default React.createClass({
                 <div className="item">{_.get(variant.productVariant, 'data.size')}</div>
               </div>
             </div>
-            <div className="quantity">{numberUtil.format(pricePerUnit)}</div>
+            <div className="quantity">{numberUtil.formatPrice(pricePerUnit, activeCurrency, currencySign)}</div>
             {renderQuantity()}
-            <div className="price">{numberUtil.format(total)}</div>
+            <div className="price">{numberUtil.formatPrice(total, activeCurrency, currencySign)}</div>
             {renderDeleteButton()}
           </div>
         );
