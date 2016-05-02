@@ -26,10 +26,14 @@ export default React.createClass({
     this.props.logout();
   },
   _showSignin() {
-    this.props.toggleSignRegister(true, 'sign');
+    this.context.router.push('/accounts/signin');
+    // this.props.toggleSignRegister(true, 'sign');
+    this.props.toggle();
   },
   _showRegister() {
-    this.props.toggleSignRegister(true, 'register');
+    this.context.router.push('/accounts/signup');
+    // this.props.toggleSignRegister(true, 'register');
+    this.props.toggle();
   },
   handleWithAuth(path) {
     const { auth } = this.props;
@@ -51,8 +55,8 @@ export default React.createClass({
     }
     return (
         <div className="drawer-unlogin">
-          <span className="drawer-signin" onClick={this._showSignin}>Sign In</span>
-          <span className="drawer-join" onClick={this._showRegister}>Join Free</span>
+          <span className="drawer-signin" onClick={this._showSignin}>로그인</span>
+          <span className="drawer-join" onClick={this._showRegister}>회원가입</span>
         </div>
       );
   },
@@ -61,7 +65,7 @@ export default React.createClass({
     if (auth.bearer) {
       return (
           <li className="drawer-loginout" onClick={this._logout}>
-            <a href="#">Sign Out</a>
+            <a href="#">로그아웃</a>
           </li>
         );
     }

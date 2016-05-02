@@ -14,6 +14,9 @@ const Signup = React.createClass({
     signup: PropTypes.func,
     clearSignupUser: PropTypes.func,
   },
+  contextTypes: {
+    router: PropTypes.object.isRequired,
+  },
   render() {
     const handleSubmit = (user) => {
       const { email, password, name, data, passwordConfirm } = user;
@@ -33,8 +36,8 @@ const Signup = React.createClass({
         name,
       }).then(
         () => {
-          window.alert('ok');
           this.props.clearSignupUser();
+          this.context.router.push('/');
         }
       );
     };
