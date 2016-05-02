@@ -19,6 +19,8 @@ import {
   ForgotPassword,
   Signup,
   WishList,
+  UserTermsContainer,
+  UserPoliciesContainer,
 } from 'containers';
 
 import roleUtil from 'commons/utils/roleUtil';
@@ -63,6 +65,8 @@ export default function configure(store) {
       <Route path="/accounts/signin" component={Signin} />
       <Route path="/accounts/signup" component={Signup} />
       <Route path="/accounts/forgot" component={ForgotPassword} />
+      <Route path="/user/terms" component={UserTermsContainer} />
+      <Route path="/user/policies" component={UserPoliciesContainer} />
       {/*
       <Route path="/accounts/reset" component={ResetPassword} />
        */}

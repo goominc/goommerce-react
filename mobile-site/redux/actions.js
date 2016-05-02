@@ -111,3 +111,16 @@ export function setProductSize(size) {
     size,
   };
 }
+
+export function updateSignupUser(user) {
+  return {
+    type: 'UPDATE_SIGNUP_PAGE_USER',
+    user,
+  };
+}
+
+export function clearSignupUser() {
+  return {
+    type: 'CLEAR_SIGNUP_PAGE_USER',
+  };
+}

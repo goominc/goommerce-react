@@ -1,4 +1,4 @@
-import { assign } from 'lodash';
+import _, { assign } from 'lodash';
 import { combineReducers } from 'redux';
 import CommonReducers from 'commons/redux/reducers';
 
@@ -118,11 +118,19 @@ function pageProductDetail(state = productDetailInitialState, action) {
   }
   return state;
 }
+function pageSignup(state = {}, action) {
+  if (action.type === 'UPDATE_SIGNUP_PAGE_USER') {
+    return _.merge({}, state, { user: action.user });
+  } else if (action.type === 'CLEAR_SIGNUP_PAGE_USER') {
+    return {};
+  }
+  return state;
+}
 
 const rootReducer = combineReducers(
   Object.assign({}, CommonReducers.reducers, {
     errorHandler, checkout, menu, sign, search, menuAddon, header,
-    pageProductList, pageProductDetail,
+    pageProductList, pageProductDetail, pageSignup,
   })
 );
 

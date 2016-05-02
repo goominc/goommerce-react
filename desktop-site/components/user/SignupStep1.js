@@ -3,8 +3,8 @@
 import React, { PropTypes } from 'react';
 
 import { constants } from 'commons/utils/constants';
-import UserTerms from './UserTerms';
-import UserPolicies from './UserPolicies';
+import UserTerms from 'commons/components/user/UserTerms';
+import UserPolicies from 'commons/components/user/UserPolicies';
 
 export default React.createClass({
   propTypes: {

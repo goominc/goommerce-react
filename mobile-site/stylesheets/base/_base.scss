@@ -40,3 +40,22 @@ a, abbr, acronym, address, article, aside, blockquote, body, caption, code, dd, 
     margin: 0;
     padding: 0;
 }
+
+input[type="checkbox"] {
+  display:none;
+  & + label {
+    background-size: 100%;
+    display:inline-block;
+    width:23px;
+    height:23px;
+    background-image: url($base-url + '/main/checkbox_unchecked.png');
+    vertical-align: top;
+    zoom: 1;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    cursor:pointer;
+  }
+  &:checked + label {
+    background-image: url($base-url + '/main/checkbox_checked.png');
+  }
+}

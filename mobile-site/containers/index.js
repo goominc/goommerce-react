@@ -14,4 +14,8 @@ export { default as MyOrderDetail } from 'containers/MyOrderDetail';
 export { default as ProductList } from 'containers/ProductList';
 export { default as ProductDetail } from 'containers/ProductDetail';
 export { default as Signin } from 'containers/Signin';
+export { default as Signup } from 'containers/Signup';
 export { default as WishList } from 'containers/WishList';
+
+export { default as UserTermsContainer } from 'containers/UserTermsContainer';
+export { default as UserPoliciesContainer } from 'containers/UserPoliciesContainer';

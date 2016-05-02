@@ -24,7 +24,7 @@ const ForgotPassword = React.createClass({
   },
   handleSubmit(e) {
     e.preventDefault();
-    // this.props.forgotPassword(this.state).then((res) => alert(res.message)); // eslint-disable-line no-alert
+    $('.btn-signin').attr('disabled', true);
     this.props.forgotPassword(this.state).then(() => {
       alert('비밀번호 변경을 위해 이메일을 확인해 주세요');
       this.context.router.push('/');
