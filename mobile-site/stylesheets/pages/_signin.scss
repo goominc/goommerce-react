@@ -58,16 +58,18 @@ $signin-border-radius: 5px;
     text-align: center;
     width: $container-height;
   }
-  input[type="file"] {
+  input[type="button"] {
+    border: 0;
     $height: 22px;
     height: $height;
     line-height: $height;
     margin-top: -$height / 2;
     min-width: 80px;
+    padding: 0;
     position: absolute;
     right: 0;
     top: 50%;
-    width: 40%;
+    width: 30%;
   }
 }
 

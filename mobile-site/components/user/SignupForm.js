@@ -59,10 +59,14 @@ export default React.createClass({
         { name: t('returnAccountBank'), placeholder: t('returnAccountBankPlaceHolder'), key: 'data.returnAccountBank' }, // eslint-disable-line
         { name: t('returnAccountOwner'), placeholder: t('returnAccountOwnerPlaceHolder'), key: 'data.returnAccountOwner' }, // eslint-disable-line
       ];
+      const openBizImagePopup = () => {
+        $('#biz-image-button').click();
+      };
       const bizImageField = (
         <div key="signup-biz-image" className="signup-biz-image-line">
           <img src={this.state.bizImageUrl ? this.state.bizImageUrl : ''} alt="사업자 등록증" />
-          <input type="file" accept="image/*" onChange={onSelectFile} />
+          <input id="biz-image-button" type="file" accept="image/*" onChange={onSelectFile} style={({ display: 'none' })} />
+          <input type="button" value="사업자 등록증 선택" onClick={openBizImagePopup} />
         </div>
       );
       return fields1.map(renderField).concat([bizImageField]).concat(fields2.map(renderField));
