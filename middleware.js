@@ -120,6 +120,16 @@ module.exports = (opts) => {
               break;
             }
           }
+          const blackList = ['175.192.225.185'];
+          // http://stackoverflow.com/questions/10849687/express-js-how-to-get-remote-client-address#answer-10849772
+          const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+          if (isReportGA) {
+            blackList.forEach((black) => {
+              if (ip.indexOf(black) > -1) {
+                isReportGA = false;
+              }
+            });
+          }
         }
         if (host === config.mobileSite) {
           return sendMobile(initialState, isReportGA ? _.get(config, 'ga.mobile') : null);
