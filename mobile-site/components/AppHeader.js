@@ -32,7 +32,7 @@ export default React.createClass({
         return (
           <Link to="/" className="logo">
             <img className="logo-img"
-              src={`${constants.resourceRoot}/extra/01_linkshops_logo.png`}
+                 src={`${constants.resourceRoot}/mobile/main/mobile_linkshops_logo.png`}
             />
           </Link>
           );

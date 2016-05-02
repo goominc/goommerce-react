@@ -33,7 +33,7 @@ const ForgotPassword = React.createClass({
     return (
       <form className="container" onSubmit={handleSubmit}>
         <Link to="/" className="signin-title">
-          <img className="logo-img" src={`${constants.resourceRoot}/extra/01_linkshops_logo.png`} />
+          <img className="logo-img" src={`${constants.resourceRoot}/mobile/main/mobile_linkshops_logo.png`} />
         </Link>
         <input className="signin-input" type="email" placeholder="아이디(이메일)" ref="email" />
         <Link className="signin-simple-link" to="/accounts/signin">로그인</Link>

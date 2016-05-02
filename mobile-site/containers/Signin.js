@@ -26,7 +26,7 @@ const Signin = React.createClass({
     return (
       <form className="container" onSubmit={onSubmit}>
         <Link to="/" className="signin-title">
-          <img className="logo-img" src={`${constants.resourceRoot}/extra/01_linkshops_logo.png`} />
+          <img className="logo-img" src={`${constants.resourceRoot}/mobile/main/mobile_linkshops_logo.png`} />
         </Link>
         <input className="signin-input" type="email" placeholder="아이디(이메일)" ref="email" />
         <input className="signin-input" type="password" placeholder="비밀번호" ref="password" />

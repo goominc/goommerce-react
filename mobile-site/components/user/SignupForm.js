@@ -115,10 +115,10 @@ export default React.createClass({
     };
     return (
       <form onSubmit={onSubmit}>
+        <Link to="/" className="signin-title">
+          <img className="logo-img" src={`${constants.resourceRoot}/mobile/main/mobile_linkshops_logo.png`} />
+        </Link>
         <div className="signup-form-section">
-          <Link to="/" className="signin-title">
-            <img className="logo-img" src={`${constants.resourceRoot}/extra/01_linkshops_logo.png`} />
-          </Link>
           {renderField({ name: '아이디(이메일)', type: 'email', key: 'email' })}
           {renderField({ name: '비밀번호', type: 'password', key: 'password' })}
           {renderField({ name: '비밀번호 확인', type: 'password', key: 'passwordConfirm' })}

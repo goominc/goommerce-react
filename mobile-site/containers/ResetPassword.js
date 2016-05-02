@@ -44,7 +44,7 @@ const ResetPassword = React.createClass({
     return (
       <form className="container" onSubmit={handleSubmit}>
         <Link to="/" className="signin-title">
-          <img className="logo-img" src={`${constants.resourceRoot}/extra/01_linkshops_logo.png`} />
+          <img className="logo-img" src={`${constants.resourceRoot}/mobile/main/mobile_linkshops_logo.png`} />
         </Link>
         <input
           className="signin-input"
