@@ -98,6 +98,29 @@ module.exports = (opts) => {
     }
 
     if (req.method === 'GET' && req.accepts('html')) {
+      const reportGA = (auth) => {
+        if (!config.ga) {
+          return false;
+        }
+        const blackList = ['175.192.225.185'];
+        // http://stackoverflow.com/questions/10849687/express-js-how-to-get-remote-client-address#answer-10849772
+        const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+        for (var i = 0; i < blackList.length; i++) { // eslint-disable-line
+          if (ip.indexOf(blackList[i]) > -1) { // eslint-disable-line
+            return false;
+          }
+        }
+        if (auth) {
+          // 2016. 04. 19. [heekyu] TODO remove common logic
+          for (var i = 0; i < (auth.roles || []).length; i++) { // eslint-disable-line
+            const role = auth.roles[i]; // eslint-disable-line
+            if (role.type === 'admin') {
+              return false;
+            }
+          }
+        }
+        return true;
+      };
       opts.getAuth(req, (err, auth) => {
         const host = req.get('host');
         const initialState = {
@@ -110,27 +133,9 @@ module.exports = (opts) => {
           initialState.i18n = req.i18n;
           initialState.i18n.activeLocale = req.locale;
         }
-        var isReportGA = true; // eslint-disable-line
-        if (config.ga && auth) {
-          // 2016. 04. 19. [heekyu] TODO remove common logic
-          for (var i = 0; i < (auth.roles || []).length; i++) { // eslint-disable-line
-            const role = auth.roles[i];
-            if (role.type === 'admin') {
-              isReportGA = false;
-              break;
-            }
-          }
-          const blackList = ['175.192.225.185'];
-          // http://stackoverflow.com/questions/10849687/express-js-how-to-get-remote-client-address#answer-10849772
-          const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-          if (isReportGA) {
-            blackList.forEach((black) => {
-              if (ip.indexOf(black) > -1) {
-                isReportGA = false;
-              }
-            });
-          }
-        }
+
+        const isReportGA = reportGA(auth);
+
         if (host === config.mobileSite) {
           return sendMobile(initialState, isReportGA ? _.get(config, 'ga.mobile') : null);
         }
