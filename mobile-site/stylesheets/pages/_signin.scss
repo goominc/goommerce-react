@@ -59,6 +59,7 @@ $signin-border-radius: 5px;
     width: $container-height;
   }
   input[type="button"] {
+    background-color: #999;
     border: 0;
     $height: 22px;
     height: $height;
@@ -69,7 +70,7 @@ $signin-border-radius: 5px;
     position: absolute;
     right: 0;
     top: 50%;
-    width: 30%;
+    width: 40%;
   }
 }
 
