@@ -136,10 +136,9 @@ module.exports = (opts) => {
 
         const isReportGA = reportGA(auth);
 
-        // if (host === config.mobileSite) {
+        if (host === config.mobileSite) {
           return sendMobile(initialState, isReportGA ? _.get(config, 'ga.mobile') : null);
-        // }
-        /*
+        }
         const mobileRedirectKey = 'mobile_redirect';
         if (!req.cookies[mobileRedirectKey] && config.mobileSite && md.mobile() && !md.tablet()) {
           req.cookies[mobileRedirectKey] = true;
@@ -149,7 +148,6 @@ module.exports = (opts) => {
         }
 
         return send(initialState, isReportGA ? _.get(config, 'ga.desktop') : null);
-        */
       });
     }
   });
