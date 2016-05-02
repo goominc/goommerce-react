@@ -157,6 +157,7 @@ const Home = React.createClass({
                 </div>
               </div>
             </div>
+            {/*
             <div className="home-building-title">
               <strong>트렌드</strong> 톡
             </div>
@@ -168,6 +169,7 @@ const Home = React.createClass({
                 {trendPicks.map(renderTrendPickItem)}
               </div>
             </div>
+             */}
           </div>
         </div>
         <div className="footer-slogan">
