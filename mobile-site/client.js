@@ -9,6 +9,8 @@ import configureStore from 'commons/redux/store';
 import configureRoutes from 'routes';
 import reducer from 'redux/reducers';
 
+import { initGa } from 'commons/utils/gaUtil';
+
 /*
 const history = createBrowserHistory();
 
@@ -48,6 +50,8 @@ const routes = configureRoutes(store);
 history.listen(() => {
   $('body').scrollTop(0);
 });
+
+initGa(store, history);
 
 require('../commons/utils/i18n').init(store);
 

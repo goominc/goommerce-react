@@ -16,7 +16,10 @@ const environmentConfig = {
   },
   production: {
     mobileSite: 'm.linkshops.com',
-    ga: 'UA-76557867-1',
+    ga: {
+      desktop: 'UA-76557867-1',
+      mobile: 'UA-76557867-2',
+    },
   },
 }[process.env.NODE_ENV || 'development'];
 

@@ -3,6 +3,7 @@ const MobileDetect = require('mobile-detect');
 const serialize = require('serialize-javascript');
 const serveStatic = require('serve-static');
 const webpack = require('webpack');
+const _ = require('lodash');
 
 module.exports = (opts) => {
   opts = opts || {};
@@ -47,7 +48,7 @@ module.exports = (opts) => {
     const md = new MobileDetect(req.headers['user-agent']);
 
     /* copy viewport content from aliexpress */
-    function sendMobile(initialState) {
+    function sendMobile(initialState, gaid) {
       res.send(`
         <!DOCTYPE html>
         <html>
@@ -63,6 +64,7 @@ module.exports = (opts) => {
             <script src="${cdn}/vendor/jquery-1.11.3.min.js"></script>
             <script src="${cdn}/vendor/owl.carousel.min.js"></script>
             <script>window.__INITIAL_STATE__ = ${serialize(initialState)};</script>
+            ${gaid ? `<script>window.gaid="${gaid}"</script>` : ''}
             <script src="${path('app.mobile.bundle.js')}"></script>
           </body>
         </html>
@@ -108,8 +110,19 @@ module.exports = (opts) => {
           initialState.i18n = req.i18n;
           initialState.i18n.activeLocale = req.locale;
         }
+        var isReportGA = true; // eslint-disable-line
+        if (config.ga && auth) {
+          // 2016. 04. 19. [heekyu] TODO remove common logic
+          for (var i = 0; i < (auth.roles || []).length; i++) { // eslint-disable-line
+            const role = auth.roles[i];
+            if (role.type === 'admin') {
+              isReportGA = false;
+              break;
+            }
+          }
+        }
         if (host === config.mobileSite) {
-          return sendMobile(initialState);
+          return sendMobile(initialState, isReportGA ? _.get(config, 'ga.mobile') : null);
         }
         const mobileRedirectKey = 'mobile_redirect';
         if (!req.cookies[mobileRedirectKey] && config.mobileSite && md.mobile() && !md.tablet()) {
@@ -118,19 +131,8 @@ module.exports = (opts) => {
           // return sendMobile(initialState);
           return res.redirect(`//${config.mobileSite}/`);
         }
-        var gaid = config.ga; // eslint-disable-line
-        if (gaid && auth) {
-          // 2016. 04. 19. [heekyu] TODO remove common logic
-          for (var i = 0; i < (auth.roles || []).length; i++) { // eslint-disable-line
-            const role = auth.roles[i];
-            if (role.type === 'admin') {
-              gaid = null;
-              break;
-            }
-          }
-        }
 
-        return send(initialState, gaid);
+        return send(initialState, isReportGA ? _.get(config, 'ga.desktop') : null);
       });
     }
   });
