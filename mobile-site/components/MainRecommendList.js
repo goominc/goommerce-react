@@ -20,8 +20,8 @@ export default React.createClass({
       if (img) {
         return (
             <li key={product.id}>
-              <Link to={`/products/${product.id}`}>
-                <div className="product-image">
+              <Link className="product-image" to={`/products/${product.id}`}>
+                <div className="inner-wrap">
                   <img src={getProductMainImage(product).url} />
                 </div>
                 { /*<div className="product-cost">
