@@ -7,6 +7,7 @@ import { Link } from 'react-router';
 import ResponsiveImage from 'components/snippet/ResponsiveImage';
 import productUtil, { getProductMainPrice, initColorsAndSizes } from 'commons/utils/productUtil';
 import brandUtil from 'commons/utils/brandUtil';
+import numberUtil from 'commons/utils/numberUtil';
 
 export default React.createClass({
   propTypes: {
@@ -79,7 +80,7 @@ export default React.createClass({
             </div>
           </Link>
           <div className="product-price">
-            <strong>{currencySign[activeCurrency]} {getProductMainPrice(item, activeCurrency)}</strong>
+            <strong>{numberUtil.formatPrice(getProductMainPrice(item, activeCurrency), activeCurrency, currencySign)}</strong>
           </div>
           <div className="variant-image-container">
             <div>{brandUtil.getName(item.brand)}</div>
