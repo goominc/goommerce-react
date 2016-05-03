@@ -28,6 +28,7 @@ const Home = React.createClass({
     this.props.searchProducts({
       // q: query,
       // categoryId: params.categoryId === 'all' ? undefined : params.categoryId,
+      categoryId: 4,
       // brandId,
       offset: 0,
       limit: 30,
