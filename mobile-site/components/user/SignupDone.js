@@ -41,7 +41,7 @@ export default React.createClass({
           <h3>가입절차 문의</h3>
           <p>카카오톡 ID : linkshops_brand</p>
           <p>이메일 : <a href="mailto:cs@linkshops.com">cs@linkshops.com</a></p>
-          <p>고객센터 : <a href="+82222721121">02-2272-1121</a></p>
+          <p>고객센터 : 02-2272-1121</p>
           <Link to="/" className="signin-button go-home">홈으로 가기</Link>
         </div>
       </div>
