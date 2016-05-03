@@ -19,6 +19,7 @@ import {
   ForgotPassword,
   ResetPassword,
   Signup,
+  SignupDoneContainer,
   WishList,
   UserTermsContainer,
   UserPoliciesContainer,
@@ -65,6 +66,7 @@ export default function configure(store) {
       </Route>
       <Route path="/accounts/signin" component={Signin} />
       <Route path="/accounts/signup" component={Signup} />
+      <Route path="/accounts/signup/done" component={SignupDoneContainer} />
       <Route path="/accounts/forgot" component={ForgotPassword} />
       <Route path="/accounts/reset" component={ResetPassword} />
       <Route path="/user/terms" component={UserTermsContainer} />

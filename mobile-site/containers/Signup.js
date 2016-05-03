@@ -37,7 +37,7 @@ const Signup = React.createClass({
       }).then(
         () => {
           this.props.clearSignupUser();
-          this.context.router.push('/');
+          this.context.router.push('/accounts/signup/done');
         }
       );
     };
