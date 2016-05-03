@@ -13,13 +13,15 @@
     vertical-align: top;
     width: 25%;
     span {
-      font-size: 16px;
+      display: inline-block;
+      font-size: 15px;
       font-weight: 500;
+      letter-spacing: -1px;
     }
     &.active {
-      border-bottom: 2px solid #ed4500;
       span {
         color: #ed4500;
+        border-bottom: 2px solid #ed4500;
       }
     }
   }

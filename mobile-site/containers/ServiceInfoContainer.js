@@ -22,7 +22,7 @@ const ServiceInfoContainer = React.createClass({
     const currentTab = this.state.currentTab;
     const tabs = [
       { name: '서비스소개', key: 'service_info', img: `${constants.resourceRoot}/mobile/banner/service_guide_001.png` },
-      { name: '회원가입', key: 'signup_info', img: `${constants.resourceRoot}/mobile/banner/service_guide_002.png` },
+      { name: '회원가입', key: 'signup_info', img: `${constants.resourceRoot}/mobile/banner/service_guide_002_20160503.png` },
       { name: '주문배송', key: 'order_info', img: `${constants.resourceRoot}/mobile/banner/service_guide_003.png` },
       { name: '고객센터', key: 'customer_center', img: `${constants.resourceRoot}/mobile/banner/service_guide_004.png` },
     ];
