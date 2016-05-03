@@ -1,0 +1,26 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to 'xxx' page.
+// -----------------------------------------------------------------------------
+.service-info-navbar {
+  border-bottom: 2px solid #eee;
+  padding: 0 15px;
+  width: 100%;
+  .item {
+    display: inline-block;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    vertical-align: top;
+    width: 25%;
+    span {
+      font-size: 16px;
+      font-weight: 500;
+    }
+    &.active {
+      border-bottom: 2px solid #ed4500;
+      span {
+        color: #ed4500;
+      }
+    }
+  }
+}

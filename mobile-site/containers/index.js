@@ -14,6 +14,7 @@ export { default as MyOrderDetail } from 'containers/MyOrderDetail';
 export { default as ProductList } from 'containers/ProductList';
 export { default as ProductDetail } from 'containers/ProductDetail';
 export { default as ResetPassword } from 'containers/ResetPassword';
+export { default as ServiceInfoContainer } from 'containers/ServiceInfoContainer';
 export { default as Signin } from 'containers/Signin';
 export { default as Signup } from 'containers/Signup';
 export { default as SignupDoneContainer } from 'containers/SignupDoneContainer';

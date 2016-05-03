@@ -16,6 +16,9 @@ const Home = React.createClass({
     searchProducts: PropTypes.func.isRequired,
     setHeader: PropTypes.func.isRequired,
   },
+  contextTypes: {
+    router: PropTypes.object,
+  },
   getInitialState() {
     return {};
   },
@@ -68,7 +71,7 @@ const Home = React.createClass({
           <section className="promotion-block top-spread">
             <article>
               <ul className="flex-box top-spread-2">
-                <li>
+                <li onClick={() => this.context.router.push('/service/info/service_info')}>
                   <span className="evt-icon evt-icon-1" />
                   <div className="evt-desc">
                     <p className="evt-title">서비스 소개</p>
@@ -76,7 +79,7 @@ const Home = React.createClass({
                     No.1 온라인 도매시장
                   </div>
                 </li>
-                <li>
+                <li onClick={() => this.context.router.push('/service/info/signup_info')}>
                   <span className="evt-icon evt-icon-2" />
                   <div className="evt-desc">
                     <p className="evt-title">회원가입 안내</p>
@@ -86,7 +89,7 @@ const Home = React.createClass({
                 </li>
               </ul>
               <ul className="flex-box top-spread-2">
-                <li>
+                <li onClick={() => this.context.router.push('/service/info/order_info')}>
                   <span className="evt-icon evt-icon-3" />
                   <div className="evt-desc">
                     <p className="evt-title">주문배송</p>
@@ -94,7 +97,7 @@ const Home = React.createClass({
                     사입 요청 가능
                   </div>
                 </li>
-                <li>
+                <li onClick={() => this.context.router.push('/service/info/customer_center')}>
                   <span className="evt-icon evt-icon-4" />
                   <div className="evt-desc">
                     <p className="evt-title">고객지원 센터</p>
