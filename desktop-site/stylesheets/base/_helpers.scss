@@ -153,3 +153,10 @@ input[type="text"][disabled], input[type="text"][readonly] {
   background-color: #ddd;
   opacity: 1;
 }
+
+.preloader {
+  visibility: hidden;
+  position: fixed;
+  left: -2000px;
+  top: -2000px;
+}

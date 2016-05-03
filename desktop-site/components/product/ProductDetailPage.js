@@ -39,8 +39,14 @@ export default React.createClass({
   componentWillReceiveProps(nextProps) {
     this.adjustScroll(nextProps);
   },
-  handleMouseEnterThumbnail(image) {
+  setActiveImage(image) {
+    if (image.url) {
+      $('.main-image-box img').attr('src', image.url);
+    }
     this.props.setActiveImage(image);
+  },
+  handleMouseEnterThumbnail(image) {
+    this.setActiveImage(image);
   },
   handleMouseEnterMainImage() {
     // TODO make this to external state
@@ -86,7 +92,7 @@ export default React.createClass({
     }
   },
   render() {
-    const { product, images, activeImage, setActiveImage, variantAttributes, attributes, selectedVariant } = this.props
+    const { product, images, activeImage, variantAttributes, attributes, selectedVariant } = this.props
     const { addCartProduct, buyNow, toggleWish, addFavoriteBrand, isLikeBrand, wishId } = this.props;
     if (!product || !variantAttributes) {
       return (<div></div>);
@@ -106,6 +112,7 @@ export default React.createClass({
         />
       );
     };
+    const renderPreload = (image) => <img src={image.url} width="1" height="1" />;
     const renderThumbnail = (image) => {
       let className = '';
       if (activeImage && image.url === activeImage.url) {
@@ -124,7 +131,7 @@ export default React.createClass({
       }
       for (let i = 1; i < images.length; i++) {
         if (images[i].url === activeImage.url) {
-          setActiveImage(images[i - 1]);
+          this.setActiveImage(images[i - 1]);
           break;
         }
       }
@@ -135,7 +142,7 @@ export default React.createClass({
       }
       for (let i = 0; i < images.length - 1; i++) {
         if (images[i].url === activeImage.url) {
-          setActiveImage(images[i + 1]);
+          this.setActiveImage(images[i + 1]);
           break;
         }
       }
@@ -321,6 +328,9 @@ export default React.createClass({
 
     return (
       <div className="container no-padding">
+        <div className="preloader">
+          {images.map(renderPreload)}
+        </div>
         <Breadcrumb key="breadcrumb-default" path={path} />
         {/* TODO product.data && product.data.categoryPath ? product.data.categoryPath.map(renderPath) : [] */}
         <div className="container-table no-padding">
