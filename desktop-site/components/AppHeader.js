@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 
 import orderUtil from 'commons/utils/orderUtil';
 import roleUtil from 'commons/utils/roleUtil';
+import stringUtil from 'commons/utils/stringUtil';
 import i18n from 'commons/utils/i18n';
 import { constants } from 'commons/utils/constants';
 
@@ -162,16 +163,9 @@ export default React.createClass({
         );
       }
       if (this.context.isLogin()) {
-        const getName = (email) => {
-          const idx = email.indexOf('@');
-          if (idx > 0) {
-            return email.substring(0, idx);
-          }
-          return email;
-        };
         return [
           <div key="app-header-hi" className="helper-menu-item">
-            <Link to="/mypage">{i18n.get('word.hi')} {getName(auth.email)}</Link>
+            <Link to="/mypage">{i18n.get('word.hi')} {stringUtil.getUserName(auth)}</Link>
           </div>,
           <div key="app-header-mypage" className="helper-menu-item"
             onMouseEnter={(e) => $(e.target).addClass('open')}

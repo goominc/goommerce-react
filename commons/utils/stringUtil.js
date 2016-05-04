@@ -16,6 +16,9 @@ exports.shorten = (str, maxLength) => {
 };
 
 exports.getUserName = (auth) => {
+  if (auth.name) {
+    return auth.name;
+  }
   const firstName = _.get(auth, 'data.firstName');
   const lastName = _.get(auth, 'data.lastName');
   if (firstName && lastName) {

@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+
+import stringUtil from 'commons/utils/stringUtil';
 import i18n from 'commons/utils/i18n';
 
 export default React.createClass({
@@ -49,7 +51,7 @@ export default React.createClass({
     if (auth.bearer) {
       return (
           <div className="drawer-logined">
-            <div className="drawer-username">{i18n.get('word.hi')} {auth.email}!</div>
+            <div className="drawer-username">{i18n.get('word.hi')} {stringUtil.getUserName(auth)}!</div>
           </div>
         );
     }
