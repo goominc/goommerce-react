@@ -4,8 +4,9 @@
 
 .order-list-container {
   // 2016. 04. 16. [heekyu] new UI
-  width: 1000px;
   margin: 30px auto 50px auto;
+  min-height: 300px;
+  width: 1000px;
   .title-row {
     background-color: #fff;
     border-top: 2px solid #ccc;
