@@ -20,8 +20,8 @@ export default React.createClass({
           <div className="content-body">
             <p><label>건물주소 :</label> {_.get(building, 'data.address')}</p>
             <p><label>영업시간 :</label> {_.get(building, 'data.businessHour')}</p>
-            <p><label>휴무일 :</label> {_.get(building, 'data.holiday')}</p>
             <p><label>대표전화 :</label> {_.get(building, 'data.tel')}</p>
+            <p><label>층별안내 :</label> {_.get(building, 'data.floorInfo')}</p>
             <div dangerouslySetInnerHTML={({ __html: _.get(building, 'data.description') })} />
           </div>
         </div>
