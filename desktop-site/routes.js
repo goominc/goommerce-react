@@ -22,7 +22,7 @@ import {
   UserTermsContainer,
   UserPoliciesContainer,
   ServiceInfoContainer,
-  // ShopByBuildingContainer,
+  ShopByBuildingContainer,
 } from 'containers';
 
 import roleUtil from 'commons/utils/roleUtil';
@@ -73,7 +73,7 @@ export default function configure(store) { // eslint-disable-line
         <Route path="/user/terms" component={UserTermsContainer} />
         <Route path="/user/policies" component={UserPoliciesContainer} />
         <Route path="/service/info(/:section)" component={ServiceInfoContainer} />
-        {/*<Route path="/shops/buildings(/:building)" component={ShopByBuildingContainer} />*/}
+        <Route path="/shops/buildings(/:buildingId)" component={ShopByBuildingContainer} />
       </Route>
       <Route path="/accounts/signin" component={Signin} />
       <Route path="/accounts/signup" component={Signup} />

@@ -136,25 +136,27 @@ const Home = React.createClass({
               <strong>상가별</strong> 매장정보
             </div>
             <div className="home-building-container">
-              <div className="item item-top"><img src={`${constants.resourceRoot}/banner/build_apm.jpg`} /></div>
-              <div className="item item-top"><img src={`${constants.resourceRoot}/banner/build_apmluxe.jpg`} /></div>
-              <div className="item item-top"><img src={`${constants.resourceRoot}/banner/build_belpost.jpg`} /></div>
-              <div className="item item-top"><img src={`${constants.resourceRoot}/banner/build_designerclub.jpg`} /></div>
-              <div className="item item-top"><img src={`${constants.resourceRoot}/banner/build_theot.jpg`} /></div>
-              <div className="item item-top-right"><img src={`${constants.resourceRoot}/banner/build_nuzzon.jpg`} /></div>
-              <div className="item"><img src={`${constants.resourceRoot}/banner/build_techno.jpg`} /></div>
-              <div className="item"><img src={`${constants.resourceRoot}/banner/build_cph.jpg`} /></div>
-              <div className="item"><img src={`${constants.resourceRoot}/banner/build_uus.jpg`} /></div>
-              <div className="item"><img src={`${constants.resourceRoot}/banner/build_queens.jpg`} /></div>
-              <div className="item"><img src={`${constants.resourceRoot}/banner/build_shose.jpg`} /></div>
+              <Link to="/shops/buildings/11" className="item item-top"><img src={`${constants.resourceRoot}/banner/build_apm.jpg`} /></Link>
+              <Link to="/shops/buildings/16" className="item item-top"><img src={`${constants.resourceRoot}/banner/build_apmluxe.jpg`} /></Link>
+              <Link to="/shops/buildings/17" className="item item-top"><img src={`${constants.resourceRoot}/banner/build_belpost.jpg`} /></Link>
+              <Link to="/shops/buildings/18" className="item item-top"><img src={`${constants.resourceRoot}/banner/build_designerclub.jpg`} /></Link>
+              <Link to="/shops/buildings/3" className="item item-top"><img src={`${constants.resourceRoot}/banner/build_theot.jpg`} /></Link>
+              <Link to="/shops/buildings/13" className="item item-top-right"><img src={`${constants.resourceRoot}/banner/build_nuzzon.jpg`} /></Link>
+              <Link to="/shops/buildings/1" className="item"><img src={`${constants.resourceRoot}/banner/build_techno.jpg`} /></Link>
+              <Link to="/shops/buildings/2" className="item"><img src={`${constants.resourceRoot}/banner/build_cph.jpg`} /></Link>
+              <Link to="/shops/buildings/15" className="item"><img src={`${constants.resourceRoot}/banner/build_uus.jpg`} /></Link>
+              <Link to="/shops/buildings/12" className="item"><img src={`${constants.resourceRoot}/banner/build_queens.jpg`} /></Link>
+              <Link to="/shops/buildings/4" className="item"><img src={`${constants.resourceRoot}/banner/build_shose.jpg`} /></Link>
               <div className="item item-right">
-                <div className="more-shops">
-                  <div className="content">
-                    <strong>시장별 상가</strong><br />
-                    더보기
+                <Link to="/shops/buildings">
+                  <div className="more-shops">
+                    <div className="content">
+                      <strong>시장별 상가</strong><br />
+                      더보기
+                    </div>
+                    <img src={`${constants.resourceRoot}/main/ico_right4_w.gif`} />
                   </div>
-                  <img src={`${constants.resourceRoot}/main/ico_right4_w.gif`} />
-                </div>
+                </Link>
               </div>
             </div>
             {/*

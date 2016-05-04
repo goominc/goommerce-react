@@ -19,3 +19,6 @@ export const wishes = arrayOf(wish);
 
 export const favoriteBrand = new Schema('favoriteBrands');
 export const favoriteBrands = arrayOf(favoriteBrand);
+
+export const building = new Schema('buildings');
+export const buildings = arrayOf(building);

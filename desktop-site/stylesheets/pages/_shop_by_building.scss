@@ -1,0 +1,238 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to 'xxx' page.
+// -----------------------------------------------------------------------------
+
+
+.building-list-container {
+  margin: 0 auto 30px auto;
+  width:1200px;
+
+  .left-bar {
+    display: inline-block;
+    width: 200px;
+    .title {
+      background-color: #444;
+      border-radius: 20px 20px 0 0;
+      font-size: 15px;
+      height: 50px;
+      line-height: 50px;
+      letter-spacing: -2px;
+      color: #ddd;
+      text-align: center;
+      strong {
+        color: #fff;
+        font-size: 20px;
+        padding-left: 5px;
+      }
+    }
+    .item {
+      background-color: #f83;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      display: block;
+      font-weight: bold;
+      font-size: 14px;
+      height: 30px;
+      line-height: 30px;
+      padding: 0 15px;
+      letter-spacing: -1px;
+      text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
+      span {
+        font-size: 12px;
+        font-weight: 300;
+        letter-spacing: 0;
+        margin-left: 5px;
+      }
+      &:hover,&.active {
+        background-color: #fff;
+        color: #333;
+        text-shadow: none;
+      }
+    }
+    .foot {
+      background-color: #f83;
+      border-radius: 0 0 10px 10px;
+      display: block;
+      height: 10px;
+    }
+  }
+  .right-bar {
+    display: inline-block;
+    margin-left: 20px;
+    vertical-align: top;
+    width: 980px;
+    .item-line {
+      display: block;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+    .item-box {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      display: inline-block;
+      height: 120px;
+      position: relative;
+      width: 310px;
+      & + .item-box {
+        margin-left: $margin-20;
+      }
+      img {
+        border: 2px solid transparent;
+        border-radius: 18px;
+        display: inline-block;
+        height: 100%;
+        width: 116px;
+      }
+      .content-box {
+        display: inline-block;
+        padding: 5px 15px;
+        vertical-align: top;
+      }
+      .content-title {
+        color: $default-active-text-color;
+        font-weight: bold;
+        font-size: 18px;
+        letter-spacing: -2px;
+        margin-bottom: 5px;
+      }
+      .content-body {
+        display: block;
+        line-height: 15px;
+        padding: 0 0 3px 5px;
+        max-width: 170px;
+      }
+      .show-detail {
+        background: url($base-url + '/main/ico_right1.gif') no-repeat 10px 6px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        bottom: 10px;
+        color: #333;
+        display: block;
+        font-weight: bold;
+        font-size: 11px;
+        height: 22px;
+        line-height: 20px;
+        letter-spacing: -1px;
+        right: 10px;
+        padding-left: 20px;
+        padding-right: 15px;
+        position: absolute;
+        &:hover {
+          cursor: pointer;
+          color: #fff;
+          background: $default-active-text-color url($base-url + '/main/ico_right1_w.gif') no-repeat 10px 6px;
+          border: 1px solid $default-active-text-color;
+        }
+      }
+    }
+  }
+  .right-bar-detail {
+    display: inline-block;
+    margin-left: 20px;
+    vertical-align: top;
+    width: 980px;
+    .title-box {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      display: inline-block;
+      height: 200px;
+      position: relative;
+      width: 100%;
+      img {
+        border: 2px solid transparent;
+        border-radius: 18px;
+        display: inline-block;
+        height: 100%;
+        width: 200px;
+      }
+      .content-box {
+        display: inline-block;
+        padding: 5px 15px;
+        vertical-align: top;
+      }
+      .content-title {
+        color: $default-active-text-color;
+        font-weight: bold;
+        font-size: 24px;
+        letter-spacing: -2px;
+        margin-bottom: 5px;
+      }
+      .content-body {
+        display: block;
+        font-size: 13px;
+        line-height: 15px;
+        max-width: 600px;
+        padding: 0 0 7px 3px;
+        white-space: pre;
+        p {
+          margin: 3px 0;
+        }
+        label {
+          font-size: 12px;
+          color: #888;
+          letter-spacing: -1px;
+        }
+      }
+    }
+    .floor-info-container {
+      margin: 20px 0;
+      display: block;
+      width: 100%;
+      .floor-title {
+        background-color: $default-active-text-color;
+        border-radius: 10px 0 0 10px;
+        color: #fff;
+        display: inline-block;
+        font: 500 30px /60px 'roboto';
+        height: 60px;
+        text-align: center;
+        text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+        width: 60px;
+      }
+      .floor-shops-container {
+        background-color: #fff;
+        border-top: 2px solid $default-active-text-color;
+        display: inline-block;
+        vertical-align: top;
+        width: 920px;
+      }
+      .floor-shop-item {
+        border-bottom: 1px solid #ddd;
+        box-sizing: content-box;
+        display: inline-block;
+        height: 24px;
+        line-height: 24px;
+        overflow: hidden;
+        vertical-align: top;
+        width: 230px;
+        white-space: nowrap;
+        .label {
+          background-color: #eee;
+          color: #555;
+          display: inline-block;
+          font: 500 13px /24px 'Roboto';
+          padding-left: 10px;
+          vertical-align: top;
+          overflow: hidden;
+          width: 60px;
+        }
+        .control {
+          background-color: #fff;
+          display: inline-block;
+          font-size: 13px;
+          padding-left: 10px;
+          vertical-align: top;
+          a {
+            color: #08c;
+            &:hover {
+              font-weight: bold;
+              text-decoration: underline;
+            }
+          }
+        }
+      }
+    }
+  }
+}

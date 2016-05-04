@@ -20,3 +20,4 @@ export { default as UserTermsContainer } from 'containers/UserTermsContainer';
 export { default as UserPoliciesContainer } from 'containers/UserPoliciesContainer';
 
 export { default as ServiceInfoContainer } from 'containers/ServiceInfoContainer';
+export { default as ShopByBuildingContainer } from 'containers/ShopByBuildingContainer';

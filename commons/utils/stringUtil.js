@@ -9,7 +9,7 @@ exports.shorten = (str, maxLength) => {
   if (!maxLength) {
     maxLength = 11;
   }
-  if (str.length <= maxLength) {
+  if (str.length <= maxLength + 2) {
     return str;
   }
   return `${str.substring(0, maxLength)}...`;

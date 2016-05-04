@@ -708,3 +708,14 @@ export function fakeLogin(userId) {
     });
   };
 }
+
+export function loadBuildings() {
+  return createFetchAction({
+    type: 'LOAD_BUILDINGS',
+    endpoint: '/api/v1/buildings',
+    transform: ({ data }) => normalize(data.buildings, schemas.buildings),
+    success: {
+      pagination: { key: 'buildings', type: 'REFRESH' },
+    },
+  });
+}
