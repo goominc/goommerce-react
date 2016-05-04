@@ -136,17 +136,17 @@ const Home = React.createClass({
               <strong>상가별</strong> 매장정보
             </div>
             <div className="home-building-container">
-              <Link to="/shops/buildings/11" className="item item-top"><img src={`${constants.resourceRoot}/banner/build_apm.jpg`} /></Link>
+              <Link to="/shops/buildings/5" className="item item-top"><img src={`${constants.resourceRoot}/banner/build_apm.jpg`} /></Link>
               <Link to="/shops/buildings/16" className="item item-top"><img src={`${constants.resourceRoot}/banner/build_apmluxe.jpg`} /></Link>
               <Link to="/shops/buildings/17" className="item item-top"><img src={`${constants.resourceRoot}/banner/build_belpost.jpg`} /></Link>
               <Link to="/shops/buildings/18" className="item item-top"><img src={`${constants.resourceRoot}/banner/build_designerclub.jpg`} /></Link>
               <Link to="/shops/buildings/3" className="item item-top"><img src={`${constants.resourceRoot}/banner/build_theot.jpg`} /></Link>
-              <Link to="/shops/buildings/13" className="item item-top-right"><img src={`${constants.resourceRoot}/banner/build_nuzzon.jpg`} /></Link>
-              <Link to="/shops/buildings/1" className="item"><img src={`${constants.resourceRoot}/banner/build_techno.jpg`} /></Link>
+              <Link to="/shops/buildings/9" className="item item-top-right"><img src={`${constants.resourceRoot}/banner/build_nuzzon.jpg`} /></Link>
+              <Link to="/shops/buildings/7" className="item"><img src={`${constants.resourceRoot}/banner/build_techno.jpg`} /></Link>
               <Link to="/shops/buildings/2" className="item"><img src={`${constants.resourceRoot}/banner/build_cph.jpg`} /></Link>
               <Link to="/shops/buildings/15" className="item"><img src={`${constants.resourceRoot}/banner/build_uus.jpg`} /></Link>
-              <Link to="/shops/buildings/12" className="item"><img src={`${constants.resourceRoot}/banner/build_queens.jpg`} /></Link>
-              <Link to="/shops/buildings/4" className="item"><img src={`${constants.resourceRoot}/banner/build_shose.jpg`} /></Link>
+              <Link to="/shops/buildings/6" className="item"><img src={`${constants.resourceRoot}/banner/build_queens.jpg`} /></Link>
+              <Link to="/shops/buildings/11" className="item"><img src={`${constants.resourceRoot}/banner/build_shose.jpg`} /></Link>
               <div className="item item-right">
                 <Link to="/shops/buildings">
                   <div className="more-shops">
