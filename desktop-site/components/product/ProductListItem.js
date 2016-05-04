@@ -80,7 +80,7 @@ export default React.createClass({
             </div>
           </Link>
           <div className="product-price">
-            <strong>{numberUtil.formatPrice(getProductMainPrice(item, activeCurrency), activeCurrency, currencySign)}</strong>
+            <strong>{numberUtil.formatPrice(item[activeCurrency], activeCurrency, currencySign)}</strong>
           </div>
           <div className="variant-image-container">
             <div>{brandUtil.getName(item.brand)}</div>
