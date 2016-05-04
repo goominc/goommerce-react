@@ -94,24 +94,6 @@ const Home = React.createClass({
         </div>
       );
     };
-    const trendPicks = [
-      { img: `${constants.resourceRoot}/banner/trandpick1.jpg`, link: '/products/100442' },
-      { img: `${constants.resourceRoot}/banner/trandpick2.jpg`, link: '/products/87299' },
-      { img: `${constants.resourceRoot}/banner/trandpick3.jpg`, link: '/products/84874' },
-      { img: `${constants.resourceRoot}/banner/trandpick4.jpg`, link: '/products/91472' },
-      { img: `${constants.resourceRoot}/banner/trandpick5.jpg`, link: '/products/90831' },
-      { img: `${constants.resourceRoot}/banner/trandpick6.jpg`, link: '/products/89069' },
-      { img: `${constants.resourceRoot}/banner/trandpick7.jpg`, link: '/products/93900' },
-      { img: `${constants.resourceRoot}/banner/trandpick8.jpg`, link: '/products/90827' },
-    ];
-    const renderTrendPickItem = (trend, index) => {
-      const className = index < 4 ? 'trend-top' : 'trend-bottom';
-      return (
-        <Link to={trend.link} key={`trend${index}`} className={className}>
-          <img src={trend.img} />
-        </Link>
-      );
-    };
     return (
       <div className="main-wide-container">
         <div className="container no-horizontal-padding">
@@ -226,16 +208,6 @@ const Home = React.createClass({
             </Link>
           </div>
         </div>
-        {/*
-        <div className="slogan-link-wide-container">
-          <div className="container no-padding slogan-link-container">
-            <div className="slogan-link-item"><Link to="/service/info/intro">회사소개</Link></div>
-            <div className="slogan-link-item"><Link to="/user/terms">이용약관</Link></div>
-            <div className="slogan-link-item"><Link to="/user/policies">개인정보 취급방침</Link></div>
-            <div className="slogan-link-item"><Link to="/service/info/signup">회원가입 안내</Link></div>
-          </div>
-        </div>
-         */}
       </div>
     );
   },
