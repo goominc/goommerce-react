@@ -51,7 +51,7 @@ export default React.createClass({
     if (auth.bearer) {
       return (
           <div className="drawer-logined">
-            <div className="drawer-username">{i18n.get('word.hi')} {stringUtil.getUserName(auth)}!</div>
+            <div className="drawer-username">{i18n.get('word.hi')} {stringUtil.getUserName(auth)}님</div>
           </div>
         );
     }
