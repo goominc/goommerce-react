@@ -45,8 +45,25 @@ const ShopByBuildingContainer = React.createClass({
       { name: '청평화', key: 'blue', img: `${constants.resourceRoot}/banner/buildings/build_apm01.jpg` },
     ];
     */
+    const buildingImages = {
+      'APM': `${constants.resourceRoot}/banner/buildings/build_apm02.jpg`,
+      'APM LUXE': `${constants.resourceRoot}/banner/buildings/build_apmluxe01.jpg`,
+      '누죤': `${constants.resourceRoot}/banner/buildings/build_nuzzon01.jpg`,
+      '디자이너 크럽': `${constants.resourceRoot}/banner/buildings/build_dclub01.jpg`,
+      '벨포스트': `${constants.resourceRoot}/banner/buildings/build_belpost01.jpg`,
+      '유어스': `${constants.resourceRoot}/banner/buildings/build_uus01.jpg`,
+      '퀸스 스퀘어': `${constants.resourceRoot}/banner/buildings/build_queens01.jpg`,
+      '디오뜨': `${constants.resourceRoot}/banner/buildings/build_theot01.jpg`,
+      '신발상가': `${constants.resourceRoot}/banner/buildings/build_shoes01.jpg`,
+      '청평화': `${constants.resourceRoot}/banner/buildings/build_cph01.jpg`,
+    };
     buildings.forEach((b) => {
-      b.img = `${constants.resourceRoot}/banner/buildings/build_apm01.jpg`;
+      const name = b.name.ko;
+      if (name.startsWith('신발상가')) {
+        b.img = buildingImages['신발상가'];
+        return;
+      }
+      b.img = buildingImages[name] || `${constants.resourceRoot}/banner/buildings/default_building_20160505.jpg`;
     });
     const buildingId = +_.get(this.props, 'params.buildingId');
     const path = [{ link: '/', name: { en: 'Home', ko: '홈' } }];
