@@ -86,7 +86,9 @@
       }
       .content-box {
         display: inline-block;
+        max-width: 180px;
         padding: 5px 15px;
+        overflow: hidden;
         vertical-align: top;
       }
       .content-title {
