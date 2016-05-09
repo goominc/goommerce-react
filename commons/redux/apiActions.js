@@ -271,6 +271,16 @@ export function startOrderProcessing(orderId) {
   });
 }
 
+export function finalizeOrder(orderId, finalShippingCostKRW) {
+  return createFetchAction({
+    type: 'FINALIZE_ORDER',
+    endpoint: `/api/v1/orders/${orderId}/finalize`,
+    method: 'put',
+    body: { finalShippingCostKRW },
+    transform: ({ data }) => normalize(data, schemas.order),
+  });
+}
+
 export function loadOrder(id) {
   return createFetchAction({
     type: 'LOAD_ORDER',
