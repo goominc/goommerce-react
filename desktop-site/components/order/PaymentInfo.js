@@ -3,6 +3,7 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
+import brandUtil from 'commons/utils/brandUtil';
 import numberUtil from 'commons/utils/numberUtil';
 import orderUtil from 'commons/utils/orderUtil';
 
@@ -25,13 +26,11 @@ export default React.createClass({
       activeCurrency,
       currencySign,
     );
-    const brands = _.groupBy(order.orderProducts.map((o) => o.brand), 'id');
-    const brandName = (brandId) => _.get(brands, [brandId, 0, 'name', 'ko'], brandId);
     const renderAdjustment = (adjustment) =>
     (
       <div key={adjustment.id}>
         <div className="left">+</div>
-        <div className="right">{brandName(adjustment.brandId)}: {numberUtil.formatPrice(adjustment[activeCurrency], activeCurrency, currencySign)}</div>
+        <div className="right">{brandUtil.getName(adjustment.brand)}: {numberUtil.formatPrice(adjustment[activeCurrency], activeCurrency, currencySign)}</div>
       </div>
     );
     const subtotalPrice = formatPrice('subtotal');
