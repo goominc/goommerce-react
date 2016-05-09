@@ -26,7 +26,7 @@ export default React.createClass({
             기타 가입 절차에 대한 문의는 아래 연락처로 문의해주시기 바랍니다.<br />
           </div>
         </div>
-        <img className="signup-contact-img" src={`${constants.resourceRoot}/main/signup-contact.png`} />
+        <img className="signup-contact-img" src={`${constants.resourceRoot}/main/signup-contact_20160509_2.png`} />
         <div className="button-line">
           <button onClick={goNext} className="button-next">홈으로</button>
         </div>

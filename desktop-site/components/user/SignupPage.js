@@ -100,9 +100,10 @@ export default React.createClass({
               <label><span className="required">*</span>사업자 등록증</label>
               <div className="input-biz-image">
                 {this.state.bizImageName || '선택된 파일이 없습니다'}
-                <input type="file" accept="images/*" onChange={onSelectFile} />
+                <div className="biz-file-input">
+                  <input type="file" accept="image/*" onChange={onSelectFile} />
+                </div>
               </div>
-              <div className="biz-file-input"></div>
             </div>
             {fields2.map(renderField)}
           </div>
