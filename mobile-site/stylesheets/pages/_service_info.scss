@@ -26,3 +26,593 @@
     }
   }
 }
+
+.mobile-info-contents-container {
+  .wrap_sign_up_intro{
+    width:100% ;
+
+  }
+  .Roboto{
+    font-family: 'Roboto',sans-serif;
+  }
+  .keycolor{
+    color:#ff5500;
+  }
+  .sign_up_intro_top_banner{
+
+    text-align:center;
+    line-height: 1.750rem;
+
+    background-color: #f8f4e7;
+
+  }
+  .top_banner_1{
+    font-size:1.375rem;
+    font-weight:bold;
+    padding-top:2.438rem;
+    color:#555;
+
+  }
+  .top_banner_2{
+
+    font-size:1.375rem;
+    font-weight:lighter;
+    color:#777;
+    padding-bottom:1.875rem;
+
+  }
+  .radius_buyer{
+    border-radius: 24px;
+    width:70%;
+    margin:1.875rem auto 0;
+    padding:0.563rem 0 0.500rem 0;
+    text-align: center;
+    background-color:#ededed;
+    font-size:0.875rem;
+    font-weight: bold;
+    color:#333;
+  }
+  .buyer_sign_1{
+    margin-top:1.625rem;
+    text-align: center;
+    width:33.33%;
+    float:left;
+    font-weight: bold;
+    font-size:0.750rem;
+  }
+  .buyer_sign_img{
+    margin:0 auto;
+    text-align: center;
+    width:100%;
+
+  }
+  .signup_buyer{
+    width:81.875%;
+    padding-top:0.938rem;
+  }
+  .buyer_sign_text{
+    font-size:0.750rem;
+    font-weight: 500;
+    color:#aaa;
+    text-align: center;
+    margin-top:1.250rem;
+  }
+  .buyer_sign_button{
+    font-size:0.875rem;
+    font-weight: bold;
+    background-color:#ed4500;
+    border-radius:4px;
+    padding:0.625rem 0;
+    text-align: center;
+    color:#fff;
+    width:10rem;
+    margin:0 auto;
+    margin-top:1.813rem;
+  }
+  .center_line{
+    border-bottom: solid 1px #ddd;
+    padding-bottom:1.250rem;
+  }
+  .in_seller{
+    font-size:0.750rem;
+    font-weight:bolder;
+    text-align: center;
+    padding-top:1.250rem;
+    padding-bottom:0.875rem;
+  }
+  .in_seller_text{
+    font-size:0.750rem;
+    color:#777;
+    text-align: center;
+    line-height: 1.6em;
+    padding-bottom:26px;
+  }
+  .mail_button{
+    text-decoration: underline;
+    color:#777;
+  }
+  .wrap_delivery_intro{
+    max-width:100% ;
+
+  }
+  .Roboto{
+    font-family: 'Roboto',sans-serif;
+  }
+  .keycolor{
+    color:#ff5500;
+  }
+  .delivery_intro_top_banner{
+
+    text-align:center;
+    line-height: 1.750rem;
+
+    background-color: #f8f4e7;
+
+  }
+  .top_banner_1{
+    font-size:1.375rem;
+    font-weight:bold;
+    padding-top:2.438rem;
+    color:#555;
+
+  }
+  .top_banner_2 {
+
+    font-size: 1.375rem;
+    font-weight: lighter;
+    color: #777;
+    padding-bottom: 1.875rem;
+  }
+  .deli_payment{
+    width:2.500rem;
+    margin:0 auto;
+    margin-top:1.625rem;
+    margin-bottom: 0.938rem;
+  }
+  .deli_payment img{
+    width:2.500rem;
+  }
+  .pay_title_text{
+    line-height: 1.188rem;
+    text-align: center;
+  }
+  .pay_text1{
+    font-size:1.0rem;
+
+    font-weight: bold;
+  }
+  .pay_text2{
+    font-size:0.750rem;
+
+    font-weight:normal;
+    color:#aaa;
+  }
+  .payment_cont{
+    padding-left:1.5rem;
+    padding-top:1.188rem;
+    height:69px;
+
+    width:15.625rem;
+    margin:0 auto;
+  }
+  .pay_ul1{
+    float:left;
+
+
+    list-style: none;
+    margin:0 auto;
+    font-size:0.875rem;
+    width:2.000rem;
+    font-weight: bold;
+
+
+  }
+  .pay_ul2{
+    letter-spacing: -1px;
+    padding-left:5px;
+
+    float:left;
+    width:13.30rem;
+    font-size:0.875rem;
+  }
+  .payment_con_text2{
+    padding-top:1.188rem;
+  }
+
+  .deli_line{
+
+    padding-top:1.438rem;
+  }
+  .deli_line img{
+    width:100%;
+
+  }
+  .deli_line2{
+
+    padding-top:1.438rem;
+  }
+  .deli_line2 img{
+    width:100%;
+
+  }
+  /*매장 픽업 시작*/
+  .deli_pickup{
+    width:2.500rem;
+    margin:0 auto;
+    margin-top:1.063rem;
+    margin-bottom: 0.875rem;
+  }
+  .deli_pickup img{
+    width:2.500rem;
+  }
+  .pickup_title_text{
+    line-height: 1.188rem;
+    text-align: center;
+  }
+  .pickup_text1{
+    font-size:1.0rem;
+
+    font-weight: bold;
+  }
+  .pickup_text2{
+    font-size:0.750rem;
+
+    font-weight:normal;
+    color:#aaa;
+  }
+  .pickup_text3{
+    text-align: center;
+    font-size:0.875rem;
+    margin-top:1.188rem;
+    color:#4c4c4c;
+    font-weight: 500;
+  }
+  /*빠른 배송*/
+  .truck_cont{
+    padding-left:1.5rem;
+    padding-top:1.188rem;
+    height:69px;
+    padding-bottom:3.125rem;
+
+    width:17.563rem;
+    margin:0 auto;
+  }
+  .truck_ul1{
+    float:left;
+
+
+    list-style: none;
+    margin:0 auto;
+    font-size:0.875rem;
+    width:2.000rem;
+    font-weight: bold;
+
+
+
+  }
+  .truck_ul2{
+    letter-spacing: -1px;
+    padding-left:5px;
+
+    float:left;
+    width:14.30rem;
+    font-size:0.875rem;
+  }
+  .truck_con_text2{
+    padding-top:1.188rem;
+  }
+
+  .wrap_service_intro{
+    width:100% ;
+
+  }
+  .opac0{
+    color:#f8f4e7;
+  }
+  .Roboto{
+    letter-spacing: 0.1px;
+    font-family: 'Roboto',sans-serif;
+  }
+  .keycolor{
+    color:#ff5500;
+  }
+  .service_intro_top_banner{
+    letter-spacing: -1px;
+    text-align:center;
+    line-height: 2em;
+    height:15.125rem;
+    background-color: #f8f4e7;
+
+  }
+
+  .top_banner_2{
+    padding-top:2.438rem;
+    font-size:1.375rem;
+    font-weight:bold;
+
+
+  }
+  .phone_num{
+    line-height: 1.750rem;
+
+    margin:0 auto;
+    text-align: center;
+    font-size:1rem;
+    color:#fff;
+    background-color: #ff5500;
+    width:8.875rem;
+    height:1.750rem;
+    border-radius: 16px;
+    font-weight:500;
+    margin-top:1.250rem;
+  }
+  .top_info{
+    color:#777;
+    width:208px;
+    margin:0 auto;
+    text-align: left;
+    line-height:1.2rem;
+    padding-top:1.4rem;
+  }
+  .top_email{
+    font-size:0.750rem;
+  }
+  .top_kakao_buyer{
+    font-size:0.750rem;
+  }
+  .top_kakao_seller{
+
+    font-size:0.750rem;
+  }
+  .top_wechat{
+    font-size:0.750rem;
+  }
+
+  .radius_buyer{
+    border-radius: 24px;
+    width:69%;
+    margin:0 auto;
+    margin-top:1.875rem;
+    padding:0.563rem 0;
+    text-align: center;
+    background-color:#ededed;
+    font-size:0.875rem;
+    font-weight: bold;
+    color:#333;
+  }
+  .center_cont{
+    padding-left:1.5rem;
+    padding-top:1.188rem;
+    height:69px;
+
+    width:15.625rem;
+    margin:0 auto;
+  }
+  .center_ul1{
+    float:left;
+
+
+    list-style: none;
+    margin:0 auto;
+    font-size:0.875rem;
+    width:1.800rem;
+    font-weight: bold;
+
+
+  }
+  .center_ul2{
+    padding-left:1.188rem;
+    float:left;
+    width:12.625rem;
+    font-size:0.875rem;
+  }
+  .center_con_text2{
+    padding-top:1.188rem;
+  }
+  .mid_line{
+    width:100%;
+    border-bottom: solid 1px #aaa;
+    padding-top:1.938rem;
+  }
+  /*자주묻는 질문들*/
+  .qa_cont{
+
+
+    padding-top:1.188rem;
+    height:90px;
+    width:20rem;
+
+
+    margin:0 auto;
+    padding-bottom: 1.188rem;
+    border-bottom: solid 1px #dedede;
+  }
+  .qa_cont2{
+
+    padding-top:1.188rem;
+    height:130px;
+    width:20rem;
+
+
+    margin:0 auto;
+    padding-bottom: 1.188rem;
+    border-bottom: solid 1px #dedede;
+  }
+  .qa_cont3{
+
+    padding-top:1.188rem;
+    height:150px;
+    width:20rem;
+
+
+    margin:0 auto;
+    padding-bottom: 1.188rem;
+    border-bottom: solid 1px #dedede;
+  }
+  .qa_cont4{
+
+    padding-top:1.188rem;
+    height:109px;
+    width:20rem;
+
+
+    margin:0 auto;
+    padding-bottom: 1.188rem;
+
+  }
+  .qa_ul1{
+    float:left;
+    letter-spacing: -1px;
+
+
+    list-style: none;
+    margin:0 auto;
+    font-size:0.875rem;
+
+    font-weight: bold;
+
+
+  }
+  .qa_ul2{
+    letter-spacing: -1px;
+    float:left;
+    width:17.750rem;
+    font-size:0.875rem;
+
+  }
+  .qa_con_text2{
+    padding-left:2%;
+
+    padding-top:1.188rem;
+
+  }
+  .mail_button{
+    text-decoration: underline;
+    color:#777;
+  }
+  .qa_q{
+    padding-left:30%;
+
+  }
+  .qa_quest{
+    padding-left:2%;
+    letter-spacing: -0.5px;
+  }
+  .qa_a{
+    padding-top:1.188rem;
+    padding-left:30%
+  }
+  .phone_num a{
+    text-decoration: none;
+    font-weight: normal;
+    color:#fff;
+
+  }
+  .wrap_service_intro{
+    width:100% ;
+
+  }
+  .Roboto{
+    font-family: 'Roboto',sans-serif;
+  }
+  .keycolor{
+    color:#ff5500;
+  }
+  .service_intro_top_banner{
+    letter-spacing: -1px;
+    text-align:center;
+    line-height: 2em;
+    height:12.500em;
+    background-color: #f8f4e7;
+
+  }
+  .top_banner_1{
+    font-size:1.375rem;
+    font-weight:500;
+    padding-top:2.5em;
+    color:#555;
+
+  }
+  .top_banner_2{
+    font-size:1.375rem;
+    font-weight:bold;
+
+  }
+  .top_banner_3{
+    padding-top:1.250rem;
+    font-size:1rem;
+    font-weight:bold;
+    color:#777;
+
+  }
+  .top_banner_365{
+    font-family:'Roboto',sans-serif;
+  }
+  .service_why{
+    letter-spacing: -0.5px;
+    text-align: center;
+    font-size:0.875rem;
+    font-weight:bold;
+    color:#555;
+    padding-top:2.125rem;
+    padding-bottom:1.813rem;
+
+  }
+  .why{
+    font-size:1rem;
+    font-weight: bold;
+    color:#444;
+    margin-right:0.15rem;
+  }
+  .radius_buyer{
+    border-radius: 24px;
+    width:69%;
+    margin:0 auto;
+    padding:0.563rem 0;
+    text-align: center;
+    background-color:#ededed;
+    font-size:0.875rem;
+    font-weight: bold;
+    color:#333;
+  }
+  .buyer_text_1{
+    text-align: center;
+    color:#5fc6d5;
+    font-size:1rem;
+    padding-top:0.938rem;
+    font-weight: 500;
+  }
+  .buyer_text_2{
+    text-align: center;
+    font-size:0.875rem;
+    padding-top:1.250rem;
+    padding-bottom:1.938rem;
+    border-bottom: solid 1px #dedede;
+  }
+  .radius_seller{
+
+    border-radius: 24px;
+    width:69%;
+    margin:1.875rem auto 0;
+    padding:0.563rem 0;
+    text-align: center;
+    background-color:#ededed;
+    font-size:0.875rem;
+    font-weight: bold;
+    color:#333;
+  }
+  .seller_text_1{
+    text-align: center;
+    color:#5fc6d5;
+    font-size:1rem;
+    padding-top:20px;
+    font-weight: 500;
+  }
+  .seller_text_2{
+    text-align: center;
+    font-size:0.875rem;
+    padding-top:1.250rem;
+    padding-bottom:1.938rem;
+    border-bottom: solid 1px #dedede;
+  }
+}

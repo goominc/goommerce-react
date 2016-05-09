@@ -40,6 +40,7 @@ const Home = React.createClass({
       othersCategory.children = [categories[51]];
       if (categories[262]) {
         othersCategory.name = JSON.parse(JSON.stringify(categories[262].name));
+        categories[262].children = [];
         othersCategory.children.push(categories[262]);
       }
       const topCategories = [categories[4], categories[179], othersCategory];
