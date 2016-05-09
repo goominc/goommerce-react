@@ -28,31 +28,67 @@ const Home = React.createClass({
     */
   },
   render() {
-    const { activeLocale } = this.props;
+    const { activeLocale, categories } = this.props;
     const renderCategories = () => {
-      if (!this.props.main_categories) {
-        return (<div></div>);
+      if (!categories || Object.keys(categories).length < 1) {
+        return (<div className="category-frame"></div>);
       }
-      const categories = this.props.main_categories;
+      categories[4].children = [categories[11], categories[12], categories[13], categories[41]];
+      categories[179].children = [categories[180], categories[181], categories[183]];
+      const othersCategory = { id: 9999, name: { ko: '잡화', en: '잡화', 'zh-cn': '잡화', 'zh-tw': '잡화' } };
+      categories[51].children = [];
+      othersCategory.children = [categories[51], categories[51]];
+      const topCategories = [categories[4], categories[179], othersCategory];
       const renderCategory = (c, index) => {
-        const onMouseEnter = () => {
-          this.setState({ hoverCategory: c });
-        };
-        let className = 'item';
-        const { cursor, hoverCategory } = this.state;
-        if (cursor === 'categoryHover' && hoverCategory && c.id === hoverCategory.id) {
-          className += ' active';
-        }
-        return (
-          <Link key={`${c.id}-${index}`} to={`/categories/${c.id}`}>
-            <div className={className}
-              onMouseEnter={onMouseEnter}
-            >
-              {c.name[activeLocale]}
-            </div>
+        const renderHoverCategory = (child, index2) => (
+          <Link key={`${child.id}-${index2}`} to={`/categories/${child.id}`}>
+            <div className="sub-item">{child.name[activeLocale]}</div>
           </Link>
         );
+        const renderHover = () => {
+          if (c.children && c.children.length > 0) {
+            return (
+              <div className="category-hover-box">
+                {c.children.map(renderHoverCategory)}
+              </div>
+            );
+          }
+          return null;
+        };
+        return (
+          <div className={`item ${c.children && c.children.length > 0 ? 'has-child' : ''}`}>
+            <Link key={`${c.id}-${index}`} to={`/categories/${c.id}`} style={({ display: 'inline-block', width: '100%' })}>
+              {c.name[activeLocale]}
+            </Link>
+            {renderHover()}
+          </div>
+        );
       };
+      const renderTopCategory = (category) => {
+        if (!category) {
+          return (<div></div>);
+        }
+        return (
+          <div key={category.id} className="category-main">
+            <div className="item-title">{category.name[activeLocale]}</div>
+            {category.children.map(renderCategory)}
+          </div>
+        );
+      };
+      return (
+        <div className="category-frame">
+          <div className="category-bar">
+            {i18n.get('word.categories')}
+            <Link to="/categories/4"><div className="category-all">{i18n.get('word.seeAll')}</div></Link>
+          </div>
+          {renderTopCategory(topCategories[0])}
+          <div className="category-divider"></div>
+          {renderTopCategory(topCategories[1])}
+          <div className="category-divider"></div>
+          {renderTopCategory(topCategories[2])}
+        </div>
+      );
+/*
       let categoryHoverBox = null;
       const hoverItems = [];
       if (this.state.hoverCategory) {
@@ -80,19 +116,22 @@ const Home = React.createClass({
             {hoverItems}
           </div>
         );
-      };
+      }
       return (
         <div className="category-frame">
           <div className="category-bar">
             {i18n.get('word.categories')}
             <Link to="/categories/4"><div className="category-all">{i18n.get('word.seeAll')}</div></Link>
           </div>
-          <div className="category-main">
-            {categories.map(renderCategory)}
+          <div>
+            <div className="category-main">
+              {categories.map(renderCategory)}
+            </div>
+            {categoryHoverBox}
           </div>
-          {categoryHoverBox}
         </div>
       );
+      */
     };
     return (
       <div className="main-wide-container">
@@ -102,11 +141,13 @@ const Home = React.createClass({
             <div className="main-banner">
               <img src={`${constants.resourceRoot}/banner/main_20160426.jpg`} />
             </div>
+            {/*
             <div className="home-stylepick-banner">
               <strong>스타일 픽</strong>
               <span>COMING</span>
               <span>SOON</span>
             </div>
+             */}
             <Link to="/service/info/service_info" className="right-banner">
               <img src={`${constants.resourceRoot}/banner/main_right_20160426.png`} />
             </Link>
@@ -115,7 +156,7 @@ const Home = React.createClass({
         <div className="home-center-wrap">
           <div className="container no-horizontal-padding">
             <div className="home-building-title">
-              <strong>상가별</strong> 매장정보
+              <strong>동대문</strong> 상가별 매장정보
             </div>
             <div className="home-building-container">
               <Link to="/shops/buildings/5" className="item item-top"><div className="build_apm">에이피엠</div></Link>
@@ -133,7 +174,7 @@ const Home = React.createClass({
                 <Link to="/shops/buildings">
                   <div className="more-shops">
                     <div className="content">
-                      <strong>시장별 상가</strong><br />
+                      <strong>전체 상가</strong><br />
                       더보기
                     </div>
                     <img src={`${constants.resourceRoot}/main/ico_right4_w.gif`} />

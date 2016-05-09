@@ -87,12 +87,12 @@ $main-banner-height: 400px;
 }
 
 .category-frame {
-  background-color: #eee;
+  background-color: #fff;
   border: 3px solid #269dd9;
   box-sizing: content-box;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
   display: inline-block;
-  height: 317px;
+  height: 394px;
   margin-right: 20px;
   position: relative;
   vertical-align: top;
@@ -123,35 +123,60 @@ $main-banner-height: 400px;
   }
   .category-main {
     background-color: #fff;
-    .item {
-      $height: 28px;
-      cursor: pointer;
-      display: block;
+    margin: 10px 0;
+    position: relative;
+    $height: 25px;
+    & + .category-main {
+      padding-top: 5px;
+    }
+    .item-title {
       font-size: 13px;
       font-weight: bold;
       height: $height;
       letter-spacing: -1px;
       line-height: $height;
       padding-left: 20px;
+    }
+    .item {
+      cursor: pointer;
+      display: block;
+      font-size: 13px;
+      height: $height;
+      letter-spacing: -1px;
+      line-height: $height;
+      padding-left: 25px;
       &.edge {
         border-bottom: 1px solid #ccc;
       }
-      &:hover, &.active {
-        background: url($base-url + '/main/ico_right3.gif') no-repeat 185px 11px;
+    }
+    .has-child {
+      background: url($base-url + '/main/ico_right2.gif') no-repeat 170px 10px;
+      &:hover {
+        background: url($base-url + '/main/ico_right3.gif') no-repeat 170px 10px;
         color: $default-active-text-color;
+        .category-hover-box {
+          display: block;
+        }
       }
     }
+  }
+  .category-divider {
+    background-color: #aaa;
+    display: block;
+    height: 1px;
+    margin: 0 15px;
   }
   .category-hover-box {
     background: #f8f8f8 url($base-url + '/main/dotline4.gif') repeat-y;
     border: 3px solid #269dd9;
     border-left: none;
     display: none;
-    height: 262px;
     left: 100%;
+    margin-top: -10px;
+    min-height: 100%;
     padding: 10px 20px;
     position: absolute;
-    top: 32px;
+    top: -3px;
     width: 110px;
     z-index: $dropdown-z-index;
     @mixin category-hover-item() {
@@ -170,15 +195,9 @@ $main-banner-height: 400px;
     .sub-item {
       @include category-hover-item();
       font-size: 12px;
-      height: 24px;
+      height: 18px;
       letter-spacing: -1px;
-      line-height: 24px;
-      padding: 0 10px;
-    }
-  }
-  &:hover {
-    .category-hover-box {
-      display: block;
+      line-height: 18px;
     }
   }
 }
@@ -217,6 +236,7 @@ $main-banner-height: 400px;
   background-color: #f8f8f8;
   margin: auto;
   padding-top: 30px;
+  padding-bottom: 30px;
 }
 .home-building-title {
   color: #555;
