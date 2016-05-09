@@ -1,52 +1,51 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
-import { setHeader } from 'redux/actions';
+import { constants } from 'commons/utils/constants';
 
-import ServiceInfo from 'components/info/ServiceInfo';
-import SignupInfo from 'components/info/SignupInfo';
-import OrderInfo from 'components/info/OrderInfo';
-import CustomerCenter from 'components/info/CustomerCenter';
+import { setHeader } from 'redux/actions';
 
 const ServiceInfoContainer = React.createClass({
   propTypes: {
     setHeader: PropTypes.func,
   },
+  getInitialState() {
+    return { currentTab: _.get(this.props, 'params.section') || 'service_info' };
+  },
   componentDidMount() {
     this.props.setHeader(false, false, false, '이용안내');
   },
   render() {
-    const currentTab = _.get(this.props, 'params.section') || 'service_info';
+    const currentTab = this.state.currentTab;
     const tabs = [
-      { name: '서비스소개', key: 'service_info', contents: <ServiceInfo /> },
-      { name: '회원가입', key: 'signup_info', contents: <SignupInfo /> },
-      { name: '주문배송', key: 'order_info', contents: <OrderInfo /> },
-      { name: '고객센터', key: 'customer_center', contents: <CustomerCenter /> },
+      { name: '서비스소개', key: 'service_info', img: `${constants.resourceRoot}/mobile/banner/service_guide_001.png` },
+      { name: '회원가입', key: 'signup_info', img: `${constants.resourceRoot}/mobile/banner/service_guide_002_20160503.png` },
+      { name: '주문배송', key: 'order_info', img: `${constants.resourceRoot}/mobile/banner/service_guide_003.png` },
+      { name: '고객센터', key: 'customer_center', img: `${constants.resourceRoot}/mobile/banner/service_guide_004.png` },
     ];
-    let contents = '';
+    let content = '';
     tabs.forEach((tab) => {
       if (tab.key === currentTab) {
-        contents = tab.contents;
+        content = <img src={tab.img} width="100%" />
       }
     });
     const renderTab = (tab) => (
-      <Link
+      <div
         className={`item ${tab.key === currentTab ? 'active' : ''}`}
-        to={`/service/info/${tab.key}`}
+        onClick={() => this.setState({ currentTab: tab.key })}
       >
         <span>{tab.name}</span>
-      </Link>
+      </div>
     );
     return (
       <div>
         <div className="service-info-navbar">
           {tabs.map(renderTab)}
         </div>
-        {contents}
+        {content}
       </div>
     );
   },
