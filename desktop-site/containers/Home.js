@@ -37,7 +37,11 @@ const Home = React.createClass({
       categories[179].children = [categories[180], categories[181], categories[183]];
       const othersCategory = { id: 9999, name: { ko: '잡화', en: '잡화', 'zh-cn': '잡화', 'zh-tw': '잡화' } };
       categories[51].children = [];
-      othersCategory.children = [categories[51], categories[51]];
+      othersCategory.children = [categories[51]];
+      if (categories[262]) {
+        othersCategory.name = JSON.parse(JSON.stringify(categories[262].name));
+        othersCategory.children.push(categories[262]);
+      }
       const topCategories = [categories[4], categories[179], othersCategory];
       const renderCategory = (c, index) => {
         const renderHoverCategory = (child, index2) => (
