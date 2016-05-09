@@ -39,6 +39,9 @@ export default React.createClass({
           return `${displayBrand} ${quantities}개 상품 구매내역`;
         };
 
+        const status = order.status === 0 ?
+          i18n.get(`enum.order.paymentStatus.${order.paymentStatus}`) :
+          i18n.get(`enum.order.status.${order.status}`);
         return (
           <li className="myorder-listitem" key={order.id}>
             <div className="myorder-ymd">
@@ -50,7 +53,7 @@ export default React.createClass({
                   {getSummary()}
                 </div>
                 <div className="myorder-status">
-                  {i18n.get(`enum.order.status.${order.status}`)}
+                  {status}
                 </div>
                 <span className="ms-arrow">
                   <span className="ms-icon icon-arrow-right"></span>

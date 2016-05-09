@@ -59,6 +59,9 @@ export default React.createClass({
     };
     const renderOrder = (order) => {
       const quantity = _.reduce(order.orderProducts, (sum, o) => (sum + o.quantity), 0);
+      const status = order.status === 0 ?
+        i18n.get(`enum.order.paymentStatus.${order.paymentStatus}`) :
+        i18n.get(`enum.order.status.${order.status}`);
       return (
         <div key={order.id}>
           <div className="row">
@@ -66,7 +69,7 @@ export default React.createClass({
             <div className="cell summary-cell"><Link to={`/orders/${order.id}`}>{getSummary(order)}</Link></div>
             <div className="cell quantity-cell">{quantity}</div>
             <div className="cell price-cell">{numberUtil.formatPrice(order[`total${activeCurrency}`], activeCurrency, currencySign)}</div>
-            <div className="cell status-cell">{i18n.get(`enum.order.status.${order.status}`)}</div>
+            <div className="cell status-cell">{status}</div>
           </div>
         </div>
       );
