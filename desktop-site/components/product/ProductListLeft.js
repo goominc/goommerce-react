@@ -51,9 +51,9 @@ export default React.createClass({
           </div>
         ));
       };
-      const dfs = (child) => {
+      const dfs = (child, parent) => {
         if (child.id === category.id) {
-          return (
+          const elem = (
             <div key={child.id} className="product-list-category-indent">
               <Link className="product-list-category-item active" to={categoryLink(child.id)}>
                 {child.name[activeLocale]} {categoryCount(child.id)}
@@ -61,6 +61,25 @@ export default React.createClass({
               {renderChildOfCategory(child.children)}
             </div>
           );
+          if (parent) {
+            const res = [];
+            parent.children.forEach((sibling) => {
+              if (sibling.id === child.id) {
+                res.push(elem);
+              } else {
+                res.push(
+                  <div key={sibling.id} className="product-list-category-indent">
+                    <Link className="product-list-category-item" to={categoryLink(sibling.id)}>
+                      {sibling.name[activeLocale]}
+                    </Link>
+                  </div>
+                );
+              }
+            });
+            return res;
+          } else {
+            return elem;
+          }
         }
         if (!child.isActive || !child.children || child.children.length < 1) {
         // if (!child.children || child.children.length < 1) {
@@ -68,7 +87,7 @@ export default React.createClass({
         }
         for (let i = 0; i < child.children.length; i++) {
           const child2 = child.children[i];
-          const c = dfs(child2);
+          const c = dfs(child2, child);
           if (c) {
             return (
               <div key={child.id} className="product-list-category-indent">
@@ -86,7 +105,7 @@ export default React.createClass({
         if (root.id === category.id) {
           return renderChildOfCategory(root.children);
         }
-        return (root.children || []).map((child) => dfs(child));
+        return (root.children || []).map((child) => dfs(child, root));
       };
       return (
         <div key={root.id} className="product-list-top-category">
