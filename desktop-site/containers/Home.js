@@ -28,22 +28,21 @@ const Home = React.createClass({
     */
   },
   render() {
-    const { activeLocale, categories } = this.props;
+    const { activeLocale } = this.props;
+    const categories = JSON.parse(JSON.stringify(this.props.categories));
     const renderCategories = () => {
       if (!categories || Object.keys(categories).length < 1) {
         return (<div className="category-frame"></div>);
       }
       categories[4].children = [categories[11], categories[12], categories[13], categories[41]];
       categories[179].children = [categories[180], categories[181], categories[183]];
-      const othersCategory = { id: 9999, name: { ko: '잡화', en: '잡화', 'zh-cn': '잡화', 'zh-tw': '잡화' } };
-      categories[51].children = [];
-      othersCategory.children = [categories[51]];
-      if (categories[262]) {
-        othersCategory.name = JSON.parse(JSON.stringify(categories[262].name));
-        categories[262].children = [];
-        othersCategory.children.push(categories[262]);
+      const topCategories = [categories[4], categories[179]];
+      if (categories[262] && categories[51] && categories[177]) {
+        categories[51].children = [];
+        categories[177].children = [];
+        categories[262].children = [categories[51], categories[177]];
+        topCategories.push(categories[262]);
       }
-      const topCategories = [categories[4], categories[179], othersCategory];
       const renderCategory = (c, index) => {
         const renderHoverCategory = (child, index2) => (
           <Link key={`${child.id}-${index2}`} to={`/categories/${child.id}`}>
