@@ -52,6 +52,17 @@ export default React.createClass({
         ));
       };
       const dfs = (child, parent) => {
+        const renderWithSibling = (elem, category2, siblings, renderSibling) => {
+          const res = [];
+          siblings.forEach((sibling) => {
+            if (sibling.id === category2.id) {
+              res.push(elem);
+            } else {
+              res.push(renderSibling(sibling));
+            }
+          });
+          return res;
+        };
         if (child.id === category.id) {
           const elem = (
             <div key={child.id} className="product-list-category-indent">
@@ -62,42 +73,45 @@ export default React.createClass({
             </div>
           );
           if (parent) {
-            const res = [];
-            parent.children.forEach((sibling) => {
-              if (sibling.id === child.id) {
-                res.push(elem);
-              } else {
-                res.push(
-                  <div key={sibling.id} className="product-list-category-indent">
-                    <Link className="product-list-category-item" to={categoryLink(sibling.id)}>
-                      {sibling.name[activeLocale]}
-                    </Link>
-                  </div>
-                );
-              }
-            });
-            return res;
-          } else {
-            return elem;
+            return renderWithSibling(elem, child, parent.children, (sibling) => (
+              <div key={sibling.id} className="product-list-category-indent">
+                <Link className="product-list-category-item" to={categoryLink(sibling.id)}>
+                  {sibling.name[activeLocale]}
+                </Link>
+              </div>
+            ));
           }
+          return elem;
         }
         if (!child.isActive || !child.children || child.children.length < 1) {
         // if (!child.children || child.children.length < 1) {
           return null;
         }
+        let foundElem = null;
         for (let i = 0; i < child.children.length; i++) {
           const child2 = child.children[i];
           const c = dfs(child2, child);
           if (c) {
-            return (
-              <div key={child.id} className="product-list-category-indent">
-                <Link className="product-list-category-item" to={categoryLink(child.id)}>
-                  {child.name[activeLocale]}
-                </Link>
-                {c}
-              </div>
-            );
+            foundElem = c;
           }
+        }
+        if (foundElem) {
+          const currentElem = (
+            <div key={child.id} className="product-list-category-indent">
+              <Link className="product-list-category-item active" to={categoryLink(child.id)}>
+                {child.name[activeLocale]}
+              </Link>
+              {foundElem}
+            </div>
+          );
+          const renderSibling = (sibling) => (
+            <div key={sibling.id} className="product-list-category-indent">
+              <Link className="product-list-category-item" to={categoryLink(sibling.id)}>
+                {sibling.name[activeLocale]}
+              </Link>
+            </div>
+          );
+          return renderWithSibling(currentElem, child, parent.children, renderSibling);
         }
         return null;
       };
