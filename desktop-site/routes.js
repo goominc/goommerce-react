@@ -31,6 +31,7 @@ export default function configure(store) { // eslint-disable-line
   const getAuth = () => store.getState().auth;
   const onEnter = (nextState, fnReplaceState) => {
     const onNotLogin = () => {
+      window.alert('로그인 후 서비스 이용할 수 있습니다');
       store.dispatch({
         type: 'AFTER_LOGIN_PAGE',
         nextState,

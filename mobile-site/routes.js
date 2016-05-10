@@ -33,6 +33,7 @@ import { toggleSignRegister } from './redux/actions';
 export default function configure(store) {
   const onEnter = (nextState, replaceState) => {
     const onNotLogin = () => {
+      window.alert('로그인 후 서비스 이용할 수 있습니다');
       store.dispatch({
         type: 'AFTER_LOGIN_PAGE',
         nextState,
