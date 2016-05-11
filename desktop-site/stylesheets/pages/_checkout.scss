@@ -310,13 +310,14 @@ $active-progress-color: #f90;
         display: inline-block;
         font-size: 13px;
         font-weight: 500;
-        width: 30%;
+        width: 40%;
+        white-space: nowrap;
       }
       .control {
         display: inline-block;
         font-size: 14px;
         text-align: right;
-        width: 70%;
+        width: 60%;
       }
     }
     .total-row {

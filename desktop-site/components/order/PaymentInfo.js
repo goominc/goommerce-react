@@ -66,11 +66,11 @@ export default React.createClass({
           </div>
           <div className="cell content-cell">
             <div className="left">+</div>
-            <div className="right">사입비: {handlingFeePrice}</div>
+            <div className="right">부가세(10%): {taxPrice}</div>
+            <div className="left">+</div>
+            <div className="right">사입비(3.3%): {handlingFeePrice}</div>
             <div className="left">+</div>
             <div className="right">배송비: {shippingCostPrice}</div>
-            <div className="left">+</div>
-            <div className="right">부가세: {taxPrice}</div>
           </div>
           <div className="cell content-cell">
             {_.get(order, 'adjustments', []).map(renderAdjustment)}

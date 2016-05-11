@@ -184,11 +184,11 @@ export default React.createClass({
               <div className="control">{subtotalPrice}</div>
             </div>
             <div className="row">
-              <div className="label">부가세</div>
+              <div className="label">부가세(10%)</div>
               <div className="control">{taxPrice}</div>
             </div>
             <div className="row">
-              <div className="label">사입비</div>
+              <div className="label">사입비(3.3%)</div>
               <div className="control">{handlingFeePrice}</div>
             </div>
             <div className="row">

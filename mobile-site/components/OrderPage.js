@@ -242,13 +242,13 @@ export default React.createClass({
               </b></span>
             </li>
             <li className="clearfix">
-              <span className="checkout-item">부가세:</span>
+              <span className="checkout-item">부가세(10%):</span>
               <span className="cost"><b>
                 {activeCurrency} {order[`tax${activeCurrency}`]}
               </b></span>
             </li>
             <li className="clearfix">
-              <span className="checkout-item">사입비:</span>
+              <span className="checkout-item">사입비(3.3%):</span>
               <span className="cost"><b>
                 {activeCurrency} {order[`handlingFee${activeCurrency}`]}
               </b></span>
