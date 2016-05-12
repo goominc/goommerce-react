@@ -125,11 +125,6 @@ const ProductList = React.createClass({
 
     return (
       <div className="product-list-wide-container">
-        <div className="product-list-titlebar">
-          <div className="right"></div>
-          <div className="inner">
-          </div>
-        </div>
         <div className="container-table no-padding">
           <ProductListLeft {...this.props} aggs={aggs} />
           <div className="product-list-right-box">

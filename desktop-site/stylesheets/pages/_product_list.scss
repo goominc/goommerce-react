@@ -5,39 +5,13 @@
 .product-list-wide-container {
   background-color: #f8f8f8;
 }
-.product-list-titlebar {
-  background-color: #f73;
-  height: 50px;
-  margin-bottom: $margin-20;
-  position: relative;
-  width: 100%;
-  .right {
-    background-color: #ff6367;
-    height: 50px;
-    left: 50%;
-    position: absolute;
-    top: 0;
-    width: 50%;
-    z-index: 10;
-  }
-  .inner {
-    background: url($base-url + '/product/product_list_titlebar.jpg') no-repeat 100% 0;
-    height: 50px;
-    left: 50%;
-    margin-left: -600px;
-    position: absolute;
-    top: 0;
-    width: 1200px;
-    z-index: 20;
-  }
-}
 
 .product-list-left-box {
   background-color: #fff;
   border-top: 3px solid $default-active-text-color;
   display: inline-block;
-  padding-left: 10px;
-  padding-right: 10px;
+  margin-top: 36px;
+  padding: 0 10px;
   overflow: hidden;
   width: 200px;
   .title {
@@ -330,4 +304,3 @@ $product-in-row: 4;
     }
   }
 }
-
