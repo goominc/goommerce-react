@@ -18,8 +18,8 @@ const Signin = React.createClass({
   getInitialState() {
     return {};
   },
-  handleSubmit(email, password) {
-    this.props.login(email, password, this.context.router);
+  handleSubmit(email, password, rememberMe) {
+    this.props.login({ email, password, rememberMe }, this.context.router);
   },
   render: function render() {
     const goForgotPassword = () => {

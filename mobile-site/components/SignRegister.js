@@ -16,7 +16,7 @@ export default React.createClass({
   handleLogin(e) {
     e.preventDefault();
     const { email, password } = this.state;
-    this.props.login(email, password);
+    this.props.login({ email, password });
   },
   handleRegister(e) {
     e.preventDefault();

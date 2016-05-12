@@ -82,7 +82,7 @@ $signin-border-radius: 5px;
   cursor: pointer;
   display: block;
   font-size: 18px;
-  margin: 30px 0;
+  margin: 15px 0 30px 0;
   padding: 15px 0;
   text-align: center;
   width: 100%;
@@ -226,5 +226,17 @@ $signup-color-gray: #999;
       color: #fff;
       text-decoration: none;
     }
+  }
+}
+
+.signin-remember-me {
+  color: #777;
+  $height: 23px; // label size
+  height: $height;
+  line-height: $height;
+  margin-top: 5px;
+  span {
+    vertical-align: top;
+    margin-left: 10px;
   }
 }

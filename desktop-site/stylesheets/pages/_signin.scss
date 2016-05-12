@@ -62,3 +62,11 @@ $sign-form-width: 450px;
   @include signin-form-inner();
   border: 1px solid #aaa;
 }
+
+.signin-remember-me {
+  color: #777;
+  margin: 10px 0;
+  span {
+    margin-left: 10px;
+  }
+}

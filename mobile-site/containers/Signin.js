@@ -21,7 +21,8 @@ const Signin = React.createClass({
       e.preventDefault();
       const email = this.refs.email.value;
       const password = this.refs.password.value;
-      this.props.login(email, password, this.context.router);
+      const rememberMe = $('#rememberme').is(':checked');
+      this.props.login({ email, password, rememberMe }, this.context.router);
     };
     return (
       <form className="container" onSubmit={onSubmit}>
@@ -33,6 +34,11 @@ const Signin = React.createClass({
         <Link to="/accounts/forgot" className="sigin-forgot">
           비밀번호를 잊으셨나요?
         </Link>
+        <div className="signin-remember-me">
+          <input id="rememberme" type="checkbox" defaultChecked />
+          <label onClick={() => $('#rememberme').click()}></label>
+          <span>로그인 상태 유지</span>
+        </div>
         <button type="submit" className="signin-button">로그인</button>
         <Link to="/accounts/signup" className="signin-bottom-signup-button">회원가입</Link>
       </form>

@@ -9,10 +9,10 @@ const _ = require('lodash');
 
 import roleUtil from 'commons/utils/roleUtil';
 
-export function login(email, password, router) {
+export function login(body, router) {
   return (dispatch, getState) => {
     const state = getState();
-    return ajaxReturnPromise(state.auth, 'post', '/api/v1/login', { email, password }).then((data) => {
+    return ajaxReturnPromise(state.auth, 'post', '/api/v1/login', body).then((data) => {
       dispatch({
         type: 'LOGIN',
         payload: { auth: data },

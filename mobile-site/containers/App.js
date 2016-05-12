@@ -65,7 +65,7 @@ const App = React.createClass({
     // this.props.loadCategories();
   },
   _login(email, password) {
-    this.props.login(email, password).then(
+    this.props.login({ email, password }).then(
       () => {
         this.props.toggleSignRegister(false);
         this.props.loadCartIfEmpty();

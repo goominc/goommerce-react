@@ -9,10 +9,10 @@ export default React.createClass({
     goForgotPassword: PropTypes.func.isRequired,
   },
   render() {
-    const { handleSubmit, goForgotPassword } = this.props;
+    const { handleSubmit } = this.props;
     const onSubmit = (e) => {
       e.preventDefault();
-      handleSubmit(this.refs.email.value, this.refs.password.value);
+      handleSubmit(this.refs.email.value, this.refs.password.value, $('#rememberme').is(':checked'));
     };
     return (
       <form onSubmit={onSubmit}>
@@ -33,6 +33,11 @@ export default React.createClass({
           required
           ref="password"
         />
+        <div className="signin-remember-me">
+          <input id="rememberme" type="checkbox" defaultChecked />
+          <label onClick={() => $('#rememberme').click()}></label>
+          <span>로그인 상태 유지</span>
+        </div>
         <button className="btn-signin" type="submit">로그인</button>
         <Link to="/accounts/signup">회원가입</Link>
         <Link to="/accounts/forgot">비밀번호 찾기</Link>
