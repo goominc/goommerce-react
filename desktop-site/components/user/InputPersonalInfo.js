@@ -9,6 +9,7 @@ export default React.createClass({
   propTypes: {
     auth: PropTypes.object,
     onChange: PropTypes.func.isRequired,
+    onlyNumberFieldOnChange: PropTypes.func,
   },
   getInitialState() {
     return { activeAreaCodeIndex: 0 };
@@ -17,17 +18,8 @@ export default React.createClass({
     this.props.onChange({ target: { value: '+82' } }, 'data.areaCode');
   },
   render() {
-    const { auth, onChange } = this.props;
-    const areaCodes = [
-      { img: `${constants.resourceRoot}/main/country-kor.png`, name: 'Korea', number: '+82' },
-      { img: `${constants.resourceRoot}/main/country-china.png`, name: 'China', number: '+86' },
-      { img: `${constants.resourceRoot}/main/country-china.png`, name: 'Hongkong', number: '+886' },
-      /*
-       { img: `${constants.resourceRoot}/main/country-england.png`, name: 'United Kingdom', number: '+214' },
-       { img: `${constants.resourceRoot}/main/country-usa.png`, name: 'Newyork', number: '+615' },
-       */
-      { img: `${constants.resourceRoot}/main/country-taiwan.png`, name: 'Taiwan', number: '+423' },
-    ];
+    const { auth, onChange, onlyNumberFieldOnChange } = this.props;
+    const { areaCodes } = constants;
     const activeAreaCodeIndex = this.state.activeAreaCodeIndex || 0;
     const toggleNumberDropdown = () => {
       const target = $('.signup-form-section .form-tel .dropdown-box');
@@ -80,9 +72,13 @@ export default React.createClass({
               <img src={areaCodes[activeAreaCodeIndex].img} /> {areaCodes[activeAreaCodeIndex].number}
               <div className="arrow-down"></div>
             </div>
-            <input id="tel" onChange={(e) => onChange(e, 'data.tel')}
-              defaultValue={auth ? _.get(auth, 'data.tel') : ''}
-              type="text" placeholder="연락처를 입력해 주세요"
+            <input
+              id="tel"
+              onChange={(e) => (
+                onlyNumberFieldOnChange ? onlyNumberFieldOnChange(e, 'data.tel', 12) : onChange(e, 'data.tel')
+              )}
+              value={auth ? _.get(auth, 'data.tel') || '' : ''}
+              type="text" placeholder="'-'를 제외한 숫자만 입력해 주세요"
             />
             <div className="dropdown-box">
               {areaCodes.map(renderAreaCodeDropdown)}

@@ -6,6 +6,7 @@ const _ = require('lodash');
 
 import { constants } from 'commons/utils/constants';
 import i18n from 'commons/utils/i18n';
+import numberUtil from 'commons/utils/numberUtil';
 import uploadUtil from 'commons/utils/uploadUtil';
 
 import InputPersonalInfo from './InputPersonalInfo';
@@ -64,18 +65,30 @@ export default React.createClass({
         _.set(nextState, key, e.target.value);
         this.setState(_.merge(this.state, nextState));
       };
+      const onlyNumberFieldOnChange = (e, key, maxLen) => {
+        if (numberUtil.validateNumberInput(e.target.value, maxLen)) {
+          onChange(e, key);
+        }
+      };
       const renderField = (field) => (
         <div key={field.name} className="form-group">
           <label><span className="required">{field.isRequired ? '*' : ''}</span>{field.name}</label>
           <div className="form-input">
-            <input id={field.key.split('.').slice(-1)[0]} onChange={(e) => onChange(e, field.key)} type="text" placeholder={field.placeholder} />
+            <input
+              id={field.key.split('.').slice(-1)[0]}
+              onChange={(e) => (field.onChange ? field.onChange(e) : onChange(e, field.key))}
+              type="text"
+              value={_.get(this.state, field.key)}
+              placeholder={field.placeholder}
+            />
           </div>
         </div>
       );
       const renderBizInfo = () => {
         const fields1 = [
           { name: t('bizName'), placeholder: t('bizNamePlaceHolder'), key: 'data.bizName', isRequired: true },
-          { name: t('bizNumber'), placeholder: t('bizNumberPlaceHolder'), key: 'data.bizNumber', isRequired: true },
+          { name: t('bizNumber'), placeholder: t('bizNumberPlaceHolder'), key: 'data.bizNumber', isRequired: true,
+            onChange: (e) => onlyNumberFieldOnChange(e, 'data.bizNumber', 15) },
         ];
         const fields2 = [
           { name: t('returnAccountNumber'), placeholder: '123-456-123456', key: 'data.returnAccountNumber' }, // eslint-disable-line
@@ -165,7 +178,7 @@ export default React.createClass({
               </div>
             </div>
           </div>
-          <InputPersonalInfo onChange={onChange} />
+          <InputPersonalInfo auth={this.state} onChange={onChange} onlyNumberFieldOnChange={onlyNumberFieldOnChange} />
           {renderBizInfo()}
           <div className="button-line">
             <button type="reset" className="button-back" onClick={goBack}>뒤로</button>

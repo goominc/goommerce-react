@@ -15,7 +15,7 @@
       "returnAccountBank": "은행명",
       "returnAccountOwner": "예금주",
       "bizNamePlaceHolder": "사업자명을 입력해주세요",
-      "bizNumberPlaceHolder": "사업자번호를 입력해주세요",
+      "bizNumberPlaceHolder": "'-'를 제외한 숫자만 입력해 주세요",
       "returnAccountBankPlaceHolder": "**은행",
       "returnAccountOwnerPlaceHolder": "예금주를 입력해 주세요"
     },

@@ -75,3 +75,15 @@ exports.formatDateKor = (date) => {
   const split = d.split('-');
   return `${split[0]}년 ${split[1]}월 ${split[2]}일`;
 };
+
+exports.validateNumberInput = (val, maxLen) => {
+  if (val.length > maxLen) {
+    return false;
+  }
+  for (let i = 0; i < val.length; i++) {
+    if (val[i] < '0' || val[i] > '9') {
+      return false;
+    }
+  }
+  return true;
+};

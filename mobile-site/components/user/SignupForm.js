@@ -6,6 +6,7 @@ import _ from 'lodash';
 
 import { constants } from 'commons/utils/constants';
 import i18n from 'commons/utils/i18n';
+import numberUtil from 'commons/utils/numberUtil';
 import uploadUtil from 'commons/utils/uploadUtil';
 
 export default React.createClass({
@@ -18,13 +19,15 @@ export default React.createClass({
     if (this.props.signupUser) {
       return this.props.signupUser;
     }
-    return {};
+    return { activeAreaCodeIndex: 0 };
   },
   componentWillUnmount() {
     this.props.updateSignupUser(this.state);
   },
   render() {
     const { handleSubmit } = this.props;
+    const { areaCodes } = constants;
+    const activeAreaCodeIndex = this.state.activeAreaCodeIndex || 0;
     const t = (key) => i18n.get(`pcMain.signup.${key}`);
 
     const onChange = (e, key) => {
@@ -32,14 +35,21 @@ export default React.createClass({
       _.set(nextState, key, e.target.value);
       this.setState(_.merge(this.state, nextState));
     };
+    const onlyNumberFieldOnChange = (e, key, maxLen) => {
+      if (numberUtil.validateNumberInput(e.target.value, maxLen)) {
+        onChange(e, key);
+      }
+    };
     const renderField = (field) =>
       <input
         key={field.name}
         className={field.className || 'signin-input'}
-        defaultValue={_.get(this.state, field.key) || ''}
+        value={_.get(this.state, field.key) || ''}
         type={field.type || 'text'}
         placeholder={field.name}
-        onChange={(e) => onChange(e, field.key)}
+        onChange={(e) => (
+          field.onChange ? field.onChange(e) : onChange(e, field.key)
+        )}
       />;
     const renderBizInfo = () => {
       const onSelectFile = (e) => {
@@ -52,7 +62,8 @@ export default React.createClass({
       };
       const fields1 = [
         { name: t('bizName'), placeholder: t('bizNamePlaceHolder'), key: 'data.bizName', isRequired: true },
-        { name: t('bizNumber'), placeholder: t('bizNumberPlaceHolder'), key: 'data.bizNumber', isRequired: true },
+        { name: t('bizNumber'), placeholder: t('bizNumberPlaceHolder'), key: 'data.bizNumber', isRequired: true,
+          onChange: (e) => onlyNumberFieldOnChange(e, 'data.bizNumber', 15) },
       ];
       const fields2 = [
         { name: t('returnAccountNumber'), placeholder: '123-456-123456', key: 'data.returnAccountNumber' }, // eslint-disable-line
@@ -117,6 +128,29 @@ export default React.createClass({
       };
       uploadUtil.uploadFile(this.state.bizImageUrl, cb);
     };
+    const toggleNumberDropdown = () => {
+      const target = $('.form-tel .dropdown-box');
+      const display = target.css('display');
+      if (display === 'none') {
+        target.css('display', 'block');
+      } else {
+        target.css('display', 'none');
+      }
+    };
+    const renderAreaCodeDropdown = (ac, index) => {
+      if (index === activeAreaCodeIndex) {
+        return null;
+      }
+      const onClick = () => {
+        toggleNumberDropdown();
+        this.setState({ activeAreaCodeIndex: index, data: _.merge(this.state.data || {}, { areaCode: areaCodes[index].number }) });
+      };
+      return (
+        <div key={ac.name} onClick={onClick} className="dropdown-item">
+          <img src={ac.img} /> {ac.name} <span className="number">{ac.number}</span>
+        </div>
+      );
+    };
     return (
       <form onSubmit={onSubmit}>
         <Link to="/" className="signin-title">
@@ -132,7 +166,23 @@ export default React.createClass({
             {renderField({ name: '성', className: 'signup-input-lastName', key: 'data.lastName' })}
             {renderField({ name: '이름', className: 'signup-input-firstName', key: 'data.firstName' })}
           </div>
-          {renderField({ name: '전화번호', key: 'data.tel' })}
+          <div className="form-tel">
+            <div className="area-code" onClick={toggleNumberDropdown}>
+              <img src={areaCodes[activeAreaCodeIndex].img} /> {areaCodes[activeAreaCodeIndex].number}
+              <div className="arrow-down"></div>
+            </div>
+            <input
+              id="tel"
+              onChange={(e) => (
+                onlyNumberFieldOnChange ? onlyNumberFieldOnChange(e, 'data.tel', 12) : onChange(e, 'data.tel')
+              )}
+              value={_.get(this.state, 'data.tel') || ''}
+              type="text" placeholder="전화번호('-' 제외)"
+            />
+            <div className="dropdown-box">
+              {areaCodes.map(renderAreaCodeDropdown)}
+            </div>
+          </div>
         </div>
         <div className="signup-form-section">
           {renderBizInfo()}
