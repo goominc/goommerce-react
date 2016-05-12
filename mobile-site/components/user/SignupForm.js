@@ -62,7 +62,7 @@ export default React.createClass({
       };
       const fields1 = [
         { name: t('bizName'), placeholder: t('bizNamePlaceHolder'), key: 'data.bizName', isRequired: true },
-        { name: t('bizNumber'), placeholder: t('bizNumberPlaceHolder'), key: 'data.bizNumber', isRequired: true,
+        { name: `${t('bizNumber')}('-' 제외)`, placeholder: t('bizNumberPlaceHolder'), key: 'data.bizNumber', isRequired: true,
           onChange: (e) => onlyNumberFieldOnChange(e, 'data.bizNumber', 15) },
       ];
       const fields2 = [
