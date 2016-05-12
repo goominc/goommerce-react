@@ -28,7 +28,7 @@ module.exports = (opts) => {
     webpackRuntime('./webpack.mobile.config');
   }
 
-  if (opts.localBundle) {
+  if (!opts.cdnPath) {
     middlewares.push(serveStatic(`${__dirname}/dist`));
   }
 
@@ -40,10 +40,7 @@ module.exports = (opts) => {
       if (opts.cdnPath) {
         return `${opts.cdnPath}/${name}`;
       }
-      if (opts.hot || opts.localBundle) {
-        return `/${name}`;
-      }
-      return `//${config.cloudfront.domain}/app/${config.bundle.version}/${name}`;
+      return `/${name}`;
     }
     const md = new MobileDetect(req.headers['user-agent']);
 

@@ -33,7 +33,6 @@ app.use((req, res, next) => {
 
 app.use(require('./middleware')({
   hot: app.get('env') === 'development',
-  localBundle: app.get('env') === 'production',
   getAuth: (req, callback) => {
     request
       .get('http://localhost:8080/api/v1/login')
