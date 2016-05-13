@@ -1,5 +1,7 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
+import _ from 'lodash';
+
 import i18n from 'commons/utils/i18n';
 
 import numberUtil from './numberUtil';
@@ -20,36 +22,32 @@ exports.initColorsAndSizes = (variants) => {
   return { variantAttributes: attributes };
 };
 
-function getImages(product) {
-  if (!product || !product.appImages) {
-    return [];
-  }
-  return product.appImages.default || [];
-}
-exports.getProductThumbnail = (product) => {
-  const defaultImages = getImages(product);
-  if (defaultImages.length < 1) {
-    return undefined;
-  }
-  for (const image of defaultImages) {
-    if (image.thumbnail) {
-      return image.url;
+const findImage = (product, key) => {
+  if (!product || !_.get(product, 'appImages.default[0]')) {
+    for (let i = 0; i < (product.productVariants || []).length; i++) {
+      const variant = product.productVariants[i];
+      const variantImage = findImage(variant, key);
+      if (variantImage) {
+        return variantImage;
+      }
     }
+    return null;
   }
-  return defaultImages[0].url;
-};
-
-exports.getProductMainImage = (product) => {
-  const defaultImages = getImages(product);
-  if (defaultImages.length < 1) {
-    return undefined;
-  }
+  const defaultImages = product.appImages.default;
   for (const image of defaultImages) {
-    if (image.mainImage) {
+    if (image[key]) {
       return image;
     }
   }
   return defaultImages[0];
+};
+exports.getProductThumbnail = (product) => {
+  const image = findImage(product, 'thumbnail');
+  return image ? image.url : null;
+};
+
+exports.getProductMainImage = (product) => {
+  return findImage(product, 'mainImage');
 };
 
 exports.getProductMainPrice = (product, currency) => {

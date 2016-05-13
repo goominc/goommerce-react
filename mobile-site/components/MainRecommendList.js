@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-import { getProductMainImage, getProductMainPrice } from 'commons/utils/productUtil';
+import { getProductMainImage } from 'commons/utils/productUtil';
 
 export default React.createClass({
   propTypes: {
@@ -48,9 +48,10 @@ export default React.createClass({
     });
 
     return (
-      <section id="today-deals" className="promotion-block today-deals">
+      <section className="promotion-block today-deals">
         <header>
-          <Link to="/categories/4">Quality Picks</Link>
+          <div style={({ padding: '0 8px' })}>동대문 핫신상</div>
+          {/*<Link to="/categories/4">동대문 핫신상</Link>*/}
         </header>
         <article>
           <ul className="clearfix product-container">

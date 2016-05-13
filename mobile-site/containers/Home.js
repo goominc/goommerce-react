@@ -17,6 +17,7 @@ const Home = React.createClass({
     setHeader: PropTypes.func.isRequired,
   },
   contextTypes: {
+    ApiAction: PropTypes.object,
     router: PropTypes.object,
   },
   getInitialState() {
@@ -24,7 +25,10 @@ const Home = React.createClass({
   },
   componentDidMount() {
     this.props.setHeader(true, true, true, '');
-    /* TODO replace with recommend products */
+    ajaxReturnPromise(null, 'get', '/api/v1/products/hot').then((res) => {
+      this.setState(res);
+    });
+    /*
     this.props.searchProducts({
       // q: query,
       // categoryId: params.categoryId === 'all' ? undefined : params.categoryId,
@@ -36,6 +40,7 @@ const Home = React.createClass({
       // console.log(res);
       this.setState(res);
     });
+    */
   },
   render() {
     const renderProducts = () => {
@@ -110,9 +115,8 @@ const Home = React.createClass({
               </ul>
             </article>
           </section>
-
+          {renderProducts()}
         </div>
-        {renderProducts()}
 
         <div className="info-area">
         </div>
@@ -123,7 +127,7 @@ const Home = React.createClass({
 
 export default connect(
   (state) => ({
-    ...loadEntities(state, 'products', 'products'),
+    ...loadEntities(state, 'hotProducts', 'hotProducts'),
     searchProducts: (query) => ajaxReturnPromise(state.auth, 'get', `/api/v1/products/search?${$.param(query)}`),
   }),
   { setHeader }

@@ -214,17 +214,17 @@
 .top-spread img {
   width: 95%
 }
-#today-deals {
+.today-deals {
   background: 0 0;
 }
-#today-deals header {
+.today-deals header {
   border-radius: 5px 5px 0 0;
   background-color: #fff;
 }
-#today-deals .loading {
+.today-deals .loading {
   background-color: #fff;
 }
-#today-deals ul {
+.today-deals ul {
   background-color: #fff;
   margin-bottom: 4px;
 }
@@ -234,15 +234,13 @@
   margin-bottom: 4px;
 }
 .today-deals .product-container {
-  width: 100%;
   margin-left: -1px;
+  padding: 4px;
+  width: 100%;
 }
 .today-deals .product-container li {
-  border-left: 1px solid #efefef;
-  border-top: 1px solid #efefef;
   float: left;
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding: 4px;
   position: relative;
   width: 50%;
 }
