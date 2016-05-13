@@ -7,6 +7,7 @@ import { Link } from 'react-router';
 import ProductListItems from 'components/product/ProductListItems';
 
 import { constants } from 'commons/utils/constants';
+import { getProductMainImage } from 'commons/utils/productUtil';
 import loadEntities from 'commons/redux/util/loadEntities';
 import i18n from 'commons/utils/i18n';
 
@@ -97,6 +98,11 @@ const Home = React.createClass({
         </div>
       );
     };
+    hotProducts.forEach((product) => {
+      if (!product.mainImage) {
+        product.mainImage = getProductMainImage(product);
+      }
+    });
     return (
       <div className="main-wide-container">
         <div className="container no-horizontal-padding">
@@ -147,7 +153,7 @@ const Home = React.createClass({
               </div>
             </div>
             <div className="home-building-title">
-              <strong>동대문</strong> 핫신상
+              동대문 <strong>핫신상</strong>
             </div>
             <div className="home-hotpick-container">
               <ProductListItems
