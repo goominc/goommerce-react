@@ -100,21 +100,6 @@ const ProductList = React.createClass({
       }
     });
 
-    const changeMainImage = (productId, image) => {
-      for (let i = 0; i < products.length; i++) {
-        const product = products[i];
-        if (product.id === productId) {
-          if (product.mainImage && product.mainImage.url === image.url) {
-            // same image
-            return;
-          }
-          product.mainImage = image;
-          this.setState({ products });
-          return;
-        }
-      }
-    };
-
     const toggleWish = (product) => {
       if (product.wish) {
         ApiAction.deleteWish(product.wish);
@@ -132,7 +117,7 @@ const ProductList = React.createClass({
             <ProductListSearchBar {...this.props} aggs={aggs} brandIds={this.props.brandId && this.props.brandId.split(',')} />
             <ProductListItems
               products={products}
-              changeMainImage={changeMainImage}
+              rowSize={4}
               toggleWish={toggleWish}
             />
             <PageButton

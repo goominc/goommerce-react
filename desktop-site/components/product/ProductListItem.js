@@ -11,9 +11,10 @@ import numberUtil from 'commons/utils/numberUtil';
 
 export default React.createClass({
   propTypes: {
-    firstRow: PropTypes.bool,
+    isFirstRow: PropTypes.bool,
+    isShowInfo: PropTypes.bool,
     item: PropTypes.object,
-    changeMainImage: PropTypes.func,
+    rowSize: PropTypes.number,
     toggleWish: PropTypes.func,
   },
   contextTypes: {
@@ -21,10 +22,11 @@ export default React.createClass({
     currencySign: PropTypes.object,
   },
   getInitialState() {
-    return { variantImageIndex: 0 };
+    return { variantImageIndex: 0, item: this.props.item };
   },
   render() {
-    const { firstRow, item, changeMainImage, toggleWish } = this.props;
+    const { isFirstRow, toggleWish, rowSize = 4, isShowInfo = true } = this.props;
+    const { item } = this.state;
     const { activeCurrency, currencySign } = this.context;
     const image = item.mainImage;
     const parsed = initColorsAndSizes(item.productVariants || []);
@@ -32,11 +34,17 @@ export default React.createClass({
     const colorKeys = Object.keys(colors);
     const imageCount = Math.min(colorKeys.length, 3);
     const renderVariantImages = () => {
-      const renderColorImage = (color) => (
-        <div key={color} className="variant-item" onClick={() => changeMainImage(item.id, colors[color].img)}>
-          <ResponsiveImage image={colors[color].img} width={440} />
-        </div>
-      );
+      const renderColorImage = (color) => {
+        const onClick = () => {
+          item.mainImage = colors[color].img;
+          this.setState({ item });
+        };
+        return (
+          <div key={color} className="variant-item" onClick={onClick}>
+            <ResponsiveImage image={colors[color].img} width={440}/>
+          </div>
+        );
+      };
       const res = [];
       for (let i = 0; i < imageCount; i++) {
         const idx = this.state.variantImageIndex + i;
@@ -68,22 +76,32 @@ export default React.createClass({
       }
       return null;
     };
-    const className = `product-list-item-wrap ${firstRow ? 'product-list-first-item' : ''}`;
+    const className = `product-list-item-wrap-${rowSize} ${isFirstRow ? 'product-list-first-item' : ''}`;
+
+    const nameElem = isShowInfo ?
+      <Link to={`/products/${item.id}`}>
+        <div className="product-title">
+          {productUtil.getName(item)} <br />
+        </div>
+      </Link>
+      : null;
+    const priceElem = isShowInfo ?
+      <div className="product-price">
+        <strong>{numberUtil.formatPrice(item[activeCurrency], activeCurrency, currencySign)}</strong>
+      </div>
+      : null;
+    const wishElem = isShowInfo ?
+      <div className={`heart-it ${item.wish ? 'active' : ''}`} onClick={() => toggleWish(item)}></div>
+      : null;
     return (
       <div key={item.id} className={className}>
         <div className="product-list-item-box">
-          <div className={`heart-it ${item.wish ? 'active' : ''}`} onClick={() => toggleWish(item)}></div>
+          {wishElem}
           <ResponsiveImage image={image} link={`/products/${item.id}`} width={440} />
-          <Link to={`/products/${item.id}`}>
-            <div className="product-title">
-              {productUtil.getName(item)} <br />
-            </div>
-          </Link>
-          <div className="product-price">
-            <strong>{numberUtil.formatPrice(item[activeCurrency], activeCurrency, currencySign)}</strong>
-          </div>
+          {nameElem}
+          {priceElem}
           <div className="variant-image-container">
-            <div>{brandUtil.getName(item.brand)}</div>
+            {isShowInfo ? <div>{brandUtil.getName(item.brand)}</div> : null}
             {renderArrowLeft()}
             {renderVariantImages()}
             {renderArrowRight()}

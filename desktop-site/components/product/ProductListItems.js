@@ -7,10 +7,10 @@ import ProductListItem from './ProductListItem';
 export default React.createClass({
   propTypes: {
     products: PropTypes.array.isRequired,
-    changeMainImage: PropTypes.func,
+    rowSize: PropTypes.number,
   },
   render() {
-    const { products, changeMainImage } = this.props;
+    const { products, rowSize = 4 } = this.props;
 
     return (
       <div className="container no-padding">
@@ -18,9 +18,9 @@ export default React.createClass({
           {products.map((product, index) => (
             <ProductListItem
               key={product.id}
-              changeMainImage={changeMainImage}
+              {...this.props}
               item={product}
-              firstRow={index < 4}
+              isFirstRow={index < rowSize}
               toggleWish={this.props.toggleWish} // eslint-disable-line
             />
           ))}

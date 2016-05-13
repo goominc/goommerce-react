@@ -92,6 +92,17 @@ export function resetPassword({ access_token, password }) {
   */
 }
 
+export function loadHotProducts() {
+  return createFetchAction({
+    type: 'LOAD_HOT_PRODUCTS',
+    endpoint: '/api/v1/products/hot',
+    transform: ({ data }) => normalize(data.products, schemas.hotProducts),
+    success: {
+      pagination: { key: 'hotProducts', type: 'REFRESH' },
+    },
+  });
+}
+
 export function loadProducts() {
   return createFetchAction({
     type: 'LOAD_PRODUCTS',

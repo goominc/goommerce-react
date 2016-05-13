@@ -169,17 +169,22 @@ $product-list-margin: 20px;
   }
 }
 
-$product-in-row: 4;
-.product-list-item-wrap {
-  display: inline-block;
-  height: 300px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  overflow-y: visible;
-  text-align: center;
-  vertical-align: top;
-  width: 100% / $product-in-row;
+@mixin generate-product-list-item-wrap($product-in-row) {
+  .product-list-item-wrap-#{$product-in-row} {
+    display: inline-block;
+    height: 300px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    overflow-y: visible;
+    text-align: center;
+    vertical-align: top;
+    width: 100% / $product-in-row;
+  }
 }
+
+@include generate-product-list-item-wrap(4);
+@include generate-product-list-item-wrap(5);
+
 .product-list-first-item {
   margin-top: 0;
 }

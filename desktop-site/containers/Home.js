@@ -4,6 +4,8 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
+import ProductListItems from 'components/product/ProductListItems';
+
 import { constants } from 'commons/utils/constants';
 import loadEntities from 'commons/redux/util/loadEntities';
 import i18n from 'commons/utils/i18n';
@@ -13,9 +15,10 @@ const Home = React.createClass({
     activeLocale: PropTypes.string,
     categories: PropTypes.object.isRequired,
     main_categories: PropTypes.array,
-    products: PropTypes.array,
+    hotProducts: PropTypes.array,
   },
   contextTypes: {
+    ApiAction: PropTypes.object,
     activeLocale: PropTypes.string,
   },
   getInitialState() {
@@ -26,9 +29,10 @@ const Home = React.createClass({
     $('.main-banner').owlCarousel({ autoPlay: 10000, items: 1 });
     $('.center-slide').owlCarousel({ autoPlay: 10000, items: 1 });
     */
+    this.context.ApiAction.loadHotProducts();
   },
   render() {
-    const { activeLocale } = this.props;
+    const { activeLocale, hotProducts } = this.props;
     const categories = JSON.parse(JSON.stringify(this.props.categories));
     const renderCategories = () => {
       if (!categories || Object.keys(categories).length < 1) {
@@ -60,7 +64,7 @@ const Home = React.createClass({
           return null;
         };
         return (
-          <div className={`item ${c.children && c.children.length > 0 ? 'has-child' : ''}`}>
+          <div key={`child-${c.id}`} className={`item ${c.children && c.children.length > 0 ? 'has-child' : ''}`}>
             <Link key={`${c.id}-${index}`} to={`/categories/${c.id}`} style={({ display: 'inline-block', width: '100%' })}>
               {c.name[activeLocale]}
             </Link>
@@ -73,7 +77,7 @@ const Home = React.createClass({
           return (<div></div>);
         }
         return (
-          <div key={category.id} className="category-main">
+          <div key={`home-top-category-${category.id}`} className="category-main">
             <div className="item-title">{category.name[activeLocale]}</div>
             {category.children.map(renderCategory)}
           </div>
@@ -92,50 +96,6 @@ const Home = React.createClass({
           {renderTopCategory(topCategories[2])}
         </div>
       );
-/*
-      let categoryHoverBox = null;
-      const hoverItems = [];
-      if (this.state.hoverCategory) {
-        (this.state.hoverCategory.children || []).forEach((child, index) => {
-          if (index >= 2) {
-            return;
-          }
-          hoverItems.push(
-            <Link key={child.id} to={`/categories/${child.id}`}><div key={`depth1-${child.id}`} className="title-item">{child.name[activeLocale]}</div></Link> // eslint-disable-line
-          );
-          (child.children || []).forEach((child2, index2) => {
-            if (index2 >= 3) {
-              return;
-            }
-            hoverItems.push(
-              <Link key={child2.id} to={`/categories/${child2.id}`}><div key={`depth2-${child2.id}`} className="sub-item">{child2.name[activeLocale]}</div></Link> // eslint-disable-line
-            );
-          });
-        });
-        categoryHoverBox = (
-          <div className="category-hover-box"
-            onMouseEnter={() => this.setState({ cursor: 'categoryHover' })}
-            onMouseLeave={() => this.setState({ cursor: 'none' })}
-          >
-            {hoverItems}
-          </div>
-        );
-      }
-      return (
-        <div className="category-frame">
-          <div className="category-bar">
-            {i18n.get('word.categories')}
-            <Link to="/categories/4"><div className="category-all">{i18n.get('word.seeAll')}</div></Link>
-          </div>
-          <div>
-            <div className="category-main">
-              {categories.map(renderCategory)}
-            </div>
-            {categoryHoverBox}
-          </div>
-        </div>
-      );
-      */
     };
     return (
       <div className="main-wide-container">
@@ -185,6 +145,16 @@ const Home = React.createClass({
                   </div>
                 </Link>
               </div>
+            </div>
+            <div className="home-building-title">
+              <strong>동대문</strong> 핫신상
+            </div>
+            <div className="home-hotpick-container">
+              <ProductListItems
+                products={hotProducts}
+                rowSize={5}
+                isShowInfo={false}
+              />
             </div>
             {/*
             <div className="home-building-title">
@@ -262,5 +232,5 @@ export default connect((state) => ({
   categories: state.categories,
   activeLocale: state.i18n.activeLocale,
   main_categories: state.cms.main_categories,
-  ...loadEntities(state, 'products', 'products'),
+  ...loadEntities(state, 'hotProducts', 'hotProducts'),
 }))(Home);
