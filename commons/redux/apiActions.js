@@ -262,11 +262,12 @@ export function createOrderFromCart() {
   });
 }
 
-export function startOrderProcessing(orderId) {
+export function startOrderProcessing(orderId, paymentStatus) {
   return createFetchAction({
     type: 'START_ORDER_PROCESSING',
     endpoint: `/api/v1/orders/${orderId}/start_processing`,
     method: 'post',
+    body: { paymentStatus },
     transform: ({ data }) => normalize(data, schemas.order),
   });
 }
