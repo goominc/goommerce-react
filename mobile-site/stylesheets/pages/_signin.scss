@@ -124,7 +124,9 @@ $signin-border-radius: 5px;
     margin: 10px 0;
     padding: 6px 0;
     position: relative;
+    overflow: hidden;
     vertical-align: top;
+    white-space: nowrap;
     .area-code {
       img {
         vertical-align: middle;
@@ -149,7 +151,7 @@ $signin-border-radius: 5px;
     input {
       border: 0;
       padding: 7px 15px;
-      width: 180px;
+      min-width: 150px;
     }
     .dropdown-box {
       background-color: #fff;
