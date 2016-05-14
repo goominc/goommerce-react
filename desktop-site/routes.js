@@ -1,7 +1,7 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
 import React from 'react';
-import { Route, Redirect } from 'react-router';
+import { Route, Redirect, browserHistory } from 'react-router';
 import {
   App,
   Brand,
@@ -26,17 +26,26 @@ import {
 } from 'containers';
 
 import roleUtil from 'commons/utils/roleUtil';
+import { openPopup } from 'redux/actions';
 
 export default function configure(store) { // eslint-disable-line
   const getAuth = () => store.getState().auth;
   const onEnter = (nextState, fnReplaceState) => {
     const onNotLogin = () => {
-      window.alert('로그인 후 서비스 이용할 수 있습니다');
       store.dispatch({
         type: 'AFTER_LOGIN_PAGE',
         nextState,
       });
-      fnReplaceState('/accounts/signin');
+      store.dispatch(openPopup('login'));
+      // 2016. 05. 14. [heekyu] there is problem that history +1 on popup
+      //                        TODO better way
+      if (nextState.routes.length >= 2) {
+        const back = nextState.routes[nextState.routes.length - 2];
+        fnReplaceState(back);
+      } else {
+        fnReplaceState('/');
+      }
+      // fnReplaceState('/accounts/signin');
     };
     const onNotRole = () => fnReplaceState(null, '/');
     roleUtil.checkRoleOnEnter(nextState, fnReplaceState, getAuth(), onNotLogin, onNotRole);

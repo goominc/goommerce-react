@@ -112,9 +112,36 @@ $cart-popup-height: 400px;
 }
 
 .popup-close-button {
-  position: absolute;
-  top: 20px;
-  right: 15px;
-  font-size: 16px;
+  background-image: url($base-url + '/main/btn-x.png');
   cursor: pointer;
+  height: 13px;
+  position: absolute;
+  right: 15px;
+  top: 20px;
+  width: 13px;
+}
+
+.change-password-popup {
+  height: 300px;
+  padding: 10px 15px;
+  width: 300px;
+  .title {
+    color: #555;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: $margin-15;
+  }
+  .description {
+    color: #777;
+    font-size: 11px;
+  }
+  input {
+    border: 1px solid #ddd;
+    font-size: 12px;
+    height: 35px;
+    line-height: 35px;
+    margin-top: -1px;
+    padding: $margin-15;
+    width: 100%;
+  }
 }

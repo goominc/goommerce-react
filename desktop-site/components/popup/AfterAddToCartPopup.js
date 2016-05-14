@@ -19,7 +19,7 @@ export default React.createClass({
               <Link to="/cart" onClick={closePopup}><button>View Shopping Cart</button></Link>
               <button onClick={closePopup}>Continue Shopping</button>
             </div>
-            <div className="popup-close-button" onClick={this.props.closePopup}>X</div>
+            <div className="popup-close-button" onClick={this.props.closePopup}></div>
           </div>
         </div>
       </div>

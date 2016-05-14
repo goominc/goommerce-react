@@ -37,9 +37,6 @@ $sign-form-width: 450px;
     color: #08c;
     margin: 0 15px 5px 0;
   }
-  .remember-me {
-    margin: 10px 0;
-  }
   .btn-signin {
     @include button-default-styles();
     color: #fff;
@@ -57,16 +54,83 @@ $sign-form-width: 450px;
   width: 100%;
 }
 
-.signin-popup {
-  @include popup-body($sign-form-width, inherit);
-  @include signin-form-inner();
-  border: 1px solid #aaa;
-}
-
-.signin-remember-me {
+@mixin remember-me-box {
   color: #777;
   margin: 10px 0;
   span {
     margin-left: 10px;
   }
+}
+
+.signin-popup {
+  @include popup-body($sign-form-width, inherit);
+  border: 1px solid #aaa;
+  border-radius: 2px;
+  padding: 25px 15px;
+  .center {
+    text-align: center;
+  }
+  .desc-bold {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  .desc-normal {
+    color: #777;
+    font-size: 12px;
+    margin-bottom: 15px;
+  }
+  .form {
+    display: block;
+    width: 100%;
+  }
+  .form-left {
+    display: inline-block;
+    width: 290px;
+    input {
+      border: 1px solid #ddd;
+      border-radius: 1px;
+      height: 50px;
+      font-size: 14px;
+      padding: 0 10px;
+      width: 100%;
+      & + input {
+        margin-top: 10px;
+      }
+    }
+  }
+  .signin-button {
+    $height: 110px;
+    @include button-default-styles();
+    border-radius: 2px;
+    display: inline-block;
+    font-size: 20px;
+    height: $height;
+    line-height: $height;
+    margin-left: 10px;
+    text-align: center;
+    vertical-align: top;
+    width: 118px;
+  }
+  .remember-me {
+    @include remember-me-box();
+    margin-top: 15px;
+    position: relative;
+    width: 100%;
+    .signup-or-forgot {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+    .item {
+      padding: 0 15px;
+      & + .item {
+        border-left: 1px solid #aaa;
+      }
+    }
+  }
+}
+
+.signin-remember-me {
+  @include remember-me-box();
 }

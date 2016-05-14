@@ -96,15 +96,13 @@ const App = React.createClass({
     };
     const renderPopup = () => {
       if (popup.popupName === 'login') {
-        const handleLogin = (email, password) => {
-          login(email, password).then(
+        const handleLogin = (body) => {
+          login(body, this.context.router).then(
             () => this.props.closePopup()
           );
         };
         return (
-          <SigninPopup closePopup={this.props.closePopup} handleSubmit={handleLogin}
-            goForgotPassword={() => console.log('TODO')} // eslint-disable-line no-console
-          />
+          <SigninPopup closePopup={this.props.closePopup} handleSubmit={handleLogin} />
         );
       } else if (popup.popupName === 'addCart') {
         return (

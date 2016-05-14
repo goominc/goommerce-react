@@ -20,7 +20,7 @@ export default React.createClass({
             </Link>
             <button onClick={closePopup}>Continue Shopping</button>
           </div>
-          <div className="popup-close-button" onClick={closePopup}>X</div>
+          <div className="popup-close-button" onClick={closePopup}></div>
         </div>
       </div>
     );
