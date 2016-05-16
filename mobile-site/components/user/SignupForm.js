@@ -167,18 +167,20 @@ export default React.createClass({
             {renderField({ name: '이름', className: 'signup-input-firstName', key: 'data.firstName' })}
           </div>
           <div className="form-tel">
-            <div className="area-code" onClick={toggleNumberDropdown}>
-              <img src={areaCodes[activeAreaCodeIndex].img} /> {areaCodes[activeAreaCodeIndex].number}
-              <div className="arrow-down"></div>
-            </div>
-            <input
-              id="tel"
-              onChange={(e) => (
+            <div className="form-tel-line">
+              <div className="area-code" onClick={toggleNumberDropdown}>
+                <img src={areaCodes[activeAreaCodeIndex].img} /> {areaCodes[activeAreaCodeIndex].number}
+                <div className="arrow-down"></div>
+              </div>
+              <input
+                id="tel"
+                onChange={(e) => (
                 onlyNumberFieldOnChange ? onlyNumberFieldOnChange(e, 'data.tel', 15) : onChange(e, 'data.tel')
               )}
-              value={_.get(this.state, 'data.tel') || ''}
-              type="text" placeholder="전화번호('-' 제외)"
-            />
+                value={_.get(this.state, 'data.tel') || ''}
+                type="text" placeholder="전화번호('-' 제외)"
+              />
+            </div>
             <div className="dropdown-box">
               {areaCodes.map(renderAreaCodeDropdown)}
             </div>

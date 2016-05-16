@@ -124,9 +124,13 @@ $signin-border-radius: 5px;
     margin: 10px 0;
     padding: 6px 0;
     position: relative;
-    overflow: hidden;
     vertical-align: top;
-    white-space: nowrap;
+    .form-tel-line {
+      display: block;
+      overflow: hidden;
+      width: 100%;
+      white-space: nowrap;
+    }
     .area-code {
       img {
         vertical-align: middle;
