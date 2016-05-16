@@ -2,6 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
+import Decimal from 'decimal.js-light';
 
 import brandUtil from 'commons/utils/brandUtil';
 import numberUtil from 'commons/utils/numberUtil';
@@ -21,11 +22,13 @@ export default React.createClass({
     const formatPrice = (type) => {
       return numberUtil.formatPrice(order[`${type}${activeCurrency}`], activeCurrency, currencySign);
     };
+    const sum = (types) => {
+      let ret = new Decimal(0);
+      types.forEach((type) => (ret = ret.add(order[`${type}${activeCurrency}`] || 0)));
+      return ret.toNumber();
+    };
     const orderPrice = numberUtil.formatPrice(
-      +(order[`tax${activeCurrency}`] || 0) + +(order[`handlingFee${activeCurrency}`] || 0) + +(order[`shippingCost${activeCurrency}`] || 0),
-      activeCurrency,
-      currencySign,
-    );
+      sum(['tax', 'handlingFee', 'shippingCost']), activeCurrency, currencySign);
     const renderAdjustment = (adjustment) =>
     (
       <div key={adjustment.id}>
