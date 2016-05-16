@@ -78,7 +78,7 @@ export default React.createClass({
               id={field.key.split('.').slice(-1)[0]}
               onChange={(e) => (field.onChange ? field.onChange(e) : onChange(e, field.key))}
               type="text"
-              value={_.get(this.state, field.key)}
+              value={_.get(this.state, field.key) || ''}
               placeholder={field.placeholder}
             />
           </div>
