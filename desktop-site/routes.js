@@ -21,6 +21,7 @@ import {
   MyPage,
   UserTermsContainer,
   UserPoliciesContainer,
+  SellerJoinContainer,
   ServiceInfoContainer,
   ShopByBuildingContainer,
 } from 'containers';
@@ -82,6 +83,7 @@ export default function configure(store) { // eslint-disable-line
         <Route path="/mypage(/:menuName)" component={MyPage} onEnter={onEnter} />
         <Route path="/user/terms" component={UserTermsContainer} />
         <Route path="/user/policies" component={UserPoliciesContainer} />
+        <Route path="/shops/join" component={SellerJoinContainer} />
         <Route path="/service/info(/:section)" component={ServiceInfoContainer} />
         <Route path="/shops/buildings(/:buildingId)" component={ShopByBuildingContainer} />
       </Route>

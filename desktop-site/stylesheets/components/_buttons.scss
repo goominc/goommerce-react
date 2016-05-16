@@ -131,3 +131,30 @@
     width: 100%;
   }
 }
+
+.form-button-line {
+  $height: 48px;
+  margin-top: 30px;
+  text-align: center;
+  width: 100%;
+  @mixin button() {
+    border: 0;
+    border-radius: 5px;
+    color: #fff;
+    display: inline-block;
+    font-size: 16px;
+    height: $height;
+    line-height: $height;
+    margin: 0 $margin-15;
+    padding: 0;
+    width: 96px;
+  }
+  .button-back {
+    @include button();
+    background-color: #aaa;
+  }
+  .button-next {
+    @include button();
+    background-color: $default-active-text-color;
+  }
+}

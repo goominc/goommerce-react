@@ -174,7 +174,7 @@ export default React.createClass({
           <div className="sign_in_seller_05">상담 진행</div>
           <div className="sign_in_seller_06">입점 및<br />상품 등록</div>
           <div className="sign_in_seller_img02"></div>
-          <div className="sign_in_seller_button"><span className="sign_in_button_text2">입점 신청하기<p className="sign_in_button_text_small2_1">02-2272-1122</p><p className="sign_in_button_text_small2_2">이메일 : CS@linkshops.com</p><p className="sign_in_button_text_small2_3">카카오톡ID : Linkshops_brand</p></span></div>
+          <Link to="/shops/join"><div className="sign_in_buyer_button"><span className="sign_in_button_text">판매회원<p className="sign_in_button_text_small">입점신청</p><p className="sign_in_button_text_small">하러가기</p></span></div></Link>
           <div className="sign_in_seller_01_text"><span>- 오프라인 도매매장을</span><br />운영하는 도매사업자에<br />한해 신청이 가능합니다.<br /><strong style={({ fontSize: '12px' })}>(현재 동대문, 도매 사업자에 한해 가능)</strong></div>
           <div className="sign_in_seller_02_text"><span>- 유선 및 방문 상담을 통해</span><br />링크샵스 서비스 이용방법에<br />대하여 자세히 안내 드립니다.</div>
           <div className="sign_in_seller_03_text"><span>- 입점과 동시에 샘플 촬영 및</span><br />상품등록이 진행 됩니다.<br />이후 판매회원 전용 페이지가<br />개설 됩니다.</div>

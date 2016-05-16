@@ -1,0 +1,89 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to 'SellerJoin' page.
+// -----------------------------------------------------------------------------
+.seller-join-container {
+  background-color: #fff;
+  display: block;
+  margin: 0 auto;
+  padding-bottom: 180px;
+  width: 1000px;
+  .banner {
+    display: block;
+    margin: 0 auto;
+  }
+  .join-why {
+    display: block;
+    margin: 80px auto 0 auto;
+  }
+  .join-24 {
+    display: block;
+    margin: 40px auto 0 auto;
+  }
+  .join-process {
+    display: block;
+    margin: 40px auto 0 auto;
+  }
+  $indent: 77px;
+  .join-request-title {
+    height: 21px;
+    line-height: 21px;
+    margin-top: 80px;
+    margin-bottom: 30px;
+    margin-left: $indent;
+    strong {
+      font-size: 18px;
+      font-weight: bold;
+      margin-left: 10px;
+      vertical-align: top;
+    }
+    span {
+      border-left: 1px solid #333;
+      font-size: 14px;
+      margin-left: $margin-15;
+      padding-left: $margin-15;
+      vertical-align: top;
+    }
+  }
+  .form-line {
+    display: block;
+    vertical-align: bottom;
+    width: 100%;
+  }
+  .join-request-form {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    display: inline-block;
+    margin-left: $indent;
+    padding: 50px 40px 40px 50px;
+    width: 500px;
+    .input-line {
+      $height: 30px;
+      display: block;
+      height: $height;
+      line-height: $height;
+      margin: 10px 0;
+      width: 100%;
+      .label {
+        color: #444;
+        display: inline-block;
+        font-size: 14px;
+        font-weight: 500;
+        width: 90px;
+      }
+      input {
+        display: inline-block;
+        border: 1px solid #ddd;
+        height: 100%;
+        line-height: 100%;
+        padding: 0 10px;
+        vertical-align: top;
+        width: 300px;
+      }
+    }
+  }
+  .banner-inquiry {
+    display: inline-block;
+    margin-left: 50px;
+    vertical-align: bottom;
+  }
+}
