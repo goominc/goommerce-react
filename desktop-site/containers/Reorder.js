@@ -31,7 +31,6 @@ const Reorder = React.createClass({
     const createOrder = () => {
       ApiAction.createOrderFromCart()
         .then((order) => ApiAction.startOrderProcessing(order.id, 200))
-        .then((order) => ApiAction.finalizeOrder(order.id, 0))
         .then((order) => this.context.router.push(`/orders/${order.id}`));
     };
     return (
