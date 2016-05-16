@@ -40,7 +40,7 @@ const formatPrice = (price, currency, currencySign) => {
   if (currency === 'KRW') {
     return `${format(price)}원`;
   }
-  return `${currencySign[currency]} ${price}`;
+  return `${currencySign[currency]} ${price || 0}`;
 };
 
 exports.formatPrice = formatPrice;
