@@ -75,7 +75,7 @@ export default React.createClass({
             <input
               id="tel"
               onChange={(e) => (
-                onlyNumberFieldOnChange ? onlyNumberFieldOnChange(e, 'data.tel', 12) : onChange(e, 'data.tel')
+                onlyNumberFieldOnChange ? onlyNumberFieldOnChange(e, 'data.tel', 15) : onChange(e, 'data.tel')
               )}
               value={auth ? _.get(auth, 'data.tel') || '' : ''}
               type="text" placeholder="'-'를 제외한 숫자만 입력해 주세요"

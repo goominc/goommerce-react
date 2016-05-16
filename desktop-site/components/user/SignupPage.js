@@ -88,7 +88,7 @@ export default React.createClass({
         const fields1 = [
           { name: t('bizName'), placeholder: t('bizNamePlaceHolder'), key: 'data.bizName', isRequired: true },
           { name: t('bizNumber'), placeholder: t('bizNumberPlaceHolder'), key: 'data.bizNumber', isRequired: true,
-            onChange: (e) => onlyNumberFieldOnChange(e, 'data.bizNumber', 15) },
+            onChange: (e) => onlyNumberFieldOnChange(e, 'data.bizNumber', 16) },
         ];
         const fields2 = [
           { name: t('returnAccountNumber'), placeholder: '123-456-123456', key: 'data.returnAccountNumber' }, // eslint-disable-line

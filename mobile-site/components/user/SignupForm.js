@@ -63,7 +63,7 @@ export default React.createClass({
       const fields1 = [
         { name: t('bizName'), placeholder: t('bizNamePlaceHolder'), key: 'data.bizName', isRequired: true },
         { name: `${t('bizNumber')}('-' 제외)`, placeholder: t('bizNumberPlaceHolder'), key: 'data.bizNumber', isRequired: true,
-          onChange: (e) => onlyNumberFieldOnChange(e, 'data.bizNumber', 15) },
+          onChange: (e) => onlyNumberFieldOnChange(e, 'data.bizNumber', 16) },
       ];
       const fields2 = [
         { name: t('returnAccountNumber'), placeholder: '123-456-123456', key: 'data.returnAccountNumber' }, // eslint-disable-line
@@ -174,7 +174,7 @@ export default React.createClass({
             <input
               id="tel"
               onChange={(e) => (
-                onlyNumberFieldOnChange ? onlyNumberFieldOnChange(e, 'data.tel', 12) : onChange(e, 'data.tel')
+                onlyNumberFieldOnChange ? onlyNumberFieldOnChange(e, 'data.tel', 15) : onChange(e, 'data.tel')
               )}
               value={_.get(this.state, 'data.tel') || ''}
               type="text" placeholder="전화번호('-' 제외)"
