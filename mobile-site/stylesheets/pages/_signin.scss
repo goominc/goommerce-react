@@ -44,37 +44,7 @@ $signin-border-radius: 5px;
   top: 0;
   width: 60%;
 }
-.signup-biz-image-line {
-  $container-height: 100px;
-  display: block;
-  height: $container-height;
-  margin: 15px 0;
-  position: relative;
-  width: 100%;
-  img {
-    display: inline-block;
-    height: $container-height;
-    line-height: $container-height;
-    text-align: center;
-    width: $container-height;
-  }
-  input[type="button"] {
-    background-color: #999;
-    border: 0;
-    $height: 22px;
-    height: $height;
-    line-height: $height;
-    margin-top: -$height / 2;
-    min-width: 80px;
-    padding: 0;
-    position: absolute;
-    right: 0;
-    top: 50%;
-    width: 40%;
-  }
-}
-
-.signin-button {
+@mixin common-signin-button() {
   background-color: #f50;
   border: 0;
   border-radius: $signin-border-radius;
@@ -82,12 +52,31 @@ $signin-border-radius: 5px;
   cursor: pointer;
   display: block;
   font-size: 18px;
-  margin: 15px 0 30px 0;
-  padding: 15px 0;
   text-align: center;
   width: 100%;
   &:hover {
     background-color: #f20;
+  }
+}
+.signin-button {
+  @include common-signin-button();
+  margin: 15px 0 30px 0;
+  padding: 15px 0;
+}
+.signup-biz-image-line {
+  display: block;
+  position: relative;
+  width: 100%;
+  img {
+    width: 100%;
+  }
+  .biz-image-upload-button {
+    @include common-signin-button();
+    $height: 40px;
+    height: $height;
+    line-height: $height;
+    padding: 0;
+    position: relative;
   }
 }
 

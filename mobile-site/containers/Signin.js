@@ -33,7 +33,7 @@ const Signin = React.createClass({
           링크샵스는 사업자회원만이 이용할 수 있는<br />
           도매사이트입니다
         </div>
-        <div className="signin-desc-light">로그인 또는 회원가입 후 다양한 서비스를 이용하실 수 있습니다</div>
+        <div className="signin-desc-light">로그인 또는 회원가입 후 다양한 서비스를 이용하실 수 있습니다.</div>
         <input className="signin-input" type="email" placeholder="아이디(이메일)" ref="email" />
         <input className="signin-input" type="password" placeholder="비밀번호" ref="password" />
         <div className="signin-remember-me">

@@ -70,16 +70,28 @@ export default React.createClass({
         { name: t('returnAccountBank'), placeholder: t('returnAccountBankPlaceHolder'), key: 'data.returnAccountBank' }, // eslint-disable-line
         { name: t('returnAccountOwner'), placeholder: t('returnAccountOwnerPlaceHolder'), key: 'data.returnAccountOwner' }, // eslint-disable-line
       ];
-      const openBizImagePopup = () => {
+      const openBizImagePopup = (e) => {
+        e.preventDefault();
         $('#biz-image-button').click();
       };
-      const bizImageField = (
-        <div key="signup-biz-image" className="signup-biz-image-line">
-          <img src={this.state.bizImageUrl ? this.state.bizImageUrl : ''} alt="사업자 등록증" />
-          <input id="biz-image-button" type="file" accept="image/*" onChange={onSelectFile} style={({ display: 'none' })} />
-          <input type="button" value="사업자 등록증 선택" onClick={openBizImagePopup} />
-        </div>
-      );
+      let bizImageField;
+      if (this.state.bizImageUrl) {
+        bizImageField = (
+          <div key="signup-biz-image" className="signup-biz-image-line">
+            <input id="biz-image-button" type="file" accept="image/*" onChange={onSelectFile} style={({ display: 'none' })} />
+            <img src={this.state.bizImageUrl} onClick={openBizImagePopup} />
+          </div>
+        );
+      } else {
+        bizImageField = (
+          <div key="signup-biz-image" className="signup-biz-image-line">
+            <input id="biz-image-button" type="file" accept="image/*" onChange={onSelectFile} style={({ display: 'none' })} />
+            <button className="biz-image-upload-button" style={({ margin: 0 })} onClick={openBizImagePopup}>
+              사업자등록증 사진 업로드
+            </button>
+          </div>
+        );
+      }
       return fields1.map(renderField).concat([bizImageField]).concat(fields2.map(renderField));
     };
     const onSubmit = (e) => {
@@ -156,6 +168,14 @@ export default React.createClass({
         <Link to="/" className="signin-title">
           <img className="logo-img" src={`${constants.resourceRoot}/mobile/main/mobile_linkshops_logo.png`} />
         </Link>
+        <div className="signin-desc-bold">
+          링크샵스는 사업자회원만이 이용할 수 있는<br />
+          도매사이트입니다
+        </div>
+        <div className="signin-desc-light">
+          패션잡화 관련 소매업자에 한해 가입승인이 진행되며,<br />
+          취급품목 및 업태가 다른 경우 승인이 반려될 수 있습니다.
+        </div>
         <div className="signup-form-section">
           {renderField({ name: '아이디(이메일)', type: 'email', key: 'email' })}
           {renderField({ name: '비밀번호', type: 'password', key: 'password' })}
