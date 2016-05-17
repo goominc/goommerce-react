@@ -4,7 +4,7 @@
 
 .signin-title {
   display: block;
-  margin: 55px auto;
+  margin: 55px auto 40px auto;
   img {
     display: block;
     margin: 0 auto;
@@ -21,7 +21,7 @@ $signin-border-radius: 5px;
 }
 .signin-input {
   @include signin-common-input();
-  margin: 10px 0;
+  margin: 5px 0;
   width: 100%;
 }
 
@@ -89,12 +89,6 @@ $signin-border-radius: 5px;
   &:hover {
     background-color: #f20;
   }
-}
-.sigin-forgot {
-  color: #999;
-  display: block;
-  margin: 10px 15px 20px 15px;
-  text-decoration: underline;
 }
 
 .signin-bottom-signup-button {
@@ -298,14 +292,44 @@ $signup-color-gray: #999;
   }
 }
 
+.signin-desc-bold {
+  color: #000;
+  font-size: 12px;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+.signin-desc-light {
+  color: #999;
+  font-size: 11px;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+
 .signin-remember-me {
   color: #777;
   $height: 23px; // label size
   height: $height;
   line-height: $height;
-  margin-top: 5px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  position: relative;
+  width: 100%;
   span {
-    vertical-align: top;
+    font-size: 15px;
     margin-left: 10px;
+    vertical-align: top;
+  }
+  .signin-forgot {
+    color: #999;
+    display: block;
+    font-size: 14px;
+    height: $height;
+    line-height: $height;
+    position: absolute;
+    right: 0;
+    top: 0;
+    text-decoration: underline;
   }
 }
