@@ -56,6 +56,7 @@ const Category = React.createClass({
       categoryId: params.categoryId,
       offset: 0,
       limit: fetchSize,
+      sorts: '-id',
     }).then((res) => {
       this.setState({ products: res.products, currentCount: res.products.length, maxCount: res.pagination.total });
     });
