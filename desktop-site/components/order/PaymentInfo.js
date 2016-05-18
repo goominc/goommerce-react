@@ -19,8 +19,9 @@ export default React.createClass({
   render() {
     const { order } = this.props;
     const { activeCurrency, currencySign } = this.context;
+    const getPrice = (type) => order[`${type}${activeCurrency}`];
     const formatPrice = (type) => {
-      return numberUtil.formatPrice(order[`${type}${activeCurrency}`], activeCurrency, currencySign);
+      return numberUtil.formatPrice(getPrice(type), activeCurrency, currencySign);
     };
     const sum = (types) => {
       let ret = new Decimal(0);
@@ -42,6 +43,51 @@ export default React.createClass({
     const handlingFeePrice = formatPrice('handlingFee');
     const shippingCostPrice = formatPrice('shippingCost');
     const totalPrice = formatPrice('total');
+    const renderFinalPrice = () => {
+      if (order.finalTotalKRW) {
+        const totalGap = +getPrice('finalTotal') - +getPrice('total');
+        if (totalGap >= 0) {
+          return (
+            <div className="cell content-cell">
+              <div className="final-price-line">
+                <div className="left">최종금액</div>
+                <div className="right">{totalPrice}</div>
+              </div>
+            </div>
+          );
+        }
+        const priceGap = sum(['finalTax', 'finalHandlingFee', 'finalSubtotal'])
+          - sum(['tax', 'handlingFee', 'subtotal']);
+        const shippingCostGap = +getPrice('finalShippingCost') - +getPrice('shippingCost');
+        const formatGap = (gap) => (gap === 0 ? 0 : `-${numberUtil.formatPrice(-gap, activeCurrency, currencySign)}`);
+        return (
+          <div className="cell" style={({ paddingBottom: '40px' })}>
+            <div className="sub-title-line">
+              <div className="left">환불금액</div>
+              <div className="right">{formatGap(totalGap)}</div>
+            </div>
+            <div className="content-refund-cell">
+              <div className="left">-</div>
+              <div className="right">주문조정: {formatGap(priceGap)}</div>
+              <div className="left">-</div>
+              <div className="right">배송차액: {formatGap(shippingCostGap)}</div>
+            </div>
+            <div className="final-price-line">
+              <div className="left">최종금액</div>
+              <div className="right">{formatPrice('finalTotal')}</div>
+            </div>
+          </div>
+        );
+      }
+      return (
+        <div className="cell content-cell">
+          <div className="final-price-line">
+            <div className="left">예상최종금액</div>
+            <div className="right">{totalPrice}</div>
+          </div>
+        </div>
+      );
+    };
     return (
       <div className="payment-info-container">
         <div className="row">
@@ -59,7 +105,7 @@ export default React.createClass({
           </div>
           <div className="cell title-cell">
             <div className="title">결제금액</div>
-            <div className="price">{totalPrice}</div>
+            <div className="price">{order.paymentStatus === 200 ? 0 : totalPrice}</div>
           </div>
         </div>
         <div className="row">
@@ -78,10 +124,7 @@ export default React.createClass({
           <div className="cell content-cell">
             {_.get(order, 'adjustments', []).map(renderAdjustment)}
           </div>
-          <div className="cell content-cell">
-            <div className="left">=</div>
-            <div className="right">{totalPrice}</div>
-          </div>
+          {renderFinalPrice()}
         </div>
       </div>
     );

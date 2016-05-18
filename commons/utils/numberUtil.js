@@ -45,6 +45,12 @@ const formatPrice = (price, currency, currencySign) => {
 
 exports.formatPrice = formatPrice;
 
+exports.calcProductVariantTotalPrice = (variant, quantity, cur) => {
+  const pricePerUnit = +variant.productVariant[cur];
+  return pricePerUnit &&
+    new Decimal(pricePerUnit).mul(quantity || 0).toFixed(cur === 'KRW' ? 0 : 2);
+};
+
 const formatDate = (date, isDateOnly) => {
   if (!(date instanceof Date)) {
     date = new Date(date);

@@ -413,6 +413,7 @@ $active-progress-color: #f90;
     color: #555;
     font-weight: 500;
     font-size: 20px;
+    margin-bottom: 5px;
   }
   .simple-key-value-container {
     border: 1px solid #aaa;
@@ -472,6 +473,7 @@ $active-progress-color: #f90;
     .cell {
       border-top: 1px solid #aaa;
       display: table-cell;
+      position: relative;
       vertical-align: top;
       width: 25%;
       & + .cell {
@@ -500,21 +502,70 @@ $active-progress-color: #f90;
         width: 70%;
       }
     }
-    .content-cell {
-      background-color: #fff;
-      font-size: 12px;
-      padding: 10px $margin-15;
+    @mixin cell-left-right() {
       .left {
         display: inline-block;
         text-align: left;
         vertical-align: top;
         width: 15%;
+        white-space: nowrap;
       }
       .right {
         display: inline-block;
         text-align: right;
         vertical-align: top;
         width: 85%;
+        white-space: nowrap;
+      }
+    }
+    .content-cell {
+      background-color: #fff;
+      font-size: 12px;
+      padding: 10px $margin-15;
+      @include cell-left-right();
+    }
+    .sub-title-line {
+      background-color: #f2f2f2;
+      font-weight: bold;
+      padding: 5px $margin-15;
+      width: 100%;
+      @include cell-left-right();
+    }
+    .content-refund-cell {
+      background-color: #fff;
+      font-size: 12px;
+      padding: 10px $margin-15;
+      @include cell-left-right();
+      .right {
+        color: #aaa;
+      }
+    }
+    .final-price-line {
+      background-color: #e4e4e4;
+      bottom: 0;
+      height: 40px;
+      line-height: 40px;
+      left: 0;
+      padding: 0 $margin-15;
+      position: absolute;
+      width: 100%;
+      .left {
+        display: inline-block;
+        font-size: 14px;
+        letter-spacing: -1px;
+        text-align: left;
+        vertical-align: top;
+        width: 30%;
+        white-space: nowrap;
+      }
+      .right {
+        color: #cc2b19;
+        display: inline-block;
+        font-size: 20px;
+        text-align: right;
+        vertical-align: top;
+        width: 70%;
+        white-space: nowrap;
       }
     }
   }

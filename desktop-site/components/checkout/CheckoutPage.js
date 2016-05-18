@@ -43,20 +43,6 @@ export default React.createClass({
       }
     }
   },
-  renderDone() {
-    const { order } = this.props;
-
-    // const variants = order.orderProducts.map((p) => Object.assign({}, p.productVariant, { count: p.quantity }));
-    const brands = orderUtil.collectByBrands(order.orderProducts);
-    return (
-      <div>
-        {brands.map((brand) => (<SellerBox key={brand.brand.id} {...this.props} brand={brand} />))}
-        <div>Total: KRW {order.totalKRW}</div>
-        <div>Status: {i18n.get(`enum.order.status.${order.status}`)}</div>
-        {this.renderVBank()}
-      </div>
-    );
-  },
   render() {
     const { order } = this.props;
     const { activeAddressId, addresses, isEditMode,

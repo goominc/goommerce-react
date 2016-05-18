@@ -3,7 +3,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-import CartProduct from 'components/CartProduct';
+import OrderProduct from 'components/order/OrderProduct';
 import orderUtil from 'commons/utils/orderUtil';
 import numberUtil from 'commons/utils/numberUtil';
 
@@ -40,11 +40,13 @@ export default React.createClass({
         </div>
         {order.paymentStatus === 200 && <div className="title">입금 정보</div>}
         <VBankInfo order={order} />
+        <div className="title">주문 내역</div>
+        <OrderProduct brands={brands} {...this.props} />
+        <div style={({ height: '30px' })}></div>
         <div className="title">결제 정보</div>
         <PaymentInfo order={order} />
         <div className="title">배송 정보</div>
         <AddressInfo order={order} />
-        <CartProduct brands={brands} />
         <Link to="/mypage/my_orders"><div className="go-order-list-button">목록으로</div></Link>
       </div>
     );

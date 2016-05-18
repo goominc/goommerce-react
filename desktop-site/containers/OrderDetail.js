@@ -17,13 +17,16 @@ const OrderDetail = React.createClass({
     const { orderId } = this.props;
     this.props.loadOrder(orderId);
   },
+  contextTypes: {
+    ApiAction: PropTypes.object,
+  },
   render() {
     const { order } = this.props;
     if (!order) {
       return (<div></div>);
     }
     return (
-      <OrderDetailPage {...this.props} />
+      <OrderDetailPage {...this.props} addCart={this.context.ApiAction.addCartProduct} />
     );
   },
 });

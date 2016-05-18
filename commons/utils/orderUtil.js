@@ -30,9 +30,7 @@ exports.collectByBrands = (orderProductVariants) => {
       idx = brandProducts.length;
       brandProducts.push(_.assign({}, { product: orderProductVariant.product }, { productVariants: [] }));
     }
-    brandProducts[idx].productVariants.push(
-      { productVariant: orderProductVariant.productVariant, count: orderProductVariant.quantity }
-    );
+    brandProducts[idx].productVariants.push(orderProductVariant);
   });
   return res;
 };

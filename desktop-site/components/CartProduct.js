@@ -3,7 +3,6 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import _ from 'lodash';
-import Decimal from 'decimal.js-light';
 
 import brandUtil from 'commons/utils/brandUtil';
 import numberUtil from 'commons/utils/numberUtil';
@@ -29,6 +28,10 @@ export default React.createClass({
 
     const renderBrand = (brand) => {
       const renderVariant = (product, variant, index) => {
+        // 2016. 05. 18. [heekyu] backward compatitablity
+        if (variant.count && !variant.quantity) {
+          variant.quantity = variant.count;
+        }
         const pricePerUnit = +variant.productVariant[activeCurrency];
         const changeQuantity = (quantity) => {
           // 2016. 04. 23. [heekyu] empty quantity must be display in client side
@@ -45,19 +48,19 @@ export default React.createClass({
               <div className="quantity">
                 <div className="input-number-count-box-center">
                   <input className="input-number-nospin" min="1" type="number"
-                    value={variant.count}
+                    value={variant.quantity}
                     onChange={(e) => changeQuantity(e.target.value)}
                   />
                 <span>
-                  <div className="up" onClick={() => changeQuantity(+variant.count + 1)}></div>
-                  <div className="down" onClick={() => changeQuantity(+variant.count - 1)}></div>
+                  <div className="up" onClick={() => changeQuantity(+variant.quantity + 1)}></div>
+                  <div className="down" onClick={() => changeQuantity(+variant.quantity - 1)}></div>
                 </span>
                 </div>
               </div>
             );
           }
           return (
-            <div className="quantity">{variant.count}</div>
+            <div className="quantity">{variant.quantity}</div>
           );
         };
         const renderDeleteButton = () => {
@@ -72,11 +75,10 @@ export default React.createClass({
           }
           return null;
         };
-        const total = pricePerUnit &&
-          new Decimal(pricePerUnit).mul(variant.count || 0).toFixed(activeCurrency === 'KRW' ? 0 : 2);
+        const total = numberUtil.calcProductVariantTotalPrice(variant, variant.quantity, activeCurrency);
         return (
           <div key={variant.productVariant.id} className={index === 0 ? 'product-row' : 'variant-row'}>
-            <div className="product-info-content">
+            <div className="product-info-content cart-product-info-len">
               <Link to={`/products/${product.id}`} className="img-box">
                 <ResponsiveImage image={_.get(variant.productVariant, 'appImages.default[0]')} width={120} />
               </Link>
@@ -108,7 +110,7 @@ export default React.createClass({
       <div className="cart-info-container">
         <div className="title-row">
           <div className="brand">브랜드</div>
-          <div className="product-info-title">상품내용</div>
+          <div className="product-info-title cart-product-info-len">상품내용</div>
           <div className="quantity">단가</div>
           <div className="quantity">수량</div>
           <div className="price">가격</div>

@@ -106,6 +106,17 @@
     display: inline-block;
     position: relative;
     text-align: center;
+    .cancel-text {
+      color: #aaa;
+      pointer-events: none;
+      position: absolute;
+      top: -15px; // TODO change magic number
+      text-decoration: line-through;
+    }
+    .content {
+      display: block;
+      position: relative;
+    }
   }
   .title-row {
     border-top: 1px solid #aaa;
@@ -144,6 +155,12 @@
         vertical-align: middle;
       }
     }
+  }
+  .cart-product-info-len {
+    width: 300px !important;
+  }
+  .order-product-info-len {
+    width: 260px !important;
   }
   .product-info-title {
     @include cell();
@@ -209,6 +226,44 @@
     margin-left: $margin-15;
     vertical-align: top;
     width: 13px;
+  }
+  .status-column {
+    border-left: 1px solid #ddd;
+    display: inline-block;
+    height: 100%;
+    text-align: center;
+    position: relative;
+    vertical-align: top;
+    width: 98px;
+  }
+  .status-column-inner {
+    display: table;
+    position: absolute;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    .content {
+      display: table-cell;
+      line-height: 20px;
+      text-align: center;
+      vertical-align: middle;
+    }
+  }
+  .go-cart {
+    border-radius: 10px;
+    border: 1px solid #aaa;
+    cursor: pointer;
+    display: inline;
+    font-size: 12px;
+    padding: 0 10px;
+    &:hover {
+      background-color: #ddd;
+    }
+  }
+  .no-product {
+    color: #c94e4e;
+    margin-bottom: 5px;
   }
 }
 @mixin cart-info-snippet {
