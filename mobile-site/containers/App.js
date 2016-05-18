@@ -45,12 +45,14 @@ const App = React.createClass({
   childContextTypes: {
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
+    currencySign: PropTypes.object,
     ApiAction: PropTypes.object,
   },
   getChildContext() {
     const res = {
       activeLocale: this.props.activeLocale,
       activeCurrency: this.props.activeCurrency,
+      currencySign: { KRW: '￦', USD: '$', CNY: '￥' }, // TODO remove
     };
     const actions = {};
     const apiFuncs = Object.keys(ApiAction);

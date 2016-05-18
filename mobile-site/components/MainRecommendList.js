@@ -19,32 +19,24 @@ export default React.createClass({
       const img = getProductMainImage(product);
       if (img) {
         return (
-            <li key={product.id}>
-              <Link className="product-image" to={`/products/${product.id}`}>
-                <div className="inner-wrap">
-                  <img src={getProductMainImage(product).url} />
-                </div>
-                { /*<div className="product-cost">
-                  <strong>{getProductMainPrice(product, activeCurrency)} {activeCurrency}</strong>
-                </div>
-                 <div className="product-cost">1000 Orders</div> */ }
-              </Link>
-            </li>
-          );
-      }
-      return (
           <li key={product.id}>
-            <Link to={`/products/${product.id}`}>
-              <div className="product-image">
-                <img />
+            <Link className="mobile-product-image" to={`/products/${product.id}`}>
+              <div className="inner-wrap">
+                <img src={getProductMainImage(product).url} />
               </div>
-              { /*<div className="product-cost">
-                <strong>{getProductMainPrice(product, activeCurrency)} {activeCurrency}</strong>
-              </div>
-               <div className="product-cost">1000 Orders</div> */ }
             </Link>
           </li>
         );
+      }
+      return (
+        <li key={product.id}>
+          <Link to={`/products/${product.id}`}>
+            <div className="mobile-product-image">
+              <img />
+            </div>
+          </Link>
+        </li>
+      );
     });
 
     return (
@@ -54,7 +46,7 @@ export default React.createClass({
           {/*<Link to="/categories/4">동대문 핫신상</Link>*/}
         </header>
         <article>
-          <ul className="clearfix product-container">
+          <ul className="clearfix mobile-product-container">
             {prodDiv}
           </ul>
         </article>

@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { getProductMainImage, getProductMainPrice } from 'commons/utils/productUtil';
 import brandUtil from 'commons/utils/brandUtil';
+import numberUtil from 'commons/utils/numberUtil';
 
 export default React.createClass({
   propTypes: {
@@ -12,6 +13,7 @@ export default React.createClass({
   contextTypes: {
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
+    currencySign: PropTypes.object,
   },
   handleFavorite() {
     const { brand } = this.props;
@@ -19,7 +21,7 @@ export default React.createClass({
   },
   render() {
     const { brand, products } = this.props;
-    const { activeCurrency } = this.context;
+    const { activeCurrency, currencySign } = this.context;
 
     const prodDivs = products.map((prod) => {
       const image = getProductMainImage(prod.topHit || prod);
@@ -28,20 +30,17 @@ export default React.createClass({
           return (<img />);
         }
         return (<img src={image.url} />);
-
-        /* if (!image.publicId) {
-          return (<img src={image.url} />);
-        }
-        return (
-          <CloudinaryImage publicId={image.publicId}
-            version={image.version}
-            options={ { width: 220, height: 330 } }
-          />
-        ); */
       };
 
       return (
-          <li className="ms-gallery-item" key={prod.id}>
+          <li key={prod.id}>
+            <Link className="mobile-product-image" to={`/products/${prod.id}`}>
+              <div className="inner-wrap">
+                <img src={getProductMainImage(prod).url} />
+              </div>
+            </Link>
+            <div className="price-center">{numberUtil.formatPrice(prod[activeCurrency], activeCurrency, currencySign)}</div>
+            {/*
             <div className="ms-gallery-inner">
               <Link to={`/products/${prod.id}`}>
                 <div className="ms-gallery-pic">
@@ -49,12 +48,12 @@ export default React.createClass({
                 </div>
                 <div className="ms-gallery-info">
                   <span className="ms-gallery-price">{activeCurrency} {getProductMainPrice(prod, activeCurrency)}</span>
-                  { /* <span className="ms-gallery-discount">-31%</span> */ }
                 </div>
               </Link>
             </div>
             <div className="ms-space">
             </div>
+             */}
           </li>
         );
     });
@@ -65,39 +64,10 @@ export default React.createClass({
           <div>
             <div className="ms-store-header-wrap">
               <p className="ms-store-name">{brandUtil.getName(brand)}</p>
-              { /*
-              <p className="ms-store-rank">
-                <img src="http:///i01.i.aliimg.com/wimg/feedback/icon/21-s.gif" />
-              </p>
-              <p className="ms-store-feedback">
-                95.6% <span className="ms-store-feedback-text">Positive feedback</span>
-              </p> */ }
             </div>
           </div>
 
         </section>
-        { /* <section className="ms-store-stats ms-store-flex">
-          <div className="ms-store-stats-item ms-store-flex-item">
-            <a href="http://m.aliexpress.com/search.htm?sellerAdminSeq=224815799&amp;sortType=TC3_D">
-              <p className="ms-store-stats-item-number">417</p>
-              <p className="ms-store-stats-item-name">Items</p>
-            </a>
-          </div>
-          <div className="ms-store-stats-item-separation">
-          </div>
-          <div className="ms-store-stats-item ms-store-flex-item">
-            <a href="http://m.aliexpress.com/store/sellerInfo.htm?sellerAdminSeq=224815799" title="Feedback">
-              <p className="ms-store-stats-item-number">636</p>
-              <p className="ms-store-stats-item-name">Feedbacks</p>
-            </a>
-          </div>
-          <div className="ms-store-stats-item-separation">
-          </div>
-          <div className="ms-store-stats-item ms-store-flex-item">
-            <p className="ms-store-stats-item-number">65</p>
-            <p className="ms-store-stats-item-name">Wish List</p>
-          </div>
-        </section> */ }
 
         <section className="ms-store-operation ms-store-flex">
           <div className="ms-store-operation-item" style={{ visibility: 'hidden'}}>
@@ -212,7 +182,7 @@ export default React.createClass({
             </div>
           </header>
           <div className="content ms-store-gallery">
-            <ul className="ms-gallery">
+            <ul className="clearfix mobile-product-container">
               {prodDivs}
             </ul>
           </div>

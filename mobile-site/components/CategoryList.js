@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { getProductMainImage, getProductMainPrice } from 'commons/utils/productUtil';
-import productUtil from 'commons/utils/productUtil';
+import numberUtil from 'commons/utils/numberUtil';
 
 export default React.createClass({
   propTypes: {
@@ -12,11 +12,12 @@ export default React.createClass({
   contextTypes: {
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
+    currencySign: PropTypes.object,
   },
 
   render() {
     const { currentCategory } = this.props;
-    const { activeLocale } = this.context;
+    const { activeLocale, activeCurrency, currencySign } = this.context;
     const renderCategory = () => {
       if (currentCategory && currentCategory.children) {
         return currentCategory.children.map((cat) => {
@@ -40,7 +41,6 @@ export default React.createClass({
 
     const renderProducts = () => {
       const { products } = this.props;
-      const { activeCurrency } = this.context;
       if (!products || !products.length) {
         return null;
       }
@@ -64,7 +64,14 @@ export default React.createClass({
           ); */
         };
         return (
-          <li className="ms-gallery-item" key={product.id}>
+          <li key={product.id}>
+            <Link className="mobile-product-image" to={`/products/${product.id}`}>
+              <div className="inner-wrap">
+                <img src={getProductMainImage(product).url} />
+              </div>
+            </Link>
+            <div className="price-center">{numberUtil.formatPrice(product[activeCurrency], activeCurrency, currencySign)}</div>
+            {/*
             <div className="ms-gallery-inner">
               <Link to={`/products/${product.id}`}>
                 <div className="ms-gallery-pic">
@@ -77,6 +84,7 @@ export default React.createClass({
                 </div>
               </Link>
             </div>
+             */}
           </li>
           );
       });
@@ -89,7 +97,7 @@ export default React.createClass({
         </ul>
         <section className="products-wrap">
           <div className="recommend-wrap" id="recommend-wrap">
-            <ul className="ms-gallery" id="recommend-list">
+            <ul className="clearfix mobile-product-container" id="recommend-list">
               {renderProducts()}
             </ul>
             <div className="loading"></div>

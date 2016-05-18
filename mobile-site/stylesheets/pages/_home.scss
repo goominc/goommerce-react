@@ -233,21 +233,21 @@
   overflow: hidden;
   margin-bottom: 4px;
 }
-.today-deals .product-container {
+.mobile-product-container {
   margin-left: -1px;
   padding: 4px;
   width: 100%;
 }
-.today-deals .product-container li {
+.mobile-product-container li {
   float: left;
   padding: 4px;
   position: relative;
   width: 50%;
 }
-.today-deals .product-container li a {
+.mobile-product-container li a {
   display: block;
 }
-.promotion-block .product-image {
+.mobile-product-image {
   @include default-responsive-img-wrap();
   width: 100%;
 }
