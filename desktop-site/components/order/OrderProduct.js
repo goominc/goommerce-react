@@ -77,26 +77,22 @@ export default React.createClass({
                 <div key="order-product-go-cart" className="go-cart" onClick={onAddCart}>장바구니</div>
               );
             };
-            if (variant.finalQuantity === variant.quantity) {
-              content = (renderGoCart());
+            const stockReasonText = {
+              10: '재입고 예정',
+              30: '품절',
+            };
+            const reasonValue = _.get(variant, 'data.stock.reason');
+            let reason = '사유없음';
+            if (stockReasonText[reasonValue]) {
+              reason = stockReasonText[reasonValue];
+            }
+            content = [(renderGoCart())];
+            if (variant.finalQuantity === 0) {
+              content.unshift(<div key="order-product-no-product-reason" className="no-product">{reason}</div>);
+            } else if (variant.finalQuantity !== variant.quantity) {
+              content.unshift(<div key="order-product-no-product" className="no-product">부분취소<br />{`(${reason})`}</div>);
             } else {
-              const stockReasonText = {
-                10: '재입고 예정',
-                30: '품절',
-              };
-              const reasonValue = _.get(variant, 'data.stock.reason');
-              let reason = '사유없음';
-              if (stockReasonText[reasonValue]) {
-                reason = stockReasonText[reasonValue];
-              }
-              content = [(renderGoCart())];
-              if (variant.finalQuantity === 0) {
-                content.unshift(<div key="order-product-no-product-reason" className="no-product">{reason}</div>);
-              } else if (variant.finalQuantity !== variant.quantity) {
-                content.unshift(<div key="order-product-no-product" className="no-product">부분취소<br />{`(${reason})`}</div>);
-              } else {
-                content.unshift(<div key="order-product-ok" className="order-product-ok">출고완료</div>);
-              }
+              content.unshift(<div key="order-product-ok" className="order-product-ok">출고완료</div>);
             }
           }
           return (
