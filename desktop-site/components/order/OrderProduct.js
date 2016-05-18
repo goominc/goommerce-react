@@ -58,7 +58,7 @@ export default React.createClass({
           let content;
           if (+order.paymentStatus === 200) { // VBank pending
             content = <span style={({ color: '#c94e4e' })}>결제대기</span>;
-          } else if (!variant.finalQuantity) {
+          } else if (variant.finalQuantity !== 0 && !variant.finalQuantity) {
             return (
               <div className="status-column">
                 <div className="status-column-inner">
