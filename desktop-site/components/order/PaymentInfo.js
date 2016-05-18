@@ -46,7 +46,7 @@ export default React.createClass({
     const renderFinalPrice = () => {
       if (order.finalTotalKRW) {
         const totalGap = +getPrice('finalTotal') - +getPrice('total');
-        if (totalGap >= 0) {
+        if (totalGap === 0) {
           return (
             <div className="cell content-cell">
               <div className="final-price-line">
@@ -82,7 +82,7 @@ export default React.createClass({
       return (
         <div className="cell content-cell">
           <div className="final-price-line">
-            <div className="left">예상최종금액</div>
+            <div className="left">결제금액</div>
             <div className="right">{totalPrice}</div>
           </div>
         </div>

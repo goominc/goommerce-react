@@ -94,6 +94,8 @@ export default React.createClass({
                 content.unshift(<div key="order-product-no-product-reason" className="no-product">{reason}</div>);
               } else if (variant.finalQuantity !== variant.quantity) {
                 content.unshift(<div key="order-product-no-product" className="no-product">부분취소<br />{`(${reason})`}</div>);
+              } else {
+                content.unshift(<div key="order-product-ok" className="order-product-ok">출고완료</div>);
               }
             }
           }
