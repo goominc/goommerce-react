@@ -27,7 +27,7 @@ export default React.createClass({
       const renderVariant = (product, variant, index) => {
         const pricePerUnit = +variant.productVariant[activeCurrency];
         const renderQuantity = () => {
-          if (!variant.finalQuantity || variant.quantity === variant.finalQuantity) {
+          if (isNaN(variant.finalQuantity) || variant.quantity === variant.finalQuantity) {
             return (<div className="quantity">{variant.quantity}</div>);
           }
           return (
@@ -41,7 +41,7 @@ export default React.createClass({
         };
         const renderTotal = () => {
           const total = numberUtil.formatPrice(numberUtil.calcProductVariantTotalPrice(variant, variant.quantity, activeCurrency), activeCurrency, currencySign);
-          if (!variant.finalQuantity || variant.quantity === variant.finalQuantity) {
+          if (isNaN(variant.finalQuantity) || variant.quantity === variant.finalQuantity) {
             return (<div className="price">{total}</div>);
           }
           const finalTotal = numberUtil.formatPrice(numberUtil.calcProductVariantTotalPrice(variant, variant.finalQuantity, activeCurrency), activeCurrency, currencySign);
@@ -58,7 +58,7 @@ export default React.createClass({
           let content;
           if (+order.paymentStatus === 200) { // VBank pending
             content = <span style={({ color: '#c94e4e' })}>결제대기</span>;
-          } else if (variant.finalQuantity !== 0 && !variant.finalQuantity) {
+          } else if (isNaN(variant.finalQuantity)) {
             return (
               <div className="status-column">
                 <div className="status-column-inner">
