@@ -22,7 +22,7 @@ $product-detail-thumbnail-margin: 15px;
     span {
       @include default-responsive-img-wrap();
       .inner-wrap img {
-        border-radius: 3px;
+        border-radius: 1px;
       }
       border: 2px solid #ccc;
       // 2016. 04. 20. [heekyu] copy amazon's color
