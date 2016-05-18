@@ -83,7 +83,7 @@ export default React.createClass({
               <button type="submit" className="button-next">상담신청</button>
             </div>
           </form>
-          <img className="banner-inquiry" src={`${constants.resourceRoot}/banner/seller-join-inquiry.jpg`} />
+          <img className="banner-inquiry" src={`${constants.resourceRoot}/banner/seller-join-inquiry_20160518.jpg`} />
         </div>
       </div>
     );
