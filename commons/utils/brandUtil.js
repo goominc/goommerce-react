@@ -22,7 +22,7 @@ exports.getName = (brand) => {
 
   const data = brand && brand.data;
 
-  const buildingName = data.building && data.building.name;
+  const buildingName = _.get(data, 'location.building.name.ko');
   if (buildingName) {
     return `[${buildingName}] ${name}`;
   }
@@ -35,5 +35,5 @@ exports.getNameWithAllBuildingInfo = (brand) => {
   if (!name) {
     return '';
   }
-  return `${name} (${_.get(brand, 'data.building.name')} ${_.get(brand, 'data.building.floor')} ${_.get(brand, 'data.building.flatNumber')}호)`; // eslint-disable-line
+  return `${name} (${_.get(brand, 'data.location.building.name.ko')} ${_.get(brand, 'data.location.floor')} ${_.get(brand, 'data.location.flatNumber')}호)`; // eslint-disable-line
 };
