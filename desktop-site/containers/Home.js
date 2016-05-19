@@ -3,6 +3,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import _ from 'lodash';
 
 import ProductListItems from 'components/product/ProductListItems';
 
@@ -15,8 +16,9 @@ const Home = React.createClass({
   propTypes: {
     activeLocale: PropTypes.string,
     categories: PropTypes.object.isRequired,
-    main_categories: PropTypes.array,
     hotProducts: PropTypes.array,
+    desktop_main_banner: PropTypes.object,
+    desktop_right_bannerrightBanner: PropTypes.object,
   },
   contextTypes: {
     ApiAction: PropTypes.object,
@@ -26,14 +28,24 @@ const Home = React.createClass({
     return {};
   },
   componentDidMount() {
+    this.context.ApiAction.loadCMSData('desktop_main_banner');
+    this.context.ApiAction.loadCMSData('desktop_right_banner');
+    // this.context.ApiAction.loadCMSData('desktop_right_banner');
     /*
     $('.main-banner').owlCarousel({ autoPlay: 10000, items: 1 });
     $('.center-slide').owlCarousel({ autoPlay: 10000, items: 1 });
     */
     this.context.ApiAction.loadHotProducts();
   },
+  componentWillUpdate() {
+    console.log('1');
+  },
   render() {
     const { activeLocale, hotProducts } = this.props;
+    const { desktop_main_banner = { en: {}, ko: {}, 'zh-cn': {}, 'zh-tw': {} } } = this.props; //eslint-disable-line
+    const { desktop_right_banner = { en: {}, ko: {}, 'zh-cn': {}, 'zh-tw': {} } } = this.props; //eslint-disable-line
+    const currentMainBanner = desktop_main_banner[activeLocale];
+    const currentRightBanner = desktop_right_banner[activeLocale];
     const categories = JSON.parse(JSON.stringify(this.props.categories));
     const renderCategories = () => {
       if (!categories || Object.keys(categories).length < 1) {
@@ -103,13 +115,22 @@ const Home = React.createClass({
         product.mainImage = getProductMainImage(product);
       }
     });
+    const renderBanner = (row) => {
+      if (!row) {
+        return null;
+      }
+      if (row.link) {
+        return <Link key={row.image.url} to={row.link}><img src={row.image.url} /></Link>;
+      }
+      return <img key={row.image.url} src={row.image.url} />;
+    };
     return (
       <div className="main-wide-container">
         <div className="container no-horizontal-padding">
           <div className="main-banner-wrap">
             {renderCategories()}
             <div className="main-banner">
-              <img src={`${constants.resourceRoot}/banner/main_20160426.jpg`} />
+              {(currentMainBanner.rows || []).map(renderBanner)}
             </div>
             {/*
             <div className="home-stylepick-banner">
@@ -118,9 +139,7 @@ const Home = React.createClass({
               <span>SOON</span>
             </div>
              */}
-            <Link to="/service/info/service_info" className="right-banner">
-              <img src={`${constants.resourceRoot}/banner/main_right_20160426.png`} />
-            </Link>
+            {renderBanner(_.get(currentRightBanner, 'rows[0]'))}
           </div>
         </div>
         <div className="home-center-wrap">
@@ -237,6 +256,7 @@ const Home = React.createClass({
 export default connect((state) => ({
   categories: state.categories,
   activeLocale: state.i18n.activeLocale,
-  main_categories: state.cms.main_categories,
+  desktop_main_banner: state.cms.desktop_main_banner,
+  desktop_right_banner: state.cms.desktop_right_banner,
   ...loadEntities(state, 'hotProducts', 'hotProducts'),
 }))(Home);
