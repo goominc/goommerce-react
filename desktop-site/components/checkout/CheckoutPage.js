@@ -46,7 +46,7 @@ export default React.createClass({
   render() {
     const { order } = this.props;
     const { activeAddressId, addresses, isEditMode,
-      checkoutNewAddress, setActiveAddressId } = this.props;
+      checkoutNewAddress, setActiveAddressId, saveOrderAddress } = this.props;
     const { activeCurrency, currencySign } = this.context;
     if (!order) {
       return (
@@ -60,12 +60,16 @@ export default React.createClass({
           <AddressEditForm {...this.props} />
         );
       }
+      const onSetActiveAddress = (address) => {
+        setActiveAddressId(address.id);
+        saveOrderAddress(order.id, address);
+      };
       const renderAddress = (address) => (
         <AddressView key={`address-view-${address.id}`}
           {...this.props}
           address={address}
           isActive={activeAddressId === address.id}
-          onClickMe={(address2) => setActiveAddressId(address2.id)}
+          onClickMe={onSetActiveAddress}
         />
       );
       const addressIds = Object.keys(addresses);

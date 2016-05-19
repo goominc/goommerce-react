@@ -30,9 +30,13 @@ const Cart = React.createClass({
       if (!(productVariants instanceof Array)) {
         productVariants = [productVariants];
       }
+      $('.cart-button-order').prop('disabled', true);
       createOrder({
         productVariants: productVariants.map((variant) => ({ id: variant.productVariant.id, count: variant.count })),
-      }).then((order) => router.push(`/orders/${order.id}/checkout`));
+      }).then((order) => router.push(`/orders/${order.id}/checkout`), () => {
+        window.alert('Faield to Create Order in Cart');
+        $('.cart-button-order').prop('disabled', false);
+      });
     }
     return (
       <CartPage cart={cart}

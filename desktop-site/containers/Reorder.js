@@ -29,8 +29,13 @@ const Reorder = React.createClass({
     const orders = this.props.orders || [];
     const yesterdayOrderInfo = orderUtil.getInfoFromOrdersNotInCart(orders, this.props.cart);
     const createOrder = () => {
+      $('#reorder-do-order').prop('disabled', true);
       ApiAction.createOrderFromCart()
-        .then((order) => ApiAction.startOrderProcessing(order.id, 200))
+        .then((order) => ApiAction.startOrderProcessing(order.id, 200),
+          () => {
+            window.alert('Failed to Create ReOrder');
+            $('#reorder-do-order').prop('disabled', false);
+          })
         .then((order) => this.context.router.push(`/orders/${order.id}`));
     };
     return (

@@ -110,8 +110,12 @@ const ProductDetail = React.createClass({
     ];
     const wrapBuyNow = (variantId, quantity) => {
       wrapLogin(() => {
+        $('.product-buy-now-button').prop('disabled', true);
         createOrder({ productVariants: [{ id: variantId, count: quantity }] }).then((order) => {
           this.context.router.push(`/orders/${order.id}/checkout`);
+        }, () => {
+          window.alert('Failed to Create Order');
+          $('.product-buy-now-button').prop('disabled', false);
         });
       });
     };

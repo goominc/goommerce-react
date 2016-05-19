@@ -358,11 +358,18 @@ export function saveAddress(address) {
 export function saveOrderAddress(orderId, address) {
   return (dispatch, getState) => {
     const state = getState();
-    simpleNotify(state.auth, 'PUT', `/api/v1/orders/${orderId}/address`, address);
-    dispatch({
-      type: 'UPDATE_ORDER_ADDRESS',
-      orderId,
-      address,
+    // 2016. 05. 19. [heekyu] (Case 275) Update Order Address After server updates
+    ajaxReturnPromise(state.auth, 'PUT', `/api/v1/orders/${orderId}/address`, address).then(() => {
+      dispatch({
+        type: 'UPDATE_ORDER_ADDRESS',
+        orderId,
+        address,
+      });
+    }, () => {
+      dispatch({
+        type: 'UPDATE_ORDER_ADDRESS',
+        error: { message: 'Failed to Save Order Address' },
+      });
     });
   };
 }
