@@ -33,6 +33,8 @@ export default React.createClass({
     currencySign: PropTypes.object,
   },
   componentDidMount() {
+    // 2016. 05. 19. [heekyu] do not show previous visited product thumbnails
+    $('.img-variant-color').attr('src', '');
     // 2016. 04. 14. [heekyu] timing issue
     setTimeout(() => this.adjustScroll(this.props), 100);
   },
@@ -386,9 +388,9 @@ export default React.createClass({
                 <div className="count-box">
                   <input className="input-number-nospin" min="1" defaultValue="1" ref="quantity" type="number" />
                   <span>
-                <div className="up" onClick={() => $('.input-number-nospin').val(+this.refs.quantity.value + 1)}></div>
-                <div className="down" onClick={() => $('.input-number-nospin').val(Math.max(+this.refs.quantity.value - 1, 1))}></div>
-              </span>
+                    <div className="up" onClick={() => $('.input-number-nospin').val(+this.refs.quantity.value + 1)}></div>
+                    <div className="down" onClick={() => $('.input-number-nospin').val(Math.max(+this.refs.quantity.value - 1, 1))}></div>
+                  </span>
                 </div>
               </div>
             </div>
