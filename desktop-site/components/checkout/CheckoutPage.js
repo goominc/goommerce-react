@@ -139,6 +139,7 @@ export default React.createClass({
           <input type="hidden" name="signature" ref="signature" />
           <input type="hidden" name="returnUrl" ref="returnUrl" />
           <input type="hidden" name="mKey" ref="mKey" />
+          <input type="hidden" name="quotabase" value="2:3:4:5:6:7:8:9:10:11:12" />
           <button type="submit" className="cart-button-order" onClick={handleCheckout}>
             결제하기
           </button>

@@ -284,6 +284,7 @@ export default React.createClass({
             <input type="hidden" name="P_NEXT_URL" ref="nextUrl" />
             <input type="hidden" name="P_NOTI_URL" ref="notiUrl" />
             <input type="hidden" name="P_CHARSET" value="utf8" />
+            <input type="hidden" name="P_QUOTABASE" value="02:03:04:05:06:07:08:09:10:11:12" />
             <input type="hidden" name="P_RESERVED" value="twotrs_isp=Y&block_isp=Y&twotrs_isp_noti=N" />
           </form>
           <input
