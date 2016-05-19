@@ -32,9 +32,11 @@ export default React.createClass({
           }
           return (
             <div className="quantity">
-              <div className="content">
-                <span className="cancel-text">{variant.quantity}</span>
-                {variant.finalQuantity}
+              <div className="inner">
+                <div className="content">
+                  <span className="cancel-text">{variant.quantity}</span><br />
+                  {variant.finalQuantity}
+                </div>
               </div>
             </div>
           );
@@ -47,9 +49,11 @@ export default React.createClass({
           const finalTotal = numberUtil.formatPrice(numberUtil.calcProductVariantTotalPrice(variant, variant.finalQuantity, activeCurrency), activeCurrency, currencySign);
           return (
             <div className="price">
-              <div className="content">
-                <span className="cancel-text">{total}</span>
-                {finalTotal}
+              <div className="inner">
+                <div className="content">
+                  <span className="cancel-text">{total}</span><br />
+                  {finalTotal}
+                </div>
               </div>
             </div>
           );
@@ -61,7 +65,7 @@ export default React.createClass({
           } else if (isNaN(variant.finalQuantity)) {
             return (
               <div className="status-column">
-                <div className="status-column-inner">
+                <div className="inner">
                   <div className="content">{<span style={({ color: '#67b0ff' })}>출고대기</span>}</div>
                 </div>
               </div>
@@ -97,7 +101,7 @@ export default React.createClass({
           }
           return (
             <div className="status-column">
-              <div className="status-column-inner">
+              <div className="inner">
                 <div className="content">
                   {content}
                 </div>

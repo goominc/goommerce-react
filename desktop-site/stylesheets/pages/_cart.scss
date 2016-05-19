@@ -104,19 +104,18 @@
   width: 800px;
   @mixin cell() {
     display: inline-block;
+    height: 100%;
     position: relative;
     text-align: center;
     .cancel-text {
       color: #aaa;
-      pointer-events: none;
-      position: absolute;
-      top: -15px; // TODO change magic number
       text-decoration: line-through;
     }
     .content {
       display: block;
       position: relative;
     }
+    @include multi-line-vertical-center(20px);
   }
   .title-row {
     border-top: 1px solid #aaa;
@@ -228,27 +227,13 @@
     width: 13px;
   }
   .status-column {
+    @include multi-line-vertical-center(20px);
     border-left: 1px solid #ddd;
     display: inline-block;
     height: 100%;
     text-align: center;
-    position: relative;
     vertical-align: top;
     width: 98px;
-  }
-  .status-column-inner {
-    display: table;
-    position: absolute;
-    height: 100%;
-    left: 0;
-    top: 0;
-    width: 100%;
-    .content {
-      display: table-cell;
-      line-height: 20px;
-      text-align: center;
-      vertical-align: middle;
-    }
   }
   .go-cart {
     border-radius: 10px;

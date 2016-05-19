@@ -90,3 +90,21 @@ input[type="checkbox"] {
     background-image: url($base-url + '/main/checkbox_checked.png');
   }
 }
+
+@mixin multi-line-vertical-center($line-height) {
+  position: relative;
+  .inner {
+    display: table;
+    position: absolute;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+    .content {
+      display: table-cell;
+      line-height: $line-height;
+      text-align: center;
+      vertical-align: middle;
+    }
+  }
+}
