@@ -37,9 +37,6 @@ const Home = React.createClass({
     */
     this.context.ApiAction.loadHotProducts();
   },
-  componentWillUpdate() {
-    console.log('1');
-  },
   render() {
     const { activeLocale, hotProducts } = this.props;
     const { desktop_main_banner = { en: {}, ko: {}, 'zh-cn': {}, 'zh-tw': {} } } = this.props; //eslint-disable-line
