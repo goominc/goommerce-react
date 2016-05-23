@@ -65,7 +65,6 @@ const App = React.createClass({
       this.props.loadCartIfEmpty();
     }
     this.props.loadCategories();
-    this.props.loadCMSData('main_categories');
   },
   isLogin() {
     return !!this.props.auth.id;
