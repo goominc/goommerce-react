@@ -87,10 +87,12 @@ const Home = React.createClass({
           return (<div></div>);
         }
         return (
-          <div key={`home-top-category-${category.id}`} className="category-main">
-            <div className="item-title">{category.name[activeLocale]}</div>
-            {category.children.map(renderCategory)}
-          </div>
+          <Link to={`/categories/${category.id}`} key={`home-top-category-${category.id}`}>
+            <div className="category-main">
+              <div className="item-title">{category.name[activeLocale]}</div>
+              {category.children.map(renderCategory)}
+            </div>
+          </Link>
         );
       };
       return (
