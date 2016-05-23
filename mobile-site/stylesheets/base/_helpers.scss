@@ -77,3 +77,75 @@
   color: $default-active-text-color;
   text-align: center;
 }
+
+@mixin default-react-slick-dots($len) {
+  position: absolute;
+  list-style: none;
+  display: block;
+  text-align: center;
+  padding: 0;
+  width: 100%;
+  li {
+    position: relative;
+    display: inline-block;
+    height: $len;
+    width: $len;
+    padding: 0;
+    cursor: pointer;
+  }
+  button {
+    border: 0;
+    background: transparent;
+    display: block;
+    height: $len;
+    width: $len;
+    outline: none;
+    line-height: 0;
+    font-size: 0;
+    color: transparent;
+    padding: 5px;
+    cursor: pointer;
+    &:before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: "•";
+      width: $len;
+      height: $len;
+      font-family: "slick";
+      font-size: $len / 2;
+      line-height: $len;
+      text-align: center;
+      color: black;
+      opacity: 0.25;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  }
+  .slick-active {
+    button:before {
+      color: #e62e04;
+      opacity: 0.75;
+    }
+  }
+}
+
+.product-detail-slick {
+  @include default-react-slick-dots(20px);
+  bottom: -30px;
+}
+.home-slick {
+  @include default-react-slick-dots(30px);
+  bottom: 0;
+
+  button:before {
+    color: #fff;
+    opacity: 1;
+  }
+  .slick-active {
+    button:before {
+      color: #e62e04;
+      opacity: 1;
+    }
+  }
+}

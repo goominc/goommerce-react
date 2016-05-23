@@ -1,12 +1,13 @@
 import React, { PropTypes } from 'react';
 
+import Slider from 'react-slick';
+
 export default React.createClass({
   propTypes: {
     images: PropTypes.array.isRequired,
     addWish: PropTypes.func.isRequired,
   },
   componentDidUpdate() {
-    $('.img-list').owlCarousel({ autoPlay: 10000, items: 1 });
   },
   handleAddWish() {
     // TODO check wishlist & remove wish item
@@ -21,17 +22,22 @@ export default React.createClass({
   render() {
     const { images } = this.props;
     const renderImage = images.map((image, index) =>
-        <li key={index}>
-          <img src={image.url} alt="product image" />
-        </li>
+      <img key={index} src={image.url} alt="product image" />
     );
+
+    const settings = {
+      autoplay: true,
+      autoplaySpeed: 5000,
+      dots: true,
+      dotsClass: 'product-detail-slick',
+    };
 
     return (
       <section className="ms-detail-slider ms-slider">
         <div className="ms-viewport">
-          <ul className="img-list ms-list">
+          <Slider {...settings} className="">
             {renderImage}
-          </ul>
+          </Slider>
         </div>
 
         <span className="ms-add-wish">

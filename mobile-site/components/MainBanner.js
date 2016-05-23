@@ -1,11 +1,13 @@
+// Copyright (C) 2016 Goom Inc. All rights reserved.
+
 import React from 'react';
-import { Link } from 'react-router';
+import Slider from 'react-slick';
 
 import { constants } from 'commons/utils/constants';
 
 export default React.createClass({
   componentDidMount() {
-    $('.kv-container').owlCarousel({ autoPlay: 10000, items: 1 });
+    // $('.kv-container').owlCarousel({ autoPlay: 10000, items: 1 });
   },
 
   render() {
@@ -23,17 +25,18 @@ export default React.createClass({
       </div>
     ); */
 
+    const settings = {
+      autoplay: true,
+      autoplaySpeed: 5000,
+      dots: true,
+      dotsClass: 'home-slick',
+    };
     return (
       <section id="key-visual" className="key-visual">
-        <div id="kv-container" className="kv-container">
-          {/* bannerTop */}
-          <div className="kv-item">
-            <img src={`${constants.resourceRoot}/mobile/banner/mobile_main1_20160426.jpg`} />
-          </div>
-          <div className="kv-item">
-            <img src={`${constants.resourceRoot}/mobile/banner/mobile_main2_20160426.jpg`} />
-          </div>
-        </div>
+        <Slider {...settings} id="kv-container">
+          <img src={`${constants.resourceRoot}/mobile/banner/mobile_main1_20160426.jpg`} />
+          <img src={`${constants.resourceRoot}/mobile/banner/mobile_main2_20160426.jpg`} />
+        </Slider>
       </section>
     );
   },
