@@ -18,13 +18,25 @@ app.use(cookieParser());
 const request = require('superagent');
 
 app.use((req, res, next) => {
-  // 2016. 02. 13. [heekyu] this is not efficient but only for development
   const i18n = {
-    en: _.assign({},
-      require('./desktop-site/i18n/mainpage.en.json'),
-      require('./desktop-site/i18n/word.en.json')
-    ),
+    en: {},
+    ko: {},
+    'zh-cn': {},
+    'zh-tw': {},
   };
+  const allTexts = require('./desktop-site/i18n/texts.js');
+  const dfs = (prefix, node) => {
+    if (node.en) {
+      Object.keys(i18n).forEach((locale) => {
+        if (node[locale]) {
+          _.set(i18n[locale], prefix, node[locale]);
+        }
+      });
+    } else {
+      Object.keys(node).forEach((k) => dfs(`${prefix}.${k}`, node[k]));
+    }
+  };
+  Object.keys(allTexts).forEach((k) => dfs(k, allTexts[k]));
   req.i18n = i18n;
   req.locale = 'en';
   req.currency = 'KRW';
