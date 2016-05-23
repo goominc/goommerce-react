@@ -45,13 +45,12 @@ export default React.createClass({
 
     const renderBrand = () => {
       if (product && product.brand && product.brand.data) {
-        const { building } = product.brand.data;
         return (
         <section className="ms-detail-store">
           <Link to={`/brands/${product.brand.id}`}>
             <header className="store-title">{brandUtil.getName(product.brand)}</header>
             <p className="store-info">
-              {`${building.name} ${building.floor} ${building.flatNumber}`}
+              {brandUtil.getBuildingInfo(product.brand)}
             </p>
             { /* <p className="store-info">
               <img src="http://i01.i.aliimg.com/wimg/feedback/icon/25-s.gif" className="store-level" />

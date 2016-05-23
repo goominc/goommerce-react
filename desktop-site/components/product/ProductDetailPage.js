@@ -370,7 +370,7 @@ export default React.createClass({
             </div>
             <div className="normal-field-box">
               <div className="field-label">상가건물</div>
-              <div className="field-content">{_.get(product, 'brand.data.building.name')}</div>
+              <div className="field-content">{_.get(product, 'brand.data.location.building.name.ko')}</div>
             </div>
             {renderBrand()}
             {renderAllAttributes()}

@@ -29,11 +29,16 @@ exports.getName = (brand) => {
   return name;
 };
 
+const getBuildingInfo = (brand) =>
+  `${_.get(brand, 'data.location.building.name.ko')} ${_.get(brand, 'data.location.floor')} ${_.get(brand, 'data.location.flatNumber')}호`; // eslint-disable-line
+
+exports.getBuildingInfo = getBuildingInfo;
+
 exports.getNameWithAllBuildingInfo = (brand) => {
   // format: 'Name (Building Floor FlatNumber)'
   const name = brandName(brand);
   if (!name) {
     return '';
   }
-  return `${name} (${_.get(brand, 'data.location.building.name.ko')} ${_.get(brand, 'data.location.floor')} ${_.get(brand, 'data.location.flatNumber')}호)`; // eslint-disable-line
+  return `${name} (${getBuildingInfo(brand)})`;
 };
