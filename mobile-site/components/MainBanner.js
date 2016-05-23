@@ -19,11 +19,11 @@ export default React.createClass({
       singleItem: true,
       scrollPerPage: true,
     };
-    const renderBanner = (item) => {
+    const renderBanner = (item, index) => {
       if (item.link) {
-        return <Link to={item.link}><img src={item.image.url} /></Link>;
+        return <Link key={`main-banner-${index}`} to={item.link}><img src={item.image.url} /></Link>;
       }
-      return <img src={item.image.url} />;
+      return <img key={`main-banner-${index}`} src={item.image.url} />;
     };
     return (
       <section id="key-visual" className="key-visual">
