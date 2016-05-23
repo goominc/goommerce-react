@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import { CloudinaryImage } from 'react-cloudinary';
+
 import { getProductMainImage, getProductMainPrice } from 'commons/utils/productUtil';
 import numberUtil from 'commons/utils/numberUtil';
 
@@ -21,8 +23,17 @@ export default React.createClass({
     const renderCategory = () => {
       if (currentCategory && currentCategory.children) {
         return currentCategory.children.map((cat) => {
+          if (!cat.isActive) {
+            return null;
+          }
+          const validChildren = [];
+          cat.children.forEach((child) => {
+            if (child.isActive) {
+              validChildren.push(child);
+            }
+          });
           let cateLink;
-          if (cat.children && cat.children.length === 0) {
+          if (validChildren.length === 0) {
             cateLink = `/categories/${cat.id}`;
           } else {
             cateLink = `/categoryList/${cat.id}`;
@@ -46,45 +57,29 @@ export default React.createClass({
       }
 
       return products.map((product) => {
-        const image = getProductMainImage(product.topHit || product);
+        const image = getProductMainImage(product);
         const renderImage = () => {
           if (!image) {
-            return (<img />);
+            return <img />;
           }
-          return (<img src={image.url} />);
-
-          /* if (!image.publicId) {
+          if (!image.publicId) {
             return (<img src={image.url} />);
           }
           return (
             <CloudinaryImage publicId={image.publicId}
               version={image.version}
-              options={ { width: 220, height: 330 } }
+              options={ { width: 220 } }
             />
-          ); */
+          );
         };
         return (
           <li key={product.id}>
             <Link className="mobile-product-image" to={`/products/${product.id}`}>
               <div className="inner-wrap">
-                <img src={getProductMainImage(product).url} />
+                {renderImage()}
               </div>
             </Link>
             <div className="price-center">{numberUtil.formatPrice(product[activeCurrency], activeCurrency, currencySign)}</div>
-            {/*
-            <div className="ms-gallery-inner">
-              <Link to={`/products/${product.id}`}>
-                <div className="ms-gallery-pic">
-                  {renderImage()}
-                </div>
-                <div className="ms-gallery-info">
-                  <span className="ms-gallery-dprice">
-                    <em>{activeCurrency} {getProductMainPrice(product, activeCurrency)}</em>
-                  </span>
-                </div>
-              </Link>
-            </div>
-             */}
           </li>
           );
       });
