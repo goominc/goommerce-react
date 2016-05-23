@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import Slider from 'react-slick';
+import OwlCarousel from 'react-owl-carousel';
 
 export default React.createClass({
   propTypes: {
@@ -25,19 +25,17 @@ export default React.createClass({
       <img key={index} src={image.url} alt="product image" />
     );
 
-    const settings = {
-      autoplay: true,
-      autoplaySpeed: 5000,
-      dots: true,
-      dotsClass: 'product-detail-slick',
+    const slideSettings = {
+      slideSpeed: 300,
+      autoPlay: 5000,
+      singleItem: true,
     };
-
     return (
       <section className="ms-detail-slider ms-slider">
         <div className="ms-viewport">
-          <Slider {...settings} className="">
+          <OwlCarousel {...slideSettings}>
             {renderImage}
-          </Slider>
+          </OwlCarousel>
         </div>
 
         <span className="ms-add-wish">

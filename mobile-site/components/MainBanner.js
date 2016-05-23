@@ -1,7 +1,7 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
 import React from 'react';
-import Slider from 'react-slick';
+import OwlCarousel from 'react-owl-carousel';
 
 import { constants } from 'commons/utils/constants';
 
@@ -26,17 +26,17 @@ export default React.createClass({
     ); */
 
     const settings = {
-      autoplay: true,
-      autoplaySpeed: 5000,
-      dots: true,
-      dotsClass: 'home-slick',
+      slideSpeed: 300,
+      autoPlay: 10000,
+      singleItem: true,
+      scrollPerPage: true,
     };
     return (
       <section id="key-visual" className="key-visual">
-        <Slider {...settings} id="kv-container">
+        <OwlCarousel {...settings} id="kv-container">
           <img src={`${constants.resourceRoot}/mobile/banner/mobile_main1_20160426.jpg`} />
           <img src={`${constants.resourceRoot}/mobile/banner/mobile_main2_20160426.jpg`} />
-        </Slider>
+        </OwlCarousel>
       </section>
     );
   },
