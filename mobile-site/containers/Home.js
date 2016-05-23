@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import _ from 'lodash';
+
 import i18n from 'commons/utils/i18n';
 
 import { setHeader } from 'redux/actions';
@@ -13,11 +15,13 @@ import MainRecommendList from 'components/MainRecommendList';
 
 const Home = React.createClass({
   propTypes: {
+    mobile_main_banner: PropTypes.object,
     searchProducts: PropTypes.func.isRequired,
     setHeader: PropTypes.func.isRequired,
   },
   contextTypes: {
     ApiAction: PropTypes.object,
+    activeLocale: PropTypes.string,
     router: PropTypes.object,
   },
   getInitialState() {
@@ -28,6 +32,7 @@ const Home = React.createClass({
     ajaxReturnPromise(null, 'get', '/api/v1/products/hot').then((res) => {
       this.setState(res);
     });
+    this.context.ApiAction.loadCMSData('mobile_main_banner');
     /*
     this.props.searchProducts({
       // q: query,
@@ -52,7 +57,7 @@ const Home = React.createClass({
 
     return (
       <div className="main-container">
-        <MainBanner />
+        <MainBanner items={_.get(this.props, `mobile_main_banner.${this.context.activeLocale}.rows`)} />
         <div className="promotion">
           <section className="promotion-block categories">
             <header>
@@ -129,6 +134,7 @@ export default connect(
   (state) => ({
     ...loadEntities(state, 'hotProducts', 'hotProducts'),
     searchProducts: (query) => ajaxReturnPromise(state.auth, 'get', `/api/v1/products/search?${$.param(query)}`),
+    mobile_main_banner: state.cms.mobile_main_banner,
   }),
   { setHeader }
 )(Home);
