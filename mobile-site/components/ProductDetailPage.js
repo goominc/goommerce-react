@@ -80,7 +80,7 @@ export default React.createClass({
             className="product-detail-shipping-country-title"
             onClick={() => this.setState({ isShowShippingCountry: false })}
           >
-            국가별 배송비 책정기준 <i className="ms-icon icon-arrow-up"></i>
+            해외 국가별 배송비 책정기준 <i className="ms-icon icon-arrow-up"></i>
           </div>,
           <ShippingPolicyCountry key="shipping-policy-content" />,
         ];
@@ -90,7 +90,7 @@ export default React.createClass({
           className="product-detail-shipping-country-title"
           onClick={() => this.setState({ isShowShippingCountry: true })}
         >
-          국가별 배송비 책정기준 <i className="ms-icon icon-arrow-down"></i>
+          해외 국가별 배송비 책정기준 <i className="ms-icon icon-arrow-down"></i>
         </div>
       );
     };
