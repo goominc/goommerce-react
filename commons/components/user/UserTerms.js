@@ -173,7 +173,7 @@ export default React.createClass({
 
             <p><strong>제6장 환급, 청약철회등</strong></p>
 
-            <p><strong>제14조 (환급)</strong></p>
+            <p id="terms_14"><strong>제14조 (환급)</strong></p>
             <p>회사는 회원이 구매신청한 재화 등을 품절 등의 사유로 공급할 수 없는 경우 지체없이 그 사유를 회원에게 통지하고 사전에 재화등의 대금을 받은 경우, 대금을 받은 날로부터 7영업일 이내에 환급하거나 환급에 필요한 조취를 취하여야 합니다.</p>
 
             <p><strong>제15조 (청약철회 등)</strong></p>

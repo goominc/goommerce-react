@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import orderUtil from 'commons/utils/orderUtil';
 import brandUtil from 'commons/utils/brandUtil';
 import productUtil from 'commons/utils/productUtil';
+import numberUtil from 'commons/utils/numberUtil';
 
 export default React.createClass({
   propTypes: {
@@ -17,6 +18,7 @@ export default React.createClass({
   contextTypes: {
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
+    currencySign: PropTypes.object,
   },
   componentDidUpdate() {
     const { cart } = this.props;
@@ -54,7 +56,7 @@ export default React.createClass({
     }
   },
   renderCart() {
-    const { cart, checkBuy } = this.props;
+    const { cart } = this.props;
     const { activeLocale, activeCurrency } = this.context;
     // const productVariants = orderUtil.getProductVariantsFromCart(cart);
 
@@ -116,7 +118,7 @@ export default React.createClass({
                       </div>
                       <div className="pi-quantity mb-48 clearfix">
                         <div className="clearfix">
-                          <span className="pre">Quantity&nbsp;:</span>
+                          <span className="pre">&nbsp;</span>
                           <div className="trim">
                             <span className="trim ms-numberic">
                               <a className="ms-minus" id={`minus-${productVariant.productVariant.id}`}
@@ -159,61 +161,16 @@ export default React.createClass({
         return (
           <article className="seller-products" key={brand.brand.id}>
             <div className="seller bt p-24 pt-24 pb-24">
-              <Link to="/brands/">
-                <div className="has-coupon"> Seller:
+              <Link to={`/brands/${brand.brand.id}`}>
+                <div className="has-coupon">
                   <span className="seller-title">{brandUtil.getName(brand.brand)}</span>
                   <i className="ms-icon icon-arrow-right fr"></i>
-                  { /* <div className="coupon big-coupon">
-                    <span className="left-bg"></span>
-                    <span className="coupon-info">
-                      US $2.00 off US $18.00
-                    </span>
-                  </div> */ }
                 </div>
               </Link>
             </div>
             <ul className="product bt">
               {renderVariants()}
             </ul>
-            { /* <div className="seller-costs bt p-24 ">
-              <dl className="seller-costs-subtotal mt-24 clearfix">
-                <dt>Subtotal:</dt>
-                <dd><span>US $17.90</span></dd>
-              </dl>
-              <dl className="seller-costs-shipping mt-16 clearfix">
-                <dt>Shipping&nbsp; : </dt>
-                <dd><span>US $0.00</span></dd>
-              </dl>
-            </div>
-            <div className="pi-operate bb mb-24 p-24 ">
-              <dl className="pi-operate-total pt-24 clearfix">
-                <dt>Total&nbsp;:</dt>
-                <dd><span className="price">US $17.90</span>
-                </dd>
-              </dl>
-              <dl className="pi-operate-buy mt-24 mb-32 clearfix">
-                <dt>
-                  <div className="big-coupon">
-                    <span className="left-bg"></span>
-                    <a href="/store/storeHome.htm?sellerAdminSeq=220935154">
-                      <span className="coupon-info">Get a Store Coupon<i className="icon-right"></i></span>
-                    </a>
-                  </div>
-                </dt>
-                <dd>
-                  <Link to="/orders">
-                    <span className="ui-button ui-button-main buy ">
-                      buy all from this seller&nbsp;
-                    </span>
-                  </Link>
-                </dd>
-              </dl>
-            </div> */ }
-            <div className="check-forbuy">
-              <span className={`checkbox ${checkBuy ? 'checked' : ''}`} onClick={this.props.toggleBuy}></span>
-              <p className="check-title">주문동의</p>
-              <p className="check-desc">환불불가 및 품절상품의 경우 배송되지 않을 수 있습니다.</p>
-            </div>
           </article>
         );
       });
@@ -225,38 +182,38 @@ export default React.createClass({
   },
 
   render() {
-    const { cart } = this.props;
-    const { activeLocale, activeCurrency } = this.context;
+    const { cart, checkBuy } = this.props;
+    const { activeLocale, activeCurrency, currencySign } = this.context;
     if (!cart || !cart.total) {
       return (
-          <div className="empty-cart" />
-        );
+        <div className="empty-cart" />
+      );
     }
 
     return (
       <section className="shopcart-list" id="shopcart-list">
-        { /* <div className="shipto bb p-24 mb-24">Ship my order(s) to
-          <span className="ship-to" id="ship-to">South Korea<i className="ms-icon icon-arrow-right fr"></i></span>
-        </div> */ }
         {this.renderCart()}
 
+        <div className="check-forbuy">
+          <span className={`checkbox ${checkBuy ? 'checked' : ''}`} onClick={this.props.toggleBuy}></span>
+          <p className="check-title">환급규정 확인</p>
+          <p className="check-desc">
+            품절 및 재고상황에 따라 일부 상품이 배송되지 않을 수 있으며 미 배송상품에 대한 환급 절차는 <a href="/user/terms#terms_14">이용약관 제14조</a>에 따릅니다.
+            <ul className="dashed">
+              <li>도매시장의 특성 상 판매자의 실시간 재고 파악이 불가능 합니다.</li>
+              <li>판매자 또는 제조사의 사정으로 상품이 갑작스럽게 품절되거나 재고가 부족할 수 있습니다.</li>
+              <li>품절된 상품의 경우 주문 당시 동일 결제수단으로 자동 환불 처리해 드립니다.</li>
+            </ul>
+          </p>
+        </div>
+
         <article id="seller-cart-buyall" className="seller-products">
-          { /* <div className="seller-cart-buyall seller-costs bt p-24 pb-24">
-            <dl className="seller-costs-subtotal mt-24 clearfix">
-              <dt>Subtotal: (2 items)</dt>
-              <dd><span>US $24.74</span></dd>
-            </dl>
-            <dl className="seller-costs-shipping mt-16 clearfix">
-              <dt>Shipping&nbsp;:</dt>
-              <dd><span>US $0.84</span></dd>
-            </dl>
-          </div> */ }
           <div className="accounts bt bb p-24 pt-24 pb-24 clearfix">
             <div className="total">
-              <span>Total&nbsp;:</span>
-              <span className="mt-16 price">{activeCurrency} {cart.total[activeCurrency]}</span>
+              <span>총 금액:</span>
+              <span className="mt-16 price">{numberUtil.formatPrice(cart.total[activeCurrency], activeCurrency, currencySign)}</span>
             </div>
-            <div className="ui-button ui-button-main buyall" onClick={this.handleBuyAll}>Buy All</div>
+            <div className="ui-button ui-button-main buyall" onClick={this.handleBuyAll}>주문하기</div>
           </div>
         </article>
       </section>

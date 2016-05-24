@@ -97,10 +97,10 @@ export default React.createClass({
         const renderBrand = () => {
           if (orderProduct.brand && orderProduct.brand.name) {
             return (
-              <h3>Seller:
-                <Link className="company-name" to={`/brand/${orderProduct.brand.id}`}>
+              <h3>
+                <div className="company-name">
                   {orderProduct.brand.name.en}
-                </Link>
+                </div>
               </h3>
               );
           }

@@ -444,7 +444,8 @@
   padding-left: 50px;
   font-size: 12px;
   min-height: 50px;
-  padding-top: 8px;
+  padding-top: 10px;
+  padding-bottom: 20px;
   .checkbox {
     position: absolute;
     left: 10px;
@@ -460,6 +461,21 @@
   .check-title {
     font-size: 14px;
     font-weight: bold;
+    margin-bottom: 5px;
+  }
+  .check-desc {
+    color: #666;
+    a {
+      display: inline;
+      text-decoration: underline;
+    }
+    ul {
+      color: #999;
+      margin-top: 10px;
+    }
+    li {
+      margin-left: 5px;
+    }
   }
   &.warning {
     border: 1px solid #f44;
