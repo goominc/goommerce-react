@@ -57,7 +57,7 @@ export default React.createClass({
   },
   renderCart() {
     const { cart } = this.props;
-    const { activeLocale, activeCurrency } = this.context;
+    const { activeLocale, activeCurrency, currencySign } = this.context;
     // const productVariants = orderUtil.getProductVariantsFromCart(cart);
 
     if (cart && cart.brands && cart.brands.length) {
@@ -109,7 +109,7 @@ export default React.createClass({
                             <div className="details-price clearfix">
                               <div>
                                 <span className="sell-price">
-                                  {activeCurrency}&nbsp;{productVariant.productVariant[activeCurrency]}
+                                  {numberUtil.formatPrice(productVariant.productVariant[activeCurrency], activeCurrency, currencySign)}
                                 </span>
                               </div>
                             </div>
@@ -197,14 +197,14 @@ export default React.createClass({
         <div className="check-forbuy">
           <span className={`checkbox ${checkBuy ? 'checked' : ''}`} onClick={this.props.toggleBuy}></span>
           <p className="check-title">환급규정 확인</p>
-          <p className="check-desc">
+          <div className="check-desc">
             품절 및 재고상황에 따라 일부 상품이 배송되지 않을 수 있으며 미 배송상품에 대한 환급 절차는 <a href="/user/terms#terms_14">이용약관 제14조</a>에 따릅니다.
             <ul className="dashed">
               <li>도매시장의 특성 상 판매자의 실시간 재고 파악이 불가능 합니다.</li>
               <li>판매자 또는 제조사의 사정으로 상품이 갑작스럽게 품절되거나 재고가 부족할 수 있습니다.</li>
               <li>품절된 상품의 경우 주문 당시 동일 결제수단으로 자동 환불 처리해 드립니다.</li>
             </ul>
-          </p>
+          </div>
         </div>
 
         <article id="seller-cart-buyall" className="seller-products">
