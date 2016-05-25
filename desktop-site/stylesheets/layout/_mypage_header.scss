@@ -31,6 +31,7 @@
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
     overflow: hidden;
     width: 150px;
+    white-space: nowrap;
     &:hover {
       background-color: #c71801;
     }
