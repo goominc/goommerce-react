@@ -104,6 +104,11 @@ function entities(state = { users: {}, products: {}, orders: {}, addresses: {}, 
   if (orderState) {
     return orderState;
   }
+  if (action.type === 'RESET_ENTITIES') {
+    const nextState = assign({}, state);
+    nextState[action.entity] = {};
+    return nextState;
+  }
   const nextState = assign({}, state);
   forEach(get(action, 'payload.entities'), (val, key) => {
     if (get(action, 'meta.clear')) {

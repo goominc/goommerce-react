@@ -56,23 +56,14 @@ export default React.createClass({
   },
   renderAddresses() {
     const { order, addresses, activeAddressId } = this.props;
-    if (!addresses || !Object.keys(addresses).length) {
+    if (!addresses || !activeAddressId || !addresses[activeAddressId]) {
       return (
-          <div className="order-section order-shipping-address">
-            <Link id="change-address" to={`/orders/${order.id}/address/add`}>Add Shipping Address</Link>
-          </div>
-        );
+        <div className="order-section order-shipping-address">
+          <Link id="change-address" to={`/orders/${order.id}/address/add`}>Add Shipping Address</Link>
+        </div>
+      );
     }
-    let selectedAddress = null;
-    for (const i in addresses) {
-      /* if no default address */
-      if (!selectedAddress) {
-        selectedAddress = addresses[i];
-      }
-      if (addresses[i].id === activeAddressId) {
-        selectedAddress = addresses[i];
-      }
-    }
+    const selectedAddress = addresses[activeAddressId];
 
     return (
         <div className="order-section order-shipping-address">

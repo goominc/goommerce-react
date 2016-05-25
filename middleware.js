@@ -61,6 +61,7 @@ module.exports = (opts) => {
             <script>window.__INITIAL_STATE__ = ${serialize(initialState)};</script>
             ${gaid ? `<script>window.gaid="${gaid}"</script>` : ''}
             <script src="${path('app.mobile.bundle.js')}"></script>
+            <script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>
           </body>
         </html>
       `);
@@ -138,8 +139,8 @@ module.exports = (opts) => {
         if (!req.cookies[mobileRedirectKey] && config.mobileSite && md.mobile() && !md.tablet()) {
           req.cookies[mobileRedirectKey] = true;
           // 2016. 04. 08. [heekyu] Use this on local test
-          // return sendMobile(initialState);
-          return res.redirect(`//${config.mobileSite}${req.originalUrl}`);
+          return sendMobile(initialState);
+          // return res.redirect(`//${config.mobileSite}${req.originalUrl}`);
         }
 
         return send(initialState, isReportGA ? _.get(config, 'ga.desktop') : null);

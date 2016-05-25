@@ -321,7 +321,9 @@ export function setActiveAddressId(addressId) {
   return (dispatch, getState) => {
     const state = getState();
     if (state.auth.addressId !== addressId) {
-      simpleNotify(state.auth, 'PUT', `/api/v1/users/self/addresses/${addressId}/set`, { addressId });
+      if (addressId) {
+        simpleNotify(state.auth, 'PUT', `/api/v1/users/self/addresses/${addressId}/set`, { addressId });
+      }
       dispatch({
         type: 'SET_ACTIVE_ADDRESS',
         addressId,
@@ -348,7 +350,8 @@ export function saveAddress(address) {
       body: address,
       transform: ({ data }) => normalize(data, schemas.address),
     })(dispatch, getState).then((res) => {
-      return setActiveAddressId(res.id)(dispatch, getState);
+      setActiveAddressId(res.id)(dispatch, getState);
+      return res;
     });
   };
 }
@@ -359,7 +362,7 @@ export function saveOrderAddress(orderId, address) {
   return (dispatch, getState) => {
     const state = getState();
     // 2016. 05. 19. [heekyu] (Case 275) Update Order Address After server updates
-    ajaxReturnPromise(state.auth, 'PUT', `/api/v1/orders/${orderId}/address`, address).then(() => {
+    return ajaxReturnPromise(state.auth, 'PUT', `/api/v1/orders/${orderId}/address`, address).then(() => {
       dispatch({
         type: 'UPDATE_ORDER_ADDRESS',
         orderId,
@@ -374,19 +377,16 @@ export function saveOrderAddress(orderId, address) {
   };
 }
 
-export function saveDefaultAddressOnCreateOrder(order, addresses) {
+export function saveAddressAndThen(order, address) {
   return (dispatch, getState) => {
-    if (order.address) {
-      return;
-    }
-    const state = getState();
-    for (let i = 0; i < addresses.length; i++) {
-      const address = addresses[i];
-      if (address.id === state.auth.addressId) {
-        saveOrderAddress(order.id, address)(dispatch, getState);
-        return;
+    return saveAddress(address)(dispatch, getState).then((res) => {
+      address = res;
+      const promises = [saveOrderAddress(order.id, address)(dispatch, getState)];
+      if (address.id) {
+        promises.push(setActiveAddressId(address.id)(dispatch, getState));
       }
-    }
+      return Promise.all([promises]);
+    }).then(() => loadAddresses()(dispatch, getState));
   };
 }
 
@@ -395,15 +395,35 @@ export function deleteAddress(address) {
     let state = getState();
     const addressId = address.id;
     return ajaxReturnPromise(state.auth, 'delete', `/api/v1/users/self/addresses/${addressId}`).then(() => {
+      dispatch({
+        type: 'RESET_ENTITIES',
+        entity: 'addresses',
+      });
       return loadAddresses()(dispatch, getState).then(() => {
         state = getState(); // state will be updated
         if (state.auth.addressId === addressId) {
           const addressIds = Object.keys(state.entities.addresses);
           if (addressIds.length) {
             setActiveAddressId(+addressIds[0])(dispatch, getState);
+          } else {
+            setActiveAddressId(0)(dispatch, getState);
           }
         }
       });
+    });
+  };
+}
+export function deleteAddressOnOrder(address, order) {
+  return (dispatch, getState) => {
+    return deleteAddress(address)(dispatch, getState).then(() => {
+      if (order && _.get(order, 'address.id') === address.id) {
+        const state = getState();
+        if (state.auth.addressId) {
+          saveOrderAddress(order.id, state.entities.addresses[state.auth.addressId])(dispatch, getState);
+          return;
+        }
+        saveOrderAddress(order.id, {})(dispatch, getState);
+      }
     });
   };
 }

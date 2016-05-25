@@ -1,5 +1,8 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
+
+import i18n from 'commons/utils/i18n';
 
 import OrderPage from 'components/OrderPage';
 
@@ -18,7 +21,7 @@ const Order = React.createClass({
     inipay: PropTypes.func.isRequired,
   },
   componentDidMount() {
-    this.props.setHeader(false, false, false, 'Place Order');
+    this.props.setHeader(false, false, false, i18n.get('pcPayment.placeOrder'));
     const { orderId } = this.props.params;
     this.props.loadOrder(orderId);
     this.props.loadAddresses();
@@ -31,10 +34,14 @@ const Order = React.createClass({
 });
 
 export default connect(
-  (state, ownProps) => ({
-    order: state.entities.orders[ownProps.params.orderId],
-    addresses: state.entities.addresses,
-    activeAddressId: state.auth.addressId,
-  }),
+  (state, ownProps) => {
+    const order = state.entities.orders[ownProps.params.orderId];
+    return {
+      order,
+      addresses: state.entities.addresses,
+      activeAddressId: order ? _.get(order, 'address.id') || 0 : 0,
+      auth: state.auth,
+    };
+  },
   { loadOrder, loadAddresses, inipay, setHeader }
 )(Order);

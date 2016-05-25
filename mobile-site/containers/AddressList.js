@@ -2,8 +2,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
-import { ApiAction, setHeader } from 'redux/actions';
-const { loadAddresses, setActiveAddressId } = ApiAction;
+import { setHeader } from 'redux/actions';
 
 const AddressList = React.createClass({
   propTypes: {
@@ -12,23 +11,30 @@ const AddressList = React.createClass({
     addresses: PropTypes.object,
     activeAddressId: PropTypes.number,
     setHeader: PropTypes.func.isRequired,
-    loadAddresses: PropTypes.func.isRequired,
-    setActiveAddressId: PropTypes.func.isRequired,
   },
   contextTypes: {
+    ApiAction: PropTypes.object,
     router: PropTypes.object.isRequired,
   },
   componentDidMount() {
+    this.context.ApiAction.loadOrder(this.props.params.orderId);
+    this.context.ApiAction.loadAddresses();
     this.props.setHeader(false, false, false, 'Shipping Address');
-    this.props.loadAddresses();
   },
   renderAddresses() {
     const { params, addresses, activeAddressId } = this.props;
+    const { ApiAction } = this.context;
     if (addresses && Object.keys(addresses).length) {
       return $.map(addresses, (address) => {
         const handleSetAddress = () => {
-          this.props.setActiveAddressId(address.id);
-          this.context.router.push(`/orders/${params.orderId}`);
+          const promises = [
+            ApiAction.setActiveAddressId(address.id),
+            ApiAction.saveOrderAddress(params.orderId, address),
+          ];
+          Promise.all(promises).then(() => {
+            // this.context.router.push(`/orders/${params.orderId}`);
+            this.context.router.goBack();
+          });
         };
         return (
           <li key={address.id}>
@@ -71,6 +77,13 @@ const AddressList = React.createClass({
 });
 
 export default connect(
-  (state) => ({ activeAddressId: state.auth.addressId, addresses: state.entities.addresses }),
-  { setHeader, loadAddresses, setActiveAddressId }
+  (state, ownProps) => {
+    const order = state.entities.orders[ownProps.params.orderId];
+    return {
+      activeAddressId: order ? _.get(order, 'address.id') || 0 : 0,
+      addresses: state.entities.addresses,
+      order,
+    };
+  },
+  { setHeader }
 )(AddressList);

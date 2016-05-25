@@ -31,8 +31,8 @@ export default React.createClass({
       </div>
     );
     const addressFields = [
-      { key: 'detail.alias', objKey: 'alias', text: i18n.get('pcPayment.title'), placeholder: '주소 별명' },
-      { key: 'detail.name', objKey: 'name', text: i18n.get('pcPayment.fullName'), placeholder: '이름' },
+      { key: 'detail.alias', objKey: 'alias', text: i18n.get('pcPayment.alias'), placeholder: '주소 별명' },
+      { key: 'detail.name', objKey: 'name', text: i18n.get('pcPayment.contactName'), placeholder: '이름' },
       { key: 'detail.tel', objKey: 'tel', text: i18n.get('pcPayment.phoneNumber'), placeholder: '01012345678' },
       { key: 'detail.postalCode', objKey: 'postalCode', text: i18n.get('pcPayment.zipCode'), isReadOnly: true, placeholder: '00000' },
       { key: 'detail.address.base', objKey: 'address1', text: i18n.get('pcPayment.address'), isReadOnly: true, placeholder: '도로명주소' },

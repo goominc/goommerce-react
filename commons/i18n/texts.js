@@ -720,8 +720,8 @@ module.exports = {
             'zh-cn': '删除',
             'zh-tw': '刪除',
         },
-        fullName: {
-            en: 'Full Name',
+        contactName: {
+            en: 'Contact Name',
             ko: '받는 분',
             'zh-cn': '收货人',
             'zh-tw': '收貨人',
@@ -750,8 +750,8 @@ module.exports = {
             'zh-cn': '添加收货地址',
             'zh-tw': '參加收貨地址',
         },
-        title: {
-            en: 'Title',
+        alias: {
+            en: 'Alias',
             ko: '별명',
             'zh-cn': '昵称',
             'zh-tw': '暱稱',

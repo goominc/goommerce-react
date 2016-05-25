@@ -1,23 +1,34 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
+import _ from 'lodash';
 
+import i18n from 'commons/utils/i18n';
+import { execDaumPostcode } from 'commons/utils/addressUtil';
 
 import { ApiAction, setHeader } from 'redux/actions';
-const { loadAddresses, saveAddress } = ApiAction;
+const { loadAddresses } = ApiAction;
 
 const AddressEdit = React.createClass({
   propTypes: {
+    auth: PropTypes.object,
+    order: PropTypes.object,
     setHeader: PropTypes.func.isRequired,
     loadAddresses: PropTypes.func.isRequired,
-    saveAddress: PropTypes.func.isRequired,
     params: PropTypes.object.isRequired,
   },
   contextTypes: {
+    ApiAction: PropTypes.object,
     router: PropTypes.object.isRequired,
   },
   mixins: [LinkedStateMixin],
   getInitialState() {
+    if (this.props.params.addressId === 'add' && this.props.auth) {
+      return {
+        name: this.props.auth.name || '',
+        tel: _.get(this.props.auth, 'data.tel') || '',
+      };
+    }
     return {};
   },
   componentDidMount() {
@@ -27,74 +38,55 @@ const AddressEdit = React.createClass({
         if (res && res.addresses && Object.keys(res.addresses).length) {
           for (const i in res.addresses) {
             if (res.addresses[i].id === parseInt(params.addressId, 10)) {
-              this.setState({
-                id: params.addressId,
-                name: res.addresses[i].detail.name,
-                countryCode: res.addresses[i].countryCode,
-                streetAddress: res.addresses[i].detail.streetAddress,
-                city: res.addresses[i].detail.city,
-                postalCode: res.addresses[i].detail.postalCode,
-                tel: res.addresses[i].detail.tel,
-              });
-              this.props.setHeader(false, false, false, 'Edit Address');
+              const initialState = { id: params.addressId };
+              const initField = (field) => {
+                initialState[field.objKey] = _.get(res.addresses[i], field.key) || '';
+              };
+              this.addressFields1().forEach(initField);
+              this.addressFields2().forEach(initField);
+              this.setState(initialState);
+              this.props.setHeader(false, false, false, '주소 변경');
               return;
             }
           }
         }
       });
     } else {
-      this.props.setHeader(false, false, false, 'Add Address');
+      this.props.setHeader(false, false, false, '주소 등록');
     }
   },
+  addressFields1: () => [
+    { key: 'detail.alias', objKey: 'alias', text: i18n.get('pcPayment.alias'), placeholder: '주소 별명', errorMessage: '별명을 입력해 주세요' },
+    { key: 'detail.name', objKey: 'name', text: i18n.get('pcPayment.contactName'), placeholder: '이름', errorMessage: '받는 분 이름을 입력해 주세요' },
+    { key: 'detail.tel', objKey: 'tel', text: i18n.get('pcPayment.phoneNumber'), placeholder: '01012345678', errorMessage: '전화번호를 입력해 주세요' },
+  ],
+  addressFields2: () => [
+    { key: 'detail.postalCode', objKey: 'postalCode', text: i18n.get('pcPayment.zipCode'), isReadOnly: true, placeholder: '00000', errorMessage: '우편번호 찾기로 주소를 찾아주세요' },
+    { key: 'detail.address.base', objKey: 'address1', text: i18n.get('pcPayment.address'), isReadOnly: true, placeholder: '도로명주소' },
+    { key: 'detail.address.detail', objKey: 'address2', text: '상세 주소', placeholder: '상세주소', errorMessage: '상세 주소를 입력해 주세요' },
+  ],
   handleSave() {
-    const { params } = this.props;
+    const { params, order } = this.props;
+    const { ApiAction } = this.context;
+    const addressFields = this.addressFields1().concat(this.addressFields2());
 
-    if (!this.state.countryCode || !this.state.countryCode.length) {
-      $('#address-country .board-error').show();
-      $('#address-country input').addClass('has-error');
-      return;
-    }
-    if (!this.state.name || !this.state.name.length) {
-      $('#address-contact .board-error').show();
-      $('#address-contact input').addClass('has-error');
-      return;
-    }
-    if (!this.state.city || !this.state.city.length) {
-      $('#address-city .board-error').show();
-      $('#address-city input').addClass('has-error');
-      return;
-    }
-    if (!this.state.streetAddress || !this.state.streetAddress.length) {
-      $('#address-street .board-error').show();
-      $('#address-street input').addClass('has-error');
-      return;
-    }
-    if (!this.state.postalCode || !this.state.postalCode.length) {
-      $('#address-zip .board-error').show();
-      $('#address-zip input').addClass('has-error');
-      return;
-    }
-    if (!this.state.tel || !this.state.tel.length) {
-      $('#address-tel .board-error').show();
-      $('#address-tel input').addClass('has-error');
-      return;
+    const addressForSave = { countryCode: 'KR', id: this.state.id };
+    for (let i = 0; i < addressFields.length; i++) {
+      const field = addressFields[i];
+      const val = this.state[field.objKey] || $(`#${field.objKey}`).val();
+      if (val) {
+        _.set(addressForSave, field.key, val);
+      } else {
+        $(`#${field.obj}`).addClass('has-error');
+        $(`#${field.objKey} + .board-error`).show();
+        return;
+      }
     }
 
     $('.address-form .board-error').hide();
     $('.address-form input').removeClass('has-error');
 
-    const address = {
-      id: this.state.id,
-      countryCode: this.state.countryCode,
-      detail: {
-        name: this.state.name,
-        city: this.state.city,
-        streetAddress: this.state.streetAddress,
-        postalCode: this.state.postalCode,
-        tel: this.state.tel,
-      },
-    };
-    this.props.saveAddress(address).then(() => {
+    ApiAction.saveAddressAndThen(order, addressForSave).then(() => {
       if (params.addressId !== 'add') {
         this.context.router.push(`/orders/${params.orderId}/address`);
       } else {
@@ -103,47 +95,38 @@ const AddressEdit = React.createClass({
     });
   },
   render() {
+    const addressFields1 = this.addressFields1();
+    const addressFields2 = this.addressFields2();
+    const onChange = (e, field) => {
+      const nextState = {};
+      nextState[field.objKey] = e.target.value;
+      $('.address-form .board-error').hide();
+      $('.address-form input').removeClass('has-error');
+      this.setState(nextState);
+    };
+    const renderField = (field) => (
+      <div key={field.objKey} className="field-item" id="address-contact">
+        <input
+          type="text"
+          readOnly={field.isReadOnly}
+          placeholder={field.placeholder}
+          value={this.state[field.objKey]}
+          onChange={(e) => onChange(e, field)}
+          id={field.objKey}
+        />
+        <div className="board-error">{`${field.errorMessage}`}</div>
+      </div>
+    );
+    const openPostalCodePopup = (e) => {
+      e.preventDefault();
+      execDaumPostcode($('#postalCode'), $('#address1'));
+    };
     return (
       <div className="wrap">
         <fieldset className="field-form address-form">
-          <div className="field-item" id="address-contact">
-            <input type="text" placeholder="Contact Name" valueLink={this.linkState('name')} />
-            <div className="board-error">Please enter a Contact Person</div>
-          </div>
-          <div className="field-item" id="address-country">
-            { /* <div className="panel-select">South Korea<i className="ms-icon icon-arrow-right"></i></div> */ }
-            <input type="text" placeholder="Country/Region" valueLink={this.linkState('countryCode')} />
-            <div className="board-error">Please enter a Country/Region</div>
-          </div>
-          <div className="field-item" id="address-street">
-            <input type="text" placeholder="Street Address" valueLink={this.linkState('streetAddress')} />
-            <div className="board-error">Please enter a Address</div>
-          </div>
-          <div className="field-item" id="address-city">
-            { /* <div className="hidden panel-select">Jung-gu<i className="ms-icon icon-arrow-right"></i></div> */ }
-            <input type="text" placeholder="City" valueLink={this.linkState('city')} />
-            <div className="board-error">Please enter a City</div>
-          </div>
-          { /* <div className="field-item">
-            <div className="panel-select">Seoul<i className="ms-icon icon-arrow-right"></i></div>
-            <input type="text" placeholder="State" />
-          </div> */ }
-          <div className="field-item" id="address-zip">
-            <input type="text" placeholder="Zip/Postal code" valueLink={this.linkState('postalCode')} />
-            <div className="board-error">Please enter a Zip/Postal Code</div>
-          </div>
-          <div className="field-item tel" id="address-tel">
-            <input type="tel" placeholder="Tel" valueLink={this.linkState('tel')} />
-            <div className="board-error">Please enter a Tel Number</div>
-          </div>
-          { /*
-          <div className="field-item tel">
-            <div>
-              <input type="tel" style="width: 70px;" placeholder="Country code&nbsp;" id="country-code" />
-              <input type="tel" style="width: 218px;" placeholder="Mobile Number&nbsp;" />
-            </div>
-          </div>
-          */ }
+          {addressFields1.map(renderField)}
+          <button onClick={openPostalCodePopup}>우편번호 찾기</button>
+          {addressFields2.map(renderField)}
           <div className="address-action">
             <input type="submit" value="Save"
               className="ui-button ui-button-main add" onClick={this.handleSave}
@@ -156,6 +139,6 @@ const AddressEdit = React.createClass({
 });
 
 export default connect(
-  undefined,
-  { setHeader, loadAddresses, saveAddress }
+  (state, ownProps) => ({ auth: state.auth, order: state.entities.orders[ownProps.params.orderId] }),
+  { setHeader, loadAddresses }
 )(AddressEdit);

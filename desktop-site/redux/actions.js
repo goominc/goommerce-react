@@ -2,6 +2,7 @@
 
 import * as ApiAction from 'commons/redux/apiActions';
 exports.ApiAction = ApiAction;
+import { ajaxReturnPromise } from 'commons/redux/util/ajaxUtil';
 
 export function resetError() {
   return {
@@ -63,16 +64,9 @@ export function checkoutToggleEditAddress() {
     type: 'CHECKOUT_TOGGLE_EDIT_MODE',
   };
 }
-
 export function saveAddressAndThen(order, address) {
   return (dispatch, getState) => {
-    ApiAction.saveAddress(address)(dispatch, getState).then(() => {
-      const promises = [ApiAction.saveOrderAddress(order.id, address)(dispatch, getState)];
-      if (address.id) {
-        promises.push(ApiAction.setActiveAddressId(address.id)(dispatch, getState));
-      }
-      return Promise.all([promises]);
-    }).then(() => {
+    ApiAction.saveAddressAndThen(order, address)(dispatch, getState).then(() => {
       dispatch(checkoutToggleEditAddress());
     });
   };

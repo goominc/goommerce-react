@@ -1,12 +1,15 @@
+// Copyright (C) 2016 Goom Inc. All rights reserved.
+
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { ReactScriptLoaderMixin } from 'react-script-loader';
+import _ from 'lodash';
 
 import CheckoutPage from 'components/checkout/CheckoutPage';
 
 import { ApiAction, checkoutNewAddress, checkoutToggleEditAddress, saveAddressAndThen } from 'redux/actions';
 const { inipay, loadOrder, loadAddresses,
-  saveOrderAddress, setActiveAddressId, saveDefaultAddressOnCreateOrder } = ApiAction;
+  saveOrderAddress, setActiveAddressId } = ApiAction;
 
 const Checkout = React.createClass({
   propTypes: {
@@ -20,7 +23,6 @@ const Checkout = React.createClass({
     order: PropTypes.object,
     orderId: PropTypes.string.isRequired,
     saveOrderAddress: PropTypes.func.isRequired,
-    saveDefaultAddressOnCreateOrder: PropTypes.func,
     checkoutNewAddress: PropTypes.func,
     checkoutToggleEditAddress: PropTypes.func,
     saveAddressAndThen: PropTypes.func,
@@ -44,14 +46,13 @@ const Checkout = React.createClass({
       const addresses = res[1].addresses || [];
       let activeAddressExist = false;
       addresses.forEach((address) => {
-        if (address.id === this.props.activeAddressId) {
+        if (address.id === _.get(order, 'address.id')) {
           activeAddressExist = true;
         }
       });
       if (!activeAddressExist) {
         this.props.checkoutNewAddress();
       }
-      this.props.saveDefaultAddressOnCreateOrder(order, addresses);
     });
   },
   onScriptError() {
@@ -134,21 +135,24 @@ const Checkout = React.createClass({
         cancelEditAddress={cancelEditAddress}
         editAddress={editAddress}
         submitAddress={(address) => saveAddressAndThen(order, address)}
-        deleteAddress={this.context.ApiAction.deleteAddress}
+        deleteAddress={(address) => this.context.ApiAction.deleteAddressOnOrder(address, order)}
       />
     );
   },
 });
 
 export default connect(
-  (state, ownProps) => ({
-    orderId: ownProps.params.orderId,
-    order: state.entities.orders[ownProps.params.orderId],
-    activeAddressId: state.auth.addressId,
-    addresses: state.entities.addresses,
-    isEditMode: state.page.pageCheckout.isEditMode,
-    isNewAddress: state.page.pageCheckout.isNewAddress,
-  }),
+  (state, ownProps) => {
+    const order = state.entities.orders[ownProps.params.orderId];
+    return {
+      orderId: ownProps.params.orderId,
+      order,
+      activeAddressId: order ? _.get(order, 'address.id') || 0 : 0,
+      addresses: state.entities.addresses,
+      isEditMode: state.page.pageCheckout.isEditMode,
+      isNewAddress: state.page.pageCheckout.isNewAddress,
+    };
+  },
   { inipay, loadOrder, loadAddresses, saveOrderAddress, setActiveAddressId,
-    saveDefaultAddressOnCreateOrder, checkoutNewAddress, checkoutToggleEditAddress, saveAddressAndThen }
+    checkoutNewAddress, checkoutToggleEditAddress, saveAddressAndThen }
 )(Checkout);
