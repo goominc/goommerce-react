@@ -125,13 +125,28 @@ export default React.createClass({
       };
       return (
         <form id="checkout" method="POST" ref="checkoutForm">
-          {/* alipay */}
+          {/* global */}
           <input type="hidden" name="webordernumber" ref="webordernumber" />
           <input type="hidden" name="reqtype" ref="reqtype" />
           <input type="hidden" name="returnurl" ref="returnurl" />
           <input type="hidden" name="hashdata" ref="hashdata" />
           <input type="hidden" name="notiurl" ref="notiurl" />
+
+          {/* alipay */}
           <input type="hidden" name="notiidle" ref="notiidle" value="1" />
+
+          {/* paypal */}
+          <input type="hidden" name="shiptoname" ref="shiptoname" />
+          <input type="hidden" name="shiptostreet" ref="shiptostreet" />
+          <input type="hidden" name="shiptostreet2" ref="shiptostreet2" />
+          <input type="hidden" name="shiptocity" ref="shiptocity" />
+          <input type="hidden" name="shiptostate" ref="shiptostate" />
+          <input type="hidden" name="shiptocountrycode" ref="shiptocountrycode" />
+          <input type="hidden" name="shiptozip" ref="shiptozip" />
+
+          {/* tenpay */}
+          <input type="hidden" name="order_vaild_time" ref="order_vaild_time" />
+          <input type="hidden" name="idletimenoti" ref="idletimenoti" />
 
           {/* web */}
           <input type="hidden" name="gopaymethod" />
