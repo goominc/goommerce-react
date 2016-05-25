@@ -139,7 +139,7 @@ module.exports = (opts) => {
           req.cookies[mobileRedirectKey] = true;
           // 2016. 04. 08. [heekyu] Use this on local test
           // return sendMobile(initialState);
-          return res.redirect(`//${config.mobileSite}/`);
+          return res.redirect(`//${config.mobileSite}${req.originalUrl}`);
         }
 
         return send(initialState, isReportGA ? _.get(config, 'ga.desktop') : null);
