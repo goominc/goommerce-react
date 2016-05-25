@@ -107,6 +107,11 @@ export default React.createClass({
           variantStr = orderProduct.productVariant.sku;
         }
 
+        console.log(orderProduct);
+        let productMainImage = getProductMainImage(orderProduct.product);
+        if (!productMainImage) {
+          productMainImage = getProductMainImage(orderProduct.productVariant);
+        }
         return (
           <div className="order-panel order-seller" key={orderProduct.id}>
             {renderBrand()}
@@ -115,7 +120,7 @@ export default React.createClass({
               <dl className="order-product-info clearfix">
                 <dt>
                   <div className="order-image">
-                    <img src={getProductMainImage(orderProduct.product).url} />
+                    <img src={productMainImage ? productMainImage.url : ''} />
                   </div>
                 </dt>
                 <dd>
