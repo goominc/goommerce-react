@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { cloudinaryConfig } from 'react-cloudinary';
 
 import { ApiAction, toggleMenu, toggleSignRegister, toggleSearch,
          toggleLanguage, toggleCurrency } from 'redux/actions';
@@ -11,6 +12,8 @@ import SignRegister from 'components/SignRegister';
 import Search from 'components/Search';
 import Language from 'components/Language';
 import Currency from 'components/Currency';
+
+cloudinaryConfig({ cloud_name: 'linkshops', crop: 'limit' });
 
 const App = React.createClass({
   propTypes: {
