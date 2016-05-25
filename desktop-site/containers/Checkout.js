@@ -67,7 +67,10 @@ const Checkout = React.createClass({
     return 'https://stgstdpay.inicis.com/stdjs/INIStdPay.js';
   },
   doCheckout(orderId, method, paymentInfo) {
-    const inipayMethod = method === 'alipay' ? 'alipay' : 'web';
+    function upperFirst(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+    const inipayMethod = method === 'web' ? 'web' : 'global';
     this.props.inipay(orderId, inipayMethod).then((res) => {
       paymentInfo.mid.value = res.mid;
       paymentInfo.oid.value = res.oid;
@@ -76,10 +79,7 @@ const Checkout = React.createClass({
       paymentInfo.buyername.value = res.buyername;
       paymentInfo.buyertel.value = res.buyertel;
       paymentInfo.timestamp.value = res.timestamp;
-      paymentInfo.signature.value = res.signature;
-      paymentInfo.returnUrl.value = res.returnUrl;
-      paymentInfo.mKey.value = res.mKey;
-      if (inipayMethod === 'alipay') {
+      if (inipayMethod === 'global') {
         // FIXME: we don't have english buyer name.
         paymentInfo.buyername.value = 'linkshops';
         paymentInfo.goods.value = 'clothing';
@@ -88,9 +88,12 @@ const Checkout = React.createClass({
         paymentInfo.hashdata.value = res.hashdata;
         paymentInfo.returnurl.value = res.returnUrl;
         paymentInfo.notiurl.value = res.notiUrl;
-        paymentInfo.checkoutForm.action = 'https://inilite.inicis.com/inipayStdAlipay';
+        paymentInfo.checkoutForm.action = `https://inilite.inicis.com/inipayStd${upperFirst(method)}`;
         paymentInfo.checkoutForm.submit();
       } else {
+        paymentInfo.signature.value = res.signature;
+        paymentInfo.returnUrl.value = res.returnUrl;
+        paymentInfo.mKey.value = res.mKey;
         INIStdPay.pay('checkout');
       }
     });
