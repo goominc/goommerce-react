@@ -66,8 +66,9 @@ const Checkout = React.createClass({
     }
     return 'https://stgstdpay.inicis.com/stdjs/INIStdPay.js';
   },
-  doCheckout(orderId, paymentInfo) {
-    this.props.inipay(orderId).then((res) => {
+  doCheckout(orderId, method, paymentInfo) {
+    const inipayMethod = method === 'alipay' ? 'alipay' : 'web';
+    this.props.inipay(orderId, inipayMethod).then((res) => {
       paymentInfo.mid.value = res.mid;
       paymentInfo.oid.value = res.oid;
       paymentInfo.price.value = res.price;
@@ -78,7 +79,20 @@ const Checkout = React.createClass({
       paymentInfo.signature.value = res.signature;
       paymentInfo.returnUrl.value = res.returnUrl;
       paymentInfo.mKey.value = res.mKey;
-      INIStdPay.pay('checkout');
+      if (inipayMethod === 'alipay') {
+        // FIXME: we don't have english buyer name.
+        paymentInfo.buyername.value = 'linkshops';
+        paymentInfo.goods.value = 'clothing';
+        paymentInfo.webordernumber.value = res.oid;
+        paymentInfo.reqtype.value = res.reqtype;
+        paymentInfo.hashdata.value = res.hashdata;
+        paymentInfo.returnurl.value = res.returnUrl;
+        paymentInfo.notiurl.value = res.notiUrl;
+        paymentInfo.checkoutForm.action = 'https://inilite.inicis.com/inipayStdAlipay';
+        paymentInfo.checkoutForm.submit();
+      } else {
+        INIStdPay.pay('checkout');
+      }
     });
   },
   render() {

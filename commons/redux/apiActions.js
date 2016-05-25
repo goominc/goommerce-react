@@ -132,10 +132,10 @@ export function loadProductAndThen(id, cb) {
   };
 }
 
-export function inipay(orderId) {
+export function inipay(orderId, method = '') {
   return createFetchAction({
     type: 'INIPAY',
-    endpoint: `/api/v1/orders/${orderId}/inipay`,
+    endpoint: `/api/v1/orders/${orderId}/inipay?method=${method}`,
     doDispatch: false,
   });
 }

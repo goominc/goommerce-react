@@ -120,16 +120,25 @@ export default React.createClass({
         }
         const method = paymentMethods[this.state.paymentMethod].method;
         $('form input[name=gopaymethod]').val(method);
-        doCheckout(order.id, Object.assign({}, this.refs,
+        doCheckout(order.id, method, Object.assign({}, this.refs,
           { gopaymethod: { value: method } }));
       };
       return (
-        <form id="checkout" method="POST">
+        <form id="checkout" method="POST" ref="checkoutForm">
+          {/* alipay */}
+          <input type="hidden" name="webordernumber" ref="webordernumber" />
+          <input type="hidden" name="reqtype" ref="reqtype" />
+          <input type="hidden" name="returnurl" ref="returnurl" />
+          <input type="hidden" name="hashdata" ref="hashdata" />
+          <input type="hidden" name="notiurl" ref="notiurl" />
+          <input type="hidden" name="notiidle" ref="notiidle" value="1" />
+
+          {/* web */}
           <input type="hidden" name="gopaymethod" />
           <input type="hidden" name="version" value="1.0" />
           <input type="hidden" name="mid" ref="mid" />
           <input type="hidden" name="oid" ref="oid" />
-          <input type="hidden" name="goodname" value="의류" />
+          <input type="hidden" name="goodname" ref="goods" value="의류" />
           <input type="hidden" name="price" ref="price" />
           <input type="hidden" name="currency" value="WON" />
           <input type="hidden" name="buyername" ref="buyername" />
