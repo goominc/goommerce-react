@@ -7,6 +7,7 @@ import _ from 'lodash';
 import brandUtil from 'commons/utils/brandUtil';
 import numberUtil from 'commons/utils/numberUtil';
 import productUtil from 'commons/utils/productUtil';
+import i18n from 'commons/utils/i18n';
 
 import ResponsiveImage from 'components/snippet/ResponsiveImage';
 
@@ -61,7 +62,7 @@ export default React.createClass({
         const getStatus = () => {
           let content;
           if (+order.paymentStatus === 200) { // VBank pending
-            content = <span style={({ color: '#c94e4e' })}>결제대기</span>;
+            content = <span style={({ color: '#c94e4e' })}>{i18n.get('enum.order.paymentStatus.0')}</span>;
           } else if (isNaN(variant.finalQuantity)) {
             return (
               <div className="status-column">
@@ -82,8 +83,8 @@ export default React.createClass({
               );
             };
             const stockReasonText = {
-              10: '재입고 예정',
-              30: '품절',
+              10: i18n.get('enum.productVariant.status.10'),
+              30: i18n.get('enum.productVariant.status.20'),
             };
             const reasonValue = _.get(variant, 'data.stock.reason');
             let reason = '사유없음';
@@ -141,11 +142,11 @@ export default React.createClass({
     return (
       <div className="cart-info-container">
         <div className="title-row">
-          <div className="brand">브랜드</div>
-          <div className="product-info-title order-product-info-len">상품내용</div>
-          <div className="quantity">단가</div>
-          <div className="quantity">수량</div>
-          <div className="price">가격</div>
+          <div className="brand">{i18n.get('pcMypage.brands')}</div>
+          <div className="product-info-title order-product-info-len">{i18n.get('pcMypage.products')}</div>
+          <div className="quantity">{i18n.get('pcMypage.subtotal')}</div>
+          <div className="quantity">{i18n.get('pcMypage.quantity')}</div>
+          <div className="price">{i18n.get('pcMypage.total')}</div>
           <div className="status-column">상태</div>
         </div>
         {(brands || []).map(renderBrand)}

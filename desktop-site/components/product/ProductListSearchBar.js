@@ -43,11 +43,11 @@ export default React.createClass({
   },
   render() {
     const { genLink, KRW } = this.props;
-    const t = (key) => i18n.get(`pcMain.productList.${key}`);
+    const t = (key) => i18n.get(`pcProductList.${key}`);
     const sortItems = [
-      { name: i18n.get('pcMain.productList.sortLowPrice'), sorts: 'KRW.num' },
-      { name: i18n.get('pcMain.productList.sortHighPrice'), sorts: '-KRW.num' },
-      { name: i18n.get('pcMain.productList.sortLatest'), sorts: '-id' },
+      { name: i18n.get('pcProductList.sortLowPrice'), sorts: 'KRW.num' },
+      { name: i18n.get('pcProductList.sortHighPrice'), sorts: '-KRW.num' },
+      { name: i18n.get('pcProductList.sortLatest'), sorts: '-id' },
     ];
     const renderPriceFilters = () => {
       const priceLink = (nextKRW) =>

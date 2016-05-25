@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
 import stringUtil from 'commons/utils/stringUtil';
+import i18n from 'commons/utils/i18n';
 
 export default React.createClass({
   propTypes: {
@@ -17,7 +18,7 @@ export default React.createClass({
     const { address, editAddress, deleteAddress, isActive, onClickMe } = this.props;
     const renderEditButton = () => {
       if (isActive) {
-        return (<a className="edit-box" onClick={() => editAddress(address)}>정보수정</a>);
+        return (<a className="edit-box" onClick={() => editAddress(address)}>{i18n.get('pcPayment.edit')}</a>);
       }
       return null;
     };
@@ -28,10 +29,10 @@ export default React.createClass({
     };
     const getString = (key) => stringUtil.shorten(_.get(address, key) || '', 13);
     const fields = [
-      { label: '받는 분', value: _.get(address, 'detail.name') },
-      { label: '연락처', value: _.get(address, 'detail.tel') },
-      { label: '우편번호', value: _.get(address, 'detail.postalCode') },
-      { label: '주소', value: [getString('detail.address.base'), getString('detail.address.detail')] },
+      { label: i18n.get('pcPayment.fullName'), value: _.get(address, 'detail.name') },
+      { label: i18n.get('pcPayment.phoneNumber'), value: _.get(address, 'detail.tel') },
+      { label: i18n.get('pcPayment.zipCode'), value: _.get(address, 'detail.postalCode') },
+      { label: i18n.get('pcPayment.address'), value: [getString('detail.address.base'), getString('detail.address.detail')] },
     ];
     const renderValue = (value) => {
       if (value instanceof Array) {
@@ -51,7 +52,7 @@ export default React.createClass({
           {_.get(address, 'detail.alias') || '주소'}
           <div className="action-line">
             {renderEditButton()}
-            <a key={`delete-address-${address.id}`} className="edit-box" onClick={onDelete}>삭제</a>
+            <a key={`delete-address-${address.id}`} className="edit-box" onClick={onDelete}>{i18n.get('pcPayment.remove')}</a>
           </div>
         </div>
         <div className="add-address-box">

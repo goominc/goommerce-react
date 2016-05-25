@@ -4,6 +4,8 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
 import ResponsiveImage from 'components/snippet/ResponsiveImage';
+import i18n from 'commons/utils/i18n';
+
 const _ = require('lodash');
 
 export default React.createClass({
@@ -50,7 +52,7 @@ export default React.createClass({
     };
     return (
       <div className="mypage-right-box">
-        <h2>Wish List</h2>
+        <h2>{i18n.get('pcMypage.wishList')}</h2>
         <div className="wish-list-box">{wishes.map(renderWish)}</div>
       </div>
     );

@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
 import { constants } from 'commons/utils/constants';
+import i18n from 'commons/utils/i18n';
 
 export default React.createClass({
   propTypes: {
@@ -48,25 +49,25 @@ export default React.createClass({
     return (
       <div className="signup-form-section">
         <div className="title">
-          개인정보
+          {i18n.get('pcMain.signup.personalInformation')}
         </div>
         <div className="form-group">
-          <label><span className="required">{auth ? '' : '*'}</span>성함</label>
+          <label><span className="required">{auth ? '' : '*'}</span>{i18n.get('pcMypage.name')}</label>
           <div className="input-lastname">
             <input id="lastName" onChange={(e) => onChange(e, 'data.lastName')}
               defaultValue={auth ? _.get(auth, 'data.lastName') : ''}
-              type="text" placeholder="성"
+              type="text" placeholder={i18n.get('pcMypage.firstName')}
             />
           </div>
           <div className="input-firstname">
             <input id="firstName" onChange={(e) => onChange(e, 'data.firstName')}
               defaultValue={auth ? _.get(auth, 'data.firstName') : ''}
-              type="text" placeholder="이름"
+              type="text" placeholder={i18n.get('pcMypage.lastName')}
             />
           </div>
         </div>
         <div className="form-group">
-          <label><span className="required">{auth ? '' : '*'}</span>연락처</label>
+          <label><span className="required">{auth ? '' : '*'}</span>{i18n.get('pcMypage.phoneNumber')}</label>
           <div className="form-tel">
             <div className="area-code" onClick={toggleNumberDropdown}>
               <img src={areaCodes[activeAreaCodeIndex].img} /> {areaCodes[activeAreaCodeIndex].number}
@@ -78,7 +79,7 @@ export default React.createClass({
                 onlyNumberFieldOnChange ? onlyNumberFieldOnChange(e, 'data.tel', 15) : onChange(e, 'data.tel')
               )}
               value={auth ? _.get(auth, 'data.tel') || '' : ''}
-              type="text" placeholder="'-'를 제외한 숫자만 입력해 주세요"
+              type="text" placeholder={i18n.get('pcMain.signup.pleaseEnterOnlyNumbersExcept')}
             />
             <div className="dropdown-box">
               {areaCodes.map(renderAreaCodeDropdown)}

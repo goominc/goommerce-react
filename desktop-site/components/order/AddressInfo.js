@@ -2,6 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
+import i18n from 'commons/utils/i18n';
 
 export default React.createClass({
   propTypes: {
@@ -11,10 +12,10 @@ export default React.createClass({
     const { order } = this.props;
     const addressString = `${_.get(order, 'address.detail.address.base') || '&'} ${_.get(order, 'address.detail.address.detail') || ''}`;
     const addressFields = [
-      { label: '받는 분', value: _.get(order, 'address.detail.name') || '' },
-      { label: '연락처', value: _.get(order, 'address.detail.tel') || '' },
-      { label: '우편번호', value: _.get(order, 'address.detail.postalCode') || '' },
-      { label: '주소', value: addressString },
+      { label: i18n.get('pcMypage.fullName'), value: _.get(order, 'address.detail.name') || '' },
+      { label: i18n.get('pcMypage.phoneNumber'), value: _.get(order, 'address.detail.tel') || '' },
+      { label: i18n.get('pcMypage.zipCode'), value: _.get(order, 'address.detail.postalCode') || '' },
+      { label: i18n.get('pcMypage.address'), value: addressString },
     ];
     const renderField = (field) => (
       <div key={field.label} className="row">

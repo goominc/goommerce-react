@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react';
 
 import numberUtil from 'commons/utils/numberUtil';
 import orderUtil from 'commons/utils/orderUtil';
+import i18n from 'commons/utils/i18n';
 
 import CartProduct from './CartProduct';
 
@@ -31,7 +32,7 @@ export default React.createClass({
       if (cart.brands && cart.brands.length) {
         return (
           <div className="cart-button-order" onClick={buyAll}>
-            주문하기
+            {i18n.get('pcCart.checkout')}
           </div>
         );
       }
@@ -42,13 +43,13 @@ export default React.createClass({
     return (
       <div className="cart-conatiner">
         <div className="cart-title-box">
-          <i className="icon-cart"></i> <span>장바구니</span>
+          <i className="icon-cart"></i> <span>{i18n.get('pcCart.cart')}</span>
         </div>
         <CartProduct {...this.props} brands={cart.brands} canUpdate />
         <div className="cart-payment-container">
-          <div className="title">총 금액</div>
+          <div className="title">{i18n.get('pcCart.total')}</div>
           <div className="total-row">
-            <div className="label">상품금액</div>
+            <div className="label">{i18n.get('pcCart.subtotal')}</div>
             <div className="control">{formatPrice}</div>
           </div>
           {renderBuyButton()}

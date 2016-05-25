@@ -5,6 +5,7 @@ import React, { PropTypes } from 'react';
 import * as _ from 'lodash';
 
 import { execDaumPostcode } from 'commons/utils/addressUtil';
+import i18n from 'commons/utils/i18n';
 
 export default React.createClass({
   propTypes: {
@@ -30,11 +31,11 @@ export default React.createClass({
       </div>
     );
     const addressFields = [
-      { key: 'detail.alias', objKey: 'alias', text: '별명', placeholder: '주소 별명' },
-      { key: 'detail.name', objKey: 'name', text: '받는 분', placeholder: '이름' },
-      { key: 'detail.tel', objKey: 'tel', text: '연락처', placeholder: '01012345678' },
-      { key: 'detail.postalCode', objKey: 'postalCode', text: '우편 번호', isReadOnly: true, placeholder: '00000' },
-      { key: 'detail.address.base', objKey: 'address1', text: '주소', isReadOnly: true, placeholder: '도로명주소' },
+      { key: 'detail.alias', objKey: 'alias', text: i18n.get('pcPayment.title'), placeholder: '주소 별명' },
+      { key: 'detail.name', objKey: 'name', text: i18n.get('pcPayment.fullName'), placeholder: '이름' },
+      { key: 'detail.tel', objKey: 'tel', text: i18n.get('pcPayment.phoneNumber'), placeholder: '01012345678' },
+      { key: 'detail.postalCode', objKey: 'postalCode', text: i18n.get('pcPayment.zipCode'), isReadOnly: true, placeholder: '00000' },
+      { key: 'detail.address.base', objKey: 'address1', text: i18n.get('pcPayment.address'), isReadOnly: true, placeholder: '도로명주소' },
       { key: 'detail.address.detail', objKey: 'address2', text: '상세 주소', placeholder: '상세주소' },
     ];
     const handleSubmitAddress = (e) => {

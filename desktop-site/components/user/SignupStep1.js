@@ -5,6 +5,7 @@ import React, { PropTypes } from 'react';
 import { constants } from 'commons/utils/constants';
 import UserTerms from 'commons/components/user/UserTerms';
 import UserPolicies from 'commons/components/user/UserPolicies';
+import i18n from 'commons/utils/i18n';
 
 export default React.createClass({
   propTypes: {
@@ -26,7 +27,7 @@ export default React.createClass({
           <div className="title">
             <input id="terms_title" type="checkbox" ref="terms" />
             <label onClick={() => $('#terms_title').click()}></label>
-            <span style={({ marginLeft: '15px' })}>이용약관 동의</span>
+            <span style={({ marginLeft: '15px' })}>{i18n.get('pcMain.signup.agreeToTermsOfUse')}</span>
           </div>
           <div className="content-box">
             <UserTerms />
@@ -36,15 +37,15 @@ export default React.createClass({
           <div className="title">
             <input id="policies_title" type="checkbox" ref="policies" />
             <label onClick={() => $('#policies_title').click()}></label>
-            <span style={({ marginLeft: '15px' })}>개인정보 수집방침 동의</span>
+            <span style={({ marginLeft: '15px' })}>{i18n.get('pcMain.signup.agreeToPrivacyPolicy')}</span>
           </div>
           <div className="content-box">
             <UserPolicies />
           </div>
         </div>
         <div className="button-line">
-          <button onClick={goBack} className="button-back">뒤로</button>
-          <button onClick={onNext} className="button-next">다음</button>
+          <button onClick={goBack} className="button-back">{i18n.get('pcMain.signup.back')}</button>
+          <button onClick={onNext} className="button-next">{i18n.get('pcMain.signup.naxt')}</button>
         </div>
       </div>
     );

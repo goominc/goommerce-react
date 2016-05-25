@@ -87,7 +87,7 @@ export default React.createClass({
         <div className="address-container">
           {addressIds.map((addressId) => renderAddress(addresses[addressId]))}
           <div className="item">
-            <div className="title">배송지 추가</div>
+            <div className="title">{i18n.get('pcPayment.addNewAddress')}</div>
             <div className="add-address-box">
               <div className="add-address-button" onClick={checkoutNewAddress}></div>
             </div>
@@ -98,7 +98,7 @@ export default React.createClass({
 
     const paymentMethods = [
       { icon: 'icon-inicis', name: '무통장 입금', method: 'VBank' },
-      { icon: 'icon-credit-card', name: '신용 카드', method: 'Card' },
+      { icon: 'icon-credit-card', name: i18n.get('pcPayment.creditCard'), method: 'Card' },
     ];
     const renderPaymentMethod = (method, index) => (
       <div key={`payment-${index}`} className={`row ${index === this.state.paymentMethod ? 'active' : ''}`} onClick={() => this.setState({ paymentMethod: index })}>
@@ -141,7 +141,7 @@ export default React.createClass({
           <input type="hidden" name="mKey" ref="mKey" />
           <input type="hidden" name="quotabase" value="2:3:4:5:6:7:8:9:10:11:12" />
           <button type="submit" className="cart-button-order" onClick={handleCheckout}>
-            결제하기
+            {i18n.get('pcPayment.placeOrder')}
           </button>
         </form>
       );
@@ -159,40 +159,40 @@ export default React.createClass({
     return (
       <div className="cart-conatiner">
         <div className="cart-title-box">
-          <i className="icon-payment"></i> <span>결제</span>
+          <i className="icon-payment"></i> <span>{i18n.get('pcPayment.payment')}</span>
         </div>
         <div className="checkout-left-container">
-          <div className="title">배송 정보</div>
+          <div className="title">{i18n.get('pcPayment.shippingAddress')}</div>
           {renderAddresses()}
-          <div className="title">주문 내역</div>
+          <div className="title">{i18n.get('pcPayment.orderSummary')}</div>
           <CartProduct brands={brands} />
         </div>
         <div className="checkout-right-container">
           <div className="payment-info-box">
-            <div className="title">결제 정보</div>
+            <div className="title">{i18n.get('pcPayment.paymentInfo')}</div>
             <div className="row">
-              <div className="label">상품금액</div>
+              <div className="label">{i18n.get('pcPayment.subtotal')}</div>
               <div className="control">{subtotalPrice}</div>
             </div>
             <div className="row">
-              <div className="label">부가세(10%)</div>
+              <div className="label">{i18n.get('pcPayment.tax')} (10%)</div>
               <div className="control">{taxPrice}</div>
             </div>
             <div className="row">
-              <div className="label">사입비(3.3%)</div>
+              <div className="label">{i18n.get('pcPayment.handlingFee')} (3.3%)</div>
               <div className="control">{handlingFeePrice}</div>
             </div>
             <div className="row">
-              <div className="label">배송비</div>
+              <div className="label">{i18n.get('pcPayment.shippingCost')}</div>
               <div className="control">{shippingCostPrice}</div>
             </div>
             <div className="total-row">
-              <div className="label">결제금액</div>
+              <div className="label">{i18n.get('pcPayment.totalPrice')}</div>
               <div className="control">{totalPrice}</div>
             </div>
           </div>
           <div className="payment-method-box">
-            <div className="title">결제 수단</div>
+            <div className="title">{i18n.get('pcPayment.paymentMethod')}</div>
             {paymentMethods.map(renderPaymentMethod)}
             {renderPayments()}
             {/*

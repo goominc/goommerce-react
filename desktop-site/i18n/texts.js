@@ -66,7 +66,7 @@ module.exports = {
             paymentStatus: {
                 0: {
                     en: 'Pending payments',
-                    ko: '결제대기중',
+                    ko: '결제대기',
                     'zh-cn': '等待付款',
                     'zh-tw': '等待付款',
                 },
@@ -188,7 +188,7 @@ module.exports = {
                 },
                 10: {
                     en: 'Out of stock',
-                    ko: '재고부족',
+                    ko: '재입고 예정',
                     'zh-cn': '没有库存',
                     'zh-tw': '沒有庫存',
                 },
@@ -457,6 +457,12 @@ module.exports = {
                 'zh-cn': '账户信息',
                 'zh-tw': '賬戶信息',
             },
+            userHi: {
+                en: '!',
+                ko: '님',
+                'zh-cn': '.',
+                'zh-tw': '.',
+            },
         },
         search: {
             placeHolder: {
@@ -516,6 +522,12 @@ module.exports = {
                 ko: '아이디',
                 'zh-cn': '会员名',
                 'zh-tw': '會員名',
+            },
+            idEmail: {
+                en: 'ID(E-mail)',
+                ko: '아이디(이메일)',
+                'zh-cn': '会员名(E-mail)',
+                'zh-tw': '會員名(E-mail)',
             },
             password: {
                 en: 'Password',
@@ -631,6 +643,12 @@ module.exports = {
                 'zh-cn': '返回',
                 'zh-tw': '返回',
             },
+            naxt: {
+                en: 'Next',
+                ko: '다음',
+                'zh-cn': '下一',
+                'zh-tw': '下一',
+            },
         },
     },
     pcProductList: {
@@ -743,36 +761,6 @@ module.exports = {
             ko: '주문내역',
             'zh-cn': '订单性情',
             'zh-tw': '訂單性情',
-        },
-        brands: {
-            en: 'Brands',
-            ko: '브랜드',
-            'zh-cn': '品牌',
-            'zh-tw': '品牌',
-        },
-        products: {
-            en: 'Products',
-            ko: '상품내용',
-            'zh-cn': '商品详情',
-            'zh-tw': '商品詳情',
-        },
-        price: {
-            en: 'Price',
-            ko: '단가',
-            'zh-cn': '单价',
-            'zh-tw': '單價',
-        },
-        quantity: {
-            en: 'Quantity',
-            ko: '수량',
-            'zh-cn': '数量',
-            'zh-tw': '數量',
-        },
-        total: {
-            en: 'Total',
-            ko: '가격',
-            'zh-cn': '金额',
-            'zh-tw': '金額',
         },
         paymentInfo: {
             en: 'Payment',
@@ -954,17 +942,29 @@ module.exports = {
         },
     },
     pcFooter: {
-        shopByBuilding: {
-            en: 'Shop by Building',
-            ko: '동대문 상가별 매장정보',
-            'zh-cn': '东大门商城指南',
-            'zh-tw': '東大門商城指南',
+        dongdaemun: {
+            en: 'Shop by',
+            ko: '동대문',
+            'zh-cn': '东大门',
+            'zh-tw': '東大門',
         },
-        hotItems: {
-            en: 'Hot Items',
-            ko: '동대문 핫신상',
-            'zh-cn': '东大门新品推荐',
-            'zh-tw': '東大門新品推薦',
+        byBuilding: {
+            en: 'Building',
+            ko: '상가별 매장정보',
+            'zh-cn': '商城指南',
+            'zh-tw': '商城指南',
+        },
+        hot: {
+            en: 'Hot',
+            ko: '동대문',
+            'zh-cn': '东大门',
+            'zh-tw': '東大門',
+        },
+        items: {
+            en: 'Items',
+            ko: '핫신상',
+            'zh-cn': '新品推荐',
+            'zh-tw': '新品推薦',
         },
         aprilInc: {
             en: 'April Inc.',
@@ -1101,17 +1101,47 @@ module.exports = {
             'zh-cn': '实付款',
             'zh-tw': '實付款',
         },
-        orderListSubject: {
-            en: '{0} and etc.({1} brands, {2} products)',
-            ko: '{0}외 {1}개 브랜드의 {2}개 상품 구매내역',
-            'zh-cn': '{0}以外，{1}个品牌的，{2}件商品的订单详情',
-            'zh-tw': '{0}以外，{1}個商品的訂單詳情',
+        orderStatus: {
+            en: 'Status',
+            ko: '주문상태',
+            'zh-cn': '交易状态',
+            'zh-tw': '交易狀態',
+        },
+        orderListSubjectOf: {
+            en: 'of',
+            ko: '의',
+            'zh-cn': '的',
+            'zh-tw': '的',
+        },
+        orderListSubjectAnd: {
+            en: 'and etc.',
+            ko: '외',
+            'zh-cn': '以外，',
+            'zh-tw': '以外，',
+        },
+        orderListSubjectBrand: {
+            en: 'brands',
+            ko: '개 브랜드의',
+            'zh-cn': '个品牌的，',
+            'zh-tw': '個品牌的，',
+        },
+        orderListSubjectProduct: {
+            en: 'products',
+            ko: '개 상품 구매내역',
+            'zh-cn': '件商品的订单详情',
+            'zh-tw': '個商品的訂單詳情',
         },
         thanksForYourOrder: {
             en: 'Thanks for your order',
             ko: '주문이 완료되었습니다.',
             'zh-cn': '下单完成',
             'zh-tw': '下單完成',
+        },
+        thanksForYourOrderPayment: {
+            en: 'Thanks for your payment',
+            ko: '주문 및 결제가 완료되었습니다.',
+            'zh-cn': '结账成功',
+            'zh-tw': '結賬成功',
         },
         orderDetails: {
             en: 'Order Details',
@@ -1130,6 +1160,12 @@ module.exports = {
             ko: '주문 번호',
             'zh-cn': '订单编码',
             'zh-tw': '訂單編碼',
+        },
+        myOrders: {
+            en: 'My Order',
+            ko: '주문 내역',
+            'zh-cn': '我的订单',
+            'zh-tw': '我的訂單',
         },
         payment: {
             en: 'Payment',
@@ -1158,7 +1194,7 @@ module.exports = {
         },
         shipTo: {
             en: 'Ship to',
-            ko: '배송정보',
+            ko: '배송 정보',
             'zh-cn': '配送信息',
             'zh-tw': '配送信息',
         },
@@ -1287,6 +1323,12 @@ module.exports = {
             ko: '사업자번호를 입력해주세요',
             'zh-cn': '请输入注册号',
             'zh-tw': '請輸入註冊號',
+        },
+        businessRegisteration: {
+            en: 'Business Registration',
+            ko: '사업자등록증',
+            'zh-cn': '商业注册',
+            'zh-tw': '商業註冊',
         },
         bankAccountInformation: {
             en: 'Bank Account Information',

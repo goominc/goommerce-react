@@ -7,6 +7,7 @@ import Breadcrumb from 'components/Breadcrumb';
 import brandUtil from 'commons/utils/brandUtil';
 import productUtil from 'commons/utils/productUtil';
 import numberUtil from 'commons/utils/numberUtil';
+import i18n from 'commons/utils/i18n';
 
 import ResponsiveImage from 'components/snippet/ResponsiveImage';
 
@@ -186,7 +187,7 @@ export default React.createClass({
       };
       return (
         <div key={`product-color-${product.id}`} className="color-line">
-          <div className="field-label">색상</div>
+          <div className="field-label">{i18n.get('pcItemDetail.color')}</div>
           <div className="field-content">
             {keys.map(render)}
           </div>
@@ -211,7 +212,7 @@ export default React.createClass({
       };
       return (
         <div key={`product-size-${product.id}`} className="size-line">
-          <div className="field-label">사이즈</div>
+          <div className="field-label">{i18n.get('pcItemDetail.size')}</div>
           <div className="field-content">
             {keys.map(render)}
           </div>
@@ -249,16 +250,16 @@ export default React.createClass({
         const renderFavoriteButton = () => {
           if (isLikeBrand) {
             return (
-              <Link to={`/brands/${brand.id}`} className="favorite-brand">♥  단골 브랜드</Link>
+              <Link to={`/brands/${brand.id}`} className="favorite-brand">♥  {i18n.get('pcItemDetail.favoriteBrands')}</Link>
             );
           }
           return (
-            <span className="add-favorite-brand" onClick={() => addFavoriteBrand(product.brand.id)}>단골 브랜드 추가</span>
+            <span className="add-favorite-brand" onClick={() => addFavoriteBrand(product.brand.id)}>{i18n.get('pcItemDetail.addToFavoriteBrands')}</span>
           );
         };
         return (
           <div className="normal-field-box">
-            <div className="field-label">브랜드</div>
+            <div className="field-label">{i18n.get('pcItemDetail.brand')}</div>
             <div className="field-content">
               <Link to={`/brands/${brand.id}`}>{_.get(brand, `name.${activeLocale}`)}</Link>
               {renderFavoriteButton()}
@@ -320,7 +321,7 @@ export default React.createClass({
     };
     const renderWarning = () => {
       if (!isColorSelected) {
-        return (<div className="product-detail-attr-warning">색상을 선택해 주세요</div>);
+        return (<div className="product-detail-attr-warning">{i18n.get('pcItemDetail.selectColor')}</div>);
       }
       if (!isSizeSelected) {
         return (<div className="product-detail-attr-warning">사이즈를 선택해 주세요</div>);
@@ -361,15 +362,15 @@ export default React.createClass({
               <div className={`wish-button ${wishId ? 'active' : ''}`} onClick={toggleWish}></div>
             </div>
             <div className="price-info-box">
-              <div className="field-label">가격</div>
+              <div className="field-label">{i18n.get('pcCart.price')}</div>
               {renderPrice()}
             </div>
             <div className="normal-field-box">
-              <div className="field-label">상품번호</div>
+              <div className="field-label">{i18n.get('pcItemDetail.skuNumber')}</div>
               <div className="field-content"><b>{product.id}</b></div>
             </div>
             <div className="normal-field-box">
-              <div className="field-label">상가건물</div>
+              <div className="field-label">{i18n.get('pcItemDetail.building')}</div>
               <div className="field-content">{_.get(product, 'brand.data.location.building.name.ko')}</div>
             </div>
             {renderBrand()}
@@ -383,7 +384,7 @@ export default React.createClass({
             {renderBrand()}
              */}
             <div className="quantity-line">
-              <div className="field-label">수량</div>
+              <div className="field-label">{i18n.get('pcItemDetail.quantity')}</div>
               <div className="field-content">
                 <div className="count-box">
                   <input className="input-number-nospin" min="1" defaultValue="1" ref="quantity" type="number" />
@@ -399,12 +400,12 @@ export default React.createClass({
               <button className="product-buy-now-button"
                 onClick={onBuyNow}
               >
-                바로 구매하기
+                {i18n.get('pcItemDetail.orderNow')}
               </button>
               <button className="product-add-to-cart-button"
                 onClick={onAddCart}
               >
-                장바구니 담기
+                {i18n.get('pcItemDetail.cart')}
               </button>
             </div>
           </div>

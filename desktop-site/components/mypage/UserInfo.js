@@ -9,12 +9,13 @@ import i18n from 'commons/utils/i18n';
 export default React.createClass({
   propTypes: {
     auth: PropTypes.object,
-    onChange: PropTypes.func,
-    save: PropTypes.func,
     cancel: PropTypes.func,
+    onChange: PropTypes.func,
+    // openChangePasswordPopup: PropTypes.func,
+    save: PropTypes.func,
   },
   render() {
-    const { auth, onChange, save, cancel } = this.props;
+    const { auth, onChange, openChangePasswordPopup, save, cancel } = this.props;
     if (!auth || !auth.id) {
       return null;
     }
@@ -46,7 +47,7 @@ export default React.createClass({
       return (
         <div className="signup-form-section">
           <div className="title">
-            사업자정보
+              {i18n.get('pcMain.signup.businessInformation')}
           </div>
           {fields1.map(renderField)}
           {fields2.map(renderField)}
@@ -56,19 +57,27 @@ export default React.createClass({
     return (
       <div className="user-info-container">
         <div className="signup-form-section">
-          <div className="title">아이디 / 비밀번호</div>
+          <div className="title">{i18n.get('pcMypage.idPassword')}</div>
           <div className="row">
-            <div className="label">아이디</div>
+            <div className="label">{i18n.get('pcMain.signup.id')}</div>
             <div className="control">
               <input type="text" value={auth.email} readOnly />
             </div>
           </div>
+          {/*
+          <div className="row">
+            <div className="label">비밀번호</div>
+            <div className="control">
+              <button className="user-info-change-password" onClick={openChangePasswordPopup}>비밀번호 변경</button>
+            </div>
+          </div>
+           */}
         </div>
         <InputPersonalInfo auth={auth} {...this.props} />
         {renderBizInfo()}
         <div className="button-line">
-          <button className="button-modify" onClick={save}>수정하기</button>
-          <button className="button-cancel" onClick={cancel}>취소</button>
+          <button className="button-modify" onClick={() => save().then(() => window.alert('저장되었습니다'))}>{i18n.get('pcMypage.edit')}</button>
+          <button className="button-cancel" onClick={cancel}>{i18n.get('pcMypage.cancel')}</button>
         </div>
       </div>
     );

@@ -38,10 +38,10 @@ export default React.createClass({
     }
     const paid = (
       <div className="title-box">
-        <i className="icon-check"></i> <span>결제 완료</span>
+        <i className="icon-check"></i> <span>{i18n.get('enum.order.paymentStatus.100')}</span>
       </div>
     );
-    const message = order.paymentStatus === 100 ? '주문 및 결제가 완료되었습니다.' : '주문이 완료되었습니다.';
+    const message = order.paymentStatus === 100 ? i18n.get('pcMypage.thanksForYourOrderPayment') : i18n.get('pcMypage.thanksForYourOrder');
     const brands = orderUtil.collectByBrands(order.orderProducts);
     return (
       <div className="order-done-container">
@@ -49,12 +49,12 @@ export default React.createClass({
         <div className="message">{message}</div>
         {order.paymentStatus === 200 && <div className="title">입금 정보</div>}
         <VBankInfo order={order} />
-        <div className="title">결제 정보</div>
+        <div className="title">{i18n.get('pcPayment.paymentInfo')}</div>
         <PaymentInfo order={order} />
-        <div className="title">배송 정보</div>
+        <div className="title">{i18n.get('pcPayment.shippingAddress')}</div>
         <AddressInfo order={order} />
         <CartProduct brands={brands} />
-        <Link to="/mypage/my_orders"><div className="go-order-list-button">주문 목록</div></Link>
+        <Link to="/mypage/my_orders"><div className="go-order-list-button">{i18n.get('pcMypage.orderList')}</div></Link>
       </div>
     );
   },

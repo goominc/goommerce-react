@@ -29,7 +29,7 @@ const UserInfoContainer = React.createClass({
       if (user.data.firstName && user.data.lastName) {
         user.name = `${user.data.lastName} ${user.data.firstName}`;
       }
-      ApiAction.updateUser(user);
+      return ApiAction.updateUser(user);
     };
     const cancel = () => {
       this.context.router.push('/');

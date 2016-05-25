@@ -8,6 +8,7 @@ import brandUtil from 'commons/utils/brandUtil';
 import numberUtil from 'commons/utils/numberUtil';
 import productUtil from 'commons/utils/productUtil';
 import { constants } from 'commons/utils/constants';
+import i18n from 'commons/utils/i18n';
 
 import ResponsiveImage from 'components/snippet/ResponsiveImage';
 
@@ -109,11 +110,11 @@ export default React.createClass({
     return (
       <div className="cart-info-container">
         <div className="title-row">
-          <div className="brand">브랜드</div>
-          <div className="product-info-title cart-product-info-len">상품내용</div>
-          <div className="quantity">단가</div>
-          <div className="quantity">수량</div>
-          <div className="price">가격</div>
+          <div className="brand">{i18n.get('pcCart.brands')}</div>
+          <div className="product-info-title cart-product-info-len">{i18n.get('pcCart.products')}</div>
+          <div className="quantity">{i18n.get('pcCart.price')}</div>
+          <div className="quantity">{i18n.get('pcCart.quantity')}</div>
+          <div className="price">{i18n.get('pcCart.subtotal')}</div>
         </div>
         {(brands || []).map(renderBrand)}
       </div>

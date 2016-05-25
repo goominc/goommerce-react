@@ -106,11 +106,11 @@ export default React.createClass({
         return (
           <div className="signup-form-section">
             <div className="title">
-              사업자정보
+              {i18n.get('pcMain.signup.businessInformation')}
             </div>
             {fields1.map(renderField)}
             <div className="form-group">
-              <label><span className="required">*</span>사업자 등록증</label>
+              <label><span className="required">*</span>{i18n.get('pcMypage.businessRegisteration')}</label>
               <div className="input-biz-image">
                 {this.state.bizImageName || '선택된 파일이 없습니다'}
                 <div className="biz-file-input">
@@ -154,26 +154,26 @@ export default React.createClass({
           <img className="signup-progress-img" src={`${constants.resourceRoot}/main/signup-step2.png`} />
           <div className="signup-form-section">
             <div className="title">
-              로그인 정보
+              {i18n.get('pcMain.signup.signInInformation')}
               <span className="desc-required">*은 필수입력</span>
             </div>
             <div className="form-group">
-              <label><span className="required">*</span>아이디</label>
+              <label><span className="required">*</span>{i18n.get('pcMain.signup.id')}</label>
               <div className="form-input">
                 <input onChange={(e) => onChange(e, 'email')} type="email" placeholder="ex) linkshops@linkshops.com" />
                 {renderEmailWarning(this.state.email)}
               </div>
             </div>
             <div className="form-group">
-              <label><span className="required">*</span>비밀번호</label>
+              <label><span className="required">*</span>{i18n.get('pcMain.signup.password')}</label>
               <div className="form-input">
-                <input onChange={(e) => onChange(e, 'password')} type="password" placeholder="6~16자 영문 대 소문자, 숫자를 사용하세요." />
+                <input onChange={(e) => onChange(e, 'password')} type="password" placeholder={i18n.get('pcMain.signup.useLettersAndNumbers')} />
               </div>
             </div>
             <div className="form-group">
-              <label><span className="required">*</span>비밀번호 확인</label>
+              <label><span className="required">*</span>{i18n.get('pcMain.signup.passwordAgain')}</label>
               <div className="form-input">
-                <input onChange={(e) => onChange(e, 'passwordConfirm')} type="password" placeholder="비밀번호를 다시 입력해주세요" />
+                <input onChange={(e) => onChange(e, 'passwordConfirm')} type="password" placeholder={i18n.get('pcMain.signup.pleaseEnterYourPasswordAgain')} />
                 {renderPasswordConfirmWarning()}
               </div>
             </div>
@@ -181,8 +181,8 @@ export default React.createClass({
           <InputPersonalInfo auth={this.state} onChange={onChange} onlyNumberFieldOnChange={onlyNumberFieldOnChange} />
           {renderBizInfo()}
           <div className="button-line">
-            <button type="reset" className="button-back" onClick={goBack}>뒤로</button>
-            <button type="submit" className="button-next">다음</button>
+            <button type="reset" className="button-back" onClick={goBack}>{i18n.get('pcMain.signup.back')}</button>
+            <button type="submit" className="button-next">{i18n.get('pcMain.signup.naxt')}</button>
           </div>
         </form>
       );

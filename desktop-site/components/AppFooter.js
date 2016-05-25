@@ -3,6 +3,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+import i18n from 'commons/utils/i18n';
 import { constants } from 'commons/utils/constants';
 
 export default React.createClass({
@@ -12,35 +13,35 @@ export default React.createClass({
         <div className="container no-padding">
           <div className="info-box">
             <div className="info-title">
-              ㈜ 에이프릴
+              {i18n.get('pcFooter.aprilInc')}
             </div>
             <div className="info-content">
-              대표자 서경미 <br />
-              서울시 중구 퇴계로 324 성우빌딩 6층 <br />
-              사업자등록번호 201-86-27310 <br />
-              통신판매업신고 서울중구 60887호 <br />
+              {i18n.get('pcFooter.ceoKyoungmiSeo')} <br />
+              {i18n.get('pcFooter.aprilAddress')} <br />
+              {i18n.get('pcFooter.businessRegistrationNo')} <br />
+              {i18n.get('pcFooter.telecommunicationServices')} <br />
             </div>
           </div>
           <div className="info-box">
             <div className="info-title">
             </div>
             <div className="info-content">
-              Tel. 02-2272-1122 <br />
-              Fax. 02-2233-5911 <br />
+              {i18n.get('pcFooter.tel')} <br />
+              {i18n.get('pcFooter.fax')} <br />
               E-mail <a href="mailto:cs@linkshops.com">cs@linkshops.com</a> <br />
-              개인정보관리책임자 오영지 <br />
-              <Link to="user/policies">개인정보취급방침</Link> <br />
-              <Link to="user/terms">이용약관</Link> <br />
+              {i18n.get('pcFooter.privacyPolicyManager')} <br />
+              <Link to="user/policies">{i18n.get('pcFooter.privacyPolicy')}</Link> <br />
+              <Link to="user/terms">{i18n.get('pcFooter.termsOfUse')}</Link> <br />
             </div>
           </div>
           <div className="info-box">
             <div className="info-title">
-              고객센터 운영시간
+              {i18n.get('pcFooter.customerService')}
             </div>
             <div className="info-content">
-              평일 오전 10시 ~ 오후 6시 (한국 기준) <br />
-              점심 오후 12시 30분 ~ 오후 1시 30분 <br />
-              주말 및 공휴일 제외 <br />
+              {i18n.get('pcFooter.customerServiceTime')} <br />
+              {i18n.get('pcFooter.lunchTime')} <br />
+              {i18n.get('pcFooter.customerServiceDay')} <br />
             </div>
           </div>
           <div className="info-box">
@@ -48,8 +49,8 @@ export default React.createClass({
               <img src={`${constants.resourceRoot}/footer/logo_kakao.png`} />
             </div>
             <div className="info-content">
-              구매회원 상담 Linkshops<br />
-              판매회원 상담 Linkshops_brand<br />
+              {i18n.get('pcFooter.kakaoTalk')}<br />
+              {i18n.get('pcFooter.wechat')}<br />
             </div>
           </div>
         </div>

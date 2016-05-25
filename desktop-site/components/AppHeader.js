@@ -165,7 +165,7 @@ export default React.createClass({
       if (this.context.isLogin()) {
         return [
           <div key="app-header-hi" className="helper-menu-item">
-            <Link to="/mypage">{i18n.get('word.hi')} {stringUtil.getUserName(auth)}님</Link>
+            <Link to="/mypage">{i18n.get('word.hi')} {stringUtil.getUserName(auth)}{i18n.get('pcMain.myMenu.userHi')}</Link>
           </div>,
           <div key="app-header-mypage" className="helper-menu-item"
             onMouseEnter={(e) => $(e.target).addClass('open')}

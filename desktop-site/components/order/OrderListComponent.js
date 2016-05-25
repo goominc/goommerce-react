@@ -53,9 +53,9 @@ export default React.createClass({
         quantities += +(variant.quantity || 0);
       }
       const displayBrand = brands.size > 1 ?
-        `${representitiveBrandName} 외 ${brands.size - 1}개 브랜드의` :
-        `${representitiveBrandName}의`;
-      return `${displayBrand} ${quantities}개 상품 구매내역`;
+        `${representitiveBrandName}${i18n.get('pcMypage.orderListSubjectAnd')} ${brands.size - 1}${i18n.get('pcMypage.orderListSubjectBrand')}` :
+        `${representitiveBrandName}${i18n.get('pcMypage.orderListSubjectOf')}`;
+      return `${displayBrand} ${quantities}${i18n.get('pcMypage.orderListSubjectProduct')}`;
     };
     const renderOrder = (order) => {
       const quantity = _.reduce(order.orderProducts, (sum, o) => (sum + o.quantity), 0);
@@ -94,11 +94,11 @@ export default React.createClass({
     return (
       <div className="order-list-container">
         <div className="title-row">
-          <div className="cell date-cell">주문날짜</div>
-          <div className="cell summary-cell">주문내용</div>
-          <div className="cell quantity-cell">수량</div>
-          <div className="cell price-cell">결제금액</div>
-          <div className="cell status-cell">주문상태</div>
+          <div className="cell date-cell">{i18n.get('pcMypage.orderDate')}</div>
+          <div className="cell summary-cell">{i18n.get('pcMypage.orderProducts')}</div>
+          <div className="cell quantity-cell">{i18n.get('pcMypage.quantity')}</div>
+          <div className="cell price-cell">{i18n.get('pcMypage.orderTotal')}</div>
+          <div className="cell status-cell">{i18n.get('pcMypage.orderStatus')}</div>
         </div>
         {orders.map(renderOrder)}
       </div>

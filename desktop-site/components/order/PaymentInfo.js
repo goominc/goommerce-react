@@ -7,6 +7,7 @@ import Decimal from 'decimal.js-light';
 import brandUtil from 'commons/utils/brandUtil';
 import numberUtil from 'commons/utils/numberUtil';
 import orderUtil from 'commons/utils/orderUtil';
+import i18n from 'commons/utils/i18n';
 
 export default React.createClass({
   propTypes: {
@@ -82,7 +83,7 @@ export default React.createClass({
       return (
         <div className="cell content-cell">
           <div className="final-price-line">
-            <div className="left">결제금액</div>
+            <div className="left">{i18n.get('pcMypage.paymentTotal')}</div>
             <div className="right">{totalPrice}</div>
           </div>
         </div>
@@ -92,34 +93,34 @@ export default React.createClass({
       <div className="payment-info-container">
         <div className="row">
           <div className="cell title-cell">
-            <div className="title">상품금액</div>
+            <div className="title">{i18n.get('pcMypage.productPrice')}</div>
             <div className="price">{subtotalPrice}</div>
           </div>
           <div className="cell title-cell">
-            <div className="title">주문비용</div>
+            <div className="title">{i18n.get('pcMypage.productPrice')}</div>
             <div className="price">{orderPrice}</div>
           </div>
           <div className="cell title-cell">
-            <div className="title">기타</div>
+            <div className="title">{i18n.get('pcMypage.promotions')}</div>
             <div className="price">{adjustmentPrice}</div>
           </div>
           <div className="cell title-cell">
-            <div className="title">결제금액</div>
+            <div className="title">{i18n.get('pcMypage.paymentTotal')}</div>
             <div className="price">{order.paymentStatus === 200 ? 0 : totalPrice}</div>
           </div>
         </div>
         <div className="row">
           <div className="cell content-cell">
             <div className="left">+</div>
-            <div className="right">상품가격: {subtotalPrice}</div>
+            <div className="right">{i18n.get('pcMypage.productPrice')} : {subtotalPrice}</div>
           </div>
           <div className="cell content-cell">
             <div className="left">+</div>
-            <div className="right">부가세(10%): {taxPrice}</div>
+            <div className="right">{i18n.get('word.tax')} (10%) : {taxPrice}</div>
             <div className="left">+</div>
-            <div className="right">사입비(3.3%): {handlingFeePrice}</div>
+            <div className="right">{i18n.get('word.handlingFee')} (3.3%) : {handlingFeePrice}</div>
             <div className="left">+</div>
-            <div className="right">배송비: {shippingCostPrice}</div>
+            <div className="right">{i18n.get('word.shippingCost')} : {shippingCostPrice}</div>
           </div>
           <div className="cell content-cell">
             {_.get(order, 'adjustments', []).map(renderAdjustment)}

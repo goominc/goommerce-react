@@ -144,7 +144,7 @@ const Home = React.createClass({
         <div className="home-center-wrap">
           <div className="container no-horizontal-padding">
             <div className="home-building-title">
-              <strong>동대문</strong> 상가별 매장정보
+              <strong>{i18n.get('pcFooter.dongdaemun')}</strong> {i18n.get('pcFooter.byBuilding')}
             </div>
             <div className="home-building-container">
               <Link to="/shops/buildings/5" className="item item-top"><div className="build_apm">에이피엠</div></Link>
@@ -171,7 +171,7 @@ const Home = React.createClass({
               </div>
             </div>
             <div className="home-building-title">
-              동대문 <strong>핫신상</strong>
+              {i18n.get('pcFooter.hot')} <strong>{i18n.get('pcFooter.items')}</strong>
             </div>
             <div className="home-hotpick-container">
               <ProductListItems

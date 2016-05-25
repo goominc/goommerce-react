@@ -2,6 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import i18n from 'commons/utils/i18n';
 
 export default React.createClass({
   propTypes: {
@@ -20,7 +21,7 @@ export default React.createClass({
           type="email"
           id="inputEmail"
           className="form-control"
-          placeholder="아이디(이메일)"
+          placeholder={i18n.get('pcMain.signup.idEmail')}
           required
           autoFocus
           ref="email"
@@ -29,18 +30,18 @@ export default React.createClass({
           type="password"
           id="inputPassword"
           className="form-control"
-          placeholder="비밀번호"
+          placeholder={i18n.get('pcMain.signup.password')}
           required
           ref="password"
         />
         <div className="signin-remember-me">
           <input id="rememberme" type="checkbox" defaultChecked />
           <label onClick={() => $('#rememberme').click()}></label>
-          <span>로그인 상태 유지</span>
+          <span>{i18n.get('word.keepMeSignedIn')}</span>
         </div>
-        <button className="btn-signin" type="submit">로그인</button>
-        <Link to="/accounts/signup">회원가입</Link>
-        <Link to="/accounts/forgot">비밀번호 찾기</Link>
+        <button className="btn-signin" type="submit">{i18n.get('word.login')}</button>
+        <Link to="/accounts/signup">{i18n.get('word.register')}</Link>
+        <Link to="/accounts/forgot">{i18n.get('word.findYourPassword')}</Link>
       </form>
     );
   },

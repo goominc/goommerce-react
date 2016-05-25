@@ -8,6 +8,7 @@ import _ from 'lodash';
 import BuildingList from 'components/building/BuildingList';
 import BuildingInfo from 'components/building/BuildingInfo';
 import Breadcrumb from 'components/Breadcrumb';
+import i18n from 'commons/utils/i18n';
 
 import loadEntities from 'commons/redux/util/loadEntities';
 
@@ -99,7 +100,7 @@ const ShopByBuildingContainer = React.createClass({
       <div className="building-list-container">
         <Breadcrumb path={path} />
         <div className="left-bar">
-          <div className="title">상가별 매장정보 : <Link to="/shops/buildings"><strong>동대문</strong></Link></div>
+            <div className="title">{i18n.get('pcFooter.byBuilding')} : <Link to="/shops/buildings"><strong>{i18n.get('pcFooter.dongdaemun')}</strong></Link></div>
           {buildings.map(renderMenuItem)}
         </div>
         {contents}
