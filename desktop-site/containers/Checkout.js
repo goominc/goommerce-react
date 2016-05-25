@@ -70,7 +70,7 @@ const Checkout = React.createClass({
     function upperFirst(str) {
       return str.charAt(0).toUpperCase() + str.slice(1);
     }
-    const inipayMethod = method === 'web' ? 'web' : 'global';
+    const inipayMethod = method === 'VBank' || method === 'Card' ? 'web' : 'global';
     this.props.inipay(orderId, inipayMethod).then((res) => {
       paymentInfo.mid.value = res.mid;
       paymentInfo.oid.value = res.oid;
