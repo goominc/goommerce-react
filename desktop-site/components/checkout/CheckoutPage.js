@@ -133,7 +133,7 @@ export default React.createClass({
           <input type="hidden" name="notiurl" ref="notiurl" />
 
           {/* alipay */}
-          <input type="hidden" name="notiidle" ref="notiidle" value="1" />
+          <input type="hidden" name="notiidle" ref="notiidle" value="2" />
 
           {/* paypal */}
           <input type="hidden" name="shiptoname" ref="shiptoname" />
@@ -146,7 +146,7 @@ export default React.createClass({
 
           {/* tenpay */}
           <input type="hidden" name="order_vaild_time" ref="order_vaild_time" />
-          <input type="hidden" name="idletimenoti" ref="idletimenoti" />
+          <input type="hidden" name="idletimenoti" ref="idletimenoti" value="2" />
 
           {/* web */}
           <input type="hidden" name="gopaymethod" />
