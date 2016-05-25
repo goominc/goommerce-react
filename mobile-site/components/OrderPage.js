@@ -107,7 +107,6 @@ export default React.createClass({
           variantStr = orderProduct.productVariant.sku;
         }
 
-        console.log(orderProduct);
         let productMainImage = getProductMainImage(orderProduct.product);
         if (!productMainImage) {
           productMainImage = getProductMainImage(orderProduct.productVariant);
