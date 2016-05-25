@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { CloudinaryImage } from 'react-cloudinary';
-import { getProductMainImage, getProductMainPrice } from 'commons/utils/productUtil';
+import { getProductMainImage } from 'commons/utils/productUtil';
 import productUtil from 'commons/utils/productUtil';
+import numberUtil from 'commons/utils/numberUtil';
 
 export default React.createClass({
   propTypes: {
@@ -12,10 +13,11 @@ export default React.createClass({
   contextTypes: {
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
+    currencySign: PropTypes.object,
   },
   render() {
     const { viewType, products } = this.props;
-    const { activeCurrency } = this.context;
+    const { activeCurrency, currencySign } = this.context;
 
     const prodDivs = products.map((prod) => {
       const image = getProductMainImage(prod.topHit || prod);
@@ -23,9 +25,8 @@ export default React.createClass({
         if (!image) {
           return (<img />);
         }
-        return (<img src={image.url} />);
 
-        /* if (!image.publicId) {
+        if (!image.publicId) {
           return (<img src={image.url} />);
         }
         return (
@@ -33,7 +34,7 @@ export default React.createClass({
             version={image.version}
             options={ { width: 220, height: 330 } }
           />
-        ); */
+        );
       };
 
       return (
@@ -49,12 +50,9 @@ export default React.createClass({
                     <span>{productUtil.getName(prod)}</span>
                   </div>
 
-                  <span className="discount-price"><em>{activeCurrency} {getProductMainPrice(prod, activeCurrency)}</em>
+                  <span className="discount-price"><em>{numberUtil.formatPrice(prod[activeCurrency], activeCurrency, currencySign)}</em>
 
                   </span>
-                  { /* <del className="original-price">{activeCurrency} {getProductMainPrice(prod, activeCurrency)}
-
-                  </del> */ }
 
                   <div className="custom-gallery-view-blank"></div>
 
