@@ -39,7 +39,7 @@ const AddressList = React.createClass({
         return (
           <li key={address.id}>
             <Link id="manageAddressHref" to={`/orders/${params.orderId}/address/${address.id}`}>
-              <div className="name">{address.detail.name}
+              <div className="name">{address.detail.alias}
                 <span className="edit-address">Edit Address<i className="ms-icon icon-arrow-right"></i></span>
               </div>
             </Link>

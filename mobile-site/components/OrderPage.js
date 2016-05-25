@@ -67,13 +67,14 @@ export default React.createClass({
 
     return (
         <div className="order-section order-shipping-address">
-          <div className="name">{selectedAddress.detail.name}</div>
+          <div className="name">{selectedAddress.detail.alias}</div>
           <p>
-            {selectedAddress.detail.streetAddress}
-            <br /> {selectedAddress.detail.city}
-            <br /> {selectedAddress.countryCode}
-            <br /> {selectedAddress.detail.postalCode}
-            <br />
+            {selectedAddress.countryCode}<br />
+            {selectedAddress.detail.name}<br />
+            {selectedAddress.detail.tel}<br />
+            {selectedAddress.detail.postalCode}<br />
+            {selectedAddress.detail.address.base}<br />
+            {selectedAddress.detail.address.detail}<br />
           </p>
           <Link id="change-address" to={`/orders/${order.id}/address`}>Change Shipping Address</Link>
         </div>
@@ -223,7 +224,7 @@ export default React.createClass({
     return (
       <section id="place-order">
         <div className="order-panel">
-          <h3>shipping address&nbsp;:</h3>
+          <h3>배송 주소:</h3>
           {this.renderAddresses()}
         </div>
         {this.renderProducts()}
