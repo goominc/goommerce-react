@@ -134,25 +134,19 @@
   .row {
     border-top: 1px solid #aaa;
     display: table;
+    height: 100%;
     width: 100%;
     .brand {
-      @include cell();
       border-right: 1px solid #ddd;
       color: #555;
+      display: table-cell;
       font-weight: 400;
       height: 100%;
-      width: 100px;
-      &:before {
-        content: '';
-        display: inline-block;
-        height: 100%;
-        vertical-align: middle;
-        margin-right: -0.25em; /* Adjusts for spacing */
-      }
-      .centered {
-        display: inline-block;
-        vertical-align: middle;
-      }
+      min-width: 100px;
+      max-width: 100px;
+      overflow: hidden;
+      text-align: center;
+      vertical-align: middle;
     }
   }
   .cart-product-info-len {
