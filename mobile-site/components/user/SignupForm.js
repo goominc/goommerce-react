@@ -85,7 +85,7 @@ export default React.createClass({
       } else {
         bizImageField = (
           <div key="signup-biz-image" className="signup-biz-image-line">
-            <input id="biz-image-button" type="file" accept="image/*" onChange={onSelectFile} style={({ display: 'none' })} />
+            <input id="biz-image-button" type="file" accept="image/*,application/pdf" onChange={onSelectFile} style={({ display: 'none' })} />
             <button className="biz-image-upload-button" style={({ margin: 0 })} onClick={openBizImagePopup}>
               사업자등록증 사진 업로드
             </button>
