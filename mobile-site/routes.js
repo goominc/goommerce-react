@@ -19,6 +19,7 @@ import {
   ForgotPassword,
   ResetPassword,
   ServiceInfoContainer,
+  ShippingPolicy,
   Signup,
   SignupDoneContainer,
   WishList,
@@ -73,6 +74,7 @@ export default function configure(store) {
         <Route path="/myOrder/:orderId" component={MyOrderDetail} onEnter={onEnter} />
         <Route path="/wishlist" component={WishList} onEnter={onEnter} />
         <Route path="/service/info(/:section)" component={ServiceInfoContainer} />
+        <Route path="/service/policy/shipping" component={ShippingPolicy} />
       </Route>
       <Route path="/accounts/signin" component={Signin} />
       <Route path="/accounts/signup" component={Signup} onEnter={onSignup} />

@@ -1458,5 +1458,11 @@ module.exports = {
       'zh-cn': '选择别的地址',
       'zh-tw': '選擇別的地址',
     },
+    goBack: {
+      en: 'Go Back',
+      ko: '돌아가기',
+      'zh-cn': '돌아가기',
+      'zh-tw': '돌아가기',
+    },
   },
 };

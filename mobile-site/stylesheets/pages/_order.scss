@@ -340,13 +340,23 @@
   padding: 0 0 35px;
   position: relative;
   h3 {
+    $height: 45px;
     background-color: #fff;
     border-bottom: 2px solid #eee;
     font-size: 13px;
     color: #000;
-    height: 45px;
-    line-height: 45px;
+    height: $height;
+    line-height: $height;
     padding: 0 15px;
+    .shipping-handling-fee-policy {
+      color: #666;
+      font-size: 13px;
+      height: $height;
+      line-height: $height;
+      position: absolute;
+      right: 15px;
+      top: 0;
+    }
   }
 }
 .do-order-btn {

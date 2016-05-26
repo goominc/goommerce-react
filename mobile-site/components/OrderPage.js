@@ -4,10 +4,11 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import _ from 'lodash';
 
+
 import i18n from 'commons/utils/i18n';
 import numberUtil from 'commons/utils/numberUtil';
 import orderUtil from 'commons/utils/orderUtil';
-import productUtil, { getName, getProductMainImage } from 'commons/utils/productUtil';
+import productUtil from 'commons/utils/productUtil';
 
 export default React.createClass({
   propTypes: {
@@ -20,9 +21,10 @@ export default React.createClass({
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
     currencySign: PropTypes.object,
+    router: PropTypes.object,
   },
   getInitialState() {
-    return { showPay: false };
+    return { showPay: false, showShippingPolicy: false };
   },
   componentDidMount() {
     $(window).scroll(() => {
@@ -34,8 +36,12 @@ export default React.createClass({
     });
   },
   isShowPaymentInfo() {
+    const node = $('.order-product-checkout');
+    if (!node.offset()) {
+      return false;
+    }
     const scrollBottom = $(window).scrollTop() + $(window).height();
-    const paymentBottom = $('.order-product-checkout').offset().top + $('.order-product-checkout').height();
+    const paymentBottom = node.offset().top + node.height();
     const barHeight = $('.accounts').height();
     return scrollBottom >= paymentBottom + barHeight;
   },
@@ -125,7 +131,12 @@ export default React.createClass({
 
     const orderSummary = (
       <div id="order-summary">
-        <h3>{i18n.get('pcMypage.payment')}</h3>
+        <h3>
+          {i18n.get('pcMypage.payment')}
+          <div className="shipping-handling-fee-policy" onClick={() => this.context.router.push('/service/policy/shipping')}>
+            사입비 및 배송비 책정기준 <span className="ms-icon icon-arrow-right"></span>
+          </div>
+        </h3>
         <ul className="order-product-checkout">
           <li className="clearfix">
             <span className="checkout-item">{i18n.get('pcMypage.productPrice')}</span>
@@ -181,7 +192,9 @@ export default React.createClass({
               <span>{i18n.get('pcCart.total')}</span>
               <span className="mt-16 price">{numberUtil.formatPrice(order[`total${activeCurrency}`], activeCurrency, currencySign)}</span>
             </div>
-            <div className="ui-button ui-button-main buyall" onClick={this.toggle}>{i18n.get('pcCart.checkout')}</div>
+            <div className="ui-button ui-button-main buyall" onClick={this.toggle}>
+              {this.state.showPay ? i18n.get('mOrder.goBack') : i18n.get('pcCart.checkout')}
+            </div>
           </div>
         </article>
         {/*
@@ -242,90 +255,6 @@ export default React.createClass({
           </section>
         );
       });
-      /*
-       if (order && order.orderProducts && order.orderProducts.length) {
-       return order.orderProducts.map((orderProduct) => {
-       const renderBrand = () => {
-       if (orderProduct.brand && orderProduct.brand.name) {
-       return (
-       <h3>
-       <div className="company-name">
-       {orderProduct.brand.name[activeLocale]}
-       </div>
-       </h3>
-       );
-       }
-       return null;
-       };
-       let variantStr = '';
-       if (orderProduct.productVariant && orderProduct.productVariant.data) {
-       const variantData = orderProduct.productVariant.data;
-       for (const key of Object.keys(variantData)) {
-       variantStr += `${variantData[key]} `;
-       }
-       } else {
-       variantStr = orderProduct.productVariant.sku;
-       }
-
-       let productMainImage = getProductMainImage(orderProduct.product);
-       if (!productMainImage) {
-       productMainImage = getProductMainImage(orderProduct.productVariant);
-       }
-       return (
-       <div className="order-panel order-seller" key={orderProduct.id}>
-       {renderBrand()}
-
-       <section className="order-section order-product">
-       <dl className="order-product-info clearfix">
-       <dt>
-       <div className="order-image">
-       <img src={productMainImage ? productMainImage.url : ''} />
-       </div>
-       </dt>
-       <dd>
-       {getName(orderProduct.product)}
-       </dd>
-       </dl>
-
-       <dl className="order-product-sku clearfix">
-       <dt>Options:</dt>
-       <dd>
-       <span className="order-product-options">{variantStr}</span>
-       </dd>
-       </dl>
-
-       <dl className="order-product-cost clearfix">
-       <dt>Price:</dt>
-       <dd><span className="cost"><b>{activeCurrency} {orderProduct[activeCurrency]}</b></span>
-       </dd>
-       </dl>
-
-       <dl className="order-product-quantity clearfix">
-       <dt>Quantity:</dt>
-       <dd>
-       <span className="product-quantity">{orderProduct.quantity}</span>
-       <span className="product-unit">piece</span>
-       </dd>
-       </dl>
-       </section>
-       <dl>
-       <dt></dt>
-       <dd id="quantity-error" className="board-error" style={ { display: 'none' } }>Number is error</dd>
-       </dl>
-       <ul className="order-section-summary order-product-checkout">
-       <li className="checkout-total clearfix">
-       <span className="checkout-item"><b>Total:</b></span>
-       <span className="cost checkout-price"><b>
-       {activeCurrency} {orderProduct[`total${activeCurrency}`]}
-       </b></span>
-       </li>
-       </ul>
-       </div>
-       );
-       });
-       }
-       return <div />;
-       */
     };
     return (
       <section id="place-order">
