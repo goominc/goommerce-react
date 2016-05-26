@@ -13,15 +13,17 @@ import InputPersonalInfo from './InputPersonalInfo';
 
 export default React.createClass({
   propTypes: {
+    activeLocale: PropTypes.string,
     goBack: PropTypes.func,
     handleSignup: PropTypes.func.isRequired,
   },
-  // only used when two-way binding is used. form input is that case
   getInitialState() {
     return {};
   },
   render() {
-    const { goBack, handleSignup } = this.props;
+    const { goBack, handleSignup, activeLocale } = this.props;
+    const isChinaSignup = activeLocale === 'zh-cn' || activeLocale === 'zh-tw';
+    console.log(isChinaSignup);
     const t = (key) => i18n.get(`pcMain.signup.${key}`);
     const renderBody = () => {
       let cannotSignupMessage = null;
@@ -47,7 +49,7 @@ export default React.createClass({
             return;
           }
         }
-        if (!this.state.bizImageUrl) {
+        if (!isChinaSignup && !this.state.bizImageUrl) {
           window.alert('사업자 등록증을 선택해 주세요');
           return;
         }
@@ -58,7 +60,11 @@ export default React.createClass({
           }
           handleSignup(user);
         };
-        uploadUtil.uploadFile(this.state.bizImageUrl, cb);
+        if (this.state.bizImageUrl) {
+          uploadUtil.uploadFile(this.state.bizImageUrl, cb);
+        } else {
+          handleSignup(user);
+        }
       };
       const onChange = (e, key) => {
         const nextState = {};
@@ -84,7 +90,48 @@ export default React.createClass({
           </div>
         </div>
       );
+      const renderBizInfoChina = () => {
+        const fields1 = [
+          { name: t('bizName'), placeholder: t('bizNamePlaceHolder'), key: 'data.bizName' },
+          { name: t('bizNumber'), placeholder: t('bizNumberPlaceHolder'), key: 'data.bizNumber',
+            onChange: (e) => onlyNumberFieldOnChange(e, 'data.bizNumber', 16) },
+        ];
+        const onSelectFile = (e) => {
+          const r = new FileReader();
+          const bizImageName = e.target.files[0].name;
+          r.onload = (event) => {
+            this.setState({ bizImageUrl: event.target.result, bizImageName });
+          };
+          r.readAsDataURL(e.target.files[0]);
+        };
+        return (
+          <div className="signup-form-section">
+            <div className="title">
+              {i18n.get('pcMain.signup.businessInformation')}
+            </div>
+            {fields1.map(renderField)}
+            <div className="form-group">
+              <label>{i18n.get('pcMypage.businessRegisteration')}</label>
+              <div className="input-biz-image">
+                {this.state.bizImageName || '선택된 파일이 없습니다'}
+                <div className="biz-file-input">
+                  <input type="file" accept="image/*,application/pdf" onChange={onSelectFile} />
+                </div>
+              </div>
+            </div>
+            <div className="form-group">
+              <label>{i18n.get('word.etc')}</label>
+              <div className="form-input">
+                <textarea rows="2" onChange={(e) => onChange(e, 'data.signupMemo')} />
+              </div>
+            </div>
+          </div>
+        );
+      };
       const renderBizInfo = () => {
+        if (isChinaSignup) {
+          return renderBizInfoChina();
+        }
         const fields1 = [
           { name: t('bizName'), placeholder: t('bizNamePlaceHolder'), key: 'data.bizName', isRequired: true },
           { name: t('bizNumber'), placeholder: t('bizNumberPlaceHolder'), key: 'data.bizNumber', isRequired: true,

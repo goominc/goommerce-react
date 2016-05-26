@@ -304,6 +304,12 @@ module.exports = {
       'zh-cn': '提交订单',
       'zh-tw': '提交訂單',
     },
+    etc: {
+      en: 'etc',
+      ko: '기타',
+      'zh-cn': '기타',
+      'zh-tw': '기타',
+    },
     favoriteBrand: {
       en: 'favoriate brand',
       ko: '단골브랜드',

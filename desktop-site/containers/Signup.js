@@ -13,6 +13,7 @@ const { signup } = ApiAction;
 const Signup = React.createClass({
   propTypes: {
     auth: PropTypes.object,
+    activeLocale: PropTypes.string,
     signup: PropTypes.func.isRequired,
   },
   contextTypes: {
@@ -61,7 +62,7 @@ const Signup = React.createClass({
     };
     const renderStep = () => {
       if (this.state.step === 2) {
-        return (<SignupPage goBack={step2Back} handleSignup={this.handleSubmit} />);
+        return (<SignupPage goBack={step2Back} handleSignup={this.handleSubmit} activeLocale={this.props.activeLocale} />);
       } else if (this.state.step === 3) {
         return (<SignupStep3 auth={this.props.auth} goNext={() => this.context.router.push('/')} />);
       }
@@ -78,6 +79,6 @@ const Signup = React.createClass({
 });
 
 export default connect(
-  (state) => ({ auth: state.auth, error: state.errorHandler.error }),
+  (state) => ({ auth: state.auth, error: state.errorHandler.error, activeLocale: state.i18n.activeLocale }),
   { signup }
 )(Signup);

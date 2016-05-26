@@ -137,7 +137,7 @@
       display: table-cell;
       vertical-align: top;
       width: 100%;
-      input {
+      input, textarea {
         @include signup-input();
       }
     }
