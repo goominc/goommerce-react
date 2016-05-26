@@ -45,6 +45,13 @@ export default function configure(store) {
     };
     roleUtil.checkRoleOnEnter(nextState, replaceState, store.getState().auth, onNotLogin, onNotRole);
   };
+  const onSignup = (nextState, replaceState) => {
+    const auth = store.getState().auth;
+    if (auth && auth.id) {
+      window.alert('로그인 되어 있습니다. 홈페이지로 이동합니다.');
+      replaceState('/');
+    }
+  };
   return (
     <Route>
       <Route path="/" component={App}>
@@ -68,7 +75,7 @@ export default function configure(store) {
         <Route path="/service/info(/:section)" component={ServiceInfoContainer} />
       </Route>
       <Route path="/accounts/signin" component={Signin} />
-      <Route path="/accounts/signup" component={Signup} />
+      <Route path="/accounts/signup" component={Signup} onEnter={onSignup} />
       <Route path="/accounts/signup/done" component={SignupDoneContainer} />
       <Route path="/accounts/forgot" component={ForgotPassword} />
       <Route path="/accounts/reset" component={ResetPassword} />

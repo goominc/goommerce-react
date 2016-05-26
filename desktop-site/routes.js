@@ -66,6 +66,13 @@ export default function configure(store) { // eslint-disable-line
       roleUtil.checkRoleOnEnter(nextState, fnReplaceState, getAuth(), onNotLogin, onNotRole);
     }
   };
+  const onSignup = (nextState, replaceState) => {
+    const auth = store.getState().auth;
+    if (auth && auth.id) {
+      window.alert('로그인 되어 있습니다. 홈페이지로 이동합니다.');
+      replaceState('/');
+    }
+  };
   return (
     <Route>
       <Route component={App}>
@@ -88,7 +95,7 @@ export default function configure(store) { // eslint-disable-line
         <Route path="/shops/buildings(/:buildingId)" component={ShopByBuildingContainer} />
       </Route>
       <Route path="/accounts/signin" component={Signin} />
-      <Route path="/accounts/signup" component={Signup} />
+      <Route path="/accounts/signup" component={Signup} onEnter={onSignup} />
       <Route path="/accounts/forgot" component={ForgotPassword} />
       <Route path="/accounts/reset" component={ResetPassword} />
       <Redirect from="*" to="/" />
