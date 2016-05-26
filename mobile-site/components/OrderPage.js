@@ -31,7 +31,7 @@ export default React.createClass({
     }
     this.setState({ showPay: !this.state.showPay });
   },
-  inipay(method) {
+  inipay(smartMethod, inipayMethod, reserved) {
     const { addresses, activeAddressId } = this.props;
     if (!addresses || !Object.keys(addresses).length || !activeAddressId) {
       // FIXME no alert
@@ -39,7 +39,7 @@ export default React.createClass({
       return;
     }
 
-    this.props.inipay(this.props.order.id).then((res) => {
+    this.props.inipay(this.props.order.id, inipayMethod).then((res) => {
       this.refs.mid.value = res.mid;
       this.refs.oid.value = res.oid;
       this.refs.amt.value = res.price;
@@ -47,10 +47,16 @@ export default React.createClass({
       this.refs.mobile.value = res.buyertel;
       this.refs.uname.value = res.buyername;
       this.refs.nextUrl.value = res.returnUrl;
-      this.refs.inipay.action = `https://mobile.inicis.com/smart/${method}/`;
-      if (method === 'vbank') {
+      this.refs.cancelUrl.value = res.returnUrl;
+      this.refs.reserved.value = reserved;
+      if (smartMethod === 'vbank') {
+        // FIXME: merges w/ global noti url.
         this.refs.notiUrl.value = 'https://www.linkshops.com/api/v1/inipay/vacct_mobile';
       }
+      if (smartMethod === 'etc') {
+        this.refs.goods.value = 'clothing';
+      }
+      this.refs.inipay.action = `https://mobile.inicis.com/smart/${smartMethod}/`;
       this.refs.inipay.submit();
     });
   },
@@ -279,9 +285,11 @@ export default React.createClass({
             <input type="hidden" name="P_EMAIL" ref="email" />
             <input type="hidden" name="P_NEXT_URL" ref="nextUrl" />
             <input type="hidden" name="P_NOTI_URL" ref="notiUrl" />
+            <input type="hidden" name="P_CANCEL_URL" ref="cancelUrl" />
+            <input type="hidden" name="P_RESERVED" ref="reserved" />
             <input type="hidden" name="P_CHARSET" value="utf8" />
             <input type="hidden" name="P_QUOTABASE" value="02:03:04:05:06:07:08:09:10:11:12" />
-            <input type="hidden" name="P_RESERVED" value="twotrs_isp=Y&block_isp=Y&twotrs_isp_noti=N" />
+            <input type="hidden" name="P_CURRENCY" value="WON" />
           </form>
           <input
             type="submit"
@@ -297,14 +305,28 @@ export default React.createClass({
             <span className="pay-cancel" onClick={this.toggle}></span>
           </div>
           <ul className="pay-method-list">
-            <li onClick={() => this.inipay('wcard')}>
+            <li onClick={() => this.inipay('wcard', 'mobile', 'twotrs_isp=Y&block_isp=Y&twotrs_isp_noti=N')}>
               <span className="pay-title">신용카드</span>
               <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
             </li>
-            <li onClick={() => this.inipay('vbank')}>
+            <li onClick={() => this.inipay('vbank', 'mobile', 'vbank_receipt=Y')}>
               <span className="pay-title">무통장입금</span>
               <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
             </li>
+            {/*
+            <li onClick={() => this.inipay('etc', 'mobile_global', 'etc_paymethod=APAY')}>
+              <span className="pay-title">알리페이</span>
+              <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
+            </li>
+            <li onClick={() => this.inipay('etc', 'mobile_global', 'etc_paymethod=UPMP')}>
+              <span className="pay-title">은련카드</span>
+              <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
+            </li>
+            <li onClick={() => this.inipay('etc', 'mobile_global', 'etc_paymethod=PPAY')}>
+              <span className="pay-title">페이팔</span>
+              <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
+            </li>
+            */}
           </ul>
         </div>
       </section>
