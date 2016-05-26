@@ -105,6 +105,9 @@ input[type="checkbox"] {
       line-height: $line-height;
       text-align: center;
       vertical-align: middle;
+      span {
+        white-space: nowrap;
+      }
     }
   }
 }

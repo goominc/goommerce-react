@@ -60,6 +60,16 @@ export default React.createClass({
           );
         };
         const getStatus = () => {
+          const renderGoCart = () => {
+            const onAddCart = () => {
+              this.props.addCart(variant.productVariant.id, 1).then(
+                () => window.alert(`${productUtil.getName(variant.product)} ${i18n.get('pcCart.popupProductAdded')}`)
+              );
+            };
+            return (
+              <div key="order-product-go-cart" className="go-cart" onClick={onAddCart}>{i18n.get('word.cart')}</div>
+            );
+          };
           let content;
           if (+order.paymentStatus === 200) { // VBank pending
             content = <span style={({ color: '#c94e4e' })}>{i18n.get('enum.order.paymentStatus.0')}</span>;
@@ -67,37 +77,30 @@ export default React.createClass({
             return (
               <div className="status-column">
                 <div className="inner">
-                  <div className="content">{<span style={({ color: '#67b0ff' })}>출고대기</span>}</div>
+                  <div className="content">
+                    <span style={({ color: '#67b0ff' })}>{i18n.get('pcMypage.orderStatusOutWait')}</span><br />
+                    {renderGoCart()}
+                  </div>
                 </div>
               </div>
             );
           } else {
-            const renderGoCart = () => {
-              const onAddCart = () => {
-                this.props.addCart(variant.productVariant.id, 1).then(
-                  () => window.alert(`${productUtil.getName(variant.product)} 상품이 장바구니에 추가되었습니다`)
-                );
-              };
-              return (
-                <div key="order-product-go-cart" className="go-cart" onClick={onAddCart}>장바구니</div>
-              );
-            };
             const stockReasonText = {
               10: i18n.get('enum.productVariant.status.10'),
               30: i18n.get('enum.productVariant.status.20'),
             };
             const reasonValue = _.get(variant, 'data.stock.reason');
-            let reason = '사유없음';
+            let reason = '-';
             if (stockReasonText[reasonValue]) {
               reason = stockReasonText[reasonValue];
             }
-            content = [(renderGoCart())];
+            content = [renderGoCart()];
             if (variant.finalQuantity === 0) {
               content.unshift(<div key="order-product-no-product-reason" className="no-product">{reason}</div>);
             } else if (variant.finalQuantity !== variant.quantity) {
-              content.unshift(<div key="order-product-no-product" className="no-product">부분취소<br />{`(${reason})`}</div>);
+              content.unshift(<div key="order-product-no-product" className="no-product">{i18n.get('pcMypage.orderStatusPartialCancel')}<br />{`(${reason})`}</div>);
             } else {
-              content.unshift(<div key="order-product-ok" className="order-product-ok">출고완료</div>);
+              content.unshift(<div key="order-product-ok" className="order-product-ok">{i18n.get('pcMypage.orderStatusOutComplete')}</div>);
             }
           }
           return (
@@ -147,7 +150,7 @@ export default React.createClass({
           <div className="quantity">{i18n.get('pcMypage.subtotal')}</div>
           <div className="quantity">{i18n.get('pcMypage.quantity')}</div>
           <div className="price">{i18n.get('pcMypage.total')}</div>
-          <div className="status-column">상태</div>
+          <div className="status-column">{i18n.get('word.status')}</div>
         </div>
         {(brands || []).map(renderBrand)}
       </div>

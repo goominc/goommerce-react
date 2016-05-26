@@ -436,6 +436,12 @@ module.exports = {
       'zh-cn': '运输费',
       'zh-tw': '運輸費',
     },
+    status: {
+      en: 'status',
+      ko: '상태',
+      'zh-cn': '状态',
+      'zh-tw': '狀態',
+    },
   },
   pcMain: {
     myMenu: {
@@ -874,9 +880,9 @@ module.exports = {
     },
     popupProductAdded: {
       en: 'Product Added To Cart Successfully',
-      ko: '장바구니에 선택하신 상품이 담겼습니다.',
-      'zh-cn': '장바구니에 선택하신 상품이 담겼습니다.',
-      'zh-tw': '장바구니에 선택하신 상품이 담겼습니다.',
+      ko: '선택하신 상품이 장바구니에 담겼습니다.',
+      'zh-cn': '선택하신 상품이 장바구니에 담겼습니다.',
+      'zh-tw': '선택하신 상품이 장바구니에 담겼습니다.',
     },
     popupGoCart: {
       en: 'Go To Shopping Cart',
@@ -1124,6 +1130,24 @@ module.exports = {
       ko: '주문상태',
       'zh-cn': '交易状态',
       'zh-tw': '交易狀態',
+    },
+    orderStatusPartialCancel: {
+      en: 'Partial Cancel',
+      ko: '부분취소',
+      'zh-cn': '部分取消',
+      'zh-tw': '部分取消',
+    },
+    orderStatusOutWait: {
+      en: 'Ready for Delivery',
+      ko: '출고대기',
+      'zh-cn': '等待发货',
+      'zh-tw': '等待發貨',
+    },
+    orderStatusOutComplete: {
+      en: 'Start Delivery',
+      ko: '출고완료',
+      'zh-cn': '已发货',
+      'zh-tw': '已發貨',
     },
     orderListSubjectOf: {
       en: 'of',
