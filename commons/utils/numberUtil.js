@@ -37,6 +37,9 @@ const format = (number) => {
 exports.format = format;
 
 const formatPrice = (price, currency, currencySign) => {
+  if (!price) {
+    return '';
+  }
   if (currency === 'KRW') {
     return `${format(price)}원`;
   }

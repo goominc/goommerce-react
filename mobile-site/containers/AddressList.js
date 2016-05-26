@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 
+import i18n from 'commons/utils/i18n';
+
 import { setHeader } from 'redux/actions';
 
 const AddressList = React.createClass({
@@ -23,7 +25,7 @@ const AddressList = React.createClass({
       showLogo: false,
       showSearch: false,
       showCart: false,
-      titleText: '배송 주소',
+      titleI18NKey: 'pcPayment.shippingAddress',
       link: `/orders/${this.props.params.orderId}/checkout`,
     });
   },

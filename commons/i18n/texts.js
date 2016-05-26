@@ -442,6 +442,12 @@ module.exports = {
       'zh-cn': '状态',
       'zh-tw': '狀態',
     },
+    unit: {
+      en: 'unit',
+      ko: '개',
+      'zh-cn': '개',
+      'zh-tw': '개',
+    },
   },
   pcMain: {
     myMenu: {
@@ -1437,6 +1443,23 @@ module.exports = {
       ko: '재주문',
       'zh-cn': '再次购买',
       'zh-tw': '再次購買',
+    },
+  },
+  mOrder: {
+    addAddress: {
+      en: 'Add Address',
+      ko: '주소 추가',
+      'zh-cn': '주소 추가',
+      'zh-tw': '주소 추가',
+    },
+    changeAddress: {
+      en: 'Change Address',
+      ko: '다른 주소 선택',
+      'zh-cn': '다른 주소 선택',
+      'zh-tw': '다른 주소 선택',
+    },
+    shippingAddress: {
+
     },
   },
 };

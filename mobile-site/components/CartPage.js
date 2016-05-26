@@ -142,12 +142,6 @@ export default React.createClass({
                           </span>
                         </div>
                       </div>
-                      { /* <div className="pi-shipping mb-40">
-                        <div className="shipping clearfix">
-                          Shipping&nbsp;: <span className="shipping-cost">free shipping&nbsp;
-                          <i className="ms-icon icon-arrow-right fr"></i></span>
-                        </div>
-                      </div> */ }
                     </li>
                     );
                 });
@@ -179,7 +173,7 @@ export default React.createClass({
     return (
       <div className="empty-cart">
       </div>
-      );
+    );
   },
 
   render() {

@@ -239,11 +239,12 @@
   margin-bottom: 72px
 }
 .shopcart-list .accounts {
-  position: fixed;
+  background: #eee;
+  border-top: 1px solid #ddd;
   bottom: 0;
+  position: fixed;
   width: 100%;
-  background: #f2f2f2;
-  border-top: 1px solid #ddd
+  z-index: 1000;
 }
 .shopcart-list .product li {
   padding-top: 16px;
@@ -381,6 +382,39 @@
   font-size: 13px;
   margin-bottom: 20px;
   color: #666;
+}
+.shopcart-list {
+  .order-product {
+    border-top: 1px solid #eee;
+    li {
+      border: 0;
+      position: relative;
+    }
+    .variant-attribute {
+      font-size: 13px;
+      color: #666;
+      line-height: 20px;
+    }
+    .unit-price {
+      color: #000;
+      font-size: 14px;
+      line-height: 20px;
+      margin-top: 15px;
+    }
+    .quantity {
+      color: #999;
+      font-size: 13px;
+      line-height: 20px;
+    }
+    .total-price {
+      bottom: 15px;
+      color: #e62e04;
+      font-size: 15px;
+      font-weight: 700;
+      position: absolute;
+      right: 15px;
+    }
+  }
 }
 .shopcart-list .product .pi-quantity .pre {
   width: 84px
