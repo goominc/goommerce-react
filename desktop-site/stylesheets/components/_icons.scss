@@ -10,8 +10,7 @@
   width: $width;
 }
 
-$icons: ('icon-cart', 'icon-payment', 'icon-check',
-         'icon-alipay', 'icon-credit-cart', 'icon-inicis', 'icon-tenpay', 'icon-union-pay' );
+$icons: ('icon-cart', 'icon-payment', 'icon-check');
 
 @mixin generate-icons {
   @for $i from 1 through length($icons) {
@@ -30,6 +29,7 @@ $payment-icons: (
   ('icon-inicis', 49px, 25px),
   ('icon-tenpay', 44px, 15px),
   ('icon-union-pay', 43px, 27px),
+  ('icon-paypal', 53px, 14px),
 );
 
 @mixin generate-payment-icons {

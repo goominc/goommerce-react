@@ -102,7 +102,7 @@ export default React.createClass({
       // { icon: 'icon-alipay', name: 'ALIPAY', method: 'alipay' },
       // { icon: 'icon-union-pay', name: 'UNION PAY', method: 'unionpay' },
       // { icon: 'icon-tenpay', name: 'TENPAY', method: 'tenpay' },
-      // { icon: 'icon-tenpay', name: 'PAYPAL', method: 'paypal' },
+      // { icon: 'icon-paypal', name: 'PAYPAL', method: 'paypal' },
     ];
     const renderPaymentMethod = (method, index) => (
       <div key={`payment-${index}`} className={`row ${index === this.state.paymentMethod ? 'active' : ''}`} onClick={() => this.setState({ paymentMethod: index })}>
