@@ -23,7 +23,12 @@ const Brand = React.createClass({
     return { currentCount: 0, maxCount: 0 };
   },
   componentDidMount() {
-    this.props.setHeader(false, false, true, 'Store');
+    this.props.setHeader({
+      showLogo: false,
+      showSearch: false,
+      showCart: true,
+      titleText: '브랜드',
+    });
     this.doSearch(this.props);
     $(window).scroll(() => {
       if ($(window).scrollTop() + window.innerHeight === $(document).height()) {

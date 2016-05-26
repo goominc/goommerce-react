@@ -22,7 +22,11 @@ const Category = React.createClass({
     return { currentCount: 0, maxCount: 0 };
   },
   componentDidMount() {
-    this.props.setHeader(true, true, true, '');
+    this.props.setHeader({
+      showLogo: true,
+      showSearch: true,
+      showCart: true,
+    });
     this.props.loadCategories();
     this.doSearch(this.props);
 

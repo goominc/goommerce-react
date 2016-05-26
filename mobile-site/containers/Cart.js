@@ -22,7 +22,12 @@ const Cart = React.createClass({
     return { checkBuy: false };
   },
   componentDidMount() {
-    this.props.setHeader(false, true, false, '장바구니');
+    this.props.setHeader({
+      showLogo: false,
+      showSearch: true,
+      showCart: false,
+      titleText: '장바구니',
+    });
     this.props.loadCart();
   },
   wrapOrder(productVariants) {

@@ -17,7 +17,12 @@ const ServiceInfoContainer = React.createClass({
     setHeader: PropTypes.func,
   },
   componentDidMount() {
-    this.props.setHeader(false, false, false, '이용안내');
+    this.props.setHeader({
+      showLogo: false,
+      showSearch: true,
+      showCart: true,
+      titleText: '이용안내',
+    });
   },
   render() {
     const currentTab = _.get(this.props, 'params.section') || 'service_info';

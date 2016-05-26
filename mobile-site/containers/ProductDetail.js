@@ -33,7 +33,12 @@ const ProductDetail = React.createClass({
     return { product: {}, productVariants: [] };
   },
   componentDidMount() {
-    this.props.setHeader(false, true, true, 'Detail');
+    this.props.setHeader({
+      showLogo: false,
+      showSearch: true,
+      showCart: true,
+      titleText: '상품 상세',
+    });
     this.props.loadProduct(this.props.params.productId)
     .then((res) => {
       const variants = this.parseVariants(res);

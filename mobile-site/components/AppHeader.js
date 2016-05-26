@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
+import i18n from 'commons/utils/i18n';
 import orderUtil from 'commons/utils/orderUtil';
 import { constants } from 'commons/utils/constants';
 
@@ -14,6 +15,7 @@ export default React.createClass({
     toggleSignRegister: PropTypes.func.isRequired,
   },
   contextTypes: {
+    activeLocale: PropTypes.string,
     router: PropTypes.object.isRequired,
   },
   handleWithAuth(path) {
@@ -30,6 +32,7 @@ export default React.createClass({
   },
   render() {
     const { header, cart } = this.props;
+    const { activeLocale } = this.context;
     const cartCount = orderUtil.getProductVariantsFromCart(cart).length;
     const renderLogo = () => {
       if (header.showLogo) {
@@ -41,8 +44,12 @@ export default React.createClass({
           </Link>
           );
       }
+      let title = header.titleText || i18n.get(header.titleI18NKey);
+      if (!title && header.titleI18NObj) {
+        title = header.titleI18NObj[activeLocale];
+      }
       return (
-          <Link to={header.link || '/'}><span id="gm-title" className="title">{header.titleText}</span></Link>
+          <Link to={header.link || '/'}><span id="gm-title" className="title">{title}</span></Link>
         );
     };
     const renderSearch = () => {

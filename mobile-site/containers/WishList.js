@@ -25,7 +25,12 @@ const WishList = React.createClass({
   componentDidMount() {
     const { auth } = this.props;
     if (auth.bearer) {
-      this.props.setHeader(false, true, true, 'Wish List');
+      this.props.setHeader({
+        showLogo: false,
+        showSearch: true,
+        showCart: true,
+        titleText: '위시 리스트',
+      });
       this.props.loadWishlist();
     } else {
       this.context.router.push('/');

@@ -28,7 +28,11 @@ const Home = React.createClass({
     return {};
   },
   componentDidMount() {
-    this.props.setHeader(true, true, true, '');
+    this.props.setHeader({
+      showLogo: true,
+      showSearch: true,
+      showCart: true,
+    });
     ajaxReturnPromise(null, 'get', '/api/v1/products/hot').then((res) => {
       this.setState(res);
     });

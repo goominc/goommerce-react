@@ -19,7 +19,12 @@ const OrderDone = React.createClass({
     activeCurrency: PropTypes.string,
   },
   componentDidMount() {
-    this.props.setHeader(false, false, false, 'Order Done');
+    this.props.setHeader({
+      showLogo: false,
+      showSearch: false,
+      showCart: false,
+      titleText: '주문 완료',
+    });
     const { orderId } = this.props.params;
     this.props.loadOrder(orderId);
   },

@@ -46,14 +46,26 @@ const AddressEdit = React.createClass({
               this.addressFields1().forEach(initField);
               this.addressFields2().forEach(initField);
               this.setState(initialState);
-              this.props.setHeader(false, false, false, '주소 변경', orderLink);
+              this.props.setHeader({
+                showLogo: false,
+                showSearch: false,
+                showCart: false,
+                titleText: '주소 변경',
+                link: orderLink,
+              });
               return;
             }
           }
         }
       });
     } else {
-      this.props.setHeader(false, false, false, '주소 등록', orderLink);
+      this.props.setHeader({
+        showLogo: false,
+        showSearch: false,
+        showCart: false,
+        titleText: '주소 등록',
+        link: orderLink,
+      });
     }
   },
   addressFields1: () => [

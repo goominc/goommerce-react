@@ -37,18 +37,38 @@ const ProductList = React.createClass({
   },
   componentDidMount() {
     const { params } = this.props;
-    this.props.setHeader(false, true, true, '');
+    this.props.setHeader({
+      showLogo: false,
+      showSearch: true,
+      showCart: true,
+      titleText: '',
+    });
     this.doSearch(this.props);
     if (params.categoryId) {
       if (params.categoryId === 'all') {
-        this.props.setHeader(false, true, true, 'All');
+        this.props.setHeader({
+          showLogo: false,
+          showSearch: true,
+          showCart: true,
+          titleText: '전체',
+        });
       } else {
         this.props.loadCategories().then(() => {
-          this.props.setHeader(false, true, true, this.props.categories[params.categoryId].name.en);
+          this.props.setHeader({
+            showLogo: false,
+            showSearch: true,
+            showCart: true,
+            titleI18NObj: this.props.categories[params.categoryId].name,
+          });
         });
       }
     } else {
-      this.props.setHeader(false, true, true, 'Search Result');
+      this.props.setHeader({
+        showLogo: false,
+        showSearch: true,
+        showCart: true,
+        titleText: '검색 결과',
+      });
     }
 
     $(window).scroll(() => {

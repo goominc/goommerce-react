@@ -26,7 +26,12 @@ const MyOrder = React.createClass({
     } else {
       this.context.router.push('/');
     }
-    this.props.setHeader(false, true, true, 'My Orders');
+    this.props.setHeader({
+      showLogo: false,
+      showSearch: true,
+      showCart: true,
+      titleText: '내 주문',
+    });
   },
   render() {
     const { orders } = this.state;

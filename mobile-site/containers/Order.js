@@ -21,7 +21,12 @@ const Order = React.createClass({
     inipay: PropTypes.func.isRequired,
   },
   componentDidMount() {
-    this.props.setHeader(false, false, false, i18n.get('pcPayment.placeOrder'));
+    this.props.setHeader({
+      showLogo: false,
+      showSearch: false,
+      showCart: false,
+      titleI18NKey: 'pcPayment.placeOrder',
+    });
     const { orderId } = this.props.params;
     this.props.loadOrder(orderId);
     this.props.loadAddresses();
