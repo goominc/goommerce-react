@@ -6,7 +6,6 @@ import Decimal from 'decimal.js-light';
 
 import brandUtil from 'commons/utils/brandUtil';
 import numberUtil from 'commons/utils/numberUtil';
-import orderUtil from 'commons/utils/orderUtil';
 import i18n from 'commons/utils/i18n';
 
 export default React.createClass({
@@ -46,7 +45,7 @@ export default React.createClass({
     const totalPrice = formatPrice('total');
     const renderFinalPrice = () => {
       if (order.finalTotalKRW) {
-        const totalGap = +getPrice('finalTotal') - +getPrice('total');
+        const totalGap = new Decimal(getPrice('finalTotal')).sub(getPrice('total')).toNumber();
         if (totalGap === 0) {
           return (
             <div className="cell content-cell">
@@ -57,10 +56,11 @@ export default React.createClass({
             </div>
           );
         }
-        const priceGap = sum(['finalTax', 'finalHandlingFee', 'finalSubtotal'])
-          - sum(['tax', 'handlingFee', 'subtotal']);
-        const shippingCostGap = +getPrice('finalShippingCost') - +getPrice('shippingCost');
-        const formatGap = (gap) => (gap === 0 ? 0 : `-${numberUtil.formatPrice(-gap, activeCurrency, currencySign)}`);
+        const priceGap = new Decimal(sum(['finalTax', 'finalHandlingFee', 'finalSubtotal']))
+          .sub(sum(['tax', 'handlingFee', 'subtotal'])).toNumber();
+        const shippingCostGap = new Decimal(getPrice('finalShippingCost')).sub(getPrice('shippingCost')).toNumber();
+        const sign = (v) => (v < 0 ? '-' : '');
+        const formatGap = (gap) => (gap === 0 ? 0 : `${sign(gap)}${numberUtil.formatPrice(Math.abs(gap), activeCurrency, currencySign)}`);
         return (
           <div className="cell" style={({ paddingBottom: '40px' })}>
             <div className="sub-title-line">
