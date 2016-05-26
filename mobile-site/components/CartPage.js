@@ -44,7 +44,7 @@ export default React.createClass({
     const { cart, checkBuy } = this.props;
     if (!checkBuy) {
       $('.check-forbuy').addClass('warning');
-      $('body').scrollTop($('.check-forbuy').offset().top);
+      $('body').animate({ scrollTop: $('.check-forbuy').offset().top }, 500);
       return;
     }
     $('.check-forbuy').removeClass('warning');
