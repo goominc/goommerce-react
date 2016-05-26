@@ -443,10 +443,10 @@ module.exports = {
       'zh-tw': '狀態',
     },
     unit: {
-      en: 'unit',
+      en: 'piece',
       ko: '개',
-      'zh-cn': '개',
-      'zh-tw': '개',
+      'zh-cn': '件',
+      'zh-tw': '件',
     },
   },
   pcMain: {
@@ -658,8 +658,8 @@ module.exports = {
       naxt: {
         en: 'Next',
         ko: '다음',
-        'zh-cn': '下一',
-        'zh-tw': '下一',
+        'zh-cn': '下一步',
+        'zh-tw': '下一步',
       },
     },
   },
@@ -1449,17 +1449,14 @@ module.exports = {
     addAddress: {
       en: 'Add Address',
       ko: '주소 추가',
-      'zh-cn': '주소 추가',
-      'zh-tw': '주소 추가',
+      'zh-cn': '使用新地址',
+      'zh-tw': '使用新地址',
     },
     changeAddress: {
       en: 'Change Address',
       ko: '다른 주소 선택',
-      'zh-cn': '다른 주소 선택',
-      'zh-tw': '다른 주소 선택',
-    },
-    shippingAddress: {
-
+      'zh-cn': '选择别的地址',
+      'zh-tw': '選擇別的地址',
     },
   },
 };
