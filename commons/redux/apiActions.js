@@ -449,12 +449,40 @@ export function loadCartIfEmpty() {
   };
 }
 
-export function changeLocale(locale) {
+export function changeCurrency(currency) {
   return (dispatch, getState) => {
     const state = getState();
-    if (state.activeLocale === locale) return null;
+    if (state.currency.activeCurrency === currency) {
+      return;
+    }
+    if (state.auth && state.auth.id) {
+      simpleNotify(state.auth, 'PUT', `/api/v1/users/${state.auth.id}/currency`, { currency });
+    }
+    const cookie = require('../utils/cookie');
+    cookie.set('currency', currency);
+    dispatch({
+      type: 'CHANGE_CURRENCY',
+      currency,
+    });
+  };
+}
+
+export function changeLocale(locale) {
+  const localeToCurrency = {
+    ko: 'KRW',
+    en: 'USD',
+    'zh-cn': 'CNY',
+  };
+  return (dispatch, getState) => {
+    const state = getState();
+    if (state.i18n.activeLocale === locale) {
+      return null;
+    }
     if (state.auth && state.auth.id) {
       simpleNotify(state.auth, 'PUT', `/api/v1/users/${state.auth.id}/locale`, { locale });
+    }
+    if (localeToCurrency[locale]) {
+      changeCurrency(localeToCurrency[locale])(dispatch, getState);
     }
     const cookie = require('../utils/cookie');
     cookie.set('locale', locale);
@@ -469,22 +497,6 @@ export function changeLocale(locale) {
       endpoint: `/api/v1/i18n/texts/${locale}`,
       success: { locale },
     })(dispatch, getState);
-  };
-}
-
-export function changeCurrency(currency) {
-  return (dispatch, getState) => {
-    const state = getState();
-    if (state.activeCurrency === currency) return;
-    if (state.auth && state.auth.id) {
-      simpleNotify(state.auth, 'PUT', `/api/v1/users/${state.auth.id}/currency`, { currency });
-    }
-    const cookie = require('../utils/cookie');
-    cookie.set('currency', currency);
-    dispatch({
-      type: 'CHANGE_CURRENCY',
-      currency,
-    });
   };
 }
 
