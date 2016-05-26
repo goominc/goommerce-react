@@ -34,7 +34,7 @@ export default React.createClass({
     const renderLogo = () => {
       if (header.showLogo) {
         return (
-          <Link to="/" className="logo">
+          <Link to={header.link || '/'} className="logo">
             <img className="logo-img"
               src={`${constants.resourceRoot}/mobile/main/mobile_linkshops_logo.png`}
             />
@@ -42,7 +42,7 @@ export default React.createClass({
           );
       }
       return (
-          <Link to="/"><span id="gm-title" className="title">{header.titleText}</span></Link>
+          <Link to={header.link || '/'}><span id="gm-title" className="title">{header.titleText}</span></Link>
         );
     };
     const renderSearch = () => {

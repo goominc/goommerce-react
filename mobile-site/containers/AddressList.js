@@ -19,7 +19,7 @@ const AddressList = React.createClass({
   componentDidMount() {
     this.context.ApiAction.loadOrder(this.props.params.orderId);
     this.context.ApiAction.loadAddresses();
-    this.props.setHeader(false, false, false, 'Shipping Address');
+    this.props.setHeader(false, false, false, 'Shipping Address', `/orders/${this.props.params.orderId}`);
   },
   renderAddresses() {
     const { params, addresses, activeAddressId } = this.props;

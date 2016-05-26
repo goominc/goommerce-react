@@ -52,7 +52,11 @@ function menuAddon(state = { showLanguage: false, showCurrency: false }, action)
 function header(state = { showLogo: true, showSearch: true, showCart: true, titleText: '' }, action) {
   if (action.type === 'SET_HEADER') {
     return assign({}, state, {
-      showLogo: action.showLogo, showSearch: action.showSearch, showCart: action.showCart, titleText: action.titleText,
+      showLogo: action.showLogo,
+      showSearch: action.showSearch,
+      showCart: action.showCart,
+      titleText: action.titleText,
+      link: action.link,
     });
   }
   return state;

@@ -48,13 +48,14 @@ export function toggleCurrency() {
   };
 }
 
-export function setHeader(showLogo, showSearch, showCart, titleText) {
+export function setHeader(showLogo, showSearch, showCart, titleText, link) {
   return {
     type: 'SET_HEADER',
     showLogo,
     showSearch,
     showCart,
     titleText,
+    link,
   };
 }
 /* ProductList */
