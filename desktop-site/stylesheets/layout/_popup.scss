@@ -57,26 +57,39 @@ $error-popup-height: 250px;
   padding: 10px 10px 20px 56px;
 }
 
-$cart-popup-width: 800px;
-$cart-popup-height: 400px;
+$cart-popup-width: 380px;
+$cart-popup-height: 150px;
 .add-cart-popup {
   @include popup-body($cart-popup-width, $cart-popup-height);
-  padding: 20px 15px 15px 15px;
+  padding: 20px 15px 5px 15px;
   .popup-title {
-    @include cart-saved-successfully();
-    border-bottom: 1px solid #ddd;
+    text-align: center;
     span {
       display: inline-block;
       font-size: 14px;
-      margin-bottom: $margin-15;
+      font-weight: bold;
+      margin-top: 5px;
+      margin-bottom: 25px;
       width: 100%;
     }
     .button-line {
       font-size: 14px;
+      font-weight: 400;
+      text-align: center;
       width: 100%;
+      white-space: nowrap;
       button {
-        margin-right: $margin-15;
-        padding: 3px 5px;
+        background-color: #f2f2f2;
+        border: 0;
+        border-radius: 5px;
+        color: #555;
+        display: inline-block;
+        margin: 5px;
+        padding: 8px 15px;
+        &:hover {
+          background-color: $default-active-text-color;
+          color: #fff;
+        }
       }
     }
   }
