@@ -86,7 +86,7 @@ export default function configure(store) { // eslint-disable-line
         <Route path="/orders/:orderId/done" component={OrderDoneContainer} onEnter={onEnter} />
         <Route path="/brands/:brandId(/:pageNum)" component={Brand} onEnter={checkBrand} />
         <Route path="/categories/:categoryId(/:pageNum)" component={Category} onEnter={onEnter} />
-        <Route path="/search/:query(/:pageNum)" component={Search} onEnter={onEnter} />
+        <Route path="/search(/:query(/:pageNum))" component={Search} onEnter={onEnter} />
         <Route path="/mypage(/:menuName)" component={MyPage} onEnter={onEnter} />
         <Route path="/user/terms" component={UserTermsContainer} />
         <Route path="/user/policies" component={UserPoliciesContainer} />
