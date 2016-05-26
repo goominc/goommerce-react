@@ -24,7 +24,7 @@ const AddressList = React.createClass({
       showSearch: false,
       showCart: false,
       titleText: '배송 주소',
-      link: `/orders/${this.props.params.orderId}`,
+      link: `/orders/${this.props.params.orderId}/checkout`,
     });
   },
   renderAddresses() {

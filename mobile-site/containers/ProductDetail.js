@@ -122,7 +122,7 @@ const ProductDetail = React.createClass({
       }
       this.props.createOrder({
         productVariants: productVariants.map((variant) => ({ id: variant.id, count: variant.count })),
-      }).then((order) => this.context.router.push(`/orders/${order.id}`));
+      }).then((order) => this.context.router.push(`/orders/${order.id}/checkout`));
     } else {
       this.props.toggleSignRegister(true, 'sign');
     }

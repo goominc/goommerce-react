@@ -33,7 +33,7 @@ const AddressEdit = React.createClass({
   },
   componentDidMount() {
     const { params } = this.props;
-    const orderLink = `/orders/${params.orderId}`;
+    const orderLink = `/orders/${params.orderId}/checkout`;
     if (params.addressId !== 'add') {
       this.props.loadAddresses().then((res) => {
         if (res && res.addresses && Object.keys(res.addresses).length) {
@@ -103,7 +103,7 @@ const AddressEdit = React.createClass({
       if (params.addressId !== 'add') {
         this.context.router.push(`/orders/${params.orderId}/address`);
       } else {
-        this.context.router.push(`/orders/${params.orderId}`);
+        this.context.router.push(`/orders/${params.orderId}/checkout`);
       }
     });
   },

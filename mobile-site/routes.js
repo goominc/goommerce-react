@@ -57,7 +57,7 @@ export default function configure(store) {
         <Route path="/brands/:brandId" component={Brand} onEnter={onEnter} />
         <Route path="/products/:productId" component={ProductDetail} onEnter={onEnter} />
         <Route path="/cart" component={Cart} onEnter={onEnter} />
-        <Route path="/orders/:orderId" component={Order} onEnter={onEnter} />
+        <Route path="/orders/:orderId/checkout" component={Order} onEnter={onEnter} />
         <Route path="/orders/:orderId/done" component={OrderDone} onEnter={onEnter} />
         <Route path="/orders/:orderId/address" component={AddressList} onEnter={onEnter} />
         <Route path="/orders/:orderId/address/:addressId" component={AddressEdit} onEnter={onEnter} />
