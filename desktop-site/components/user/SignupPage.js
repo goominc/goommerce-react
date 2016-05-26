@@ -114,7 +114,7 @@ export default React.createClass({
               <div className="input-biz-image">
                 {this.state.bizImageName || '선택된 파일이 없습니다'}
                 <div className="biz-file-input">
-                  <input type="file" accept="image/*" onChange={onSelectFile} />
+                  <input type="file" accept="image/*,application/pdf" onChange={onSelectFile} />
                 </div>
               </div>
             </div>

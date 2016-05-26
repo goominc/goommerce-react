@@ -78,7 +78,7 @@ export default React.createClass({
       if (this.state.bizImageUrl) {
         bizImageField = (
           <div key="signup-biz-image" className="signup-biz-image-line">
-            <input id="biz-image-button" type="file" accept="image/*" onChange={onSelectFile} style={({ display: 'none' })} />
+            <input id="biz-image-button" type="file" accept="image/*,application/pdf" onChange={onSelectFile} style={({ display: 'none' })} />
             <img src={this.state.bizImageUrl} onClick={openBizImagePopup} />
           </div>
         );
