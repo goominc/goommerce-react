@@ -89,17 +89,17 @@ const Home = React.createClass({
                 <li onClick={() => this.context.router.push('/service/info/service_info')}>
                   <span className="evt-icon evt-icon-1" />
                   <div className="evt-desc">
-                    <p className="evt-title">서비스 소개</p>
-                    믿고 거래하는<br />
-                    No.1 온라인 도매시장
+                    <p className="evt-title">{i18n.get('pcServiceInfo.infoTitle')}</p>
+                    {i18n.get('pcServiceInfo.infoDesc1')}<br />
+                    {i18n.get('pcServiceInfo.infoDesc2')}
                   </div>
                 </li>
                 <li onClick={() => this.context.router.push('/service/info/signup_info')}>
                   <span className="evt-icon evt-icon-2" />
                   <div className="evt-desc">
-                    <p className="evt-title">회원가입 안내</p>
-                    고객 우선 원칙<br />
-                    회원 시스템
+                    <p className="evt-title">{i18n.get('pcServiceInfo.signupTitle')}</p>
+                    {i18n.get('pcServiceInfo.signupDesc1')}<br />
+                    {i18n.get('pcServiceInfo.signupDesc2')}
                   </div>
                 </li>
               </ul>
@@ -107,17 +107,17 @@ const Home = React.createClass({
                 <li onClick={() => this.context.router.push('/service/info/order_info')}>
                   <span className="evt-icon evt-icon-3" />
                   <div className="evt-desc">
-                    <p className="evt-title">주문배송</p>
-                    원하는 브랜드 및 상품<br />
-                    사입 요청 가능
+                    <p className="evt-title">{i18n.get('pcServiceInfo.orderTitle')}</p>
+                    {i18n.get('pcServiceInfo.orderDesc1')}<br />
+                    {i18n.get('pcServiceInfo.orderDesc2')}
                   </div>
                 </li>
                 <li onClick={() => this.context.router.push('/service/info/customer_center')}>
                   <span className="evt-icon evt-icon-4" />
                   <div className="evt-desc">
-                    <p className="evt-title">고객지원 센터</p>
-                    편리한 소통을 위한<br />
-                    언어별 고객지원센터
+                    <p className="evt-title">{i18n.get('pcServiceInfo.customerCenterTitle')}</p>
+                    {i18n.get('pcServiceInfo.customerCenterDesc1')}<br />
+                    {i18n.get('pcServiceInfo.customerCenterDesc2')}
                   </div>
                 </li>
 

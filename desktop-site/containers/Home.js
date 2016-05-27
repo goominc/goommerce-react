@@ -202,10 +202,10 @@ const Home = React.createClass({
                 <img src={`${constants.resourceRoot}/footer/main/keyword_ico01.png`} />
               </div>
               <div className="text-box">
-                <div className="title">서비스 소개</div>
+                <div className="title">{i18n.get('pcServiceInfo.infoTitle')}</div>
                 <div className="content">
-                  믿고 거래하는<br />
-                  No.1 온라인 도매시장
+                  {i18n.get('pcServiceInfo.infoDesc1')}<br />
+                  {i18n.get('pcServiceInfo.infoDesc2')}
                 </div>
               </div>
             </Link>
@@ -214,10 +214,10 @@ const Home = React.createClass({
                 <img src={`${constants.resourceRoot}/footer/main/keyword_ico02.png`} />
               </div>
               <div className="text-box">
-                <div className="title">회원가입 안내</div>
+                <div className="title">{i18n.get('pcServiceInfo.signupTitle')}</div>
                 <div className="content">
-                  고객 우선 원칙<br />
-                  회원 시스템
+                  {i18n.get('pcServiceInfo.signupDesc1')}<br />
+                  {i18n.get('pcServiceInfo.signupDesc2')}
                 </div>
               </div>
             </Link>
@@ -226,10 +226,10 @@ const Home = React.createClass({
                 <img src={`${constants.resourceRoot}/footer/main/keyword_ico03.png`} />
               </div>
               <div className="text-box">
-                <div className="title">주문 배송</div>
+                <div className="title">{i18n.get('pcServiceInfo.orderTitle')}</div>
                 <div className="content">
-                  원하는 브랜드 및 상품<br />
-                  사입 요청 가능
+                  {i18n.get('pcServiceInfo.orderDesc1')}<br />
+                  {i18n.get('pcServiceInfo.orderDesc2')}
                 </div>
               </div>
             </Link>
@@ -238,10 +238,10 @@ const Home = React.createClass({
                 <img src={`${constants.resourceRoot}/footer/main/keyword_ico04.png`} />
               </div>
               <div className="text-box">
-                <div className="title">고객지원 센터</div>
+                <div className="title">{i18n.get('pcServiceInfo.customerCenterTitle')}</div>
                 <div className="content">
-                  편리한 소통을 위한<br />
-                  언어별 고객지원 센터
+                  {i18n.get('pcServiceInfo.customerCenterDesc1')}<br />
+                  {i18n.get('pcServiceInfo.customerCenterDesc2')}
                 </div>
               </div>
             </Link>

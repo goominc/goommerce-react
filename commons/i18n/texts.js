@@ -1283,6 +1283,80 @@ module.exports = {
       'zh-tw': '₩30,000 ~',
     },
   },
+  pcServiceInfo: {
+    infoTitle: {
+      en: '서비스 소개',
+      ko: '서비스 소개',
+      'zh-cn': '服务指南',
+      'zh-tw': '服務指南',
+    },
+    infoDesc1: {
+      en: '믿고 거래하는',
+      ko: '믿고 거래하는',
+      'zh-cn': '믿고 거래하는',
+      'zh-tw': '믿고 거래하는',
+    },
+    infoDesc2: {
+      en: 'No.1 온라인 도매시장',
+      ko: 'No.1 온라인 도매시장',
+      'zh-cn': 'No.1 온라인 도매시장',
+      'zh-tw': 'No.1 온라인 도매시장',
+    },
+    signupTitle: {
+      en: '회원가입 안내',
+      ko: '회원가입 안내',
+      'zh-cn': '账号注册指南',
+      'zh-tw': '賬號註冊指南',
+    },
+    signupDesc1: {
+      en: '고객 우선 원칙',
+      ko: '고객 우선 원칙',
+      'zh-cn': '고객 우선 원칙',
+      'zh-tw': '고객 우선 원칙',
+    },
+    signupDesc2: {
+      en: '회원 시스템',
+      ko: '회원 시스템',
+      'zh-cn': '회원 시스템',
+      'zh-tw': '회원 시스템',
+    },
+    orderTitle: {
+      en: '주문 배송',
+      ko: '주문 배송',
+      'zh-cn': '物流/结账',
+      'zh-tw': '物流/結賬',
+    },
+    orderDesc1: {
+      en: '원하는 브랜드 및 상품',
+      ko: '원하는 브랜드 및 상품',
+      'zh-cn': '원하는 브랜드 및 상품',
+      'zh-tw': '원하는 브랜드 및 상품',
+    },
+    orderDesc2: {
+      en: '사입 요청 가능',
+      ko: '사입 요청 가능',
+      'zh-cn': '사입 요청 가능',
+      'zh-tw': '사입 요청 가능',
+    },
+    customerCenterTitle: {
+      en: '고객지원 센터',
+      ko: '고객지원 센터',
+      'zh-cn': '客服中心',
+      'zh-tw': '客服中心',
+    },
+    customerCenterDesc1: {
+      en: '편리한 소통을 위한',
+      ko: '편리한 소통을 위한',
+      'zh-cn': '편리한 소통을 위한',
+      'zh-tw': '편리한 소통을 위한',
+    },
+    customerCenterDesc2: {
+      en: '언어별 고객지원 센터',
+      ko: '언어별 고객지원 센터',
+      'zh-cn': '언어별 고객지원 센터',
+      'zh-tw': '언어별 고객지원 센터',
+    },
+  },
   word: {
     add: {
       en: 'Add',
