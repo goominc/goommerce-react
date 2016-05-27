@@ -1,5 +1,9 @@
+// Copyright (C) 2016 Goom Inc. All rights reserved.
+
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+
+import i18n from 'commons/utils/i18n';
 
 import SigninHeader from 'components/user/SigninHeader';
 import SigninForm from 'components/user/SigninForm';
@@ -29,6 +33,8 @@ const Signin = React.createClass({
       <div className="signup-global-container">
         <SigninHeader />
         <div className="signup-container">
+          <div className="desc1">{i18n.get('pcMain.modalLogin.onlyRetailerLinkshopsService')}</div>
+          <div className="desc2">{i18n.get('pcMain.modalLogin.ifYouWantToUseFurtherService')}</div>
           <div className="signin-form-box">
             <SigninForm handleSubmit={this.handleSubmit} goForgotPassword={goForgotPassword} />
           </div>

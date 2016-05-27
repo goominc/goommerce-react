@@ -23,12 +23,10 @@ export default React.createClass({
     return (
       <div className="signup-container">
         <img className="signup-progress-img" src={`${constants.resourceRoot}/main/signup-step1.png`} />
-        <div className="desc1">
-          링크샵스는 사업자회원만이 이용할 수 있는 도매사이트 입니다.
-        </div>
+        <div className="desc1">{i18n.get('pcMain.modalLogin.onlyRetailerLinkshopsService')}</div>
         <div className="desc2">
-          패션잡화 관련 소매업자에 한해 가입승인이 진행되며,<br />
-          취급품목 및 업태가 다른 경우 승인이 반려될 수 있습니다.
+          {i18n.get('pcMain.modalLogin.signupPolicyDesc1')}<br />
+          {i18n.get('pcMain.modalLogin.signupPolicyDesc2')}
         </div>
         <div className="divider"></div>
         <div className="signup-terms-section">
