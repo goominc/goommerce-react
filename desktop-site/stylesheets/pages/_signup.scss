@@ -101,7 +101,7 @@
       line-height: initial;
       position: absolute;
       right: 0;
-      top: 50%;
+      top: 10px;
     }
   }
   .form-group {
@@ -150,8 +150,10 @@
       }
     }
     .input-firstname {
-      display: table-cell;
+      display: inline-block;
+      margin-left: 10px;
       vertical-align: top;
+      width: 190px;
       input {
         @include signup-input();
       }

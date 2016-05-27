@@ -56,13 +56,13 @@ export default React.createClass({
           <div className="input-lastname">
             <input id="lastName" onChange={(e) => onChange(e, 'data.lastName')}
               defaultValue={auth ? _.get(auth, 'data.lastName') : ''}
-              type="text" placeholder={i18n.get('pcMypage.firstName')}
+              type="text" placeholder={i18n.get('pcMypage.lastName')}
             />
           </div>
           <div className="input-firstname">
             <input id="firstName" onChange={(e) => onChange(e, 'data.firstName')}
               defaultValue={auth ? _.get(auth, 'data.firstName') : ''}
-              type="text" placeholder={i18n.get('pcMypage.lastName')}
+              type="text" placeholder={i18n.get('pcMypage.firstName')}
             />
           </div>
         </div>
