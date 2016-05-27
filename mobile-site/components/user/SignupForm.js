@@ -11,6 +11,7 @@ import uploadUtil from 'commons/utils/uploadUtil';
 
 export default React.createClass({
   propTypes: {
+    activeLocale: PropTypes.string,
     handleSubmit: PropTypes.func,
     signupUser: PropTypes.object,
     updateSignupUser: PropTypes.func,
@@ -25,10 +26,12 @@ export default React.createClass({
     this.props.updateSignupUser(this.state);
   },
   render() {
-    const { handleSubmit } = this.props;
+    const { handleSubmit, activeLocale } = this.props;
     const { areaCodes } = constants;
     const activeAreaCodeIndex = this.state.activeAreaCodeIndex || 0;
     const t = (key) => i18n.get(`pcMain.signup.${key}`);
+
+    const isChinaSignup = activeLocale === 'zh-cn' || activeLocale === 'zh-tw';
 
     const onChange = (e, key) => {
       const nextState = {};
@@ -51,7 +54,7 @@ export default React.createClass({
           field.onChange ? field.onChange(e) : onChange(e, field.key)
         )}
       />;
-    const renderBizInfo = () => {
+    const renderBizImage = () => {
       const onSelectFile = (e) => {
         const r = new FileReader();
         const bizImageName = e.target.files[0].name;
@@ -60,6 +63,45 @@ export default React.createClass({
         };
         r.readAsDataURL(e.target.files[0]);
       };
+      const openBizImagePopup = (e) => {
+        e.preventDefault();
+        $('#biz-image-button').click();
+      };
+      if (this.state.bizImageUrl) {
+        return (
+          <div key="signup-biz-image" className="signup-biz-image-line">
+            <input id="biz-image-button" type="file" accept="image/*,application/pdf" onChange={onSelectFile} style={({ display: 'none' })} />
+            <img src={this.state.bizImageUrl} onClick={openBizImagePopup} />
+          </div>
+        );
+      }
+      return (
+        <div key="signup-biz-image" className="signup-biz-image-line">
+          <input id="biz-image-button" type="file" accept="image/*,application/pdf" onChange={onSelectFile} style={({ display: 'none' })} />
+          <button className="biz-image-upload-button" style={({ margin: 0 })} onClick={openBizImagePopup}>
+            사업자등록증 사진 업로드
+          </button>
+        </div>
+      );
+    };
+    const renderBizInfoChina = () => {
+      const fields1 = [
+        { name: t('bizName'), placeholder: t('bizNamePlaceHolder'), key: 'data.bizName' },
+        { name: `${t('bizNumber')}('-' 제외)`, placeholder: t('bizNumberPlaceHolder'), key: 'data.bizNumber',
+          onChange: (e) => onlyNumberFieldOnChange(e, 'data.bizNumber', 16) },
+      ];
+      const bizImageField = renderBizImage();
+      const res = fields1.map(renderField);
+      res.push(bizImageField);
+      res.push(
+        <textarea className="signin-input" placeholder={i18n.get('word.etc')} rows="2" onChange={(e) => onChange(e, 'data.signupMemo')} />
+      );
+      return res;
+    };
+    const renderBizInfo = () => {
+      if (isChinaSignup) {
+        return renderBizInfoChina();
+      }
       const fields1 = [
         { name: t('bizName'), placeholder: t('bizNamePlaceHolder'), key: 'data.bizName', isRequired: true },
         { name: `${t('bizNumber')}('-' 제외)`, placeholder: t('bizNumberPlaceHolder'), key: 'data.bizNumber', isRequired: true,
@@ -70,28 +112,7 @@ export default React.createClass({
         { name: t('returnAccountBank'), placeholder: t('returnAccountBankPlaceHolder'), key: 'data.returnAccountBank' }, // eslint-disable-line
         { name: t('returnAccountOwner'), placeholder: t('returnAccountOwnerPlaceHolder'), key: 'data.returnAccountOwner' }, // eslint-disable-line
       ];
-      const openBizImagePopup = (e) => {
-        e.preventDefault();
-        $('#biz-image-button').click();
-      };
-      let bizImageField;
-      if (this.state.bizImageUrl) {
-        bizImageField = (
-          <div key="signup-biz-image" className="signup-biz-image-line">
-            <input id="biz-image-button" type="file" accept="image/*,application/pdf" onChange={onSelectFile} style={({ display: 'none' })} />
-            <img src={this.state.bizImageUrl} onClick={openBizImagePopup} />
-          </div>
-        );
-      } else {
-        bizImageField = (
-          <div key="signup-biz-image" className="signup-biz-image-line">
-            <input id="biz-image-button" type="file" accept="image/*,application/pdf" onChange={onSelectFile} style={({ display: 'none' })} />
-            <button className="biz-image-upload-button" style={({ margin: 0 })} onClick={openBizImagePopup}>
-              사업자등록증 사진 업로드
-            </button>
-          </div>
-        );
-      }
+      const bizImageField = renderBizImage();
       return fields1.map(renderField).concat([bizImageField]).concat(fields2.map(renderField));
     };
     const onSubmit = (e) => {
@@ -118,7 +139,7 @@ export default React.createClass({
         window.alert('비밀번호가 일치하지 않습니다');
         return;
       }
-      if (!this.state.bizImageUrl) {
+      if (!isChinaSignup && !this.state.bizImageUrl) {
         window.alert('사업자 등록증을 선택해 주세요');
         return;
       }
@@ -130,7 +151,6 @@ export default React.createClass({
         window.alert('개인정보 수집방침에 동의해 주세요');
         return;
       }
-      user.data.areaCode = '+82'; // TODO
       const cb = (result) => {
         user.data.bizImage = result;
         if (user.data.firstName && user.data.lastName) {
@@ -138,7 +158,11 @@ export default React.createClass({
         }
         handleSubmit(user);
       };
-      uploadUtil.uploadFile(this.state.bizImageUrl, cb);
+      if (this.state.bizImageUrl) {
+        uploadUtil.uploadFile(this.state.bizImageUrl, cb);
+      } else {
+        handleSubmit(user);
+      }
     };
     const toggleNumberDropdown = () => {
       const target = $('.form-tel .dropdown-box');

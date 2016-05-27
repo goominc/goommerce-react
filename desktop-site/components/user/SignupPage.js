@@ -23,7 +23,6 @@ export default React.createClass({
   render() {
     const { goBack, handleSignup, activeLocale } = this.props;
     const isChinaSignup = activeLocale === 'zh-cn' || activeLocale === 'zh-tw';
-    console.log(isChinaSignup);
     const t = (key) => i18n.get(`pcMain.signup.${key}`);
     const renderBody = () => {
       let cannotSignupMessage = null;

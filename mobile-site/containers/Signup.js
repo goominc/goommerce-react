@@ -50,6 +50,7 @@ const Signup = React.createClass({
 export default connect(
   (state) => ({
     signupUser: _.get(state, 'pageSignup.user'),
+    activeLocale: state.i18n.activeLocale,
   }),
   { signup, updateSignupUser, clearSignupUser },
 )(Signup);
