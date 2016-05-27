@@ -198,6 +198,14 @@ export default React.createClass({
       return (
         <form onSubmit={clickSignup} className="signup-container">
           <img className="signup-progress-img" src={`${constants.resourceRoot}/main/signup-step2.png`} />
+          <div className="desc1">
+            링크샵스는 사업자회원만이 이용할 수 있는 도매사이트 입니다.
+          </div>
+          <div className="desc2">
+            패션잡화 관련 소매업자에 한해 가입승인이 진행되며,<br />
+            취급품목 및 업태가 다른 경우 승인이 반려될 수 있습니다.
+          </div>
+          <div className="divider"></div>
           <div className="signup-form-section">
             <div className="title">
               {i18n.get('pcMain.signup.signInInformation')}

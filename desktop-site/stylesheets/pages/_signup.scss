@@ -14,6 +14,23 @@
   padding: 46px 73px;
   width: 550px;
 
+  .desc1 {
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+    margin: 5px 0;
+    text-align: center;
+  }
+  .desc2 {
+    color: #777;
+    font-size: 13px;
+    line-height: 20px;
+    text-align: center;
+  }
+  .divider {
+    @include horizontal-divider(2px, 15px);
+  }
+
   .button-line {
     $height: 48px;
     margin-top: 30px;
@@ -42,7 +59,7 @@
 }
 .signup-progress-img {
   width: 100%;
-  margin-bottom: 40px;
+  margin-bottom: 15px;
 }
 .signup-header {
   width: 100%;
@@ -253,7 +270,7 @@
 }
 
 .signup-terms-section {
-  margin-bottom: 40px;
+  margin: 10px 0 30px;
   .title {
     font-size: 16px;
     margin-bottom: $margin-15;

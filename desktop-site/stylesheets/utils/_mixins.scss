@@ -48,10 +48,10 @@
   }
 }
 
-@mixin horizontal-divider ($margin) {
+@mixin horizontal-divider ($thickness, $margin) {
   display: block;
   width: 100%;
-  height: 1px;
+  height: $thickness;
   background-color: #ddd;
   margin: $margin 0;
 }
