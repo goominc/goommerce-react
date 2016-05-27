@@ -206,7 +206,7 @@ export default React.createClass({
             <div className="form-group">
               <label><span className="required">*</span>{i18n.get('pcMain.signup.id')}</label>
               <div className="form-input">
-                <input onChange={(e) => onChange(e, 'email')} type="email" placeholder="ex) linkshops@linkshops.com" />
+                <input onChange={(e) => onChange(e, 'email')} type="email" placeholder="Enter Email" />
                 {renderEmailWarning(this.state.email)}
               </div>
             </div>
