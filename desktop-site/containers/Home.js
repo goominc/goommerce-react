@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import _ from 'lodash';
+import OwlCarousel from 'react-owl-carousel';
 
 import ProductListItems from 'components/product/ProductListItems';
 
@@ -123,13 +124,21 @@ const Home = React.createClass({
       }
       return <img key={row.image.url} src={row.image.url} />;
     };
+    const settings = {
+      slideSpeed: 300,
+      autoPlay: 10000,
+      singleItem: true,
+      scrollPerPage: true,
+    };
     return (
       <div className="main-wide-container">
         <div className="container no-horizontal-padding">
           <div className="main-banner-wrap">
             {renderCategories()}
             <div className="main-banner">
-              {(currentMainBanner.rows || []).map(renderBanner)}
+              <OwlCarousel {...settings}>
+                {(currentMainBanner.rows || []).map(renderBanner)}
+              </OwlCarousel>
             </div>
             {/*
             <div className="home-stylepick-banner">
