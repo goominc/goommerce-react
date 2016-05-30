@@ -27,21 +27,25 @@ export default React.createClass({
     return { showPay: false, showShippingPolicy: false };
   },
   componentDidMount() {
-    $(window).scroll(() => {
-      if (this.isShowPaymentInfo()) {
-        $('.accounts').css('position', 'static');
-      } else {
-        $('.accounts').css('position', 'fixed');
-      }
-    });
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
+  handleScroll() {
+    if (this.isShowPaymentInfo()) {
+      $('.accounts').css('position', 'static');
+    } else {
+      $('.accounts').css('position', 'fixed');
+    }
   },
   isShowPaymentInfo() {
-    const node = $('.order-product-checkout');
-    if (!node.offset()) {
+    const elem = $('.order-product-checkout');
+    if (!elem.length) {
       return false;
     }
     const scrollBottom = $(window).scrollTop() + $(window).height();
-    const paymentBottom = node.offset().top + node.height();
+    const paymentBottom = elem.offset().top + elem.height();
     const barHeight = $('.accounts').height();
     return scrollBottom >= paymentBottom + barHeight;
   },

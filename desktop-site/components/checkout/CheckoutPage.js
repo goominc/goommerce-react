@@ -27,6 +27,39 @@ export default React.createClass({
   getInitialState() {
     return { paymentMethod: 0 };
   },
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
+  handleScroll() {
+    const elem = $('.checkout-right-container');
+    if (!elem.length) {
+      return;
+    }
+    const windowTop = $(window).scrollTop();
+    const leftElem = $('.checkout-left-container');
+    if (leftElem.offset().top > windowTop) {
+      elem.css('position', 'relative');
+      elem.css('top', 0);
+      return;
+    }
+    const position = elem.css('position');
+    const containerWindowBottom = $('.cart-container').offset().top + $('.cart-container').height() - windowTop;
+    if (position === 'fixed') {
+      if (containerWindowBottom < elem.height()) {
+        const s = `${containerWindowBottom - elem.height()}px`;
+        console.log(s);
+        elem.css('top', s);
+      }
+    } else {
+      if (windowTop > elem.offset().top && containerWindowBottom > elem.height()) {
+        elem.css('position', 'fixed');
+        elem.css('top', '0');
+      }
+    }
+  },
   render() {
     const { order } = this.props;
     const { activeAddressId, addresses, isEditMode,
@@ -174,7 +207,7 @@ export default React.createClass({
     const taxPrice = formatPrice('tax');
     const totalPrice = formatPrice('total');
     return (
-      <div className="cart-conatiner">
+      <div className="cart-container">
         <div className="cart-title-box">
           <i className="icon-payment"></i> <span>{i18n.get('pcPayment.payment')}</span>
         </div>

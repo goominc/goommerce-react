@@ -41,7 +41,7 @@ export default React.createClass({
 
     const formatPrice = numberUtil.formatPrice(total[activeCurrency] || 0, activeCurrency, currencySign);
     return (
-      <div className="cart-conatiner">
+      <div className="cart-container">
         <div className="cart-title-box">
           <i className="icon-cart"></i> <span>{i18n.get('pcCart.cart')}</span>
         </div>
