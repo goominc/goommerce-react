@@ -363,11 +363,8 @@ export function saveOrderAddress(orderId, address) {
     const state = getState();
     // 2016. 05. 19. [heekyu] (Case 275) Update Order Address After server updates
     return ajaxReturnPromise(state.auth, 'PUT', `/api/v1/orders/${orderId}/address`, address).then(() => {
-      dispatch({
-        type: 'UPDATE_ORDER_ADDRESS',
-        orderId,
-        address,
-      });
+      // 2016. 05. 30. [heekyu] shipping address may be changed
+      loadOrder(orderId)(dispatch, getState);
     }, () => {
       dispatch({
         type: 'UPDATE_ORDER_ADDRESS',
@@ -386,7 +383,9 @@ export function saveAddressAndThen(order, address) {
         promises.push(setActiveAddressId(address.id)(dispatch, getState));
       }
       return Promise.all([promises]);
-    }).then(() => loadAddresses()(dispatch, getState));
+    }).then(() => {
+      loadAddresses()(dispatch, getState);
+    });
   };
 }
 

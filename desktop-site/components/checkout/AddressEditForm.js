@@ -129,6 +129,17 @@ export default React.createClass({
     );
     const isDefaultCountryCode = countryCode !== 'KR';
     const changeCountryCode = (code) => {
+      if (addressForEdit.id) {
+        // 2016. 05. 30. [heekyu] when modifing, cannot change KR -> OTHER or OTHER -> KR
+        if (addressForEdit.countryCode === 'KR' && code !== 'KR') {
+          window.alert('Cannot change Domestic -> Overseas address. Please add new address');
+          return;
+        }
+        if (addressForEdit.countryCode !== 'KR' && code === 'KR') {
+          window.alert('Cannot change Overseas -> Domestic address. Please add new address');
+          return;
+        }
+      }
       if (code !== countryCode) {
         this.setState({ countryCode: code });
       }
@@ -147,8 +158,18 @@ export default React.createClass({
     return (
       <form className="form-address-edit" onSubmit={handleSubmitAddress}>
         <div className="tab-line">
-          <div className={`item ${countryCode === 'KR' ? 'active' : ''}`} onClick={() => changeCountryCode('KR')}>{i18n.get('word.domestic')}</div>
-          <div className={`item ${isDefaultCountryCode ? 'active' : ''}`} onClick={() => changeCountryCode('ETC')}>{i18n.get('word.overseas')}</div>
+          <div
+            className={`item ${countryCode === 'KR' ? 'active' : ''}`}
+            onClick={() => (countryCode !== 'KR' ? changeCountryCode('KR') : null)}
+          >
+            {i18n.get('word.domestic')}
+          </div>
+          <div
+            className={`item ${isDefaultCountryCode ? 'active' : ''}`}
+            onClick={() => (!isDefaultCountryCode ? changeCountryCode('ETC') : null)}
+          >
+            {i18n.get('word.overseas')}
+          </div>
         </div>
         {renderAllFields()}
         <div className="form-box">

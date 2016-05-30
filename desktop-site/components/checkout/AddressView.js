@@ -29,6 +29,7 @@ export default React.createClass({
     };
     const getString = (key) => stringUtil.shorten(_.get(address, key) || '', 13);
     const fields = [
+      { label: i18n.get('pcPayment.countryCode'), value: _.get(address, 'countryCode') },
       { label: i18n.get('pcPayment.contactName'), value: _.get(address, 'detail.name') },
       { label: i18n.get('pcPayment.phoneNumber'), value: _.get(address, 'detail.tel') },
       { label: i18n.get('pcPayment.zipCode'), value: _.get(address, 'detail.postalCode') },
