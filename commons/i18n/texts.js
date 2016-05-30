@@ -271,8 +271,8 @@ module.exports = {
     goBack: {
       en: 'Go Back',
       ko: '돌아가기',
-      'zh-cn': '돌아가기',
-      'zh-tw': '돌아가기',
+      'zh-cn': '返回',
+      'zh-tw': '返回',
     },
   },
   pcCart: {
@@ -333,20 +333,20 @@ module.exports = {
     popupProductAdded: {
       en: 'Product Added To Cart Successfully',
       ko: '선택하신 상품이 장바구니에 담겼습니다.',
-      'zh-cn': '선택하신 상품이 장바구니에 담겼습니다.',
-      'zh-tw': '선택하신 상품이 장바구니에 담겼습니다.',
+      'zh-cn': '已成功加入购物车',
+      'zh-tw': '已成功加入購物車',
     },
     popupGoCart: {
       en: 'Go To Shopping Cart',
       ko: '장바구니로 이동',
-      'zh-cn': '장바구니로 이동',
-      'zh-tw': '장바구니로 이동',
+      'zh-cn': '加入购物车',
+      'zh-tw': '加入購物車',
     },
     popupContinueShopping: {
       en: 'Continue Shopping',
       ko: '쇼핑 계속하기',
-      'zh-cn': 'Continue Shopping',
-      'zh-tw': 'Continue Shopping',
+      'zh-cn': '去逛逛',
+      'zh-tw': '去逛逛',
     },
   },
   pcFooter: {
@@ -472,16 +472,16 @@ module.exports = {
       'zh-tw': '客服聯繫',
     },
     kakaoTalk: {
-      en: 'kakao talk linkshops',
+      en: 'kakao talk : linkshops',
       ko: '구매회원 상담 Linkshops',
-      'zh-cn': 'kakao talk linkshops',
-      'zh-tw': 'kakao talk linkshops',
+      'zh-cn': 'kakao talk : linkshops',
+      'zh-tw': 'kakao talk : linkshops',
     },
     wechat: {
-      en: 'Wechat linkshops-china',
+      en: 'Wechat : linkshops-china',
       ko: '판매회원 상담 Linkshops_brand',
-      'zh-cn': 'Wechat linkshops-china',
-      'zh-tw': 'Wechat linkshops-china',
+      'zh-cn': 'Wechat : linkshops-china',
+      'zh-tw': 'Wechat : linkshops-china',
     },
   },
   pcItemDetail: {
@@ -575,8 +575,8 @@ module.exports = {
       userHi: {
         en: '!',
         ko: '님',
-        'zh-cn': '.',
-        'zh-tw': '.',
+        'zh-cn': '!',
+        'zh-tw': '!',
       },
     },
     search: {
@@ -725,14 +725,14 @@ module.exports = {
       bizNamePlaceHolder: {
         en: 'Enter your brand name',
         ko: '사업자명을 입력해주세요',
-        'zh-cn': '输入公司名称',
-        'zh-tw': '輸入公司名稱',
+        'zh-cn': '请输入公司名称',
+        'zh-tw': '請輸入公司名稱',
       },
       bizNumberPlaceHolder: {
         en: 'Enter your business number',
         ko: '사업자번호를 입력해주세요',
-        'zh-cn': '输入注册号',
-        'zh-tw': '輸入註冊號',
+        'zh-cn': '请输入注册号',
+        'zh-tw': '請輸入註冊號',
       },
       returnAccountNumber: {
         en: 'Bank Account Information',
@@ -800,8 +800,8 @@ module.exports = {
     orderTotal: {
       en: 'Order Total',
       ko: '결제금액',
-      'zh-cn': '实付款',
-      'zh-tw': '實付款',
+      'zh-cn': '付款金额',
+      'zh-tw': '付款金額',
     },
     orderStatus: {
       en: 'Status',
@@ -1148,6 +1148,12 @@ module.exports = {
       'zh-cn': '收货人',
       'zh-tw': '收貨人',
     },
+    countryCode: {
+      en: 'Country Code',
+      ko: '국가',
+      'zh-cn': '국가',
+      'zh-tw': '국가',
+    },
     phoneNumber: {
       en: 'Phone Number',
       ko: '연락처',
@@ -1217,8 +1223,8 @@ module.exports = {
     totalPrice: {
       en: 'Total',
       ko: '결제금액',
-      'zh-cn': '实付款',
-      'zh-tw': '買付款',
+      'zh-cn': '付款金额',
+      'zh-tw': '付款金額',
     },
     paymentMethod: {
       en: 'Payment Method',
@@ -1421,8 +1427,8 @@ module.exports = {
     etc: {
       en: 'etc',
       ko: '기타',
-      'zh-cn': '기타',
-      'zh-tw': '기타',
+      'zh-cn': '其他',
+      'zh-tw': '其他',
     },
     favoriteBrand: {
       en: 'favoriate brand',
