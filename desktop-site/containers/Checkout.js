@@ -72,6 +72,10 @@ const Checkout = React.createClass({
       return str.charAt(0).toUpperCase() + str.slice(1);
     }
     const inipayMethod = method === 'VBank' || method === 'Card' ? 'web' : 'global';
+    const isGlobalPay = inipayMethod === 'global';
+    if (isGlobalPay) {
+      window.open('', 'checkout');
+    }
     this.props.inipay(orderId, inipayMethod).then((res) => {
       paymentInfo.mid.value = res.mid;
       paymentInfo.oid.value = res.oid;
@@ -80,7 +84,7 @@ const Checkout = React.createClass({
       paymentInfo.buyername.value = res.buyername;
       paymentInfo.buyertel.value = res.buyertel;
       paymentInfo.timestamp.value = res.timestamp;
-      if (inipayMethod === 'global') {
+      if (isGlobalPay) {
         // FIXME: we don't have english buyer name.
         paymentInfo.buyername.value = 'linkshops';
         paymentInfo.goods.value = 'clothing';

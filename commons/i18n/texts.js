@@ -1238,6 +1238,12 @@ module.exports = {
       'zh-cn': '信用卡',
       'zh-tw': '信用卡',
     },
+    vbank: {
+      en: 'VBank',
+      ko: '무통장 입금',
+      'zh-cn': '무통장 입금',
+      'zh-tw': '무통장 입금',
+    },
     placeOrder: {
       en: 'Place Order',
       ko: '결제하기',
