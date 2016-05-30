@@ -49,7 +49,7 @@ export default React.createClass({
             <UserPolicies />
           </div>
         </div>
-        <div className="button-line">
+        <div className="form-button-line">
           <button onClick={goBack} className="button-back">{i18n.get('pcMain.signup.back')}</button>
           <button onClick={onNext} className="button-next">{i18n.get('pcMain.signup.naxt')}</button>
         </div>

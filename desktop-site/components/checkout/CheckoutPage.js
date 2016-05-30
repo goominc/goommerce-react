@@ -1,10 +1,11 @@
+// Copyright (C) 2016 Goom Inc. All rights reserved.
+
 import React, { PropTypes } from 'react';
 import LinkedStateMixin from 'react-addons-linked-state-mixin'; // for manage form input...
-import _ from 'lodash';
 
 import AddressEditForm from './AddressEditForm';
 import AddressView from './AddressView';
-import SellerBox from 'components/CartSellerBox';
+import ShippingPolicyPopup from 'components/popup/ShippingPolicyPopup';
 import i18n from 'commons/utils/i18n';
 import CartProduct from 'components/CartProduct';
 import numberUtil from 'commons/utils/numberUtil';
@@ -25,7 +26,7 @@ export default React.createClass({
   },
   mixins: [LinkedStateMixin],
   getInitialState() {
-    return { paymentMethod: 0, isShowPaymentPolicyDetail: false };
+    return { paymentMethod: 0, isShowPaymentPolicyDetail: false, isShowShippingPolicy: false };
   },
   componentDidMount() {
     // 2016. 05. 30. [heekyu] scroll behavior is complicated and not-predictable.
@@ -227,6 +228,13 @@ export default React.createClass({
       );
     };
 
+    const renderShippingPolicyPopup = () => {
+      if (this.state.isShowShippingPolicy) {
+        return <ShippingPolicyPopup closePopup={() => this.setState({ isShowShippingPolicy: false })} />;
+      }
+      return null;
+    };
+
     const formatPrice = (type) =>
       numberUtil.formatPrice(order[`${type}${activeCurrency}`], activeCurrency, currencySign);
 
@@ -236,6 +244,8 @@ export default React.createClass({
     const shippingCostPrice = formatPrice('shippingCost');
     const taxPrice = formatPrice('tax');
     const totalPrice = formatPrice('total');
+    const questionButton =
+      <i className="payment-question" onClick={() => this.setState({ isShowShippingPolicy: true })}></i>;
     return (
       <div className="cart-container">
         <div className="cart-title-box">
@@ -259,11 +269,11 @@ export default React.createClass({
               <div className="control">{taxPrice}</div>
             </div>
             <div className="row">
-              <div className="label">{i18n.get('pcPayment.handlingFee')} (3.3%)</div>
+              <div className="label">{i18n.get('pcPayment.handlingFee')} {questionButton}</div>
               <div className="control">{handlingFeePrice}</div>
             </div>
             <div className="row">
-              <div className="label">{i18n.get('pcPayment.shippingCost')}</div>
+              <div className="label">{i18n.get('pcPayment.shippingCost')} {questionButton}</div>
               <div className="control">{shippingCostPrice}</div>
             </div>
             <div className="total-row">
@@ -289,6 +299,7 @@ export default React.createClass({
             {paymentMethods.map(renderPaymentMethod)}
             {renderPayments()}
           </div>
+          {renderShippingPolicyPopup()}
         </div>
       </div>
     );

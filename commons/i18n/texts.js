@@ -1442,6 +1442,12 @@ module.exports = {
       'zh-cn': '商品分类',
       'zh-tw': '商品分類',
     },
+    confirm: {
+      en: 'OK',
+      ko: '확인',
+      'zh-cn': '확인',
+      'zh-tw': '확인',
+    },
     closeMoreContent: {
       en: 'Close',
       ko: '접기',

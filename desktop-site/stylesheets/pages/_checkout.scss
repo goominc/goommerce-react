@@ -341,19 +341,20 @@ $active-progress-color: #f90;
       background-color: #fff;
       border-left: 1px solid #aaa;
       border-right: 1px solid #aaa;
-      padding: 3px 15px;
+      padding: 3px 10px;
       .label {
         display: inline-block;
         font-size: 13px;
         font-weight: 500;
-        width: 40%;
+        width: 60%;
         white-space: nowrap;
       }
       .control {
         display: inline-block;
         font-size: 14px;
         text-align: right;
-        width: 60%;
+        width: 40%;
+        white-space: nowrap;
       }
     }
     .total-row {
@@ -477,6 +478,18 @@ $active-progress-color: #f90;
         vertical-align: middle;
         width: 17px;
       }
+    }
+  }
+  .payment-question {
+    background-image: url($base-url + '/main/payment-question-off.png');
+    cursor: pointer;
+    display: inline-block;
+    height: 14px;
+    vertical-align: middle;
+    width: 14px;
+    z-index: 100;
+    &:hover {
+      background-image: url($base-url + '/main/payment-question-on.png');
     }
   }
 }

@@ -158,3 +158,57 @@ $cart-popup-height: 150px;
     width: 100%;
   }
 }
+
+.shipping-policy-container {
+  @include popup-body(600px, inherit);
+  border-radius: 2px;
+  position: absolute;
+  padding: 15px 15px 30px 15px;
+  .title {
+    border-bottom: 1px solid #aaa;
+    color: #333;
+    font-size: 18px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    text-align: center;
+  }
+  .section {
+    margin-bottom: 20px;
+  }
+  .section-title {
+    color: #ed4500;
+    font-size: 16px;
+    margin: 15px 0;
+  }
+  .section-subtitle {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+  span {
+    color: #aaa;
+    font-size: 12px;
+  }
+  table {
+    border: 1px solid #aaa;
+    color: #777;
+    font-weight: 400;
+    margin: 10px 0;
+    tr {
+      + tr {
+        td {
+          border-top: 1px solid #aaa;
+        }
+      }
+    }
+    td {
+      padding: 5px 10px;
+      + td {
+        border-left: 1px solid #aaa;
+      }
+    }
+    .center {
+      text-align: center;
+    }
+  }
+}
