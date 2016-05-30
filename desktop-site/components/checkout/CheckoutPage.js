@@ -83,13 +83,17 @@ export default React.createClass({
     const paymentMethods = [
       { icon: 'icon-inicis', name: '무통장 입금', method: 'VBank' },
       { icon: 'icon-credit-card', name: i18n.get('pcPayment.creditCard'), method: 'Card' },
-      // { icon: 'icon-alipay', name: 'ALIPAY', method: 'alipay' },
-      // { icon: 'icon-union-pay', name: 'UNION PAY', method: 'unionpay' },
-      // { icon: 'icon-tenpay', name: 'TENPAY', method: 'tenpay' },
-      // { icon: 'icon-paypal', name: 'PAYPAL', method: 'paypal' },
+      { icon: 'icon-alipay', name: 'ALIPAY', method: 'alipay' },
+      { icon: 'icon-union-pay', name: 'UNION PAY', method: 'unionpay' },
+      { icon: 'icon-tenpay', name: 'TENPAY', method: 'tenpay' },
+      { icon: 'icon-paypal', name: 'PAYPAL', method: 'paypal' },
     ];
     const renderPaymentMethod = (method, index) => (
-      <div key={`payment-${index}`} className={`row ${index === this.state.paymentMethod ? 'active' : ''}`} onClick={() => this.setState({ paymentMethod: index })}>
+      <div
+        key={`payment-${index}`}
+        className={`row ${index === this.state.paymentMethod ? 'active' : ''}`}
+        onClick={() => this.setState({ paymentMethod: index })}
+      >
         <i className={`label ${method.icon}`}></i>
         <div className="control">
           {method.name}
@@ -208,20 +212,6 @@ export default React.createClass({
             <div className="title">{i18n.get('pcPayment.paymentMethod')}</div>
             {paymentMethods.map(renderPaymentMethod)}
             {renderPayments()}
-            {/*
-            <div className="row">
-              <i className="label icon-alipay"></i>
-              <div className="control">알리페이</div>
-            </div>
-            <div className="row">
-              <i className="label icon-union-pay"></i>
-              <div className="control">은련카드</div>
-            </div>
-            <div className="row">
-              <i className="label icon-tenpay"></i>
-              <div className="control">텐페이</div>
-            </div>
-             */}
           </div>
         </div>
       </div>
