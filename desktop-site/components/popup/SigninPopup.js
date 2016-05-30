@@ -39,7 +39,7 @@ export default React.createClass({
             <button type="submit" className="signin-button">{i18n.get('word.login')}</button>
           </form>
           <div className="remember-me">
-            <input id="rememberme" type="checkbox" defaultChecked />
+            <input id="rememberme" type="checkbox" className="default-checkbox" defaultChecked />
             <label onClick={() => $('#rememberme').click()}></label>
             <span>{i18n.get('word.keepMeSignedIn')}</span>
             <div className="signup-or-forgot">

@@ -31,7 +31,7 @@ export default React.createClass({
         <div className="divider"></div>
         <div className="signup-terms-section">
           <div className="title">
-            <input id="terms_title" type="checkbox" ref="terms" />
+            <input id="terms_title" type="checkbox" className="default-checkbox" ref="terms" />
             <label onClick={() => $('#terms_title').click()}></label>
             <span style={({ marginLeft: '15px' })}>{i18n.get('pcMain.signup.agreeToTermsOfUse')}</span>
           </div>
@@ -41,7 +41,7 @@ export default React.createClass({
         </div>
         <div className="signup-terms-section">
           <div className="title">
-            <input id="policies_title" type="checkbox" ref="policies" />
+            <input id="policies_title" type="checkbox" className="default-checkbox" ref="policies" />
             <label onClick={() => $('#policies_title').click()}></label>
             <span style={({ marginLeft: '15px' })}>{i18n.get('pcMain.signup.agreeToPrivacyPolicy')}</span>
           </div>

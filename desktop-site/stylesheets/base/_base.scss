@@ -73,22 +73,30 @@ a {
   margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
-input[type="checkbox"] {
+@mixin checkbox-label-style($background-unchecked-url, $background-checked-url, $len) {
   display:none;
   & + label {
     display:inline-block;
-    width:17px;
-    height:17px;
-    background-image: url($base-url + '/main/checkbox_unchecked.png');
-    vertical-align: top;
+    width:$len;
+    height:$len;
+    background-image: url($background-unchecked-url);
+    background-size: $len $len;
+    vertical-align: middle;
     zoom: 1;
     text-align: center;
     -webkit-font-smoothing: antialiased;
     cursor:pointer;
   }
   &:checked + label {
-    background-image: url($base-url + '/main/checkbox_checked.png');
+    background-image: url($background-checked-url);
   }
+}
+
+.default-checkbox {
+  @include checkbox-label-style($base-url + '/main/checkbox_unchecked.png', $base-url + '/main/checkbox_checked.png', 17px);
+}
+.payment-checkbox {
+  @include checkbox-label-style($base-url + '/main/payment-checkbox-unchecked.png', $base-url + '/main/payment-checkbox-checked.png', 22px);
 }
 
 @mixin multi-line-vertical-center($line-height) {

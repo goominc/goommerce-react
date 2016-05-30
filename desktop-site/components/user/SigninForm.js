@@ -35,7 +35,7 @@ export default React.createClass({
           ref="password"
         />
         <div className="signin-remember-me">
-          <input id="rememberme" type="checkbox" defaultChecked />
+          <input id="rememberme" type="checkbox" className="default-checkbox" defaultChecked />
           <label onClick={() => $('#rememberme').click()}></label>
           <span>{i18n.get('word.keepMeSignedIn')}</span>
         </div>

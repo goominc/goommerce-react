@@ -380,6 +380,62 @@ $active-progress-color: #f90;
       }
     }
   }
+  .payment-policy-box {
+    background-color: #fff;
+    border: 1px solid #aaa;
+    margin-top: $margin-15;
+    padding: 10px 15px;
+    position: relative;
+    .policy-title {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    #refund_policy + label {
+      position: absolute;
+      right: 15px;
+      top: 10px;
+    }
+    .policy-content {
+      color: #a8a8a8;
+      font-size: 11px;
+    }
+    .more-button {
+      background-color: #aaa;
+      border-radius: 5px;
+      color: #fff;
+      cursor: pointer;
+      font-size: 11px;
+      margin: 10px auto;
+      padding: 5px 0;
+      position: relative;
+      text-align: center;
+      width: 50%;
+      $arrow-size: 5px;
+      .arrow-up {
+        @include simple-arrow-up($arrow-size, #fff);
+        position: absolute;
+        top: 50%;
+        margin-top: -$arrow-size / 2;
+        right: 10px;
+      }
+      .arrow-down {
+        @include simple-arrow-down(5px, #fff);
+        position: absolute;
+        top: 50%;
+        margin-top: -$arrow-size / 2;
+        right: 10px;
+      }
+    }
+    .policy-detail-box {
+      background: url($base-url + "/main/dotline3.gif") repeat-x 100% 0;
+      font-size: 11px;
+      padding-top: 10px;
+      p {
+        margin: 8px 0;
+      }
+    }
+  }
   .payment-method-box {
     margin-top: $margin-15;
     .title {

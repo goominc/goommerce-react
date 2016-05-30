@@ -25,17 +25,23 @@ export default React.createClass({
   },
   mixins: [LinkedStateMixin],
   getInitialState() {
-    return { paymentMethod: 0 };
+    return { paymentMethod: 0, isShowPaymentPolicyDetail: false };
   },
   componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
+    // 2016. 05. 30. [heekyu] scroll behavior is complicated and not-predictable.
+    // window.addEventListener('scroll', this.handleScroll);
   },
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
+    // window.removeEventListener('scroll', this.handleScroll);
   },
   handleScroll() {
     const elem = $('.checkout-right-container');
     if (!elem.length) {
+      return;
+    }
+    // .policy-detail-box can be extended
+    const moreHeight = Math.max(0, $('.policy-detail-box').height() || 0);
+    if (elem.height() - moreHeight + 200 >= $(window).height()) {
       return;
     }
     const windowTop = $(window).scrollTop();
@@ -50,7 +56,6 @@ export default React.createClass({
     if (position === 'fixed') {
       if (containerWindowBottom < elem.height()) {
         const s = `${containerWindowBottom - elem.height()}px`;
-        console.log(s);
         elem.css('top', s);
       }
     } else {
@@ -65,6 +70,7 @@ export default React.createClass({
     const { activeAddressId, addresses, isEditMode,
       checkoutNewAddress, setActiveAddressId, saveOrderAddress } = this.props;
     const { activeCurrency, currencySign } = this.context;
+    const { isShowPaymentPolicyDetail } = this.state;
     if (!order) {
       return (
         <div></div>
@@ -143,6 +149,10 @@ export default React.createClass({
           window.alert('주소를 입력해 주세요');
           return;
         }
+        if (!this.refs.refundPolicy.checked) {
+          window.alert('환급 규정 확인에 동의해 주세요');
+          return;
+        }
         const method = paymentMethods[this.state.paymentMethod].method;
         $('form input[name=gopaymethod]').val(method);
         doCheckout(order.id, method, Object.assign({}, this.refs,
@@ -197,6 +207,26 @@ export default React.createClass({
       );
     };
 
+    const renderPaymentDetail = () => {
+      if (isShowPaymentPolicyDetail) {
+        return [
+          <div key="payment-policy-more" onClick={() => this.setState({ isShowPaymentPolicyDetail: false })} className="more-button">
+            접기 <i className="arrow-up"></i>
+          </div>,
+          <div key="payment-detail-box" className="policy-detail-box">
+            <p>도매시장의 특성 상 판매자의 실시간 재고 파악이 불가능 합니다.</p>
+            <p>판매자 또는 제조사의 사정으로 상품이 품절되거나 재고가 부족할 수 있습니다.</p>
+            <p>품절된 상품의 경우 해당 상품금액에 사입비 / 부가세 (국내에 한함)를 포함하여 주문 당시 동일 결제수단으로 자동 환불 처리해 드립니다.</p>
+          </div>,
+        ];
+      }
+      return (
+        <div className="more-button" onClick={() => this.setState({ isShowPaymentPolicyDetail: true })}>
+          더보기 <div className="arrow-down"></div>
+        </div>
+      );
+    };
+
     const formatPrice = (type) =>
       numberUtil.formatPrice(order[`${type}${activeCurrency}`], activeCurrency, currencySign);
 
@@ -240,6 +270,19 @@ export default React.createClass({
               <div className="label">{i18n.get('pcPayment.totalPrice')}</div>
               <div className="control">{totalPrice}</div>
             </div>
+          </div>
+          <div className="payment-policy-box">
+            <input id="refund_policy" type="checkbox" className="payment-checkbox" ref="refundPolicy" />
+            <label onClick={() => $('#refund_policy').click()}></label>
+            <div className="policy-title">
+              환급 규정 확인
+            </div>
+            <div className="policy-content">
+              품절 및 재고상황에 따라 일부 상품이<br />
+              배송 되지 않을 수 있으며 미 배송 상품의<br />
+              환급 절차는 이용약관 제14조에 따릅니다<br />
+            </div>
+            {renderPaymentDetail()}
           </div>
           <div className="payment-method-box">
             <div className="title">{i18n.get('pcPayment.paymentMethod')}</div>
