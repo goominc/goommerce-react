@@ -1221,7 +1221,7 @@ module.exports = {
       'zh-tw': '買付款',
     },
     paymentMethod: {
-      en: 'Paymen Method',
+      en: 'Payment Method',
       ko: '결제수단',
       'zh-cn': '付款方式',
       'zh-tw': '付款方式',
@@ -1376,6 +1376,12 @@ module.exports = {
       'zh-cn': '品牌',
       'zh-tw': '品牌',
     },
+    cancel: {
+      en: 'Cancel',
+      ko: '취소',
+      'zh-cn': '取消',
+      'zh-tw': '取消',
+    },
     categories: {
       en: 'Categories',
       ko: '카테고리',
@@ -1399,6 +1405,12 @@ module.exports = {
       ko: '장바구니',
       'zh-cn': '购物车',
       'zh-tw': '購物車',
+    },
+    domestic: {
+      en: 'Domestic',
+      ko: '국내',
+      'zh-cn': '국내',
+      'zh-tw': '국내',
     },
     doOrder: {
       en: 'Check out',
@@ -1448,6 +1460,12 @@ module.exports = {
       'zh-cn': '我的Linkshops',
       'zh-tw': '我的Linkshops',
     },
+    name: {
+      en: 'Name',
+      ko: '이름',
+      'zh-cn': '姓名',
+      'zh-tw': '姓名',
+    },
     register: {
       en: 'Register',
       ko: '회원가입',
@@ -1472,6 +1490,12 @@ module.exports = {
       'zh-cn': '数量',
       'zh-tw': '數量',
     },
+    overseas: {
+      en: 'Overseas',
+      ko: '해외',
+      'zh-cn': '해외',
+      'zh-tw': '해외',
+    },
     price: {
       en: 'Total',
       ko: '가격',
@@ -1483,6 +1507,12 @@ module.exports = {
       ko: '상품',
       'zh-cn': '商品',
       'zh-tw': '商品',
+    },
+    save: {
+      en: 'Save',
+      ko: '저장',
+      'zh-cn': '저장',
+      'zh-tw': '저장',
     },
     seeAll: {
       en: 'See All',

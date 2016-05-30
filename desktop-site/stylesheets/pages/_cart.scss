@@ -249,18 +249,16 @@
     margin-bottom: 5px;
   }
 }
-@mixin cart-info-snippet {
-  .title {
-    background-color: #fff;
-    border: 1px solid #aaa;
-    border-radius: 5px 5px 0 0;
-    font-size: 18px;
-    font-weight: 700;
-    height: 40px;
-    line-height: 40px;
-    position: relative;
-    text-align: center;
-  }
+@mixin cart-info-title-snippet {
+  background-color: #fff;
+  border: 1px solid #aaa;
+  border-radius: 5px 5px 0 0;
+  font-size: 18px;
+  font-weight: 700;
+  height: 40px;
+  line-height: 40px;
+  position: relative;
+  text-align: center;
 }
 
 .cart-payment-container {
@@ -268,7 +266,9 @@
   margin-left: 30px;
   vertical-align: top;
   width: 210px;
-  @include cart-info-snippet();
+  .title {
+    @include cart-info-title-snippet();
+  }
   .row {
     background-color: #fff;
     border: 1px solid #aaa;

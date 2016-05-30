@@ -87,7 +87,7 @@ export default React.createClass({
         <div className="address-container">
           {addressIds.map((addressId) => renderAddress(addresses[addressId]))}
           <div className="item">
-            <div className="title">{i18n.get('pcPayment.addNewAddress')}</div>
+            <div className="title-address">{i18n.get('pcPayment.addNewAddress')}</div>
             <div className="add-address-box">
               <div className="add-address-button" onClick={checkoutNewAddress}></div>
             </div>

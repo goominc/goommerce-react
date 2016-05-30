@@ -47,7 +47,7 @@ export default React.createClass({
     };
     return (
       <div className={`item ${isActive ? 'active' : ''}`}>
-        <div className="title title-address">
+        <div className="title-address">
           <input type="radio" checked={isActive} onClick={onClick} readOnly />
           {_.get(address, 'detail.alias') || '주소'}
           <div className="action-line">

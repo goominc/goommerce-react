@@ -121,13 +121,13 @@ $active-progress-color: #f90;
     color: #555;
     font-weight: 500;
     font-size: 20px;
+    margin-bottom: 10px;
   }
   .address-container {
     margin-bottom: $margin-15;
     overflow: hidden;
     width: 100%;
     .item {
-      @include cart-info-snippet();
       display: inline-block;
       margin-top: $margin-15;
       padding-right: $margin-20;
@@ -182,7 +182,7 @@ $active-progress-color: #f90;
         }
       }
       &.active {
-        .title {
+        .title-address {
           border-top-color: $default-active-text-color;
           border-left-color: $default-active-text-color;
           border-right-color: $default-active-text-color;
@@ -192,7 +192,10 @@ $active-progress-color: #f90;
         }
       }
       .title-address {
+        @include cart-info-title-snippet();
+        color: #555;
         font-size: 16px;
+        font-weight: 500;
         padding: 0 15px;
         text-align: left;
         input[type="radio"] {
@@ -224,12 +227,40 @@ $active-progress-color: #f90;
     }
   }
   .form-address-edit {
+    $border-color: #999;
     background-color: #fff;
-    border: 1px solid #999;
+    border: 1px solid $border-color;
     display: block;
     margin-bottom: $margin-20;
-    padding: $margin-15 0;
+    padding: 0 0 $margin-15;
     width: 520px;
+    .tab-line {
+      $height: 35px;
+      display: block;
+      height: $height;
+      line-height: $height;
+      margin-bottom: 15px;
+      width: 100%;
+      .item {
+        background-color: #f2f2f2;
+        border-bottom: 1px solid $border-color;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 13px;
+        height: 100%;
+        text-align: center;
+        vertical-align: top;
+        width: 50%;
+        &.active {
+          background-color: #fff;
+          border-color: #fff;
+          font-size: 14px;
+        }
+        + .item {
+          border-left: 1px solid $border-color;
+        }
+      }
+    }
     .form-box {
       padding: 5px 15px;
       width: 100%;
@@ -301,7 +332,9 @@ $active-progress-color: #f90;
   width: 210px;
   .payment-info-box {
     // margin-top: $margin-15;
-    @include cart-info-snippet();
+    .title {
+      @include cart-info-title-snippet();
+    }
     .row {
       background-color: #fff;
       border-left: 1px solid #aaa;
@@ -347,7 +380,9 @@ $active-progress-color: #f90;
   }
   .payment-method-box {
     margin-top: $margin-15;
-    @include cart-info-snippet();
+    .title {
+      @include cart-info-title-snippet();
+    }
     .row {
       background-color: #fff;
       border-left: 1px solid #aaa;

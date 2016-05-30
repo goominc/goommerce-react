@@ -12,21 +12,55 @@ export default React.createClass({
     addressForEdit: PropTypes.object,
     submitAddress: PropTypes.func,
   },
+  contextTypes: {
+    activeLocale: PropTypes.string,
+  },
+  getInitialState() {
+    const { addressForEdit } = this.props;
+    if (addressForEdit && addressForEdit.id) {
+      return addressForEdit;
+    }
+    const localeToCountryCode = {
+      ko: 'KR',
+      // en: '',
+      'zh-cn': 'CN',
+      'zh-tw': 'TW',
+    };
+    return {
+      countryCode: localeToCountryCode[this.context.activeLocale] || 'ETC',
+      data: {},
+    };
+  },
   render() {
     // TODO defaults with auth values
-    const { addressForEdit, submitAddress, cancelEditAddress } = this.props;
+    const { submitAddress, cancelEditAddress } = this.props;
+
+    const addressForEdit = this.state;
+
+    const onChange = (e, key) => {
+      const nextState = {};
+      _.set(nextState, key, e.target.value);
+      this.setState(_.merge(this.state, nextState));
+    };
+    console.log(this.state);
     const renderFormField = (obj) => (
       <div key={obj.objKey} className="form-box">
         <div className="form-label">{`${obj.text}`}</div>
         <div className="form-control">
-          <input
-            id={obj.objKey}
-            type="text"
-            defaultValue={_.get(addressForEdit, obj.key)}
-            ref={obj.objKey}
-            placeholder={obj.placeholder}
-            readOnly={obj.isReadOnly}
-          />
+          {obj.enums ?
+            <select onChange={(e) => onChange(e, obj.key)} value={_.get(addressForEdit, obj.key) || obj.enums[0]}>
+              {obj.enums.map((e) => <option key={e} value={e}>{e}</option>)}
+            </select>
+            :
+            <input
+              id={obj.objKey}
+              type="text"
+              value={_.get(addressForEdit, obj.key)}
+              onChange={(e) => onChange(e, obj.key)}
+              placeholder={obj.placeholder}
+              readOnly={obj.isReadOnly}
+            />
+          }
         </div>
       </div>
     );
@@ -38,18 +72,34 @@ export default React.createClass({
       { key: 'detail.address.base', objKey: 'address1', text: i18n.get('pcPayment.address'), isReadOnly: true, placeholder: '도로명주소' },
       { key: 'detail.address.detail', objKey: 'address2', text: '상세 주소', placeholder: '상세주소' },
     ];
+    // 2016. 05. 30. [heekyu] 'KR' is not oversea country code
+    const countryCodes = ['CN', 'TW', 'HK', 'MO', 'ETC'];
+    const addressFieldsOversea = [
+      { key: 'countryCode', objKey: 'countryCode', text: 'country code', placeholder: '', enums: countryCodes },
+      { key: 'detail.alias', objKey: 'alias', text: i18n.get('pcPayment.alias'), placeholder: 'Address alias' },
+      { key: 'detail.name', objKey: 'name', text: i18n.get('pcPayment.contactName'), placeholder: i18n.get('word.name') } ,
+      { key: 'detail.tel', objKey: 'tel', text: i18n.get('pcPayment.phoneNumber'), placeholder: '01012345678' },
+      { key: 'detail.address.base', objKey: 'address1', text: 'address1', placeholder: 'address1' },
+      { key: 'detail.address.detail', objKey: 'address2', text: 'address2', placeholder: 'address2' },
+      { key: 'detail.address.ciry', objKey: 'city', text: 'city', placeholder: 'city' },
+      { key: 'detail.postalCode', objKey: 'postalCode', text: 'zip code', placeholder: 'zip code' },
+    ];
+    const { countryCode } = this.state;
     const handleSubmitAddress = (e) => {
       e.preventDefault();
-      const addressForSave = { countryCode: 'KR' };
+      const addressForSave = { countryCode };
       if (addressForEdit.id) {
         addressForSave.id = addressForEdit.id;
       }
       for (let i = 0; i < addressFields.length; i++) {
         const field = addressFields[i];
-        const value = _.get(this.refs, `${field.objKey}.value`);
+        let value = _.get(this.state, field.key);
+        if (!value) {
+          value = $(`#${field.objKey}`).val();
+        }
         if (!value) {
           window.alert(`${field.text}를 입력해 주세요`);
-          $(`${field.objKey}`).focus();
+          $(`#${field.objKey}`).focus();
           return;
         }
         _.set(addressForSave, field.key, value);
@@ -67,8 +117,8 @@ export default React.createClass({
           <input
             className="input-postal-code"
             type="text"
-            defaultValue={_.get(addressForEdit, obj.key)}
-            ref={obj.objKey}
+            value={_.get(addressForEdit, obj.key)}
+            onChange={(e) => onChange(e, obj.key)}
             placeholder={obj.placeholder}
             id={obj.objKey}
             readOnly={obj.isReadOnly}
@@ -77,19 +127,35 @@ export default React.createClass({
         </div>
       </div>
     );
-    return (
-      <form className="form-address-edit" onSubmit={handleSubmitAddress}>
-        {addressFields.map((field) => {
+    const isDefaultCountryCode = countryCode !== 'KR';
+    const changeCountryCode = (code) => {
+      if (code !== countryCode) {
+        this.setState({ countryCode: code });
+      }
+    };
+    const renderAllFields = () => {
+      if (countryCode === 'KR') {
+        return addressFields.map((field) => {
           if (field.key === 'detail.postalCode') {
             return renderPostalCodeRow(field);
           }
           return renderFormField(field);
-        })}
+        });
+      }
+      return addressFieldsOversea.map(renderFormField);
+    };
+    return (
+      <form className="form-address-edit" onSubmit={handleSubmitAddress}>
+        <div className="tab-line">
+          <div className={`item ${countryCode === 'KR' ? 'active' : ''}`} onClick={() => changeCountryCode('KR')}>{i18n.get('word.domestic')}</div>
+          <div className={`item ${isDefaultCountryCode ? 'active' : ''}`} onClick={() => changeCountryCode('ETC')}>{i18n.get('word.overseas')}</div>
+        </div>
+        {renderAllFields()}
         <div className="form-box">
           <div className="form-label"></div>
           <div className="form-control">
-            <button className="save-button" type="submit">등록</button>
-            <button className="cancel-button" type="reset" onClick={cancelEditAddress}>취소</button>
+            <button className="save-button" type="submit">{i18n.get('word.save')}</button>
+            <button className="cancel-button" type="reset" onClick={cancelEditAddress}>{i18n.get('word.cancel')}</button>
           </div>
         </div>
       </form>
