@@ -27,22 +27,6 @@ export default React.createClass({
   getInitialState() {
     return { paymentMethod: 0 };
   },
-  renderVBank() {
-    const { order } = this.props;
-    if (order.status === 1) {
-      const payment = _.find(order.payments, (p) => p.type === 3 && p.status === 2 && p.data.payMethod === 'VBank');
-      if (payment) {
-        return (
-          <div>
-            <div>입금은행: {payment.data.vactBankName}</div>
-            <div>입금계좌번호: {payment.data.VACT_Num}</div>
-            <div>예금주명: {payment.data.VACT_Name}</div>
-            <div>송금자명: {payment.data.VACT_InputName}</div>
-          </div>
-        );
-      }
-    }
-  },
   render() {
     const { order } = this.props;
     const { activeAddressId, addresses, isEditMode,
@@ -240,25 +224,6 @@ export default React.createClass({
              */}
           </div>
         </div>
-        { /*
-         <div className="checkout-container-wrap">
-         <div className="checkout-container">
-         <div className={getProgressbarClass('review')} onClick={() => handleClickStep('review')}>
-         checkout informations
-         </div>
-         <div className="checkout-progress-shadow progress-1-shadow"></div>
-         <div className={getProgressbarClass('payment')} onClick={() => handleClickStep('payment')}>
-         payment
-         </div>
-         <div className="checkout-progress-shadow progress-2-shadow"></div>
-         <div className={getProgressbarClass('done')} onClick={() => handleClickStep('done')}>
-         done
-         </div>
-         <div className={endClassName}></div>
-         {getContent()}
-         </div>
-         </div>
-         */ }
       </div>
     );
   },
