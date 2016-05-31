@@ -24,7 +24,7 @@ app.use((req, res, next) => {
     'zh-cn': {},
     'zh-tw': {},
   };
-  const allTexts = require('./commons/i18n/texts.js');
+  const allTexts = require('./i18n/texts.json');
   const dfs = (prefix, node) => {
     if (node.en) {
       Object.keys(i18n).forEach((locale) => {
