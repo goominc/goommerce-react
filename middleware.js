@@ -135,7 +135,8 @@ module.exports = (opts) => {
           return sendMobile(initialState, isReportGA ? _.get(config, 'ga.mobile') : null);
         }
         const mobileRedirectKey = 'mobile_redirect';
-        if (!req.cookies[mobileRedirectKey] && config.mobileSite && md.mobile() && !md.tablet()) {
+        // 2016. 05. 31. [heekyu] tablet is mobile since payment
+        if (!req.cookies[mobileRedirectKey] && config.mobileSite && md.mobile()) {
           req.cookies[mobileRedirectKey] = true;
           // 2016. 04. 08. [heekyu] Use this on local test
           // return sendMobile(initialState);
