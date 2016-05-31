@@ -118,13 +118,13 @@ export default React.createClass({
     const onSubmit = (e) => {
       e.preventDefault();
       const requiredFields = [
-        { key: 'email', errorMsg: '이메일을 입력해 주세요' },
-        { key: 'password', errorMsg: '비밀번호를 입력해 주세요' },
-        { key: 'data.lastName', errorMsg: '성을 입력해 주세요' },
-        { key: 'data.firstName', errorMsg: '이름을 입력해 주세요' },
-        { key: 'data.tel', errorMsg: '전화번호를 입력해 주세요' },
-        { key: 'data.bizName', errorMsg: '사업자명을 입력해 주세요' },
-        { key: 'data.bizNumber', errorMsg: '사업자 번호를 입력해 주세요' },
+        { key: 'email', errorMsg: i18n.get('pcMain.signup.enterEmail') },
+        { key: 'password', errorMsg: i18n.get('pcMain.signup.enterPassword') },
+        { key: 'data.lastName', errorMsg: i18n.get('pcMain.signup.warningInputLastName') },
+        { key: 'data.firstName', errorMsg: i18n.get('pcMain.signup.warningInputFirstName') },
+        { key: 'data.tel', errorMsg: i18n.get('pcMain.signup.warningInputTel') },
+        { key: 'data.bizName', errorMsg: i18n.get('pcMain.signup.warningInputBizName') },
+        { key: 'data.bizNumber', errorMsg: i18n.get('pcMain.signup.warningInputBizNumber') },
       ];
       const user = _.pick(this.state, ['email', 'password', 'passwordConfirm', 'data']);
       for (let i = 0; i < requiredFields.length; i++) {
@@ -136,19 +136,19 @@ export default React.createClass({
         }
       }
       if (this.state.password !== this.state.passwordConfirm) {
-        window.alert('비밀번호가 일치하지 않습니다');
+        window.alert(i18n.get('pcMain.signup.warningInputPasswordEqual'));
         return;
       }
       if (!isChinaSignup && !this.state.bizImageUrl) {
-        window.alert('사업자 등록증을 선택해 주세요');
+        window.alert(i18n.get('pcMain.signup.warningInputBizImage'));
         return;
       }
       if (!$('#terms_title').is(':checked')) {
-        window.alert('이용약관에 동의해 주세요');
+        window.alert(i18n.get('pcMain.signup.pleaseAgreeTerms'));
         return;
       }
       if (!$('#policies_title').is(':checked')) {
-        window.alert('개인정보 수집방침에 동의해 주세요');
+        window.alert(i18n.get('pcMain.signup.pleaseAgreePolicy'));
         return;
       }
       const cb = (result) => {
@@ -193,17 +193,16 @@ export default React.createClass({
           <img className="logo-img" src={`${constants.resourceRoot}/mobile/main/mobile_linkshops_logo.png`} />
         </Link>
         <div className="signin-desc-bold">
-          링크샵스는 사업자회원만이 이용할 수 있는<br />
-          도매사이트입니다
+          {i18n.get('pcMain.modalLogin.onlyRetailerLinkshopsService')}
         </div>
         <div className="signin-desc-light">
-          패션잡화 관련 소매업자에 한해 가입승인이 진행되며,<br />
-          취급품목 및 업태가 다른 경우 승인이 반려될 수 있습니다.
+          {i18n.get('pcMain.modalLogin.signupPolicyDesc1')}<br />
+          {i18n.get('pcMain.modalLogin.signupPolicyDesc2')}
         </div>
         <div className="signup-form-section">
-          {renderField({ name: '아이디(이메일)', type: 'email', key: 'email' })}
-          {renderField({ name: '비밀번호', type: 'password', key: 'password' })}
-          {renderField({ name: '비밀번호 확인', type: 'password', key: 'passwordConfirm' })}
+          {renderField({ name: i18n.get('pcMain.signup.idEmail'), type: 'email', key: 'email' })}
+          {renderField({ name: i18n.get('pcMain.signup.password'), type: 'password', key: 'password' })}
+          {renderField({ name: i18n.get('pcMain.signup.passwordAgian'), type: 'password', key: 'passwordConfirm' })}
         </div>
         <div className="signup-form-section">
           <div className="signup-input-line">

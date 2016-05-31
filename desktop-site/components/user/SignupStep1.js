@@ -16,8 +16,8 @@ export default React.createClass({
     const { goNext, goBack } = this.props;
     const onNext = () => {
       goNext({
-        terms: { value: this.refs.terms.checked, errorMessage: '이용약관에 동의해 주세요' },
-        policies: { value: this.refs.policies.checked, errorMessage: '개인정보 수집방침에 동의해 주세요' },
+        terms: { value: this.refs.terms.checked, errorMessage: i18n.get('pcMain.signup.pleaseAgreeTerms') },
+        policies: { value: this.refs.policies.checked, errorMessage: i18n.get('pcMain.signup.pleaseAgreePolicy') },
       });
     };
     return (
@@ -51,7 +51,7 @@ export default React.createClass({
         </div>
         <div className="form-button-line">
           <button onClick={goBack} className="button-back">{i18n.get('pcMain.signup.back')}</button>
-          <button onClick={onNext} className="button-next">{i18n.get('pcMain.signup.naxt')}</button>
+          <button onClick={onNext} className="button-next">{i18n.get('pcMain.signup.next')}</button>
         </div>
       </div>
     );

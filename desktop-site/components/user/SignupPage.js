@@ -33,11 +33,11 @@ export default React.createClass({
           return;
         }
         const requiredFields = [
-          { key: 'data.lastName', errorMsg: '성을 입력해 주세요' },
-          { key: 'data.firstName', errorMsg: '이름을 입력해 주세요' },
-          { key: 'data.tel', errorMsg: '전화번호를 입력해 주세요' },
-          { key: 'data.bizName', errorMsg: '사업자명을 입력해 주세요' },
-          { key: 'data.bizNumber', errorMsg: '사업자 번호를 입력해 주세요' },
+          { key: 'data.lastName', errorMsg: i18n.get('pcMain.signup.warningInputLastName') },
+          { key: 'data.firstName', errorMsg: i18n.get('pcMain.signup.warningInputFirstName') },
+          { key: 'data.tel', errorMsg: i18n.get('pcMain.signup.warningInputTel') },
+          { key: 'data.bizName', errorMsg: i18n.get('pcMain.signup.warningInputBizName') },
+          { key: 'data.bizNumber', errorMsg: i18n.get('pcMain.signup.warningInputBizNumber') },
         ];
         const user = _.pick(this.state, ['email', 'password', 'passwordConfirm', 'data']);
         for (let i = 0; i < requiredFields.length; i++) {
@@ -49,7 +49,7 @@ export default React.createClass({
           }
         }
         if (!isChinaSignup && !this.state.bizImageUrl) {
-          window.alert('사업자 등록증을 선택해 주세요');
+          window.alert(i18n.get('pcMain.signup.warningInputBizImage'));
           return;
         }
         const cb = (result) => {
@@ -112,7 +112,7 @@ export default React.createClass({
             <div className="form-group">
               <label>{i18n.get('pcMypage.businessRegisteration')}</label>
               <div className="input-biz-image">
-                {this.state.bizImageName || '선택된 파일이 없습니다'}
+                {this.state.bizImageName || i18n.get('word.thereIsNoFile')}
                 <div className="biz-file-input">
                   <input type="file" accept="image/*,application/pdf" onChange={onSelectFile} />
                 </div>
@@ -158,7 +158,7 @@ export default React.createClass({
             <div className="form-group">
               <label><span className="required">*</span>{i18n.get('pcMypage.businessRegisteration')}</label>
               <div className="input-biz-image">
-                {this.state.bizImageName || '선택된 파일이 없습니다'}
+                {this.state.bizImageName || i18n.get('word.thereIsNoFile')}
                 <div className="biz-file-input">
                   <input type="file" accept="image/*,application/pdf" onChange={onSelectFile} />
                 </div>
@@ -176,21 +176,21 @@ export default React.createClass({
             return re.test(email);
           };
           if (!validateEmail()) {
-            cannotSignupMessage = '이메일을 올바르게 입력해 주세요';
+            cannotSignupMessage = i18n.get('pcMain.signup.warningInputEmail');
             return (
-              <div className="form-input-warning">이메일 형식으로 입력해 주세요</div>
+              <div className="form-input-warning">{i18n.get('pcMain.signup.warningInputEmail')}</div>
             );
           }
           cannotSignupMessage = null;
           return null;
         }
-        cannotSignupMessage = '이메일을 입력해 주세요';
+        cannotSignupMessage = i18n.get('pcMain.signup.enterEmail');
         return null;
       };
       const renderPasswordConfirmWarning = () => {
         if (this.state.password && this.state.password !== this.state.passwordConfirm) {
-          cannotSignupMessage = '비밀번호가 일치해야 합니다';
-          return (<div className="form-input-warning">비밀번호가 일치해야 합니다</div>);
+          cannotSignupMessage = i18n.get('pcMain.signup.warningInputPasswordEqual');
+          return (<div className="form-input-warning">{i18n.get('pcMain.signup.warningInputPasswordEqual')}</div>);
         }
         cannotSignupMessage = null;
         return null;
@@ -207,12 +207,12 @@ export default React.createClass({
           <div className="signup-form-section">
             <div className="title">
               {i18n.get('pcMain.signup.signInInformation')}
-              <span className="desc-required">*은 필수입력</span>
+              <span className="desc-required">* {i18n.get('pcMain.signup.isRequired')}</span>
             </div>
             <div className="form-group">
               <label><span className="required">*</span>{i18n.get('pcMain.signup.id')}</label>
               <div className="form-input">
-                <input onChange={(e) => onChange(e, 'email')} type="email" placeholder="Enter Email" />
+                <input onChange={(e) => onChange(e, 'email')} type="email" placeholder={i18n.get('pcMain.signup.enterEmail')} />
                 {renderEmailWarning(this.state.email)}
               </div>
             </div>
@@ -234,7 +234,7 @@ export default React.createClass({
           {renderBizInfo()}
           <div className="button-line">
             <button type="reset" className="button-back" onClick={goBack}>{i18n.get('pcMain.signup.back')}</button>
-            <button type="submit" className="button-next">{i18n.get('pcMain.signup.naxt')}</button>
+            <button type="submit" className="button-next">{i18n.get('pcMain.signup.next')}</button>
           </div>
         </form>
       );

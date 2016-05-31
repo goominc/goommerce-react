@@ -631,23 +631,23 @@
         "zh-cn": "同意隐私权政策",
         "zh-tw": "同意隱私權政策"
       },
-      "signInInformation": {
-        "en": "Sign in Information",
-        "ko": "로그인 정보",
-        "zh-cn": "账号信息",
-        "zh-tw": "賬號信息"
-      },
-      "personalInformation": {
-        "en": "Personal Information",
-        "ko": "개인정보",
-        "zh-cn": "基本信息",
-        "zh-tw": "基本信息"
-      },
       "businessInformation": {
         "en": "Business Information",
         "ko": "사업자정보",
         "zh-cn": "企业信息",
         "zh-tw": "企業信息"
+      },
+      "enterEmail": {
+        "en": "Enter Email",
+        "ko": "이메일을 입력해 주세요",
+        "zh-cn": "请输入您的邮箱",
+        "zh-tw": "請輸入您的郵箱"
+      },
+      "enterPassword": {
+        "en": "Enter Password",
+        "ko": "비밀번호를 입력해 주세요",
+        "zh-cn": "비밀번호를 입력해 주세요",
+        "zh-tw": "비밀번호를 입력해 주세요"
       },
       "id": {
         "en": "ID",
@@ -661,6 +661,12 @@
         "zh-cn": "会员名(E-mail)",
         "zh-tw": "會員名(E-mail)"
       },
+      "name": {
+        "en": "Name",
+        "ko": "성함",
+        "zh-cn": "姓名",
+        "zh-tw": "姓名"
+      },
       "password": {
         "en": "Password",
         "ko": "비밀번호",
@@ -673,11 +679,11 @@
         "zh-cn": "确认密码",
         "zh-tw": "確認密碼"
       },
-      "name": {
-        "en": "Name",
-        "ko": "성함",
-        "zh-cn": "姓名",
-        "zh-tw": "姓名"
+      "personalInformation": {
+        "en": "Personal Information",
+        "ko": "개인정보",
+        "zh-cn": "基本信息",
+        "zh-tw": "基本信息"
       },
       "phoneNumber": {
         "en": "Phone Number",
@@ -685,17 +691,23 @@
         "zh-cn": "手机号",
         "zh-tw": "手機號"
       },
-      "useLettersAndNumbers": {
-        "en": "Use 6-16 letters and numbers",
-        "ko": "6~16자 영문 대 소문자, 숫자를 사용하세요.",
-        "zh-cn": "支持英文大小字母、数字的组合，6~16字符",
-        "zh-tw": "支持英文大小字母, 數字得組合，6~16字符"
-      },
       "pleaseEnterYourPasswordAgain": {
         "en": "Please enter your password again.",
         "ko": "비밀번호를 다시 입력해주세요.",
         "zh-cn": "请再次输入密码",
         "zh-tw": "請再次輸入密碼"
+      },
+      "signInInformation": {
+        "en": "Sign in Information",
+        "ko": "로그인 정보",
+        "zh-cn": "账号信息",
+        "zh-tw": "賬號信息"
+      },
+      "useLettersAndNumbers": {
+        "en": "Use 6-16 letters and numbers",
+        "ko": "6~16자 영문 대 소문자, 숫자를 사용하세요.",
+        "zh-cn": "支持英文大小字母、数字的组合，6~16字符",
+        "zh-tw": "支持英文大小字母, 數字得組合，6~16字符"
       },
       "firstName": {
         "en": "First Name",
@@ -769,17 +781,83 @@
         "zh-cn": "输入账户持有人",
         "zh-tw": "輸入賬戶持有人"
       },
+      "isRequired": {
+        "en": "is Required",
+        "ko": "은 필수입력",
+        "zh-cn": "은 필수입력",
+        "zh-tw": "은 필수입력"
+      },
       "back": {
         "en": "Back",
         "ko": "뒤로",
         "zh-cn": "返回",
         "zh-tw": "返回"
       },
-      "naxt": {
+      "next": {
         "en": "Next",
         "ko": "다음",
         "zh-cn": "下一步",
         "zh-tw": "下一步"
+      },
+      "pleaseAgreeTerms": {
+        "en": "이용약관에 동의해 주세요",
+        "ko": "이용약관에 동의해 주세요",
+        "zh-cn": "이용약관에 동의해 주세요",
+        "zh-tw": "이용약관에 동의해 주세요"
+      },
+      "pleaseAgreePolicy": {
+        "en": "개인정보 수집방침에 동의해 주세요",
+        "ko": "개인정보 수집방침에 동의해 주세요",
+        "zh-cn": "개인정보 수집방침에 동의해 주세요",
+        "zh-tw": "개인정보 수집방침에 동의해 주세요"
+      },
+      "warningInputBizName": {
+        "en": "사업자명을 입력해 주세요",
+        "ko": "사업자명을 입력해 주세요",
+        "zh-cn": "사업자명을 입력해 주세요",
+        "zh-tw": "사업자명을 입력해 주세요"
+      },
+      "warningInputBizNumber": {
+        "en": "사업자번호를 입력해 주세요",
+        "ko": "사업자번호를 입력해 주세요",
+        "zh-cn": "사업자번호를 입력해 주세요",
+        "zh-tw": "사업자번호를 입력해 주세요"
+      },
+      "warningInputBizImage": {
+        "en": "사업자 등록증을 선택해 주세요",
+        "ko": "사업자 등록증을 선택해 주세요",
+        "zh-cn": "사업자 등록증을 선택해 주세요",
+        "zh-tw": "사업자 등록증을 선택해 주세요"
+      },
+      "warningInputEmail": {
+        "en": "이메일 형식으로 입력해 주세요",
+        "ko": "이메일 형식으로 입력해 주세요",
+        "zh-cn": "이메일 형식으로 입력해 주세요",
+        "zh-tw": "이메일 형식으로 입력해 주세요"
+      },
+      "warningInputFastName": {
+        "en": "이름을 입력해 주세요",
+        "ko": "이름을 입력해 주세요",
+        "zh-cn": "이름을 입력해 주세요",
+        "zh-tw": "이름을 입력해 주세요"
+      },
+      "warningInputLastName": {
+        "en": "성을 입력해 주세요",
+        "ko": "성을 입력해 주세요",
+        "zh-cn": "성을 입력해 주세요",
+        "zh-tw": "성을 입력해 주세요"
+      },
+      "warningInputPasswordEqual": {
+        "en": "비밀번호가 일치해야 합니다",
+        "ko": "비밀번호가 일치해야 합니다",
+        "zh-cn": "비밀번호가 일치해야 합니다",
+        "zh-tw": "비밀번호가 일치해야 합니다"
+      },
+      "warningInputTel": {
+        "en": "전화번호를 입력해 주세요",
+        "ko": "전화번호를 입력해 주세요",
+        "zh-cn": "전화번호를 입력해 주세요",
+        "zh-tw": "전화번호를 입력해 주세요"
       }
     }
   },
@@ -1655,6 +1733,12 @@
       "ko": "상태",
       "zh-cn": "状态",
       "zh-tw": "狀態"
+    },
+    "thereIsNoFile": {
+      "en": "선택된 파일이 없습니다",
+      "ko": "선택된 파일이 없습니다",
+      "zh-cn": "선택된 파일이 없습니다",
+      "zh-tw": "선택된 파일이 없습니다"
     },
     "unit": {
       "en": "piece",
