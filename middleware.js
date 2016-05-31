@@ -76,17 +76,16 @@ module.exports = (opts) => {
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <title>${config.title}</title>
-            <link rel="stylesheet" href="${cdn}/vendor/owl.carousel.css">
             <link href="//fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet" type="text/css">
 	        <link href="//fonts.googleapis.com/css?family=Roboto:400,500,700|Roboto+Condensed:400,700" rel="stylesheet" type="text/css">
           </head>
           <body>
             <div id='root'></div>
             <script src="${cdn}/vendor/jquery-1.11.3.min.js"></script>
-            <script src="${cdn}/vendor/owl.carousel.min.js"></script>
             <script>window.__INITIAL_STATE__ = ${serialize(initialState)};</script>
             ${gaid ? `<script>window.gaid="${gaid}"</script>` : ''}
             <script src="${path('app.bundle.js')}"></script>
+            <script src="//d3f03u7lex6hmc.cloudfront.net/front/resource/extra/pace.js"></script>
             <script src="https://spi.maps.daum.net/imap/map_js_init/postcode.v2.js"></script>
           </body>
         </html>
