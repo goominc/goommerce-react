@@ -30,7 +30,7 @@ export default React.createClass({
           type="password"
           id="inputPassword"
           className="form-control"
-          placeholder={i18n.get('pcMain.signup.password')}
+          placeholder={i18n.get('pcMain.modalLogin.password')}
           required
           ref="password"
         />

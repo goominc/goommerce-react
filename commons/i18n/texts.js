@@ -612,6 +612,12 @@ module.exports = {
         'zh-cn': '취급품목 및 업태가 다른 경우 승인이 반려될 수 있습니다.',
         'zh-tw': '취급품목 및 업태가 다른 경우 승인이 반려될 수 있습니다.',
       },
+      password: {
+        en: 'Password',
+        ko: '비밀번호',
+        'zh-cn': '비밀번호',
+        'zh-tw': '비밀번호',
+      },
     },
     signup: {
       agreeToTermsOfUse: {

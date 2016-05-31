@@ -34,7 +34,7 @@ export default React.createClass({
           <form className="form" onSubmit={onSubmit}>
             <div className="form-left">
               <input type="email" placeholder={i18n.get('pcMain.signup.idEmail')} ref="email" />
-              <input type="password" placeholder={i18n.get('pcMain.signup.password')} ref="password" />
+              <input type="password" placeholder={i18n.get('pcMain.modalLogin.password')} ref="password" />
             </div>
             <button type="submit" className="signin-button">{i18n.get('word.login')}</button>
           </form>
