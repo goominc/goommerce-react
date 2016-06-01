@@ -73,7 +73,7 @@ const App = React.createClass({
     this.props.logout().then(() => { window.location.href = '/'; });
   },
   handleSearch(query, categoryId) {
-    const url = `/search/${query}${categoryId ? `?categoryId=${categoryId}` : ''}`;
+    const url = `/search/${query}?sorts=-id${categoryId ? `&categoryId=${categoryId}` : ''}`;
     this.context.router.push(url);
   },
   render() {

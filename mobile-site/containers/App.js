@@ -94,10 +94,9 @@ const App = React.createClass({
       }
     );
   },
-  handleSearch(keyword) {
-    if (keyword && keyword.length) {
-      return this.context.router.push(`/search/${keyword}`);
-    }
+  handleSearch(query) {
+    const url = `/search/${query || ''}?sorts=-id`;
+    this.context.router.push(url);
     return null;
   },
   render() {

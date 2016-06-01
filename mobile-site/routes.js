@@ -61,7 +61,7 @@ export default function configure(store) {
         <Redirect from="/products" to="/categories/4" />
         { /* <Route path="/products" component={ProductList} /> */ }
         <Route path="/categories/:categoryId" component={ProductList} onEnter={onEnter} />
-        <Route path="/search/:query" component={ProductList} onEnter={onEnter} />
+        <Route path="/search(/:query)" component={ProductList} onEnter={onEnter} />
         <Route path="/brands/:brandId" component={Brand} onEnter={onEnter} />
         <Route path="/products/:productId" component={ProductDetail} onEnter={onEnter} />
         <Route path="/cart" component={Cart} onEnter={onEnter} />
