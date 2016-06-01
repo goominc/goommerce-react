@@ -52,11 +52,11 @@ export default React.createClass({
           window.alert(i18n.get('pcMain.signup.warningInputBizImage'));
           return;
         }
+        if (user.data.firstName && user.data.lastName) {
+          user.name = `${user.data.lastName} ${user.data.firstName}`;
+        }
         const cb = (result) => {
           user.data.bizImage = result;
-          if (user.data.firstName && user.data.lastName) {
-            user.name = `${user.data.lastName} ${user.data.firstName}`;
-          }
           handleSignup(user);
         };
         if (this.state.bizImageUrl) {
