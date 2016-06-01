@@ -312,17 +312,14 @@ export default React.createClass({
     };
     const totalPrice = cart.total ? cart.total[activeCurrency] : 0;
     const renderOrderButton = () => {
-      if (totalPrice > 0) {
-        return [
-          <button key="reorder-do-order" id="reorder-do-order" className="btn default" style={({ marginLeft: '20px' })} onClick={createOrder}>
-            {i18n.get('word.doOrder')}
-          </button>,
-          <button key="reorder-clear-cart" className="btn default" style={({ marginLeft: '20px' })} onClick={deleteCartAllProduct}>
-            카트 전체 삭제
-          </button>,
-        ];
-      }
-      return null;
+      return [
+        <button key="reorder-do-order" id="reorder-do-order" className="btn default" style={({ marginLeft: '20px' })} onClick={createOrder}>
+          {i18n.get('word.doOrder')}
+        </button>,
+        <button key="reorder-clear-cart" className="btn default" style={({ marginLeft: '20px' })} onClick={deleteCartAllProduct}>
+          카트 전체 삭제
+        </button>,
+      ];
     };
     const renderAdjustment = () => {
       const onSave = () => {
