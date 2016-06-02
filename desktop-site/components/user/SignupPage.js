@@ -36,9 +36,11 @@ export default React.createClass({
           { key: 'data.lastName', errorMsg: i18n.get('pcMain.signup.warningInputLastName') },
           { key: 'data.firstName', errorMsg: i18n.get('pcMain.signup.warningInputFirstName') },
           { key: 'data.tel', errorMsg: i18n.get('pcMain.signup.warningInputTel') },
-          { key: 'data.bizName', errorMsg: i18n.get('pcMain.signup.warningInputBizName') },
-          { key: 'data.bizNumber', errorMsg: i18n.get('pcMain.signup.warningInputBizNumber') },
         ];
+        if (!isChinaSignup) {
+          requiredFields.push({ key: 'data.bizName', errorMsg: i18n.get('pcMain.signup.warningInputBizName') });
+          requiredFields.push({ key: 'data.bizNumber', errorMsg: i18n.get('pcMain.signup.warningInputBizNumber') });
+        }
         const user = _.pick(this.state, ['email', 'password', 'passwordConfirm', 'data']);
         for (let i = 0; i < requiredFields.length; i++) {
           const field = requiredFields[i];
@@ -197,7 +199,7 @@ export default React.createClass({
       };
       return (
         <form onSubmit={clickSignup} className="signup-container">
-          <img className="signup-progress-img" src={`${constants.resourceRoot}/main/signup-step2.png`} />
+          <img className="signup-progress-img" src={this.props.signupProgressImg} />
           <div className="desc1">{i18n.get('pcMain.modalLogin.onlyRetailerLinkshopsService')}</div>
           <div className="desc2">
             {i18n.get('pcMain.modalLogin.signupPolicyDesc1')}<br />

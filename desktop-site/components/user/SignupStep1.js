@@ -22,7 +22,7 @@ export default React.createClass({
     };
     return (
       <div className="signup-container">
-        <img className="signup-progress-img" src={`${constants.resourceRoot}/main/signup-step1.png`} />
+        <img className="signup-progress-img" src={this.props.signupProgressImg} />
         <div className="desc1">{i18n.get('pcMain.modalLogin.onlyRetailerLinkshopsService')}</div>
         <div className="desc2">
           {i18n.get('pcMain.modalLogin.signupPolicyDesc1')}<br />

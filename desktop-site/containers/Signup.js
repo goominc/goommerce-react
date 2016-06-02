@@ -7,6 +7,8 @@ import SignupStep1 from 'components/user/SignupStep1';
 import SignupStep3 from 'components/user/SignupStep3';
 import SignupFooter from 'components/user/SignupFooter';
 
+import { constants } from 'commons/utils/constants';
+
 import { ApiAction } from 'redux/actions';
 const { signup } = ApiAction;
 
@@ -61,12 +63,32 @@ const Signup = React.createClass({
       this.setState({ step: 1 });
     };
     const renderStep = () => {
-      if (this.state.step === 2) {
-        return (<SignupPage goBack={step2Back} handleSignup={this.handleSubmit} activeLocale={this.props.activeLocale} />);
-      } else if (this.state.step === 3) {
-        return (<SignupStep3 auth={this.props.auth} goNext={() => this.context.router.push('/')} />);
+      const { step } = this.state;
+      let progressLocale = '';
+      if (this.props.activeLocale.startsWith('zh-')) {
+        progressLocale = `-${this.props.activeLocale}`;
       }
-      return (<SignupStep1 goBack={step1Back} goNext={step1Next} />);
+      const signupProgressImg = `${constants.resourceRoot}/main/signup-step${step}${progressLocale}.png`;
+      if (step === 2) {
+        return (
+          <SignupPage
+            goBack={step2Back}
+            handleSignup={this.handleSubmit}
+            activeLocale={this.props.activeLocale}
+            signupProgressImg={signupProgressImg}
+          />
+        );
+      } else if (step === 3) {
+        return (
+          <SignupStep3
+            activeLocale={this.props.activeLocale}
+            auth={this.props.auth}
+            goNext={() => this.context.router.push('/')}
+            signupProgressImg={signupProgressImg}
+          />
+        );
+      }
+      return (<SignupStep1 goBack={step1Back} goNext={step1Next} signupProgressImg={signupProgressImg} />);
     };
     return (
       <div className="signup-global-container">

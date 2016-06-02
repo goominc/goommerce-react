@@ -52,7 +52,7 @@ export default React.createClass({
           {i18n.get('pcMain.signup.personalInformation')}
         </div>
         <div className="form-group">
-          <label><span className="required">{auth ? '' : '*'}</span>{i18n.get('pcMypage.name')}</label>
+          <label><span className="required">{auth.id ? '' : '*'}</span>{i18n.get('pcMypage.name')}</label>
           <div className="input-lastname">
             <input id="lastName" onChange={(e) => onChange(e, 'data.lastName')}
               defaultValue={auth ? _.get(auth, 'data.lastName') : ''}
@@ -67,7 +67,7 @@ export default React.createClass({
           </div>
         </div>
         <div className="form-group">
-          <label><span className="required">{auth ? '' : '*'}</span>{i18n.get('pcMypage.phoneNumber')}</label>
+          <label><span className="required">{auth.id ? '' : '*'}</span>{i18n.get('pcMypage.phoneNumber')}</label>
           <div className="form-tel">
             <div className="area-code" onClick={toggleNumberDropdown}>
               <img src={areaCodes[activeAreaCodeIndex].img} /> {areaCodes[activeAreaCodeIndex].number}
