@@ -418,6 +418,9 @@ $product-button-height: 32px;
         @include cell();
         color: #555;
         font-weight: bold;
+        height: 40px;
+        line-height: 40px;
+        vertical-align: top;
         width: 75%;
       }
     }
