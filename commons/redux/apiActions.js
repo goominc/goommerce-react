@@ -159,6 +159,15 @@ export function loadCart() {
   };
 }
 
+export function createCartFromCsv(rows) {
+  return createFetchAction({
+    type: 'LOAD_CSV_CART',
+    endpoint: '/api/v1/carts/csv',
+    method: 'post',
+    body: { rows },
+  });
+}
+
 export function addCartProduct(productVariantId, count) {
   return createFetchAction({
     type: 'UPDATE_CART',

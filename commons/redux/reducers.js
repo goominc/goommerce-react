@@ -60,6 +60,13 @@ function cart(state = {}, action) {
   return state;
 }
 
+function csvCart(state = {}, action) {
+  if (action.type === 'LOAD_CSV_CART') {
+    return { ...action.payload };
+  }
+  return state;
+}
+
 function cms(state = {}, action) {
   if (action.type === 'LOAD_CMS_DATA') {
     const res = action.payload;
@@ -234,6 +241,7 @@ const reducers = {
   cart,
   categories,
   cms,
+  csvCart,
   currency,
   entities,
   favoriteBrand,
