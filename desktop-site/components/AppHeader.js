@@ -222,10 +222,20 @@ export default React.createClass({
         </Link>,
       ];
     };
+    const renderTopBanner = () => {
+      if (activeLocale.startsWith('zh-')) {
+        return (
+          <div className="img-top-banner">
+            <img src={`${constants.resourceRoot}/banner/desktop_top_banner_${activeLocale}_20160602.gif`} />
+          </div>
+        );
+      }
+      return <div className="top-banner"></div>;
+    };
 
     return (
       <div className="header-wide-container">
-        <div className="top-banner"></div>
+        {renderTopBanner()}
         <div className="top-helper-bar">
           <div className="container no-padding">
             <div className="left-menus">

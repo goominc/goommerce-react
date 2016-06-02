@@ -8,8 +8,20 @@
   background-color: #79c5dc;
   // cursor: pointer;
   height: 80px;
-  min-width: 720px;
+  min-width: 1200px;
   width: 100%;
+}
+.img-top-banner {
+  height: 80px;
+  margin: 0 auto;
+  min-width: 1200px;
+  width: 100%;
+  img {
+    left: 0;
+    margin: auto;
+    position: absolute;
+    right: 0;
+  }
 }
 .header-wide-container {
   background-color: #fff;
