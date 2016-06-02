@@ -5,6 +5,7 @@ import * as _ from 'lodash';
 
 import loadEntities from 'commons/redux/util/loadEntities';
 import ProductDetailPage from 'components/product/ProductDetailPage';
+import ProductDetailBottom from 'components/product/ProductDetailBottom';
 import { getProductMainImage } from 'commons/utils/productUtil';
 
 import { selectColor, selectSize, setActiveImage, wrapLogin, addCartAndPopup, addWishAndPopup } from 'redux/actions';
@@ -153,14 +154,21 @@ const ProductDetail = React.createClass({
       });
     };
     return (
-      <ProductDetailPage
-        {...this.props}
-        isLikeBrand={isLikeBrand}
-        wishId={wishId}
-        toggleWish={toggleWish}
-        images={images} activeImage={passImage} attributes={attributes}
-        buyNow={wrapBuyNow} addCartProduct={wrapAddToCart} addFavoriteBrand={wrapAddFavoriteBrand}
-      />
+      <div>
+        <ProductDetailPage
+          {...this.props}
+          isLikeBrand={isLikeBrand}
+          wishId={wishId}
+          toggleWish={toggleWish}
+          images={images} activeImage={passImage} attributes={attributes}
+          buyNow={wrapBuyNow} addCartProduct={wrapAddToCart} addFavoriteBrand={wrapAddFavoriteBrand}
+        />
+        <ProductDetailBottom
+          images={images}
+          product={this.props.product}
+          sizes={Object.keys(_.get(this.props, 'variantAttributes.sizes') || {})}
+        />
+      </div>
     );
   },
 });

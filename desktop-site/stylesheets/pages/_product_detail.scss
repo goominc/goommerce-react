@@ -86,6 +86,21 @@ $product-detail-thumbnail-margin: 15px;
       width: auto;
     }
   }
+  .main-image-bottom-warn {
+    margin-top: 3px;
+    padding-left: 77px; // thumbnail
+    i {
+      display: inline-block;
+    }
+    span {
+      color: #aaa;
+      display: inline-block;
+      font-size: 11px;
+      line-height: 12px;
+      margin-left: 3px;
+      vertical-align: top;
+    }
+  }
   .enlarge-image-box {
     display: none;
     background-color: #fff;
@@ -136,9 +151,15 @@ $product-detail-thumbnail-margin: 15px;
   .price-info-box {
     background-color: #fff;
     border-bottom: 1px solid #ccc;
-    height: 60px;
-    line-height: 60px;
     margin-bottom: 20px;
+    padding: 15px 0;
+    .field-label {
+      height: 50px;
+      line-height: 50px;
+    }
+    .approximately {
+      color: #777;
+    }
   }
   .normal-field-box {
     $height: 20px;
@@ -247,7 +268,7 @@ $product-detail-thumbnail-margin: 15px;
       display: inline-block;
       font-size: 14px;
       font-weight: 500;
-      vertical-align: top;
+      vertical-align: middle;
     }
   }
   @mixin favorite-brand-button() {
@@ -319,4 +340,137 @@ $product-button-height: 32px;
   font-size: 15px;
   text-align: right;
   margin-bottom: 3px;
+}
+
+.product-detail-bottom-container {
+  background-color: #fff;
+  display: block;
+  padding: 50px 150px;
+  width: 100%;
+  .title {
+    color: #777;
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  .size-table {
+    $border-color: #aaa;
+    border: 1px solid $border-color;
+    margin-bottom: 40px;
+    width: 100%;
+    thead tr {
+      background-color: #e3e3e3;
+    }
+    @mixin my-cell() {
+      height: 50px;
+      line-height: 50px;
+      text-align: center;
+      width: percentage(1 / 7);
+    }
+    th {
+      @include my-cell();
+      + th {
+        border-left: 1px solid $border-color;
+      }
+      font-weight: bold;
+    }
+    td {
+      @include my-cell();
+      + td {
+        border-left: 1px solid $border-color;
+      }
+      border-top: 1px solid $border-color;
+    }
+  }
+  .info-table {
+    border-top: 1px solid #eee;
+    border-left: 1px solid #eee;
+    display: block;
+    width: 100%;
+    .info {
+      display: inline-block;
+      height: 40px;
+      line-height: 40px;
+      vertical-align: top;
+      width: 50%;
+      @mixin cell() {
+        border-right: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        display: inline-block;
+      }
+      .key {
+        @include cell();
+        border-bottom: 1px solid #eee;
+        background-color: #eee;
+        font-weight: bold;
+        width: 25%;
+      }
+      .enum-value {
+        @include cell();
+        color: #aaa;
+        width: 25%;
+        &.active {
+          color: #555;
+          font-weight: bold;
+        }
+      }
+      .value {
+        @include cell();
+        color: #555;
+        font-weight: bold;
+        width: 75%;
+      }
+    }
+  },
+  .img-row {
+    margin-top: 50px;
+    text-align: center;
+    width: 100%;
+    .img-left {
+      display: inline-block;
+      text-align: left;
+      vertical-align: top;
+      width: 50%;
+    }
+    .img-right {
+      display: inline-block;
+      text-align: right;
+      vertical-align: top;
+      width: 50%;
+    }
+    .img-center {
+      display: inline-block;
+      text-align: center;
+      vertical-align: top;
+      width: 100%;
+    }
+    img {
+      display: inline-block;
+      vertical-align: top;
+      width: 450px;
+    }
+  }
+  .simple-desc {
+    display: table;
+    margin: 15px 0;
+    width: 100%;
+    .left {
+      background-color: #e3e3e3;
+      color: #777;
+      display: table-cell;
+      font-size: 16px;
+      font-weight: 500;
+      text-align: center;
+      vertical-align: middle;
+      width: 180px;
+    }
+    .right {
+      border: 1px solid #e3e3e3;
+      border-left: 0;
+      color: #555;
+      font-size: 12px;
+      line-height: 25px;
+      padding: 10px 15px;
+    }
+  }
 }

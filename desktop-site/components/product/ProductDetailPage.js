@@ -115,7 +115,7 @@ export default React.createClass({
         />
       );
     };
-    const renderPreload = (image) => <img src={image.url} width="1" height="1" />;
+    const renderPreload = (image) => <img key={image.url} src={image.url} width="1" height="1" />;
     const renderThumbnail = (image) => {
       let className = '';
       if (activeImage && image.url === activeImage.url) {
@@ -238,11 +238,14 @@ export default React.createClass({
       { link: '/products', name: { en: 'Product List', ko: '상품목록' } },
       { name: productUtil.getAllNames(product) },
     ];
+    let priceKRW = 0;
     let price = 0;
     if (selectedVariant) {
       price = selectedVariant[activeCurrency];
+      priceKRW = selectedVariant.KRW;
     } else {
       price = product[activeCurrency];
+      priceKRW = product.KRW;
     }
 
     const renderBrand = () => {
@@ -271,10 +274,18 @@ export default React.createClass({
     };
 
     const renderPrice = () => {
-      if (activeCurrency === 'KRW') {
-        return (<div className="field-content price-value"><b>{numberUtil.format(price)}</b> <span>원</span></div>);
+      let approximately = null;
+      if (activeCurrency !== 'KRW') {
+        approximately = `Approximately ${numberUtil.formatPrice(price, activeCurrency, currencySign)}`;
       }
-      return (<div className="field-content price-value"><b>{currencySign[activeCurrency]} {price}</b></div>);
+      return (
+        <div className="field-content">
+          <div className="price-value">
+            <b>{numberUtil.format(priceKRW)}</b> <span>원</span><br />
+          </div>
+          <div className="approximately">{approximately}</div>
+        </div>
+      );
     };
 
     let animation = null;
@@ -324,7 +335,7 @@ export default React.createClass({
         return (<div className="product-detail-attr-warning">{i18n.get('pcItemDetail.selectColor')}</div>);
       }
       if (!isSizeSelected) {
-        return (<div className="product-detail-attr-warning">사이즈를 선택해 주세요</div>);
+        return (<div className="product-detail-attr-warning">{i18n.get('pcItemDetail.selectSize')}</div>);
       }
       return null;
     };
@@ -336,7 +347,7 @@ export default React.createClass({
         </div>
         <Breadcrumb key="breadcrumb-default" path={path} />
         {/* TODO product.data && product.data.categoryPath ? product.data.categoryPath.map(renderPath) : [] */}
-        <div className="container-table no-padding">
+        <div className="container-table no-padding" style={({ marginBottom: '30px' })}>
           <div className="product-detail-left">
             <div className="left-thumbnail-container">
               <div className="arrow-up" onClick={thumbnailUp}></div>
@@ -351,6 +362,13 @@ export default React.createClass({
               className="main-image-box"
             >
               <img src={activeImage.url} />
+            </div>
+            <div className="main-image-bottom-warn">
+              <i className="icon-ban"></i>
+              <span>
+                {i18n.get('pcItemDetail.warnLinkshopsImage1')}<br />
+                {i18n.get('pcItemDetail.warnLinkshopsImage2')}
+              </span>
             </div>
             <div className="enlarge-image-box">
               <img src={activeImage.url} />
