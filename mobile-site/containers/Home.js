@@ -1,9 +1,12 @@
+// Copyright (C) 2016 Goom Inc. All rights reserved.
+
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
 import i18n from 'commons/utils/i18n';
+import roleUtil from 'commons/utils/roleUtil';
 
 import { setHeader } from 'redux/actions';
 import { ajaxReturnPromise } from 'commons/redux/util/ajaxUtil';
@@ -15,8 +18,8 @@ import MainRecommendList from 'components/MainRecommendList';
 
 const Home = React.createClass({
   propTypes: {
+    auth: PropTypes.object,
     mobile_main_banner: PropTypes.object,
-    searchProducts: PropTypes.func.isRequired,
     setHeader: PropTypes.func.isRequired,
   },
   contextTypes: {
@@ -37,19 +40,6 @@ const Home = React.createClass({
       this.setState(res);
     });
     this.context.ApiAction.loadCMSData('mobile_main_banner');
-    /*
-    this.props.searchProducts({
-      // q: query,
-      // categoryId: params.categoryId === 'all' ? undefined : params.categoryId,
-      categoryId: 4,
-      // brandId,
-      offset: 0,
-      limit: 30,
-    }).then((res) => {
-      // console.log(res);
-      this.setState(res);
-    });
-    */
   },
   render() {
     const renderProducts = () => {
@@ -59,10 +49,20 @@ const Home = React.createClass({
       return <MainRecommendList products={this.state.products} />;
     };
 
+    const renderBrandLink = () => {
+      const { auth } = this.props;
+      const brandId = roleUtil.getBrandIdIfSeller(auth);
+      if (brandId) {
+        return <Link className="home-to-brand-button" to={`/brands/${brandId}`}>상품 조회</Link>;
+      }
+      return null;
+    };
+
     return (
       <div className="main-container">
         <MainBanner items={_.get(this.props, `mobile_main_banner.${this.context.activeLocale}.rows`)} />
         <div className="promotion">
+          {renderBrandLink()}
           <section className="promotion-block categories">
             <header>
               <Link to="/categoryList">
@@ -120,7 +120,6 @@ const Home = React.createClass({
                     {i18n.get('pcServiceInfo.customerCenterDesc2')}
                   </div>
                 </li>
-
               </ul>
             </article>
           </section>
@@ -136,8 +135,8 @@ const Home = React.createClass({
 
 export default connect(
   (state) => ({
+    auth: state.auth,
     ...loadEntities(state, 'hotProducts', 'hotProducts'),
-    searchProducts: (query) => ajaxReturnPromise(state.auth, 'get', `/api/v1/products/search?${$.param(query)}`),
     mobile_main_banner: state.cms.mobile_main_banner,
   }),
   { setHeader }
