@@ -224,9 +224,13 @@ export default React.createClass({
     };
     const renderTopBanner = () => {
       if (activeLocale.startsWith('zh-')) {
+        const style = { backgroundImage: `url("${constants.resourceRoot}/banner/desktop_top_banner_${activeLocale}_20160603.gif")` };
         return (
           <div className="img-top-banner">
-            <img src={`${constants.resourceRoot}/banner/desktop_top_banner_${activeLocale}_20160602.gif`} />
+            <div
+              style={style}
+              className="inner"
+            ></div>
           </div>
         );
       }

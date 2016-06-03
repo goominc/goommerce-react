@@ -13,14 +13,13 @@
 }
 .img-top-banner {
   height: 80px;
-  margin: 0 auto;
   min-width: 1200px;
-  width: 100%;
-  img {
-    left: 0;
-    margin: auto;
-    position: absolute;
-    right: 0;
+  overflow: hidden;
+  .inner {
+    background-repeat: no-repeat;
+    background-position: center top;
+    height: 100%;
+    width: 100%;
   }
 }
 .header-wide-container {
