@@ -345,8 +345,9 @@ $product-button-height: 32px;
 .product-detail-bottom-container {
   background-color: #fff;
   display: block;
-  padding: 50px 150px;
-  width: 100%;
+  margin: 0 auto;
+  padding: 50px 100px;
+  width: 1200px;
   .title {
     color: #777;
     font-size: 24px;
@@ -397,6 +398,7 @@ $product-button-height: 32px;
         border-right: 1px solid #eee;
         border-bottom: 1px solid #eee;
         display: inline-block;
+        text-align: center;
       }
       .key {
         @include cell();
@@ -424,8 +426,8 @@ $product-button-height: 32px;
         width: 75%;
       }
     }
-  },
-  .img-row {
+  }
+  .image-row {
     margin-top: 50px;
     text-align: center;
     width: 100%;
@@ -476,5 +478,54 @@ $product-button-height: 32px;
       padding: 10px 15px;
       text-align: left;
     }
+  }
+}
+
+.product-detail-model-view {
+  width: 100%;
+  .row {
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+  }
+  .pic1 {display: inline-block;}
+  .size {
+    border:1px solid #ccc;
+    border-radius:10px;
+    display: inline-block;
+    vertical-align: top;
+    margin:20px 0 0 50px;
+    width:260px;
+  }
+  .pd_title2 {
+    height:40px; font-weight:bold; font-size:20px; line-height:40px; letter-spacing:-2px; text-align:center; border-bottom:1px solid #ccc;
+  }
+  .subject {
+    display: inline-block;
+    width: 50%;
+    padding: 0 15px;
+    font-size:13px; line-height:30px; color:#666; letter-spacing:-1px; text-align:right; border-right:1px solid #ccc;
+  }
+  .model_name {
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+    width: 50%;
+    padding:0 10px; font-weight:bold; font-size:16px; line-height:30px; letter-spacing:-1px;
+  }
+  .cont {
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+    width: 50%;
+    padding:0 15px; font:400 16px /30px 'Roboto';
+  }
+
+  .size li {padding:0 10px; width:120px; height:30px;}
+  .size li.pd_title2 {clear:both; width:260px; height:40px; font-weight:bold; font-size:20px; line-height:40px; letter-spacing:-2px; text-align:center; border-bottom:1px solid #ccc;}
+  .size li.subject {float:left; font-size:13px; line-height:30px; color:#666; letter-spacing:-1px; text-align:right; border-right:1px solid #ccc;}
+  .size li.cont {padding:0 10px 0 150px; font:400 16px /30px 'Roboto';}
+  .odd {
+    background-color:#f0f0f0;
   }
 }

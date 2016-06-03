@@ -3,7 +3,10 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
+import ProductDetailModelView from './ProductDetailModelView';
+
 import i18n from 'commons/utils/i18n';
+import { constants } from 'commons/utils/constants';
 
 export default React.createClass({
   propTypes: {
@@ -12,7 +15,7 @@ export default React.createClass({
     sizes: PropTypes.array,
   },
   render() {
-    const { product, sizes, images }  = this.props;
+    const { product, sizes, images } = this.props;
     const renderSizesTable = () => {
       if (!sizes.length) {
         return null;
@@ -110,13 +113,13 @@ export default React.createClass({
       while (imageIndex < images.length) {
         if (row === 1 || imageIndex === images.length - 1) {
           res.push(
-            <div key={`detail-image-row-${row}`} className="img-row">
+            <div key={`detail-image-row-${row}`} className="image-row">
               <div className="img-center"><img src={images[imageIndex++].url} /></div>
             </div>
           );
         } else {
           res.push(
-            <div key={`detail-image-row-${row}`} className="img-row">
+            <div key={`detail-image-row-${row}`} className="image-row">
               <div className="img-left"><img src={images[imageIndex++].url} /></div>
               <div className="img-right"><img src={images[imageIndex++].url} /></div>
             </div>
@@ -126,6 +129,62 @@ export default React.createClass({
       }
       return res;
     };
+    const renderModel = () => {
+      const models = [
+        {
+          imgUrl: `${constants.resourceRoot}/banner/models/model_eun.png`,
+          name: '이은지',
+          height: '168 cm',
+          weight: '48 kg',
+          shoulderWidth: '40 cm',
+          topsLength: '47 cm',
+          bottomslength: '96 cm',
+          waist: '26.7 inch',
+          armLength: '65 cm',
+          topBustSize: '80 cm',
+          bottomBustSize: '68.5 cm',
+          hipSize: '89 cm',
+          ShoesSize: '235 cm',
+        },
+        {
+          imgUrl: `${constants.resourceRoot}/banner/models/model_sori.png`,
+          name: '임소리',
+          height: '167 cm',
+          weight: '47 kg',
+          shoulderWidth: '40 cm',
+          topsLength: '48 cm',
+          bottomslength: '97 cm',
+          waist: '23 inch',
+          armLength: '63 cm',
+          topBustSize: '79 cm',
+          bottomBustSize: '69 cm',
+          hipSize: '88 cm',
+          ShoesSize: '235 cm',
+        },
+        {
+          imgUrl: `${constants.resourceRoot}/banner/models/model_ys.png`,
+          name: '유영석',
+          height: '182 cm',
+          weight: '64 kg',
+          shoulderWidth: '53 cm',
+          topsLength: '57 cm',
+          bottomslength: '105 cm',
+          waist: '29 inch',
+          armLength: '63 cm',
+          topBustSize: '94 cm',
+          bottomBustSize: '94 cm',
+          hipSize: '96 cm',
+          ShoesSize: '260 cm',
+        },
+      ];
+      for (let i = 0; i < models.length; i++) {
+        const model = models[i];
+        if (_.get(product, 'data.detail.modelName') === model.name) {
+          return <ProductDetailModelView model={model} />;
+        }
+      }
+      return null;
+    };
 
     return (
       <div className="product-detail-bottom-container">
@@ -133,6 +192,7 @@ export default React.createClass({
         {renderSizesTable()}
         {renderDetailInfo()}
         {renderImages()}
+        {renderModel()}
         <div className="simple-desc">
           <div className="left">{i18n.get('pcItemDetail.descRefundTitle')}</div>
           <div className="right">

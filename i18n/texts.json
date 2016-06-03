@@ -768,6 +768,78 @@
       "zh-cn": "원산지",
       "zh-tw": "원산지"
     },
+    "modelChartTitle": {
+      "en": "모델 사이즈 차트",
+      "ko": "모델 사이즈 차트",
+      "zh-cn": "모델 사이즈 차트",
+      "zh-tw": "모델 사이즈 차트"
+    },
+    "modelHeight": {
+      "en": "신장",
+      "ko": "신장",
+      "zh-cn": "신장",
+      "zh-tw": "신장"
+    },
+    "modelWeight": {
+      "en": "체중",
+      "ko": "체중",
+      "zh-cn": "체중",
+      "zh-tw": "체중"
+    },
+    "modelShoulderWidth": {
+      "en": "어깨넓이",
+      "ko": "어깨넓이",
+      "zh-cn": "어깨넓이",
+      "zh-tw": "어깨넓이"
+    },
+    "modelTopsLength": {
+      "en": "상의 (목~허리)",
+      "ko": "상의 (목~허리)",
+      "zh-cn": "상의 (목~허리)",
+      "zh-tw": "상의 (목~허리)"
+    },
+    "modelBottomsLength": {
+      "en": "하의 (허리~발목)",
+      "ko": "하의 (허리~발목)",
+      "zh-cn": "하의 (허리~발목)",
+      "zh-tw": "하의 (허리~발목)"
+    },
+    "modelWaist": {
+      "en": "허리둘레",
+      "ko": "허리둘레",
+      "zh-cn": "허리둘레",
+      "zh-tw": "허리둘레"
+    },
+    "modelArmLength": {
+      "en": "팔길이",
+      "ko": "팔길이",
+      "zh-cn": "팔길이",
+      "zh-tw": "팔길이"
+    },
+    "modelTopBustSize": {
+      "en": "윗가슴둘레",
+      "ko": "윗가슴둘레",
+      "zh-cn": "윗가슴둘레",
+      "zh-tw": "윗가슴둘레"
+    },
+    "modelBottomBustSize": {
+      "en": "윗가슴둘레",
+      "ko": "윗가슴둘레",
+      "zh-cn": "윗가슴둘레",
+      "zh-tw": "윗가슴둘레"
+    },
+    "modelHipSize": {
+      "en": "힙둘레",
+      "ko": "힙둘레",
+      "zh-cn": "힙둘레",
+      "zh-tw": "힙둘레"
+    },
+    "modelShoesSize": {
+      "en": "신발",
+      "ko": "신발",
+      "zh-cn": "신발",
+      "zh-tw": "신발"
+    },
     "descRefundTitle": {
       "en": "반품 / 교환 안내",
       "ko": "반품 / 교환 안내",
