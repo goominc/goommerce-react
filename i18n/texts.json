@@ -561,50 +561,50 @@
     "bottomTitle": {
       "en": "상품 상세정보",
       "ko": "상품 상세정보",
-      "zh-cn": "상품 상세정보",
-      "zh-tw": "상품 상세정보"
+      "zh-cn": "商品详情",
+      "zh-tw": "商品詳情"
     },
     "detailSize": {
       "en": "사이즈",
       "ko": "사이즈",
-      "zh-cn": "사이즈",
-      "zh-tw": "사이즈"
+      "zh-cn": "尺码",
+      "zh-tw": "尺碼"
     },
     "detailLength": {
       "en": "전체길이",
       "ko": "전체길이",
-      "zh-cn": "전체길이",
-      "zh-tw": "전체길이"
+      "zh-cn": "总长",
+      "zh-tw": "總長"
     },
     "detailBustSize": {
-      "en": "가슴둘레",
-      "ko": "가슴둘레",
-      "zh-cn": "가슴둘레",
-      "zh-tw": "가슴둘레"
+      "en": "가슴넓이",
+      "ko": "가슴넓이",
+      "zh-cn": "胸宽",
+      "zh-tw": "胸寬"
     },
     "detailShoulderWidth": {
       "en": "어깨넓이",
       "ko": "어깨넓이",
-      "zh-cn": "어깨넓이",
-      "zh-tw": "어깨넓이"
+      "zh-cn": "肩宽",
+      "zh-tw": "肩寬"
     },
     "detailArmLength": {
       "en": "팔길이",
       "ko": "팔길이",
-      "zh-cn": "팔길이",
-      "zh-tw": "팔길이"
+      "zh-cn": "袖长",
+      "zh-tw": "袖長"
     },
     "detailArmHole": {
       "en": "암홀",
       "ko": "암홀",
-      "zh-cn": "암홀",
-      "zh-tw": "암홀"
+      "zh-cn": "袖孔",
+      "zh-tw": "袖孔"
     },
     "detailTailEdge": {
       "en": "밑단",
       "ko": "밑단",
-      "zh-cn": "밑단",
-      "zh-tw": "밑단"
+      "zh-cn": "下摆宽",
+      "zh-tw": "下擺寬"
     },
     "favoriteBrands": {
       "en": "Favorite brands",
@@ -619,10 +619,10 @@
       "zh-tw": "촉감"
     },
     "infoTouch0": {
-      "en" : "까슬함",
-      "ko" : "까슬함",
-      "zh-cn" : "까슬함",
-      "zh-tw" : "까슬함"
+      "en": "까슬함",
+      "ko": "까슬함",
+      "zh-cn": "까슬함",
+      "zh-tw": "까슬함"
     },
     "infoTouch1": {
       "en": "적당함",
@@ -639,26 +639,26 @@
     "infoFlexibility": {
       "en": "신축성",
       "ko": "신축성",
-      "zh-cn": "신축성",
-      "zh-tw": "신축성"
+      "zh-cn": "弹力指数",
+      "zh-tw": "彈力指數"
     },
     "infoFlexibility0": {
       "en": "좋음",
       "ko": "좋음",
-      "zh-cn": "좋음",
-      "zh-tw": "좋음"
+      "zh-cn": "高弹",
+      "zh-tw": "高彈"
     },
     "infoFlexibility1": {
       "en": "약간",
       "ko": "약간",
-      "zh-cn": "약간",
-      "zh-tw": "약간"
+      "zh-cn": "微弹",
+      "zh-tw": "微彈"
     },
     "infoFlexibility2": {
       "en": "없음",
       "ko": "없음",
-      "zh-cn": "없음",
-      "zh-tw": "없음"
+      "zh-cn": "无弹",
+      "zh-tw": "無彈"
     },
     "infoTransparency": {
       "en": "비침",
@@ -687,68 +687,68 @@
     "infoGloss": {
       "en": "광택감",
       "ko": "광택감",
-      "zh-cn": "광택감",
-      "zh-tw": "광택감"
+      "zh-cn": "光泽指数",
+      "zh-tw": "光澤指數"
     },
     "infoGloss0": {
       "en": "광택있음",
       "ko": "광택있음",
-      "zh-cn": "광택있음",
-      "zh-tw": "광택있음"
+      "zh-cn": "有光泽",
+      "zh-tw": "有光澤"
     },
     "infoGloss1": {
       "en": "약간있음",
       "ko": "약간있음",
-      "zh-cn": "약간있음",
-      "zh-tw": "약간있음"
+      "zh-cn": "微光泽",
+      "zh-tw": "微光澤"
     },
     "infoGloss2": {
       "en": "광택없음",
       "ko": "광택없음",
-      "zh-cn": "광택없음",
-      "zh-tw": "광택없음"
+      "zh-cn": "无光泽",
+      "zh-tw": "無光澤"
     },
     "infoThickness": {
       "en": "두께감",
       "ko": "두께감",
-      "zh-cn": "두께감",
-      "zh-tw": "두께감"
+      "zh-cn": "厚度指数",
+      "zh-tw": "厚度指數"
     },
     "infoThickness0": {
       "en": "두꺼움",
       "ko": "두꺼움",
-      "zh-cn": "두꺼움",
-      "zh-tw": "두꺼움"
+      "zh-cn": "加厚",
+      "zh-tw": "加厚"
     },
     "infoThickness1": {
       "en": "적당함",
       "ko": "적당함",
-      "zh-cn": "적당함",
-      "zh-tw": "적당함"
+      "zh-cn": "适中",
+      "zh-tw": "適中"
     },
     "infoThickness2": {
       "en": "얇음",
       "ko": "얇음",
-      "zh-cn": "얇음",
-      "zh-tw": "얇음"
+      "zh-cn": "偏薄",
+      "zh-tw": "偏薄"
     },
     "infoLining": {
       "en": "안감",
       "ko": "안감",
-      "zh-cn": "안감",
-      "zh-tw": "안감"
+      "zh-cn": "里子料",
+      "zh-tw": "裡子料"
     },
     "infoLining0": {
       "en": "전체안감",
       "ko": "전체안감",
-      "zh-cn": "전체안감",
-      "zh-tw": "전체안감"
+      "zh-cn": "全面",
+      "zh-tw": "全面"
     },
     "infoLining1": {
       "en": "부분안감",
       "ko": "부분안감",
-      "zh-cn": "부분안감",
-      "zh-tw": "부분안감"
+      "zh-cn": "部分",
+      "zh-tw": "部分"
     },
     "infoLining2": {
       "en": "안감없음",
