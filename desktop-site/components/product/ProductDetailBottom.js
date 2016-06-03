@@ -28,7 +28,7 @@ export default React.createClass({
             <td key={`${size}-size-${i}`}>{(+_.get(product, `data.detail.size${i + 1}`) || 0) + (index - baseIndex) * 2}cm</td>
           );
         }
-        return res;
+        return <tr>{res}</tr>;
       };
       return (
         <table className="size-table">
@@ -44,9 +44,7 @@ export default React.createClass({
           </tr>
           </thead>
           <tbody>
-          <tr>
-            {sizes.map(renderSizes)}
-          </tr>
+          {sizes.map(renderSizes)}
           </tbody>
         </table>
       );
