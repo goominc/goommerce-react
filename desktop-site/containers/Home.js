@@ -126,7 +126,7 @@ const Home = React.createClass({
     };
     const settings = {
       slideSpeed: 300,
-      autoPlay: 10000,
+      autoPlay: 5000,
       singleItem: true,
       scrollPerPage: true,
     };
