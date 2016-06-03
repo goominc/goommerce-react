@@ -129,15 +129,8 @@
       cursor: pointer;
       position: relative;
       z-index: $dropdown-z-index;
-      &:hover, &.cursor {
-        // background-color: #ddd;
-        color: #ffffff;
-        text-decoration: none;
-        outline: 0;
-        background-color: #337ab7;
-        .dropdown-item-content {
-          color: #ffffff;
-        }
+      .close-button {
+        display: none;
       }
     }
     .dropdown-item-content {
@@ -145,6 +138,13 @@
       line-height: 1.42857143;
       padding: 5px 20px;
       white-space: nowrap;
+      &:hover, &.cursor {
+        // background-color: #ddd;
+        color: #ffffff;
+        text-decoration: none;
+        outline: 0;
+        background-color: #337ab7;
+      }
     }
   }
 }

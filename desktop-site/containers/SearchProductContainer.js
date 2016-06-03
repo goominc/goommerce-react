@@ -54,6 +54,9 @@ const ProductSearch = React.createClass({
     const fnGetText = (item) => _.get(item, dataKey);
 
     if (brand && searchResult) {
+      (searchResult.products || []).forEach((product) => {
+        product.isNotRemovable = true;
+      });
       const productsInMerchandise = searchUtil.getProductsFromMerchandise(brand.id, merchandise, searchResult.text);
       if (productsInMerchandise) {
         searchResult.products = productsInMerchandise.concat((searchResult.products || []));
@@ -61,10 +64,18 @@ const ProductSearch = React.createClass({
     }
     const items = searchUtil.getSearchItems(searchResult ? searchResult.products : [], fnGetText);
     const filteredItems = _.filter(items, (i) => i.text);
+    const deleteItem = (item) => {
+      if (window.confirm(`${_.get(item.item, 'name.ko')} 삭제하시겠습니까?`)) {
+        ApiAction.deleteMerchandiseProduct(item.item).then(() => {
+          onChangeText(item.text);
+        });
+      }
+    };
     return (
       <AutoComplete
         boxClassName={boxClassName}
         items={filteredItems}
+        deleteItem={deleteItem}
         onChangeText={onChangeText}
         onSelectItem={onSelectItem}
         placeholder="상품 추가"

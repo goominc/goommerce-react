@@ -722,6 +722,22 @@ export function addCartProductOnReorder(product) {
   };
 }
 
+export function deleteMerchandiseProduct(product) {
+  return (dispatch, getState) => {
+    const state = getState();
+    const productVariants = product.productVariants;
+    let promise = $.when();
+    productVariants.forEach((variant) => {
+      promise = promise.then(() => ajaxReturnPromise(state.auth, 'delete', `/api/v1/merchandise/product_variants/${variant.id}`));
+    });
+    return promise.then(() => (
+      ajaxReturnPromise(state.auth, 'delete', `/api/v1/merchandise/products/${product.id}`)
+    )).then(() => (
+      loadMerchandiseProducts()(dispatch, getState)
+    ));
+  };
+}
+
 export function resetSearchResult(target) {
   // this is local action
   return {

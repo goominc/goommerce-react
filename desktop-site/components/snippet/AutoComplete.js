@@ -1,6 +1,7 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
 import React, { PropTypes } from 'react';
+import _ from 'lodash';
 
 export default React.createClass({
   propTypes: {
@@ -11,22 +12,28 @@ export default React.createClass({
     placeholder: PropTypes.string,
     text: PropTypes.string,
     resetDropdown: PropTypes.func,
+    deleteItem: PropTypes.func,
   },
   getInitialState() {
     return { cursorPosition: -1 };
   },
   render() {
     const { items, boxClassName, placeholder,
-      onSelectItem, resetDropdown, text, onChangeText } = this.props;
+      onSelectItem, resetDropdown, text, onChangeText, deleteItem } = this.props;
 
     let cursorPosition = this.state.cursorPosition;
 
     const renderItem = (item, index) => (
       <div key={item.text}
         className={`dropdown-item ${cursorPosition === index ? 'cursor' : ''}`}
-        onClick={() => onSelectItem(item)}
       >
-        <div className="dropdown-item-content">{item.text}</div>
+        <div className="dropdown-item-content" onClick={() => onSelectItem(item)}>
+          {item.text}
+        </div>
+        {deleteItem && !_.get(item, 'item.isNotRemovable') ?
+          <span className="close-button" onClick={() => deleteItem(item)}>X</span>
+          : null
+        }
       </div>
     );
     const renderDropdown = () => {
