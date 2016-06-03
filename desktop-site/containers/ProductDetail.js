@@ -9,9 +9,12 @@ import ProductDetailBottom from 'components/product/ProductDetailBottom';
 import { getProductMainImage } from 'commons/utils/productUtil';
 
 import { selectColor, selectSize, setActiveImage, wrapLogin, addCartAndPopup, addWishAndPopup } from 'redux/actions';
+import roleUtil from 'commons/utils/roleUtil';
+import i18n from 'commons/utils/i18n';
 
 const ProductDetail = React.createClass({
   propTypes: {
+    auth: PropTypes.object,
     activeImage: PropTypes.object,
     addCartAndPopup: PropTypes.func,
     addWishAndPopup: PropTypes.func,
@@ -58,6 +61,8 @@ const ProductDetail = React.createClass({
       return variants;
     };
     const afterLoadProduct = (product, dispatch) => {
+      // 2016. 06. 02. [heekyu] seller can see he/she's own products
+      roleUtil.isAllowSeeProduct(this.props.auth, product, this.context.router);
       dispatch({
         type: 'PRODUCT_DETAIL_VARIANTS',
         variants: parseVariants(product),
@@ -175,6 +180,7 @@ const ProductDetail = React.createClass({
 
 export default connect(
   (state, ownProps) => ({
+    auth: state.auth,
     productId: ownProps.params.productId,
     product: state.entities.products[ownProps.params.productId],
     activeImage: state.page.pageProductDetail.activeImage,

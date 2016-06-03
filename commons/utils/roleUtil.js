@@ -1,5 +1,9 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
+import _ from 'lodash';
+
+import i18n from 'commons/utils/i18n';
+
 const hasBuyerRole = (auth) => {
   if (!auth || !auth.id) {
     return false;
@@ -15,15 +19,14 @@ const hasBuyerRole = (auth) => {
 
 exports.hasBuyerRole = hasBuyerRole;
 
-const message = '구매회원 인증 이후에 서비스 이용하실 수 있습니다';
-exports.checkRoleOnEnter = (nextState, replaceState, auth, onNotLogin, onNotRole) => {
+exports.checkRoleOnEnter = (auth, onNotLogin, onNotRole) => {
   if (!auth || !auth.id) {
     onNotLogin();
     return;
   }
   if (!hasBuyerRole(auth)) {
-    window.alert(message);
     onNotRole();
+    return;
   }
 };
 
@@ -50,4 +53,22 @@ exports.getBrandIdIfSeller = (auth) => {
     }
   }
   return null;
+};
+
+exports.isAllowSeeProduct = (auth, product, router) => {
+  const onNotLogin = () => {
+    // may be never happen
+    window.alert(i18n.get('pcMain.loginBeforeUseService'));
+    router.push('/accounts/login');
+  };
+  const onNotRole = () => {
+    const brandId = exports.getBrandIdIfSeller(auth);
+    if (brandId && +brandId === +_.get(product, 'brand.id')) {
+      // OK! my product
+      return;
+    }
+    window.alert(i18n.get('pcMain.notAllowedToSeeProduct'));
+    router.push('/');
+  };
+  exports.checkRoleOnEnter(auth, onNotLogin, onNotRole);
 };

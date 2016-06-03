@@ -7,6 +7,8 @@ const { loadProduct, addWish, addFavoriteBrand, addCartProduct, createOrder } = 
 
 import ProductDetailPage from 'components/ProductDetailPage';
 
+import roleUtil from 'commons/utils/roleUtil';
+
 const ProductDetail = React.createClass({
   propTypes: {
     setHeader: PropTypes.func.isRequired,
@@ -41,6 +43,8 @@ const ProductDetail = React.createClass({
     });
     this.props.loadProduct(this.props.params.productId)
     .then((res) => {
+      console.log(3);
+      roleUtil.isAllowSeeProduct(this.props.auth, res, this.context.router);
       const variants = this.parseVariants(res);
       this.setState({ product: res, productVariants: variants,
         productColors: this.parseProductColors(variants), productSizes: this.parseProductSizes(variants) });

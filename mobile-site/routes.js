@@ -28,30 +28,30 @@ import {
 } from 'containers';
 
 import roleUtil from 'commons/utils/roleUtil';
-import { toggleSignRegister } from './redux/actions';
+import i18n from 'commons/utils/i18n';
 
+import routerUtil, { checkBrand, getOnNotRoleSeller, onSignup } from 'commons/utils/routerUtil';
 
 export default function configure(store) {
-  const onEnter = (nextState, replaceState) => {
-    const onNotLogin = () => {
-      window.alert('로그인 후 서비스 이용할 수 있습니다');
-      store.dispatch({
-        type: 'AFTER_LOGIN_PAGE',
-        nextState,
-      });
-      replaceState('/accounts/signin');
-    };
-    const onNotRole = () => {
-      replaceState('/');
-    };
-    roleUtil.checkRoleOnEnter(nextState, replaceState, store.getState().auth, onNotLogin, onNotRole);
+  routerUtil.initStore(store);
+  const getOnNotLogin = (nextState, replaceState) => () => {
+    window.alert(i18n.get('pcMain.loginBeforeUseService'));
+    store.dispatch({
+      type: 'AFTER_LOGIN_PAGE',
+      nextState,
+    });
+    replaceState('/accounts/signin');
   };
-  const onSignup = (nextState, replaceState) => {
-    const auth = store.getState().auth;
-    if (auth && auth.id) {
-      window.alert('로그인 되어 있습니다. 홈페이지로 이동합니다.');
+  const onEnter = (nextState, replaceState) => {
+    const onNotRole = () => {
+      window.alert(i18n.get('pcMain.youMustbeBuyer'));
       replaceState('/');
-    }
+    };
+    roleUtil.checkRoleOnEnter(store.getState().auth, getOnNotLogin(nextState, replaceState), onNotRole);
+  };
+  const onEnterAllowSeller = (nextState, replaceState) => {
+    const onNotRoleSeller = getOnNotRoleSeller(nextState, replaceState);
+    roleUtil.checkRoleOnEnter(store.getState().auth, getOnNotLogin(nextState, replaceState), onNotRoleSeller);
   };
   return (
     <Route>
@@ -62,8 +62,8 @@ export default function configure(store) {
         { /* <Route path="/products" component={ProductList} /> */ }
         <Route path="/categories/:categoryId" component={ProductList} onEnter={onEnter} />
         <Route path="/search(/:query)" component={ProductList} onEnter={onEnter} />
-        <Route path="/brands/:brandId" component={Brand} onEnter={onEnter} />
-        <Route path="/products/:productId" component={ProductDetail} onEnter={onEnter} />
+        <Route path="/brands/:brandId" component={Brand} onEnter={checkBrand} />
+        <Route path="/products/:productId" component={ProductDetail} onEnter={onEnterAllowSeller} />
         <Route path="/cart" component={Cart} onEnter={onEnter} />
         <Route path="/orders/:orderId/checkout" component={Order} onEnter={onEnter} />
         <Route path="/orders/:orderId/done" component={OrderDone} onEnter={onEnter} />
