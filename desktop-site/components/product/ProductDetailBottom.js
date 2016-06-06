@@ -21,11 +21,11 @@ export default React.createClass({
         return null;
       }
       const baseIndex = Math.floor(sizes.length / 2);
-      const renderSizes = (size, index) => {
+      const renderSize = (size, index) => {
         const res = [<td key={`${size}-${index}`}>{size}</td>];
         for (let i = 0; i < 6; i++) {
           res.push(
-            <td key={`${size}-size-${i}`}>{(+_.get(product, `data.detail.size${i + 1}`) || 0) + (index - baseIndex) * 2}cm</td>
+            <td key={`${size}-size-${i}`}>{(+_.get(product, `data.detail.size${i + 1}`) + (index - baseIndex) * 2) || 0}cm</td>
           );
         }
         return <tr>{res}</tr>;
@@ -44,7 +44,7 @@ export default React.createClass({
           </tr>
           </thead>
           <tbody>
-          {sizes.map(renderSizes)}
+          {sizes.map(renderSize)}
           </tbody>
         </table>
       );

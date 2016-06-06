@@ -21,7 +21,8 @@ exports.get = (key) => {
   }
   const res = _.get(i18n[locale], key);
   if (!res) {
-    return key;
+    // return key;
+    return ''; // there is case when empty string is needed
   }
   return res;
 };

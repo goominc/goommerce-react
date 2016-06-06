@@ -866,14 +866,17 @@
   text-align: center;
   font-size: 16px;
   padding: 16px 24px;
-  position: absolute;
-  top: 50%;
+  position: fixed;
+  top: 150px;
   left: 50%;
   font-size: 12px;
   z-index: 1000;
   -webkit-transition: -webkit-transform .2s ease-out;
   -webkit-transform: translate(-50%, -50%) scale(0, 0);
   display: none;
+  &.red {
+    background-color: #e62e04;
+  }
 }
 .ms-toast-glow {
   -webkit-transform: translate(-50%, -50%) scale(1, 1);
@@ -956,6 +959,96 @@
       color: #999;
       text-align: center;
       padding: 15px 0;
+    }
+  }
+}
+.product-detail-info-section {
+  .section {
+    padding: 0 15px;
+    margin: 30px 0;
+    width: 100%;
+  }
+  .title {
+    color: #666;
+    display: inline-block;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .title-right-text {
+    color: #999;
+    display: inline-block;
+    font-size: 13px;
+    float: right;
+  }
+  .size-table {
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    @mixin cell() {
+      display: inline-block;
+      text-align: center;
+      height: 30px;
+      line-height: 30px;
+    }
+    th {
+      background-color: #eee;
+      @include cell();
+    }
+    td {
+      text-align: center;
+      @include cell();
+      &.head {
+        color: #999;
+        font-weight: 500;
+        text-align: left;
+        padding: 0 15px;
+      }
+    }
+    .key {
+      font-size: 11px;
+      color: #999;
+    }
+  }
+  .info-table {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    display: block;
+    margin: 10px 0;
+    width: 100%;
+    .info {
+      display: inline-block;
+      height: 30px;
+      line-height: 30px;
+      vertical-align: top;
+      width: 100%;
+      @mixin cell() {
+        display: inline-block;
+        text-align: center;
+      }
+      .key {
+        @include cell();
+        font-weight: bold;
+        padding: 0 15px;
+        text-align: left;
+        width: 40%;
+      }
+      .enum-value {
+        @include cell();
+        color: #aaa;
+        width: 20%;
+        &.active {
+          color: #555;
+          font-weight: bold;
+        }
+      }
+      .value {
+        @include cell();
+        color: #555;
+        font-weight: bold;
+        height: 40px;
+        line-height: 40px;
+        vertical-align: top;
+        width: 60%;
+      }
     }
   }
 }

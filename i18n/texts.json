@@ -289,6 +289,50 @@
       "zh-tw": "返回"
     }
   },
+  "mItemDetail": {
+    "actualSizeUnit": {
+      "en": "단위: cm",
+      "ko": "단위: cm",
+      "zh-cn": "단위: cm",
+      "zh-tw": "단위: cm"
+    },
+    "productActualSize": {
+      "en": "Actual Size",
+      "ko": "상품 실측 사이즈",
+      "zh-cn": "상품 실측 사이즈",
+      "zh-tw": "상품 실측 사이즈"
+    },
+    "detailTitle": {
+      "en": "상품 디테일",
+      "ko": "상품 디테일",
+      "zh-cn": "상품 디테일",
+      "zh-tw": "상품 디테일"
+    },
+    "warnLinkshopsImage1": {
+      "en": "링크샵스에서 제공하는 상품 이미지의 저작권은",
+      "ko": "링크샵스에서 제공하는 상품 이미지의 저작권은",
+      "zh-cn": "网站所有图片的著作权属于",
+      "zh-tw": "網站所有圖片的著作權歸屬於"
+    },
+    "warnLinkshopsImage2": {
+      "en": "링크샵스에게 있습니다.",
+      "ko": "링크샵스에게 있습니다.",
+      "zh-cn": "Linkshops，",
+      "zh-tw": "Linkshops，"
+    },
+    "warnLinkshopsImage3": {
+      "en": "상품 이미지를 무단 도용/배포하실 경우",
+      "ko": "상품 이미지를 무단 도용/배포하실 경우",
+      "zh-cn": "如果需要图片，请与客服中心联络。",
+      "zh-tw": "如果需要圖片，請與客服中心聯絡。"
+    },
+    "warnLinkshopsImage4": {
+      "en": "저작권법에 의해 법적 조치를 받을 수 있습니다.",
+      "ko": "저작권법에 의해 법적 조치를 받을 수 있습니다.",
+      "zh-cn": "",
+      "zh-tw": ""
+    }
+  },
   "pcCart": {
     "cart": {
       "en": "Cart",

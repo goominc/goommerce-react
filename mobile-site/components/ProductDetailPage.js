@@ -98,25 +98,8 @@ export default React.createClass({
     return (
       <article className="ms-detail">
         <ProductDetailBanner images={images} addWish={this.props.addWish} />
-        <p className="product-detail-warning">
-          링크샵스에서 제공하는 상품 이미지의 저작권은<br />
-          링크샵스에게 있습니다.<br />
-          상품 이미지를 무단 도용/배포하실 경우<br />
-          저작권법에 의해 법적 조치를 받을 수 있습니다.<br />
-        </p>
 
         <p className="ms-detail-subject ms-pd-lr12">{productUtil.getName(product)}</p>
-
-        { /* <section className="ms-product-datail-price-tag  ms-app-only-product-detail-price">
-          <a className="ms-app-only-price-tag-wrapper j-price-tag">
-            <div className="ms-price-tag">
-              <span className="ms-price-tag-info"><i className="ms-icon icon-mobile"></i></span>
-              <span className="ms-price-tag-price arrow-right">Price on the app: {product.price_app}
-                <i className="ms-icon icon-dropright-android"></i>
-              </span>
-            </div>
-          </a>
-        </section> */ }
 
         <section className="ms-pd-lr12 ms-detail-price">
           <div className="detail-price-container">
@@ -126,25 +109,6 @@ export default React.createClass({
         </section>
 
         {renderBrand()}
-
-        <section className="ms-detail-sku ms-sku-row ms-color-second" onClick={this.props.toggleCart}>
-          <p id="detail-sku-bar">
-              Color
-              Size
-          </p>
-          { /* <p id="detail-shipping-bar">
-            <span>Shipping cost: </span>
-            <span className="ms-color-ship" id="detail-shipping-cost">Free Shipping</span>
-          </p> */ }
-          <span className="ms-arrow">
-            <span className="ms-icon icon-arrow-right"></span>
-          </span>
-        </section>
-
-        <section className="ms-detail-btn-wrap ms-mrg-b12">
-          <button className="ms-button-secondary" onClick={this.props.toggleCart}>Add to cart&nbsp;</button>
-          <button className="ms-button-primary" onClick={this.props.toggleCart}>Buy now&nbsp;</button>
-        </section>
 
         <ProductDetailCart show={showCart} toggle={this.props.toggleCart} topImg={images}
           currentColor={currentColor} currentSize={currentSize} currentVariant={currentVariant}

@@ -6,6 +6,7 @@ import { ApiAction, setHeader, toggleProductCart,
 const { loadProduct, addWish, addFavoriteBrand, addCartProduct, createOrder } = ApiAction;
 
 import ProductDetailPage from 'components/ProductDetailPage';
+import ProductDetailBottom from 'components/product/ProductDetailBottom';
 
 import roleUtil from 'commons/utils/roleUtil';
 
@@ -43,7 +44,6 @@ const ProductDetail = React.createClass({
     });
     this.props.loadProduct(this.props.params.productId)
     .then((res) => {
-      console.log(3);
       roleUtil.isAllowSeeProduct(this.props.auth, res, this.context.router);
       const variants = this.parseVariants(res);
       this.setState({ product: res, productVariants: variants,
@@ -174,19 +174,26 @@ const ProductDetail = React.createClass({
   render() {
     const images = this.buildImages();
     return (
-      <ProductDetailPage product={this.state.product} images={images} variants={this.state.productVariants}
-        colors={this.state.productColors} sizes={this.state.productSizes}
-        currentColor={this.props.color} currentSize={this.props.size}
-        currentVariant={this.props.variant} showCart={this.props.showCart} toggleCart={this.props.toggleProductCart}
-        setColor={this.props.setProductColor} setSize={this.props.setProductSize} addCart={this.wrapAddCart}
-        buyNow={this.wrapOrder} addWish={this.wrapWish} addFavorite={this.wrapFavorite}
-      />
+      <div>
+        <ProductDetailPage
+          product={this.state.product} images={images} variants={this.state.productVariants}
+          colors={this.state.productColors} sizes={this.state.productSizes}
+          currentColor={this.props.color} currentSize={this.props.size}
+          currentVariant={this.props.variant} showCart={this.props.showCart} toggleCart={this.props.toggleProductCart}
+          setColor={this.props.setProductColor} setSize={this.props.setProductSize} addCart={this.wrapAddCart}
+          buyNow={this.wrapOrder} addWish={this.wrapWish} addFavorite={this.wrapFavorite}
+        />
+        <ProductDetailBottom
+          product={this.state.product}
+          sizes={this.state.productSizes}
+        />
+      </div>
       );
   },
 });
 
 export default connect(
-  (state) => ({ auth: state.auth,
+  (state, ownProps) => ({ auth: state.auth,
     showCart: state.pageProductDetail.showCart,
    color: state.pageProductDetail.selectColor, size: state.pageProductDetail.selectSize,
    variant: state.pageProductDetail.selectVariant }),
