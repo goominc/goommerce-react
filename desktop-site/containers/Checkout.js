@@ -11,6 +11,14 @@ import { ApiAction, checkoutNewAddress, checkoutToggleEditAddress, saveAddressAn
 const { inipay, loadOrder, loadAddresses,
   saveOrderAddress, setActiveAddressId } = ApiAction;
 
+const getCmsKey = (locale) => {
+  let suffix = '_ko';
+  if (locale === 'zh-cn' || locale === 'zh-tw') {
+    suffix = '_zh-cn';
+  }
+  return `desktop_shipping_policy${suffix}`;
+};
+
 const Checkout = React.createClass({
   propTypes: {
     activeAddressId: PropTypes.number,
@@ -54,6 +62,8 @@ const Checkout = React.createClass({
         this.props.checkoutNewAddress();
       }
     });
+    this.context.ApiAction.loadCMSData(getCmsKey('ko'));
+    this.context.ApiAction.loadCMSData(getCmsKey('zh-cn'));
   },
   onScriptError() {
     // Show the user an error message.
@@ -155,6 +165,7 @@ export default connect(
       addresses: state.entities.addresses,
       isEditMode: state.page.pageCheckout.isEditMode,
       isNewAddress: state.page.pageCheckout.isNewAddress,
+      shippingPolicyCmsData: state.cms[getCmsKey(state.i18n.activeLocale)],
     };
   },
   { inipay, loadOrder, loadAddresses, saveOrderAddress, setActiveAddressId,

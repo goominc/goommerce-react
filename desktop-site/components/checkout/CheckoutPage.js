@@ -230,7 +230,7 @@ export default React.createClass({
 
     const renderShippingPolicyPopup = () => {
       if (this.state.isShowShippingPolicy) {
-        return <ShippingPolicyPopup closePopup={() => this.setState({ isShowShippingPolicy: false })} />;
+        return <ShippingPolicyPopup cmsData={this.props.shippingPolicyCmsData} closePopup={() => this.setState({ isShowShippingPolicy: false })} />;
       }
       return null;
     };
