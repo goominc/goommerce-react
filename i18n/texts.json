@@ -1828,6 +1828,18 @@
       "zh-cn": "电汇",
       "zh-tw": "電匯"
     },
+    "alipay": {
+      "en": "ALIPAY",
+      "ko": "알리페이",
+      "zh-cn": "ALIPAY",
+      "zh-tw": "ALIPAY"
+    },
+    "unionpay": {
+      "en": "UNION PAY",
+      "ko": "유니온페이",
+      "zh-cn": "UNION PAY",
+      "zh-tw": "UNION PAY"
+    },
     "placeOrder": {
       "en": "Place Order",
       "ko": "결제하기",

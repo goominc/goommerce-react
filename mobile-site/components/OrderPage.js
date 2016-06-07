@@ -277,22 +277,22 @@ export default React.createClass({
           </div>
           <ul className="pay-method-list">
             <li onClick={() => this.inipay('wcard', 'mobile', 'twotrs_isp=Y&block_isp=Y&twotrs_isp_noti=N')}>
-              <span className="pay-title">신용카드</span>
+              <span className="pay-title">{i18n.get('pcPayment.creditCard')}</span>
               <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
             </li>
             <li onClick={() => this.inipay('vbank', 'mobile', 'vbank_receipt=Y')}>
-              <span className="pay-title">무통장입금</span>
+              <span className="pay-title">{i18n.get('pcPayment.vbank')}</span>
+              <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
+            </li>
+            <li onClick={() => this.inipay('etc', 'mobile_global', 'etc_paymethod=APAY')}>
+              <span className="pay-title">{i18n.get('pcPayment.alipay')}</span>
+              <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
+            </li>
+            <li onClick={() => this.inipay('etc', 'mobile_global', 'etc_paymethod=UPMP')}>
+              <span className="pay-title">{i18n.get('pcPayment.unionpay')}</span>
               <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
             </li>
             {/*
-             <li onClick={() => this.inipay('etc', 'mobile_global', 'etc_paymethod=APAY')}>
-             <span className="pay-title">알리페이</span>
-             <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
-             </li>
-             <li onClick={() => this.inipay('etc', 'mobile_global', 'etc_paymethod=UPMP')}>
-             <span className="pay-title">은련카드</span>
-             <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
-             </li>
              <li onClick={() => this.inipay('etc', 'mobile_global', 'etc_paymethod=PPAY')}>
              <span className="pay-title">페이팔</span>
              <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>

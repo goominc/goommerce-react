@@ -123,8 +123,8 @@ export default React.createClass({
     const paymentMethods = [
       { icon: 'icon-inicis', name: i18n.get('pcPayment.vbank'), method: 'VBank' },
       { icon: 'icon-credit-card', name: i18n.get('pcPayment.creditCard'), method: 'Card' },
-      { icon: 'icon-alipay', name: 'ALIPAY', method: 'alipay' },
-      { icon: 'icon-union-pay', name: 'UNION PAY', method: 'unionpay' },
+      { icon: 'icon-alipay', name: i18n.get('pcPayment.alipay'), method: 'alipay' },
+      { icon: 'icon-union-pay', name: i18n.get('pcPayment.unionpay'), method: 'unionpay' },
       // { icon: 'icon-tenpay', name: 'TENPAY', method: 'tenpay' },
       // { icon: 'icon-paypal', name: 'PAYPAL', method: 'paypal' },
     ];
