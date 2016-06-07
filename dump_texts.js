@@ -8,7 +8,7 @@ const localData = require(textsFilename);
 const locales = ['en', 'ko', 'zh-cn', 'zh-tw'];
 // 2016. 05. 31. [heekyu] localData is superset of server
 const dfs = (local, server, key) => {
-  if (local.en) {
+  if (local.en || local.en === '') {
     locales.forEach((locale) => {
       if (local[locale] !== server[locale]) {
         console.log(`${key} Changed. (${local[locale]}) => (${server[locale]})`);
