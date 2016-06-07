@@ -26,7 +26,7 @@ app.use((req, res, next) => {
   };
   const allTexts = require('./i18n/texts.json');
   const dfs = (prefix, node) => {
-    if (node.en) {
+    if (node.en || node.en === '') {
       Object.keys(i18n).forEach((locale) => {
         if (node[locale]) {
           _.set(i18n[locale], prefix, node[locale]);
@@ -38,7 +38,7 @@ app.use((req, res, next) => {
   };
   Object.keys(allTexts).forEach((k) => dfs(k, allTexts[k]));
   req.i18n = i18n;
-  req.locale = 'en';
+  req.locale = 'ko';
   req.currency = 'KRW';
   next();
 });

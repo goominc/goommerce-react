@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import i18n from 'commons/utils/i18n';
 
 import { ApiAction } from 'redux/actions';
 const { resetPassword } = ApiAction;
@@ -58,10 +59,10 @@ const ResetPassword = React.createClass({
           placeholder="비밀번호 확인"
           onChange={(e) => this.setState({ passwordRe: e.target.value })}
         />
-        <Link className="signin-simple-link" to="/accounts/signin">로그인</Link>
-        <Link className="signin-simple-link" to="/accounts/signup">회원가입</Link>
-        <Link className="signin-simple-link" to="/accounts/forgot">비밀번호 찾기</Link>
-        <button className="signin-button" type="submit">비밀번호 찾기</button>
+        <Link className="signin-simple-link" to="/accounts/signin">{i18n.get('word.login')}</Link>
+        <Link className="signin-simple-link" to="/accounts/signup">{i18n.get('word.register')}</Link>
+        <Link className="signin-simple-link" to="/accounts/forgot">{i18n.get('word.findYourPassword')}</Link>
+        <button className="signin-button" type="submit">비밀번호 변경하기</button>
       </form>
     );
   },

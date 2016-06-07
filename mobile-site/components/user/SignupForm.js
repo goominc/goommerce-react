@@ -236,18 +236,18 @@ export default React.createClass({
           <div className="signup-terms-policies-line">
             <input id="terms_title" type="checkbox" />
             <label onClick={() => $('#terms_title').click()}></label>
-            이용약관 동의 <span>*</span>
-            <Link to="/user/terms" className="show-detail">내용보기</Link>
+            {i18n.get('pcMain.signup.agreeToTermsOfUse')} <span>*</span>
+            <Link to="/user/terms" className="show-detail">{i18n.get('mSignup.seeDetail')}</Link>
           </div>
           <div className="signup-terms-policies-line">
             <input id="policies_title" type="checkbox" />
             <label onClick={() => $('#policies_title').click()}></label>
-            개인정보 수집방침 동의 <span>*</span>
-            <Link to="/user/policies" className="show-detail">내용보기</Link>
+            {i18n.get('pcMain.signup.agreeToPrivacyPolicy')} <span>*</span>
+            <Link to="/user/policies" className="show-detail">{i18n.get('mSignup.seeDetail')}</Link>
           </div>
         </div>
         <div className="container">
-          <button type="submit" className="signin-button">회원가입하기</button>
+          <button type="submit" className="signin-button">{i18n.get('mSignup.doSignup')}</button>
         </div>
       </form>
     );

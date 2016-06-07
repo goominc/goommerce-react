@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 import { ApiAction } from 'redux/actions';
 import { constants } from 'commons/utils/constants';
+import i18n from 'commons/utils/i18n';
 
 const { forgotPassword } = ApiAction;
 
@@ -36,9 +37,9 @@ const ForgotPassword = React.createClass({
           <img className="logo-img" src={`${constants.resourceRoot}/mobile/main/mobile_linkshops_logo.png`} />
         </Link>
         <input className="signin-input" type="email" placeholder="아이디(이메일)" ref="email" />
-        <Link className="signin-simple-link" to="/accounts/signin">로그인</Link>
-        <Link className="signin-simple-link" to="/accounts/signup">회원가입</Link>
-        <button className="signin-button" type="submit">비밀번호 찾기</button>
+        <Link className="signin-simple-link" to="/accounts/signin">{i18n.get('word.login')}</Link>
+        <Link className="signin-simple-link" to="/accounts/signup">{i18n.get('word.register')}</Link>
+        <button className="signin-button" type="submit">{i18n.get('word.findYourPassword')}</button>
       </form>
     );
   },

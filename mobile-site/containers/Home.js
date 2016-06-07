@@ -72,13 +72,13 @@ const Home = React.createClass({
             <article>
               <ul className="flex-box">
                 <li className="women">
-                  <Link to="/categoryList/4">여성복</Link>
+                  <Link to="/categoryList/4">{i18n.get('mHome.categoryWomen')}</Link>
                 </li>
                 <li className="men">
-                  <Link to="/categoryList/179">남성복</Link>
+                  <Link to="/categoryList/179">{i18n.get('mHome.categoryMen')}</Link>
                 </li>
                 <li className="shoes">
-                  <Link to="/categoryList/51">신발</Link>
+                  <Link to="/categoryList/51">{i18n.get('mHome.categoryShoes')}</Link>
                 </li>
               </ul>
             </article>

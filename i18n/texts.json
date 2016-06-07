@@ -269,24 +269,24 @@
       }
     }
   },
-  "mOrder": {
-    "addAddress": {
-      "en": "Add Address",
-      "ko": "주소 추가",
-      "zh-cn": "使用新地址",
-      "zh-tw": "使用新地址"
+  "mHome": {
+    "categoryWomen": {
+      "en": "여성복",
+      "ko": "여성복",
+      "zh-cn": "여성복",
+      "zh-tw": "여성복"
     },
-    "changeAddress": {
-      "en": "Change Address",
-      "ko": "다른 주소 선택",
-      "zh-cn": "选择别的地址",
-      "zh-tw": "選擇別的地址"
+    "categoryMen": {
+      "en": "남성복",
+      "ko": "남성복",
+      "zh-cn": "남성복",
+      "zh-tw": "남성복"
     },
-    "goBack": {
-      "en": "Go Back",
-      "ko": "돌아가기",
-      "zh-cn": "返回",
-      "zh-tw": "返回"
+    "categoryShoes": {
+      "en": "신발",
+      "ko": "신발",
+      "zh-cn": "신발",
+      "zh-tw": "신발"
     }
   },
   "mItemDetail": {
@@ -331,6 +331,54 @@
       "ko": "저작권법에 의해 법적 조치를 받을 수 있습니다.",
       "zh-cn": "",
       "zh-tw": ""
+    }
+  },
+  "mOrder": {
+    "addAddress": {
+      "en": "Add Address",
+      "ko": "주소 추가",
+      "zh-cn": "使用新地址",
+      "zh-tw": "使用新地址"
+    },
+    "changeAddress": {
+      "en": "Change Address",
+      "ko": "다른 주소 선택",
+      "zh-cn": "选择别的地址",
+      "zh-tw": "選擇別的地址"
+    },
+    "goBack": {
+      "en": "Go Back",
+      "ko": "돌아가기",
+      "zh-cn": "返回",
+      "zh-tw": "返回"
+    }
+  },
+  "mSignin": {
+    "onlyRetailerLinkshopsService1": {
+      "en": "Only retailer can use Linkshops service.",
+      "ko": "링크샵스는 사업자회원만이 이용할 수 있는 도매사이트 입니다.",
+      "zh-cn": "Linkshops是批发采购专用平台。",
+      "zh-tw": "Linkshops是批發採購專用平台"
+    },
+    "onlyRetailerLinkshopsService2": {
+      "en": "",
+      "ko": "도매사이트 입니다.",
+      "zh-cn": "",
+      "zh-tw": ""
+    }
+  },
+  "mSignup": {
+    "doSignup": {
+      "en": "회원가입하기",
+      "ko": "회원가입하기",
+      "zh-cn": "회원가입하기",
+      "zh-tw": "회원가입하기"
+    },
+    "seeDetail": {
+      "en": "내용보기",
+      "ko": "내용보기",
+      "zh-cn": "내용보기",
+      "zh-tw": "내용보기"
     }
   },
   "pcCart": {

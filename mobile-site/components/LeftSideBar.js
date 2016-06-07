@@ -51,14 +51,14 @@ export default React.createClass({
     if (auth.bearer) {
       return (
           <div className="drawer-logined">
-            <div className="drawer-username">{i18n.get('word.hi')} {stringUtil.getUserName(auth)}님</div>
+            <div className="drawer-username">{i18n.get('word.hi')} {stringUtil.getUserName(auth)}{i18n.get('pcMain.myMenu.userHi')}</div>
           </div>
         );
     }
     return (
         <div className="drawer-unlogin">
-          <span className="drawer-signin" onClick={this._showSignin}>로그인</span>
-          <span className="drawer-join" onClick={this._showRegister}>회원가입</span>
+          <span className="drawer-signin" onClick={this._showSignin}>{i18n.get('word.login')}</span>
+          <span className="drawer-join" onClick={this._showRegister}>{i18n.get('word.register')}</span>
         </div>
       );
   },
@@ -67,7 +67,7 @@ export default React.createClass({
     if (auth.bearer) {
       return (
           <li className="drawer-loginout" onClick={this._logout}>
-            <a href="#">로그아웃</a>
+            <a href="#">{i18n.get('word.logout')}</a>
           </li>
         );
     }
