@@ -2,6 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import LinkedStateMixin from 'react-addons-linked-state-mixin';
+import _ from 'lodash';
 
 import i18n from 'commons/utils/i18n';
 
@@ -20,7 +21,7 @@ export default React.createClass({
     setSize: PropTypes.func.isRequired,
     addCart: PropTypes.func.isRequired,
     buyNow: PropTypes.func.isRequired,
-    topImg: PropTypes.array,
+    images: PropTypes.array,
   },
   contextTypes: {
     activeLocale: PropTypes.string,
@@ -97,7 +98,7 @@ export default React.createClass({
         && color.variant.appImages.default && color.variant.appImages.default.length) {
           return (
             <span className={`sku-color${(color.color === currentColor ? ' selected' : '')}`}
-              key={color.color} onClick={() => this.props.setColor(color.color)}
+              key={color.color} onClick={() => this.props.setColor(color)}
             >
               <img alt="sku" src={color.variant.appImages.default[0].url} />
               <span className="sku-disabled-mask"></span>
@@ -123,45 +124,26 @@ export default React.createClass({
     return null;
   },
   render() {
-    const { show, product, currentColor, currentSize, currentVariant, topImg } = this.props;
     const { activeCurrency } = this.context;
-    let style = {};
-    if (show) {
-      style = {
-        zIndex: '51',
-        top: '0%',
-      };
-    }
-
-    const renderTopImg = () => {
-      if (topImg && topImg.length) {
-        return (
-            <div className="sku-img">
-              <img alt="" src={topImg[0].url} />
-            </div>
-          );
-      }
-      return null;
-    };
 
     return (
       <div className="sku-body ms-sku">
         <ul>
           <li>
-            <p className="sku-props-title">Color <span className="current-prop">{currentColor}</span></p>
+            <p className="sku-props-title">{i18n.get('pcItemDetail.color')}</p>
             <div className="ms-sku-props">
               {this.renderColors()}
             </div>
           </li>
           <li>
-            <p className="sku-props-title">Size <span className="current-prop">{currentSize}</span></p>
+            <p className="sku-props-title">{i18n.get('pcItemDetail.size')}</p>
             <div className="ms-sku-props">
               {this.renderSizes()}
             </div>
           </li>
         </ul>
         <section className="ms-quantity">
-          <header className="ms-row-title">Quantity&nbsp;</header>
+          <header className="ms-row-title">{i18n.get('pcItemDetail.quantity')}</header>
           <p className="ms-numberic-wrap">
             <span className="ms-numberic-container">
               <span className="ms-numberic">
