@@ -432,17 +432,113 @@
       "zh-cn": "使用新地址",
       "zh-tw": "使用新地址"
     },
+    "addressAliasPlaceHolder": {
+      "en": "주소 별명",
+      "ko": "주소 별명",
+      "zh-cn": "주소 별명",
+      "zh-tw": "주소 별명"
+    },
+    "addressDetailPlaceHolder": {
+      "en": "상세주소",
+      "ko": "상세주소",
+      "zh-cn": "상세주소",
+      "zh-tw": "상세주소"
+    },
+    "addressRoadPlaceHolder": {
+      "en": "도로명주소",
+      "ko": "도로명주소",
+      "zh-cn": "도로명주소",
+      "zh-tw": "도로명주소"
+    },
     "changeAddress": {
       "en": "Change Address",
       "ko": "다른 주소 선택",
       "zh-cn": "选择别的地址",
       "zh-tw": "選擇別的地址"
     },
+    "changeAddressTitle": {
+      "en": "Change Address",
+      "ko": "주소 변경",
+      "zh-cn": "주소 변경",
+      "zh-tw": "주소 변경"
+    },
+    "denyDomesticToOverseas": {
+      "en": "Cannot change Domestic -> Overseas address. Please add new address",
+      "ko": "국내 주소를 해외 주소로 변경할 수 없습니다. 새 주소를 만들어 주세요",
+      "zh-cn": "Cannot change Domestic -> Overseas address. Please add new address",
+      "zh-tw": "Cannot change Domestic -> Overseas address. Please add new address"
+    },
+    "denyOverseasToDomestic": {
+      "en": "Cannot change Overseas -> Domestic address. Please add new address",
+      "ko": "해외 주소를 한국 주소로 변경할 수 없습니다. 새 주소를 만들어 주세요",
+      "zh-cn": "Cannot change Overseas -> Domestic address. Please add new address",
+      "zh-tw": "Cannot change Overseas -> Domestic address. Please add new address"
+    },
+    "findPostalCode": {
+      "en": "우편번호 찾기",
+      "ko": "우편번호 찾기",
+      "zh-cn": "우편번호 찾기",
+      "zh-tw": "우편번호 찾기"
+    },
     "goBack": {
       "en": "Go Back",
       "ko": "돌아가기",
       "zh-cn": "返回",
       "zh-tw": "返回"
+    },
+    "warnAddressAlias": {
+      "en": "별명을 입력해 주세요",
+      "ko": "별명을 입력해 주세요",
+      "zh-cn": "별명을 입력해 주세요",
+      "zh-tw": "별명을 입력해 주세요"
+    },
+    "warnAddressContactName": {
+      "en": "받는 분 이름을 입력해 주세요",
+      "ko": "받는 분 이름을 입력해 주세요",
+      "zh-cn": "받는 분 이름을 입력해 주세요",
+      "zh-tw": "받는 분 이름을 입력해 주세요"
+    },
+    "warnAddressContactTel": {
+      "en": "전화번호를 입력해 주세요",
+      "ko": "전화번호를 입력해 주세요",
+      "zh-cn": "전화번호를 입력해 주세요",
+      "zh-tw": "전화번호를 입력해 주세요"
+    },
+    "warnAddressFindPostalCode": {
+      "en": "우편번호 찾기로 주소를 찾아주세요",
+      "ko": "우편번호 찾기로 주소를 찾아주세요",
+      "zh-cn": "우편번호 찾기로 주소를 찾아주세요",
+      "zh-tw": "우편번호 찾기로 주소를 찾아주세요"
+    },
+    "warnAddressDetial": {
+      "en": "상세 주소를 입력해 주세요",
+      "ko": "상세 주소를 입력해 주세요",
+      "zh-cn": "상세 주소를 입력해 주세요",
+      "zh-tw": "상세 주소를 입력해 주세요"
+    },
+    "warnAddress1": {
+      "en": "Please Enter Address1",
+      "ko": "Please Enter Address1",
+      "zh-cn": "Please Enter Address1",
+      "zh-tw": "Please Enter Address1"
+    },
+    "warnAddress2": {
+      "en": "Please Enter Address2",
+      "ko": "Please Enter Address2",
+      "zh-cn": "Please Enter Address2",
+      "zh-tw": "Please Enter Address2"
+    },
+    "warnAddressCity": {
+      "en": "Please Enter City",
+      "ko": "Please Enter City",
+      "zh-cn": "Please Enter City",
+      "zh-tw": "Please Enter City"
+    },
+    "warnAddressZipCode": {
+      "en": "Please Enter Zip Code",
+      "ko": "Please Enter Zip Code",
+      "zh-cn": "Please Enter Zip Code",
+      "zh-tw": "Please Enter Zip Code"
     }
   },
   "mSignin": {
@@ -2207,6 +2303,12 @@
       "ko": "안녕하세요",
       "zh-cn": "您好",
       "zh-tw": "您好"
+    },
+    "home": {
+      "en": "Home",
+      "ko": "홈",
+      "zh-cn": "홈",
+      "zh-tw": "홈"
     },
     "language": {
       "en": "Languages",

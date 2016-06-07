@@ -77,7 +77,7 @@ export default React.createClass({
     const addressFieldsOversea = [
       { key: 'countryCode', objKey: 'countryCode', text: 'country code', placeholder: '', enums: countryCodes },
       { key: 'detail.alias', objKey: 'alias', text: i18n.get('pcPayment.alias'), placeholder: 'Address alias' },
-      { key: 'detail.name', objKey: 'name', text: i18n.get('pcPayment.contactName'), placeholder: i18n.get('word.name') } ,
+      { key: 'detail.name', objKey: 'name', text: i18n.get('pcPayment.contactName'), placeholder: i18n.get('word.name') },
       { key: 'detail.tel', objKey: 'tel', text: i18n.get('pcPayment.phoneNumber'), placeholder: '01012345678' },
       { key: 'detail.address.base', objKey: 'address1', text: 'address1', placeholder: 'address1' },
       { key: 'detail.address.detail', objKey: 'address2', text: 'address2', placeholder: 'address2' },
@@ -132,11 +132,11 @@ export default React.createClass({
       if (addressForEdit.id) {
         // 2016. 05. 30. [heekyu] when modifing, cannot change KR -> OTHER or OTHER -> KR
         if (addressForEdit.countryCode === 'KR' && code !== 'KR') {
-          window.alert('Cannot change Domestic -> Overseas address. Please add new address');
+          window.alert(i18n.get('mOrder.denyDomesticToOverseas'));
           return;
         }
         if (addressForEdit.countryCode !== 'KR' && code === 'KR') {
-          window.alert('Cannot change Overseas -> Domestic address. Please add new address');
+          window.alert(i18n.get('mOrder.denyOverseasToDomestic'));
           return;
         }
       }

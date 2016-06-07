@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
+import i18n from 'commons/utils/i18n';
 import { getProductMainImage } from 'commons/utils/productUtil';
 
 export default React.createClass({
@@ -42,7 +43,7 @@ export default React.createClass({
     return (
       <section className="promotion-block today-deals">
         <header>
-          <div style={({ padding: '0 8px' })}>동대문 핫신상</div>
+          <div style={({ padding: '0 8px' })}>{`${i18n.get('pcFooter.hot')} ${i18n.get('pcFooter.items')}`}</div>
           {/*<Link to="/categories/4">동대문 핫신상</Link>*/}
         </header>
         <article>

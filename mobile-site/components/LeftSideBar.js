@@ -95,7 +95,7 @@ export default React.createClass({
           <ul className="drawer-guide">
             <li className="drawer-home">
               <Link to="/" onClick={this.props.toggle}><i className="ms-icon icon-home"></i>
-                <span>Home</span>
+                <span>{i18n.get('word.home')}</span>
               </Link>
             </li>
             <li className="drawer-category">
@@ -105,7 +105,7 @@ export default React.createClass({
             </li>
             <li className="drawer-myOrder">
               <div onClick={() => this.handleWithAuth('/myOrder')}><i className="ms-icon icon-order"></i>
-                <span>My Orders</span>
+                <span>{i18n.get('pcMain.myMenu.myOrders')}</span>
               </div>
             </li>
             <li className="drawer-cart">

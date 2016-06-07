@@ -62,7 +62,33 @@
   margin-right: 8px
 }
 .wrap {
-  padding: 12px
+  padding: 12px;
+  .tab-line {
+    $border-color: #999;
+    $height: 35px;
+    display: block;
+    height: $height;
+    line-height: $height;
+    margin-bottom: 15px;
+    width: 100%;
+    .item {
+      background-color: #fafafa;
+      color: #777;
+      cursor: pointer;
+      display: inline-block;
+      font-size: 13px;
+      height: 100%;
+      text-align: center;
+      vertical-align: top;
+      width: 50%;
+      &.active {
+        background-color: #eee;
+        border: 1px solid $border-color;
+        color: #000;
+        font-size: 14px;
+      }
+    }
+  }
 }
 .wrap h2 {
   margin-bottom: 12px
