@@ -379,6 +379,24 @@
       "ko": "내용보기",
       "zh-cn": "내용보기",
       "zh-tw": "내용보기"
+    },
+    "telOnlyNumbers": {
+      "en": "전화번호('-' 제외)",
+      "ko": "전화번호('-' 제외)",
+      "zh-cn": "전화번호('-' 제외)",
+      "zh-tw": "전화번호('-' 제외)"
+    },
+    "bizNumberOnlyNumbers": {
+      "en": "사업자번호('-' 제외)",
+      "ko": "사업자번호('-' 제외)",
+      "zh-cn": "사업자번호('-' 제외)",
+      "zh-tw": "사업자번호('-' 제외)"
+    },
+    "bizImageUpload": {
+      "en": "Upload Bizuness Registration Picture",
+      "ko": "사업자등록증 사진 업로드",
+      "zh-cn": "사업자등록증 사진 업로드",
+      "zh-tw": "사업자등록증 사진 업로드"
     }
   },
   "pcCart": {

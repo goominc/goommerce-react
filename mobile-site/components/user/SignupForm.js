@@ -79,7 +79,7 @@ export default React.createClass({
         <div key="signup-biz-image" className="signup-biz-image-line">
           <input id="biz-image-button" type="file" accept="image/*,application/pdf" onChange={onSelectFile} style={({ display: 'none' })} />
           <button className="biz-image-upload-button" style={({ margin: 0 })} onClick={openBizImagePopup}>
-            사업자등록증 사진 업로드
+            {i18n.get('mSignup.bizImageUpload')}
           </button>
         </div>
       );
@@ -87,7 +87,7 @@ export default React.createClass({
     const renderBizInfoChina = () => {
       const fields1 = [
         { name: t('bizName'), placeholder: t('bizNamePlaceHolder'), key: 'data.bizName' },
-        { name: `${t('bizNumber')}('-' 제외)`, placeholder: t('bizNumberPlaceHolder'), key: 'data.bizNumber',
+        { name: i18n.get('mSignup.bizNumberOnlyNumbers'), placeholder: t('bizNumberPlaceHolder'), key: 'data.bizNumber',
           onChange: (e) => onlyNumberFieldOnChange(e, 'data.bizNumber', 16) },
       ];
       const bizImageField = renderBizImage();
@@ -104,7 +104,7 @@ export default React.createClass({
       }
       const fields1 = [
         { name: t('bizName'), placeholder: t('bizNamePlaceHolder'), key: 'data.bizName', isRequired: true },
-        { name: `${t('bizNumber')}('-' 제외)`, placeholder: t('bizNumberPlaceHolder'), key: 'data.bizNumber', isRequired: true,
+        { name: i18n.get('mSignup.bizNumberOnlyNumbers'), placeholder: t('bizNumberPlaceHolder'), key: 'data.bizNumber', isRequired: true,
           onChange: (e) => onlyNumberFieldOnChange(e, 'data.bizNumber', 16) },
       ];
       const fields2 = [
@@ -206,8 +206,8 @@ export default React.createClass({
         </div>
         <div className="signup-form-section">
           <div className="signup-input-line">
-            {renderField({ name: '성', className: 'signup-input-lastName', key: 'data.lastName' })}
-            {renderField({ name: '이름', className: 'signup-input-firstName', key: 'data.firstName' })}
+            {renderField({ name: i18n.get('pcMain.signup.lastName'), className: 'signup-input-lastName', key: 'data.lastName' })}
+            {renderField({ name: i18n.get('pcMain.signup.firstName'), className: 'signup-input-firstName', key: 'data.firstName' })}
           </div>
           <div className="form-tel">
             <div className="form-tel-line">
@@ -221,7 +221,7 @@ export default React.createClass({
                 onlyNumberFieldOnChange ? onlyNumberFieldOnChange(e, 'data.tel', 15) : onChange(e, 'data.tel')
               )}
                 value={_.get(this.state, 'data.tel') || ''}
-                type="text" placeholder="전화번호('-' 제외)"
+                type="text" placeholder={i18n.get('mSignup.telOnlyNumbers')}
               />
             </div>
             <div className="dropdown-box">
