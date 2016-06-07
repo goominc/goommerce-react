@@ -5,7 +5,7 @@ import { ApiAction, setHeader, toggleProductCart,
          setProductColor, setProductSize, toggleSignRegister } from 'redux/actions';
 const { loadProduct, addWish, addFavoriteBrand, addCartProduct, createOrder } = ApiAction;
 
-import ProductDetailPage from 'components/ProductDetailPage';
+import ProductDetailPage from 'components/product/ProductDetailPage';
 import ProductDetailBottom from 'components/product/ProductDetailBottom';
 
 import roleUtil from 'commons/utils/roleUtil';

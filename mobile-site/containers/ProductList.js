@@ -8,8 +8,8 @@ const { loadCategories } = ApiAction;
 import { ajaxReturnPromise } from 'commons/redux/util/ajaxUtil';
 import i18n from 'commons/utils/i18n';
 
-import ProductListItem from 'components/ProductListItem';
-import ProductListFilter from 'components/ProductListFilter';
+import ProductListItem from 'components/product/ProductListItem';
+import ProductListFilter from 'components/product/ProductListFilter';
 
 const fetchSize = 10;
 
