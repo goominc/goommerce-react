@@ -293,20 +293,20 @@
     "actualSizeUnit": {
       "en": "단위: cm",
       "ko": "단위: cm",
-      "zh-cn": "단위: cm",
-      "zh-tw": "단위: cm"
+      "zh-cn": "单位: cm",
+      "zh-tw": "單位: cm"
     },
     "productActualSize": {
       "en": "Actual Size",
       "ko": "상품 실측 사이즈",
-      "zh-cn": "상품 실측 사이즈",
-      "zh-tw": "상품 실측 사이즈"
+      "zh-cn": "商品尺码",
+      "zh-tw": "商品尺碼"
     },
     "detailTitle": {
       "en": "상품 디테일",
       "ko": "상품 디테일",
-      "zh-cn": "상품 디테일",
-      "zh-tw": "상품 디테일"
+      "zh-cn": "商品详情",
+      "zh-tw": "商品詳情"
     },
     "warnLinkshopsImage1": {
       "en": "링크샵스에서 제공하는 상품 이미지의 저작권은",
@@ -1021,26 +1021,26 @@
     "alreadyLoginAndGoHome": {
       "en": "You're already logged in. Go Home",
       "ko": "로그인 되어 있습니다. 홈페이지로 이동합니다.",
-      "zh-cn": "로그인 되어 있습니다. 홈페이지로 이동합니다.",
-      "zh-tw": "로그인 되어 있습니다. 홈페이지로 이동합니다."
+      "zh-cn": "您已经登录了，回去首页。",
+      "zh-tw": "您已經登陸了，回去首頁。"
     },
     "loginBeforeUseService": {
       "en": "login before use service",
       "ko": "로그인 후 서비스 이용할 수 있습니다",
-      "zh-cn": "로그인 후 서비스 이용할 수 있습니다",
-      "zh-tw": "로그인 후 서비스 이용할 수 있습니다"
+      "zh-cn": "本页面是登陆后可以查看。",
+      "zh-tw": "本頁面是登陸後可以查看。"
     },
     "notAllowedToSeeProduct": {
       "en": "You are not allowed to see product",
       "ko": "상품 조회 권한이 없습니다",
-      "zh-cn": "상품 조회 권한이 없습니다",
-      "zh-tw": "상품 조회 권한이 없습니다"
+      "zh-cn": "您还没有权力使用搜索服务。",
+      "zh-tw": "您還沒有權力使用搜索服務。"
     },
     "youMustbeBuyer": {
       "en": "구매회원으로 인증된 사용자만 서비스 이용하실 수 있습니다",
       "ko": "구매회원으로 인증된 사용자만 서비스 이용하실 수 있습니다",
-      "zh-cn": "구매회원으로 인증된 사용자만 서비스 이용하실 수 있습니다",
-      "zh-tw": "구매회원으로 인증된 사용자만 서비스 이용하실 수 있습니다"
+      "zh-cn": "会员开通完成后可以使用所有服务。",
+      "zh-tw": "會員開通完成後可以使用搜有服務。"
     },
     "myMenu": {
       "cvsOrderUpload": {
