@@ -25,9 +25,9 @@ export default React.createClass({
 
     const renderItem = (item, index) => (
       <div key={item.text}
-        className={`dropdown-item ${cursorPosition === index ? 'cursor' : ''}`}
+        className="dropdown-item"
       >
-        <div className="dropdown-item-content" onClick={() => onSelectItem(item)}>
+        <div className={`dropdown-item-content ${cursorPosition === index ? 'cursor' : ''}`} onClick={() => onSelectItem(item)}>
           {item.text}
         </div>
         {deleteItem && !_.get(item, 'item.isNotRemovable') ?
