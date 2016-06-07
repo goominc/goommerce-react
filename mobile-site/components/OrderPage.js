@@ -138,7 +138,7 @@ export default React.createClass({
         <h3>
           {i18n.get('pcMypage.payment')}
           <div className="shipping-handling-fee-policy" onClick={() => this.context.router.push('/service/policy/shipping')}>
-            사입비 및 배송비 책정기준 <span className="ms-icon icon-arrow-right"></span>
+            {i18n.get('mOrder.shippingPolicyTitle')} <span className="ms-icon icon-arrow-right"></span>
           </div>
         </h3>
         <ul className="order-product-checkout">
