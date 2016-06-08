@@ -116,9 +116,9 @@ export default React.createClass({
           </div>
           <div className="cell content-cell">
             <div className="left">+</div>
-            <div className="right">{i18n.get('word.tax')} (10%) : {taxPrice}</div>
+            <div className="right">{i18n.get('word.tax')} : {taxPrice}</div>
             <div className="left">+</div>
-            <div className="right">{i18n.get('word.handlingFee')} (3.3%) : {handlingFeePrice}</div>
+            <div className="right">{i18n.get('word.handlingFee')} : {handlingFeePrice}</div>
             <div className="left">+</div>
             <div className="right">{i18n.get('word.shippingCost')} : {shippingCostPrice}</div>
           </div>

@@ -38,13 +38,13 @@ export default React.createClass({
               </span>
             </div>
             <div className="order-price-black">
-              <span className="checkout-item">부가세(10%)</span>
+              <span className="checkout-item">부가세</span>
               <span className="cost">
                 {activeCurrency} {order[`tax${activeCurrency}`]}
               </span>
             </div>
             <div className="order-price-black">
-              <span className="checkout-item">사입비(3.3%)</span>
+              <span className="checkout-item">사입비</span>
               <span className="cost">
                 {activeCurrency} {order[`handlingFee${activeCurrency}`]}
               </span>

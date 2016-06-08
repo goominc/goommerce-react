@@ -265,7 +265,7 @@ export default React.createClass({
               <div className="control">{subtotalPrice}</div>
             </div>
             <div className="row">
-              <div className="label">{i18n.get('pcPayment.tax')} (10%)</div>
+              <div className="label">{i18n.get('pcPayment.tax')}</div>
               <div className="control">{taxPrice}</div>
             </div>
             <div className="row">
