@@ -450,6 +450,30 @@
       "zh-cn": "도로명주소",
       "zh-tw": "도로명주소"
     },
+    "address1PlaceHolder": {
+      "en": "address1",
+      "ko": "address1",
+      "zh-cn": "address1",
+      "zh-tw": "address1"
+    },
+    "address2PlaceHolder": {
+      "en": "address2",
+      "ko": "address2",
+      "zh-cn": "address2",
+      "zh-tw": "address2"
+    },
+    "cityPlaceHolder": {
+      "en": "city",
+      "ko": "city",
+      "zh-cn": "city",
+      "zh-tw": "city"
+    },
+    "zipCodePlaceHolder": {
+      "en": "zip code",
+      "ko": "zip code",
+      "zh-cn": "zip code",
+      "zh-tw": "zip code"
+    },
     "changeAddress": {
       "en": "Change Address",
       "ko": "다른 주소 선택",
@@ -583,14 +607,14 @@
     "bizNumberOnlyNumbers": {
       "en": "사업자번호('-' 제외)",
       "ko": "사업자번호('-' 제외)",
-      "zh-cn": "营业注册号",
-      "zh-tw": "營業註冊號"
+      "zh-cn": "营业注册号(若还没有不用填写)",
+      "zh-tw": "營業註冊號(若還沒有不用填寫)"
     },
     "bizImageUpload": {
       "en": "Upload Bizuness Registration Picture",
       "ko": "사업자등록증 사진 업로드",
-      "zh-cn": "上传营业执照",
-      "zh-tw": "上傳營業執照"
+      "zh-cn": "上传营业执照(若没有不用上传)",
+      "zh-tw": "上傳營業執照(若沒有不用上傳)"
     },
     "textAreaPlaceHolder": {
       "en": "기타",
@@ -1340,14 +1364,14 @@
       "signupPolicyDesc1": {
         "en": "패션잡화 관련 소매업자에 한해 가입승인이 진행되며,",
         "ko": "패션잡화 관련 소매업자에 한해 가입승인이 진행되며,",
-        "zh-cn": "为了避免个人消费者混乱注册，",
-        "zh-tw": "為了避免個人消費者的混亂註冊，"
+        "zh-cn": "如果目前还没有营业执照，",
+        "zh-tw": "如果目前還沒有營業執照，"
       },
       "signupPolicyDesc2": {
         "en": "취급품목 및 업태가 다른 경우 승인이 반려될 수 있습니다.",
         "ko": "취급품목 및 업태가 다른 경우 승인이 반려될 수 있습니다.",
-        "zh-cn": "我们确认您的商业信息，请协助。",
-        "zh-tw": "我們確認您的商業信息，請協助."
+        "zh-cn": "在备注栏，填写您的实际情况(做微商、做淘宝等)",
+        "zh-tw": "在備註欄，填寫您的實際情況(做微商、做淘寶等)"
       },
       "password": {
         "en": "Password",
@@ -1408,7 +1432,7 @@
       "password": {
         "en": "Password",
         "ko": "비밀번호",
-        "zh-cn": "輸入密码",
+        "zh-cn": "输入密码",
         "zh-tw": "輸入密碼"
       },
       "passwordAgain": {

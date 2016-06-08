@@ -65,24 +65,24 @@ export default React.createClass({
       </div>
     );
     const addressFields = [
-      { key: 'detail.alias', objKey: 'alias', text: i18n.get('pcPayment.alias'), placeholder: '주소 별명' },
-      { key: 'detail.name', objKey: 'name', text: i18n.get('pcPayment.contactName'), placeholder: '이름' },
+      { key: 'detail.alias', objKey: 'alias', text: i18n.get('pcPayment.alias'), placeholder: i18n.get('mOrder.addressAliasPlaceHolder') },
+      { key: 'detail.name', objKey: 'name', text: i18n.get('pcPayment.contactName'), placeholder: i18n.get('word.name') },
       { key: 'detail.tel', objKey: 'tel', text: i18n.get('pcPayment.phoneNumber'), placeholder: '01012345678' },
       { key: 'detail.postalCode', objKey: 'postalCode', text: i18n.get('pcPayment.zipCode'), isReadOnly: true, placeholder: '00000' },
-      { key: 'detail.address.base', objKey: 'address1', text: i18n.get('pcPayment.address'), isReadOnly: true, placeholder: '도로명주소' },
-      { key: 'detail.address.detail', objKey: 'address2', text: '상세 주소', placeholder: '상세주소' },
+      { key: 'detail.address.base', objKey: 'address1', text: i18n.get('pcPayment.address'), isReadOnly: true, placeholder: i18n.get('mOrder.addressRoadPlaceHolder') },
+      { key: 'detail.address.detail', objKey: 'address2', text: i18n.get('mOrder.addressDetailPlaceHolder'), placeholder: i18n.get('mOrder.addressDetailPlaceHolder') },
     ];
     // 2016. 05. 30. [heekyu] 'KR' is not oversea country code
     const countryCodes = ['CN', 'TW', 'HK', 'MO', 'ETC'];
     const addressFieldsOversea = [
       { key: 'countryCode', objKey: 'countryCode', text: 'country code', placeholder: '', enums: countryCodes },
-      { key: 'detail.alias', objKey: 'alias', text: i18n.get('pcPayment.alias'), placeholder: 'Address alias' },
+      { key: 'detail.alias', objKey: 'alias', text: i18n.get('pcPayment.alias'), placeholder: i18n.get('mOrder.addressAliasPlaceHolder') },
       { key: 'detail.name', objKey: 'name', text: i18n.get('pcPayment.contactName'), placeholder: i18n.get('word.name') },
       { key: 'detail.tel', objKey: 'tel', text: i18n.get('pcPayment.phoneNumber'), placeholder: '01012345678' },
-      { key: 'detail.address.base', objKey: 'address1', text: 'address1', placeholder: 'address1' },
-      { key: 'detail.address.detail', objKey: 'address2', text: 'address2', placeholder: 'address2' },
-      { key: 'detail.address.ciry', objKey: 'city', text: 'city', placeholder: 'city' },
-      { key: 'detail.postalCode', objKey: 'postalCode', text: 'zip code', placeholder: 'zip code' },
+      { key: 'detail.address.base', objKey: 'address1', text: i18n.get('mOrder.address1PlaceHolder'), placeholder: i18n.get('mOrder.address1PlaceHolder') },
+      { key: 'detail.address.detail', objKey: 'address2', text: i18n.get('mOrder.address2PlaceHolder'), placeholder: i18n.get('mOrder.address2PlaceHolder') },
+      { key: 'detail.address.ciry', objKey: 'city', text: i18n.get('mOrder.ciryPlaceHolder'), placeholder: i18n.get('mOrder.cityPlaceHolder') },
+      { key: 'detail.postalCode', objKey: 'postalCode', text: i18n.get('mOrder.zipCodePlaceHolder'), placeholder: i18n.get('mOrder.zipCodePlaceHolder') },
     ];
     const { countryCode } = this.state;
     const handleSubmitAddress = (e) => {

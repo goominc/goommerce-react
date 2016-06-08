@@ -103,10 +103,10 @@ const AddressEdit = React.createClass({
     { key: 'detail.alias', objKey: 'alias', text: i18n.get('pcPayment.alias'), placeholder: i18n.get('mOrder.addressAliasPlaceHolder'), errorMessage: i18n.get('mOrder.warnAddressAlias') },
     { key: 'detail.name', objKey: 'name', text: i18n.get('pcPayment.contactName'), placeholder: i18n.get('word.name'), errorMessage: i18n.get('mOrder.warnAddressContactName') },
     { key: 'detail.tel', objKey: 'tel', text: i18n.get('pcPayment.phoneNumber'), placeholder: '01012345678', errorMessage: i18n.get('mOrder.warnAddressTel') },
-    { key: 'detail.address.base', objKey: 'address1', text: 'address1', placeholder: 'address1', errorMessage: i18n.get('mOrder.warnAddress1') },
-    { key: 'detail.address.detail', objKey: 'address2', text: 'address2', placeholder: 'address2', errorMessage: i18n.get('mOrder.warnAddress2') },
-    { key: 'detail.address.city', objKey: 'city', text: 'city', placeholder: 'city', errorMessage: i18n.get('mOrder.warnAddressCity') },
-    { key: 'detail.postalCode', objKey: 'postalCode', text: 'zip code', placeholder: 'zip code', errorMessage: i18n.get('mOrder.warnAddressZipCode') },
+    { key: 'detail.address.base', objKey: 'address1', text: i18n.get('mOrder.address1PlaceHolder'), placeholder: i18n.get('mOrder.address1PlaceHolder'), errorMessage: i18n.get('mOrder.warnAddress1') },
+    { key: 'detail.address.detail', objKey: 'address2', text: i18n.get('mOrder.address2PlaceHolder'), placeholder: i18n.get('mOrder.address2PlaceHolder'), errorMessage: i18n.get('mOrder.warnAddress2') },
+    { key: 'detail.address.city', objKey: 'city', text: i18n.get('mOrder.cityPlaceHolder'), placeholder: i18n.get('mOrder.cityPlaceHolder'), errorMessage: i18n.get('mOrder.warnAddressCity') },
+    { key: 'detail.postalCode', objKey: 'postalCode', text: i18n.get('mOrder.zipCodePlaceHolder'), placeholder: i18n.get('mOrder.zipCodePlaceHolder'), errorMessage: i18n.get('mOrder.warnAddressZipCode') },
   ],
   handleSave() {
     const { params, order } = this.props;
