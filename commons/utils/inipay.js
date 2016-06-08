@@ -49,3 +49,21 @@ export function vBankCodeToName(code) {
   }
   return '';
 }
+
+export function paymentMethod(payment) {
+  if (payment && payment.data) {
+    const { payMethod, paymethod, P_TYPE } = payment.data;
+    return (payMethod || paymethod || P_TYPE || 'VBANK').toUpperCase();
+  }
+}
+
+export function paymentAmount(payment) {
+  if (payment && payment.data) {
+    const { TotPrice, amt_input, P_AMT, PRTC_Price } = payment.data;
+    return Number(TotPrice || amt_input || P_AMT || PRTC_Price || 0);
+  }
+}
+
+export function getParent(order, payment) {
+  return _.find(order.payments, { id: payment.parentId });
+}
