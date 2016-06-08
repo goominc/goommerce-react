@@ -94,7 +94,7 @@ export default React.createClass({
       const res = fields1.map(renderField);
       res.push(bizImageField);
       res.push(
-        <textarea className="signin-input" placeholder={i18n.get('word.etc')} rows="2" onChange={(e) => onChange(e, 'data.signupMemo')} />
+        <textarea className="signin-input" placeholder={i18n.get('mSignup.textAreaPlaceHolder')} rows="2" onChange={(e) => onChange(e, 'data.signupMemo')} />
       );
       return res;
     };

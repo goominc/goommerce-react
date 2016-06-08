@@ -591,6 +591,12 @@
       "ko": "사업자등록증 사진 업로드",
       "zh-cn": "上传营业执照",
       "zh-tw": "上傳營業執照"
+    },
+    "textAreaPlaceHolder": {
+      "en": "기타",
+      "ko": "기타",
+      "zh-cn": "기타",
+      "zh-tw": "기타"
     }
   },
   "pcCart": {
@@ -881,34 +887,58 @@
       "zh-tw": "總長"
     },
     "detailBustSize": {
-      "en": "가슴넓이",
-      "ko": "가슴넓이",
+      "en": "가슴너비",
+      "ko": "가슴너비",
       "zh-cn": "胸宽",
       "zh-tw": "胸寬"
     },
     "detailShoulderWidth": {
-      "en": "어깨넓이",
-      "ko": "어깨넓이",
+      "en": "어깨너비",
+      "ko": "어깨너비",
       "zh-cn": "肩宽",
       "zh-tw": "肩寬"
     },
     "detailArmLength": {
-      "en": "팔길이",
-      "ko": "팔길이",
+      "en": "소매길이",
+      "ko": "소매길이",
       "zh-cn": "袖长",
       "zh-tw": "袖長"
     },
     "detailArmHole": {
-      "en": "암홀",
-      "ko": "암홀",
+      "en": "소매너비",
+      "ko": "소매너비",
       "zh-cn": "袖孔",
       "zh-tw": "袖孔"
     },
     "detailTailEdge": {
-      "en": "밑단",
-      "ko": "밑단",
+      "en": "밑단너비",
+      "ko": "밑단너비",
       "zh-cn": "下摆宽",
       "zh-tw": "下擺寬"
+    },
+    "detailWaistWidth": {
+      "en": "허리너비",
+      "ko": "허리너비",
+      "zh-cn": "허리너비",
+      "zh-tw": "허리너비"
+    },
+    "detailHipSize": {
+      "en": "엉덩이너비",
+      "ko": "엉덩이너비",
+      "zh-cn": "엉덩이너비",
+      "zh-tw": "엉덩이너비"
+    },
+    "detailThighSize": {
+      "en": "허벅지너비",
+      "ko": "허벅지너비",
+      "zh-cn": "허벅지너비",
+      "zh-tw": "허벅지너비"
+    },
+    "detailTailAbove": {
+      "en": "밑위길이",
+      "ko": "밑위길이",
+      "zh-cn": "밑위길이",
+      "zh-tw": "밑위길이"
     },
     "favoriteBrands": {
       "en": "Favorite brands",

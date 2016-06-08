@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
 import i18n from 'commons/utils/i18n';
+import { productDetailAttributes } from 'commons/data';
 
 import ShippingPolicyCountry from 'components/product/ShippingPolicyCountry';
 
@@ -21,15 +22,12 @@ export default React.createClass({
       if (!sizes || !sizes.length) {
         return null;
       }
+      const kind = _.get(product, 'data.detail.kind');
+      if (!productDetailAttributes[kind]) {
+        return null;
+      }
       const baseIndex = Math.floor(sizes.length / 2);
-      const rows = [
-        i18n.get('pcItemDetail.detailLength'),
-        i18n.get('pcItemDetail.detailBustSize'),
-        i18n.get('pcItemDetail.detailShoulderWidth'),
-        i18n.get('pcItemDetail.detailArmLength'),
-        i18n.get('pcItemDetail.detailArmHole'),
-        i18n.get('pcItemDetail.detailTailEdge'),
-      ];
+      const rows = productDetailAttributes[kind].map((attr) => i18n.get(attr));
       const columnWidth = 70 / sizes.length;
       return (
         <table className="size-table">

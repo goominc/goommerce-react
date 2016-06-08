@@ -7,6 +7,7 @@ import ProductDetailModelView from './ProductDetailModelView';
 
 import i18n from 'commons/utils/i18n';
 import { constants } from 'commons/utils/constants';
+import { productDetailAttributes } from 'commons/data';
 
 export default React.createClass({
   propTypes: {
@@ -20,10 +21,14 @@ export default React.createClass({
       if (!sizes.length) {
         return null;
       }
+      const kind = _.get(product, 'data.detail.kind');
+      if (!productDetailAttributes[kind]) {
+        return null;
+      }
       const baseIndex = Math.floor(sizes.length / 2);
       const renderSize = (size, index) => {
         const res = [<td key={`${size}-${index}`}>{size}</td>];
-        for (let i = 0; i < 6; i++) {
+        for (let i = 0; i < productDetailAttributes[kind].length; i++) {
           res.push(
             <td key={`${size}-size-${i}`}>{(+_.get(product, `data.detail.size${i + 1}`) + (index - baseIndex) * 2) || 0}cm</td>
           );
@@ -35,12 +40,7 @@ export default React.createClass({
           <thead>
           <tr>
             <th>{i18n.get('pcItemDetail.detailSize')}</th>
-            <th>{i18n.get('pcItemDetail.detailLength')}</th>
-            <th>{i18n.get('pcItemDetail.detailBustSize')}</th>
-            <th>{i18n.get('pcItemDetail.detailShoulderWidth')}</th>
-            <th>{i18n.get('pcItemDetail.detailArmLength')}</th>
-            <th>{i18n.get('pcItemDetail.detailArmHole')}</th>
-            <th>{i18n.get('pcItemDetail.detailTailEdge')}</th>
+            {productDetailAttributes[kind].map((attr) => <th>{i18n.get(attr)}</th>)}
           </tr>
           </thead>
           <tbody>
