@@ -273,112 +273,112 @@
     "company1": {
       "en": "상호명 - ㈜ 에이프릴",
       "ko": "상호명 - ㈜ 에이프릴",
-      "zh-cn": "상호명 - ㈜ 에이프릴",
-      "zh-tw": "상호명 - ㈜ 에이프릴"
+      "zh-cn": "(株)April",
+      "zh-tw": "(株)April"
     },
     "company2": {
       "en": "대표자 - 서경미",
       "ko": "대표자 - 서경미",
-      "zh-cn": "대표자 - 서경미",
-      "zh-tw": "대표자 - 서경미"
+      "zh-cn": "代表理事 徐庚美",
+      "zh-tw": "代表理事 徐庚美"
     },
     "company3": {
       "en": "주소 - 서울시 중구 퇴계로 324 성우빌딩 6층",
       "ko": "주소 - 서울시 중구 퇴계로 324 성우빌딩 6층",
-      "zh-cn": "주소 - 서울시 중구 퇴계로 324 성우빌딩 6층",
-      "zh-tw": "주소 - 서울시 중구 퇴계로 324 성우빌딩 6층"
+      "zh-cn": "首尔市 中区 退溪路 324, 盛宇大楼 6楼",
+      "zh-tw": "首爾市 中區 退溪路 324, 盛宇大樓 6樓"
     },
     "company4": {
       "en": "사업자등록번호 - 201-86-27310",
       "ko": "사업자등록번호 - 201-86-27310",
-      "zh-cn": "사업자등록번호 - 201-86-27310",
-      "zh-tw": "사업자등록번호 - 201-86-27310"
+      "zh-cn": "营业执照号码 201-86-27310",
+      "zh-tw": "營業執照號碼 201-86-27310"
     },
     "company5": {
       "en": "통신판매업신고 - 서울중구 60887호",
       "ko": "통신판매업신고 - 서울중구 60887호",
-      "zh-cn": "통신판매업신고 - 서울중구 60887호",
-      "zh-tw": "통신판매업신고 - 서울중구 60887호"
+      "zh-cn": "通信销售业申报号码 首尔中区60887号",
+      "zh-tw": "通信銷售業申報號碼 首爾中區60887號"
     },
     "company6": {
       "en": "개인정보관리책임자 - 오영지",
       "ko": "개인정보관리책임자 - 오영지",
-      "zh-cn": "개인정보관리책임자 - 오영지",
-      "zh-tw": "개인정보관리책임자 - 오영지"
+      "zh-cn": "个人情报负责人 吴映知",
+      "zh-tw": "個人情報負責人 吳映知"
     },
     "customerCenterTitle": {
       "en": "고객센터 안내",
       "ko": "고객센터 안내",
-      "zh-cn": "고객센터 안내",
-      "zh-tw": "고객센터 안내"
+      "zh-cn": "客服中心 营业时间",
+      "zh-tw": "客服中心 營業時間"
     },
     "customerCenter1": {
       "en": "평일 - 오전 10:00 ~ 오후 18:00",
       "ko": "평일 - 오전 10:00 ~ 오후 18:00",
-      "zh-cn": "평일 - 오전 10:00 ~ 오후 18:00",
-      "zh-tw": "평일 - 오전 10:00 ~ 오후 18:00"
+      "zh-cn": "10:00~18:00 周一到周五",
+      "zh-tw": "10:00~18:00 週一到週五"
     },
     "customerCenter2": {
       "en": "점심시간 - 오전 12:30 ~ 오후 13:30",
       "ko": "점심시간 - 오전 12:30 ~ 오후 13:30",
-      "zh-cn": "점심시간 - 오전 12:30 ~ 오후 13:30",
-      "zh-tw": "점심시간 - 오전 12:30 ~ 오후 13:30"
+      "zh-cn": "午休 12:30~13:30",
+      "zh-tw": "午休 12:30 ~ 13:30"
     },
     "customerCenter3": {
       "en": "주말, 공휴일 제외(한국기준)",
       "ko": "주말, 공휴일 제외(한국기준)",
-      "zh-cn": "주말, 공휴일 제외(한국기준)",
-      "zh-tw": "주말, 공휴일 제외(한국기준)"
+      "zh-cn": "国家节假日(韩国), 周末休息",
+      "zh-tw": "國家節假日(韓國), 週末休息"
     },
     "customerCenter4": {
       "en": "Tel - 02-2272-1122",
       "ko": "Tel - 02-2272-1122",
-      "zh-cn": "Tel - 02-2272-1122",
-      "zh-tw": "Tel - 02-2272-1122"
+      "zh-cn": "Tel  82-2-2272-1122",
+      "zh-tw": "Tel  82-2-2272-1122"
     },
     "customerCenter5": {
       "en": "Fax - 02-2233-5911",
       "ko": "Fax - 02-2233-5911",
-      "zh-cn": "Fax - 02-2233-5911",
-      "zh-tw": "Fax - 02-2233-5911"
+      "zh-cn": "Fax  82-2-2233-5911",
+      "zh-tw": "Fax  82-2-2233-5911"
     },
     "customerCenter6": {
       "en": "E-mail - cs@linkshops.com",
       "ko": "E-mail - cs@linkshops.com",
-      "zh-cn": "E-mail - cs@linkshops.com",
-      "zh-tw": "E-mail - cs@linkshops.com"
+      "zh-cn": "E-mail  cs@linkshops.com",
+      "zh-tw": "E-mail  cs@linkshops.com"
     },
     "customerCenter7": {
       "en": "구매회원 상담 카카오톡 ID - linkshops",
       "ko": "구매회원 상담 카카오톡 ID - linkshops",
-      "zh-cn": "구매회원 상담 카카오톡 ID - linkshops",
-      "zh-tw": "구매회원 상담 카카오톡 ID - linkshops"
+      "zh-cn": "微信  linkshops-china",
+      "zh-tw": "微信  linkshops-china"
     },
     "customerCenter8": {
       "en": "판매회원 상담 카카오톡 ID - linkshops_brand",
       "ko": "판매회원 상담 카카오톡 ID - linkshops_brand",
-      "zh-cn": "판매회원 상담 카카오톡 ID - linkshops_brand",
-      "zh-tw": "판매회원 상담 카카오톡 ID - linkshops_brand"
+      "zh-cn": "Line  linkshops",
+      "zh-tw": "Line  linkshops"
     }
   },
   "mHome": {
     "categoryWomen": {
       "en": "여성복",
       "ko": "여성복",
-      "zh-cn": "여성복",
-      "zh-tw": "여성복"
+      "zh-cn": "女装",
+      "zh-tw": "女裝"
     },
     "categoryMen": {
       "en": "남성복",
       "ko": "남성복",
-      "zh-cn": "남성복",
-      "zh-tw": "남성복"
+      "zh-cn": "男装",
+      "zh-tw": "男裝"
     },
     "categoryShoes": {
       "en": "신발",
       "ko": "신발",
-      "zh-cn": "신발",
-      "zh-tw": "신발"
+      "zh-cn": "鞋靴",
+      "zh-tw": "鞋靴"
     }
   },
   "mItemDetail": {
@@ -403,8 +403,8 @@
     "warnLinkshopsImage1": {
       "en": "링크샵스에서 제공하는 상품 이미지의 저작권은",
       "ko": "링크샵스에서 제공하는 상품 이미지의 저작권은",
-      "zh-cn": "网站所有图片的著作权属于",
-      "zh-tw": "網站所有圖片的著作權歸屬於"
+      "zh-cn": "网站所有图片的著作权归属于",
+      "zh-tw": "網站所有圖片的著作權歸屬于"
     },
     "warnLinkshopsImage2": {
       "en": "링크샵스에게 있습니다.",
@@ -435,14 +435,14 @@
     "addressAliasPlaceHolder": {
       "en": "주소 별명",
       "ko": "주소 별명",
-      "zh-cn": "주소 별명",
-      "zh-tw": "주소 별명"
+      "zh-cn": "地址昵称",
+      "zh-tw": "地址暱稱"
     },
     "addressDetailPlaceHolder": {
       "en": "상세주소",
       "ko": "상세주소",
-      "zh-cn": "상세주소",
-      "zh-tw": "상세주소"
+      "zh-cn": "详细地址",
+      "zh-tw": "詳細地址"
     },
     "addressRoadPlaceHolder": {
       "en": "도로명주소",
@@ -459,8 +459,8 @@
     "changeAddressTitle": {
       "en": "Change Address",
       "ko": "주소 변경",
-      "zh-cn": "주소 변경",
-      "zh-tw": "주소 변경"
+      "zh-cn": "修改地址",
+      "zh-tw": "修改地址"
     },
     "denyDomesticToOverseas": {
       "en": "Cannot change Domestic -> Overseas address. Please add new address",
@@ -489,26 +489,26 @@
     "shippingPolicyTitle": {
       "en": "사입비 및 배송비 책정기준",
       "ko": "사입비 및 배송비 책정기준",
-      "zh-cn": "사입비 및 배송비 책정기준",
-      "zh-tw": "사입비 및 배송비 책정기준"
+      "zh-cn": "代购费及运费规定",
+      "zh-tw": "代購費及運費規定"
     },
     "warnAddressAlias": {
       "en": "별명을 입력해 주세요",
       "ko": "별명을 입력해 주세요",
-      "zh-cn": "별명을 입력해 주세요",
-      "zh-tw": "별명을 입력해 주세요"
+      "zh-cn": "请输入地址昵称",
+      "zh-tw": "請輸入地址暱稱"
     },
     "warnAddressContactName": {
       "en": "받는 분 이름을 입력해 주세요",
       "ko": "받는 분 이름을 입력해 주세요",
-      "zh-cn": "받는 분 이름을 입력해 주세요",
-      "zh-tw": "받는 분 이름을 입력해 주세요"
+      "zh-cn": "请输入收货人",
+      "zh-tw": "請輸入收貨人"
     },
     "warnAddressContactTel": {
       "en": "전화번호를 입력해 주세요",
       "ko": "전화번호를 입력해 주세요",
-      "zh-cn": "전화번호를 입력해 주세요",
-      "zh-tw": "전화번호를 입력해 주세요"
+      "zh-cn": "请输入手机号",
+      "zh-tw": "請輸入手機號"
     },
     "warnAddressFindPostalCode": {
       "en": "우편번호 찾기로 주소를 찾아주세요",
@@ -519,20 +519,20 @@
     "warnAddressDetial": {
       "en": "상세 주소를 입력해 주세요",
       "ko": "상세 주소를 입력해 주세요",
-      "zh-cn": "상세 주소를 입력해 주세요",
-      "zh-tw": "상세 주소를 입력해 주세요"
+      "zh-cn": "请输入详细地址",
+      "zh-tw": "請輸入詳細地址"
     },
     "warnAddress1": {
       "en": "Please Enter Address1",
       "ko": "Please Enter Address1",
-      "zh-cn": "Please Enter Address1",
-      "zh-tw": "Please Enter Address1"
+      "zh-cn": "请输入详细地址1",
+      "zh-tw": "請輸入詳細地址1"
     },
     "warnAddress2": {
       "en": "Please Enter Address2",
       "ko": "Please Enter Address2",
-      "zh-cn": "Please Enter Address2",
-      "zh-tw": "Please Enter Address2"
+      "zh-cn": "请输入详细地址2",
+      "zh-tw": "請輸入詳細地址2"
     },
     "warnAddressCity": {
       "en": "Please Enter City",
@@ -565,32 +565,32 @@
     "doSignup": {
       "en": "회원가입하기",
       "ko": "회원가입하기",
-      "zh-cn": "회원가입하기",
-      "zh-tw": "회원가입하기"
+      "zh-cn": "免费注册",
+      "zh-tw": "免費註冊"
     },
     "seeDetail": {
       "en": "내용보기",
       "ko": "내용보기",
-      "zh-cn": "내용보기",
-      "zh-tw": "내용보기"
+      "zh-cn": "展开全文",
+      "zh-tw": "展開全文"
     },
     "telOnlyNumbers": {
       "en": "전화번호('-' 제외)",
       "ko": "전화번호('-' 제외)",
-      "zh-cn": "전화번호('-' 제외)",
-      "zh-tw": "전화번호('-' 제외)"
+      "zh-cn": "请输入手机号",
+      "zh-tw": "請輸入手機號"
     },
     "bizNumberOnlyNumbers": {
       "en": "사업자번호('-' 제외)",
       "ko": "사업자번호('-' 제외)",
-      "zh-cn": "사업자번호('-' 제외)",
-      "zh-tw": "사업자번호('-' 제외)"
+      "zh-cn": "营业注册号",
+      "zh-tw": "營業註冊號"
     },
     "bizImageUpload": {
       "en": "Upload Bizuness Registration Picture",
       "ko": "사업자등록증 사진 업로드",
-      "zh-cn": "사업자등록증 사진 업로드",
-      "zh-tw": "사업자등록증 사진 업로드"
+      "zh-cn": "上传营业执照",
+      "zh-tw": "上傳營業執照"
     }
   },
   "pcCart": {
@@ -1219,7 +1219,7 @@
     "warnLinkshopsImage1": {
       "en": "링크샵스에서 제공하는 상품 이미지의 저작권은 링크샵스에게 있습니다.",
       "ko": "링크샵스에서 제공하는 상품 이미지의 저작권은 링크샵스에게 있습니다.",
-      "zh-cn": "网站所有图片的著作权属于Linkshops，",
+      "zh-cn": "网站所有图片的著作权归属于Linkshops，",
       "zh-tw": "網站所有圖片的著作權歸屬於Linkshops，"
     },
     "warnLinkshopsImage2": {
@@ -1310,14 +1310,14 @@
       "signupPolicyDesc1": {
         "en": "패션잡화 관련 소매업자에 한해 가입승인이 진행되며,",
         "ko": "패션잡화 관련 소매업자에 한해 가입승인이 진행되며,",
-        "zh-cn": "若您营业执照上的营业范围",
-        "zh-tw": "若您營業執照上的營業範圍"
+        "zh-cn": "为了避免个人消费者混乱注册，",
+        "zh-tw": "為了避免個人消費者的混亂註冊，"
       },
       "signupPolicyDesc2": {
         "en": "취급품목 및 업태가 다른 경우 승인이 반려될 수 있습니다.",
         "ko": "취급품목 및 업태가 다른 경우 승인이 반려될 수 있습니다.",
-        "zh-cn": "与Linkshops无关，会被拒绝开通申请。",
-        "zh-tw": "與Linkshops無關，會被拒絕開通申請。"
+        "zh-cn": "我们确认您的商业信息，请协助。",
+        "zh-tw": "我們確認您的商業信息，請協助."
       },
       "password": {
         "en": "Password",
@@ -1419,15 +1419,15 @@
       },
       "firstName": {
         "en": "First Name",
-        "ko": "성",
-        "zh-cn": "姓",
-        "zh-tw": "性"
+        "ko": "이름",
+        "zh-cn": "名字",
+        "zh-tw": "名字"
       },
       "lastName": {
         "en": "Last Name",
-        "ko": "이름",
-        "zh-cn": "名",
-        "zh-tw": "名"
+        "ko": "성",
+        "zh-cn": "姓",
+        "zh-tw": "姓"
       },
       "pleaseEnterOnlyNumbersExcept": {
         "en": "Please enter only numbers except ' - '.",
@@ -1796,7 +1796,7 @@
       "en": "Last Name",
       "ko": "성",
       "zh-cn": "姓",
-      "zh-tw": "性"
+      "zh-tw": "姓"
     },
     "firstName": {
       "en": "First Name",
@@ -1977,8 +1977,8 @@
     "alias": {
       "en": "Alias",
       "ko": "별명",
-      "zh-cn": "昵称",
-      "zh-tw": "暱稱"
+      "zh-cn": "地址昵称",
+      "zh-tw": "地址暱稱"
     },
     "orderSummary": {
       "en": "Order Summary",
@@ -2295,8 +2295,8 @@
     "etc": {
       "en": "etc",
       "ko": "기타",
-      "zh-cn": "其他",
-      "zh-tw": "其他"
+      "zh-cn": "备注",
+      "zh-tw": "備註"
     },
     "favoriteBrand": {
       "en": "favorite brand",
@@ -2313,8 +2313,8 @@
     "home": {
       "en": "Home",
       "ko": "홈",
-      "zh-cn": "홈",
-      "zh-tw": "홈"
+      "zh-cn": "首页",
+      "zh-tw": "首頁"
     },
     "language": {
       "en": "Languages",
@@ -2469,8 +2469,8 @@
     "thereIsNoFile": {
       "en": "선택된 파일이 없습니다",
       "ko": "선택된 파일이 없습니다",
-      "zh-cn": "沒有任何附件資料",
-      "zh-tw": "沒有任何附件資料"
+      "zh-cn": "请上传营业执照",
+      "zh-tw": "請上傳營業執照"
     },
     "unit": {
       "en": "piece",
