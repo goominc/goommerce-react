@@ -46,7 +46,7 @@ export default React.createClass({
     const renderField = (field) =>
       <input
         key={field.name}
-        className={field.className || 'signin-input'}
+        className={`${field.className || 'signin-input'} ${field.isRequired ? 'required' : ''}`}
         value={_.get(this.state, field.key) || ''}
         type={field.type || 'text'}
         placeholder={field.name}
@@ -123,9 +123,11 @@ export default React.createClass({
         { key: 'data.lastName', errorMsg: i18n.get('pcMain.signup.warningInputLastName') },
         { key: 'data.firstName', errorMsg: i18n.get('pcMain.signup.warningInputFirstName') },
         { key: 'data.tel', errorMsg: i18n.get('pcMain.signup.warningInputTel') },
-        { key: 'data.bizName', errorMsg: i18n.get('pcMain.signup.warningInputBizName') },
-        { key: 'data.bizNumber', errorMsg: i18n.get('pcMain.signup.warningInputBizNumber') },
       ];
+      if (!isChinaSignup) {
+        requiredFields.push({ key: 'data.bizName', errorMsg: i18n.get('pcMain.signup.warningInputBizName') });
+        requiredFields.push({ key: 'data.bizNumber', errorMsg: i18n.get('pcMain.signup.warningInputBizNumber') });
+      }
       const user = _.pick(this.state, ['email', 'password', 'passwordConfirm', 'data']);
       for (let i = 0; i < requiredFields.length; i++) {
         const field = requiredFields[i];
@@ -151,11 +153,11 @@ export default React.createClass({
         window.alert(i18n.get('pcMain.signup.pleaseAgreePolicy'));
         return;
       }
+      if (user.data.firstName && user.data.lastName) {
+        user.name = `${user.data.lastName} ${user.data.firstName}`;
+      }
       const cb = (result) => {
         user.data.bizImage = result;
-        if (user.data.firstName && user.data.lastName) {
-          user.name = `${user.data.lastName} ${user.data.firstName}`;
-        }
         handleSubmit(user);
       };
       if (this.state.bizImageUrl) {
@@ -200,14 +202,14 @@ export default React.createClass({
           {i18n.get('pcMain.modalLogin.signupPolicyDesc2')}
         </div>
         <div className="signup-form-section">
-          {renderField({ name: i18n.get('pcMain.signup.idEmail'), type: 'email', key: 'email' })}
-          {renderField({ name: i18n.get('pcMain.signup.password'), type: 'password', key: 'password' })}
-          {renderField({ name: i18n.get('pcMain.signup.passwordAgian'), type: 'password', key: 'passwordConfirm' })}
+          {renderField({ name: i18n.get('pcMain.signup.idEmail'), type: 'email', key: 'email', isRequired: true })}
+          {renderField({ name: i18n.get('pcMain.signup.password'), type: 'password', key: 'password', isRequired: true })}
+          {renderField({ name: i18n.get('pcMain.signup.passwordAgain'), type: 'password', key: 'passwordConfirm', isRequired: true })}
         </div>
         <div className="signup-form-section">
           <div className="signup-input-line">
-            {renderField({ name: i18n.get('pcMain.signup.lastName'), className: 'signup-input-lastName', key: 'data.lastName' })}
-            {renderField({ name: i18n.get('pcMain.signup.firstName'), className: 'signup-input-firstName', key: 'data.firstName' })}
+            {renderField({ name: i18n.get('pcMain.signup.lastName'), className: 'signup-input-lastName', key: 'data.lastName', isRequired: true })}
+            {renderField({ name: i18n.get('pcMain.signup.firstName'), className: 'signup-input-firstName', key: 'data.firstName', isRequired: true })}
           </div>
           <div className="form-tel">
             <div className="form-tel-line">
@@ -216,6 +218,7 @@ export default React.createClass({
                 <div className="arrow-down"></div>
               </div>
               <input
+                className="required"
                 id="tel"
                 onChange={(e) => (
                 onlyNumberFieldOnChange ? onlyNumberFieldOnChange(e, 'data.tel', 15) : onChange(e, 'data.tel')
