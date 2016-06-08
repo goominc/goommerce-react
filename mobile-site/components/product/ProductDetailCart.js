@@ -149,7 +149,7 @@ export default React.createClass({
               <span className="ms-numberic">
                 <span className={`ms-minus${(this.state.quantity <= 1 ? ' disabled' : '')}`}
                   onClick={this.minusQuantity}
-                ><i lassName="ms-icon icon-minus"></i>
+                ><i className="ms-icon icon-minus"></i>
                 </span>
                   <input type="number" min="1" valueLink={this.linkState('quantity')} />
                 <span className="ms-plus" onClick={this.addQuantity}><i className="ms-icon icon-plus"></i></span>
