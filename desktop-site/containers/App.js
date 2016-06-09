@@ -1,6 +1,9 @@
+// Copyright (C) 2016 Goom Inc. All rights reserved.
+
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { cloudinaryConfig } from 'react-cloudinary';
+import DocumentTitle from 'react-document-title';
 
 import AppHeader from 'components/AppHeader';
 import AppFooter from 'components/AppFooter';
@@ -9,6 +12,8 @@ import SigninPopup from 'components/popup/SigninPopup';
 import AfterAddToCartPopup from 'components/popup/AfterAddToCartPopup';
 import AfterAddToWishListPopup from 'components/popup/AfterAddToWishListPopup';
 import ServiceStopped from 'components/ServiceStopped';
+
+import i18n from 'commons/utils/i18n';
 
 import { ApiAction, resetError, closePopup, toggleSearchDropdown, selectSearchDropdown } from 'redux/actions';
 
@@ -114,17 +119,19 @@ const App = React.createClass({
       return '';
     };
     return (
-      <div>
-        {renderError()}
-        {renderPopup()}
-        <AppHeader
-          {...this.props}
-          handleLogout={this.handleLogout}
-          handleSearch={this.handleSearch}
-        />
-        {children}
-        <AppFooter />
-      </div>
+      <DocumentTitle title={i18n.get('app.title')}>
+        <div>
+          {renderError()}
+          {renderPopup()}
+          <AppHeader
+            {...this.props}
+            handleLogout={this.handleLogout}
+            handleSearch={this.handleSearch}
+          />
+          {children}
+          <AppFooter />
+        </div>
+      </DocumentTitle>
     );
   },
 });

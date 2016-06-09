@@ -1,4 +1,12 @@
 {
+  "app": {
+    "title": {
+      "en": "Linkshops",
+      "ko": "Linkshops",
+      "zh-cn": "Linkshops东大门服装批发代购网站_韩国东大门代购_韩国货源",
+      "zh-tw": "Linkshops东大门服装批发代购网站_韩国东大门代购_韩国货源"
+    }
+  },
   "enum": {
     "order": {
       "status": {
