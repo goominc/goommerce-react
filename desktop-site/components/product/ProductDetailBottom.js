@@ -108,8 +108,10 @@ export default React.createClass({
       const res = [];
       let row = 0;
       let imageIndex = 0;
+      const productImageCount = _.get(product, 'appImages.default').length;
+      const isOddCount = productImageCount && productImageCount % 2 === 1;
       while (imageIndex < images.length) {
-        if (row === 1 || imageIndex === images.length - 1) {
+        if ((isOddCount && row === 1) || imageIndex === images.length - 1) {
           res.push(
             <div key={`detail-image-row-${row}`} className="image-row">
               <div className="img-center"><img src={images[imageIndex++].url} /></div>
