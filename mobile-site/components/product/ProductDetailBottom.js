@@ -185,8 +185,8 @@ export default React.createClass({
               <section className="product-detail-desc-section">
                 <ul className="dashed">
                   <li>{i18n.get('mItemDetail.descSoldout1')}</li>
-                  <li>{i18n.get('mItemDetail.descSoldout1')}</li>
-                  <li>{i18n.get('mItemDetail.descSoldout1')}</li>
+                  <li>{i18n.get('mItemDetail.descSoldout2')}</li>
+                  <li>{i18n.get('mItemDetail.descSoldout3')}</li>
                 </ul>
               </section>
             </div>
