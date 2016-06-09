@@ -34,7 +34,6 @@ const Cart = React.createClass({
       createOrder({
         productVariants: productVariants.map((variant) => ({ id: variant.productVariant.id, count: variant.count })),
       }).then((order) => router.push(`/orders/${order.id}/checkout`), () => {
-        window.alert('Faield to Create Order in Cart');
         $('.cart-button-order').prop('disabled', false);
       });
     }
