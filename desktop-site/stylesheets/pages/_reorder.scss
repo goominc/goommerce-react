@@ -228,3 +228,28 @@
     }
   }
 }
+
+.csv-upload-container {
+  background-color: #fff;
+  margin: 10px auto 30px;
+  padding-bottom: 50px;
+  width: 1000px;
+  input {
+    margin-bottom: 20px;
+  }
+  table {
+    border-left: 1px solid #eee;
+    border-top: 1px solid #eee;
+    width: 100%;
+  }
+  th, td {
+    border-right: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+  }
+  .before-load {
+    opacity: 0.3;
+  }
+}

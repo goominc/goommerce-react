@@ -3,12 +3,13 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
+import CsvOrderUploadContainer from 'containers/CsvOrderUploadContainer';
+import FavoriteBrandContainer from 'containers/FavoriteBrandContainer';
 import MyPageHeader from 'components/mypage/MyPageHeader';
 import MyOrderContainer from 'containers/MyOrderContainer';
-import WishListContainer from 'containers/WishListContainer';
-import UserInfoContainer from 'containers/UserInfoContainer';
 import Reorder from 'containers/Reorder';
-import FavoriteBrandContainer from 'containers/FavoriteBrandContainer';
+import UserInfoContainer from 'containers/UserInfoContainer';
+import WishListContainer from 'containers/WishListContainer';
 
 import roleUtil from 'commons/utils/roleUtil';
 
@@ -29,6 +30,7 @@ const MyPage = React.createClass({
     ];
     if (roleUtil.hasRole(auth, ['bigBuyer', 'admin'])) {
       menus.push({ key: 'word.reorder', menuName: 'reorder' });
+      // menus.push({ key: 'pcMain.myMenu.cvsOrderUpload', menuName: 'csv_order_upload' });
     }
 
     const menuComponents = [
@@ -37,6 +39,7 @@ const MyPage = React.createClass({
       <WishListContainer />,
       <FavoriteBrandContainer />,
       <Reorder />,
+      <CsvOrderUploadContainer />,
     ];
     let menuIndex = 0;
     for (let i = 1; i < menus.length; i++) {
@@ -57,5 +60,5 @@ const MyPage = React.createClass({
 });
 
 export default connect(
-  (state) => ({ auth: state.auth }),
+  (state, ownProps) => ({ auth: state.auth }),
 )(MyPage);

@@ -30,6 +30,6 @@ const MyOrderContainer = React.createClass({
 });
 
 export default connect(
-  (state) => loadEntities(state, 'myOrders', 'orders'),
+  (state, ownProps) => loadEntities(state, 'myOrders', 'orders'),
   { loadMyOrders }
 )(MyOrderContainer);
