@@ -169,3 +169,44 @@ ul.dashed > li:before {
     width: 100%;
   }
 }
+
+
+.popup {
+  background-color: #fff;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10000;
+  .header {
+    position: relative;
+    width: 100%;
+    height: 48px;
+    text-align:center;
+    line-height: 48px;
+    font-size: 18px;
+    color: #333;
+    border-bottom: 1px solid #ddd;
+
+    .cancel {
+      background: url('data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeBAMAAADJHrORAAAAG1BMVEUAAABmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZ8aTmeAAAACHRSTlMAb0X2VldYYZ26vlYAAACMSURBVBjTRdEhDsJQEEXR16QEX4VEsIIqloAsCiRLwJDgCTDLhk5u3vtucq6YyZcm5V2k4bX3uKm7djV7vtb3P68BXB8NVbO5bkowrqwEp2YCM4GZAHYAOzg0Jzg2J4AT1KK8sXwFq7GkmcB8JoDfvWR44QqzCGCuCBOECWAHcIKnWf03WzN/91DepB+/ckpiQmNfgQAAAABJRU5ErkJggg==') no-repeat 0 center;
+      width: 15px;
+      height: 100%;
+      position: absolute;
+      right: 12px;
+      top: 0;
+      display: block;
+      background-size: 100% auto;
+    }
+  }
+}
+.popup-overlay {
+  background-color: #fff;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  z-index: 9000;
+}
