@@ -811,8 +811,8 @@
     "textAreaPlaceHolder": {
       "en": "기타",
       "ko": "기타",
-      "zh-cn": "기타",
-      "zh-tw": "기타"
+      "zh-cn": "备注 - 请填写您的实际情况(做微商,做淘宝等)",
+      "zh-tw": "備註 - 請填寫您的實際情況(做微商,做Facebook店)"
     }
   },
   "pcCart": {
@@ -1085,76 +1085,76 @@
       "zh-tw": "關注"
     },
     "bottomTitle": {
-      "en": "상품 상세정보",
+      "en": "Product Details",
       "ko": "상품 상세정보",
       "zh-cn": "商品详情",
       "zh-tw": "商品詳情"
     },
     "detailSize": {
-      "en": "사이즈",
+      "en": "Size",
       "ko": "사이즈",
       "zh-cn": "尺码",
       "zh-tw": "尺碼"
     },
     "detailLength": {
-      "en": "전체길이",
+      "en": "Total length",
       "ko": "전체길이",
       "zh-cn": "总长",
       "zh-tw": "總長"
     },
     "detailBustSize": {
-      "en": "가슴너비",
+      "en": "Chest width",
       "ko": "가슴너비",
       "zh-cn": "胸宽",
       "zh-tw": "胸寬"
     },
     "detailShoulderWidth": {
-      "en": "어깨너비",
+      "en": "Shoulder width",
       "ko": "어깨너비",
       "zh-cn": "肩宽",
       "zh-tw": "肩寬"
     },
     "detailArmLength": {
-      "en": "소매길이",
+      "en": "Sleeve length",
       "ko": "소매길이",
       "zh-cn": "袖长",
       "zh-tw": "袖長"
     },
     "detailArmHole": {
-      "en": "소매너비",
+      "en": "Armhole depth",
       "ko": "소매너비",
       "zh-cn": "袖孔",
       "zh-tw": "袖孔"
     },
     "detailTailEdge": {
-      "en": "밑단너비",
+      "en": "Hem width",
       "ko": "밑단너비",
       "zh-cn": "下摆宽",
       "zh-tw": "下擺寬"
     },
     "detailWaistWidth": {
-      "en": "허리너비",
+      "en": "Waist width",
       "ko": "허리너비",
-      "zh-cn": "허리너비",
-      "zh-tw": "허리너비"
+      "zh-cn": "腰宽",
+      "zh-tw": "腰寬"
     },
     "detailHipSize": {
-      "en": "엉덩이너비",
+      "en": "Hip width",
       "ko": "엉덩이너비",
-      "zh-cn": "엉덩이너비",
-      "zh-tw": "엉덩이너비"
+      "zh-cn": "臀宽",
+      "zh-tw": "臀寬"
     },
     "detailThighSize": {
-      "en": "허벅지너비",
+      "en": "Thigh width",
       "ko": "허벅지너비",
-      "zh-cn": "허벅지너비",
-      "zh-tw": "허벅지너비"
+      "zh-cn": "大腿宽",
+      "zh-tw": "大腿寬"
     },
     "detailTailAbove": {
-      "en": "밑위길이",
+      "en": "Crotch height",
       "ko": "밑위길이",
-      "zh-cn": "밑위길이",
-      "zh-tw": "밑위길이"
+      "zh-cn": "前裆长",
+      "zh-tw": "前襠長"
     },
     "favoriteBrands": {
       "en": "Favorite brands",
@@ -1163,211 +1163,211 @@
       "zh-tw": "我的關注品牌"
     },
     "infoTouch": {
-      "en": "촉감",
+      "en": "Tactility",
       "ko": "촉감",
       "zh-cn": "触感",
       "zh-tw": "觸感"
     },
     "infoTouch0": {
-      "en": "까슬함",
+      "en": "Rough",
       "ko": "까슬함",
       "zh-cn": "微粗",
       "zh-tw": "微粗"
     },
     "infoTouch1": {
-      "en": "적당함",
+      "en": "Normal",
       "ko": "적당함",
       "zh-cn": "适中",
       "zh-tw": "適中"
     },
     "infoTouch2": {
-      "en": "부드러움",
+      "en": "Soft",
       "ko": "부드러움",
       "zh-cn": "柔软",
       "zh-tw": "柔軟"
     },
     "infoFlexibility": {
-      "en": "신축성",
+      "en": "Elasticity",
       "ko": "신축성",
       "zh-cn": "弹力指数",
       "zh-tw": "彈力指數"
     },
     "infoFlexibility0": {
-      "en": "좋음",
+      "en": "High",
       "ko": "좋음",
       "zh-cn": "高弹",
       "zh-tw": "高彈"
     },
     "infoFlexibility1": {
-      "en": "약간",
+      "en": "Normal",
       "ko": "약간",
       "zh-cn": "微弹",
       "zh-tw": "微彈"
     },
     "infoFlexibility2": {
-      "en": "없음",
+      "en": "Low",
       "ko": "없음",
       "zh-cn": "无弹",
       "zh-tw": "無彈"
     },
     "infoTransparency": {
-      "en": "비침",
+      "en": "Transparency",
       "ko": "비침",
       "zh-cn": "透视指数",
       "zh-tw": "透視指數"
     },
     "infoTransparency0": {
-      "en": "많이비침",
+      "en": "High",
       "ko": "많이비침",
       "zh-cn": "透视度高",
       "zh-tw": "透視度高"
     },
     "infoTransparency1": {
-      "en": "약간비침",
+      "en": "Normal",
       "ko": "약간비침",
       "zh-cn": "微透视",
       "zh-tw": "微透視"
     },
     "infoTransparency2": {
-      "en": "비침없음",
+      "en": "Low",
       "ko": "비침없음",
       "zh-cn": "无透视",
       "zh-tw": "無透視"
     },
     "infoGloss": {
-      "en": "광택감",
+      "en": "Gloss",
       "ko": "광택감",
       "zh-cn": "光泽指数",
       "zh-tw": "光澤指數"
     },
     "infoGloss0": {
-      "en": "광택있음",
+      "en": "High",
       "ko": "광택있음",
       "zh-cn": "有光泽",
       "zh-tw": "有光澤"
     },
     "infoGloss1": {
-      "en": "약간있음",
+      "en": "Normal",
       "ko": "약간있음",
       "zh-cn": "微光泽",
       "zh-tw": "微光澤"
     },
     "infoGloss2": {
-      "en": "광택없음",
+      "en": "Low",
       "ko": "광택없음",
       "zh-cn": "无光泽",
       "zh-tw": "無光澤"
     },
     "infoThickness": {
-      "en": "두께감",
+      "en": "Thickness",
       "ko": "두께감",
       "zh-cn": "厚度指数",
       "zh-tw": "厚度指數"
     },
     "infoThickness0": {
-      "en": "두꺼움",
+      "en": "High",
       "ko": "두꺼움",
       "zh-cn": "加厚",
       "zh-tw": "加厚"
     },
     "infoThickness1": {
-      "en": "적당함",
+      "en": "Normal",
       "ko": "적당함",
       "zh-cn": "适中",
       "zh-tw": "適中"
     },
     "infoThickness2": {
-      "en": "얇음",
+      "en": "Low",
       "ko": "얇음",
       "zh-cn": "偏薄",
       "zh-tw": "偏薄"
     },
     "infoLining": {
-      "en": "안감",
+      "en": "Lining",
       "ko": "안감",
       "zh-cn": "里子料",
       "zh-tw": "裡子料"
     },
     "infoLining0": {
-      "en": "전체안감",
+      "en": "Full",
       "ko": "전체안감",
       "zh-cn": "全面",
       "zh-tw": "全面"
     },
     "infoLining1": {
-      "en": "부분안감",
+      "en": "Partial",
       "ko": "부분안감",
       "zh-cn": "部分",
       "zh-tw": "部分"
     },
     "infoLining2": {
-      "en": "안감없음",
+      "en": "None",
       "ko": "안감없음",
       "zh-cn": "无",
       "zh-tw": "無"
     },
     "infoModelSize": {
-      "en": "모델착용사이즈",
+      "en": "Model's size",
       "ko": "모델착용사이즈",
       "zh-cn": "模特试穿尺码",
       "zh-tw": "模特試穿尺碼"
     },
     "infoOrigin": {
-      "en": "원산지",
+      "en": "Origin",
       "ko": "원산지",
       "zh-cn": "原产地",
       "zh-tw": "原產地"
     },
     "modelChartTitle": {
-      "en": "모델 사이즈",
+      "en": "Model size",
       "ko": "모델 사이즈",
       "zh-cn": "模特条件",
       "zh-tw": "模特條件"
     },
     "modelHeight": {
-      "en": "신장",
+      "en": "Height",
       "ko": "신장",
       "zh-cn": "身高",
       "zh-tw": "身高"
     },
     "modelWeight": {
-      "en": "체중",
+      "en": "Weight",
       "ko": "체중",
       "zh-cn": "体重",
       "zh-tw": "體重"
     },
     "modelShoulderWidth": {
-      "en": "어깨넓이",
+      "en": "Shoulder width",
       "ko": "어깨넓이",
       "zh-cn": "肩宽",
       "zh-tw": "肩寬"
     },
     "modelTopsLength": {
-      "en": "상의 (목~허리)",
+      "en": "Top (neck~waist)",
       "ko": "상의 (목~허리)",
       "zh-cn": "上装 (脖子~腰)",
       "zh-tw": "上裝 (脖子~腰)"
     },
     "modelBottomsLength": {
-      "en": "하의 (허리~발목)",
+      "en": "Bottom (waist~ankle)",
       "ko": "하의 (허리~발목)",
       "zh-cn": "下装 (腰~脚脖)",
       "zh-tw": "下裝 (腰~腳脖)"
     },
     "modelWaist": {
-      "en": "허리둘레",
+      "en": "Waist measurement",
       "ko": "허리둘레",
       "zh-cn": "腰围",
       "zh-tw": "腰圍"
     },
     "modelArmLength": {
-      "en": "팔길이",
+      "en": "Arm length",
       "ko": "팔길이",
       "zh-cn": "胳膊长",
       "zh-tw": "胳膊長"
     },
     "modelTopBustSize": {
-      "en": "윗가슴둘레",
+      "en": "Upper chest",
       "ko": "윗가슴둘레",
       "zh-cn": "胸围",
       "zh-tw": "胸圍"
@@ -1379,19 +1379,19 @@
       "zh-tw": "아래가슴둘레"
     },
     "modelHipSize": {
-      "en": "힙둘레",
+      "en": "Hip Measurement",
       "ko": "힙둘레",
       "zh-cn": "臀围",
       "zh-tw": "臀围"
     },
     "modelShoesSize": {
-      "en": "신발",
+      "en": "Foot size",
       "ko": "신발",
       "zh-cn": "鞋靴",
       "zh-tw": "鞋靴"
     },
     "descRefundTitle": {
-      "en": "반품 / 교환 안내",
+      "en": "Return Policy",
       "ko": "반품 / 교환 안내",
       "zh-cn": "退货/交换政策",
       "zh-tw": "退貨/交換政策"
@@ -1457,19 +1457,19 @@
       "zh-tw": "沒庫存的商品，進行取消并退款處理。"
     },
     "selectSize": {
-      "en": "사이즈를 선택해 주세요",
+      "en": "Select size",
       "ko": "사이즈를 선택해 주세요",
       "zh-cn": "请选择尺码",
       "zh-tw": "請選擇尺碼"
     },
     "warnLinkshopsImage1": {
-      "en": "링크샵스에서 제공하는 상품 이미지의 저작권은 링크샵스에게 있습니다.",
+      "en": "All images used on this site are owned or licensed by Linkshops Inc,",
       "ko": "링크샵스에서 제공하는 상품 이미지의 저작권은 링크샵스에게 있습니다.",
       "zh-cn": "网站所有图片的著作权归属于Linkshops，",
       "zh-tw": "網站所有圖片的著作權歸屬於Linkshops，"
     },
     "warnLinkshopsImage2": {
-      "en": "상품 이미지를 무단 도용/배포하실 경우 저작권법에 의해 법적 조치를 받을 수 있습니다.",
+      "en": "and protected by national and international copyright laws. Unauthorized use is prohibited.",
       "ko": "상품 이미지를 무단 도용/배포하실 경우 저작권법에 의해 법적 조치를 받을 수 있습니다.",
       "zh-cn": "如果需要图片，请与客服中心联络。",
       "zh-tw": "如果需要圖片，請與客服中心聯絡。"
@@ -1483,7 +1483,7 @@
       "zh-tw": "您已經登陸了，回去首頁。"
     },
     "loginBeforeUseService": {
-      "en": "login before use service",
+      "en": "login to use service",
       "ko": "로그인 후 서비스 이용할 수 있습니다",
       "zh-cn": "本页面是登陆后可以查看。",
       "zh-tw": "本頁面是登陸後可以查看。"
@@ -2135,8 +2135,8 @@
       "zh-tw": "商品"
     },
     "price": {
-      "en": "가격",
-      "ko": "Price",
+      "en": "Price",
+      "ko": "가격",
       "zh-cn": "单价",
       "zh-tw": "單價"
     },
