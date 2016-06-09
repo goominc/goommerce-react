@@ -4,7 +4,7 @@ import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
 import i18n from 'commons/utils/i18n';
-import { productDetailAttributes } from 'commons/data';
+import { models, productDetailAttributes } from 'commons/data';
 
 import ShippingPolicyCountry from 'components/product/ShippingPolicyCountry';
 
@@ -112,28 +112,39 @@ export default React.createClass({
         </div>
       );
     };
-    const { isShowShippingCountry } = this.state;
-    const renderShippingPolicyCountry = () => {
-      if (isShowShippingCountry) {
-        return [
-          <div
-            key="shippig-policy-title"
-            className="product-detail-shipping-country-title"
-            onClick={() => this.setState({ isShowShippingCountry: false })}
-          >
-            해외 국가별 배송비 책정기준 <i className="ms-icon icon-arrow-up"></i>
-          </div>,
-          <ShippingPolicyCountry key="shipping-policy-content" />,
-        ];
+    const renderModel = () => {
+      for (let i = 0; i < models.length; i++) {
+        const model = models[i];
+        if (_.get(product, 'data.detail.modelName') === model.name) {
+          return (
+            <div className="section">
+              <div className="title-line">
+                <div className="title">{i18n.get('pcItemDetail.modelChartTitle')}</div>
+                <div className="title-right-text">{i18n.get('mItemDetail.model')}: {model.name}</div>
+              </div>
+              <table className="model-table">
+                <tbody>
+                <tr>
+                  <td>{i18n.get('pcItemDetail.modelHeight')}<br />{model.height}</td>
+                  <td>{i18n.get('pcItemDetail.modelWeight')}<br />{model.weight}</td>
+                  <td>{i18n.get('pcItemDetail.modelShoulderWidth')}<br />{model.shoulderWidth}</td>
+                  <td>{i18n.get('pcItemDetail.modelTopsLength')}<br />{model.topsLength}</td>
+                  <td>{i18n.get('pcItemDetail.modelBottomsLength')}<br />{model.bottomslength}</td>
+                </tr>
+                <tr>
+                  <td>{i18n.get('pcItemDetail.modelWaist')}<br />{model.waist}</td>
+                  <td>{i18n.get('pcItemDetail.modelArmLength')}<br />{model.armLength}</td>
+                  <td>{i18n.get('pcItemDetail.modelTopBustSize')}<br />{model.waist}</td>
+                  <td>{i18n.get('pcItemDetail.modelHipSize')}<br />{model.hipSize}</td>
+                  <td>{i18n.get('pcItemDetail.modelShoesSize')}<br />{model.ShoesSize}</td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          );
+        }
       }
-      return (
-        <div
-          className="product-detail-shipping-country-title"
-          onClick={() => this.setState({ isShowShippingCountry: true })}
-        >
-          해외 국가별 배송비 책정기준 <i className="ms-icon icon-arrow-down"></i>
-        </div>
-      );
+      return null;
     };
     const renderRefundPopup = () => {
       if (this.state.isShowRefundPopup) {
@@ -242,6 +253,7 @@ export default React.createClass({
           </div>
           {renderDetailInfo()}
         </div>
+        {renderModel()}
         <div className="product-detail-popup-button" onClick={() => openPopup({ isShowRefundPopup: true })}>
           {i18n.get('mItemDetail.popupRefundTitle')}
           <i className="ms-icon icon-arrow-right"></i>

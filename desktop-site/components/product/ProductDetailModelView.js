@@ -16,19 +16,41 @@ export default React.createClass({
         <div className="row">
           <div className="pic1"><img src={model.imgUrl} /></div>
           <div className="size">
-            <div className="pd_title2">{i18n.get('pcItemDetail.modelChartTitle')}</div>
-            <div className="subject odd">{i18n.get('word.name')}</div><div className="model_name odd">{model.name}</div>
-            <div className="subject">{i18n.get('pcItemDetail.modelHeight')}</div><div className="cont">{model.height}</div>
-            <div className="subject odd">{i18n.get('pcItemDetail.modelWeight')}</div><div className="cont odd">{model.weight}</div>
-            <div className="subject">{i18n.get('pcItemDetail.modelShoulderWidth')}</div><div className="cont">{model.shoulderWidth}</div>
-            <div className="subject odd">{i18n.get('pcItemDetail.modelTopsLength')}</div><div className="cont odd">{model.topsLength}</div>
-            <div className="subject">{i18n.get('pcItemDetail.modelBottomsLength')}</div><div className="cont">{model.bottomslength}</div>
-            <div className="subject odd">{i18n.get('pcItemDetail.modelWaist')}</div><div className="cont odd">{model.waist}</div>
-            <div className="subject">{i18n.get('pcItemDetail.modelArmLength')}</div><div className="cont">{model.armLength}</div>
-            <div className="subject odd">{i18n.get('pcItemDetail.modelTopBustSize')}</div><div className="cont odd">{model.topBustSize}</div>
-            <div className="subject">{i18n.get('pcItemDetail.modelBottomBustSize')}</div><div className="cont">{model.topBustSize}</div>
-            <div className="subject odd">{i18n.get('pcItemDetail.modelHipSize')}</div><div className="cont odd">{model.hipSize}</div>
-            <div className="subject">{i18n.get('pcItemDetail.modelShoesSize')}</div><div className="cont">{model.ShoesSize}</div>
+            <div className="title">{i18n.get('pcItemDetail.modelChartTitle')} ({model.name})</div>
+            <table>
+              <tbody>
+              <tr>
+                <td className="key">{i18n.get('pcItemDetail.modelShoulderWidth')}</td>
+                <td>{model.shoulderWidth}</td>
+                <td className="key">{i18n.get('pcItemDetail.modelTopsLength')}</td>
+                <td>{model.topsLength}</td>
+              </tr>
+              <tr>
+                <td className="key">{i18n.get('pcItemDetail.modelBottomsLength')}</td>
+                <td>{model.bottomslength}</td>
+                <td className="key">{i18n.get('pcItemDetail.modelWaist')}</td>
+                <td>{model.waist}</td>
+              </tr>
+              <tr>
+                <td className="key">{i18n.get('pcItemDetail.modelArmLength')}</td>
+                <td>{model.armLength}</td>
+                <td className="key">{i18n.get('pcItemDetail.modelTopBustSize')}</td>
+                <td>{model.topBustSize}</td>
+              </tr>
+              <tr>
+                <td className="key">{i18n.get('pcItemDetail.modelBottomBustSize')}</td>
+                <td>{model.bottomBustSize}</td>
+                <td className="key">{i18n.get('pcItemDetail.modelHipSize')}</td>
+                <td>{model.hipSize}</td>
+              </tr>
+              <tr>
+                <td className="key">{i18n.get('pcItemDetail.modelShoesSize')}</td>
+                <td>{model.ShoesSize}</td>
+                <td className="key"></td>
+                <td></td>
+              </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
