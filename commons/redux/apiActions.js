@@ -436,14 +436,25 @@ export function deleteAddressOnOrder(address, order) {
   };
 }
 
-export function loadMyOrders() {
+export function loadMyOrders(status) {
+  let endpoint = '/api/v1/users/self/orders';
+  if (status) {
+    endpoint = `${endpoint}?status=${status}`;
+  }
   return createFetchAction({
     type: 'LOAD_MY_ORDERS',
-    endpoint: '/api/v1/users/self/orders',
+    endpoint,
     transform: ({ data }) => normalize(data.orders, schemas.orders),
     success: {
       pagination: { key: 'myOrders', type: 'REFRESH' },
     },
+  });
+}
+
+export function loadMyOrderSummary() {
+  return createFetchAction({
+    type: 'LOAD_MY_ORDER_SUMMARY',
+    endpoint: '/api/v1/users/self/orderSummary',
   });
 }
 

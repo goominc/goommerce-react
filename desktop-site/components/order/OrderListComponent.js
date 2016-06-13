@@ -4,6 +4,8 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import _ from 'lodash';
 
+import OrderListItemImages from './OrderListItemImages';
+
 import { getProductThumbnail } from 'commons/utils/productUtil';
 import numberUtil from 'commons/utils/numberUtil';
 
@@ -62,43 +64,56 @@ export default React.createClass({
       const status = order.status === 0 ?
         i18n.get(`enum.order.paymentStatus.${order.paymentStatus}`) :
         i18n.get(`enum.order.status.${order.status}`);
+      const renderSummary = () => {
+        const renderProduct = (p) => (
+          <div className="img-wrap">
+            <img src={_.get(p.productVariant, 'appImages.default[0].url') || ''} />
+          </div>
+        );
+        return (
+          <div className="cell summary-content">
+            <div className="text">{getSummary(order)}</div>
+            <OrderListItemImages order={order} />
+          </div>
+        );
+      };
       return (
         <div key={order.id}>
           <div className="row">
-            <div className="cell date-cell">{numberUtil.formatDate(order.createdAt, true)}</div>
+            <div className="cell date-cell">
+              <div className="inner">
+                <Link to={`/mypage/orders/${order.id}`} className="content">
+                  {numberUtil.formatDate(order.createdAt, true)}<br />
+                  <span>{order.id}</span>
+                </Link>
+              </div>
+            </div>
+
+            {renderSummary()}
+            {/*
             <div className="cell summary-cell"><Link to={`/orders/${order.id}`}>{getSummary(order)}</Link></div>
             <div className="cell quantity-cell">{quantity}</div>
             <div className="cell price-cell">{numberUtil.formatPrice(order[`total${activeCurrency}`], activeCurrency, currencySign)}</div>
-            <div className="cell status-cell">{status}</div>
+             */}
+            <div className="cell status-content">
+              <div className="inner">
+                <div className="content">
+                  {status}
+                  <div className="price">{numberUtil.formatPrice(order[`total${activeCurrency}`], activeCurrency, currencySign)}</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       );
     };
-        /*
-      <div key={order.id} className="order-box">
-        <div className="order-head">
-          <span>Order Id: {order.id} </span> <Link to={`/orders/${order.id}`} >View Detail</Link> <br />
-          <span>Total Price: KWR {order.totalKRW}</span> <br />
-          <span>Order Date: {formatDate(order.createdAt)}</span> <br />
-          <span>Seller: Mola</span>
-        </div>
-        <div className="order-product-box">
-          {(order.orderProducts || []).map(renderOrderProduct)}
-        </div>
-        <div className="order-action-box">
-          Status: {i18n.get(`enum.order.status.${order.status}`)}
-        </div>
-      </div>
-      */
 
     return (
       <div className="order-list-container">
         <div className="title-row">
           <div className="cell date-cell">{i18n.get('pcMypage.orderDate')}</div>
-          <div className="cell summary-cell">{i18n.get('pcMypage.orderProducts')}</div>
-          <div className="cell quantity-cell">{i18n.get('pcMypage.quantity')}</div>
-          <div className="cell price-cell">{i18n.get('pcMypage.orderTotal')}</div>
-          <div className="cell status-cell">{i18n.get('pcMypage.orderStatus')}</div>
+          <div className="cell summary-title">{i18n.get('pcMypage.orderProducts')}</div>
+          <div className="cell status-title">{i18n.get('pcMypage.orderStatus')}</div>
         </div>
         {orders.map(renderOrder)}
       </div>

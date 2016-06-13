@@ -13,12 +13,12 @@ const OrderDetail = React.createClass({
     checkout: PropTypes.object,
     loadOrder: PropTypes.func.isRequired,
   },
+  contextTypes: {
+    ApiAction: PropTypes.object,
+  },
   componentDidMount() {
     const { orderId } = this.props;
     this.props.loadOrder(orderId);
-  },
-  contextTypes: {
-    ApiAction: PropTypes.object,
   },
   render() {
     const { order } = this.props;

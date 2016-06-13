@@ -36,7 +36,7 @@ const Reorder = React.createClass({
             window.alert('Failed to Create ReOrder');
             $('#reorder-do-order').prop('disabled', false);
           })
-        .then((order) => this.context.router.push(`/orders/${order.id}`));
+        .then((order) => this.context.router.push(`/mypage/orders/${order.id}`));
     };
     return (
       <div className="mypage-contents-container">

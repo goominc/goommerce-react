@@ -16,7 +16,7 @@ export default React.createClass({
       let className = 'mypage-nav-menu';
       if (menu.menuName === this.props.menuName) {
         className += ' active';
-        return (<div key={menu.key} className={className}>{i18n.get(menu.key)}</div>);
+        return (<div key={menu.key} className={className}><span>{i18n.get(menu.key)}</span></div>);
       }
       return (
         <Link key={menu.key} to={`/mypage/${menu.menuName}`}>
@@ -25,7 +25,7 @@ export default React.createClass({
       );
     };
     return (
-      <div className="mypage-navigation">
+      <div>
         <div className="mypage-nav-container">
           {menus.map(renderMenu)}
         </div>

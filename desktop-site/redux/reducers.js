@@ -178,6 +178,12 @@ const pageReducers = combineReducers({
 // {
 //   brandId
 // }
+function mypage(state = {}, action) {
+  if (action.type === 'SET_MYPAGE_MENU_NAME') {
+    return Object.assign({}, state, { menuName: action.menuName });
+  }
+  return state;
+}
 function reorder(state = {}, action) {
   if (action.type === 'REORDER_SET_BRAND') {
     return Object.assign({}, state, { brand: action.brand, product: null });
@@ -189,7 +195,7 @@ function reorder(state = {}, action) {
 
 const rootReducer = combineReducers(
   Object.assign({}, CommonReducers.reducers,
-    { errorHandler, popup, headerSearchCategory, checkout, reorder, page: pageReducers })
+    { errorHandler, popup, headerSearchCategory, checkout, mypage, reorder, page: pageReducers })
 );
 
 export default (state = {}, action) => {

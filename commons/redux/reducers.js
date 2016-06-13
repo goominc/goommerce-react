@@ -118,11 +118,15 @@ function entities(state = { users: {}, products: {}, orders: {}, addresses: {}, 
   }
   const nextState = assign({}, state);
   forEach(get(action, 'payload.entities'), (val, key) => {
+    // 2016. 06. 12. [heekyu] there is no need store previous items
+    nextState[key] = val;
+    /*
     if (get(action, 'meta.clear')) {
       nextState[key] = val;
       return;
     }
     nextState[key] = assign({}, state[key], val);
+    */
   });
   return nextState;
 }
@@ -236,6 +240,13 @@ function misc(state = {}, action) {
   return state;
 }
 
+function order(state = {}, action) {
+  if (action.type === 'LOAD_MY_ORDER_SUMMARY') {
+    return Object.assign({}, state, { summary: action.payload.summary });
+  }
+  return state;
+}
+
 const reducers = {
   auth,
   cart,
@@ -248,6 +259,7 @@ const reducers = {
   i18n,
   merchandise,
   misc,
+  order,
   pagination,
   search,
 };
