@@ -52,6 +52,7 @@ module.exports = (opts) => {
           <head>
             <meta charset="utf-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="baidu-site-verification" content="gQDivYe8j5" />
             <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, user-scalable=0, width=device-width">
             <title>${config.title}</title>
           </head>
@@ -74,6 +75,7 @@ module.exports = (opts) => {
           <head>
             <meta charset="utf-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="baidu-site-verification" content="gQDivYe8j5" />
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <title>${config.title}</title>
             <link href="//fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet" type="text/css">

@@ -1938,6 +1938,18 @@
       "zh-cn": "订单编码",
       "zh-tw": "訂單編碼"
     },
+    "orderSummaryTitle": {
+      "en": "현재 진행중인 주문",
+      "ko": "현재 진행중인 주문",
+      "zh-cn": "현재 진행중인 주문",
+      "zh-tw": "현재 진행중인 주문"
+    },
+    "orderCount": {
+      "en": "건",
+      "ko": "건",
+      "zh-cn": "건",
+      "zh-tw": "건"
+    },
     "myOrders": {
       "en": "My Order",
       "ko": "주문 내역",
