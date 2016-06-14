@@ -92,14 +92,39 @@
       margin-bottom: 10px;
     }
     .nav-wrap {
+      $nav-width: 26px;
+      $arrow-width: 6px;
       border-radius: 13px;
       background-color: #f2f2f2;
       display: inline-block;
       height: 64px;
       margin-top: (78px - 64px) / 2;
       margin-left: 15px;
+      position: absolute;
       vertical-align: top;
-      width: 26px;
+      width: $nav-width;
+      .arrow-left {
+        @include simple-arrow-left($arrow-width, #ccc);
+        right: ($nav-width - $arrow-width / 2) / 2;
+        position: absolute;
+        top: 12px;
+        width: $arrow-width;
+        &.active {
+          cursor: pointer;
+          border-right-color: #333;
+        }
+      }
+      .arrow-right {
+        @include simple-arrow-right($arrow-width, #ccc);
+        left: ($nav-width - $arrow-width / 2) / 2;
+        bottom: 12px;
+        position: absolute;
+        width: $arrow-width;
+        &.active {
+          cursor: pointer;
+          border-left-color: #333;
+        }
+      }
     }
   }
   .status-title {
