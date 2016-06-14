@@ -279,61 +279,61 @@
   },
   "mFooter": {
     "company1": {
-      "en": "상호명 - ㈜ 에이프릴",
+      "en": "April Inc.",
       "ko": "상호명 - ㈜ 에이프릴",
       "zh-cn": "(株)April",
       "zh-tw": "(株)April"
     },
     "company2": {
-      "en": "대표자 - 서경미",
+      "en": "CEO  Kyoungmi Seo",
       "ko": "대표자 - 서경미",
       "zh-cn": "代表理事 徐庚美",
       "zh-tw": "代表理事 徐庚美"
     },
     "company3": {
-      "en": "주소 - 서울시 중구 퇴계로 324 성우빌딩 6층",
+      "en": "#6, Sungwoo BD 324, Toegye-ro, Jung-gu, Seoul, Korea",
       "ko": "주소 - 서울시 중구 퇴계로 324 성우빌딩 6층",
       "zh-cn": "首尔市 中区 退溪路 324, 盛宇大楼 6楼",
       "zh-tw": "首爾市 中區 退溪路 324, 盛宇大樓 6樓"
     },
     "company4": {
-      "en": "사업자등록번호 - 201-86-27310",
+      "en": "Business Registration No. 201-86-27310",
       "ko": "사업자등록번호 - 201-86-27310",
       "zh-cn": "营业执照号码 201-86-27310",
       "zh-tw": "營業執照號碼 201-86-27310"
     },
     "company5": {
-      "en": "통신판매업신고 - 서울중구 60887호",
+      "en": "Telecommunication Services Registration No. Seoul Jung-gu 6087",
       "ko": "통신판매업신고 - 서울중구 60887호",
       "zh-cn": "通信销售业申报号码 首尔中区60887号",
       "zh-tw": "通信銷售業申報號碼 首爾中區60887號"
     },
     "company6": {
-      "en": "개인정보관리책임자 - 오영지",
+      "en": "Privacy policy Manager  Youngjo Oh",
       "ko": "개인정보관리책임자 - 오영지",
       "zh-cn": "个人情报负责人 吴映知",
       "zh-tw": "個人情報負責人 吳映知"
     },
     "customerCenterTitle": {
-      "en": "고객센터 안내",
+      "en": "Customer Service",
       "ko": "고객센터 안내",
       "zh-cn": "客服中心 营业时间",
       "zh-tw": "客服中心 營業時間"
     },
     "customerCenter1": {
-      "en": "평일 - 오전 10:00 ~ 오후 18:00",
+      "en": "AM 10:00 - PM 6:00 (KST)",
       "ko": "평일 - 오전 10:00 ~ 오후 18:00",
       "zh-cn": "10:00~18:00 周一到周五",
       "zh-tw": "10:00~18:00 週一到週五"
     },
     "customerCenter2": {
-      "en": "점심시간 - 오전 12:30 ~ 오후 13:30",
+      "en": "Lunch 12:30 ~ 13:30",
       "ko": "점심시간 - 오전 12:30 ~ 오후 13:30",
       "zh-cn": "午休 12:30~13:30",
       "zh-tw": "午休 12:30 ~ 13:30"
     },
     "customerCenter3": {
-      "en": "주말, 공휴일 제외(한국기준)",
+      "en": "Sat, Sun, holiday Off",
       "ko": "주말, 공휴일 제외(한국기준)",
       "zh-cn": "国家节假日(韩国), 周末休息",
       "zh-tw": "國家節假日(韓國), 週末休息"
@@ -357,13 +357,13 @@
       "zh-tw": "E-mail  cs@linkshops.com"
     },
     "customerCenter7": {
-      "en": "구매회원 상담 카카오톡 ID - linkshops",
+      "en": "kakaotalk ID : linkshops",
       "ko": "구매회원 상담 카카오톡 ID - linkshops",
       "zh-cn": "微信  linkshops-china",
       "zh-tw": "微信  linkshops-china"
     },
     "customerCenter8": {
-      "en": "판매회원 상담 카카오톡 ID - linkshops_brand",
+      "en": "Wechat : linkshops-china",
       "ko": "판매회원 상담 카카오톡 ID - linkshops_brand",
       "zh-cn": "Line  linkshops",
       "zh-tw": "Line  linkshops"
@@ -409,61 +409,61 @@
       "zh-tw": "模特"
     },
     "detailTitle": {
-      "en": "상품 디테일",
+      "en": "Product Details",
       "ko": "상품 디테일",
       "zh-cn": "商品详情",
       "zh-tw": "商品詳情"
     },
     "descRefund1": {
-      "en": "도매사이트 특성 상 반품은 불가합니다.",
+      "en": "Please note that you cannot exchange or return after the purchase due to the nature of the wholesale market.",
       "ko": "도매사이트 특성 상 반품은 불가합니다.",
       "zh-cn": "由于批发市场的特殊性，不支持退货服务。",
       "zh-tw": "由於批發市場的特殊性，不支持退貨服務。"
     },
     "descRefund2": {
-      "en": "불량상품의 경우 링크샵스에서 배송료를 부담하고 교환해 드립니다.",
+      "en": "In case of defective products, We accept returns and exchange it with no delivery charge.",
       "ko": "불량상품의 경우 링크샵스에서 배송료를 부담하고 교환해 드립니다.",
       "zh-cn": "若发现商品品质问题，收货后7天之内, 与客服中心联络。",
       "zh-tw": "若發現商品品質問題，收貨后7天之內，與客服中心聯絡。"
     },
     "descRefund3": {
-      "en": "상품 불량으로 인한 교환신청은 배송완료 후 7일 이내에만 신청이 가능하며 동일 색상/사이즈로만 교환이 가능합니다.",
+      "en": "Defective items must be returned within 7 days of receipt of shipment, and only can be exchanged with same size and color.",
       "ko": "상품 불량으로 인한 교환신청은 배송완료 후 7일 이내에만 신청이 가능하며 동일 색상/사이즈로만 교환이 가능합니다.",
       "zh-cn": "7天之内没有任何反馈，视为默认商品品质为正常。由于品质异常进行交换时，交换的商品只能是同一颜色和尺码的。",
       "zh-tw": "7天之內沒有任何反饋，視為默認商品品質為正常。由於品質異常進行交換時，交換的商品只能是同一顏色和尺碼的。"
     },
     "descRefund4": {
-      "en": "교환하고자 하는 상품이 품절된 경우 환불 처리해 드립니다.",
+      "en": "We refund your payment if we cannot exchange your defective item due to the out of stock reason.",
       "ko": "교환하고자 하는 상품이 품절된 경우 환불 처리해 드립니다.",
       "zh-cn": "如果交换的商品已经断货，我们进行退款处理。",
       "zh-tw": "如果交換的商品已經斷貨，我們進行退款處理。"
     },
     "descRefund5": {
-      "en": "컴퓨터 모니터의 차이로 인해 색상차이가 있을 수 있으며 상품의 사이즈 오차는 측정하는 방법에 따라 다를 수 있어 불량에 해당하지 않습니다.",
+      "en": "The item color can look different than it appears on the monitor, and the size varies with type of measurement. These cases cannot be the reason of defective item.",
       "ko": "컴퓨터 모니터의 차이로 인해 색상차이가 있을 수 있으며 상품의 사이즈 오차는 측정하는 방법에 따라 다를 수 있어 불량에 해당하지 않습니다.",
       "zh-cn": "由于电脑显示器的分辨率及亮度不同，可能与实物略有色差，还有由于尺码的测定方式不同，可能与实物会略有差异，这不属于交换理由。",
       "zh-tw": "由於電腦顯示器的分辨率及亮度不同，可能與實物略有色差，還有由於尺碼的測定方式不同，可能與實物會略有差異，這不屬於交換理由。"
     },
     "descRefund6": {
-      "en": "상품을 착용하거나 세탁한 경우 교환기간 내라도 접수 불가능합니다.",
+      "en": "Items must be returned in its original condition with factory seal and packaging.",
       "ko": "상품을 착용하거나 세탁한 경우 교환기간 내라도 접수 불가능합니다.",
       "zh-cn": "穿着使用过的、有洗涤，缝补的商品，无关品质问题，不可退换。",
       "zh-tw": "穿著使用過的、有洗滌，縫補的商品，無關品質問題，不可退還。"
     },
     "descSoldout1": {
-      "en": "도매시장의 특성 상 판매자의 실시간 재고 파악이 불가능 합니다.",
+      "en": "We cannot check seller's inventories in real time due to the characteristics of wholesale market.",
       "ko": "도매시장의 특성 상 판매자의 실시간 재고 파악이 불가능 합니다.",
       "zh-cn": "由于批发市场的特殊性，不能立刻确认库存情况。",
       "zh-tw": "由於批發市場的特殊性，不能立刻確認庫存情況。"
     },
     "descSoldout2": {
-      "en": "판매자 또는 제조사의 사정으로 상품이 갑작스럽게 품절되거나 재고가 부족할 수 있습니다.",
+      "en": "Products may run out of stock due to the seller or manufacturer's situation.",
       "ko": "판매자 또는 제조사의 사정으로 상품이 갑작스럽게 품절되거나 재고가 부족할 수 있습니다.",
       "zh-cn": "按照商铺的情况，有可能发生断货或缺货。",
       "zh-tw": "按照商鋪的情況，有可能發生斷貨或缺貨。"
     },
     "descSoldout3": {
-      "en": "품절된 상품의 경우 주문 당시 동일 결제수단으로 자동 환불 처리해 드립니다.",
+      "en": "If an item you have ordered is already sold out, we will refund your money with the original payment method used at the time of purchase.",
       "ko": "품절된 상품의 경우 주문 당시 동일 결제수단으로 자동 환불 처리해 드립니다.",
       "zh-cn": "没库存的商品，进行取消并退款处理。",
       "zh-tw": "沒庫存的商品，進行取消并退款處理。"
@@ -577,13 +577,13 @@
       "zh-tw": "因為各個地區的通關及配送政策不同，實際運費也稍微不一樣，請參照如下："
     },
     "popupRefundTitle": {
-      "en": "반품/교환 안내",
+      "en": "Return and Exchange Policy",
       "ko": "반품/교환 안내",
       "zh-cn": "退货/交换政策",
       "zh-tw": "退貨/交換政策"
     },
     "popupSoldoutTitle": {
-      "en": "품절/지연입고 안내",
+      "en": "Out & Delaying of stock",
       "ko": "품절/지연입고 안내",
       "zh-cn": "断货/缺货",
       "zh-tw": "斷貨/缺貨"
@@ -807,7 +807,7 @@
     "bizNumberOnlyNumbers": {
       "en": "사업자번호('-' 제외)",
       "ko": "사업자번호('-' 제외)",
-      "zh-cn": "营业注册号(若还没有不用填写)",
+      "zh-cn": "QQ或微信账号",
       "zh-tw": "營業註冊號(若還沒有不用填寫)"
     },
     "bizImageUpload": {
@@ -1381,13 +1381,13 @@
       "zh-tw": "胸圍"
     },
     "modelBottomBustSize": {
-      "en": "Lower chest Measurement",
+      "en": "Lower chest measurement",
       "ko": "아래가슴둘레",
       "zh-cn": "下胸围",
       "zh-tw": "下胸圍"
     },
     "modelHipSize": {
-      "en": "Hip Measurement",
+      "en": "Hip measurement",
       "ko": "힙둘레",
       "zh-cn": "臀围",
       "zh-tw": "臀围"
@@ -1405,37 +1405,37 @@
       "zh-tw": "退貨/交換政策"
     },
     "descRefund1": {
-      "en": "Please note that you cannot exchange or return after the purchase due to the wholesale market quality.",
+      "en": "Please note that you cannot exchange or return after the purchase due to the nature of wholesale market.",
       "ko": "도매 사이트 특성 상 반품은 불가합니다.",
       "zh-cn": "由于批发市场的特殊性，不支持退货服务。",
       "zh-tw": "由於批發市場的特殊性，不支持退貨服務。"
     },
     "descRefund2": {
-      "en": "We accept returns and exchange of the defective product reasons.",
+      "en": "In case of defective products, We accept returns and exchange it with no delivery charge.",
       "ko": "불량 상품의 경우 링크샵스에서 배송료를 부담하고 교환해 드립니다.",
       "zh-cn": "若发现商品品质问题，收货后7天之内, 与客服中心联络。",
       "zh-tw": "若發現商品品質問題，收貨后7天之內，與客服中心聯絡。"
     },
     "descRefund3": {
-      "en": "Defective items can be returned within 7 days of receipt of shipment, and only available for same size and color.",
+      "en": "Defective items must be returned within 7 days of receipt of shipment, and only can be exchanged with same size and color.",
       "ko": "상품 불량으로 인한 교환신청은 배송완료 후 7일 이내에만 신청이 가능하며, 동일 색상 / 사이즈로만 교환이 가능합니다.",
       "zh-cn": "7天之内没有任何反馈，视为默认商品品质为正常。由于品质异常进行交换时，交换的商品只能是同一颜色和尺码的。",
       "zh-tw": "7天之內沒有任何反饋，視為默認商品品質為正常。由於品質異常進行交換時，交換的商品只能是同一顏色和尺碼的。"
     },
     "descRefund4": {
-      "en": "교환하고자 하는 상품이 품절된 경우 환불 처리해 드립니다.",
+      "en": "We refund your payment if we cannot exchange your defective item due to the out of stock reason.",
       "ko": "교환하고자 하는 상품이 품절된 경우 환불 처리해 드립니다.",
       "zh-cn": "如果交换的商品已经断货，我们进行退款处理。",
       "zh-tw": "如果交換的商品已經斷貨，我們進行退款處理。"
     },
     "descRefund5": {
-      "en": "컴퓨터 모니터의 차이로 인해 색상 차이가 있을 수 있으며, 상품의 사이즈 오차는 측정하는 방법에 따라 다를 수 있어 불량에 해당하지 않습니다.",
+      "en": "The item color can look different than it appears on the monitor, and the size varies with type of measurement. These cases cannot be the reason of defective item.",
       "ko": "컴퓨터 모니터의 차이로 인해 색상 차이가 있을 수 있으며, 상품의 사이즈 오차는 측정하는 방법에 따라 다를 수 있어 불량에 해당하지 않습니다.",
       "zh-cn": "由于电脑显示器的分辨率及亮度不同，可能与实物略有色差，还有由于尺码的测定方式不同，可能与实物会略有差异，这不属于交换理由。",
       "zh-tw": "由於電腦顯示器的分辨率及亮度不同，可能與實物略有色差，還有由於尺碼的測定方式不同，可能與實物會略有差異，這不屬於交換理由。"
     },
     "descRefund6": {
-      "en": "Items must be returned unused in their original condition with the factory seal and packaging intact.",
+      "en": "Items must be returned in its original condition with factory seal and packaging.",
       "ko": "상품을 착용하거나 세탁한 경우 교환기간 내라도 접수 불가능합니다.",
       "zh-cn": "穿着使用过的、有洗涤，缝补的商品，无关品质问题，不可退换。",
       "zh-tw": "穿著使用過的、有洗滌，縫補的商品，無關品質問題，不可退還。"
@@ -1447,19 +1447,19 @@
       "zh-tw": "斷貨/缺貨"
     },
     "descDelay1": {
-      "en": "도매 사이트 특성 상 판매자의 실시간 재고 파악이 불가능합니다.",
+      "en": "We cannot check seller's inventories in real time due to the characteristics of the wholesale market.",
       "ko": "도매 사이트 특성 상 판매자의 실시간 재고 파악이 불가능합니다.",
       "zh-cn": "由于批发市场的特殊性，不能立刻确认库存情况。",
       "zh-tw": "由於批發市場的特殊性，不能立刻確認庫存情況。"
     },
     "descDelay2": {
-      "en": "판매자 또는 제조사의 사정으로 상품이 갑작스럽게 품절되거나 재고가 부족할 수 있습니다.",
+      "en": "Products may run out of stock up to seller or manufacturer's situation.",
       "ko": "판매자 또는 제조사의 사정으로 상품이 갑작스럽게 품절되거나 재고가 부족할 수 있습니다.",
       "zh-cn": "按照商铺的情况，有可能发生断货或缺货。",
       "zh-tw": "按照商鋪的情況，有可能發生斷貨或缺貨。"
     },
     "descDelay3": {
-      "en": "품절된 상품의 경우 주문 당시 동일 결제수단으로 자동 환불 처리해 드립니다.",
+      "en": "If an item you have ordered is already sold out, we will refund your money with the original payment method used at the time of purchase.",
       "ko": "품절된 상품의 경우 주문 당시 동일 결제수단으로 자동 환불 처리해 드립니다.",
       "zh-cn": "没库存的商品，进行取消并退款处理。",
       "zh-tw": "沒庫存的商品，進行取消并退款處理。"
@@ -1722,7 +1722,7 @@
       "bizNumber": {
         "en": "Business Registration Number",
         "ko": "사업자번호",
-        "zh-cn": "注册号",
+        "zh-cn": "微信账号",
         "zh-tw": "註冊號"
       },
       "bizNamePlaceHolder": {
@@ -1734,7 +1734,7 @@
       "bizNumberPlaceHolder": {
         "en": "Enter your business number",
         "ko": "사업자번호를 입력해주세요",
-        "zh-cn": "请输入注册号",
+        "zh-cn": "请输入微信账号",
         "zh-tw": "請輸入註冊號"
       },
       "returnAccountNumber": {
@@ -1812,7 +1812,7 @@
       "warningInputBizNumber": {
         "en": "사업자번호를 입력해 주세요",
         "ko": "사업자번호를 입력해 주세요",
-        "zh-cn": "请输入注册号",
+        "zh-cn": "请输入微信账号",
         "zh-tw": "請輸入註冊號"
       },
       "warningInputBizImage": {
@@ -1857,14 +1857,14 @@
     "welcome": {
       "en": "님 환영합니다",
       "ko": "님 환영합니다",
-      "zh-cn": "님 환영합니다",
-      "zh-tw": "님 환영합니다"
+      "zh-cn": "您好！",
+      "zh-tw": "您好！"
     },
     "orderNumber": {
       "en": "Order Number",
-      "ko": "주문날짜",
-      "zh-cn": "Order Number",
-      "zh-tw": "Order Number"
+      "ko": "주문 번호",
+      "zh-cn": "订单编码",
+      "zh-tw": "訂單編碼"
     },
     "orderDate": {
       "en": "Order Date",
@@ -1968,12 +1968,6 @@
       "zh-cn": "订单日期",
       "zh-tw": "訂單日期"
     },
-    "orderNumber": {
-      "en": "Order Number",
-      "ko": "주문 번호",
-      "zh-cn": "订单编码",
-      "zh-tw": "訂單編碼"
-    },
     "orderSummaryTitle": {
       "en": "현재 진행중인 주문",
       "ko": "현재 진행중인 주문",
@@ -2018,7 +2012,7 @@
     },
     "promotions": {
       "en": "Promotions",
-      "ko": "기타",
+      "ko": "할인",
       "zh-cn": "备注",
       "zh-tw": "備註"
     },
@@ -2429,37 +2423,37 @@
       "zh-tw": "退款規定確認"
     },
     "refundPolicyDesc1": {
-      "en": "품절 및 재고상황에 따라 일부 상품이",
+      "en": "- Some items may not be delivered If the item is sold out or out of stock. In this case, we issue partial refund process based on Article 14 of the Terms of Use.",
       "ko": "품절 및 재고상황에 따라 일부 상품이",
       "zh-cn": "由于实际库存情况，有可能发生一部",
       "zh-tw": "由於實際庫存情況，有可能發生一部"
     },
     "refundPolicyDesc2": {
-      "en": "배송 되지 않을 수 있으며 미 배송 상품의",
+      "en": "",
       "ko": "배송 되지 않을 수 있으며 미 배송 상품의",
       "zh-cn": "分的商品没配送，没配送的商品，",
       "zh-tw": "分的商品沒配送，沒配送的商品，"
     },
     "refundPolicyDesc3": {
-      "en": "환급 절차는 이용약관 제14조에 따릅니다",
+      "en": "",
       "ko": "환급 절차는 이용약관 제14조에 따릅니다",
       "zh-cn": "按照使用条款第14条，进行退款處理。",
       "zh-tw": "按照使用條款第14條，進行退款處理。"
     },
     "refundPolicyMore1": {
-      "en": "도매시장의 특성 상 판매자의 실시간 재고 파악이 불가능 합니다.",
+      "en": "- We cannot check seller's inventories in real time due to the characteristics of the wholesale market.",
       "ko": "도매시장의 특성 상 판매자의 실시간 재고 파악이 불가능 합니다.",
       "zh-cn": "由于批发市场的特殊性，不能立刻确认库存情况。按照商铺的情况，",
       "zh-tw": "由於批發市場的特殊性，不能立刻確認庫存情況。按照商鋪的情況，"
     },
     "refundPolicyMore2": {
-      "en": "판매자 또는 제조사의 사정으로 상품이 품절되거나 재고가 부족할 수 있습니다.",
+      "en": "- Products may run out of stock up to the seller or the manufacturer's situation.",
       "ko": "판매자 또는 제조사의 사정으로 상품이 품절되거나 재고가 부족할 수 있습니다.",
       "zh-cn": "有可能发生断货或缺货。",
       "zh-tw": "有可能發生斷貨或缺貨。"
     },
     "refundPolicyMore3": {
-      "en": "품절된 상품의 경우 해당 상품금액에 사입비 / 부가세 (국내에 한함)를 포함하여 주문 당시 동일 결제수단으로 자동 환불 처리해 드립니다.",
+      "en": "- If an item you have ordered is already sold out, we will refund your money with the original payment method used at the time of purchase.",
       "ko": "품절된 상품의 경우 해당 상품금액에 사입비 / 부가세 (국내에 한함)를 포함하여 주문 당시 동일 결제수단으로 자동 환불 처리해 드립니다.",
       "zh-cn": "没库存的商品进行取消并退款处理。",
       "zh-tw": "沒庫存的商品進行取消并退款處理。"
