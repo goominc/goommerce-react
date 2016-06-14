@@ -135,9 +135,8 @@ $cart-popup-height: 150px;
 }
 
 .change-password-popup {
-  height: 300px;
-  padding: 10px 15px;
-  width: 300px;
+  @include popup-body(350px, 300px);
+  padding: 15px 15px 30px;
   .title {
     color: #555;
     font-size: 20px;
@@ -147,6 +146,7 @@ $cart-popup-height: 150px;
   .description {
     color: #777;
     font-size: 11px;
+    margin: 0 0 50px;
   }
   input {
     border: 1px solid #ddd;

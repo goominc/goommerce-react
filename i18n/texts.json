@@ -1641,6 +1641,30 @@
         "zh-cn": "确认密码",
         "zh-tw": "確認密碼"
       },
+      "oldPassword": {
+        "en": "Old Password",
+        "ko": "현재 비밀번호",
+        "zh-cn": "Old Password",
+        "zh-tw": "Old Password"
+      },
+      "newPassword": {
+        "en": "New Password",
+        "ko": "새 비밀번호",
+        "zh-cn": "New Password",
+        "zh-tw": "New Password"
+      },
+      "changePasswordSuccess": {
+        "en": "New Password saved Successfully",
+        "ko": "패스워드가 변경되었습니다",
+        "zh-cn": "New Password saved Successfully",
+        "zh-tw": "New Password saved Successfully"
+      },
+      "changePasswordFail": {
+        "en": "Failed to change Password",
+        "ko": "비밀번호 변경이 실패하였습니다",
+        "zh-cn": "Failed to change Password",
+        "zh-tw": "Failed to change Password"
+      },
       "personalInformation": {
         "en": "Personal Information",
         "ko": "개인정보",
@@ -2207,6 +2231,12 @@
       "ko": "재주문",
       "zh-cn": "再次购买",
       "zh-tw": "再次購買"
+    },
+    "changePassword": {
+      "en": "비밀번호 변경",
+      "ko": "비밀번호 변경",
+      "zh-cn": "비밀번호 변경",
+      "zh-tw": "비밀번호 변경"
     }
   },
   "pcOrder": {

@@ -32,6 +32,19 @@ export function login(body, router) {
   };
 }
 
+export function changePassword(oldPassword, newPassword) {
+  return (dispatch, getState) => {
+    const state = getState();
+    const body = { oldPassword, newPassword };
+    return ajaxReturnPromise(state.auth, 'put', '/api/v1/users/self/change_password', body).then((data) => {
+      dispatch({
+        type: 'LOGIN',
+        payload: { auth: data },
+      });
+    });
+  };
+}
+
 export function logout() {
   return createFetchAction({
     type: 'LOGOUT',

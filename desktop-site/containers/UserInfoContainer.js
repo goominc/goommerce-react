@@ -41,5 +41,5 @@ const UserInfoContainer = React.createClass({
 });
 
 export default connect(
-  (state) => ({ auth: state.auth })
+  (state, ownProps) => ({ auth: state.auth })
 )(UserInfoContainer);

@@ -16,7 +16,7 @@ export default React.createClass({
     return { activeAreaCodeIndex: 0 };
   },
   componentDidMount() {
-    this.props.onChange({ target: { value: '+82' } }, 'data.areaCode');
+    this.props.onChange({ target: { value: _.get(this.props, 'auth.data.areaCode', '+82') } }, 'data.areaCode');
   },
   render() {
     const { auth, onChange, onlyNumberFieldOnChange } = this.props;
