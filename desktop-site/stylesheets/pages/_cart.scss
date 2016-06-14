@@ -152,9 +152,6 @@
   .cart-product-info-len {
     width: 300px !important;
   }
-  .order-product-info-len {
-    width: 260px !important;
-  }
   .product-info-title {
     @include cell();
     width: 300px;
@@ -167,6 +164,153 @@
     text-align: left;
     vertical-align: top;
     width: 300px;
+    .img-box {
+      display: inline-block;
+      margin-right: 20px;
+      width: 60px;
+    }
+    .img-wrap {
+      @include default-responsive-img-wrap();
+      border: 1px solid #f2f2f2;
+      box-sizing: content-box;
+      width: 100%;
+    }
+    .content-wrap {
+      display: inline-block;
+      vertical-align: top;
+      .item {
+        height: 25px;
+        line-height: 25px;
+      }
+    }
+  }
+  .quantity {
+    @include cell();
+    height: 100%;
+    vertical-align: top;
+    width: 110px;
+  }
+  .price {
+    @include cell();
+    width: 120px;
+  }
+  .product-container {
+    display: table-cell;
+    vertical-align: top;
+    width: 100%;
+    .product-row {
+      height: 100px;
+      line-height: 100px;
+      & + .product-row {
+        border-top: 1px solid #aaa;
+      }
+    }
+    .variant-row {
+      height: 100px;
+      line-height: 100px;
+    }
+  }
+  .action-column {
+    cursor: pointer;
+    display: inline-block;
+    margin-left: $margin-15;
+    vertical-align: top;
+    width: 13px;
+  }
+  .status-column {
+    @include multi-line-vertical-center(20px);
+    border-left: 1px solid #ddd;
+    display: inline-block;
+    height: 100%;
+    text-align: center;
+    vertical-align: top;
+    width: 98px;
+  }
+  .go-cart {
+    border-radius: 10px;
+    border: 1px solid #aaa;
+    cursor: pointer;
+    display: inline;
+    font-size: 12px;
+    padding: 0 10px;
+    &:hover {
+      background-color: #ddd;
+    }
+  }
+  .no-product {
+    color: #c94e4e;
+    margin-bottom: 5px;
+  }
+  .order-product-ok {
+    color: #27299a;
+    margin-bottom: 5px;
+  }
+}
+.order-info-container {
+  background-color: #fff;
+  border: 1px solid #aaa;
+  display: inline-block;
+  vertical-align: top;
+  width: 860px;
+  @mixin cell() {
+    display: inline-block;
+    height: 100%;
+    position: relative;
+    text-align: center;
+    .cancel-text {
+      color: #aaa;
+      text-decoration: line-through;
+    }
+    .content {
+      display: block;
+      position: relative;
+    }
+    @include multi-line-vertical-center(20px);
+  }
+  .title-row {
+    border-top: 1px solid #aaa;
+    height: 35px;
+    line-height: 35px;
+    font-size: 14px;
+    font-weight: bold;
+    width: 100%;
+    .brand {
+      @include cell();
+      border-right: 1px solid #ddd;
+      height: 100%;
+      width: 100px;
+    }
+  }
+  .row {
+    border-top: 1px solid #aaa;
+    display: table;
+    height: 100%;
+    width: 100%;
+    .brand {
+      border-right: 1px solid #ddd;
+      color: #555;
+      display: table-cell;
+      font-weight: 400;
+      height: 100%;
+      min-width: 100px;
+      max-width: 100px;
+      overflow: hidden;
+      text-align: center;
+      vertical-align: middle;
+    }
+  }
+  .product-info-title {
+    @include cell();
+    width: 320px;
+  }
+  .product-info-content {
+    @include cell();
+    height: 100%;
+    padding-left: $margin-20;
+    padding-top: 11px;
+    text-align: left;
+    vertical-align: top;
+    width: 320px;
     .img-box {
       display: inline-block;
       margin-right: 20px;

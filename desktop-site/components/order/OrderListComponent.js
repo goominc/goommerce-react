@@ -55,7 +55,7 @@ export default React.createClass({
         quantities += +(variant.quantity || 0);
       }
       const displayBrand = brands.size > 1 ?
-        `${representitiveBrandName}${i18n.get('pcMypage.orderListSubjectAnd')} ${brands.size - 1}${i18n.get('pcMypage.orderListSubjectBrand')}` :
+        `${representitiveBrandName} ${i18n.get('pcMypage.orderListSubjectAnd')} ${brands.size - 1}${i18n.get('pcMypage.orderListSubjectBrand')}` :
         `${representitiveBrandName}${i18n.get('pcMypage.orderListSubjectOf')}`;
       return `${displayBrand} ${quantities}${i18n.get('pcMypage.orderListSubjectProduct')}`;
     };

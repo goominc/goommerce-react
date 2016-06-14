@@ -79,7 +79,7 @@ export default React.createClass({
         const total = numberUtil.calcProductVariantTotalPrice(variant, variant.quantity, activeCurrency);
         return (
           <div key={variant.productVariant.id} className={index === 0 ? 'product-row' : 'variant-row'}>
-            <div className="product-info-content cart-product-info-len">
+            <div className="product-info-content">
               <Link to={`/products/${product.id}`} className="img-box">
                 <ResponsiveImage image={_.get(variant.productVariant, 'appImages.default[0]')} width={120} />
               </Link>
@@ -111,7 +111,7 @@ export default React.createClass({
       <div className="cart-info-container">
         <div className="title-row">
           <div className="brand">{i18n.get('pcCart.brands')}</div>
-          <div className="product-info-title cart-product-info-len">{i18n.get('pcCart.products')}</div>
+          <div className="product-info-title">{i18n.get('pcCart.products')}</div>
           <div className="quantity">{i18n.get('pcCart.price')}</div>
           <div className="quantity">{i18n.get('pcCart.quantity')}</div>
           <div className="price">{i18n.get('pcCart.subtotal')}</div>

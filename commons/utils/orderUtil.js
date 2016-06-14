@@ -1,6 +1,12 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
 import _ from 'lodash';
+import Decimal from 'decimal.js-light';
+
+import i18n from 'commons/utils/i18n';
+
+import { formatPrice } from 'commons/utils/numberUtil';
+import { paymentMethod } from 'commons/utils/inipay';
 
 exports.collectByBrands = (orderProductVariants) => {
   const res = [];
@@ -95,4 +101,45 @@ exports.getInfoFromOrdersNotInCart = (orders, cart) => {
     });
   });
   return getInfoFromOrders(orders, variantIdsInCart);
+};
+
+exports.getOrderStatus = (order) => {
+  if (+order.paymentStatus === 200) {
+    // VBank
+    return i18n.get('enum.order.paymentStatus.200');
+  }
+  return i18n.get(`enum.order.status.${order.status}`);
+};
+
+exports.getPaymentMethodType = (order) => {
+  const allPaymentMethods = [
+    { type: 'VBANK', text: i18n.get('pcPayment.vbank') },
+    { type: 'CARD', text: i18n.get('pcPayment.creditCard') },
+    { type: 'APAY', text: i18n.get('pcPayment.alipay') },
+  ];
+  for (let i = 0; i < (order.payments || []).length; i++) {
+    const payment = order.payments[i];
+    if (payment.type === 0) {
+      const {
+        payMethod, // web
+        paymethod, // global
+        P_TYPE, // mobile, mobile_global
+      } = payment.data;
+      const method = (payMethod || paymethod || P_TYPE || '').toUpperCase();
+      for (let j = 0; j < allPaymentMethods.length; j++) {
+        if (allPaymentMethods[j].type === method) {
+          return allPaymentMethods[j].text;
+        }
+      }
+    }
+  }
+  return '';
+};
+
+exports.formatPriceGap = (order, type, activeCurrency, currencySign) => {
+  const sign = (v) => (v < 0 ? '-' : '');
+  const getPrice = (type2) => order[`${type2}${activeCurrency}`];
+  const finalType = `final${type[0].toUpperCase()}${type.substring(1)}`;
+  const gap = new Decimal(getPrice(finalType)).sub(getPrice(type)).toNumber();
+  return gap === 0 ? '0' : `${sign(gap)}${formatPrice(Math.abs(gap), activeCurrency, currencySign)}`;
 };

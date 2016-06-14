@@ -494,6 +494,149 @@ $active-progress-color: #f90;
   }
 }
 
+@mixin payment-info-container() {
+  .payment-info-container {
+    margin-bottom: 30px;
+    width: 100%;
+    .row {
+      display: table;
+      width: 100%;
+    }
+    .cell {
+      border-top: 1px solid #f0f0f0;
+      display: table-cell;
+      position: relative;
+      vertical-align: top;
+      width: 25%;
+      & + .cell {
+        border-left: 1px solid #f0f0f0;
+      }
+    }
+    .title-cell {
+      background-color: #eee;
+      border: 0;
+      height: 40px;
+      line-height: 40px;
+      padding: 0 20px;
+      span {
+        display: inline-block;
+        font-size: 13px;
+        font-weight: 400;
+        text-align: left;
+        vertical-align: top;
+        white-space: nowrap;
+        width: 30%;
+      }
+      .price {
+        display: inline-block;
+        font-size: 13px;
+        font-weight: bold;
+        text-align: right;
+        vertical-align: top;
+        width: 70%;
+      }
+    }
+    @mixin cell-left-right() {
+      .left {
+        display: inline-block;
+        line-height: 20px;
+        text-align: left;
+        vertical-align: top;
+        width: 15%;
+        white-space: nowrap;
+      }
+      .right {
+        display: inline-block;
+        line-height: 20px;
+        text-align: right;
+        vertical-align: top;
+        width: 85%;
+        white-space: nowrap;
+      }
+    }
+    .content-cell {
+      background-color: #fff;
+      font-size: 12px;
+      padding: 10px 20px;
+      @include cell-left-right();
+    }
+    .sub-title-line {
+      background-color: #f2f2f2;
+      font-weight: bold;
+      padding: 5px $margin-15;
+      width: 100%;
+      @include cell-left-right();
+    }
+    .content-refund-cell {
+      background-color: #fff;
+      font-size: 12px;
+      padding: 10px $margin-15;
+      @include cell-left-right();
+      .right {
+        color: #aaa;
+      }
+    }
+    .final-price-line {
+      background-color: #e4e4e4;
+      bottom: 0;
+      height: 40px;
+      line-height: 40px;
+      left: 0;
+      padding: 0 $margin-15;
+      position: absolute;
+      width: 100%;
+      .left {
+        display: inline-block;
+        font-size: 14px;
+        letter-spacing: -1px;
+        text-align: left;
+        vertical-align: top;
+        width: 30%;
+        white-space: nowrap;
+      }
+      .right {
+        color: #cc2b19;
+        display: inline-block;
+        font-size: 20px;
+        text-align: right;
+        vertical-align: top;
+        width: 70%;
+        white-space: nowrap;
+      }
+    }
+  }
+  .price-summary-line {
+    background-color: #1d3a4b;
+    height: 50px;
+    line-height: 50px;
+    padding-right: 30px;
+    text-align: right;
+    width: 100%;
+    span {
+      color: #fff;
+      font-size: 11px;
+      margin-left: 40px;
+    }
+    .price {
+      color: #ffcc00 !important;
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+  .go-order-list-button {
+    @include button-default-styles();
+    display: block;
+    border-radius: 5px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: 400;
+    margin: 30px auto;
+    text-align: center;
+    width: 200px;
+  }
+}
+
 .order-done-container {
   margin: 30px auto;
   text-align: left;
@@ -558,123 +701,162 @@ $active-progress-color: #f90;
   .price {
     color: $default-active-text-color !important;
   }
-  .go-order-list-button {
-    @include button-default-styles();
-    display: block;
-    height: 50px;
-    line-height: 50px;
-    font-size: 20px;
-    font-weight: 400;
-    margin: 20px auto;
-    text-align: center;
-    width: 200px;
-  }
 
-  .payment-info-container {
-    border: 1px solid #aaa;
-    margin-bottom: 30px;
-    width: 100%;
-    .row {
-      display: table;
-      width: 100%;
-    }
-    .cell {
-      border-top: 1px solid #aaa;
-      display: table-cell;
-      position: relative;
+  @include payment-info-container();
+}
+
+.order-detail-container {
+  margin: 30px auto;
+  text-align: left;
+  width: 860px;
+  .top-action-line {
+    padding: 0 0 10px;
+    text-align: right;
+    .item {
+      display: inline-block;
+      font-size: 12px;
+      padding: 0 10px 0 20px;
       vertical-align: top;
-      width: 25%;
-      & + .cell {
-        border-left: 1px solid #aaa;
-      }
     }
-    .title-cell {
-      background-color: #eee;
-      height: 45px;
-      line-height: 45px;
-      padding: 0 $margin-15;
-      .title {
-        display: inline-block;
-        font-size: 13px;
-        font-weight: 400;
+    button {
+      background-color: transparent;
+      border: 0;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 0;
+    }
+  }
+  .order-detail-summary-box {
+    border: 3px solid #f0f0f0;
+    margin-bottom: 40px;
+    padding: 20px 40px 10px;
+    width: 100%;
+    .upper-line {
+      width: 100%;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #f2f2f2;
+    }
+    .date {
+      color: #000;
+      font-size: 14px;
+      font-weight: 400;
+    }
+    .order-number {
+      color: #333;
+      font-size: 12px;
+      margin-left: 50px;
+    }
+    .status {
+      font-size: 12px;
+      font-weight: bold;
+      float: right;
+    }
+    .lower-line {
+      display: table;
+      min-height: 40px;
+      padding-top: 10px;
+      width: 100%;
+      .left {
+        display: table-cell;
         text-align: left;
+        vertical-align: middle;
+        white-space: nowrap;
+        width: 60%;
+      }
+      .right {
+        color: #999;
+        display: table-cell;
+        text-align: right;
+        vertical-align: middle;
+        white-space: nowrap;
+        width: 40%;
+      }
+      .content {
+        display: inline-block;
+        text-align: right;
+        line-height: 20px;
         vertical-align: top;
         white-space: nowrap;
-        width: 30%;
+        width: 120px;
+      }
+      @mixin vbank() {
+        font-size: 12px;
+        strong {
+          color: $default-active-text-color;
+          font-size: 14px;
+          font-weight: bold;
+        }
+      }
+      .vbank {
+        @include vbank();
+      }
+      .vbank-account-holder {
+        @include vbank();
+        margin-left: 50px;
       }
       .price {
         color: $default-active-text-color;
-        display: inline-block;
-        font-size: 20px;
-        text-align: right;
-        width: 70%;
-      }
-    }
-    @mixin cell-left-right() {
-      .left {
-        display: inline-block;
-        text-align: left;
-        vertical-align: top;
-        width: 15%;
-        white-space: nowrap;
-      }
-      .right {
-        display: inline-block;
-        text-align: right;
-        vertical-align: top;
-        width: 85%;
-        white-space: nowrap;
-      }
-    }
-    .content-cell {
-      background-color: #fff;
-      font-size: 12px;
-      padding: 10px $margin-15;
-      @include cell-left-right();
-    }
-    .sub-title-line {
-      background-color: #f2f2f2;
-      font-weight: bold;
-      padding: 5px $margin-15;
-      width: 100%;
-      @include cell-left-right();
-    }
-    .content-refund-cell {
-      background-color: #fff;
-      font-size: 12px;
-      padding: 10px $margin-15;
-      @include cell-left-right();
-      .right {
-        color: #aaa;
-      }
-    }
-    .final-price-line {
-      background-color: #e4e4e4;
-      bottom: 0;
-      height: 40px;
-      line-height: 40px;
-      left: 0;
-      padding: 0 $margin-15;
-      position: absolute;
-      width: 100%;
-      .left {
-        display: inline-block;
-        font-size: 14px;
-        letter-spacing: -1px;
-        text-align: left;
-        vertical-align: top;
-        width: 30%;
-        white-space: nowrap;
-      }
-      .right {
-        color: #cc2b19;
-        display: inline-block;
-        font-size: 20px;
-        text-align: right;
-        vertical-align: top;
-        width: 70%;
-        white-space: nowrap;
+        font-size: 16px;
       }
     }
   }
+  .title-box {
+    color: #222;
+    display: block;
+    font-size: 24px;
+    font-weight: 500;
+    padding: 10px 0 0 0;
+    text-align: left;
+    width: 100%;
+    span {
+      vertical-align: top;
+    }
+  }
+  .message {
+    font-size: 30px;
+    font-weight: 400;
+    margin: $margin-20 0;
+    text-align: center;
+    width: 100%;
+  }
+  .title {
+    color: #555;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .simple-key-value-container {
+    border: 1px solid #aaa;
+    letter-spacing: -1px;
+    margin-bottom: 30px;
+    width: 100%;
+    .row {
+      height: 30px;
+      line-height: 30px;
+    }
+    .label {
+      background-color: #eee;
+      border-bottom: 1px solid #aaa;
+      display: inline-block;
+      font-size: 13px;
+      font-weight: bold;
+      padding: 0 $margin-15;
+      vertical-align: top;
+      width: 150px;
+    }
+    .control {
+      background-color: #fff;
+      border-left: 1px solid #aaa;
+      border-bottom: 1px solid #aaa;
+      color: #777;
+      display: inline-block;
+      font-size: 13px;
+      font-weight: 400;
+      padding: 0 $margin-15;
+      vertical-align: top;
+      width: 648px;
+    }
+  }
+
+  @include payment-info-container();
 }

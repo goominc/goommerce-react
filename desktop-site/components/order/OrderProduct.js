@@ -143,7 +143,7 @@ export default React.createClass({
       );
     };
     return (
-      <div className="cart-info-container">
+      <div className="order-info-container">
         <div className="title-row">
           <div className="brand">{i18n.get('pcMypage.brands')}</div>
           <div className="product-info-title order-product-info-len">{i18n.get('pcMypage.products')}</div>

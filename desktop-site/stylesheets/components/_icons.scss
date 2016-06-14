@@ -31,6 +31,8 @@ $payment-icons: (
   ('icon-union-pay', 43px, 27px),
   ('icon-paypal', 53px, 14px),
   ('icon-ban', 23px, 23px),
+  ('icon-receipt', 14px, 13px),
+  ('icon-print', 14px, 12px),
 );
 
 @mixin generate-payment-icons {

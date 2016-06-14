@@ -1836,6 +1836,12 @@
       "zh-cn": "님 환영합니다",
       "zh-tw": "님 환영합니다"
     },
+    "orderNumber": {
+      "en": "Order Number",
+      "ko": "주문날짜",
+      "zh-cn": "Order Number",
+      "zh-tw": "Order Number"
+    },
     "orderDate": {
       "en": "Order Date",
       "ko": "주문날짜",
@@ -1908,6 +1914,12 @@
       "zh-cn": "件商品的订单详情",
       "zh-tw": "個商品的訂單詳情"
     },
+    "printOrder": {
+      "en": "주문내역출력",
+      "ko": "주문내역출력",
+      "zh-cn": "주문내역출력",
+      "zh-tw": "주문내역출력"
+    },
     "thanksForYourOrder": {
       "en": "Thanks for your order",
       "ko": "주문이 완료되었습니다.",
@@ -1967,6 +1979,18 @@
       "ko": "상품금액",
       "zh-cn": "商品金额",
       "zh-tw": "商品金額"
+    },
+    "refundPrice": {
+      "en": "환불금액",
+      "ko": "환불금액",
+      "zh-cn": "환불금액",
+      "zh-tw": "환불금액"
+    },
+    "shippingCostGap": {
+      "en": "배송차액",
+      "ko": "배송차액",
+      "zh-cn": "배송차액",
+      "zh-tw": "배송차액"
     },
     "promotions": {
       "en": "Promotions",
@@ -2185,6 +2209,38 @@
       "zh-tw": "再次購買"
     }
   },
+  "pcOrder": {
+    "vbankBankTitle": {
+      "en": "입금은행",
+      "ko": "입금은행",
+      "zh-cn": "입금은행",
+      "zh-tw": "입금은행"
+    },
+    "vbankAccountNumberTitle": {
+      "en": "무통장입금 계좌번호",
+      "ko": "무통장입금 계좌번호",
+      "zh-cn": "무통장입금 계좌번호",
+      "zh-tw": "무통장입금 계좌번호"
+    },
+    "vbankAccountHolderTitle": {
+      "en": "예금주명",
+      "ko": "예금주명",
+      "zh-cn": "예금주명",
+      "zh-tw": "예금주명"
+    },
+    "vbankSenderTitle": {
+      "en": "송금자명",
+      "ko": "송금자명",
+      "zh-cn": "송금자명",
+      "zh-tw": "송금자명"
+    },
+    "vbankPaymentPriceTitle": {
+      "en": "입금예정금액",
+      "ko": "입금예정금액",
+      "zh-cn": "입금예정금액",
+      "zh-tw": "입금예정금액"
+    }
+  },
   "pcPayment": {
     "payment": {
       "en": "Payment",
@@ -2293,6 +2349,12 @@
       "ko": "결제금액",
       "zh-cn": "付款金额",
       "zh-tw": "付款金額"
+    },
+    "finalTotalPrice": {
+      "en": "Final Total",
+      "ko": "환불 후 최종 결제금액",
+      "zh-cn": "환불 후 최종 결제금액",
+      "zh-tw": "환불 후 최종 결제금액"
     },
     "paymentMethod": {
       "en": "Payment Method",
