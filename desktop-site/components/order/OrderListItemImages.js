@@ -1,6 +1,7 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 import { CloudinaryImage } from 'react-cloudinary';
 import _ from 'lodash';
 
@@ -15,25 +16,27 @@ export default React.createClass({
     const { order } = this.props;
     const { startIndex } = this.state;
     const itemInRow = 9;
-    const renderImage = (image) => {
+    const renderImage = (image, product) => {
       if (!image) {
         return (<img />);
       }
 
       if (!image.publicId) {
-        return (<img src={image.url} />);
+        return (<Link to={`/products/${product.id}`}><img src={image.url} /></Link>);
       }
       return (
-        <CloudinaryImage
-          publicId={image.publicId}
-          version={image.version}
-          options={ { width: 220 } }
-        />
+        <Link to={`/products/${product.id}`}>
+          <CloudinaryImage
+            publicId={image.publicId}
+            version={image.version}
+            options={ { width: 220 } }
+          />
+        </Link>
       );
     };
     const renderProduct = (p) => (
       <div key={p.productVariant.id} className="img-wrap">
-        {renderImage(_.get(p.productVariant, 'appImages.default[0]'))}
+        {renderImage(_.get(p.productVariant, 'appImages.default[0]'), p.product)}
       </div>
     );
     if (order.orderProducts.length <= itemInRow) {
