@@ -301,7 +301,7 @@
   }
   .product-info-title {
     @include cell();
-    width: 320px;
+    width: 300px;
   }
   .product-info-content {
     @include cell();
@@ -310,7 +310,7 @@
     padding-top: 11px;
     text-align: left;
     vertical-align: top;
-    width: 320px;
+    width: 300px;
     .img-box {
       display: inline-block;
       margin-right: 20px;
@@ -371,7 +371,7 @@
     height: 100%;
     text-align: center;
     vertical-align: top;
-    width: 98px;
+    width: 118px;
   }
   .go-cart {
     border-radius: 10px;

@@ -92,12 +92,20 @@ export default React.createClass({
           </div>
         );
       }
+      if (order.finalTotalKRW) {
+        return (
+          <div className="price-summary-line">
+            <span>{i18n.get('pcPayment.totalPrice')}</span>
+            <span>{totalPrice}</span>
+            <span style={({ marginLeft: '70px' })}>{i18n.get('pcPayment.finalTotalPrice')}</span>
+            <span className="price">{formatPrice('finalTotal')}</span>
+          </div>
+        );
+      }
       return (
         <div className="price-summary-line">
           <span>{i18n.get('pcPayment.totalPrice')}</span>
-          <span>{totalPrice}</span>
-          <span style={({ marginLeft: '70px' })}>{i18n.get('pcPayment.finalTotalPrice')}</span>
-          <span className="price">{formatPrice('finalTotal')}</span>
+          <span className="price">{totalPrice}</span>
         </div>
       );
     };
