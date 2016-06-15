@@ -3,6 +3,7 @@
 import React, { PropTypes } from 'react';
 import _ from 'lodash';
 
+import i18n from 'commons/utils/i18n';
 import numberUtil from 'commons/utils/numberUtil';
 
 export default React.createClass({
@@ -28,11 +29,11 @@ export default React.createClass({
     );
     const price = numberUtil.formatPrice(order[`total${activeCurrency}`], activeCurrency, currencySign);
     const accountFields = [
-      { label: '입금금액', value: price, className: 'price' },
-      { label: '입금은행', value: payment.data.vactBankName },
-      { label: '입금계좌번호', value: payment.data.VACT_Num },
-      { label: '예금주명', value: payment.data.VACT_Name },
-      { label: '송금자명', value: payment.data.VACT_InputName },
+      { label: i18n.get('pcOrder.vbankPaymentPriceTitle'), value: price, className: 'price' },
+      { label: i18n.get('pcOrder.vbankBankTitle'), value: payment.data.vactBankName },
+      { label: i18n.get('pcOrder.vbankAccountNumberTitle'), value: payment.data.VACT_Num },
+      { label: i18n.get('pcOrder.vbankAccountHolderTitle'), value: payment.data.VACT_Name },
+      { label: i18n.get('pcOrder.vbankSenderTitle'), value: payment.data.VACT_InputName },
     ];
     return (
       <div className="simple-key-value-container">

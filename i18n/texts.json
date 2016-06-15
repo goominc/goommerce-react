@@ -2330,6 +2330,12 @@
     }
   },
   "pcOrder": {
+    "vbankTitle": {
+      "en": "입금 정보",
+      "ko": "입금 정보",
+      "zh-cn": "입금 정보",
+      "zh-tw": "입금 정보"
+    },
     "vbankBankTitle": {
       "en": "입금은행",
       "ko": "입금은행",
