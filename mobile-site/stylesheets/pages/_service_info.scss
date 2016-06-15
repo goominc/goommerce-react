@@ -645,7 +645,6 @@
     img{
       margin: 0 auto;
       text-align: center;
-      height : 100%;
       width: 6.500rem;
     }
   }
@@ -710,7 +709,6 @@
         }
         .landscape{
           padding-top : 20px;
-          height: 100%;
           width: 70px;
         }
       }
@@ -759,7 +757,6 @@
   .top_banner_1 {
     font-size: 2.000rem;
     font-weight: bold;
-    padding-top: 2.438rem;
     color: #555;
 
   }
@@ -846,11 +843,9 @@
 
   .top_banner_img{
     padding-top: 2.438rem;
-    max-height: 30px;
     img{
       margin: 0 auto;
       text-align: center;
-      height : 100%;
       width: 6.500rem;
     }
   }
@@ -874,7 +869,6 @@
           @media screen and (min-width:768px) {
             width: 100px;
           }
-
         }
       }
       .signup_text {
@@ -1073,7 +1067,7 @@
   }
   .order-info-ul{
     list-style-type:none;
-    margin: 2rem 3rem 3.500rem 3rem;
+    margin: 2rem 3rem 1.500rem 3rem;
     margin-left:1.200rem;
     margin-right:0.9rem;
     li:before {
