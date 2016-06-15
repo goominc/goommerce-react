@@ -123,7 +123,7 @@ export default React.createClass({
     };
     const renderMypageMenus = () => {
       const menus = [
-        { link: '/mypage/my_orders', text: i18n.get('pcMain.myMenu.myOrders') },
+        { link: '/mypage/orders', text: i18n.get('pcMain.myMenu.myOrders') },
         { link: '/mypage/user_info', text: i18n.get('pcMain.myMenu.userInfo') },
       ];
       if (roleUtil.hasRole(auth, ['bigBuyer', 'admin'])) {
@@ -165,13 +165,13 @@ export default React.createClass({
       if (this.context.isLogin()) {
         return [
           <div key="app-header-hi" className="helper-menu-item">
-            <Link to="/mypage">{i18n.get('word.hi')} {stringUtil.getUserName(auth)}{i18n.get('pcMain.myMenu.userHi')}</Link>
+            <Link to="/mypage/orders">{i18n.get('word.hi')} {stringUtil.getUserName(auth)}{i18n.get('pcMain.myMenu.userHi')}</Link>
           </div>,
           <div key="app-header-mypage" className="helper-menu-item"
             onMouseEnter={(e) => $(e.target).addClass('open')}
             onMouseLeave={(e) => $(e.target).closest('.helper-menu-item').removeClass('open')}
           >
-            {i18n.get('word.myPage')}
+            <Link to="/mypage/orders">{i18n.get('word.myPage')}</Link>
             {renderMypageMenus()}
           </div>,
           <div key="app-header-logout" className="helper-menu-item" onClick={handleLogout}>
