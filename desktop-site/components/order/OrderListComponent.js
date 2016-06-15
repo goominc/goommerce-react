@@ -66,14 +66,9 @@ export default React.createClass({
         i18n.get(`enum.order.paymentStatus.${order.paymentStatus}`) :
         i18n.get(`enum.order.status.${order.status}`);
       const renderSummary = () => {
-        const renderProduct = (p) => (
-          <div className="img-wrap">
-            <img src={_.get(p.productVariant, 'appImages.default[0].url') || ''} />
-          </div>
-        );
         return (
           <div className="cell summary-content">
-            <div className="text">{getSummary(order)}</div>
+            <Link to={`/mypage/orders/${order.id}`}><div className="text">{getSummary(order)}</div></Link>
             <OrderListItemImages order={order} />
           </div>
         );
