@@ -30,7 +30,7 @@ import {
   UserPoliciesContainer,
 } from 'containers';
 
-import routerUtil, { onEnter, onEnterAllowSeller, checkBrand, onSignup } from 'commons/utils/routerUtil';
+import routerUtil, { onEnter, onEnterCn, onEnterAllowSeller, checkBrand, onSignup } from 'commons/utils/routerUtil';
 
 export default function configure(store) { // eslint-disable-line
   routerUtil.initStore(store);
@@ -55,8 +55,8 @@ export default function configure(store) { // eslint-disable-line
         <Route path="/orders/:orderId/checkout" component={Checkout} onEnter={onEnter} />
         <Route path="/orders/:orderId/done" component={OrderDoneContainer} onEnter={onEnter} />
         <Route path="/brands/:brandId(/:pageNum)" component={Brand} onEnter={checkBrand} />
-        <Route path="/categories/:categoryId(/:pageNum)" component={Category} onEnter={onEnter} />
-        <Route path="/search(/:query(/:pageNum))" component={Search} onEnter={onEnter} />
+        <Route path="/categories/:categoryId(/:pageNum)" component={Category} onEnter={onEnterCn} />
+        <Route path="/search(/:query(/:pageNum))" component={Search} onEnter={onEnterCn} />
         <Route path="/mypage/favorite_brands" component={FavoriteBrandContainer} onEnter={onEnter} />
         <Route path="/mypage/wish_list" component={WishListContainer} onEnter={onEnter} />
         <Route component={MyPage}>

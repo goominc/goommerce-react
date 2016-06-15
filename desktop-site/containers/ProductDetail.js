@@ -28,8 +28,9 @@ const ProductDetail = React.createClass({
     wishes: PropTypes.array,
   },
   contextTypes: {
-    router: PropTypes.object.isRequired,
+    activeLocale: PropTypes.string,
     ApiAction: PropTypes.object,
+    router: PropTypes.object.isRequired,
   },
   componentDidMount() {
     this.props.setActiveImage({ url: '' });
@@ -62,7 +63,11 @@ const ProductDetail = React.createClass({
     };
     const afterLoadProduct = (product, dispatch) => {
       // 2016. 06. 02. [heekyu] seller can see he/she's own products
-      roleUtil.isAllowSeeProduct(this.props.auth, product, this.context.router);
+      // 2016. 06. 15. [heekyu] china buyer can see page
+      const { activeLocale } = this.context;
+      if (activeLocale !== 'zh-cn' && activeLocale !== 'zh-tw') {
+        roleUtil.isAllowSeeProduct(this.props.auth, product, this.context.router);
+      }
       dispatch({
         type: 'PRODUCT_DETAIL_VARIANTS',
         variants: parseVariants(product),

@@ -35,6 +35,14 @@ exports.onEnter = (nextState, fnReplaceState) => {
   };
   roleUtil.checkRoleOnEnter(getAuth(), getOnNotLogin(nextState, fnReplaceState), onNotRole);
 };
+exports.onEnterCn = (nextState, fnReplaceState) => {
+  // 2016. 06. 15. [heekyu] for china buyer
+  const activeLocale = store.getState().i18n.activeLocale;
+  if (activeLocale === 'zh-cn' || activeLocale === 'zh-tw') {
+    return;
+  }
+  exports.onEnter(nextState, fnReplaceState);
+};
 const getOnNotRoleSeller = (nextState, fnReplaceState) => () => {
   const brandId = roleUtil.getBrandIdIfSeller(getAuth());
   if (brandId) {
@@ -46,6 +54,11 @@ const getOnNotRoleSeller = (nextState, fnReplaceState) => () => {
 };
 exports.getOnNotRoleSeller = getOnNotRoleSeller;
 exports.onEnterAllowSeller = (nextState, fnReplaceState) => {
+  // 2016. 06. 15. [heekyu] for china buyer
+  const activeLocale = store.getState().i18n.activeLocale;
+  if (activeLocale === 'zh-cn' || activeLocale === 'zh-tw') {
+    return;
+  }
   roleUtil.checkRoleOnEnter(getAuth(), getOnNotLogin(nextState, fnReplaceState), getOnNotRoleSeller(nextState, fnReplaceState));
 };
 exports.checkBrand = (nextState, fnReplaceState) => {

@@ -30,6 +30,7 @@ const ProductDetail = React.createClass({
     variant: PropTypes.string,
   },
   contextTypes: {
+    activeLocale: PropTypes.string,
     router: PropTypes.object.isRequired,
   },
   getInitialState() {
@@ -44,7 +45,11 @@ const ProductDetail = React.createClass({
     });
     this.props.loadProduct(this.props.params.productId)
     .then((res) => {
-      roleUtil.isAllowSeeProduct(this.props.auth, res, this.context.router);
+      // 2016. 06. 15. [heekyu] china buyer can see page
+      const { activeLocale } = this.context;
+      if (activeLocale !== 'zh-cn' && activeLocale !== 'zh-tw') {
+        roleUtil.isAllowSeeProduct(this.props.auth, res, this.context.router);
+      }
       const variants = this.parseVariants(res);
       this.setState({ product: res, productVariants: variants,
         productColors: this.parseProductColors(variants), productSizes: this.parseProductSizes(variants) });
@@ -116,7 +121,8 @@ const ProductDetail = React.createClass({
       }
       return null;
     }
-    return this.props.toggleSignRegister(true, 'sign');
+    this.context.router.push('/accounts/signin');
+    // return this.props.toggleSignRegister(true, 'sign');
   },
   wrapOrder(productVariants) {
     const { auth } = this.props;
@@ -128,7 +134,8 @@ const ProductDetail = React.createClass({
         productVariants: productVariants.map((variant) => ({ id: variant.id, count: variant.count })),
       }).then((order) => this.context.router.push(`/orders/${order.id}/checkout`));
     } else {
-      this.props.toggleSignRegister(true, 'sign');
+      this.context.router.push('/accounts/signin');
+      // this.props.toggleSignRegister(true, 'sign');
     }
   },
   wrapWish() {
@@ -136,7 +143,8 @@ const ProductDetail = React.createClass({
     if (auth.bearer) {
       return this.props.addWish(params.productId);
     }
-    this.props.toggleSignRegister(true, 'sign');
+    this.context.router.push('/accounts/signin');
+    // this.props.toggleSignRegister(true, 'sign');
     return null;
   },
   wrapFavorite(brandId) {
@@ -144,7 +152,8 @@ const ProductDetail = React.createClass({
     if (auth.bearer) {
       return this.props.addFavoriteBrand(brandId);
     }
-    this.props.toggleSignRegister(true, 'sign');
+    this.context.router.push('/accounts/signin');
+    // this.props.toggleSignRegister(true, 'sign');
     return null;
   },
   buildImages() {

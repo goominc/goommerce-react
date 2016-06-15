@@ -45,8 +45,8 @@ export default React.createClass({
           <div className="title"><i className="icon-receipt"></i> {i18n.get('pcMypage.orderSummaryTitle')}</div>
           <div className="summary-line">
             {orderSummary.map((item, index) => (
-              <span>
-                <div key={`order-summary-item-${index}`} className="item">
+              <span key={`order-summary-item-${index}`}>
+                <div className="item">
                   <div className="status">{item.text}</div>
                   <div className="value">
                     {/* 2016. 06. 14. [heekyu] do not use Link for reject not refreshing */}

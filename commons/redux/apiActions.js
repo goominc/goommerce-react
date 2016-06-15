@@ -541,14 +541,20 @@ export function loadCMSData(name) {
 }
 
 export function loadWishlist() {
-  return createFetchAction({
-    type: 'LOAD_WISH_LIST',
-    endpoint: '/api/v1/users/self/wishes?limit=200',
-    transform: ({ data }) => normalize(data.wishes, schemas.wishes),
-    success: {
-      pagination: { key: 'wishes', type: 'REFRESH' },
-    },
-  });
+  return (dispatch, getState) => {
+    const state = getState();
+    // 2016. 06. 15. [heekyu] can be called when not logged in
+    if (state.auth.id) {
+      return createFetchAction({
+        type: 'LOAD_WISH_LIST',
+        endpoint: '/api/v1/users/self/wishes?limit=200',
+        transform: ({ data }) => normalize(data.wishes, schemas.wishes),
+        success: {
+          pagination: { key: 'wishes', type: 'REFRESH' },
+        },
+      })(dispatch, getState);
+    }
+  };
 }
 
 export function addWish(productId) {
