@@ -175,6 +175,7 @@ $active-progress-color: #f90;
           overflow: hidden;
           text-align: right;
           vertical-align: top;
+          white-space: nowrap;
           width: 70%;
           span {
             text-align: left;
@@ -695,6 +696,7 @@ $active-progress-color: #f90;
       font-weight: 400;
       padding: 0 $margin-15;
       vertical-align: top;
+      white-space: nowrap;
       width: 648px;
     }
   }
@@ -854,6 +856,7 @@ $active-progress-color: #f90;
       font-weight: 400;
       padding: 0 $margin-15;
       vertical-align: top;
+      white-space: nowrap;
       width: 648px;
     }
   }

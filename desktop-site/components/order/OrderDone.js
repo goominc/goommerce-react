@@ -47,8 +47,6 @@ export default React.createClass({
       <div className="order-done-container">
         {order.paymentStatus === 100 && paid}
         <div className="message">{message}</div>
-        {order.paymentStatus === 200 && <div className="title">입금 정보</div>}
-        <VBankInfo order={order} />
         <div className="title">{i18n.get('pcPayment.paymentInfo')}</div>
         <PaymentInfo order={order} />
         <div className="title">{i18n.get('pcPayment.shippingAddress')}</div>

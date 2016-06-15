@@ -33,6 +33,7 @@ $payment-icons: (
   ('icon-ban', 23px, 23px),
   ('icon-receipt', 14px, 13px),
   ('icon-print', 14px, 12px),
+  ('icon-order-summary-arrow-right', 13px, 20px),
 );
 
 @mixin generate-payment-icons {

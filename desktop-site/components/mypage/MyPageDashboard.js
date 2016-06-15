@@ -20,6 +20,10 @@ export default React.createClass({
         { text: i18n.get('enum.order.status.200'), cnt: 0 },
         { text: i18n.get('enum.order.status.201'), cnt: 0 },
       ];
+    } else {
+      orderSummary.forEach((s) => {
+        s.text = i18n.get(s.textKey);
+      });
     }
     orderSummary[0].link = '/mypage/orders?status=0';
     orderSummary[1].link = '/mypage/orders?status=100,101,102';
@@ -41,13 +45,18 @@ export default React.createClass({
           <div className="title"><i className="icon-receipt"></i> {i18n.get('pcMypage.orderSummaryTitle')}</div>
           <div className="summary-line">
             {orderSummary.map((item, index) => (
-              <div key={`order-summary-item-${index}`} className="item">
-                <div className="status">{item.text}</div>
-                <div className="value">
-                  {/* 2016. 06. 14. [heekyu] do not use Link for reject not refreshing */}
-                  <a href={item.link}><strong>{item.cnt}</strong>{i18n.get('pcMypage.orderCount')}</a>
+              <span>
+                <div key={`order-summary-item-${index}`} className="item">
+                  <div className="status">{item.text}</div>
+                  <div className="value">
+                    {/* 2016. 06. 14. [heekyu] do not use Link for reject not refreshing */}
+                    <a href={item.link}><strong>{item.cnt}</strong>{i18n.get('pcMypage.orderCount')}</a>
+                  </div>
                 </div>
-              </div>
+                {index === orderSummary.length - 1 ? null :
+                  <div className="arrow-right"><i className="icon-order-summary-arrow-right"></i></div>
+                }
+              </span>
             ))}
           </div>
         </div>
