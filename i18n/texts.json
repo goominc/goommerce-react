@@ -390,6 +390,12 @@
     }
   },
   "mItemDetail": {
+    "title": {
+      "en": "Product Detail",
+      "ko": "상품 상세",
+      "zh-cn": "상품 상세",
+      "zh-tw": "상품 상세"
+    },
     "actualSizeUnit": {
       "en": "단위: cm",
       "ko": "단위: cm",

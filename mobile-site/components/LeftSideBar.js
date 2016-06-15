@@ -119,10 +119,10 @@ export default React.createClass({
               </div>
             </li>
 
-            <li className="drawer-language"><i className="ms-icon icon-translation"></i><b>Language</b>
+            <li className="drawer-language"><i className="ms-icon icon-translation"></i><b>{i18n.get('word.language')}</b>
               <span onClick={this.props.toggleLanguage}>{locales[this.context.activeLocale]}</span>
             </li>
-            <li className="drawer-language"><i className="ms-icon icon-amount"></i><b>Currency</b>
+            <li className="drawer-language"><i className="ms-icon icon-amount"></i><b>{i18n.get('word.currency')}</b>
               <span onClick={this.props.toggleCurrency}>{this.context.activeCurrency}</span>
             </li>
             {/* <li className="drawer-download"><a href="http://m.aliexpress.com/d.do?p=a4&amp;ck=in_msite_download"><i className="ms-icon icon-downward"></i><span>Download APP</span></a></li>*/}

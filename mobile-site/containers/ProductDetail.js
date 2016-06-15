@@ -40,7 +40,7 @@ const ProductDetail = React.createClass({
       showLogo: false,
       showSearch: true,
       showCart: true,
-      titleText: '상품 상세',
+      titleI18NKey: 'mItemDetail.title',
     });
     this.props.loadProduct(this.props.params.productId)
     .then((res) => {
