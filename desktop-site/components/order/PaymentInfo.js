@@ -109,7 +109,7 @@ export default React.createClass({
             <div className="price">{subtotalPrice}</div>
           </div>
           <div className="cell title-cell">
-            <span>{i18n.get('pcMypage.productPrice')}</span>
+            <span>{i18n.get('pcMypage.orderPrice')}</span>
             <div className="price">+{orderPrice}</div>
           </div>
           <div className="cell title-cell">
@@ -127,11 +127,11 @@ export default React.createClass({
             <div className="right">{subtotalPrice}</div>
           </div>
           <div className="cell content-cell">
-            <div className="left">{i18n.get('word.tax')} :</div>
+            <div className="left">{i18n.get('pcPayment.tax')} :</div>
             <div className="right">+{taxPrice}</div>
-            <div className="left">{i18n.get('word.handlingFee')} :</div>
+            <div className="left">{i18n.get('pcPayment.handlingFee')} :</div>
             <div className="right">+{handlingFeePrice}</div>
-            <div className="left">{i18n.get('word.shippingCost')} :</div>
+            <div className="left">{i18n.get('pcPayment.shippingCost')} :</div>
             <div className="right">+{shippingCostPrice}</div>
           </div>
           <div className="cell content-cell">

@@ -136,10 +136,23 @@
     text-align: center;
     width: 120px;
     @include multi-line-vertical-center(20px);
+    .text {
+      font-size: 13px;
+      font-weight: 500;
+    }
     .price {
       color: $default-active-text-color;
       font-size: 18px;
       margin: 10px 0 20px;
+    }
+    .print-receipt {
+      color: #999;
+      cursor: pointer;
+      font-size: 11px;
+      button {
+        background-color: transparent;
+        border: 0;
+      }
     }
   }
   /*

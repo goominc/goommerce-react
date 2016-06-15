@@ -12,6 +12,7 @@ import { paymentMethod, getParent } from 'commons/utils/inipay';
 
 import AddressInfo from './AddressInfo';
 import PaymentInfo from './PaymentInfo';
+import PrintOrderReceiptButton from 'components/snippet/PrintOrderReceiptButton';
 
 export default React.createClass({
   propTypes: {
@@ -28,39 +29,6 @@ export default React.createClass({
       return null;
     }
     const brands = orderUtil.collectByBrands(order.orderProducts);
-    const renderReceipt = () => {
-      const payment = _.find(order.payments, { type: 0 });
-      if (paymentMethod(payment) === 'CARD') {
-        return (
-          <form action="https://iniweb.inicis.com/app/publication/apReceipt.jsp" acceptCharset="euc-kr" target="_blank">
-            <input type="hidden" name="noTid" value={payment.tid} />
-            <input type="hidden" name="noMethod" value="1" />
-            <input type="hidden" name="clpaymethod" value="0" />
-            <input type="hidden" name="rt" value="1" />
-            <input type="hidden" name="valFlg" value="1" />
-            <input type="hidden" name="nmBuyer" value={payment.data.P_UNAME || payment.data.buyerName} />
-            <input type="hidden" name="prGoods" value={payment.data.P_AMT || payment.data.TotPrice} />
-            <button><i className="icon-print"></i> {i18n.get('pcMypage.printOrder')}</button>
-          </form>
-        );
-      }
-      if (paymentMethod(payment) === 'VBANK') {
-        const parent = getParent(payment);
-        return (
-          <form action="https://iniweb.inicis.com/app/publication/apCashReceipt.jsp" acceptCharset="euc-kr" target="_blank">
-            <input type="hidden" name="noTid" value={_.get(parent, 'tid', payment.tid)} />
-            <input type="hidden" name="noMethod" value="1" />
-            <input type="hidden" name="clpaymethod" value="22" />
-            <input type="hidden" name="rt" value="1" />
-            <input type="hidden" name="valFlg" value="1" />
-            <input type="hidden" name="nmBuyer" value={_.get(parent, 'data.buyerName', payment.data.P_UNAME)} />
-            <input type="hidden" name="prGoods" value={_.get(parent, 'data.TotPrice', payment.data.P_AMT)} />
-            <button><i className="icon-print"></i> {i18n.get('pcMypage.printOrder')}</button>
-          </form>
-        );
-      }
-      return null;
-    };
     const renderSummaryPaymentInfo = () => {
       const vbankPayment = _.find(order.payments, (p) => p.type === 3 && p.status === 2 && p.data.payMethod === 'VBank');
       if (order.paymentStatus === 200 && vbankPayment) {
@@ -127,7 +95,9 @@ export default React.createClass({
     return (
       <div className="order-detail-container">
         <div className="top-action-line">
-          <div className="item">{renderReceipt()}</div>
+          <div className="item">
+            <PrintOrderReceiptButton order={order} />
+          </div>
         </div>
         <div className="order-detail-summary-box">
           <div className="upper-line">

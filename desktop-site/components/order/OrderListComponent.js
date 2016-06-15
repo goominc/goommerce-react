@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 import _ from 'lodash';
 
 import OrderListItemImages from './OrderListItemImages';
+import PrintOrderReceiptButton from 'components/snippet/PrintOrderReceiptButton';
 
 import { getProductThumbnail } from 'commons/utils/productUtil';
 import numberUtil from 'commons/utils/numberUtil';
@@ -98,8 +99,11 @@ export default React.createClass({
             <div className="cell status-content">
               <div className="inner">
                 <div className="content">
-                  {status}
+                  <div className="text">{status}</div>
                   <div className="price">{numberUtil.formatPrice(order[`total${activeCurrency}`], activeCurrency, currencySign)}</div>
+                  <div className="print-receipt">
+                    <PrintOrderReceiptButton order={order} />
+                  </div>
                 </div>
               </div>
             </div>

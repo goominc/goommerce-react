@@ -149,19 +149,19 @@ export default React.createClass({
             </b></span>
           </li>
           <li className="clearfix">
-            <span className="checkout-item">{i18n.get('word.tax')}</span>
+            <span className="checkout-item">{i18n.get('pcPayment.tax')}</span>
             <span className="cost"><b>
               {numberUtil.formatPrice(order[`tax${activeCurrency}`], activeCurrency, currencySign)}
             </b></span>
           </li>
           <li className="clearfix">
-            <span className="checkout-item">{i18n.get('word.handlingFee')}</span>
+            <span className="checkout-item">{i18n.get('pcPayment.handlingFee')}</span>
             <span className="cost"><b>
               {numberUtil.formatPrice(order[`handlingFee${activeCurrency}`], activeCurrency, currencySign)}
             </b></span>
           </li>
           <li className="clearfix">
-            <span className="checkout-item">{i18n.get('word.shippingCost')}</span>
+            <span className="checkout-item">{i18n.get('pcPayment.shippingCost')}</span>
             <span className="cost"><b>
               {numberUtil.formatPrice(order[`shippingCost${activeCurrency}`], activeCurrency, currencySign)}
             </b></span>

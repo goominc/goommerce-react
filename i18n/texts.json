@@ -2089,10 +2089,16 @@
       "zh-tw": "結賬信息"
     },
     "productPrice": {
-      "en": "Price",
+      "en": "Product Price",
       "ko": "상품금액",
       "zh-cn": "商品金额",
       "zh-tw": "商品金額"
+    },
+    "orderPrice": {
+      "en": "Order Price",
+      "ko": "주문금액",
+      "zh-cn": "주문금액",
+      "zh-tw": "주문금액"
     },
     "refundPrice": {
       "en": "환불금액",
@@ -2895,30 +2901,6 @@
       "ko": "동대문 핫신상",
       "zh-cn": "东大门新品推荐",
       "zh-tw": "東大門新品推薦"
-    },
-    "productPrice": {
-      "en": "Price",
-      "ko": "상품가격",
-      "zh-cn": "商品金额",
-      "zh-tw": "商品金額"
-    },
-    "tax": {
-      "en": "Tax",
-      "ko": "부가세",
-      "zh-cn": "增值税",
-      "zh-tw": "增值稅"
-    },
-    "handlingFee": {
-      "en": "Handling Fee",
-      "ko": "사입비",
-      "zh-cn": "代购手续费",
-      "zh-tw": "代購手續費"
-    },
-    "shippingCost": {
-      "en": "Shipping Cost",
-      "ko": "배송비",
-      "zh-cn": "运输费",
-      "zh-tw": "運輸費"
     },
     "status": {
       "en": "status",
