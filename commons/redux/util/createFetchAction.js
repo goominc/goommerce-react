@@ -26,6 +26,7 @@ export default function createFetchAction(options) {
 
     return $.ajax({
       url: resolve(endpoint),
+      cache: false,
       method,
       headers,
       data: JSON.stringify(body),
