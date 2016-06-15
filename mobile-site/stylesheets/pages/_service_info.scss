@@ -620,3 +620,476 @@
     padding-top:1.188rem;
   }
 }
+
+
+.mobile-service-info-container-cn {
+  .wrap_service_intro {
+    width: 100%;
+
+  }
+  .Roboto {
+    font-family: 'Roboto', sans-serif;
+  }
+  .keycolor {
+    color: #ff5500;
+  }
+  .service_intro_top_banner {
+    letter-spacing: -1px;
+    text-align: center;
+    line-height: 2em;
+    padding-bottom: 30px;
+    background-color: #f8f4e7;
+  }
+  .top_banner_img{
+    padding-top: 2.438rem;
+    img{
+      margin: 0 auto;
+      text-align: center;
+      height : 100%;
+      width: 6.500rem;
+    }
+  }
+  .top_banner_1 {
+    padding-top: 1.0em;
+    font-size: 1.0rem;
+    font-weight: bold;
+    color: #555;
+  }
+  .top_banner_2 {
+    padding-top: 0.2em;
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: #ff5500;
+  }
+  .top_banner_3 {
+    padding-top: 1.5rem;
+    color: #777;
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.15px;
+    line-height: 1rem;
+  }
+  .service_summary{
+    margin: 17px auto;
+    color: #999;
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-align: center;
+    line-height: 1.6rem;
+  }
+  .service_why {
+    margin-top : 32px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #000;
+    font-size: 1.2rem;
+    font-weight: bold;
+    letter-spacing: -0.5px;
+
+  }
+  .service_ul {
+    @media screen and (min-width:768px) {
+     padding-left:15%;
+    }
+    .service_li {
+      overflow: hidden;
+      margin-top: 1.825rem;
+      margin-bottom: 1.700rem;
+
+      .service_img {
+        padding-left: 1.000rem;
+        padding-right: 1.000rem;
+        float: left;
+        width: 30%;
+        text-align: center;
+        .portrait{
+          padding-top : 15px;
+          height: auto;
+          width: 50px;
+        }
+        .landscape{
+          padding-top : 20px;
+          height: 100%;
+          width: 70px;
+        }
+      }
+      .service_text {
+        float: left;
+        width: 70%;
+        padding-right: 1.000rem;
+        .service_title {
+          color: $default-active-text-color;
+          font-size: 1.400rem;
+          font-weight: bold;
+        }
+        .service_sub_title {
+          margin-top: 0.4rem;;
+          color: #4d4d4d;
+          font-size: 1.0rem;
+          font-weight: bold;
+        }
+        .service_desc {
+          color: #999;
+          font-size: 1.0rem;
+        }
+      }
+    }
+  }
+}
+.mobile-signup-info-container-cn {
+  .wrap_sign_up_intro {
+    width: 100%;
+
+  }
+  .Roboto {
+    font-family: 'Roboto', sans-serif;
+  }
+  .keycolor {
+    color: #ff5500;
+  }
+  .sign_up_intro_top_banner {
+
+    text-align: center;
+    line-height: 1.750rem;
+
+    background-color: #f8f4e7;
+
+  }
+  .top_banner_1 {
+    font-size: 2.000rem;
+    font-weight: bold;
+    padding-top: 2.438rem;
+    color: #555;
+
+  }
+  .top_banner_2 {
+
+    font-size: 1.000rem;
+    font-weight: 100;
+    color: #aaa;
+    padding-top: 1.825rem;
+    padding-bottom: 1.29rem;
+
+  }
+  .radius_buyer {
+    border-radius: 24px;
+    width: 70%;
+    margin: 1.875rem auto 0;
+    padding: 0.563rem 0 0.500rem 0;
+    text-align: center;
+    background-color: #ededed;
+    font-size: 0.875rem;
+    font-weight: bold;
+    color: #333;
+  }
+  .buyer_sign_1 {
+    margin-top: 1.625rem;
+    text-align: center;
+    width: 33.33%;
+    float: left;
+    font-weight: bold;
+    font-size: 0.750rem;
+  }
+  .buyer_sign_img {
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+
+  }
+  .signup_buyer {
+    width: 81.875%;
+    padding-top: 0.938rem;
+  }
+  .buyer_sign_text {
+    font-size: 0.750rem;
+    font-weight: 500;
+    color: #aaa;
+    text-align: center;
+    margin-top: 1.250rem;
+  }
+  .buyer_sign_button {
+    font-size: 0.875rem;
+    font-weight: bold;
+    background-color: #ed4500;
+    border-radius: 4px;
+    padding: 0.625rem 0;
+    text-align: center;
+    color: #fff;
+    width: 10rem;
+    margin: 0 auto;
+    margin-top: 1.813rem;
+    margin-bottom: 1.813rem;
+  }
+  .center_line {
+    border-bottom: solid 1px #ddd;
+    padding-bottom: 1.250rem;
+  }
+  .in_seller {
+    font-size: 0.750rem;
+    font-weight: bolder;
+    text-align: center;
+    padding-top: 1.250rem;
+    padding-bottom: 0.875rem;
+  }
+  .in_seller_text {
+    font-size: 0.750rem;
+    color: #777;
+    text-align: center;
+    line-height: 1.6em;
+    padding-bottom: 26px;
+  }
+  .mail_button {
+    text-decoration: underline;
+    color: #777;
+  }
+
+  .top_banner_img{
+    padding-top: 2.438rem;
+    max-height: 30px;
+    img{
+      margin: 0 auto;
+      text-align: center;
+      height : 100%;
+      width: 6.500rem;
+    }
+  }
+
+  .signinup_info {
+    .signup_list {
+      overflow: hidden;
+      margin-top : 1.825rem;
+      margin-bottom : 1.700rem;
+
+      .signup_img {
+        float : left;
+        width: 30%;
+        padding-top: 0.350rem;
+        padding-left: 1.0rem;
+        padding-right: 1.0rem;
+        img {
+          margin: 0 auto;
+          text-align: center;
+          width: 100%;
+          @media screen and (min-width:768px) {
+            width: 100px;
+          }
+
+        }
+      }
+      .signup_text {
+        float : left;
+        width : 70%;
+        padding-right: 1.300rem;
+        .signup_title {
+          font-size: 1.400rem;
+          font-weight: 400;
+        }
+        .signup_desc {
+          font-size: 0.925rem;
+          margin-top:0.45rem;
+          margin-bottom:0.45rem;
+        }
+      }
+    }
+  }
+
+
+
+}
+.mobile-customer-center-container-cn {
+  .wrap_service_intro {
+    width: 100%;
+
+  }
+  .opac0 {
+    color: #f8f4e7;
+  }
+  .Roboto {
+    letter-spacing: 0.1px;
+    font-family: 'Roboto', sans-serif;
+  }
+  .keycolor {
+    color: #ff5500;
+  }
+  .service_intro_top_banner {
+    letter-spacing: -1px;
+    text-align: center;
+    line-height: 2em;
+    height: 15.125rem;
+    background-color: #f8f4e7;
+
+  }
+
+  .top_banner_2 {
+    padding-top: 2.438rem;
+    font-size: 1.375rem;
+    font-weight: bold;
+
+  }
+  .phone_num {
+    line-height: 1.750rem;
+
+    margin: 0 auto;
+    text-align: center;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #ff5500;
+    width: 8.875rem;
+    height: 1.750rem;
+    border-radius: 16px;
+    font-weight: 500;
+    margin-top: 1.250rem;
+  }
+  .top_info {
+    color: #777;
+    width: 208px;
+    margin: 0 auto;
+    text-align: left;
+    line-height: 1.2rem;
+    padding-top: 1.4rem;
+  }
+  .top_email {
+    font-size: 0.750rem;
+  }
+  .top_kakao_buyer {
+    font-size: 0.750rem;
+  }
+  .top_kakao_seller {
+
+    font-size: 0.750rem;
+  }
+  .top_wechat {
+    font-size: 0.750rem;
+  }
+
+  .radius_buyer {
+    border-radius: 24px;
+    width: 69%;
+    margin: 0 auto;
+    margin-top: 1.875rem;
+    padding: 0.563rem 0;
+    text-align: center;
+    background-color: #ededed;
+    font-size: 1.175rem;
+    font-weight: bold;
+    color: #333;
+  }
+
+  /* 운영시간 */
+  .center_cont {
+    display: table;
+    height: 69px;
+    margin: 0 auto;
+    padding-top: 1.188rem;
+  }
+  .center_ul1 {
+    float: left;
+    list-style: none;
+    margin: 0 auto;
+    font-size: 0.875rem;
+    width: 5.800rem;
+  }
+  .center_ul2 {
+    padding-left: 0.188rem;
+    float: left;
+    width: auto;
+    font-size: 0.875rem;
+  }
+  .center_con_text2 {
+  }
+  .center_con_info {
+    text-align : center;
+    color: #777777;
+  }
+
+  /* 문의사항 */
+  .service_cont {
+    display: table;
+    height: 69px;
+    margin: 0 auto;
+    margin-bottom : 60px;
+    padding-top: 1.188rem;
+    line-height:1.6rem;
+
+  }
+  .service_ul1 {
+    float: left;
+    list-style: none;
+    margin: 0 auto;
+    width: 3.000rem;
+    text-align:right;
+    color: #777777;
+    font-size: 0.875rem;
+  }
+  .service_ul2 {
+    padding-left: 1.500rem;
+    float: left;
+    width: auto;
+    color: #333;
+    font-size: 0.875rem;
+    font-weight : bold;
+  }
+  .service_con_text2 {
+  }
+  .service_con_text3{
+  }
+
+  .mid_line {
+    width: 100%;
+    border-bottom: solid 1.5px #aaa;
+    padding-top: 1.938rem;
+  }
+}
+.mobile-order-info-container-cn {
+  .Roboto {
+    font-family: 'Roboto', sans-serif;
+  }
+  .keycolor {
+    color: #ff5500;
+  }
+  .radius_title {
+    border-radius: 24px;
+    width: 69%;
+    margin: 0 auto;
+    margin-top: 1.875rem;
+    padding: 0.563rem 0;
+    text-align: center;
+    background-color: #ededed;
+    font-size: 1.175rem;
+    font-weight: bold;
+    color: #333;
+  }
+  .order-info-cn-img{
+    width:100%;
+    margin: 1.875rem auto;
+    padding: 0 0.900rem;
+    img{
+      margin: 0 auto;
+      text-align: center;
+      height : auto;
+      width: 100%;
+    }
+  }
+  .order-info-ul{
+    list-style-type:none;
+    margin: 2rem 3rem 3.500rem 3rem;
+    margin-left:1.200rem;
+    margin-right:0.9rem;
+    li:before {
+      content: "- ";
+    }
+    li,li:before{
+      color: #4d4d4d;
+      font-size: 0.875rem;
+      margin-top: 0.900rem;
+    }
+  }
+
+  .mid_line {
+    width: 100%;
+    border-bottom: solid 1.5px #aaa;
+    padding-top: 1.938rem;
+  }
+
+}
