@@ -447,8 +447,8 @@
     "descRefund5": {
       "en": "The item color can look different than it appears on the monitor, and the size varies with type of measurement. These cases cannot be the reason of defective item.",
       "ko": "컴퓨터 모니터의 차이로 인해 색상차이가 있을 수 있으며 상품의 사이즈 오차는 측정하는 방법에 따라 다를 수 있어 불량에 해당하지 않습니다.",
-      "zh-cn": "由于电脑显示器的分辨率及亮度不同，可能与实物略有色差，还有由于尺码的测定方式不同，可能与实物会略有差异，这不属于交换理由。",
-      "zh-tw": "由於電腦顯示器的分辨率及亮度不同，可能與實物略有色差，還有由於尺碼的測定方式不同，可能與實物會略有差異，這不屬於交換理由。"
+      "zh-cn": "由于电脑显示器的分辨率及亮度不同, 可能与实物略有色差, 还有由于尺码测定方式不同, 可能与实物会略有差异, 这不属于交换理由。",
+      "zh-tw": "由於電腦顯示器的分辨率及亮度不同, 可能與實物略有色差, 還有由於尺碼測定方式不同, 可能與實物會略有差異, 這不屬於交換理由。"
     },
     "descRefund6": {
       "en": "Items must be returned in its original condition with factory seal and packaging.",
@@ -543,8 +543,8 @@
     "descShippingOverseasTitle": {
       "en": "해외 국가별 배송비 책정기준",
       "ko": "해외 국가별 배송비 책정기준",
-      "zh-cn": "运输费用规定",
-      "zh-tw": "運輸費用規定"
+      "zh-cn": "运费规定",
+      "zh-tw": "運費規定"
     },
     "shippingOverseasPrepayTitle": {
       "en": "국가별 선결제 배송비",
@@ -579,104 +579,104 @@
     "shippingOverseasRealpay1": {
       "en": "국가 별 통관 및 배송 정책에 따라 kg당 배송비가 상이하게 책정됩니다.",
       "ko": "국가 별 통관 및 배송 정책에 따라 kg당 배송비가 상이하게 책정됩니다.",
-      "zh-cn": "因为各个地区的通关及配送政策不同，实际运费也稍微不一样，请参照如下：",
-      "zh-tw": "因為各個地區的通關及配送政策不同，實際運費也稍微不一樣，請參照如下："
+      "zh-cn": "由于各个地区的通关及配送政策的不同，实际运费也稍微不一样，请参照如下：",
+      "zh-tw": "由於各個地區的通關及配送政策的不同，實際運費也稍微不一樣，請參照如下："
     },
     "shippingOverseasRealpay2": {
       "en": "중국 : 7,000원 (1kg)",
       "ko": "중국 : 7,000원 (1kg)",
-      "zh-cn": "중국 : 7,000원 (1kg)",
-      "zh-tw": "중국 : 7,000원 (1kg)"
+      "zh-cn": "全中国 : 7,000韩币/kg",
+      "zh-tw": "全中國 : 7,000韓幣/kg"
     },
     "shippingOverseasRealpay3": {
       "en": "별도의 비용이 추가되지 않습니다.",
       "ko": "별도의 비용이 추가되지 않습니다.",
-      "zh-cn": "별도의 비용이 추가되지 않습니다.",
-      "zh-tw": "별도의 비용이 추가되지 않습니다."
+      "zh-cn": "包通关(不需要其他费用)",
+      "zh-tw": "包通關（不需要其他費用）"
     },
     "shippingOverseasRealpay4": {
       "en": "홍콩 : 3,000원 (1kg)",
       "ko": "홍콩 : 3,000원 (1kg)",
-      "zh-cn": "홍콩 : 3,000원 (1kg)",
-      "zh-tw": "홍콩 : 3,000원 (1kg)"
+      "zh-cn": "香港/澳门 : 3,000韩币/kg",
+      "zh-tw": "香港/澳門 : 3,000韓幣/kg"
     },
     "shippingOverseasRealpay5": {
       "en": "박스 포장비용이 별도 발생하며 선결제 배송비에서 차감합니다.",
       "ko": "박스 포장비용이 별도 발생하며 선결제 배송비에서 차감합니다.",
-      "zh-cn": "박스 포장비용이 별도 발생하며 선결제 배송비에서 차감합니다.",
-      "zh-tw": "박스 포장비용이 별도 발생하며 선결제 배송비에서 차감합니다."
+      "zh-cn": "需要箱子包装，价位参考如下：",
+      "zh-tw": "需要箱子包裝，價位參考如下："
     },
     "shippingOverseasRealpay6": {
       "en": "주문 상품의 부피에 따라 박스는 중/대 사이즈로 포장이되며 사이즈 별 포장 비용은 다음과 같습니다.",
       "ko": "주문 상품의 부피에 따라 박스는 중/대 사이즈로 포장이되며 사이즈 별 포장 비용은 다음과 같습니다.",
-      "zh-cn": "주문 상품의 부피에 따라 박스는 중/대 사이즈로 포장이되며 사이즈 별 포장 비용은 다음과 같습니다.",
-      "zh-tw": "주문 상품의 부피에 따라 박스는 중/대 사이즈로 포장이되며 사이즈 별 포장 비용은 다음과 같습니다."
+      "zh-cn": "- 中型 : 3,000韩币/箱",
+      "zh-tw": "- 中型 : 3,000韓幣/箱"
     },
     "shippingOverseasRealpay7": {
       "en": "- 중 사이즈: 3,000원",
       "ko": "- 중 사이즈: 3,000원",
-      "zh-cn": "- 중 사이즈: 3,000원",
-      "zh-tw": "- 중 사이즈: 3,000원"
+      "zh-cn": "- 大型 : 5,000韩币/箱",
+      "zh-tw": "- 大型 : 5,000韓幣/箱"
     },
     "shippingOverseasRealpay8": {
       "en": "- 대 사이즈: 5,000원",
       "ko": "- 대 사이즈: 5,000원",
-      "zh-cn": "- 대 사이즈: 5,000원",
-      "zh-tw": "- 대 사이즈: 5,000원"
+      "zh-cn": "* 澳门当地运费是到付的。",
+      "zh-tw": "* 澳門當地運費是到付的。"
     },
     "shippingOverseasRealpay9": {
       "en": "대만 : 2,800원 (1kg)",
       "ko": "대만 : 2,800원 (1kg)",
-      "zh-cn": "대만 : 2,800원 (1kg)",
-      "zh-tw": "대만 : 2,800원 (1kg)"
+      "zh-cn": "台湾 : 2,800韩币/kg",
+      "zh-tw": "台灣 : 2,800韓幣/kg"
     },
     "shippingOverseasRealpay10": {
       "en": "박스 포장비용이 별도 발생하며 선결제 배송비에서 차감합니다.",
       "ko": "박스 포장비용이 별도 발생하며 선결제 배송비에서 차감합니다.",
-      "zh-cn": "박스 포장비용이 별도 발생하며 선결제 배송비에서 차감합니다.",
-      "zh-tw": "박스 포장비용이 별도 발생하며 선결제 배송비에서 차감합니다."
+      "zh-cn": "需要箱子包装，价位参考如下：",
+      "zh-tw": "需要箱子包裝，價位參考如下："
     },
     "shippingOverseasRealpay11": {
       "en": "주문 상품의 부피에 따라 박스는 중/대 사이즈로 포장이되며 사이즈 별 포장 비용은 다음과 같습니다.",
       "ko": "주문 상품의 부피에 따라 박스는 중/대 사이즈로 포장이되며 사이즈 별 포장 비용은 다음과 같습니다.",
-      "zh-cn": "주문 상품의 부피에 따라 박스는 중/대 사이즈로 포장이되며 사이즈 별 포장 비용은 다음과 같습니다.",
-      "zh-tw": "주문 상품의 부피에 따라 박스는 중/대 사이즈로 포장이되며 사이즈 별 포장 비용은 다음과 같습니다."
+      "zh-cn": "- 中型 : 3,000韩币/箱",
+      "zh-tw": "- 中型 : 3,000韓幣/箱"
     },
     "shippingOverseasRealpay12": {
       "en": "- 중 사이즈: 3,000원",
       "ko": "- 중 사이즈: 3,000원",
-      "zh-cn": "- 중 사이즈: 3,000원",
-      "zh-tw": "- 중 사이즈: 3,000원"
+      "zh-cn": "- 大型 : 5,000韩币/箱",
+      "zh-tw": "- 大型 : 5,000韓幣/箱"
     },
     "shippingOverseasRealpay13": {
       "en": "- 대 사이즈: 5,000원",
       "ko": "- 대 사이즈: 5,000원",
-      "zh-cn": "- 대 사이즈: 5,000원",
-      "zh-tw": "- 대 사이즈: 5,000원"
+      "zh-cn": "* 关税及当地运费是到付的。",
+      "zh-tw": "* 關稅及當地運費是到付的。"
     },
     "shippingOverseasRealpay14": {
       "en": "통관 완료 후, 현지 관세/부가세/운송료는 별도 납부하셔야 합니다.",
       "ko": "통관 완료 후, 현지 관세/부가세/운송료는 별도 납부하셔야 합니다.",
-      "zh-cn": "통관 완료 후, 현지 관세/부가세/운송료는 별도 납부하셔야 합니다.",
-      "zh-tw": "통관 완료 후, 현지 관세/부가세/운송료는 별도 납부하셔야 합니다."
+      "zh-cn": "",
+      "zh-tw": ""
     },
     "shippingOverseasRealpay15": {
       "en": "그외 국가 : 고객센터(02-2272-1122)로 문의주시면 자세히 안내 드리겠습니다.",
       "ko": "그외 국가 : 고객센터(02-2272-1122)로 문의주시면 자세히 안내 드리겠습니다.",
-      "zh-cn": "그외 국가 : 고객센터(02-2272-1122)로 문의주시면 자세히 안내 드리겠습니다.",
-      "zh-tw": "그외 국가 : 고객센터(02-2272-1122)로 문의주시면 자세히 안내 드리겠습니다."
+      "zh-cn": "其他国家 : 请与客服中心联络",
+      "zh-tw": "其他地區 : 請與客服中心聯絡"
     },
     "shippingOverseasRealpay16": {
       "en": "배송비 책정 기준은 배송정책 변경에 따라",
       "ko": "배송비 책정 기준은 배송정책 변경에 따라",
-      "zh-cn": "배송비 책정 기준은 배송정책 변경에 따라",
-      "zh-tw": "배송비 책정 기준은 배송정책 변경에 따라"
+      "zh-cn": "*按照配送政策的变更，配送费用规定会轻微调整。",
+      "zh-tw": "*按照配送政策的變更，配送費用會輕微調整。"
     },
     "shippingOverseasRealpay17": {
       "en": "추후 조정될 수 있습니다.",
       "ko": "추후 조정될 수 있습니다.",
-      "zh-cn": "추후 조정될 수 있습니다.",
-      "zh-tw": "추후 조정될 수 있습니다."
+      "zh-cn": "",
+      "zh-tw": ""
     },
     "popupRefundTitle": {
       "en": "Return and Exchange Policy",
@@ -755,26 +755,26 @@
     "address1PlaceHolder": {
       "en": "address1",
       "ko": "address1",
-      "zh-cn": "address1",
-      "zh-tw": "address1"
+      "zh-cn": "地址1",
+      "zh-tw": "地址1"
     },
     "address2PlaceHolder": {
       "en": "address2",
       "ko": "address2",
-      "zh-cn": "address2",
-      "zh-tw": "address2"
+      "zh-cn": "地址2",
+      "zh-tw": "地址2"
     },
     "cityPlaceHolder": {
       "en": "city",
       "ko": "city",
-      "zh-cn": "city",
-      "zh-tw": "city"
+      "zh-cn": "城市",
+      "zh-tw": "城市"
     },
     "zipCodePlaceHolder": {
       "en": "zip code",
       "ko": "zip code",
-      "zh-cn": "zip code",
-      "zh-tw": "zip code"
+      "zh-cn": "邮编",
+      "zh-tw": "郵編"
     },
     "changeAddress": {
       "en": "Change Address",
@@ -863,14 +863,14 @@
     "warnAddressCity": {
       "en": "Please Enter City",
       "ko": "Please Enter City",
-      "zh-cn": "Please Enter City",
-      "zh-tw": "Please Enter City"
+      "zh-cn": "请输入城市",
+      "zh-tw": "請輸入城市"
     },
     "warnAddressZipCode": {
       "en": "Please Enter Zip Code",
       "ko": "Please Enter Zip Code",
-      "zh-cn": "Please Enter Zip Code",
-      "zh-tw": "Please Enter Zip Code"
+      "zh-cn": "请输入邮编",
+      "zh-tw": "請輸入郵編"
     }
   },
   "mServiceInfo": {
@@ -1989,7 +1989,7 @@
   },
   "pcMypage": {
     "welcome": {
-      "en": "님 환영합니다",
+      "en": "Welcome",
       "ko": "님 환영합니다",
       "zh-cn": "您好！",
       "zh-tw": "您好！"
@@ -2073,10 +2073,10 @@
       "zh-tw": "個商品的訂單詳情"
     },
     "printOrder": {
-      "en": "주문내역출력",
-      "ko": "주문내역출력",
-      "zh-cn": "주문내역출력",
-      "zh-tw": "주문내역출력"
+      "en": "Print Receipt",
+      "ko": "영수증 출력",
+      "zh-cn": "영수증 출력",
+      "zh-tw": "영수증 출력"
     },
     "thanksForYourOrder": {
       "en": "Thanks for your order",
@@ -2139,13 +2139,13 @@
       "zh-tw": "주문금액"
     },
     "refundPrice": {
-      "en": "환불금액",
+      "en": "Refund",
       "ko": "환불금액",
       "zh-cn": "환불금액",
       "zh-tw": "환불금액"
     },
     "shippingCostGap": {
-      "en": "배송차액",
+      "en": "Shipping Cost",
       "ko": "배송차액",
       "zh-cn": "배송차액",
       "zh-tw": "배송차액"
