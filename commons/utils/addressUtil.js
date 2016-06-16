@@ -1,7 +1,7 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
 //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
-const execDaumPostcode = (postalCodeElem, addressElem) => {
+const execDaumPostcode = (cb) => {
   new daum.Postcode({ // eslint-disable-line
     oncomplete: (data) => {
       // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
@@ -30,8 +30,11 @@ const execDaumPostcode = (postalCodeElem, addressElem) => {
       }
 
       // 우편번호와 주소 정보를 해당 필드에 넣는다.
+      cb(data.zonecode, fullRoadAddr);
+      /*
       postalCodeElem.val(data.zonecode); // 5자리 새우편번호 사용
       addressElem.val(fullRoadAddr);
+      */
       // document.getElementById('sample4_jibunAddress').value = data.jibunAddress;
 
       // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.

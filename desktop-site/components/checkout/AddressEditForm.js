@@ -42,7 +42,6 @@ export default React.createClass({
       _.set(nextState, key, e.target.value);
       this.setState(_.merge(this.state, nextState));
     };
-    console.log(this.state);
     const renderFormField = (obj) => (
       <div key={obj.objKey} className="form-box">
         <div className="form-label">{`${obj.text}`}</div>
@@ -108,7 +107,11 @@ export default React.createClass({
     };
     const openPostalCodePopup = (e) => {
       e.preventDefault();
-      execDaumPostcode($('#postalCode'), $('#address1'));
+      const cb = (postalCode, address1) => {
+        onChange({ target: { value: postalCode } }, 'detail.postalCode');
+        onChange({ target: { value: address1 } }, 'detail.address.base');
+      };
+      execDaumPostcode(cb);
     };
     const renderPostalCodeRow = (obj) => (
       <div key={obj.objKey} className="form-box">

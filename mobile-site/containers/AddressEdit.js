@@ -178,7 +178,12 @@ const AddressEdit = React.createClass({
     };
     const openPostalCodePopup = (e) => {
       e.preventDefault();
-      execDaumPostcode($('#postalCode'), $('#address1'));
+      // execDaumPostcode($('#postalCode'), $('#address1'));
+      const cb = (postalCode, address1) => {
+        onChange({ target: { value: postalCode } }, { key: 'detail.postalCode' });
+        onChange({ target: { value: address1 } }, { key: 'detail.address.base' });
+      };
+      execDaumPostcode(cb);
     };
     const changeCountryCode = (code) => {
       if (addressForEdit.id) {
