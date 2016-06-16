@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { CloudinaryImage } from 'react-cloudinary';
 import { getProductMainImage } from 'commons/utils/productUtil';
+import brandUtil from 'commons/utils/brandUtil';
 import productUtil from 'commons/utils/productUtil';
 import numberUtil from 'commons/utils/numberUtil';
 
@@ -46,6 +47,9 @@ export default React.createClass({
                 </div>
                 { /* <span className="discount-rate">- 50% </span> */ }
                 <div className="infomation">
+                  <div className="brand">
+                    <span>{brandUtil.getName(prod.brand)}</span>
+                  </div>
                   <div className="title">
                     <span>{productUtil.getName(prod)}</span>
                   </div>
