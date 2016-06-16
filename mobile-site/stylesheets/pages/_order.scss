@@ -792,13 +792,14 @@ a.aex-button:link, a.aex-button:visited {
   margin-bottom: 15px
 }
 .pay-wrap {
+  bottom: 0;
+  background-color: white;
   display: none;
   position: absolute;
   left: 0;
   top: 0;
   right: 0;
-  bottom: 0;
-  background-color: white;
+  z-index: 10000;
   .pay-header {
     position: relative;
     width: 100%;

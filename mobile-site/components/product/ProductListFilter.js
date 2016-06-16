@@ -19,15 +19,19 @@ export default React.createClass({
     const { show, aggs, filterPrice, filterBrand } = this.props;
     if (show) {
       const windowHeight = $(window).height();
+      /*
       $('#root').css({
         overflow: 'hidden',
         height: windowHeight,
       });
+      */
     } else {
+      /*
       $('#root').css({
         overflow: 'auto',
         height: 'inherit',
       });
+      */
     }
     const renderPrice = () => {
       if (!aggs || !aggs.KRW_ranges || !aggs.KRW_ranges.length) {

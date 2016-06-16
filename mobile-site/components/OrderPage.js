@@ -59,15 +59,19 @@ export default React.createClass({
         $('body').animate({ scrollTop: $('#order-summary').offset().top }, 500);
         return;
       }
+      /*
       $('#root').css({
         height: $(window).height(),
         overflow: 'hidden',
       });
+      */
     } else {
+      /*
       $('#root').css({
         height: 'auto',
         overflow: 'auto',
       });
+      */
     }
     this.setState({ showPay: !this.state.showPay });
   },
@@ -270,7 +274,8 @@ export default React.createClass({
         <div className="shopcart-list">
           {orderSummary}
         </div>
-        <div className="pay-wrap" style={{ display: this.state.showPay ? 'block' : 'none' }}>
+        <div className="popup-overlay" style={{ display: this.state.showPay ? 'block' : 'none' }}></div>
+        <div className="pay-wrap" style={{ display: this.state.showPay ? 'block' : 'none', position: 'fixed' }}>
           <div className="pay-header">
             <span className="pay-title">Payment Method</span>
             <span className="pay-cancel" onClick={this.toggle}></span>
