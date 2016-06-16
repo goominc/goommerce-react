@@ -81,7 +81,7 @@ export default React.createClass({
       { key: 'detail.tel', objKey: 'tel', text: i18n.get('pcPayment.phoneNumber'), placeholder: '01012345678' },
       { key: 'detail.address.base', objKey: 'address1', text: i18n.get('mOrder.address1PlaceHolder'), placeholder: i18n.get('mOrder.address1PlaceHolder') },
       { key: 'detail.address.detail', objKey: 'address2', text: i18n.get('mOrder.address2PlaceHolder'), placeholder: i18n.get('mOrder.address2PlaceHolder') },
-      { key: 'detail.address.ciry', objKey: 'city', text: i18n.get('mOrder.ciryPlaceHolder'), placeholder: i18n.get('mOrder.cityPlaceHolder') },
+      { key: 'detail.address.city', objKey: 'city', text: i18n.get('mOrder.cityPlaceHolder'), placeholder: i18n.get('mOrder.cityPlaceHolder') },
       { key: 'detail.postalCode', objKey: 'postalCode', text: i18n.get('mOrder.zipCodePlaceHolder'), placeholder: i18n.get('mOrder.zipCodePlaceHolder') },
     ];
     const { countryCode } = this.state;
