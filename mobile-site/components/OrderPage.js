@@ -52,7 +52,8 @@ export default React.createClass({
   toggle() {
     if (!this.state.showPay) {
       if (!_.get(this.props.order, 'address.id')) {
-        window.alert('주소를 입력해 주세요');
+        window.alert(i18n.get('mOrder.warnAddressDetial'));
+        this.context.router.push(`/orders/${this.props.order.id}/address/add`);
         return;
       }
       if (!this.isShowPaymentInfo()) {
