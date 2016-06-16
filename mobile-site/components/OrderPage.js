@@ -277,7 +277,7 @@ export default React.createClass({
         <div className="popup-overlay" style={{ display: this.state.showPay ? 'block' : 'none' }}></div>
         <div className="pay-wrap" style={{ display: this.state.showPay ? 'block' : 'none', position: 'fixed' }}>
           <div className="pay-header">
-            <span className="pay-title">Payment Method</span>
+            <span className="pay-title">{i18n.get('pcPayment.paymentMethod')}</span>
             <span className="pay-cancel" onClick={this.toggle}></span>
           </div>
           <ul className="pay-method-list">
