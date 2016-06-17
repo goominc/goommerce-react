@@ -73,6 +73,7 @@ export default React.createClass({
           </div>
         );
       };
+      const totalPrice = numberUtil.formatPrice(order[`finalTotal${activeCurrency}`] || order[`total${activeCurrency}`], activeCurrency, currencySign);
       return (
         <div key={order.id}>
           <div className="row">
@@ -95,7 +96,7 @@ export default React.createClass({
               <div className="inner">
                 <div className="content">
                   <div className="text">{status}</div>
-                  <div className="price">{numberUtil.formatPrice(order[`total${activeCurrency}`], activeCurrency, currencySign)}</div>
+                  <div className="price">{totalPrice}</div>
                   <div className="print-receipt">
                     <PrintOrderReceiptButton order={order} />
                   </div>
