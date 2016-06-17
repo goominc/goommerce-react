@@ -283,6 +283,31 @@
     height: 100px;
     overflow-y: scroll;
     width: 100%;
+
+
+    //편(part),  장(chapter), 조(article), 항(paragraph), 호(subparagraph), 목(clause)
+    .part{
+      font-size : 16px;
+      text-align: center;
+    }
+    .chapter{
+      font-weight: bold;
+      text-align: center;
+    }
+    .article{
+      padding-left : 4px;
+    }
+    .paragraph{
+      padding-left : 8px;
+    }
+    .subparagraph{
+      list-style: none;
+      padding-left : 12px;
+    }
+    .clause{
+      list-style: none;
+      padding-left : 16px;
+    }
     iframe {
       border: 0;
       margin: 0;
