@@ -28,7 +28,7 @@ export default React.createClass({
       );
     }
     if (paymentMethod(payment) === 'VBANK') {
-      const parent = getParent(payment);
+      const parent = getParent(order, payment);
       return (
         <form action="https://iniweb.inicis.com/app/publication/apCashReceipt.jsp" acceptCharset="euc-kr" target="_blank">
           <input type="hidden" name="noTid" value={_.get(parent, 'tid', payment.tid)} />
