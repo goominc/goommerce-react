@@ -8,6 +8,7 @@ import ProductDetailCart from 'components/product/ProductDetailCart';
 import brandUtil from 'commons/utils/brandUtil';
 import productUtil from 'commons/utils/productUtil';
 import numberUtil from 'commons/utils/numberUtil';
+import i18n from 'commons/utils/i18n';
 
 export default React.createClass({
   propTypes: {
@@ -64,7 +65,7 @@ export default React.createClass({
               <span className="store-postive">94.7% positive feedback the past</span>
             </p> */ }
           </Link>
-          <div className="add-favorite" onClick={() => this.handleFavorite(product.brand.id)}>단골 브랜드</div>
+          <div className="add-favorite" onClick={() => this.handleFavorite(product.brand.id)}>{i18n.get('pcItemDetail.favoriteBrands')}</div>
         </section>
         );
       }
