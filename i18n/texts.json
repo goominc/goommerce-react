@@ -1,10 +1,10 @@
 {
   "app": {
     "title": {
-      "en": "Linkshops",
-      "ko": "Linkshops",
-      "zh-cn": "Linkshops东大门服装批发代购网站_韩国东大门代购_韩国货源",
-      "zh-tw": "Linkshops东大门服装批发代购网站_韩国东大门代购_韩国货源"
+      "en": "Linkshops - K-style Apparel Wholesale ㅣ Online Shopping Mall",
+      "ko": "Linkshops - 동대문 도매상품을 한 눈에! 링크샵스",
+      "zh-cn": "Linkshops - 东大门服装批发代购网站_韩国东大门代购_韩国货源_韩国代购货源",
+      "zh-tw": "Linkshops - 东大门服装批发代购网站_韩国东大门代购_韩国货源_韓國代購貨源"
     }
   },
   "enum": {
@@ -393,8 +393,8 @@
     "title": {
       "en": "Product Detail",
       "ko": "상품 상세",
-      "zh-cn": "상품 상세",
-      "zh-tw": "상품 상세"
+      "zh-cn": "商品详情",
+      "zh-tw": "商品詳情"
     },
     "actualSizeUnit": {
       "en": "단위: cm",
@@ -877,8 +877,8 @@
     "title": {
       "en": "이용안내",
       "ko": "이용안내",
-      "zh-cn": "이용안내",
-      "zh-tw": "이용안내"
+      "zh-cn": "新手指南",
+      "zh-tw": "新手指南"
     },
     "infoTitle": {
       "en": "서비스소개",
@@ -1778,26 +1778,26 @@
       "oldPassword": {
         "en": "Old Password",
         "ko": "현재 비밀번호",
-        "zh-cn": "Old Password",
-        "zh-tw": "Old Password"
+        "zh-cn": "目前密码",
+        "zh-tw": "目前密碼"
       },
       "newPassword": {
         "en": "New Password",
         "ko": "새 비밀번호",
-        "zh-cn": "New Password",
-        "zh-tw": "New Password"
+        "zh-cn": "新密码",
+        "zh-tw": "新密碼"
       },
       "changePasswordSuccess": {
         "en": "New Password saved Successfully",
         "ko": "패스워드가 변경되었습니다",
-        "zh-cn": "New Password saved Successfully",
-        "zh-tw": "New Password saved Successfully"
+        "zh-cn": "密码修改成功！",
+        "zh-tw": "密碼修改成功！"
       },
       "changePasswordFail": {
         "en": "Failed to change Password",
         "ko": "비밀번호 변경이 실패하였습니다",
-        "zh-cn": "Failed to change Password",
-        "zh-tw": "Failed to change Password"
+        "zh-cn": "密码修改失败了",
+        "zh-tw": "密碼修改失敗了"
       },
       "personalInformation": {
         "en": "Personal Information",
@@ -2075,8 +2075,8 @@
     "printOrder": {
       "en": "Print Receipt",
       "ko": "영수증 출력",
-      "zh-cn": "영수증 출력",
-      "zh-tw": "영수증 출력"
+      "zh-cn": "订单印刷",
+      "zh-tw": "訂單印刷"
     },
     "thanksForYourOrder": {
       "en": "Thanks for your order",
@@ -2105,14 +2105,14 @@
     "orderSummaryTitle": {
       "en": "현재 진행중인 주문",
       "ko": "현재 진행중인 주문",
-      "zh-cn": "현재 진행중인 주문",
-      "zh-tw": "현재 진행중인 주문"
+      "zh-cn": "在进行中的订单",
+      "zh-tw": "在進行中的訂單"
     },
     "orderCount": {
       "en": "건",
       "ko": "건",
-      "zh-cn": "건",
-      "zh-tw": "건"
+      "zh-cn": "件",
+      "zh-tw": "件"
     },
     "myOrders": {
       "en": "My Order",
@@ -2135,20 +2135,20 @@
     "orderPrice": {
       "en": "Order Price",
       "ko": "주문금액",
-      "zh-cn": "주문금액",
-      "zh-tw": "주문금액"
+      "zh-cn": "下单金额",
+      "zh-tw": "下單金額"
     },
     "refundPrice": {
       "en": "Refund",
       "ko": "환불금액",
-      "zh-cn": "환불금액",
-      "zh-tw": "환불금액"
+      "zh-cn": "退款金额",
+      "zh-tw": "退款金額"
     },
     "shippingCostGap": {
       "en": "Shipping Cost",
       "ko": "배송차액",
-      "zh-cn": "배송차액",
-      "zh-tw": "배송차액"
+      "zh-cn": "运费差额",
+      "zh-tw": "運費差額"
     },
     "promotions": {
       "en": "Promotions",
@@ -2369,8 +2369,8 @@
     "changePassword": {
       "en": "비밀번호 변경",
       "ko": "비밀번호 변경",
-      "zh-cn": "비밀번호 변경",
-      "zh-tw": "비밀번호 변경"
+      "zh-cn": "修改密码",
+      "zh-tw": "修改密碼"
     }
   },
   "pcOrder": {
@@ -2523,8 +2523,8 @@
     "finalTotalPrice": {
       "en": "Final Total",
       "ko": "환불 후 최종 결제금액",
-      "zh-cn": "환불 후 최종 결제금액",
-      "zh-tw": "환불 후 최종 결제금액"
+      "zh-cn": "退款后最总结账金额",
+      "zh-tw": "退款後最總結賬金額"
     },
     "paymentMethod": {
       "en": "Payment Method",
