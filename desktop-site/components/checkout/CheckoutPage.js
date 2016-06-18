@@ -121,10 +121,11 @@ export default React.createClass({
     };
 
     const paymentMethods = [
-      { icon: 'icon-inicis', name: i18n.get('pcPayment.vbank'), method: 'VBank' },
-      { icon: 'icon-credit-card', name: i18n.get('pcPayment.creditCard'), method: 'Card' },
-      { icon: 'icon-alipay', name: i18n.get('pcPayment.alipay'), method: 'alipay' },
-      { icon: 'icon-union-pay', name: i18n.get('pcPayment.unionpay'), method: 'unionpay' },
+      { icon: 'icon-inicis', name: i18n.get('pcPayment.vbank'), method: 'VBank', inipayMethod: 'web' },
+      { icon: 'icon-credit-card', name: i18n.get('pcPayment.creditCard'), method: 'Card', inipayMethod: 'web' },
+      { icon: 'icon-alipay', name: i18n.get('pcPayment.alipay'), method: 'alipay', inipayMethod: 'global' },
+      { icon: 'icon-union-pay', name: i18n.get('pcPayment.unionpay'), method: 'unionpay', inipayMethod: 'global' },
+      // { icon: 'icon-credit-card', name: i18n.get('pcPayment.creditCard'), method: 'Card', inipayMethod: 'global_card' },
       // { icon: 'icon-tenpay', name: 'TENPAY', method: 'tenpay' },
       // { icon: 'icon-paypal', name: 'PAYPAL', method: 'paypal' },
     ];
@@ -154,9 +155,9 @@ export default React.createClass({
           window.alert('환급 규정 확인에 동의해 주세요');
           return;
         }
-        const method = paymentMethods[this.state.paymentMethod].method;
+        const { method, inipayMethod } = paymentMethods[this.state.paymentMethod];
         $('form input[name=gopaymethod]').val(method);
-        doCheckout(order.id, method, Object.assign({}, this.refs,
+        doCheckout(order.id, method, inipayMethod, Object.assign({}, this.refs,
           { gopaymethod: { value: method } }));
       };
       return (

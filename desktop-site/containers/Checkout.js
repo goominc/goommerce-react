@@ -77,11 +77,10 @@ const Checkout = React.createClass({
     }
     return 'https://stgstdpay.inicis.com/stdjs/INIStdPay.js';
   },
-  doCheckout(orderId, method, paymentInfo) {
+  doCheckout(orderId, method, inipayMethod, paymentInfo) {
     function upperFirst(str) {
       return str.charAt(0).toUpperCase() + str.slice(1);
     }
-    const inipayMethod = method === 'VBank' || method === 'Card' ? 'web' : 'global';
     const isGlobalPay = inipayMethod === 'global';
     if (isGlobalPay) {
       window.open('', 'checkout');
