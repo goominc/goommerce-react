@@ -279,10 +279,11 @@ $mymenu-margin: 20px;
       @include header-menu-item(10px);
       border-left: 1px solid transparent;
       border-right: 1px solid transparent;
-      cursor: default;
+      cursor: pointer;
       height: $height;
       line-height: $height;
       margin-right: -1px;
+      vertical-align: top;
       img {
         display: inline-block;
         height: $image-height;

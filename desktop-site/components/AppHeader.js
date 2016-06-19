@@ -236,6 +236,14 @@ export default React.createClass({
       }
       return <div className="top-banner"></div>;
     };
+    const toggleDropdown = (e) => {
+      const elem = $(e.target).closest(`.${leftMenuItemClassName}`);
+      if (elem.hasClass('open')) {
+        elem.removeClass('open');
+      } else {
+        elem.addClass('open');
+      }
+    };
 
     return (
       <div className="header-wide-container">
@@ -243,16 +251,20 @@ export default React.createClass({
         <div className="top-helper-bar">
           <div className="container no-padding">
             <div className="left-menus">
-              <div className={leftMenuItemClassName}
+              <div
+                className={leftMenuItemClassName}
                 onMouseEnter={(e) => $(e.target).addClass('open')}
                 onMouseLeave={(e) => $(e.target).closest(`.${leftMenuItemClassName}`).removeClass('open')}
+                onClick={toggleDropdown}
               >
                 <img src={getLocaleImg()} /> <span>{i18n.get('word.language')}</span>
                 {renderLocales()}
               </div>
-              <div className={leftMenuItemClassName}
+              <div
+                className={leftMenuItemClassName}
                 onMouseEnter={(e) => $(e.target).addClass('open')}
                 onMouseLeave={(e) => $(e.target).closest(`.${leftMenuItemClassName}`).removeClass('open')}
+                onClick={toggleDropdown}
               >
                 <img src={getCurrencyImg()} /> <span>{i18n.get('word.currency')}</span>
                 {renderCurrencies()}
