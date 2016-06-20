@@ -132,8 +132,8 @@ module.exports = (opts) => {
         const host = req.get('host');
         const initialState = {
           currency: { activeCurrency: req.currency },
-          brand: { pathnameMap: { '/amore': 2038 } },
-          // brand: { pathnameMap: opts.brandPathnameMap },
+          // brand: { pathnameMap: { '/amore': 2038 } },
+          brand: { pathnameMap: opts.brandPathnameMap || { '/amore': 2038 } },
         };
         if (!err) {
           initialState.auth = auth;
