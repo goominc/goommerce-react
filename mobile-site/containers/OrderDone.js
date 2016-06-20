@@ -32,7 +32,6 @@ const OrderDone = React.createClass({
     const { order } = this.props;
     if (order.paymentStatus === 200) {
       const payment = _.find(order.payments, (p) => p.type === 3 && p.status === 2);
-      console.log(order);
       if (payment) {
         const { P_AMT, P_VACT_NAME, P_VACT_NUM, P_VACT_BANK_CODE, P_UNAME } = payment.data;
         return (

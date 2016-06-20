@@ -13,7 +13,6 @@ export default React.createClass({
   render() {
     const { order } = this.props;
     const { activeCurrency } = this.context;
-    console.log(order);
     return (
       <section id="myorder-detail-container">
         <div className="myorder-box">
