@@ -5,6 +5,8 @@ import { ApiAction, setHeader } from 'redux/actions';
 const { loadCategories } = ApiAction;
 import { ajaxReturnPromise } from 'commons/redux/util/ajaxUtil';
 
+import { incrementalFetch } from 'utils/scrollUtil';
+
 import CategoryList from 'components/CategoryList';
 
 const fetchSize = 10;
@@ -30,11 +32,7 @@ const Category = React.createClass({
     this.props.loadCategories();
     this.doSearch(this.props);
 
-    $(window).scroll(() => {
-      if ($(window).scrollTop() + window.innerHeight === $(document).height()) {
-        this.doFetch();
-      }
-    });
+    incrementalFetch(this.doFetch);
   },
   componentWillReceiveProps(nextProps) {
     const { params } = nextProps;
@@ -71,12 +69,18 @@ const Category = React.createClass({
     if (currentCount === maxCount) {
       return;
     }
+    const loadingDisplay = $('.recommend-wrap .loading').css('display');
+    if (loadingDisplay === 'block') {
+      // 2016. 06. 20. [heekyu] do not fetch when already loading
+      return;
+    }
     $('.recommend-wrap .loading').show();
     this.props.searchProducts({
       // q: params.query ? params.query : undefined,
       categoryId: params.categoryId,
       offset: currentCount,
       limit: fetchSize,
+      sorts: '-id',
     }).then((res) => {
       const mergeProducts = this.state.products.concat(res.products);
       this.setState({ products: mergeProducts, currentCount: mergeProducts.length });

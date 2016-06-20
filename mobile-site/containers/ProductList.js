@@ -11,6 +11,8 @@ import i18n from 'commons/utils/i18n';
 import ProductListItem from 'components/product/ProductListItem';
 import ProductListFilter from 'components/product/ProductListFilter';
 
+import { incrementalFetch } from 'utils/scrollUtil';
+
 const fetchSize = 10;
 
 const ProductList = React.createClass({
@@ -71,11 +73,7 @@ const ProductList = React.createClass({
       });
     }
 
-    $(window).scroll(() => {
-      if ($(window).scrollTop() + window.innerHeight === $(document).height()) {
-        this.doFetch();
-      }
-    });
+    incrementalFetch(this.doFetch);
   },
   componentWillReceiveProps(nextProps) {
     const props = ['params', 'filterPrice', 'filterBrand'];
@@ -131,6 +129,11 @@ const ProductList = React.createClass({
     const { params, sorts, filterBrand } = this.props;
     const { currentCount, maxCount } = this.state;
     if (currentCount === maxCount) {
+      return;
+    }
+    const loadingDisplay = $('.list-main .loading').css('display');
+    if (loadingDisplay === 'block') {
+      // 2016. 06. 20. [heekyu] do not fetch when already loading
       return;
     }
     $('.list-main .loading').show();
