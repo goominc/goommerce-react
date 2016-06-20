@@ -57,7 +57,7 @@ module.exports = (opts) => {
             <meta property="og:title" content="링크샵스">
             <meta property="og:url" content="http://linkshops.com">
             <meta property="og:image" content="http://d3f03u7lex6hmc.cloudfront.net/front/resource/header/logo.png">
-            <meta property="og:description" content="linkshops">
+            <meta property="og:description" content="동대문 도매상품을 한 눈에! 주문만 하면 배송까지 한번에!">
             <title>${config.title}</title>
           </head>
           <body>
@@ -84,7 +84,7 @@ module.exports = (opts) => {
             <meta property="og:title" content="링크샵스">
             <meta property="og:url" content="http://linkshops.com">
             <meta property="og:image" content="http://d3f03u7lex6hmc.cloudfront.net/front/resource/header/logo.png">
-            <meta property="og:description" content="linkshops">
+            <meta property="og:description" content="동대문 도매상품을 한 눈에! 주문만 하면 배송까지 한번에!">
             <title>${config.title}</title>
           </head>
           <body>
