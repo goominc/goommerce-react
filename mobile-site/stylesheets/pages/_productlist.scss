@@ -25,7 +25,7 @@
   }
   .sort-by.clickable {
     z-index: 1000;
-    position: fixed;
+    position: absolute;
   }
   .sort-by.expand-arrow .sort-by.shrink-arrow {
     position: relative;
@@ -64,7 +64,7 @@
 }
 .sort-by-list-wrapper {
   width: 100%;
-  position: fixed;
+  position: absolute;
   z-index: 1000;
   background-color: #fff;
   display: none;

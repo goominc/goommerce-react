@@ -159,9 +159,9 @@ const ProductList = React.createClass({
       sortStyle = { display: 'block', top: xPos };
     }
     const sortItems = [
-      { name: i18n.get('pcMain.productList.sortLowPrice'), sorts: 'KRW.num' },
-      { name: i18n.get('pcMain.productList.sortHighPrice'), sorts: '-KRW.num' },
-      { name: i18n.get('pcMain.productList.sortLatest'), sorts: '-id' },
+      { name: i18n.get('pcProductList.sortLowPrice'), sorts: 'KRW.num' },
+      { name: i18n.get('pcProductList.sortHighPrice'), sorts: '-KRW.num' },
+      { name: i18n.get('pcProductList.sortLatest'), sorts: '-id' },
     ];
     const renderSort = () =>
       sortItems.map((item) =>
