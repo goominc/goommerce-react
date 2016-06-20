@@ -44,7 +44,7 @@ export default React.createClass({
       const brands = new Set();
       let representitiveBrandName = '';
       let quantities = 0;
-      for (let i = 0; i < order.orderProducts.length; i++) {
+      for (let i = 0; i < (order.orderProducts || []).length; i++) {
         const variant = order.orderProducts[i];
         const brandId = _.get(variant, 'brand.id');
         if (brandId) {

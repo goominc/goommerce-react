@@ -39,6 +39,9 @@ export default React.createClass({
         {renderImage(_.get(p.productVariant, 'appImages.default[0]'), p.product)}
       </div>
     );
+    if (!order.orderProducts) {
+      return <div></div>;
+    }
     if (order.orderProducts.length <= itemInRow) {
       return (
         <div>
