@@ -88,7 +88,7 @@ const Signup = React.createClass({
           />
         );
       }
-      return (<SignupStep1 goBack={step1Back} goNext={step1Next} signupProgressImg={signupProgressImg} />);
+      return (<SignupStep1 goBack={step1Back} goNext={step1Next} signupProgressImg={signupProgressImg} activeLocale={this.props.activeLocale} />);
     };
     return (
       <div className="signup-global-container">

@@ -283,30 +283,54 @@
     height: 100px;
     overflow-y: scroll;
     width: 100%;
+    padding: 0px 2px;
 
-
-    //편(part),  장(chapter), 조(article), 항(paragraph), 호(subparagraph), 목(clause)
-    .part{
+    .part-title{
       font-size : 16px;
       text-align: center;
+    }
+    .part-content{
+
+    }
+    .chapter-list{
+
     }
     .chapter{
       font-weight: bold;
       text-align: center;
     }
-    .article{
+    .chapter-title{
+      margin-top : 45px;
+      padding-left : 14px;
+      font-weight: bold;
+      text-indent:  -14px;
+    }
+    .chapter-content{
+
+    }
+    .article-title{
       padding-left : 4px;
     }
-    .paragraph{
-      padding-left : 8px;
+    .article-content{
+      padding-left : 4px;
     }
-    .subparagraph{
+    .paragraph-title{
+      padding-left : 26px;
+      text-indent :-14px;
+    }
+    .paragraph-content{
+      padding-left : 28px;
+    }
+    .subparagraph-title{
       list-style: none;
-      padding-left : 12px;
+      padding-left : 29px;
+    }
+    .subparagraph-content{
+      padding-left : 29px;
     }
     .clause{
       list-style: none;
-      padding-left : 16px;
+      padding-left : 36px;
     }
     iframe {
       border: 0;
