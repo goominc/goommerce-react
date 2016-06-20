@@ -53,7 +53,8 @@ history.listen(() => {
 
 initGa(store, history);
 
-require('../commons/utils/i18n').init(store);
+require('commons/utils/i18n').init(store);
+require('commons/utils/storeUtil').init(store);
 
 render(
   <Provider store={store}>

@@ -784,14 +784,22 @@ const doSearch = (query, offset = 0, limit = 10, key, actionType) => (dispatch, 
   ajaxReturnPromise(state.auth, 'get', url).then((res) => {
     const action = {
       type: actionType,
-      // TODO handle pagination info
       offset,
       limit,
       text: query.q,
+      ..._.pick(res, 'aggs', 'pagination'),
     };
+    /*
     action[`${key}s`] = res[`${key}s`].sort((a, b) => (
       (_.get(a, 'name.ko') || '').localeCompare(_.get(b, 'name.ko') || '')
     ));
+    */
+    action[`${key}s`] = res[`${key}s`];
+    if (!query.sorts) {
+      action[`${key}s`].sort((a, b) => (
+        (_.get(a, 'name.ko') || '').localeCompare(_.get(b, 'name.ko') || '')
+      ));
+    }
     dispatch(action);
   });
 };
@@ -822,6 +830,14 @@ export function fakeLogin(userId) {
       });
     });
   };
+}
+
+export function loadBrand(brandId) {
+  return createFetchAction({
+    type: 'LOAD_BRAND',
+    endpoint: `/api/v1/brands/${brandId}`,
+    transform: ({ data }) => normalize(data, schemas.brand),
+  });
 }
 
 export function loadBuildings() {

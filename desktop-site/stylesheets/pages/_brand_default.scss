@@ -1,0 +1,279 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to 'xxx' page.
+// -----------------------------------------------------------------------------
+
+.brand-default-header {
+  background-color: #333;
+  padding: 10px 0;
+  color: #fff;
+  .inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    min-width: 760px;
+    position: relative;
+    text-align: center;
+  }
+  .left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    .left-menu-item {
+      cursor: pointer;
+      display: inline-block;
+      padding: 0 15px;
+      position: relative;
+      vertical-align: top;
+      z-index: 9500;
+      .dropdown-box {
+        display: none;
+      }
+      .popup-overlay {
+        display: none;
+      }
+      &.open {
+        .dropdown-box {
+          display: block;
+        }
+        .popup-overlay {
+          cursor: pointer;
+          display: block;
+          z-index: 9000;
+        }
+      }
+    }
+    .dropdown-box {
+      background-color: #333;
+      border-radius: 0 5px 0 5px;
+      left: 13px;
+      margin-top: 12px;
+      position: absolute;
+      top: 100%;
+      text-align: left;
+      z-index: 10000;
+      .dropdown-menu {
+        cursor: pointer;
+        font-size: 11px;
+        padding: 5px 23px 5px 8px;
+        position: relative;
+        & + .dropdown-menu {
+          border-top: 1px solid #666;
+        }
+        i {
+          margin-top: -2px;
+          position: absolute;
+          right: 10px;
+          top: 50%;
+        }
+      }
+    }
+  }
+  i {
+    display: inline-block;
+  }
+  .right {
+    a {
+      color: #fff;
+      display: inline-block;
+      margin-left: 20px;
+    }
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+.brand-default-container {
+  $padding-top: 50px;
+  background-color: #fff;
+  display: block;
+  margin: 0 auto;
+  min-width: 760px;
+  max-width: 1200px;
+  padding-top: $padding-top;
+  position: relative;
+  .name {
+    font-size: 26px;
+    font-weight: bold;
+  }
+  .building {
+    font-size: 12px;
+    font-weight: bold;
+  }
+  .top-right {
+    display: block;
+    right: 0;
+    position: absolute;
+    top: $padding-top;
+    span {
+      display: inline-block;
+      padding: 0 15px;
+      vertical-align: top;
+    }
+    i {
+      display: inline-block;
+      margin-right: 5px;
+    }
+  }
+  .title-line {
+    border-bottom: 1px solid #eee;
+    font-size: 11px;
+    line-height: 25px;
+    margin-top: 40px;
+    width: 100%;
+    i {
+      cursor: pointer;
+      display: inline-block;
+      margin-right: 5px;
+    }
+  }
+  .content-container {
+    display: table;
+    padding-bottom: 100px;
+    width: 100%;
+    .left-container {
+      display: inline-block;
+      margin-right: 40px;
+      padding-top: 70px;
+      width: 140px;
+      .category1-name {
+        border-bottom: 1px solid #b3b3b3;
+        color: #333;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: bold;
+        padding-bottom: 10px;
+        width: 100%;
+      }
+      .category2-wrap {
+        padding-top: 20px;
+        width: 100%;
+      }
+      .category2-name {
+        color: #666;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: bold;
+        line-height: 35px;
+      }
+    }
+    .right-container {
+      display: table-cell;
+      min-width: 700px;
+      vertical-align: top;
+    }
+    .item-row {
+      display: block;
+      margin-top: 30px;
+      width: 100%;
+    }
+    .item {
+      display: inline-block;
+      text-align: center;
+      width: 33%;
+      .img-wrap {
+        width: 100%;
+        @include default-responsive-img-wrap();
+      };
+      & + .item {
+        margin-left: 0.5%;
+      }
+    }
+    .item-desc-box {
+      margin-top: 15px;
+      padding-left: 15px;
+      position: relative;
+      text-align: left;
+      width: 100%;
+      .product-name {
+        color: #666;
+        font-size: 12px;
+      }
+      .price {
+        color: #333;
+        margin-top: 5px;
+        font-size: 14px;
+        font-weight: bold;
+      }
+      .bs {
+        cursor: pointer;
+        right: 15px;
+        position: absolute;
+        top: 0;
+      }
+    }
+    .page-line {
+      margin: 30px 0;
+      text-align: center;
+      width: 100%;
+      .page-item {
+        color: #999;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 12px;
+        padding: 5px 5px;
+        margin: 0 5px;
+        &.active {
+          cursor: default;
+          color: #333;
+          font-weight: bold;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+// 2016. 06. 20. [heekyu] sprites
+.bs {
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFkAAAA9CAYAAADGbsXjAAAJDElEQVR4Xu2bD5DVVRXHP9+HFJT8cWqqfYvgioAl6Oj7LQWZNYWZRSSG5GRlCTo1FWVTEzaSojOKjSRlzTAmTsOU/ZMUcKyEMqfSYt9bTM3ijy4mu2tTkwIagfBOc37cpefu+/N7u28XcH5nhpnd/d177r2fe+65595zEakMOgENegtpA6SQh8AIUsgp5CEgMARNlLXkfD5/p5mtaG1t3dTW1jZd0hejKProEPTnqGuis7NzQSaTWWxmJwGPFIvFRePGjXt4586dMzKZzArgLEk7isXisubm5lXlBlAJ8qnA3WZ2m6QrgLlRFP3tqCMwyB1ywJJu79XMfyTNN7OfAq/p9e3ybDbbu3zlja+tre1kSavMbEFra+tTgzyeo1J9V1fXVmBSmc4dAI4r8/dt2Wx2cu+/pxtflent6ur6L/DqOixgfzab7VM+hVwdch7I1QE5n81mW1NLroNYZ2fnZe4yk1aRdFFTU9NdKeSkxAAzy3R3dz8InJ2g2oampqbzJFkKOQGt0iI7d+4cl8lkHgJOrFRV0nYzm5HNZv+VOISrsx+v+OLd3d0eI28ws1PKDHarmc1qbm5+puIkvOIJNWiAHR0dY0eMGLHSzD5SonLNvn37Fra0tDxfrZk0uqhzErq7uy81s6uA5dls9ntJqqeQk1AaYJkU8gABJqleFrKZ7QBmS3q8VImZPQzcJOmeSsrN7BvAayV9tncZM/sK8BmgBXgB+AHwZUkvmpkf3V8PfErSmiSdP1bKVILssV4kqdAL8gXAo5Iq3mWY2R0B8uENwsxGAdcDXwj6XG/PSeoRbwvw8Gcs8C5JHps2VLwPkvY0VGlCZZUgPxcG++dekB3SD4E3ABcCu4ArgW5gvqROM7sVGCPpE2Y2DHDr/w7gJye/VPGY8xzAL1LeC/wRaAeeDLHobcBbgNcBd0i62ftgZnPc6oEpwC+BWyXlzcz78dWgYyQwC/BJ/LCkA6HeTYDfQ+wHFkt6ICGfhhSrF7K7j48D/wbcpfgR8vfA5QHsiWZ2C/CipKvNzAfTAXze72KBnjjT6/8qAF8laa+Z/SNMnsMY0TM6+RHKzO+yfXJduoBs+PlNwEzg5+H3TqA5/PxdwKMANwCvvxG4ARhezpU1hGYFJfVCvj9Ybga4X1JTsDK37MckvTH4XR/8ycDbJfk3t0S3suXAh0og+ad/Buv8HXBacCNFYHPw27OBXwBef5mkq8zMwXkb3wLWAb8GnpZ0kicbglvyifRDxB/CZN7n5dz/DybQcrqrQT5H0mO93EUPZF/KV0qaGwA60DWSziyxuquBqYBf/D9gZg7QkwF/DfAWh03QVfjq8H/uPsaHDdBdiK8Cnxh3Ny4Lwx2398t1O1zfA9zK2yXlzMxXlbscfBWE/nkZb/8s4B6/yBlK0JUgu6+dKOllZ3Ez8w3Jo4YxwBJJ7wuDcHh3SZpqZtcB75Z0tpldCnwtbGy7w8B+A3wzAF0U/nZmAOPXhA7DN0C3QHcdpwd34FBXuzUHn+uW/WngL4CvAu+rt+fRi1u/T6ZP2qmS3FX4anLdj/fAHyrQ1aIL7+SzYbPych8LINwCTwBukXRG6LyDeFDSCWa2Ejhekpf3gfny/FHwwZ6y6S0ewi03s57bKwfu+n0yXIYDE4DtvSo+I2m8mbn7KRdSnh82Vff1vwXcXbzTJ1GSb55DJpUgzwfeXJIV8HLu69wP+ob3KmCapBiEmY3260BJ95mZAx8p6U/hm+t5q6Tvm5lHFG8DvLzDf0SS+17XMc9DvwDMwX4A8DTPvZJ2mdk04D1hAhz4eknPm9mXgktxNZ8DXgKek/SzoNfdj68YH4PH5h6VlL0tq0W9UCh438nlch4RJZZj/sRnZp8Evg34ZnyGJA8FB0Xy+fxPXHEURaWXRDXbOuYh1xxhgwq0t7dPKBaLPS5rYhRFf0+qOoVchdSmTZtmDhs2bLKZtZjZuZJmeHFJD5nZRkkdBw8e3Dp9+nQ/YFWUFHIVOG1tbfMk3Rk233Il95vZJa2trX3yeqWFU8g11nyhUJhrZj8Om31p6f2SLs7lcnfXchsp5FqEgHw+78dxP6KXyo1RFPkZoKakkGsigkKhsNrM/ERaKqujKPLDT01JIddEFFuyx/J+gPEjvh+a/DZwSxRFfnCqKSnkGojy+bwfjPwR4ZKesC2fz/sBx+/HF0ZR5IefqpJCrkWoAd9TyA2AWEtFWci5XO7pcOXoTr+hE/Ho1zlfirMkmLHg9Oviu+JEYh9kAcIvqOIH2RRZpHt52GYzA7ECxVeZOzCWaf2hNo4GqQowl8tZoyE/dk2c2Ygv+z1rMW3p4SxHVR4BcJ8H2Z72Avo+yBaXa23sS4+41IScsIdPFAoFv6utKb0gPztt6WHg1SHPoe4H2VoX5xGPuDQEsqSl+Xz+2iSjefQa3i9PqoqDZlxx+tL4nrem2Jz4Ar+uB9laV1f5mn3ob4GGQM5kMlPb2to8QzFoYnOo+0G21tHnQfagdbCK4kZATuwqBjJAm8Nl4VlBMjXiIq2Ns+lHXAYMuR5XMZDR2rVkaCfxg2zWcZ4Onc6OuAwYcrFYPG3z5s1PDMVI7ELGcSB+HFPxQXacCzRmaH2cWD0qpKEx8FCMyC7gJIpsKHkoU9rsVsQsraXig+wkfdy1Lc5DMmZS/LppwFLLkj3V7geSd/RuKZfLVfw24F7VUGAXMJaDrET8P9cm1iAW6h6qPshO0rc9W4hzeaOmlOhPUrFCmSSQVSgU+vzHlAC57LcB9KeuqjYnfmcRP8jWOhI9yK7VwN6nmHDgwKHnB8cNY+LIiSTO5VXSfcy5i1qQ+vN993ZmUmSyjBbEuUCcy8Ni/7/RRAcZto4+Jf69bkkhA3u2MQ+jai4PccmoSf0LCVPIwS53b2GuRNlcnhkXj55CzVxe6i4SLPIXtnGD2ctzeRI3Hj8pfs/Xb0ktuQTd7i2sluLXpYfFxOrRk+INtt+SQi5Bt2dr/Ca6Ty5v1GQS5fJSd1HDDi3P8D1juH14hiU9YdveJxn/UpHrR+1ioaL4IWO/JLXkfmGrr1IKuT5e/SqdQu4XtvoqpZDr49Wv0inkfmGrr9L/ACRXGGsjSVH7AAAAAElFTkSuQmCC);
+  background-repeat: no-repeat;
+  display: block;
+}
+
+.bs-arrow-down {
+  width: 5px;
+  height: 3px;
+  background-position: -5px -5px;
+}
+
+.bs-brand-page-logo {
+  width: 56px;
+  height: 10px;
+  background-position: -5px -18px;
+}
+
+.bs-icon-cart {
+  width: 13px;
+  height: 11px;
+  background-position: -5px -38px;
+}
+
+.bs-icon-dot-orange {
+  width: 4px;
+  height: 4px;
+  background-position: -28px -38px;
+}
+
+.bs-icon-heart-red {
+  width: 13px;
+  height: 11px;
+  background-position: -42px -38px;
+}
+
+.bs-icon-heart-white {
+  width: 13px;
+  height: 11px;
+  background-position: -71px -5px;
+}
+
+.bs-icon-star-white {
+  width: 10px;
+  height: 10px;
+  background-position: -71px -26px;
+}
+
+.bs-icon-star-yellow {
+  width: 10px;
+  height: 10px;
+  background-position: -65px -46px;
+}

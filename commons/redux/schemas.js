@@ -5,6 +5,9 @@ import { Schema, arrayOf } from 'normalizr';
 export const user = new Schema('users');
 export const users = arrayOf(user);
 
+export const brand = new Schema('brands');
+export const brands = arrayOf(brand);
+
 export const product = new Schema('products');
 export const products = arrayOf(product);
 

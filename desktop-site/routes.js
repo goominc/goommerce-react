@@ -8,8 +8,10 @@ import {
   Cart,
   Checkout,
   Category,
+  DefaultRouter,
   FavoriteBrandContainer,
   ForgotPassword,
+  GlobalWrapper,
   Home,
   OrderDetail,
   OrderDoneContainer,
@@ -75,7 +77,9 @@ export default function configure(store) { // eslint-disable-line
       <Route path="/accounts/signup" component={Signup} onEnter={onSignup} />
       <Route path="/accounts/forgot" component={ForgotPassword} />
       <Route path="/accounts/reset" component={ResetPassword} />
-      <Redirect from="*" to="/" />
+      <Route component={GlobalWrapper}>
+        <Route path="*" component={DefaultRouter} />
+      </Route>
     </Route>
   );
 }

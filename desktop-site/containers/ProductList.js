@@ -11,7 +11,7 @@ import ProductListSearchBar from 'components/product/ProductListSearchBar';
 import PageButton from 'components/PageButton';
 
 import { getProductMainImage } from 'commons/utils/productUtil';
-import i18n from 'commons/utils/i18n';
+import storeUtil from 'commons/utils/storeUtil';
 
 const _ = require('lodash');
 
@@ -91,18 +91,12 @@ const ProductList = React.createClass({
       if (!product.mainImage) {
         product.mainImage = getProductMainImage(product.topHit || product);
       }
-      product.wish = 0;
-      for (let i = 0; i < wishes.length; i++) {
-        if (wishes[i].product.id === product.id) {
-          product.wish = wishes[i].id;
-          break;
-        }
-      }
+      product.wishId = storeUtil.getWishId(product);
     });
 
     const toggleWish = (product) => {
-      if (product.wish) {
-        ApiAction.deleteWish(product.wish);
+      if (product.wishId) {
+        ApiAction.deleteWish(product.wishId);
       } else {
         ApiAction.addWish(product.id);
       }

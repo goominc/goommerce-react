@@ -10,7 +10,7 @@ import { getProductMainImage } from 'commons/utils/productUtil';
 
 import { selectColor, selectSize, setActiveImage, wrapLogin, addCartAndPopup, addWishAndPopup } from 'redux/actions';
 import roleUtil from 'commons/utils/roleUtil';
-import i18n from 'commons/utils/i18n';
+import storeUtil from 'commons/utils/storeUtil';
 
 const ProductDetail = React.createClass({
   propTypes: {
@@ -104,7 +104,7 @@ const ProductDetail = React.createClass({
     return images;
   },
   render() {
-    const { activeImage, product, favoriteBrands, wishes } = this.props; // eslint-disable-line no-shadow
+    const { activeImage, product } = this.props; // eslint-disable-line no-shadow
     const { selectColor, selectSize, wrapLogin, addCartAndPopup } = this.props; // eslint-disable-line no-shadow
     const { addFavoriteBrand, createOrder, addWish, deleteWish } = this.context.ApiAction;
     if (!product) {
@@ -140,20 +140,7 @@ const ProductDetail = React.createClass({
         addFavoriteBrand(...args);
       });
     };
-    let isLikeBrand = false;
-    for (let i = 0; i < favoriteBrands.length; i++) {
-      if (favoriteBrands[i].id === _.get(product, 'brand.id')) {
-        isLikeBrand = true;
-        break;
-      }
-    }
-    let wishId = 0;
-    for (let i = 0; i < wishes.length; i++) {
-      if (wishes[i].product.id === product.id) {
-        wishId = wishes[i].id;
-        break;
-      }
-    }
+    const wishId = storeUtil.getWishId(product);
     const toggleWish = () => {
       wrapLogin(() => {
         if (wishId) {
@@ -167,7 +154,7 @@ const ProductDetail = React.createClass({
       <div>
         <ProductDetailPage
           {...this.props}
-          isLikeBrand={isLikeBrand}
+          isLikeBrand={storeUtil.isLikeBrand(_.get(product, 'brand.id'))}
           wishId={wishId}
           toggleWish={toggleWish}
           images={images} activeImage={passImage} attributes={attributes}

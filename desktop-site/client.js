@@ -23,7 +23,8 @@ if (module.hot) {
   });
 }
 
-require('../commons/utils/i18n').init(store);
+require('commons/utils/i18n').init(store);
+require('commons/utils/storeUtil').init(store);
 
 const routes = configureRoutes(store);
 

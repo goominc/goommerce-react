@@ -136,7 +136,7 @@ function favoriteBrand(state = {}, action) {
     return Object.assign({}, state, { brandProducts: action.brandProducts });
   } else if (action.type === 'DELETE_FAVORITE_BRAND_PRODUCTS') {
     for (let i = 0; i < state.brandProducts.length; i++) {
-      if (state.brandProducts[i][0].brand.id === action.brandId) {
+      if (state.brandProducts[i].length && state.brandProducts[i][0].brand.id === action.brandId) {
         state.brandProducts.splice(i, 1);
         return merge({}, { brandProducts: state.brandProducts });
       }
@@ -158,7 +158,7 @@ function pagination(state = {}, action) {
     return Array.isArray(curIds) ? curIds : [];
   }
 
-  if (action.pagination) {
+  if (action.pagination && action.payload) {
     const { key, type } = action.pagination;
     const current = get(state, key, {});
 
@@ -219,7 +219,7 @@ function search(state = { brand: {} }, action) {
     return omit(state, action.target);
   } else if (action.type === 'PRODUCT_SEARCH_RESULT') {
     const newState = Object.assign({}, state,
-      { product: pick(action, ['products', 'offset', 'limit', 'text']) }
+      { product: pick(action, ['products', 'aggs', 'pagination', 'offset', 'limit', 'text']) }
     );
     return newState;
   }
@@ -247,8 +247,14 @@ function order(state = {}, action) {
   return state;
 }
 
+function brand(state = {}, action) {
+  // 2016. 06. 17. [heekyu] pathnameMap is attached in initial state
+  return state;
+}
+
 const reducers = {
   auth,
+  brand,
   cart,
   categories,
   cms,

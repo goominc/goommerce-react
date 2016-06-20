@@ -26,3 +26,13 @@ exports.get = (key) => {
   }
   return res;
 };
+
+exports.getObj = (key) => {
+  const res = {};
+  const locales = ['en', 'ko', 'zh-cn', 'zh-tw'];
+  const state = store.getState();
+  locales.forEach((locale) => {
+    res[locale] = _.get(state, `i18n.${locale}.${key}`);
+  });
+  return res;
+}

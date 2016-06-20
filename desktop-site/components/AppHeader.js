@@ -87,7 +87,6 @@ export default React.createClass({
           <div key={key} className={`dropdown-menu ${key === activeLocale ? 'active' : ''}`}
             onClick={() => {
               changeLocale(key);
-              $('.left-menu-item').removeClass('open');
             }}
           ><img src={locales[key].img} /> <span>{locales[key].name}</span></div>
         ))}
@@ -101,7 +100,6 @@ export default React.createClass({
             <div key={obj.name} className={`dropdown-menu ${obj.name === activeCurrency ? 'active' : ''}`}
               onClick={() => {
                 changeCurrency(obj.name);
-                $('.left-menu-item').removeClass('open');
               }}
             >
               <img src={obj.img} /> <span>{obj.name}</span>

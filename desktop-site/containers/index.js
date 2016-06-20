@@ -3,6 +3,10 @@ export { default as Brand } from 'containers/Brand';
 export { default as Cart } from 'containers/Cart';
 export { default as Category } from 'containers/Category';
 export { default as Checkout } from 'containers/Checkout';
+
+export { default as DefaultRouter } from 'containers/DefaultRouter';
+export { default as GlobalWrapper } from 'containers/GlobalWrapper';
+
 export { default as FavoriteBrandContainer } from 'containers/FavoriteBrandContainer';
 export { default as ForgotPassword } from 'containers/ForgotPassword';
 export { default as Home } from 'containers/Home';

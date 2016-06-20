@@ -86,8 +86,6 @@ module.exports = (opts) => {
             <meta property="og:image" content="http://d3f03u7lex6hmc.cloudfront.net/front/resource/header/logo.png">
             <meta property="og:description" content="linkshops">
             <title>${config.title}</title>
-            <link href="//fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet" type="text/css">
-	        <link href="//fonts.googleapis.com/css?family=Roboto:400,500,700|Roboto+Condensed:400,700" rel="stylesheet" type="text/css">
           </head>
           <body>
             <div id='root'></div>
@@ -130,6 +128,8 @@ module.exports = (opts) => {
         const host = req.get('host');
         const initialState = {
           currency: { activeCurrency: req.currency },
+          brand: { pathnameMap: { '/amore': 2038 } },
+          // brand: { pathnameMap: opts.brandPathnameMap },
         };
         if (!err) {
           initialState.auth = auth;
