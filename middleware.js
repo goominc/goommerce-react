@@ -54,6 +54,10 @@ module.exports = (opts) => {
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="baidu-site-verification" content="gQDivYe8j5" />
             <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, user-scalable=0, width=device-width">
+            <meta property="og:title" content="링크샵스">
+            <meta property="og:url" content="http://linkshops.com">
+            <meta property="og:image" content="http://d3f03u7lex6hmc.cloudfront.net/front/resource/header/logo.png">
+            <meta property="og:description" content="linkshops">
             <title>${config.title}</title>
           </head>
           <body>
@@ -77,6 +81,10 @@ module.exports = (opts) => {
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="baidu-site-verification" content="gQDivYe8j5" />
             <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta property="og:title" content="링크샵스">
+            <meta property="og:url" content="http://linkshops.com">
+            <meta property="og:image" content="http://d3f03u7lex6hmc.cloudfront.net/front/resource/header/logo.png">
+            <meta property="og:description" content="linkshops">
             <title>${config.title}</title>
             <link href="//fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet" type="text/css">
 	        <link href="//fonts.googleapis.com/css?family=Roboto:400,500,700|Roboto+Condensed:400,700" rel="stylesheet" type="text/css">
