@@ -281,7 +281,7 @@ export default React.createClass({
       return (
         <div className="field-content">
           <div className="price-value">
-            <b>{numberUtil.format(priceKRW)}</b> <span>원</span><br />
+            <b>{numberUtil.format(priceKRW)}</b> <span>KRW</span><br />
           </div>
           <div className="approximately">{approximately}</div>
         </div>
