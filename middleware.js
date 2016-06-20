@@ -54,11 +54,14 @@ module.exports = (opts) => {
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="baidu-site-verification" content="gQDivYe8j5" />
             <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, user-scalable=0, width=device-width">
-            <meta property="og:title" content="링크샵스">
-            <meta property="og:url" content="http://linkshops.com">
-            <meta property="og:image" content="http://d3f03u7lex6hmc.cloudfront.net/front/resource/header/logo.png">
-            <meta property="og:description" content="동대문 도매상품을 한 눈에! 주문만 하면 배송까지 한번에!">
+            <meta property="og:title" content="링크샵스"/>
+            <meta property="og:type"          content="website" />
+            <meta property="og:url" content="http://www.linkshops.com"/>
+            <meta property="og:image" content="http://d3f03u7lex6hmc.cloudfront.net/front/resource/extra/linkshops_logo.png"/>
+            <meta property="og:description" content="동대문 도매상품을 한 눈에! 주문만 하면 배송까지 한번에!"/>
             <title>${config.title}</title>
+            <link href="//fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet" type="text/css">
+	        <link href="//fonts.googleapis.com/css?family=Roboto:400,500,700|Roboto+Condensed:400,700" rel="stylesheet" type="text/css">
           </head>
           <body>
             <div id='root'></div>
@@ -81,10 +84,11 @@ module.exports = (opts) => {
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="baidu-site-verification" content="gQDivYe8j5" />
             <meta name="viewport" content="width=device-width, initial-scale=1">
-            <meta property="og:title" content="링크샵스">
-            <meta property="og:url" content="http://linkshops.com">
-            <meta property="og:image" content="http://d3f03u7lex6hmc.cloudfront.net/front/resource/header/logo.png">
-            <meta property="og:description" content="동대문 도매상품을 한 눈에! 주문만 하면 배송까지 한번에!">
+            <meta property="og:title" content="링크샵스"/>
+            <meta property="og:type"          content="website" />
+            <meta property="og:url" content="http://www.linkshops.com"/>
+            <meta property="og:image" content="http://d3f03u7lex6hmc.cloudfront.net/front/resource/extra/linkshops_logo.png"/>
+            <meta property="og:description" content="동대문 도매상품을 한 눈에! 주문만 하면 배송까지 한번에!"/>
             <title>${config.title}</title>
           </head>
           <body>
