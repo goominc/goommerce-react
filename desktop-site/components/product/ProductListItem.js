@@ -91,7 +91,7 @@ export default React.createClass({
       </div>
       : null;
     const wishElem = isShowInfo ?
-      <div className={`heart-it ${item.wish ? 'active' : ''}`} onClick={() => toggleWish(item)}></div>
+      <div className={`heart-it ${item.wishId ? 'active' : ''}`} onClick={() => toggleWish(item)}></div>
       : null;
     return (
       <div key={item.id} className={className}>
