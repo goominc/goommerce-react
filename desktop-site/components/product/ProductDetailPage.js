@@ -35,8 +35,6 @@ export default React.createClass({
     currencySign: PropTypes.object,
   },
   componentDidMount() {
-    // 2016. 05. 19. [heekyu] do not show previous visited product thumbnails
-    $('.img-variant-color').attr('src', '');
     // 2016. 04. 14. [heekyu] timing issue
     setTimeout(() => this.adjustScroll(this.props), 100);
   },
@@ -99,23 +97,10 @@ export default React.createClass({
     const { product, images, activeImage, variantAttributes, attributes, selectedVariant } = this.props
     const { addCartProduct, buyNow, toggleWish, addFavoriteBrand, isLikeBrand, wishId } = this.props;
     if (!product || !variantAttributes) {
-      return (<div></div>);
+      return (<div className="container no-padding"></div>);
     }
     const brand = product.brand;
     const { activeLocale, activeCurrency, currencySign } = this.context;
-    const renderImage = (image) => {
-      if (!image) {
-        return (<img />);
-      }
-      if (!image.publicId) {
-        return (<img src={image.url} />);
-      }
-      return (
-        <CloudinaryImage publicId={image.publicId}
-          options={ { crop: 'scale', width: 50, height: 75 } }
-        />
-      );
-    };
     const renderPreload = (image) => <img key={image.url} src={image.url} width="1" height="1" />;
     const renderThumbnail = (image) => {
       let className = '';
