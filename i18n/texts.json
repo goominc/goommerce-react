@@ -3,8 +3,8 @@
     "title": {
       "en": "Linkshops - K-style Apparel Wholesale ㅣ Online Shopping Mall",
       "ko": "Linkshops - 동대문 도매상품을 한 눈에! 링크샵스",
-      "zh-cn": "Linkshops - 东大门服装批发代购网站_韩国东大门代购_韩国货源_韩国代购货源",
-      "zh-tw": "Linkshops - 东大门服装批发代购网站_韩国东大门代购_韩国货源_韓國代購貨源"
+      "zh-cn": "Linkshops - 东大门服装批发代购网站_韩国东大门代购_韩国进货攻略_韩国代购货源",
+      "zh-tw": "Linkshops - 東大門服飾批发網站_韓國東大門代購_韓國貨源_韓國進貨"
     }
   },
   "enum": {
@@ -107,14 +107,14 @@
         "0": {
           "en": "Awaiting settlement",
           "ko": "정산대기",
-          "zh-cn": "정산대기",
-          "zh-tw": "정산대기"
+          "zh-cn": "等待结账",
+          "zh-tw": "等待結賬"
         },
         "100": {
           "en": "Settled",
           "ko": "정산완료",
-          "zh-cn": "정산완료",
-          "zh-tw": "정산완료"
+          "zh-cn": "结账完毕",
+          "zh-tw": "結賬完畢"
         }
       }
     },
@@ -266,13 +266,15 @@
           "en": "Failed",
           "ko": "실패",
           "zh-cn": "失败",
-          "zh-tw`": "失敗"
+          "zh-tw`": "失敗",
+          "zh-tw": "失敗"
         },
         "2": {
           "en": "Checking",
           "ko": "확인중",
           "zh-cn": "确认中",
-          "zh-tw`": "確認中"
+          "zh-tw`": "確認中",
+          "zh-tw": "確認中"
         }
       }
     }
