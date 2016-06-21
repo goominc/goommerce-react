@@ -12,6 +12,9 @@
     min-width: 760px;
     position: relative;
     text-align: center;
+    span {
+      cursor: pointer;
+    }
   }
   .left {
     position: absolute;
@@ -128,7 +131,7 @@
   }
   .content-container {
     display: table;
-    padding-bottom: 100px;
+    padding-bottom: 50px;
     width: 100%;
     .left-container {
       display: inline-block;
@@ -202,7 +205,7 @@
       }
     }
     .page-line {
-      margin: 30px 0;
+      margin: 50px 0 20px;
       text-align: center;
       width: 100%;
       .page-item {

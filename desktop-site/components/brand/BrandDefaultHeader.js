@@ -17,10 +17,11 @@ export default React.createClass({
     ApiAction: PropTypes.object,
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
+    router: PropTypes.object,
   },
   render() {
     const { auth, location } = this.props;
-    const { ApiAction, activeLocale, activeCurrency } = this.context;
+    const { ApiAction, activeLocale, activeCurrency, router } = this.context;
     const { changeLocale, changeCurrency, logout } = ApiAction;
     const locales = {
       ko: { name: '한국어' },
@@ -103,7 +104,7 @@ export default React.createClass({
               <div className="popup-overlay transparent"></div>
             </div>
           </div>
-          <span>LinkShops</span>
+          <span onClick={() => router.push('/')}>LinkShops</span>
           {renderRight()}
         </div>
       </div>

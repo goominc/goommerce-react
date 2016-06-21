@@ -4,6 +4,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 
+import AppFooter from 'components/AppFooter';
 import BrandDefaultHeader from 'components/brand/BrandDefaultHeader';
 import BrandDefaultPage from 'components/brand/BrandDefaultPage';
 
@@ -62,6 +63,7 @@ const BrandCustomContainer = React.createClass({
           activeCategoryId={+categoryId}
           pageCurrent={+pageNum}
         />
+        <AppFooter />
       </div>
     );
   },

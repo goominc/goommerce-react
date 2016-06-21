@@ -248,12 +248,14 @@ export default React.createClass({
       priceKRW = product.KRW;
     }
 
+    const brandLink = () => (brand.pathname ? `/${brand.pathname}` : `/brands/${brand.id}`);
+
     const renderBrand = () => {
       if (brand) {
         const renderFavoriteButton = () => {
           if (isLikeBrand) {
             return (
-              <Link to={`/brands/${brand.id}`} className="favorite-brand">♥  {i18n.get('pcItemDetail.favoriteBrands')}</Link>
+              <Link to={brandLink()} className="favorite-brand">♥ {i18n.get('pcItemDetail.favoriteBrands')}</Link>
             );
           }
           return (

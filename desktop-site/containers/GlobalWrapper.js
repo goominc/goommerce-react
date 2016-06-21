@@ -48,8 +48,9 @@ const GlobalWrapper = React.createClass({
 });
 
 export default connect(
-  (state) => ({
-    activeLocale: state.i18n.activeLocale, activeCurrency: state.currency.activeCurrency,
+  (state, ownProps) => ({
+    activeLocale: state.i18n.activeLocale,
+    activeCurrency: state.currency.activeCurrency,
   }),
   Object.assign({}, ApiAction)
 )(GlobalWrapper);

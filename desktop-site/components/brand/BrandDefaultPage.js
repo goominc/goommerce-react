@@ -16,6 +16,7 @@ import i18n from 'commons/utils/i18n';
 export default React.createClass({
   propTypes: {
     activeCategoryId: PropTypes.number,
+    auth: PropTypes.object,
     categoryRoot: PropTypes.object,
     brand: PropTypes.object,
     isLikeBrand: PropTypes.bool,
@@ -33,7 +34,7 @@ export default React.createClass({
     currencySign: PropTypes.object,
   },
   render() {
-    const { categoryRoot, brand, location, searchResult } = this.props;
+    const { auth, categoryRoot, brand, location, searchResult } = this.props;
     const { isLikeBrand } = this.props;
     const { activeCategoryId } = this.props;
     const { pageCurrent } = this.props;
@@ -115,21 +116,29 @@ export default React.createClass({
       products.forEach((product) => {
         product.wishId = storeUtil.getWishId(product);
       });
+      const renderProductBottom = (product) => {
+        if (auth.id) {
+          return (
+            <div className="item-desc-box">
+              <div className="product-name">{_.get(product, `name.${activeLocale}`)}</div>
+              <div className="price">
+                {formatPrice(product[activeCurrency] || 0, activeCurrency, currencySign)}
+              </div>
+              {product.wishId ?
+                <i className="bs bs-icon-heart-red" onClick={() => ApiAction.deleteWish(product.wishId)}></i> :
+                <i className="bs bs-icon-heart-white" onClick={() => ApiAction.addWish(product.id)}></i>
+              }
+            </div>
+          );
+        }
+        return null;
+      };
       const renderProduct = (product) => (
         <div key={product.id} className="item">
           <Link to={`/products/${product.id}`}>
             <ResponsiveImage image={getProductMainImage(product)} width={440} />
           </Link>
-          <div className="item-desc-box">
-            <div className="product-name">{_.get(product, `name.${activeLocale}`)}</div>
-            <div className="price">
-              {formatPrice(product[activeCurrency] || 0, activeCurrency, currencySign)}
-            </div>
-            {product.wishId ?
-              <i className="bs bs-icon-heart-red" onClick={() => ApiAction.deleteWish(product.wishId)}></i> :
-              <i className="bs bs-icon-heart-white" onClick={() => ApiAction.addWish(product.id)}></i>
-            }
-          </div>
+          {renderProductBottom(product)}
         </div>
       );
       const res = [];

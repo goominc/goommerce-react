@@ -1,5 +1,7 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
+import _ from 'lodash';
+
 import { openPopup } from 'redux/actions';
 import roleUtil from 'commons/utils/roleUtil';
 import i18n from 'commons/utils/i18n';
@@ -69,6 +71,12 @@ exports.onEnterAllowSeller = (nextState, fnReplaceState) => {
   roleUtil.checkRoleOnEnter(getAuth(), getOnNotLogin(nextState, fnReplaceState), getOnNotRoleSeller(nextState, fnReplaceState));
 };
 exports.checkBrand = (nextState, fnReplaceState) => {
+  // 2016. 06. 21. [heekyu] redirect to brand page if exists
+  const pathname = _.findKey(_.get(store.getState(), 'brand.pathnameMap', {}), (v) => +v === +nextState.params.brandId);
+  if (pathname) {
+    fnReplaceState(pathname);
+    return;
+  }
   const auth = getAuth();
   const brandId = roleUtil.getBrandIdIfSeller(auth);
   const onNotLogin = () => fnReplaceState(null, '/accounts/signin');
