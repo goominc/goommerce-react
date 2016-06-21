@@ -10,6 +10,9 @@ import { paymentMethod } from 'commons/utils/inipay';
 
 exports.collectByBrands = (orderProductVariants) => {
   const res = [];
+  if (!orderProductVariants) {
+    return res;
+  }
   orderProductVariants.forEach((orderProductVariant) => {
     const brandId = _.get(orderProductVariant, 'brand.id');
     let idx = -1;
