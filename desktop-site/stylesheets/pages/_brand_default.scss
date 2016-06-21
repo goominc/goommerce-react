@@ -166,19 +166,29 @@
     }
     .item-row {
       display: block;
+      height: 450px;
+      overflow-y: visible;
       margin-top: 30px;
       width: 100%;
     }
     .item {
       display: inline-block;
       text-align: center;
-      width: 33%;
+      vertical-align: top;
+      width: 30%;
       .img-wrap {
         width: 100%;
         @include default-responsive-img-wrap();
       };
       & + .item {
-        margin-left: 0.5%;
+        margin-left: 5%;
+      }
+      @include product-list-variant-image();
+      .variant-image-container {
+        background-color: #fff !important;
+        padding: 0 15px;
+        margin-top: 20px;
+        z-index: 1000;
       }
     }
     .item-desc-box {

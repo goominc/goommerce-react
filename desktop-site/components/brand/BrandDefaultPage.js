@@ -5,10 +5,9 @@ import { Link } from 'react-router';
 import _ from 'lodash';
 
 import Breadcrumb from 'components/Breadcrumb';
-import ResponsiveImage from 'components/snippet/ResponsiveImage';
+import BrandProductItem from './BrandProductItem';
 
 import { getBuildingInfo } from 'commons/utils/brandUtil';
-import { getProductMainImage } from 'commons/utils/productUtil';
 import { formatPrice } from 'commons/utils/numberUtil';
 import storeUtil from 'commons/utils/storeUtil';
 import i18n from 'commons/utils/i18n';
@@ -113,20 +112,19 @@ export default React.createClass({
         }
         return null;
       };
-      const renderProduct = (product) => (
-        <div key={product.id} className="item">
-          <Link to={`/products/${product.id}`}>
-            <ResponsiveImage image={getProductMainImage(product)} width={440} />
-          </Link>
-          {renderProductBottom(product)}
-        </div>
-      );
       const res = [];
       let p = 0;
       while (p < products.length) {
         const row = [];
         for (let i = 0; i < 3; i++) {
-          row.push(renderProduct(products[p++]));
+          const product = products[p++];
+          row.push(
+            <BrandProductItem
+              key={product.id}
+              product={product}
+              auth={auth}
+            />
+          );
           if (p === products.length) {
             break;
           }
