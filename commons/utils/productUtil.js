@@ -6,7 +6,7 @@ import i18n from 'commons/utils/i18n';
 
 import numberUtil from './numberUtil';
 
-exports.getName = (product) => i18n.get(product.name);
+exports.getName = (product) => i18n.get(product.name) || product.id;
 exports.getAllNames = (product) => product.name;
 
 exports.initColorsAndSizes = (variants) => {
