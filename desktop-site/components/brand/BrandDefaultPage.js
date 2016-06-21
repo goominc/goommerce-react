@@ -15,6 +15,7 @@ import i18n from 'commons/utils/i18n';
 export default React.createClass({
   propTypes: {
     activeCategoryId: PropTypes.number,
+    activeLocale: PropTypes.string,
     aggs: PropTypes.object,
     auth: PropTypes.object,
     categoryRoot: PropTypes.object,
@@ -29,16 +30,15 @@ export default React.createClass({
   },
   contextTypes: {
     ApiAction: PropTypes.object,
-    activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
     currencySign: PropTypes.object,
   },
   render() {
     const { auth, categoryRoot, brand, location, searchResult, aggs } = this.props;
     const { isLikeBrand } = this.props;
-    const { activeCategoryId } = this.props;
+    const { activeCategoryId, activeLocale } = this.props;
     const { pageCurrent } = this.props;
-    const { ApiAction, activeLocale, activeCurrency, currencySign } = this.context;
+    const { ApiAction, activeCurrency, currencySign } = this.context;
     if (!categoryRoot || !brand || !searchResult) {
       return <div></div>;
     }
