@@ -10,6 +10,13 @@ exports.initStore = (s) => {
 };
 const getAuth = () => store.getState().auth;
 
+exports.setAfterLoginPage = (location) => {
+  store.dispatch({
+    type: 'AFTER_LOGIN_PAGE',
+    nextState: { location },
+  });
+};
+
 const getOnNotLogin = (nextState, fnReplaceState) => () => {
   store.dispatch({
     type: 'AFTER_LOGIN_PAGE',

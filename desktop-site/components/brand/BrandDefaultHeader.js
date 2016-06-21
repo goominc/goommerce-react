@@ -5,11 +5,13 @@ import { Link } from 'react-router';
 
 import { constants } from 'commons/utils/constants';
 import stringUtil from 'commons/utils/stringUtil';
+import { setAfterLoginPage } from 'commons/utils/routerUtil';
 import i18n from 'commons/utils/i18n';
 
 export default React.createClass({
   propTypes: {
     auth: PropTypes.object,
+    location: PropTypes.object,
   },
   contextTypes: {
     ApiAction: PropTypes.object,
@@ -17,9 +19,9 @@ export default React.createClass({
     activeCurrency: PropTypes.string,
   },
   render() {
-    const { auth } = this.props;
+    const { auth, location } = this.props;
     const { ApiAction, activeLocale, activeCurrency } = this.context;
-    const { changeLocale, changeCurrency } = ApiAction;
+    const { changeLocale, changeCurrency, logout } = ApiAction;
     const locales = {
       ko: { name: '한국어' },
       en: { name: 'ENGLISH' },
@@ -72,13 +74,16 @@ export default React.createClass({
       if (auth.id) {
         return (
           <div className="right">
-            <span>{i18n.get('word.hi')} {stringUtil.getUserName(auth)}{i18n.get('pcMain.myMenu.userHi')}</span>
+            <a onClick={() => logout()}><span>{i18n.get('word.logout')}</span></a>
+            <Link to="/mypage/orders">
+              <span>{i18n.get('word.hi')} {stringUtil.getUserName(auth)}{i18n.get('pcMain.myMenu.userHi')}</span>
+            </Link>
           </div>
         );
       }
       return (
         <div className="right">
-          <Link to="/accounts/signin"><span>{i18n.get('word.login')}</span></Link>
+          <Link to="/accounts/signin" onClick={() => setAfterLoginPage(location.pathname)}><span>{i18n.get('word.login')}</span></Link>
           <Link to="/accounts/signup"><span>{i18n.get('word.register')}</span></Link>
         </div>
       );

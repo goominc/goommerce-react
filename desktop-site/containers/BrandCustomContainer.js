@@ -22,6 +22,9 @@ const BrandCustomContainer = React.createClass({
   },
   componentDidMount() {
     const { auth, brandId, location } = this.props;
+    if (!brandId) {
+      return;
+    }
     const { ApiAction } = this.context;
     ApiAction.loadBrand(brandId);
     const { categoryId, pageNum } = location.query;
@@ -36,19 +39,22 @@ const BrandCustomContainer = React.createClass({
     const { ApiAction } = this.context;
     const limit = 30;
     const offset = (pageNum - 1) * limit || 0;
-    ApiAction.searchProducts({
+    const query = {
       brandId,
-      categoryId,
       aggs: 'categories:50',
       sorts: '-id',
-    }, offset, limit);
+    };
+    if (categoryId) {
+      query.categoryId = categoryId;
+    }
+    ApiAction.searchProducts(query, offset, limit);
   },
   render() {
     const { brandId, location } = this.props;
     const { categoryId = 0, pageNum = 1 } = location.query;
     return (
       <div>
-        <BrandDefaultHeader auth={this.props.auth} />
+        <BrandDefaultHeader {...this.props} />
         <BrandDefaultPage
           {...this.props}
           loadProducts={this.loadProducts}

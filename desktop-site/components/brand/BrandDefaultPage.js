@@ -33,7 +33,7 @@ export default React.createClass({
     currencySign: PropTypes.object,
   },
   render() {
-    const { categoryRoot, brand, loadProducts, location, searchResult } = this.props;
+    const { categoryRoot, brand, location, searchResult } = this.props;
     const { isLikeBrand } = this.props;
     const { activeCategoryId } = this.props;
     const { pageCurrent } = this.props;
@@ -41,6 +41,10 @@ export default React.createClass({
     if (!categoryRoot || !brand || !searchResult) {
       return <div></div>;
     }
+    const loadProducts = (...args) => {
+      // $('.right-container .item img').attr('src', '');
+      this.props.loadProducts.apply(null, args);
+    };
     const getCategoryTree = () => {
       if (!searchResult.aggs.categories || !searchResult.aggs.categories[categoryRoot.id]) {
         return {};
@@ -55,7 +59,7 @@ export default React.createClass({
       };
       return dfs(categoryRoot);
     };
-    const getLinkUrl = (categoryId, pageNum) => `${location.pathname}?categoryId=${categoryId}&pageNum=${pageNum}`;
+    const getLinkUrl = (categoryId, pageNum) => `${location.pathname}?pageNum=${pageNum}${categoryId ? `&categoryId=${categoryId}` : ''}`;
     const genLink = (elem, categoryId, pageNum) => (
       <Link
         key={`${categoryId}-${pageNum}`}
@@ -162,7 +166,9 @@ export default React.createClass({
     return (
       <div style={({ backgroundColor: '#fff' })}>
         <div className="brand-default-container">
-          <div className="name">{_.get(brand, `name.${activeLocale}`)}</div>
+          <Link to={location.pathname} onClick={() => loadProducts(null, 1)}>
+            <div className="name">{_.get(brand, `name.${activeLocale}`)}</div>
+          </Link>
           <div className="buillding">{getBuildingInfo(brand)}</div>
           <div className="top-right">
             <Link to="/mypage/wish_list"><span><i className="bs bs-icon-heart-red"></i> {i18n.get('word.wishList')}</span></Link>
