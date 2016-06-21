@@ -789,11 +789,6 @@ const doSearch = (query, offset = 0, limit = 10, key, actionType) => (dispatch, 
       text: query.q,
       ..._.pick(res, 'aggs', 'pagination'),
     };
-    /*
-    action[`${key}s`] = res[`${key}s`].sort((a, b) => (
-      (_.get(a, 'name.ko') || '').localeCompare(_.get(b, 'name.ko') || '')
-    ));
-    */
     action[`${key}s`] = res[`${key}s`];
     if (!query.sorts) {
       action[`${key}s`].sort((a, b) => (

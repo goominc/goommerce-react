@@ -16,6 +16,7 @@ import i18n from 'commons/utils/i18n';
 export default React.createClass({
   propTypes: {
     activeCategoryId: PropTypes.number,
+    aggs: PropTypes.object,
     auth: PropTypes.object,
     categoryRoot: PropTypes.object,
     brand: PropTypes.object,
@@ -34,7 +35,7 @@ export default React.createClass({
     currencySign: PropTypes.object,
   },
   render() {
-    const { auth, categoryRoot, brand, location, searchResult } = this.props;
+    const { auth, categoryRoot, brand, location, searchResult, aggs } = this.props;
     const { isLikeBrand } = this.props;
     const { activeCategoryId } = this.props;
     const { pageCurrent } = this.props;
@@ -47,12 +48,12 @@ export default React.createClass({
       this.props.loadProducts.apply(null, args);
     };
     const getCategoryTree = () => {
-      if (!searchResult.aggs.categories || !searchResult.aggs.categories[categoryRoot.id]) {
+      if (!aggs || !aggs.categories || !aggs.categories[categoryRoot.id]) {
         return {};
       }
       const dfs = (root) => {
-        if (searchResult.aggs.categories[root.id]) {
-          const res = Object.assign({}, root, searchResult.aggs.categories[root.id]);
+        if (aggs.categories[root.id]) {
+          const res = Object.assign({}, root, aggs.categories[root.id]);
           res.children = res.children.map(dfs).filter((r) => !!r);
           return res;
         }
@@ -175,9 +176,9 @@ export default React.createClass({
     return (
       <div style={({ backgroundColor: '#fff' })}>
         <div className="brand-default-container">
-          <Link to={location.pathname} onClick={() => loadProducts(null, 1)}>
-            <div className="name">{_.get(brand, `name.${activeLocale}`)}</div>
-          </Link>
+          <div className="name">
+            <Link to={location.pathname} onClick={() => loadProducts(null, 1)}>{_.get(brand, `name.${activeLocale}`)}</Link>
+          </div>
           <div className="buillding">{getBuildingInfo(brand)}</div>
           <div className="top-right">
             <Link to="/mypage/wish_list"><span><i className="bs bs-icon-heart-red"></i> {i18n.get('word.wishList')}</span></Link>

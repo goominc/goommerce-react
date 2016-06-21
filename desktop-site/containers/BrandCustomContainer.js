@@ -8,6 +8,7 @@ import AppFooter from 'components/AppFooter';
 import BrandDefaultHeader from 'components/brand/BrandDefaultHeader';
 import BrandDefaultPage from 'components/brand/BrandDefaultPage';
 
+import { ajaxReturnPromise } from 'commons/redux/util/ajaxUtil';
 import loadEntities from 'commons/redux/util/loadEntities';
 import storeUtil from 'commons/utils/storeUtil';
 
@@ -21,6 +22,9 @@ const BrandCustomContainer = React.createClass({
     ApiAction: PropTypes.object,
     router: PropTypes.object.isRequired,
   },
+  getInitialState() {
+    return {};
+  },
   componentDidMount() {
     const { auth, brandId, location } = this.props;
     if (!brandId) {
@@ -30,7 +34,18 @@ const BrandCustomContainer = React.createClass({
     ApiAction.loadBrand(brandId);
     const { categoryId, pageNum } = location.query;
     this.loadProducts(categoryId, pageNum);
+    // TODO load categories only when not exists
     ApiAction.loadCategories();
+    const query = {
+      offset: 0,
+      limit: 1,
+      aggs: 'categories:80',
+      brandId,
+    };
+    const url = `/api/v1/products/search?${$.param(query)}`;
+    ajaxReturnPromise(auth, 'get', url).then((res) => {
+      this.setState({ aggs: res.aggs });
+    });
     if (auth.id) {
       ApiAction.loadWishlist();
     }
@@ -42,7 +57,6 @@ const BrandCustomContainer = React.createClass({
     const offset = (pageNum - 1) * limit || 0;
     const query = {
       brandId,
-      aggs: 'categories:50',
       sorts: '-id',
     };
     if (categoryId) {
@@ -62,6 +76,7 @@ const BrandCustomContainer = React.createClass({
           isLikeBrand={storeUtil.isLikeBrand(brandId)}
           activeCategoryId={+categoryId}
           pageCurrent={+pageNum}
+          aggs={this.state.aggs}
         />
         <AppFooter />
       </div>
