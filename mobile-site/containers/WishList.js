@@ -29,7 +29,7 @@ const WishList = React.createClass({
         showLogo: false,
         showSearch: true,
         showCart: true,
-        titleText: '위시 리스트',
+        titleI18NKey: 'word.wishList',
       });
       this.props.loadWishlist();
     } else {
