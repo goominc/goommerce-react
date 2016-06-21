@@ -87,6 +87,8 @@ const BrandCustomContainer = React.createClass({
 export default connect(
   (state, ownProps) => ({
     auth: state.auth,
+    // 2016. 06. 21. [heekyu] activeLocale from context does not update correctly
+    activeLocale: state.i18n.activeLocale,
     categoryRoot: state.categories.tree,
     brand: _.get(state, `entities.brands.${ownProps.brandId}`),
     searchResult: state.search.product,

@@ -11,17 +11,17 @@ import i18n from 'commons/utils/i18n';
 export default React.createClass({
   propTypes: {
     auth: PropTypes.object,
+    activeLocale: PropTypes.string,
     location: PropTypes.object,
   },
   contextTypes: {
     ApiAction: PropTypes.object,
-    activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
     router: PropTypes.object,
   },
   render() {
-    const { auth, location } = this.props;
-    const { ApiAction, activeLocale, activeCurrency, router } = this.context;
+    const { auth, location, activeLocale } = this.props;
+    const { ApiAction, activeCurrency, router } = this.context;
     const { changeLocale, changeCurrency, logout } = ApiAction;
     const locales = {
       ko: { name: '한국어' },
