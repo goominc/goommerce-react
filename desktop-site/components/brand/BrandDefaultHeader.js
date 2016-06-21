@@ -77,7 +77,7 @@ export default React.createClass({
           <div className="right">
             <a onClick={() => logout()}><span>{i18n.get('word.logout')}</span></a>
             <Link to="/mypage/orders">
-              <span>{i18n.get('word.hi')} {stringUtil.getUserName(auth)}{i18n.get('pcMain.myMenu.userHi')}</span>
+              <span>{i18n.get('word.myPage')}</span>
             </Link>
           </div>
         );
@@ -104,7 +104,7 @@ export default React.createClass({
               <div className="popup-overlay transparent"></div>
             </div>
           </div>
-          <span onClick={() => router.push('/')}>LinkShops</span>
+          <span onClick={() => router.push('/')}><i className="bs bs-brand-page-logo"></i></span>
           {renderRight()}
         </div>
       </div>
