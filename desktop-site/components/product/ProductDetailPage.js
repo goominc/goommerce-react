@@ -4,7 +4,8 @@ import { CloudinaryImage } from 'react-cloudinary';
 import _ from 'lodash';
 
 import Breadcrumb from 'components/Breadcrumb';
-import brandUtil from 'commons/utils/brandUtil';
+
+import { getCategoryBreadcrumbPath } from 'commons/utils/storeUtil';
 import productUtil from 'commons/utils/productUtil';
 import numberUtil from 'commons/utils/numberUtil';
 import i18n from 'commons/utils/i18n';
@@ -233,11 +234,30 @@ export default React.createClass({
       return res;
     };
 
-    const path = [
-      { link: '/', name: { en: 'Home', ko: '홈' } },
-      { link: '/products', name: { en: 'Product List', ko: '상품목록' } },
-      { name: productUtil.getAllNames(product) },
-    ];
+    let path;
+    if (product.categories && product.categories.length) {
+      const genLinkUrl = (category) => `/categories/${category.id}`;
+      path = getCategoryBreadcrumbPath(product.categories[product.categories.length - 1], genLinkUrl);
+      // 2016. 06. 21. [heekyu] 4th category is not display
+      if (path.length > 4) {
+        path = path.slice(0, 4);
+      }
+      if (path && path.length) {
+        path.unshift({ link: '/', name: i18n.getObj('word.home') });
+        const productBreadcrumbName = {};
+        Object.keys(product.name).forEach((locale) => {
+          productBreadcrumbName[locale] = product.name[locale] || product.id;
+        });
+        path.push({ name: productBreadcrumbName });
+      }
+    }
+    if (!path) {
+      path = [
+        { link: '/', name: i18n.getObj('word.home') },
+        { link: '/products', name: { en: 'Product List', ko: '상품목록' } },
+        { name: productUtil.getAllNames(product) },
+      ];
+    }
     let priceKRW = 0;
     let price = 0;
     if (selectedVariant) {

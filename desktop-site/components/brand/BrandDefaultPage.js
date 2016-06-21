@@ -91,28 +91,7 @@ export default React.createClass({
         </div>
       </div>
     );
-    let path;
-    if (activeCategoryId !== categoryRoot.id) {
-      const findPath = (root) => {
-        if (root.id === activeCategoryId) {
-          return [{ name: root.name }];
-        }
-        for (let i = 0; i < (root.children || []).length; i++) {
-          const res = findPath(root.children[i]);
-          if (res) {
-            // res.unshift({ link: getLinkUrl(root.id, 1), name: root.name });
-            // TODO Fix Problem do not reload when click link
-            res.unshift({ name: root.name });
-            return res;
-          }
-        }
-        return null;
-      };
-      path = findPath(categoryRoot);
-    }
-    if (!path) {
-      path = [{ name: i18n.getObj('word.allCategories') }];
-    }
+    const path = storeUtil.getCategoryBreadcrumbPath(activeCategoryId);
     const renderProducts = (products) => {
       products.forEach((product) => {
         product.wishId = storeUtil.getWishId(product);

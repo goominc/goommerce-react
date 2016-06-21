@@ -2,6 +2,8 @@
 
 import _ from 'lodash';
 
+import i18n from 'commons/utils/i18n';
+
 let store = null;
 
 exports.init = (reduxStore) => {
@@ -31,4 +33,35 @@ exports.getWishId = (product) => {
     }
   }
   return wishId;
+};
+
+exports.getCategoryBreadcrumbPath = (categoryId, genLinkUrl) => {
+  const categoryRoot = store.getState().categories.tree;
+  let path;
+  if (categoryId !== categoryRoot.id) {
+    const findPath = (root) => {
+      if (root.id === categoryId) {
+        return [{ name: root.name }];
+      }
+      for (let i = 0; i < (root.children || []).length; i++) {
+        const res = findPath(root.children[i]);
+        if (res) {
+          if (genLinkUrl) {
+            res.unshift({ link: genLinkUrl(root), name: root.name });
+          } else {
+            // TODO Fix Problem do not reload when click link
+            res.unshift({ name: root.name });
+          }
+
+          return res;
+        }
+      }
+      return null;
+    };
+    path = findPath(categoryRoot);
+  }
+  if (!path) {
+    path = [{ name: i18n.getObj('word.allCategories') }];
+  }
+  return path;
 };
