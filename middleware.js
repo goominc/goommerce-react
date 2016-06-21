@@ -133,7 +133,7 @@ module.exports = (opts) => {
         const initialState = {
           currency: { activeCurrency: req.currency },
           // brand: { pathnameMap: { '/amore': 2038 } },
-          brand: { pathnameMap: opts.brandPathnameMap || { '/amore': 2038 } },
+          brand: { pathnameMap: opts.getBrandPathnameMap ? opts.getBrandPathnameMap() : { '/amore': 2038 } },
         };
         if (!err) {
           initialState.auth = auth;

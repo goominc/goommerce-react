@@ -42,7 +42,7 @@ export default React.createClass({
       return <div></div>;
     }
     const getCategoryTree = () => {
-      if (!searchResult.aggs.categories) {
+      if (!searchResult.aggs.categories || !searchResult.aggs.categories[categoryRoot.id]) {
         return {};
       }
       const dfs = (root) => {
@@ -103,7 +103,8 @@ export default React.createClass({
         return null;
       };
       path = findPath(categoryRoot);
-    } else {
+    }
+    if (!path) {
       path = [{ name: i18n.getObj('word.allCategories') }];
     }
     const renderProducts = (products) => {
