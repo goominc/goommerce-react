@@ -42,3 +42,12 @@ exports.getNameWithAllBuildingInfo = (brand) => {
   }
   return `${name} (${getBuildingInfo(brand)})`;
 };
+
+exports.countProducts = (brand) => {
+  let count = 0;
+  console.log(brand.products.length);
+  for (let i = 0; i < brand.products.length; i++) {
+    count += brand.products[i].productVariants.length;
+  }
+  return count;
+}
