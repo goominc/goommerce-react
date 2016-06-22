@@ -159,7 +159,8 @@ export default React.createClass({
               <Link to={`/brands/${brand.brand.id}`}>
                 <div className="has-coupon">
                   <span className="seller-title">{brandUtil.getName(brand.brand)}</span>
-                  <i className="ms-icon icon-arrow-right fr"></i>
+                  {/* 2016.06.22 [minho] hide unknown dot
+                  <i className="ms-icon icon-arrow-right fr"></i> */}
                 </div>
               </Link>
             </div>
