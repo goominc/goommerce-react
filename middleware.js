@@ -54,6 +54,8 @@ module.exports = (opts) => {
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="baidu-site-verification" content="bKrngH8Iko" />
             <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, user-scalable=0, width=device-width">
+            <meta name="keywords" content="韩国东大门代购 ">
+            <meta name="description" content="东大门服装批发代购网站_韩国东大门代购_韩国进货攻略_韩国代购货源">
             <meta property="og:title" content="링크샵스"/>
             <meta property="og:type"          content="website" />
             <meta property="og:url" content="http://www.linkshops.com"/>
@@ -84,6 +86,8 @@ module.exports = (opts) => {
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="baidu-site-verification" content="bKrngH8Iko" />
             <meta name="viewport" content="width=device-width, initial-scale=1">
+            <meta name="keywords" content="韩国东大门代购 ">
+            <meta name="description" content="东大门服装批发代购网站_韩国东大门代购_韩国进货攻略_韩国代购货源">
             <meta property="og:title" content="링크샵스"/>
             <meta property="og:type"          content="website" />
             <meta property="og:url" content="http://www.linkshops.com"/>
