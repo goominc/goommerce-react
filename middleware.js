@@ -52,7 +52,7 @@ module.exports = (opts) => {
           <head>
             <meta charset="utf-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="baidu-site-verification" content="gQDivYe8j5" />
+            <meta name="baidu-site-verification" content="bKrngH8Iko" />
             <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, user-scalable=0, width=device-width">
             <meta property="og:title" content="링크샵스"/>
             <meta property="og:type"          content="website" />
@@ -82,7 +82,7 @@ module.exports = (opts) => {
           <head>
             <meta charset="utf-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="baidu-site-verification" content="gQDivYe8j5" />
+            <meta name="baidu-site-verification" content="bKrngH8Iko" />
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <meta property="og:title" content="링크샵스"/>
             <meta property="og:type"          content="website" />
