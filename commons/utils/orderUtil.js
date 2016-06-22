@@ -146,3 +146,11 @@ exports.formatPriceGap = (order, type, activeCurrency, currencySign) => {
   const gap = new Decimal(getPrice(finalType)).sub(getPrice(type)).toNumber();
   return gap === 0 ? '0' : `${sign(gap)}${formatPrice(Math.abs(gap), activeCurrency, currencySign)}`;
 };
+
+exports.formatPriceGapFix = (order, type, activeCurrency, currencySign) => {
+  const sign = (v) => (v < 0 ? '-' : '');
+  const getPrice = (type2) => order[`${type2}${activeCurrency}`];
+  const finalType = `final${type[0].toUpperCase()}${type.substring(1)}`;
+  const gap = order.hasOwnProperty(finalType) ? new Decimal(getPrice(finalType)).sub(getPrice(type)).toNumber() : 0;
+  return gap === 0 ? '0' : `${sign(gap)}${formatPrice(Math.abs(gap), activeCurrency, currencySign)}`;
+};
