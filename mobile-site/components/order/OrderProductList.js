@@ -8,13 +8,14 @@ import i18n from 'commons/utils/i18n';
 import productUtil from 'commons/utils/productUtil';
 import numberUtil from 'commons/utils/numberUtil';
 import { collectByBrands } from 'commons/utils/orderUtil';
+import brandUtil from 'commons/utils/brandUtil';
 
 export default React.createClass({
   propTypes: {
-    activeCurrency: PropTypes.string,
-    activeLocale: PropTypes.string,
-    order: PropTypes.object,
-    currencySign: PropTypes.object,
+    activeCurrency: PropTypes.string.isRequired,
+    activeLocale: PropTypes.string.isRequired,
+    order: PropTypes.object.isRequired,
+    currencySign: PropTypes.object.isRequired,
   },
   render() {
     const { activeCurrency, activeLocale, order, currencySign } = this.props;
@@ -59,7 +60,7 @@ export default React.createClass({
         return (
           <section className="order-brand">
             <div className="seller">
-              [{brand.brand.data.building.name}] {brand.brand.name[activeLocale]}
+              [{brand.brand.data.building.name}] {brand.brand.name[activeLocale]} ({brandUtil.countProducts(brand)})
             </div>
             <ul className="product-items">
               {(brand.products || []).map(renderProduct)}

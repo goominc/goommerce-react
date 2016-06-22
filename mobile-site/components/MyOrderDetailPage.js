@@ -12,7 +12,7 @@ export default React.createClass({
   contextTypes: {
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
-    currencySign: PropTypes.string,
+    currencySign: PropTypes.object,
   },
   render() {
     const { order } = this.props;

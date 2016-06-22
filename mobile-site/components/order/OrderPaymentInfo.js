@@ -2,16 +2,18 @@ import React, { PropTypes } from 'react';
 import i18n from 'commons/utils/i18n';
 
 import { formatPrice } from 'commons/utils/numberUtil';
-import { formatPriceGap } from 'commons/utils/orderUtil';
+import { formatPriceGapFix } from 'commons/utils/orderUtil';
 
 export default React.createClass({
   propTypes: {
-    order: PropTypes.object,
-    activeCurrency: PropTypes.string,
-    currencySign: PropTypes.string,
+    order: PropTypes.object.isRequired,
+    activeCurrency: PropTypes.string.isRequired,
+    currencySign: PropTypes.object.isRequired,
   },
   render() {
     const { order, activeCurrency, currencySign } = this.props;
+    const finalTotal = formatPrice(order[`finalTotal${activeCurrency}`], activeCurrency, currencySign);
+    const total = formatPrice(order[`total${activeCurrency}`], activeCurrency, currencySign);
     return (
       <div className="myorder-box">
         <div className="box-header">
@@ -45,7 +47,7 @@ export default React.createClass({
           <div className="order-price-black">
             <span className="checkout-item">배송비할인</span>
               <span className="cost">
-                { formatPriceGap(order, 'shippingCost', activeCurrency, currencySign) }
+                { formatPriceGapFix(order, 'shippingCost', activeCurrency, currencySign) }
               </span>
           </div>
           <hr className="line-dash" />
@@ -58,37 +60,37 @@ export default React.createClass({
           <div className="order-price-black">
             <span className="checkout-item">{i18n.get('pcMypage.refundPrice')}</span>
               <span className="cost">
-                { formatPriceGap(order, 'total', activeCurrency, currencySign) }
+                { formatPriceGapFix(order, 'total', activeCurrency, currencySign) }
               </span>
           </div>
           <div className="order-price-gray">
             <span className="checkout-item">∟ {i18n.get('pcMypage.productPrice')}</span>
               <span className="cost">
-                { formatPriceGap(order, 'subtotal', activeCurrency, currencySign)}
+                { formatPriceGapFix(order, 'subtotal', activeCurrency, currencySign)}
               </span>
           </div>
           <div className="order-price-gray">
             <span className="checkout-item">∟ {i18n.get('pcPayment.tax')}</span>
               <span className="cost">
-                { formatPriceGap(order, 'tax', activeCurrency, currencySign)}
+                { formatPriceGapFix(order, 'tax', activeCurrency, currencySign)}
               </span>
           </div>
           <div className="order-price-gray">
             <span className="checkout-item">∟ {i18n.get('pcPayment.handlingFee')}</span>
               <span className="cost">
-                { formatPriceGap(order, 'handlingFee', activeCurrency, currencySign)}
+                { formatPriceGapFix(order, 'handlingFee', activeCurrency, currencySign)}
               </span>
           </div>
           <div className="order-price-gray">
             <span className="checkout-item">∟ {i18n.get('pcMypage.shippingCostGap')}</span>
               <span className="cost">
-                { formatPriceGap(order, 'shippingCost', activeCurrency, currencySign)}
+                { formatPriceGapFix(order, 'shippingCost', activeCurrency, currencySign)}
               </span>
           </div>
           <div className="order-price-red">
             <span className="checkout-item"><strong>최종 결제금액</strong></span>
               <span className="cost"><strong>
-                { formatPrice(order[`finalTotal${activeCurrency}`], activeCurrency, currencySign) }
+                { !finalTotal ? total : finalTotal }
               </strong></span>
           </div>
         </div>

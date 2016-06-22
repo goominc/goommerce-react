@@ -3,7 +3,7 @@ import i18n from 'commons/utils/i18n';
 
 export default React.createClass({
   propTypes: {
-    order: PropTypes.object,
+    order: PropTypes.object.isRequired,
   },
   render() {
     const { order } = this.props;
