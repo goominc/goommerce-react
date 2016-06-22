@@ -12,7 +12,7 @@ export default React.createClass({
           一站式服务流程
         </div>
         <div className="order-info-cn-img">
-          <img src={`${constants.resourceRoot}/mobile/serviceinfo/order_info_cn_20160615.png`} />
+          <img src={`${constants.resourceRoot}/mobile/serviceinfo/order_info_cn_20160622.png`} />
         </div>
         <ul className="order-info-ul">
           <li>如一般网店购物同样的方式，进行愉快地采购就可以</li>
