@@ -55,6 +55,9 @@ export default React.createClass({
         const renderWithSibling = (elem, category2, siblings, renderSibling) => {
           const res = [];
           siblings.forEach((sibling) => {
+            if (!sibling.isActive) {
+              return;
+            }
             if (sibling.id === category2.id) {
               res.push(elem);
             } else {
