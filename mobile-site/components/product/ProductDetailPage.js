@@ -58,7 +58,8 @@ export default React.createClass({
           <Link to={`/brands/${product.brand.id}`}>
             <header className="store-title">{brandUtil.getName(product.brand)}</header>
             <p className="store-info">
-              {brandUtil.getBuildingInfo(product.brand)}
+              { /* 2016.06.23 [minho] s */
+                _.get(product.brand, 'data.location.building.name.ko') }
             </p>
             { /* <p className="store-info">
               <img src="http://i01.i.aliimg.com/wimg/feedback/icon/25-s.gif" className="store-level" />
