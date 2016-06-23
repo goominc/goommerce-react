@@ -23,31 +23,37 @@ export default React.createClass({
 
         <div className="signinup_info">
           <div className="signup_list">
-            <div className="signup_img">
-              <img src={`${constants.resourceRoot}/mobile/serviceinfo/signup_buyer_cn_01_20160615.png`} />
-            </div>
-            <div className="signup_text">
-              <p className="signup_title"><span className="keycolor">01. 账号注册申请</span></p>
-              <p className="signup_desc">账号注册申请是免费的</p>
-              <p className="signup_desc">为了保护设计著作权，并且避免个人消费者的混乱注册，请填写您的企业信息，并附上您的营业执照</p>
-              <p className="signup_desc">若您还没有营业执照，建议您在注册时按实际情况填写相关信息</p>
-            </div>
-          </div>
-          <div className="signup_list">
-            <div className="signup_img">
-              <img src={`${constants.resourceRoot}/mobile/serviceinfo/signup_buyer_cn_02_20160615.png`} /></div>
-            <div className="signup_text">
-              <p className="signup_title"><span className="keycolor">02. 企业信息审核</span></p>
-              <p className="signup_desc">客服中心按照您在注册时提交的企业信 息审核与实际情况是否相符</p>
-              <p className="sognup_desc">若您营业执照上的营业范围与Linkshops 无关，会被拒绝开通</p>
+            <div className="signup-content">
+              <div className="signup_img">
+                <img src={`${constants.resourceRoot}/mobile/serviceinfo/signup_buyer_cn_01_20160615.png`} />
+              </div>
+              <div className="signup_text">
+                <p className="signup_title"><span className="keycolor">01. 账号注册申请</span></p>
+                <p className="signup_desc">账号注册申请是免费的</p>
+                <p className="signup_desc">为了保护设计著作权，并且避免个人消费者的混乱注册，请填写您的企业信息，并附上您的营业执照</p>
+                <p className="signup_desc">若您还没有营业执照，建议您在注册时按实际情况填写相关信息</p>
+              </div>
             </div>
           </div>
           <div className="signup_list">
-            <div className="signup_img">
-              <img src={`${constants.resourceRoot}/mobile/serviceinfo/signup_buyer_cn_03_20160615.png`} /></div>
-            <div className="signup_text">
-              <p className="signup_title"><span className="keycolor">03. 账号注册完成 </span></p>
-              <p className="signup_desc">审核完毕后，客服中心通知您审核结果， 若没有问题，您可以使用 Linkshops的所 有服务</p>
+            <div className="signup-content">
+              <div className="signup_img">
+                <img src={`${constants.resourceRoot}/mobile/serviceinfo/signup_buyer_cn_02_20160615.png`} /></div>
+              <div className="signup_text">
+                <p className="signup_title"><span className="keycolor">02. 企业信息审核</span></p>
+                <p className="signup_desc">客服中心按照您在注册时提交的企业信 息审核与实际情况是否相符</p>
+                <p className="sognup_desc">若您营业执照上的营业范围与Linkshops 无关，会被拒绝开通</p>
+              </div>
+            </div>
+          </div>
+          <div className="signup_list">
+            <div className="signup-content">
+              <div className="signup_img">
+                <img src={`${constants.resourceRoot}/mobile/serviceinfo/signup_buyer_cn_03_20160615.png`} /></div>
+              <div className="signup_text">
+                <p className="signup_title"><span className="keycolor">03. 账号注册完成 </span></p>
+                <p className="signup_desc">审核完毕后，客服中心通知您审核结果， 若没有问题，您可以使用 Linkshops的所 有服务</p>
+              </div>
             </div>
           </div>
         </div>

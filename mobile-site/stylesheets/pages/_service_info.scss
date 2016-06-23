@@ -695,7 +695,6 @@
       overflow: hidden;
       margin-top: 1.825rem;
       margin-bottom: 1.700rem;
-
       .service_img {
         padding-left: 1.000rem;
         padding-right: 1.000rem;
@@ -855,34 +854,39 @@
       overflow: hidden;
       margin-top : 1.825rem;
       margin-bottom : 1.700rem;
-
-      .signup_img {
-        float : left;
-        width: 30%;
-        padding-top: 0.350rem;
-        padding-left: 1.0rem;
-        padding-right: 1.0rem;
-        img {
-          margin: 0 auto;
+      .signup-content{
+        .signup_img {
+          //float : left;
           text-align: center;
-          width: 100%;
-          @media screen and (min-width:768px) {
-            width: 100px;
+          vertical-align: top;
+          display: inline-block;
+          width: 30%;
+          padding-top: 0.350rem;
+          padding-left: 1.0rem;
+          padding-right: 1.0rem;
+          img {
+            margin: 0 auto;
+            text-align: center;
+            width: 100%;
+            @media screen and (min-width:768px) {
+              width: 100px;
+            }
           }
         }
-      }
-      .signup_text {
-        float : left;
-        width : 70%;
-        padding-right: 1.300rem;
-        .signup_title {
-          font-size: 1.400rem;
-          font-weight: 400;
-        }
-        .signup_desc {
-          font-size: 0.925rem;
-          margin-top:0.45rem;
-          margin-bottom:0.45rem;
+        .signup_text {
+          //float : left;
+          display: inline-block;
+          width : 70%;
+          padding-right: 1.300rem;
+          .signup_title {
+            font-size: 1.400rem;
+            font-weight: 400;
+          }
+          .signup_desc {
+            font-size: 0.925rem;
+            margin-top:0.45rem;
+            margin-bottom:0.45rem;
+          }
         }
       }
     }
