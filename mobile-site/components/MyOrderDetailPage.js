@@ -4,6 +4,7 @@ import OrderProductList from './order/OrderProductList';
 import OrderPaymentInfo from './order/OrderPaymentInfo';
 import OrderStateInfo from './order/OrderStateInfo';
 import OrderShippingInfo from './order/OrderShippingInfo';
+import OrderVBankInfo from './order/OrderVBankInfo';
 
 export default React.createClass({
   propTypes: {
@@ -19,6 +20,7 @@ export default React.createClass({
     const { activeCurrency, activeLocale, currencySign } = this.context;
     return (
       <section id="myorder-detail-container">
+        <OrderVBankInfo order={order} />
         <OrderStateInfo
           order = {order}
         />

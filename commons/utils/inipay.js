@@ -67,3 +67,17 @@ export function paymentAmount(payment) {
 export function getParent(order, payment) {
   return _.find(order.payments, { id: payment.parentId });
 }
+
+export function mobileVBankDataToDesktopDataIfNeed(payment) {
+  if (payment.data.vactBankName) {
+    return;
+  }
+  const mapping = {
+    TotPrice: payment.data.P_AMT,
+    vactBankName: vBankCodeToName(payment.data.P_VACT_BANK_CODE),
+    VACT_Num: payment.data.P_VACT_NUM,
+    VACT_Name: payment.data.P_VACT_NAME,
+    VACT_InputName: payment.data.P_UNAME,
+  };
+  Object.assign(payment.data, mapping);
+}

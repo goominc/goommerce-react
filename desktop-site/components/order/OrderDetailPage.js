@@ -8,7 +8,7 @@ import OrderProduct from 'components/order/OrderProduct';
 import orderUtil from 'commons/utils/orderUtil';
 import numberUtil from 'commons/utils/numberUtil';
 import i18n from 'commons/utils/i18n';
-import { paymentMethod, getParent } from 'commons/utils/inipay';
+import { paymentMethod, mobileVBankDataToDesktopDataIfNeed } from 'commons/utils/inipay';
 
 import AddressInfo from './AddressInfo';
 import PaymentInfo from './PaymentInfo';
@@ -30,8 +30,9 @@ export default React.createClass({
     }
     const brands = orderUtil.collectByBrands(order.orderProducts);
     const renderSummaryPaymentInfo = () => {
-      const vbankPayment = _.find(order.payments, (p) => p.type === 3 && p.status === 2 && p.data.payMethod === 'VBank');
+      const vbankPayment = _.find(order.payments, (p) => p.type === 3 && p.status === 2 && paymentMethod(p) === 'VBANK');
       if (order.paymentStatus === 200 && vbankPayment) {
+        mobileVBankDataToDesktopDataIfNeed(vbankPayment);
         return (
           <div className="lower-line">
             <span className="left">
@@ -54,7 +55,7 @@ export default React.createClass({
             </span>
             <span className="right">
               <span className="content">{i18n.get('pcOrder.vbankPaymentPriceTitle')}</span>
-              <strong className="content price">{numberUtil.format(_.get(vbankPayment, 'data.TotPrice'))}원</strong>
+              <strong className="content price">{numberUtil.format(_.get(vbankPayment, 'data.TotPrice'))} KRW</strong>
             </span>
           </div>
         );

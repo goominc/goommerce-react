@@ -5,7 +5,7 @@ import _ from 'lodash';
 
 import i18n from 'commons/utils/i18n';
 import numberUtil from 'commons/utils/numberUtil';
-import { paymentMethod } from 'commons/utils/inipay';
+import { paymentMethod, mobileVBankDataToDesktopDataIfNeed } from 'commons/utils/inipay';
 
 export default React.createClass({
   propTypes: {
@@ -22,12 +22,7 @@ export default React.createClass({
     if (!order || order.paymentStatus !== 200 || !payment) {
       return null;
     }
-    const renderField = (field) => (
-      <div key={field.label} className="row">
-        <div className="label">{field.label}</div>
-        <div className={`control ${field.className || ''}`}>{field.value || '&'}</div>
-      </div>
-    );
+    mobileVBankDataToDesktopDataIfNeed(payment);
     const price = numberUtil.formatPrice(order[`total${activeCurrency}`], activeCurrency, currencySign);
     const accountFields = [
       { label: i18n.get('pcOrder.vbankPaymentPriceTitle'), value: price, className: 'price' },
@@ -36,9 +31,19 @@ export default React.createClass({
       { label: i18n.get('pcOrder.vbankAccountHolderTitle'), value: payment.data.VACT_Name },
       { label: i18n.get('pcOrder.vbankSenderTitle'), value: payment.data.VACT_InputName },
     ];
+    const renderField = (field) => (
+      <p key={field.label} className="order-info-red">
+        {field.label} : {field.value}
+      </p>
+    );
     return (
-      <div className="simple-key-value-container">
-        {accountFields.map(renderField)}
+      <div className="myorder-box">
+        <div className="box-header">
+          {i18n.get('pcOrder.vbankTitle')}
+        </div>
+        <div className="box-detail">
+          {accountFields.map(renderField)}
+        </div>
       </div>
     );
   },
