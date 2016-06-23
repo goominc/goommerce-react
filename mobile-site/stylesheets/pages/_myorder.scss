@@ -170,13 +170,19 @@
             }
             .details-desc-row-two{
               .unit-price {
+                color: #000;
                 font-weight: 200;
-                color: #bfbfbf;
+                margin-top: 10px;
               }
               .quantity {
+                color: #000;
                 display: inline-block;
                 font-weight: 200;
-                color: #bfbfbf;
+                &.cancel {
+                  color: #bfbfbf;
+                  margin-left: 10px;
+                  text-decoration: line-through;
+                }
               }
               .total-price {
                 right: 0px;

@@ -46,9 +46,22 @@ export default React.createClass({
                     <div className="unit-price">
                       {numberUtil.formatPrice(productVariant.productVariant[activeCurrency], activeCurrency, currencySign)}
                     </div>
-                    <div className="quantity">{productVariant.quantity} {i18n.get('word.unit')}</div>
+                    {isNaN(productVariant.finalQuantity) || productVariant.quantity === productVariant.finalQuantity ?
+                      <div className="quantity">{productVariant.quantity} {i18n.get('word.unit')}</div> :
+                      <div>
+                        <div className="quantity" style={({ color: '#333' })}>
+                          {productVariant.finalQuantity} {i18n.get('word.unit')}
+                        </div>
+                        <div className="quantity cancel">
+                          {productVariant.quantity} {i18n.get('word.unit')}
+                        </div>
+                      </div>
+                    }
                     <div className="total-price">
-                      {numberUtil.formatPrice(productVariant[`total${activeCurrency}`], activeCurrency, currencySign)}
+                      {numberUtil.formatPrice(
+                        productVariant[`finalTotal${activeCurrency}`] || productVariant[`total${activeCurrency}`],
+                        activeCurrency,
+                        currencySign)}
                     </div>
                   </div>
                 </div>
