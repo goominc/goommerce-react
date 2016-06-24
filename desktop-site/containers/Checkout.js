@@ -12,11 +12,10 @@ const { inipay, loadOrder, loadAddresses,
   saveOrderAddress, setActiveAddressId } = ApiAction;
 
 const getCmsKey = (locale) => {
-  let suffix = '_ko';
-  if (locale === 'zh-cn' || locale === 'zh-tw') {
-    suffix = '_zh-cn';
+  if (locale === 'en') {
+    locale = 'ko';
   }
-  return `desktop_shipping_policy${suffix}`;
+  return `mobile_shipping_policy_${locale}`;
 };
 
 const Checkout = React.createClass({
@@ -64,6 +63,7 @@ const Checkout = React.createClass({
     });
     this.context.ApiAction.loadCMSData(getCmsKey('ko'));
     this.context.ApiAction.loadCMSData(getCmsKey('zh-cn'));
+    this.context.ApiAction.loadCMSData(getCmsKey('zh-tw'));
   },
   onScriptError() {
     // Show the user an error message.

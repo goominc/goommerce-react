@@ -5,11 +5,10 @@ import { connect } from 'react-redux';
 import i18n from 'commons/utils/i18n';
 
 const getCmsKey = (locale) => {
-  let suffix = '_ko';
-  if (locale === 'zh-cn' || locale === 'zh-tw') {
-    suffix = '_zh-cn';
+  if (locale === 'en') {
+    locale = 'ko';
   }
-  return `mobile_shipping_policy${suffix}`;
+  return `mobile_shipping_policy_${locale}`;
 };
 
 const ShippingPolicy = React.createClass({
@@ -23,6 +22,7 @@ const ShippingPolicy = React.createClass({
   componentDidMount() {
     this.context.ApiAction.loadCMSData(getCmsKey('ko'));
     this.context.ApiAction.loadCMSData(getCmsKey('zh-cn'));
+    this.context.ApiAction.loadCMSData(getCmsKey('zh-tw'));
   },
   render() {
     const { cmsData } = this.props;

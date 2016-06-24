@@ -156,23 +156,23 @@ const Home = React.createClass({
               <strong>{i18n.get('pcFooter.dongdaemun')}</strong> {i18n.get('pcFooter.byBuilding')}
             </div>
             <div className="home-building-container">
-              <Link to="/shops/buildings/5" className="item item-top"><div className="build_apm">에이피엠</div></Link>
-              <Link to="/shops/buildings/16" className="item item-top"><div className="build_apmluxe">에이피엠 럭스</div></Link>
-              <Link to="/shops/buildings/17" className="item item-top"><div className="build_belpost">벨포스트</div></Link>
-              <Link to="/shops/buildings/18" className="item item-top"><div className="build_designerclub">디자이너 크럽</div></Link>
-              <Link to="/shops/buildings/3" className="item item-top"><div className="build_theot">디오뜨</div></Link>
-              <Link to="/shops/buildings/9" className="item item-top-right"><div className="build_nuzzon">누죤</div></Link>
-              <Link to="/shops/buildings/7" className="item"><div className="build_techno">테크노</div></Link>
+              <Link to="/shops/buildings/5" className="item item-top"><div className="build_apm">APM</div></Link>
+              <Link to="/shops/buildings/16" className="item item-top"><div className="build_apmluxe">APM LUXE</div></Link>
+              <Link to="/shops/buildings/17" className="item item-top"><div className="build_belpost">Belpost</div></Link>
+              <Link to="/shops/buildings/18" className="item item-top"><div className="build_designerclub">Designer Club</div></Link>
+              <Link to="/shops/buildings/3" className="item item-top"><div className="build_theot">Theot</div></Link>
+              <Link to="/shops/buildings/9" className="item item-top-right"><div className="build_nuzzon">Nuzzon</div></Link>
+              <Link to="/shops/buildings/7" className="item"><div className="build_techno">Techno</div></Link>
               <Link to="/shops/buildings/2" className="item"><div className="build_cph">청평화</div></Link>
-              <Link to="/shops/buildings/15" className="item"><div className="build_uus">유어스</div></Link>
-              <Link to="/shops/buildings/6" className="item"><div className="build_queens">퀸스 스퀘어</div></Link>
+              <Link to="/shops/buildings/15" className="item"><div className="build_uus">U:US</div></Link>
+              <Link to="/shops/buildings/6" className="item"><div className="build_queens">Queen's Square</div></Link>
               <Link to="/shops/buildings/11" className="item"><div className="build_shose">신발상가</div></Link>
               <div className="item item-right">
                 <Link to="/shops/buildings">
                   <div className="more-shops">
                     <div className="content">
                       <strong>전체 상가</strong><br />
-                      더보기
+                      {i18n.get('word.openMoreContent')}
                     </div>
                     <img src={`${constants.resourceRoot}/main/ico_right4_w.gif`} />
                   </div>
