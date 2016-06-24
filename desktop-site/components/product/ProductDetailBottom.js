@@ -60,20 +60,22 @@ export default React.createClass({
         // { title: '모델착용사이즈', key: 'data.detail.modelSize' },
         // { title: '원산지', key: 'data.detail.origin' },
       ];
-      const createEnumFields = () => {
+      const createRealEnum = () => {
         const newEnum = [];
         const detailInfo = _.get(product, 'data.detail');
-        for (const key in detailInfo) {
-          enumFields.map((field) => {
-            if (field.key === `data.detail.${key}`) {
-              newEnum.push(field);
-            }
-            return null;
+        if (detailInfo) {
+          Object.keys(detailInfo).forEach((key) => {
+            enumFields.map((field) => {
+              if (field.key === `data.detail.${key}` && _.get(detailInfo, key) !== '') {
+                newEnum.push(field);
+              }
+              return null;
+            });
           });
         }
         return newEnum;
       };
-      const realEnum = createEnumFields();
+      const realEnum = createRealEnum();
       const convert = (key) => {
         const k = key.split('.').slice(-1)[0];
         return `${k[0].toUpperCase()}${k.substring(1)}`;
@@ -89,7 +91,6 @@ export default React.createClass({
           }
         }
       });
-
       const renderEnumField = (field, fieldIndex) => (
         <div key={field.key} className="info">
           <div className="key">
@@ -105,7 +106,7 @@ export default React.createClass({
         </div>
       );
       const renderDetailField = () => {
-        if (realEnum.length > 1) {
+        if (realEnum.length > 0) {
           return (
             <div className="product-state">
               {enumFields.map(renderEnumField)}
@@ -115,41 +116,52 @@ export default React.createClass({
         return null;
       };
       const renderModelAndOrigin = () => {
-
+        const modelName = _.get(product, 'data.detail.modelName');
         const modelSize = _.get(product, 'data.detail.modelSize');
         const origin = _.get(product, 'data.detail.origin');
-        console.log(product)
-        const renderModelSize = () => {
-          if (modelSize !== '') {
-            return (
-              <div className="info">
-                <div className="key">{i18n.get('pcItemDetail.infoModelSize')}</div>
-                <div className="value">{modelSize || ''}</div>
-              </div>
-            );
+        const renderModelSizeField = () => {
+          if (modelName === '' || typeof modelName === 'undefined') {
+            return null;
           }
+          return (
+            <div className="info">
+              <div className="key">{i18n.get('pcItemDetail.infoModelSize')}</div>
+              <div className="value">{modelSize || ''}</div>
+            </div>
+          );
         };
-        const renderOrigin = () => {
-          if (origin !== '') {
-            return (
-              <div className="info">
-                <div className="key">{i18n.get('pcItemDetail.infoOrigin')}</div>
-                <div className="value">{origin || ''}</div>
-              </div>
-            );
+        const renderOriginField = () => {
+          if (origin === '' || typeof origin === 'undefined') {
+            return null;
           }
+          return (
+            <div className="info">
+              <div className="key">{i18n.get('pcItemDetail.infoOrigin')}</div>
+              <div className="value">{origin || ''}</div>
+            </div>
+          );
         };
-        return (
-          <div className="product-origin">
-            { renderModelSize() }
-            { renderOrigin() }
-          </div>
-        );
+        const modelsizeFields = renderModelSizeField();
+        const originFields = renderOriginField();
+        if (modelsizeFields || originFields) {
+          return (
+            <div className="product-origin">
+              {modelsizeFields}
+              {originFields}
+            </div>
+          );
+        }
+        return null;
       };
+      const detailFields = renderDetailField();
+      const modelAndOriginFields = renderModelAndOrigin();
+      if (!detailFields && !modelAndOriginFields) {
+        return null;
+      }
       return (
         <div className="info-table">
-          {renderDetailField()}
-          {renderModelAndOrigin()}
+          {detailFields}
+          {modelAndOriginFields}
         </div>
       );
     };
