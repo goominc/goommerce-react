@@ -19,9 +19,9 @@ export default React.createClass({
         return (<div key={menu.key} className={className}><span>{i18n.get(menu.key)}</span></div>);
       }
       return (
-        <Link key={menu.key} to={`/mypage/${menu.menuName}`}>
-          <div className={className}>{i18n.get(menu.key)}</div>
-        </Link>
+        <div key={menu.key} className={className}>
+          <Link to={`/mypage/${menu.menuName}`}>{i18n.get(menu.key)}</Link>
+        </div>
       );
     };
     return (

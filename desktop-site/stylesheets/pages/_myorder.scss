@@ -4,22 +4,22 @@
 
 .order-list-status-filter-line {
   background-color: #fff;
-  padding: 15px 50px;
+  padding: 10px 50px;
   text-align: right;
   .item {
     color: #999;
     cursor: pointer;
     display: inline-block;
-    font-size: 12px;
+    font-size: 11px;
     min-width: 60px;
-    padding: 0 20px;
+    padding: 0 15px;
     text-align: center;
     vertical-align: top;
     white-space: nowrap;
     &.active {
       color: #000;
       cursor: auto;
-      font-weight: 500;
+      font-weight: bold;
     }
     & + .item {
       border-left: 1px solid #ccc;
@@ -54,6 +54,7 @@
     .img-wrap {
       display: inline-block;
       height: 78px;
+      vertical-align: top;
       width: 60px;
       & + .img-wrap {
         margin-left: 5px;
@@ -137,12 +138,13 @@
     width: 120px;
     @include multi-line-vertical-center(20px);
     .text {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 500;
     }
     .price {
       color: $default-active-text-color;
       font-size: 18px;
+      font-weight: bold;
       margin: 10px 0 20px;
     }
     .print-receipt {
