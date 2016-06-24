@@ -388,42 +388,45 @@ $product-button-height: 32px;
     border-left: 1px solid #eee;
     display: block;
     width: 100%;
-    .info {
-      display: inline-block;
-      height: 40px;
-      line-height: 40px;
-      vertical-align: top;
-      width: 50%;
-      @mixin cell() {
-        border-right: 1px solid #eee;
-        border-bottom: 1px solid #eee;
+    .product-state,
+    .product-origin {
+      .info {
         display: inline-block;
-        text-align: center;
-      }
-      .key {
-        @include cell();
-        border-bottom: 1px solid #eee;
-        background-color: #eee;
-        font-weight: bold;
-        width: 25%;
-      }
-      .enum-value {
-        @include cell();
-        color: #aaa;
-        width: 25%;
-        &.active {
-          color: #555;
-          font-weight: bold;
-        }
-      }
-      .value {
-        @include cell();
-        color: #555;
-        font-weight: bold;
         height: 40px;
         line-height: 40px;
         vertical-align: top;
-        width: 75%;
+        width: 50%;
+        @mixin cell() {
+          border-right: 1px solid #eee;
+          border-bottom: 1px solid #eee;
+          display: inline-block;
+          text-align: center;
+        }
+        .key {
+          @include cell();
+          border-bottom: 1px solid #eee;
+          background-color: #eee;
+          font-weight: bold;
+          width: 25%;
+        }
+        .enum-value {
+          @include cell();
+          color: #aaa;
+          width: 25%;
+          &.active {
+            color: #555;
+            font-weight: bold;
+          }
+        }
+        .value {
+          @include cell();
+          color: #555;
+          font-weight: bold;
+          height: 40px;
+          line-height: 40px;
+          vertical-align: top;
+          width: 75%;
+        }
       }
     }
   }

@@ -58,7 +58,7 @@ export default React.createClass({
       );
     };
     const renderDetailInfo = () => {
-      const enumFiels = [
+      const enumFields = [
         { title: '촉감', enums: ['까슬함', '적당함', '부드러움'], key: 'data.detail.touch' },
         { title: '신축성', enums: ['좋음', '약간', '없음'], key: 'data.detail.flexibility' },
         { title: '비침', enums: ['많이비침', '약간비침', '비침없음'], key: 'data.detail.transparency' },
@@ -68,12 +68,26 @@ export default React.createClass({
         // { title: '모델착용사이즈', key: 'data.detail.modelSize' },
         // { title: '원산지', key: 'data.detail.origin' },
       ];
+      const createEnumFields = () => {
+        const newEnum = [];
+        const detailInfo = _.get(product, 'data.detail');
+        for (const key in detailInfo) {
+          enumFields.map((field) => {
+            if (field.key === `data.detail.${key}`) {
+              newEnum.push(field);
+            }
+            return null;
+          });
+        }
+        return newEnum;
+      };
+      const realEnum = createEnumFields();
       const convert = (key) => {
         const k = key.split('.').slice(-1)[0];
         return `${k[0].toUpperCase()}${k.substring(1)}`;
       };
-      const activeIndexes = new Array(enumFiels.length).fill(-1);
-      enumFiels.forEach((field, index) => {
+      const activeIndexes = new Array(enumFields.length).fill(-1);
+      enumFields.forEach((field, index) => {
         field.i18nPrefix = `pcItemDetail.info${convert(field.key)}`;
         const productValue = _.get(product, field.key);
         for (let i = 0; i < field.enums.length; i++) {
@@ -83,7 +97,6 @@ export default React.createClass({
           }
         }
       });
-
       const renderEnumField = (field, fieldIndex) => (
         <div key={field.key} className="info">
           <div className="key">
@@ -98,17 +111,50 @@ export default React.createClass({
           )}
         </div>
       );
+      const renderDetailField = () => {
+        if (realEnum.length > 1) {
+          return (
+            <div className="product-state">
+              {enumFields.map(renderEnumField)}
+            </div>
+          );
+        }
+        return null;
+      };
+      const renderModelAndOrigin = () => {
+        const modelSize = _.get(product, 'data.detail.modelSize');
+        const origin = _.get(product, 'data.detail.origin');
+        const renderModelSize = () => {
+          if (modelSize !== '') {
+            return (
+              <div className="info">
+                <div className="key">{i18n.get('pcItemDetail.infoModelSize')}</div>
+                <div className="value">{modelSize || ''}</div>
+              </div>
+            );
+          }
+        };
+        const renderOrigin = () => {
+          if (origin !== '') {
+            return (
+              <div className="info">
+                <div className="key">{i18n.get('pcItemDetail.infoOrigin')}</div>
+                <div className="value">{origin || ''}</div>
+              </div>
+            );
+          }
+        };
+        return (
+          <div className="product-origin">
+            { renderModelSize() }
+            { renderOrigin() }
+          </div>
+        );
+      };
       return (
         <div className="info-table">
-          {enumFiels.map(renderEnumField)}
-          <div className="info">
-            <div className="key">{i18n.get('pcItemDetail.infoModelSize')}</div>
-            <div className="value">{_.get(product, 'data.detail.modelSize') || ''}</div>
-          </div>
-          <div className="info">
-            <div className="key">{i18n.get('pcItemDetail.infoOrigin')}</div>
-            <div className="value">{_.get(product, 'data.detail.origin') || ''}</div>
-          </div>
+          {renderDetailField()}
+          {renderModelAndOrigin()}
         </div>
       );
     };
@@ -146,6 +192,20 @@ export default React.createClass({
       }
       return null;
     };
+    const rederDetail = () => {
+      if (_.get(product, 'data.detail')) {
+        return (
+          <div className="section">
+            <div className="title-line">
+            <div className="title">{i18n.get('mItemDetail.detailTitle')}</div>
+          </div>
+          {renderDetailInfo()}
+          </div>
+        );
+      }
+      return null;
+    };
+
     const renderRefundPopup = () => {
       if (this.state.isShowRefundPopup) {
         return (
@@ -247,12 +307,7 @@ export default React.createClass({
     return (
       <div className="product-detail-info-section">
         {renderSizes()}
-        <div className="section">
-          <div className="title-line">
-            <div className="title">{i18n.get('mItemDetail.detailTitle')}</div>
-          </div>
-          {renderDetailInfo()}
-        </div>
+        {rederDetail()}
         {renderModel()}
         <div className="product-detail-popup-button" onClick={() => openPopup({ isShowRefundPopup: true })}>
           {i18n.get('mItemDetail.popupRefundTitle')}

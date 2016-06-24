@@ -1040,40 +1040,43 @@
     display: block;
     margin-bottom: 30px;
     width: 100%;
-    .info {
-      display: inline-block;
-      height: 30px;
-      line-height: 30px;
-      vertical-align: top;
-      width: 100%;
-      @mixin cell() {
+    .product-state,
+    .product-origin {
+      .info {
         display: inline-block;
-        text-align: center;
-      }
-      .key {
-        @include cell();
-        font-weight: bold;
-        padding: 0 15px;
-        text-align: left;
-        width: 40%;
-      }
-      .enum-value {
-        @include cell();
-        color: #aaa;
-        width: 20%;
-        &.active {
+        height: 30px;
+        line-height: 30px;
+        vertical-align: top;
+        width: 100%;
+        @mixin cell() {
+          display: inline-block;
+          text-align: center;
+        }
+        .key {
+          @include cell();
+          font-weight: bold;
+          padding: 0 15px;
+          text-align: left;
+          width: 40%;
+        }
+        .enum-value {
+          @include cell();
+          color: #aaa;
+          width: 20%;
+          &.active {
+            color: #555;
+            font-weight: bold;
+          }
+        }
+        .value {
+          @include cell();
           color: #555;
           font-weight: bold;
+          height: 40px;
+          line-height: 40px;
+          vertical-align: top;
+          width: 60%;
         }
-      }
-      .value {
-        @include cell();
-        color: #555;
-        font-weight: bold;
-        height: 40px;
-        line-height: 40px;
-        vertical-align: top;
-        width: 60%;
       }
     }
   }
