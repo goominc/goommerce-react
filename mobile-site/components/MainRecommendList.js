@@ -67,7 +67,7 @@ export default React.createClass({
             {prodDiv}
           </ul>
         </article>
-        <Link to="/categories/4" className="ui-button ui-button-third">View more&nbsp;</Link>
+        <Link to="/categories/4" className="ui-button ui-button-third">{i18n.get('word.openMoreContent')}</Link>
       </section>
     );
   },
