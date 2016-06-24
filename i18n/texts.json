@@ -2534,6 +2534,18 @@
       "zh-cn": "信用卡",
       "zh-tw": "信用卡"
     },
+    "creditCardKorea": {
+      "en": "Credit Card(KOR)",
+      "ko": "국내 신용카드",
+      "zh-cn": "信用卡(KOR)",
+      "zh-tw": "信用卡(KOR)"
+    },
+    "creditCardGlobal": {
+      "en": "Credit Card(GLOBAL)",
+      "ko": "해외 신용카드",
+      "zh-cn": "信用卡(GLOBAL)",
+      "zh-tw": "信用卡(GLOBAL)"
+    },
     "vbank": {
       "en": "VBank",
       "ko": "무통장 입금",

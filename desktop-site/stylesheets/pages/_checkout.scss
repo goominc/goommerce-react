@@ -468,8 +468,9 @@ $active-progress-color: #f90;
       }
       .control {
         display: inline-block;
-        font-size: 15px;
+        font-size: 14px;
         text-align: right;
+        white-space: nowrap;
         width: 70%;
       }
       .payment-check {
