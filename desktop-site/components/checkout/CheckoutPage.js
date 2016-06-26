@@ -149,11 +149,11 @@ export default React.createClass({
       const handleCheckout = (e) => {
         e.preventDefault();
         if (!activeAddressId) {
-          window.alert('주소를 입력해 주세요');
+          window.alert(i18n.get('pcPayment.warnInputAddress'));
           return;
         }
         if (!this.refs.refundPolicy.checked) {
-          window.alert('환급 규정 확인에 동의해 주세요');
+          window.alert(i18n.get('pcPayment.warnAgreeToRefundPolicy'));
           return;
         }
         const { method, inipayMethod } = paymentMethods[this.state.paymentMethod];

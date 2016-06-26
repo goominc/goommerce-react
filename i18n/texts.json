@@ -2570,6 +2570,18 @@
       "zh-cn": "去付款",
       "zh-tw": "去付款"
     },
+    "warnInputAddress": {
+      "en": "Input Addres",
+      "ko": "주소를 입력해 주세요",
+      "zh-cn": "주소를 입력해 주세요",
+      "zh-tw": "주소를 입력해 주세요"
+    },
+    "warnAgreeToRefundPolicy": {
+      "en": "Agree to refund policy",
+      "ko": "환급 규정 확인에 동의해 주세요",
+      "zh-cn": "Agree to refund policy",
+      "zh-tw": "Agree to refund policy"
+    },
     "refundPolicyTitle": {
       "en": "Refund Policy",
       "ko": "환급 규정 확인",
