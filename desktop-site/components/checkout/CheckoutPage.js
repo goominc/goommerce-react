@@ -2,6 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import LinkedStateMixin from 'react-addons-linked-state-mixin'; // for manage form input...
+import moment from 'moment';
 
 import AddressEditForm from './AddressEditForm';
 import AddressView from './AddressView';
@@ -202,7 +203,7 @@ export default React.createClass({
           <input type="hidden" name="returnUrl" ref="returnUrl" />
           <input type="hidden" name="mKey" ref="mKey" />
           <input type="hidden" name="quotabase" value="2:3:4:5:6:7:8:9:10:11:12" />
-          <input type="hidden" name="acceptmethod" value="va_receipt" ref="acceptmethod" />
+          <input type="hidden" name="acceptmethod" value={`va_receipt:vbank(${moment().add(1, 'd').format('YYYYMMDD')})`} ref="acceptmethod" />
           <button type="submit" className="cart-button-order" onClick={handleCheckout}>
             {i18n.get('pcPayment.placeOrder')}
           </button>
