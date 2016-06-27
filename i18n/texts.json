@@ -2555,20 +2555,20 @@
     "alipay": {
       "en": "ALIPAY",
       "ko": "알리페이",
-      "zh-cn": "ALIPAY",
-      "zh-tw": "ALIPAY"
+      "zh-cn": "支付宝",
+      "zh-tw": "支付寶"
     },
     "unionpay": {
       "en": "UNION PAY",
       "ko": "유니온페이",
-      "zh-cn": "UNION PAY",
-      "zh-tw": "UNION PAY"
+      "zh-cn": "银联",
+      "zh-tw": "銀聯"
     },
     "placeOrder": {
       "en": "Place Order",
       "ko": "결제하기",
-      "zh-cn": "去付款",
-      "zh-tw": "去付款"
+      "zh-cn": "结账",
+      "zh-tw": "結賬"
     },
     "warnInputAddress": {
       "en": "Input Addres",
