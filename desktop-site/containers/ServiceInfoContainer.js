@@ -7,7 +7,7 @@ const getCmsKey = (locale) => {
   if (locale === 'en') {
     locale = 'ko';
   }
-  return `mobile_shipping_policy_${locale}`;
+  return `desktop_site_keywords_${locale}`;
 };
 
 const ServiceInfoContainer = React.createClass({

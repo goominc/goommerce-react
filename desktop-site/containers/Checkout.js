@@ -15,7 +15,7 @@ const getCmsKey = (locale) => {
   if (locale === 'en') {
     locale = 'ko';
   }
-  return `mobile_shipping_policy_${locale}`;
+  return `desktop_shipping_policy_${locale}`;
 };
 
 const Checkout = React.createClass({
