@@ -73,7 +73,7 @@ export default React.createClass({
         return (
           <section key={brand.brand.id} className="order-brand">
             <div className="seller">
-              [{brand.brand.data.building.name}] {brand.brand.name[activeLocale]} ({brandUtil.countProducts(brand)})
+              {brandUtil.getName(brand.brand)} ({brandUtil.countProducts(brand)})
             </div>
             <ul className="product-items">
               {(brand.products || []).map(renderProduct)}
