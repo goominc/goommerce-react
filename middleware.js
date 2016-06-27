@@ -78,6 +78,8 @@ module.exports = (opts) => {
     }
 
     function send(initialState, gaid) {
+      initialState.brand =
+      { pathnameMap: opts.getBrandPathnameMap ? opts.getBrandPathnameMap() : { '/amore': 2038 } };
       res.send(`
         <!DOCTYPE html>
         <html>
@@ -136,8 +138,6 @@ module.exports = (opts) => {
         const host = req.get('host');
         const initialState = {
           currency: { activeCurrency: req.currency },
-          // brand: { pathnameMap: { '/amore': 2038 } },
-          brand: { pathnameMap: opts.getBrandPathnameMap ? opts.getBrandPathnameMap() : { '/amore': 2038 } },
         };
         if (!err) {
           initialState.auth = auth;
