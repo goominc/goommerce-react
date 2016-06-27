@@ -128,7 +128,7 @@ export default React.createClass({
         const modelSize = _.get(product, 'data.detail.modelSize');
         const origin = _.get(product, 'data.detail.origin');
         const renderModelSizeField = () => {
-          if (modelName === '' || typeof modelName === 'undefined') {
+          if (!modelName) {
             return null;
           }
           return (
@@ -139,7 +139,7 @@ export default React.createClass({
           );
         };
         const renderOriginField = () => {
-          if (origin === '' || typeof origin === 'undefined') {
+          if (!origin) {
             return null;
           }
           return (
