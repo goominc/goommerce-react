@@ -3,6 +3,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import moment from 'moment';
 
 import loadEntities from 'commons/redux/util/loadEntities';
 import MyPageLeftbar from 'components/mypage/MyPageLeftbar';
@@ -28,10 +29,15 @@ const Reorder = React.createClass({
     const { ApiAction } = this.context;
     const orders = this.props.orders || [];
     const yesterdayOrderInfo = orderUtil.getInfoFromOrdersNotInCart(orders, this.props.cart);
-    const createOrder = () => {
+    const createOrder = (isYesterday) => {
       $('#reorder-do-order').prop('disabled', true);
+      const options = { paymentStatus: 200 };
+      if (isYesterday) {
+        options.skipNotification = true;
+        options.processedDate = moment().subtract(1, 'd').format('YYYY-MM-DD');
+      }
       ApiAction.createOrderFromCart()
-        .then((order) => ApiAction.startOrderProcessing(order.id, { paymentStatus: 200 }),
+        .then((order) => ApiAction.startOrderProcessing(order.id, options),
         // .then((order) => ApiAction.startOrderProcessing(order.id, { paymentStatus: 200, skipNotification: true, processedDate: '2015-06-20' }),
           () => {
             window.alert('Failed to Create ReOrder');

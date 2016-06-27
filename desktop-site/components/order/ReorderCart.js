@@ -313,7 +313,13 @@ export default React.createClass({
     const totalPrice = cart.total ? cart.total[activeCurrency] : 0;
     const renderOrderButton = () => {
       return [
-        <button key="reorder-do-order" id="reorder-do-order" className="btn default" style={({ marginLeft: '20px' })} onClick={createOrder}>
+        <button
+          key="reorder-do-order"
+          id="reorder-do-order"
+          className="btn default"
+          style={({ marginLeft: '20px' })}
+          onClick={() => createOrder(this.refs.yesterday.checked)}
+        >
           {i18n.get('word.doOrder')}
         </button>,
         <button key="reorder-clear-cart" className="btn default" style={({ marginLeft: '20px' })} onClick={deleteCartAllProduct}>
@@ -343,6 +349,16 @@ export default React.createClass({
     };
     return (
       <div>
+        <div style={({ marginBottom: '10px' })}>
+          <input id="yesterday" type="checkbox" className="default-checkbox" ref="yesterday" />
+          <label onClick={() => $('#yesterday').click()}></label>
+          <span style={({ marginLeft: '10px' })}>어제 주문</span>
+        </div>
+        {/*<div>
+          <input id="no_noti" type="checkbox" className="default-checkbox" ref="no_noti" defaultValue={true} />
+          <label onClick={() => $('#no_noti').click()}></label>
+          <span style={({ marginLeft: '10px' })}>셀러앱 노티</span>
+        </div>*/}
         <div className="reorder-title">
           <b>총 주문가격</b> {numberUtil.formatPrice(totalPrice, activeCurrency, currencySign)}
           {renderOrderButton()}
