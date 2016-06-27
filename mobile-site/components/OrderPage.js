@@ -3,6 +3,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import _ from 'lodash';
+import moment from 'moment';
 
 
 import i18n from 'commons/utils/i18n';
@@ -194,6 +195,8 @@ export default React.createClass({
           <input type="hidden" name="P_CHARSET" value="utf8" />
           <input type="hidden" name="P_QUOTABASE" value="02:03:04:05:06:07:08:09:10:11:12" />
           <input type="hidden" name="P_CURRENCY" value="WON" />
+          <input type="hidden" name="P_VBANK_DT" value={`${moment().add(1, 'd').format('YYYYMMDD')}`} />
+          <input type="hidden" name="P_VBANK_TM" value={`${moment().add(1, 'd').format('HHmm')}`} />
         </form>
         <article id="seller-cart-buyall" className="seller-products">
           <div className="accounts bt p-24 pt-24 pb-24 clearfix">
