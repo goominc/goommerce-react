@@ -29,7 +29,6 @@ const UserPoliciesContainer = React.createClass({
     const onClick = () => {
       this.context.router.goBack();
     };
-    console.log(activeLocale);
     return (
       <div className="policies-container">
         {userPolices[activeLocale]}
@@ -40,6 +39,5 @@ const UserPoliciesContainer = React.createClass({
 });
 
 export default connect(
-  (state) => ({ activeLocale: state.i18n.activeLocale }),
-  Object.assign({})
+  (state) => ({ activeLocale: state.i18n.activeLocale })
 )(UserPoliciesContainer);

@@ -39,6 +39,5 @@ const UserTermsContainer = React.createClass({
 });
 
 export default connect(
-  (state) => ({ activeLocale: state.i18n.activeLocale }),
-  Object.assign({})
+  (state) => ({ activeLocale: state.i18n.activeLocale })
 )(UserTermsContainer);
