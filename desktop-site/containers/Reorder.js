@@ -31,7 +31,8 @@ const Reorder = React.createClass({
     const createOrder = () => {
       $('#reorder-do-order').prop('disabled', true);
       ApiAction.createOrderFromCart()
-        .then((order) => ApiAction.startOrderProcessing(order.id, 200),
+        .then((order) => ApiAction.startOrderProcessing(order.id, { paymentStatus: 200 }),
+        // .then((order) => ApiAction.startOrderProcessing(order.id, { paymentStatus: 200, skipNotification: true, processedDate: '2015-06-20' }),
           () => {
             window.alert('Failed to Create ReOrder');
             $('#reorder-do-order').prop('disabled', false);
