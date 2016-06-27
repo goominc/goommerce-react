@@ -210,7 +210,7 @@ export default React.createClass({
               <span>{i18n.get('pcCart.total')}:</span>
               <span className="mt-16 price">{numberUtil.formatPrice(cart.total[activeCurrency], activeCurrency, currencySign)}</span>
             </div>
-            <div className="ui-button ui-button-main buyall" onClick={this.handleBuyAll}>{i18n.get('pcCart.`')}</div>
+            <div className="ui-button ui-button-main buyall" onClick={this.handleBuyAll}>{i18n.get('word.doOrder')}</div>
           </div>
         </article>
       </section>

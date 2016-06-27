@@ -36,7 +36,7 @@ const ForgotPassword = React.createClass({
         <Link to="/" className="signin-title">
           <img className="logo-img" src={`${constants.resourceRoot}/mobile/main/mobile_linkshops_logo.png`} />
         </Link>
-        <input className="signin-input" type="email" placeholder="아이디(이메일)" ref="email" />
+        <input className="signin-input" type="email" placeholder={i18n.get('pcMain.signup.idEmail')} ref="email" />
         <Link className="signin-simple-link" to="/accounts/signin">{i18n.get('word.login')}</Link>
         <Link className="signin-simple-link" to="/accounts/signup">{i18n.get('word.register')}</Link>
         <button className="signin-button" type="submit">{i18n.get('word.findYourPassword')}</button>
