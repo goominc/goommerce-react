@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
+import i18n from 'commons/utils/i18n';
 import orderUtil from 'commons/utils/orderUtil';
 import brandUtil from 'commons/utils/brandUtil';
 import productUtil from 'commons/utils/productUtil';
@@ -192,13 +193,13 @@ export default React.createClass({
 
         <div className="check-forbuy">
           <span className={`checkbox ${checkBuy ? 'checked' : ''}`} onClick={this.props.toggleBuy}></span>
-          <p className="check-title">환급규정 확인</p>
+          <p className="check-title">{i18n.get('pcPayment.refundPolicyTitle')}</p>
           <div className="check-desc">
-            품절 및 재고상황에 따라 일부 상품이 배송되지 않을 수 있으며 미 배송상품에 대한 환급 절차는 <a href="/user/terms#terms_14">이용약관 제14조</a>에 따릅니다.
+            {i18n.get('mPayment.refundPolicyDesc1')}<a href="/user/terms#terms_14">{i18n.get('mPayment.refundPolicyDesc2')}</a>{i18n.get('mPayment.refundPolicyDesc3')}
             <ul className="dashed">
-              <li>도매시장의 특성 상 판매자의 실시간 재고 파악이 불가능 합니다.</li>
-              <li>판매자 또는 제조사의 사정으로 상품이 갑작스럽게 품절되거나 재고가 부족할 수 있습니다.</li>
-              <li>품절된 상품의 경우 주문 당시 동일 결제수단으로 자동 환불 처리해 드립니다.</li>
+              <li>{i18n.get('pcPayment.refundPolicyMore1')}</li>
+              <li>{i18n.get('pcPayment.refundPolicyMore2')}</li>
+              <li>{i18n.get('pcPayment.refundPolicyMore3')}</li>
             </ul>
           </div>
         </div>
@@ -206,10 +207,10 @@ export default React.createClass({
         <article id="seller-cart-buyall" className="seller-products">
           <div className="accounts bt bb p-24 pt-24 pb-24 clearfix">
             <div className="total">
-              <span>총 금액:</span>
+              <span>{i18n.get('pcCart.total')}:</span>
               <span className="mt-16 price">{numberUtil.formatPrice(cart.total[activeCurrency], activeCurrency, currencySign)}</span>
             </div>
-            <div className="ui-button ui-button-main buyall" onClick={this.handleBuyAll}>주문하기</div>
+            <div className="ui-button ui-button-main buyall" onClick={this.handleBuyAll}>{i18n.get('pcCart.`')}</div>
           </div>
         </article>
       </section>

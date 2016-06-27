@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
+import i18n from 'commons/utils/i18n';
 import CartPage from 'components/CartPage';
 
 import { ApiAction, setHeader } from 'redux/actions';
@@ -26,7 +27,7 @@ const Cart = React.createClass({
       showLogo: false,
       showSearch: true,
       showCart: false,
-      titleText: '장바구니',
+      titleText: i18n.get('pcCart.cart'),
     });
     this.props.loadCart();
   },
