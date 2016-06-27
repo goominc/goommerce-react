@@ -88,7 +88,6 @@ export default React.createClass({
                     this.props.deleteCartProduct(productVariant.productVariant.id);
                   };
                   const skuIdx = productVariant.productVariant.sku.indexOf('-');
-                  const skuStr = productVariant.productVariant.sku.substr(0, skuIdx);
                   const variantStr = productVariant.productVariant.sku.substr(skuIdx + 1);
 
                   return (
@@ -106,7 +105,6 @@ export default React.createClass({
                                 {productUtil.getName(product.product)}
                               </div>
                             </Link>
-                            <div className="details-sku ellipsis-multiple">{skuStr}</div>
                             <div className="details-variant ellipsis-multiple">{variantStr}</div>
                             <div className="details-price clearfix">
                               <div>
