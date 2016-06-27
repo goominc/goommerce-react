@@ -87,12 +87,16 @@ export default React.createClass({
           } else {
             const stockReasonText = {
               10: i18n.get('enum.productVariant.status.10'),
-              30: i18n.get('enum.productVariant.status.20'),
+              20: i18n.get('enum.productVariant.status.20'),
+              30: i18n.get('enum.productVariant.status.30'),
             };
             const reasonValue = _.get(variant, 'data.stock.reason');
             let reason = '-';
             if (stockReasonText[reasonValue]) {
-              reason = stockReasonText[reasonValue];
+              const day = _.get(variant, 'data.stock.data');
+              if (day) {
+                reason = `${day} ${stockReasonText[reasonValue]}`;
+              }
             }
             content = [renderGoCart()];
             if (variant.finalQuantity === 0) {
