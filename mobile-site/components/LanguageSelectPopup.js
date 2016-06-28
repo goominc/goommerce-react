@@ -42,7 +42,7 @@ export default React.createClass({
               <div className="select-language">
                 <Select ref="stateSelect" autofocus options={options} value={this.state.selectValue} simpleValue name="selected-state" onChange={this.updateValue} clearable={false} searchable={false} placeholder="select..." />
               </div>
-              <button type="button" className="language-select-button" onClick = {closePopup}>확</button>
+              <button type="button" className="language-select-button" onClick = {closePopup}>확인</button>
             </div>
           </div>
         </div>
