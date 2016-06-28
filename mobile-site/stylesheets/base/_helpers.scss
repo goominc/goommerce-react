@@ -241,10 +241,12 @@ ul.dashed > li:before {
         .select-language{
           margin: 10px 0px;
           .select-item{
+            text-align: left;
             img{
-
+              width: 30px;
             }
             span{
+              margin-left: 13px;
               font-size: 14px;
               vertical-align: super;
             }
@@ -262,9 +264,6 @@ ul.dashed > li:before {
           border-radius: 3px;
           font-size: 13px;
           text-align: center;
-        }
-        .Select-menu-outer{
-          text-align: left;
         }
       }
     }
