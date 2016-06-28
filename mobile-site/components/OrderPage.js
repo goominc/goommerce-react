@@ -286,18 +286,22 @@ export default React.createClass({
           </div>
           <ul className="pay-method-list">
             <li onClick={() => this.inipay('wcard', 'mobile', 'twotrs_isp=Y&block_isp=Y&twotrs_isp_noti=N')}>
+              <div className="icon"><span className="icon-credit-card"></span></div>
               <span className="pay-title">{i18n.get('pcPayment.creditCard')}</span>
               <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
             </li>
             <li onClick={() => this.inipay('vbank', 'mobile', 'vbank_receipt=Y')}>
+              <div className="icon"><span className="icon-inicis"></span></div>
               <span className="pay-title">{i18n.get('pcPayment.vbank')}</span>
               <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
             </li>
             <li onClick={() => this.inipay('etc', 'mobile_global', 'etc_paymethod=APAY')}>
+              <div className="icon"><span className="icon-alipay"></span></div>
               <span className="pay-title">{i18n.get('pcPayment.alipay')}</span>
               <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
             </li>
             <li onClick={() => this.inipay('etc', 'mobile_global', 'etc_paymethod=UPMP')}>
+              <div className="icon"><span className="icon-union-pay"></span></div>
               <span className="pay-title">{i18n.get('pcPayment.unionpay')}</span>
               <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
             </li>

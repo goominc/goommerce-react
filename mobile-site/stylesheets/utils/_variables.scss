@@ -71,6 +71,6 @@ $breakpoints: (
 /// @example scss - When using a CDN
 ///   $base-url: 'http://cdn.example.com/assets/';
 $base-url: '//d3f03u7lex6hmc.cloudfront.net/front/resource/mobile' !default;
-
+$base-url-pc: '//d3f03u7lex6hmc.cloudfront.net/front/resource' !default;
 /// default colors
 $default-active-text-color: #f50;
