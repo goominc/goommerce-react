@@ -40,14 +40,15 @@ $error-popup-height: 250px;
     border: 1px solid #f6312f;
   }
   .close-button {
-    display: block;
-    position: absolute;
+    border: 1px solid #000;
     bottom: $padding-vertical;
-    right: $padding-horizontal;
-    width: 80px;
+    display: block;
     height: 35px;
     line-height: 35px;
-    border: 1px solid #000;
+    padding: 0;
+    position: absolute;
+    right: $padding-horizontal;
+    width: 80px;
   }
 }
 
