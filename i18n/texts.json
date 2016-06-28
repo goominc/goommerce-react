@@ -963,20 +963,20 @@
     "refundPolicyDesc1": {
       "en": "품절 및 재고상황에 따라 일부 상품이 배송 되지 않을 수 있으며 미 배송 상품의 대한 환급 절차는 ",
       "ko": "품절 및 재고상황에 따라 일부 상품이 배송 되지 않을 수 있으며 미 배송 상품의 대한 환급 절차는 ",
-      "zh-cn": "품절 및 재고상황에 따라 일부 상품이 배송 되지 않을 수 있으며 미 배송 상품의 대한 환급 절차는 ",
-      "zh-tw": "품절 및 재고상황에 따라 일부 상품이 배송 되지 않을 수 있으며 미 배송 상품의 대한 환급 절차는 "
+      "zh-cn": "由于实际库存情况，有可能发生一部分的商品没配送，没配送的商品，",
+      "zh-tw": "由於實際庫存情況，有可能發生一部分的商品沒配送，沒配送的商品，"
     },
     "refundPolicyDesc2": {
       "en": "이용약관 제14조",
       "ko": "이용약관 제14조",
-      "zh-cn": "이용약관 제14조",
-      "zh-tw": "이용약관 제14조"
+      "zh-cn": "按照使用条款第14条，",
+      "zh-tw": "按照使用條款第14條，"
     },
     "refundPolicyDesc3": {
       "en": "에 따릅니다.",
       "ko": "에 따릅니다.",
-      "zh-cn": "에 따릅니다.",
-      "zh-tw": "에 따릅니다."
+      "zh-cn": "进行退款處理。",
+      "zh-tw": "進行退款處理。"
     }
   },
   "pcCart": {
@@ -2557,26 +2557,26 @@
     "creditCard": {
       "en": "Credit Card",
       "ko": "신용카드",
-      "zh-cn": "信用卡",
-      "zh-tw": "信用卡"
+      "zh-cn": "信用卡(韩国)",
+      "zh-tw": "信用卡(韓國)"
     },
     "creditCardKorea": {
       "en": "Credit Card(KOR)",
       "ko": "국내 신용카드",
-      "zh-cn": "信用卡(KOR)",
-      "zh-tw": "信用卡(KOR)"
+      "zh-cn": "信用卡(韩国)",
+      "zh-tw": "信用卡(韓國)"
     },
     "creditCardGlobal": {
       "en": "Credit Card(GLOBAL)",
       "ko": "해외 신용카드",
-      "zh-cn": "信用卡(GLOBAL)",
-      "zh-tw": "信用卡(GLOBAL)"
+      "zh-cn": "信用卡(国际)",
+      "zh-tw": "信用卡(國際)"
     },
     "vbank": {
       "en": "VBank",
       "ko": "무통장 입금",
-      "zh-cn": "电汇",
-      "zh-tw": "電匯"
+      "zh-cn": "电汇(韩国)",
+      "zh-tw": "電匯(韓國)"
     },
     "alipay": {
       "en": "ALIPAY",
@@ -2599,14 +2599,14 @@
     "warnInputAddress": {
       "en": "Input Addres",
       "ko": "주소를 입력해 주세요",
-      "zh-cn": "주소를 입력해 주세요",
-      "zh-tw": "주소를 입력해 주세요"
+      "zh-cn": "请输入地址",
+      "zh-tw": "請輸入地址"
     },
     "warnAgreeToRefundPolicy": {
       "en": "Agree to refund policy",
       "ko": "환급 규정 확인에 동의해 주세요",
-      "zh-cn": "Agree to refund policy",
-      "zh-tw": "Agree to refund policy"
+      "zh-cn": "同意退款政策",
+      "zh-tw": "同意退款政策"
     },
     "refundPolicyTitle": {
       "en": "Refund Policy",
