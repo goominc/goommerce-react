@@ -12,6 +12,7 @@ import SignRegister from 'components/SignRegister';
 import Search from 'components/Search';
 import Language from 'components/Language';
 import Currency from 'components/Currency';
+import LanguageSelectPopup from 'components/LanguageSelectPopup';
 
 cloudinaryConfig({ cloud_name: 'linkshops', crop: 'limit' });
 
@@ -144,6 +145,7 @@ const App = React.createClass({
         <Currency currencies={currencies} activeCurrency={activeCurrency}
           show={showCurrency} toggle={this.props.toggleCurrency} change={this.props.changeCurrency}
         />
+        <LanguageSelectPopup change={this.props.changeLocale} />
       </div>
     );
   },
