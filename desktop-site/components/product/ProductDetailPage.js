@@ -34,6 +34,9 @@ export default React.createClass({
     activeCurrency: PropTypes.string,
     currencySign: PropTypes.object,
   },
+  getInitialState() {
+    return {};
+  },
   componentDidMount() {
     // 2016. 04. 14. [heekyu] timing issue
     setTimeout(() => this.adjustScroll(this.props), 100);
@@ -312,6 +315,9 @@ export default React.createClass({
           elem.css('border', `${borderSize}px solid rgba(240, 80, 0, ${opacity / 10}`);
           opacity -= 1;
         }, 200);
+        if (!this.state.isShowWarning) {
+          this.setState({ isShowWarning: true });
+        }
       };
       if (!isColorSelected) {
         doAnimation($('.color-line img'), 2);
@@ -338,6 +344,9 @@ export default React.createClass({
       addCartProduct(selectedVariant.id, this.refs.quantity.value);
     };
     const renderWarning = () => {
+      if (!this.state.isShowWarning) {
+        return null;
+      }
       if (!isColorSelected) {
         return (<div className="product-detail-attr-warning">{i18n.get('pcItemDetail.selectColor')}</div>);
       }
