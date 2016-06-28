@@ -152,7 +152,7 @@ const App = React.createClass({
 });
 
 export default connect(
-  (state) => ({ auth: state.auth, cart: state.cart, error: state.errorHandler.error,
+  (state, ownProps) => ({ auth: state.auth, cart: state.cart, error: state.errorHandler.error,
     showMenu: state.menu.showMenu, showSign: state.sign, showSearch: state.search.showSearch,
     showLanguage: state.menuAddon.showLanguage, showCurrency: state.menuAddon.showCurrency,
     activeLocale: state.i18n.activeLocale, activeCurrency: state.currency.activeCurrency,

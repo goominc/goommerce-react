@@ -19,12 +19,12 @@ import MainRecommendList from 'components/MainRecommendList';
 const Home = React.createClass({
   propTypes: {
     auth: PropTypes.object,
+    activeLocale: PropTypes.string,
     mobile_main_banner: PropTypes.object,
     setHeader: PropTypes.func.isRequired,
   },
   contextTypes: {
     ApiAction: PropTypes.object,
-    activeLocale: PropTypes.string,
     router: PropTypes.object,
   },
   getInitialState() {
@@ -60,7 +60,7 @@ const Home = React.createClass({
 
     return (
       <div className="main-container">
-        <MainBanner items={_.get(this.props, `mobile_main_banner.${this.context.activeLocale}.rows`)} />
+        <MainBanner items={_.get(this.props, `mobile_main_banner.${this.props.activeLocale}.rows`)} />
         <div className="promotion">
           {renderBrandLink()}
           <section className="promotion-block categories">
@@ -136,6 +136,7 @@ const Home = React.createClass({
 export default connect(
   (state) => ({
     auth: state.auth,
+    activeLocale: state.i18n.activeLocale,
     ...loadEntities(state, 'hotProducts', 'hotProducts'),
     mobile_main_banner: state.cms.mobile_main_banner,
   }),

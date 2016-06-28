@@ -483,6 +483,8 @@ export function loadCartIfEmpty() {
 
 export function changeCurrency(currency) {
   return (dispatch, getState) => {
+    const cookie = require('../utils/cookie');
+    cookie.set('currency', currency);
     const state = getState();
     if (state.currency.activeCurrency === currency) {
       return;
@@ -490,8 +492,6 @@ export function changeCurrency(currency) {
     if (state.auth && state.auth.id) {
       simpleNotify(state.auth, 'PUT', `/api/v1/users/${state.auth.id}/currency`, { currency });
     }
-    const cookie = require('../utils/cookie');
-    cookie.set('currency', currency);
     dispatch({
       type: 'CHANGE_CURRENCY',
       currency,
@@ -506,6 +506,9 @@ export function changeLocale(locale) {
     'zh-cn': 'CNY',
   };
   return (dispatch, getState) => {
+    const cookie = require('../utils/cookie');
+    cookie.set('locale', locale);
+
     const state = getState();
     if (state.i18n.activeLocale === locale) {
       return null;
@@ -516,8 +519,6 @@ export function changeLocale(locale) {
     if (localeToCurrency[locale]) {
       changeCurrency(localeToCurrency[locale])(dispatch, getState);
     }
-    const cookie = require('../utils/cookie');
-    cookie.set('locale', locale);
     if (state.i18n && state.i18n[locale]) {
       return dispatch({
         type: 'CHANGE_LANGUAGE',

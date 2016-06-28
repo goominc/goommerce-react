@@ -11,6 +11,7 @@ export default React.createClass({
   },
   getInitialState() {
     return {
+      isShowPopup: true,
       selectValue: cookie.get('locale'),
     };
   },
@@ -18,6 +19,10 @@ export default React.createClass({
     this.setState({ selectValue: newValue });
   },
   render() {
+    const { isShowPopup } = this.state;
+    if (!isShowPopup) {
+      return null;
+    }
     const locales = {
       ko: { img: `${constants.resourceRoot}/header/flag-kor-rec.png`, name: '한국어' },
       en: { img: `${constants.resourceRoot}/header/flag-eng-rec.png`, name: 'ENGLISH' },
@@ -32,6 +37,7 @@ export default React.createClass({
     ];
     const closePopup = () => {
       this.props.change(this.state.selectValue);
+      this.setState({ isShowPopup: false });
     };
     const renderOverlay = () => {
       return (
@@ -42,7 +48,7 @@ export default React.createClass({
               <div className="select-language">
                 <Select ref="stateSelect" autofocus options={options} value={this.state.selectValue} simpleValue name="selected-state" onChange={this.updateValue} clearable={false} searchable={false} placeholder="select..." />
               </div>
-              <button type="button" className="language-select-button" onClick = {closePopup}>OK</button>
+              <button type="button" className="language-select-button" onClick={closePopup}>OK</button>
             </div>
           </div>
         </div>
