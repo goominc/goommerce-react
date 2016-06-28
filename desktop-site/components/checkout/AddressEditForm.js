@@ -90,8 +90,14 @@ export default React.createClass({
       if (addressForEdit.id) {
         addressForSave.id = addressForEdit.id;
       }
-      for (let i = 0; i < addressFields.length; i++) {
-        const field = addressFields[i];
+      let saveFields;
+      if (countryCode === 'KR') {
+        saveFields = addressFields;
+      } else {
+        saveFields = addressFieldsOversea;
+      }
+      for (let i = 0; i < saveFields.length; i++) {
+        const field = saveFields[i];
         let value = _.get(this.state, field.key);
         if (!value) {
           value = $(`#${field.objKey}`).val();
