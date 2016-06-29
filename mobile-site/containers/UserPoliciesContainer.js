@@ -5,8 +5,7 @@ import { connect } from 'react-redux';
 
 import i18n from 'commons/utils/i18n';
 
-import UserPolicies from 'commons/components/user/UserPolicies';
-import UserPoliciesCn from 'commons/components/user/UserPoliciesCn';
+import { getUserPolicies } from 'commons/components/I18nComponentSelector';
 
 const UserPoliciesContainer = React.createClass({
   propTypes: {
@@ -20,18 +19,12 @@ const UserPoliciesContainer = React.createClass({
   },
   render() {
     const { activeLocale } = this.props;
-    const userPolices = {
-      ko: <UserPolicies />,
-      en: <UserPolicies />,
-      'zh-cn': <UserPoliciesCn />,
-      'zh-tw': <UserPoliciesCn />,
-    };
     const onClick = () => {
       this.context.router.goBack();
     };
     return (
       <div className="policies-container">
-        {userPolices[activeLocale]}
+        {getUserPolicies(activeLocale)}
         <div className="signin-button button-confirm" onClick={onClick}>{i18n.get('word.confirm')}</div>
       </div>
     );

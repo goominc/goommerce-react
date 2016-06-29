@@ -3,11 +3,7 @@
 import React, { PropTypes } from 'react';
 import { constants } from 'commons/utils/constants';
 
-import UserTerms from 'commons/components/user/UserTerms';
-import UserPolicies from 'commons/components/user/UserPolicies';
-
-import UserTermsCn from 'commons/components/user/UserTermsCn';
-import UserPoliciesCn from 'commons/components/user/UserPoliciesCn';
+import { getUserTerms, getUserPolicies } from 'commons/components/I18nComponentSelector';
 
 import i18n from 'commons/utils/i18n';
 
@@ -26,7 +22,6 @@ export default React.createClass({
       });
     };
     const { activeLocale } = this.props;
-    const isChinaLocale = activeLocale === 'zh-cn' || activeLocale === 'zh-tw';
     return (
       <div className="signup-container">
         <img className="signup-progress-img" src={this.props.signupProgressImg} />
@@ -43,7 +38,7 @@ export default React.createClass({
             <span style={({ marginLeft: '15px' })}>{i18n.get('pcMain.signup.agreeToTermsOfUse')}</span>
           </div>
           <div className="content-box">
-            { isChinaLocale ? <UserTermsCn /> : <UserTerms /> }
+            {getUserTerms(activeLocale)}
           </div>
         </div>
         <div className="signup-terms-section">
@@ -53,7 +48,7 @@ export default React.createClass({
             <span style={({ marginLeft: '15px' })}>{i18n.get('pcMain.signup.agreeToPrivacyPolicy')}</span>
           </div>
           <div className="content-box">
-            { isChinaLocale ? <UserPoliciesCn /> : <UserPolicies /> }
+            {getUserPolicies(activeLocale)}
           </div>
         </div>
         <div className="form-button-line">

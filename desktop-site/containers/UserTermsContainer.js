@@ -2,8 +2,7 @@
 
 import React, { PropTypes } from 'react';
 
-import UserTerms from 'commons/components/user/UserTerms';
-import UserTermsCn from 'commons/components/user/UserTermsCn';
+import { getUserTerms } from 'commons/components/I18nComponentSelector';
 
 export default React.createClass({
   contextTypes: {
@@ -14,10 +13,9 @@ export default React.createClass({
   },
   render() {
     const { activeLocale } = this.context;
-    const isChinaLocale = activeLocale === 'zh-cn' || activeLocale === 'zh-tw';
     return (
       <div className="policies-container">
-        { isChinaLocale ? <UserTermsCn /> : <UserTerms /> }
+        { getUserTerms(activeLocale) }
       </div>
     );
   },
