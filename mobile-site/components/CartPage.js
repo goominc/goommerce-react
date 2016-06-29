@@ -193,7 +193,7 @@ export default React.createClass({
           <span className={`checkbox ${checkBuy ? 'checked' : ''}`} onClick={this.props.toggleBuy}></span>
           <p className="check-title">{i18n.get('pcPayment.refundPolicyTitle')}</p>
           <div className="check-desc">
-            {i18n.get('mPayment.refundPolicyDesc1')}<a href="/user/terms#terms_14">{i18n.get('mPayment.refundPolicyDesc2')}</a>{i18n.get('mPayment.refundPolicyDesc3')}
+            {i18n.get('mPayment.refundPolicyDesc1')}<Link to="/user/terms#terms_14">{i18n.get('mPayment.refundPolicyDesc2')}</Link>{i18n.get('mPayment.refundPolicyDesc3')}
             <ul>
               <li>{i18n.get('pcPayment.refundPolicyMore1')}</li>
               <li>{i18n.get('pcPayment.refundPolicyMore2')}</li>
