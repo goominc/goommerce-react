@@ -13,6 +13,7 @@ import Search from 'components/Search';
 import Language from 'components/Language';
 import Currency from 'components/Currency';
 import LanguageSelectPopup from 'components/LanguageSelectPopup';
+import OptionButton from 'components/OptionButton';
 
 cloudinaryConfig({ cloud_name: 'linkshops', crop: 'limit' });
 
@@ -128,6 +129,7 @@ const App = React.createClass({
           toggleSearch={this.props.toggleSearch} toggleSignRegister={this.props.toggleSignRegister}
         />
         {children}
+        <OptionButton />
         <CommonFooter />
         <LeftSideBar show={showMenu} toggle={this.props.toggleMenu} toggleSignRegister={this.props.toggleSignRegister}
           locales={locales} toggleLanguage={this.props.toggleLanguage} toggleCurrency={this.props.toggleCurrency}
