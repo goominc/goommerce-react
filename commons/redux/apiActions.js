@@ -538,6 +538,7 @@ export function loadCMSData(name) {
     type: 'LOAD_CMS_DATA',
     endpoint: `/api/v1/cms/${name}`,
     success: { name },
+    failure: { error: null },
   });
 }
 
