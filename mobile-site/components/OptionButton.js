@@ -7,6 +7,9 @@ export default React.createClass({
   componentDidMount() {
     window.addEventListener('scroll', this.scroll);
   },
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.scroll);
+  },
   scroll() {
     this.setState({ scrollTop: $('body').scrollTop() });
   },
