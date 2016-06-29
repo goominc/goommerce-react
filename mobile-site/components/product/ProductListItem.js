@@ -46,26 +46,26 @@ export default React.createClass({
                   {renderImage()}
                 </div>
                 { /* <span className="discount-rate">- 50% </span> */ }
-                <div className="infomation">
-                  <div className="brand">
-                    <span>{brandUtil.getName(prod.brand)}</span>
-                  </div>
-                  <div className="title">
-                    <span>{productUtil.getName(prod)}</span>
-                  </div>
-
-                  <span className="discount-price"><em>{numberUtil.formatPrice(prod[activeCurrency], activeCurrency, currencySign)}</em>
-
-                  </span>
-
-                  <div className="custom-gallery-view-blank"></div>
-
-                  <div className="info-bottom">
-                    { /* <span className="free-shipping">Shipping: US $0.84</span> */ }
-                    { /* <span className="order-number">Orders: 999</span> */ }
-                  </div>
-                </div>
               </Link>
+              <div className="infomation">
+                <div className="brand">
+                  <span>{brandUtil.getName(prod.brand)}</span>
+                </div>
+                <div className="title">
+                  <span>{productUtil.getName(prod)}</span>
+                </div>
+
+                <span className="discount-price"><em>{numberUtil.formatPrice(prod[activeCurrency], activeCurrency, currencySign)}</em>
+
+                </span>
+
+                <div className="custom-gallery-view-blank"></div>
+
+                <div className="info-bottom">
+                  { /* <span className="free-shipping">Shipping: US $0.84</span> */ }
+                  { /* <span className="order-number">Orders: 999</span> */ }
+                </div>
+              </div>
             </div>
           </li>
         );
