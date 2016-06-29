@@ -146,7 +146,7 @@ export default React.createClass({
           <p className="chapter-content">邮箱地址:youngji.oh@linkshops.com</p>
           <p className="chapter-content"></p>
           <p className="chapter-content">如需其他针对个人信息侵权的申告或商谈,请向以下机关咨询:</p>
-          <p className="chapter-content">- 个人信息保护侵害申告中心(www.118.or.kr/118)</p>
+          <p className="chapter-content">- 个人信息保护侵害申告中心(www.boho.or.kr)</p>
           <p className="chapter-content">- 信息保护mark认证委员会(www.eprivacy.or.kr/02-580-0533~4)</p>
           <p className="chapter-content">- 大检察厅尖端犯罪搜查科(www.spo.go.kr/02-3480-2000)</p>
           <p className="chapter-content">- 警察厅网络恐怖组织应对中心(www.ctrc.go.kr/02-392-0330)</p>

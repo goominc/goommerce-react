@@ -139,7 +139,7 @@ export default React.createClass({
           <p>직위 : 이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;사 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전화 : 070-4488-5073</p>
           <p>이메일 : youngji.oh@linkshops.com</p>
           <p>기타 개인정보침해에 대한 신고나 상담이 필요하신 경우에는 아래 기관에 문의하시기 바랍니다.</p>
-          <p>- 개인정보침해신고센터 (www.118.or.kr / 118)</p>
+          <p>- 개인정보침해신고센터 (www.boho.or.kr))</p>
           <p>- 정보보호마크인증위원회 (www.eprivacy.or.kr / 02-580-0533~4)</p>
           <p>- 대검찰청 첨단범죄수사과 (www.spo.go.kr / 02-3480-2000)</p>
           <p>- 경찰청 사이버테러대응센터 (www.ctrc.go.kr / 02-392-0330)</p>
