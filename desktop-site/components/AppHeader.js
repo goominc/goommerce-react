@@ -15,10 +15,11 @@ const _ = require('lodash');
 
 export default React.createClass({
   propTypes: {
+    activeCategory: PropTypes.object,
     auth: PropTypes.object.isRequired,
     cart: PropTypes.object.isRequired,
     categories: PropTypes.object,
-    activeCategory: PropTypes.object,
+    desktop_top_banner: PropTypes.object,
     showSearchDropdown: PropTypes.bool,
     toggleSearchDropdown: PropTypes.func.isRequired,
     selectSearchDropdown: PropTypes.func.isRequired,
@@ -41,6 +42,7 @@ export default React.createClass({
   render() {
     const { auth, handleLogout, handleSearch, cart, categories, changeLocale, changeCurrency } = this.props;
     const { toggleSearchDropdown, selectSearchDropdown, showSearchDropdown, activeCategory, params } = this.props;
+    const { desktop_top_banner = { en: {}, ko: {}, 'zh-cn': {}, 'zh-tw': {} } } = this.props; //eslint-disable-line
     const { activeLocale, activeCurrency } = this.context;
     const cartCount = orderUtil.getProductVariantsFromCart(cart).length;
     const renderSearchDropdownItems = () => {
@@ -221,18 +223,20 @@ export default React.createClass({
       ];
     };
     const renderTopBanner = () => {
-      if (activeLocale.startsWith('zh-')) {
-        const style = { backgroundImage: `url("${constants.resourceRoot}/banner/desktop_top_banner_${activeLocale}_20160603.gif")` };
-        return (
-          <div className="img-top-banner">
-            <div
-              style={style}
-              className="inner"
-            ></div>
-          </div>
-        );
+      const currentTopBanner = desktop_top_banner[activeLocale];
+      const image = _.get(currentTopBanner, 'rows[0].image');
+      if (!image) {
+        return null;
       }
-      return <div className="top-banner"></div>;
+      const style = { backgroundImage: `url("${image.url}")` };
+      return (
+        <div className="img-top-banner">
+          <div
+            style={style}
+            className="inner"
+          ></div>
+        </div>
+      );
     };
     const toggleDropdown = (e) => {
       const elem = $(e.target).closest(`.${leftMenuItemClassName}`);

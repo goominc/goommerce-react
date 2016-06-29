@@ -69,6 +69,7 @@ const App = React.createClass({
     if (this.isLogin()) {
       this.props.loadCartIfEmpty();
     }
+    this.props.loadCMSData('desktop_top_banner');
     this.props.loadCategories();
   },
   isLogin() {
@@ -141,6 +142,7 @@ export default connect(
     auth: state.auth,
     cart: state.cart,
     categories: state.categories,
+    desktop_top_banner: state.cms.desktop_top_banner,
     showSearchDropdown: state.headerSearchCategory.showDropdown,
     activeCategory: state.headerSearchCategory.activeCategory,
     error: state.errorHandler.error,
