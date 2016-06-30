@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import _ from 'lodash';
 
+import i18n from 'commons/utils/i18n';
 import { vBankCodeToName } from 'commons/utils/inipay';
 import { ApiAction, setHeader } from 'redux/actions';
 const { loadOrder } = ApiAction;
@@ -64,9 +65,9 @@ const OrderDone = React.createClass({
     if (order.paymentStatus === 100) {
       return (
         <div>
-          <h5 className="result-tit">Thank you for your purchase!</h5>
-          <p>We have received your payment.</p>
-          <p>Amount:
+          <h5 className="result-tit">{i18n.get('mOrder.thanksForYourOrderPurchase')}</h5>
+          <p>{i18n.get('mOrder.weHaveReceivedYourPayment')}</p>
+          <p>{i18n.get('word.amount')}Amount:
           <span className="pay-money">{activeCurrency} {order[`total${activeCurrency}`]}</span>
           </p>
         </div>

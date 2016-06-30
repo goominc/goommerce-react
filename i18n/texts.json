@@ -873,6 +873,18 @@
       "ko": "Please Enter Zip Code",
       "zh-cn": "请输入邮编",
       "zh-tw": "請輸入郵編"
+    },
+    "thanksForYourOrderPurchase": {
+      "en": "Thanks for your purchase!",
+      "ko": "Thanks for your purchase!",
+      "zh-cn": "Thanks for your purchase!",
+      "zh-tw": "Thanks for your purchase!"
+    },
+    "weHaveReceivedYourPayment": {
+      "en": "We have received your payment.",
+      "ko": "We have received your payment.",
+      "zh-cn": "We have received your payment.",
+      "zh-tw": "We have received your payment."
     }
   },
   "mServiceInfo": {
@@ -2781,6 +2793,12 @@
       "ko": "전체 카테고리",
       "zh-cn": "所有分类",
       "zh-tw": "所有分類"
+    },
+    "amount": {
+      "en": "amount",
+      "ko": "amount",
+      "zh-cn": "amount",
+      "zh-tw": "amount"
     },
     "brands": {
       "en": "Brands",
