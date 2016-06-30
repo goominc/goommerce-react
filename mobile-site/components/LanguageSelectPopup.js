@@ -46,7 +46,18 @@ export default React.createClass({
             <div className="language-select-box">
               <div className="title">언어 / 语言 / 語言 / Language</div>
               <div className="select-language">
-                <Select ref="stateSelect" autofocus options={options} value={this.state.selectValue} simpleValue name="selected-state" onChange={this.updateValue} clearable={false} searchable={false} placeholder="select..." />
+                <Select
+                  ref="stateSelect"
+                  autofocus
+                  options={options}
+                  value={this.state.selectValue}
+                  simpleValue
+                  name="selected-state"
+                  onChange={this.updateValue}
+                  clearable={false}
+                  searchable={false}
+                  placeholder="select..."
+                />
               </div>
               <button type="button" className="language-select-button" onClick={closePopup}>OK</button>
             </div>
