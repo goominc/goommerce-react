@@ -146,8 +146,8 @@ const OrderDone = React.createClass({
             </div>
         </div> */ }
         <div className="aex-gap">
-            <Link to="/myOrder" className="aex-button white-btn">My Orders</Link>
-            <a href="/" className="aex-button white-btn">Home</a>
+            <Link to="/myOrder" className="aex-button white-btn">{i18n.get('pcMypage.myOrders')}</Link>
+            <a href="/" className="aex-button white-btn">{i18n.get('word.home')}</a>
         </div>
     </div>
     );
