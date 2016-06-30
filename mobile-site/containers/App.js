@@ -107,8 +107,8 @@ const App = React.createClass({
     const locales = {
       ko: '한국어',
       en: 'English',
-      'zh-cn': '简体',
-      'zh-tw': '繁體',
+      'zh-cn': '中文(简体)',
+      'zh-tw': '中文(繁體)',
     };
     const currencies = [
       'KRW',

@@ -80,8 +80,8 @@ export default React.createClass({
     const locales = {
       ko: { img: `${constants.resourceRoot}/header/flag-kor.png`, name: '한국어' },
       en: { img: `${constants.resourceRoot}/header/flag-eng.png`, name: 'ENGLISH' },
-      'zh-cn': { img: `${constants.resourceRoot}/header/flag-chi.png`, name: '简体' },
-      'zh-tw': { img: `${constants.resourceRoot}/header/flag-tai.png`, name: '繁體' },
+      'zh-cn': { img: `${constants.resourceRoot}/header/flag-chi.png`, name: '中文(简体)' },
+      'zh-tw': { img: `${constants.resourceRoot}/header/flag-tai.png`, name: '中文(繁體)' },
     };
     const renderLocales = () => (
       <div className="dropdown-box">

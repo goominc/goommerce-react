@@ -12,8 +12,8 @@ export default React.createClass({
         </div>
         <div className="center_cont">
           <div className="center_ul1">
-            <div>10:00 ~18:00 週一到週五</div>
-            <div className="center_con_text2">12:30 ~ 13:30 午休</div>
+            <div>10:00 ~18:00</div>
+            <div className="center_con_text2">12:30 ~ 13:30</div>
           </div>
           <div className="center_ul2">
             <div>聯繫方式</div>
