@@ -44,7 +44,7 @@ const DefaultRouter = React.createClass({
         pageLimit={pageLimit}
       />;
     return (
-      <BrandCustomContainer brandId={brandId} location={location}>
+      <BrandCustomContainer brandId={brandId} location={location} pageLimit={pageLimit}>
         <BrandDefaultHeader isOpenMenu={isOpenMenu} toggleBrandPageMenu={toggleBrandPageMenu} />
         {body}
         <CommonFooter />

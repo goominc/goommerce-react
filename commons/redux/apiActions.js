@@ -778,17 +778,17 @@ export function resetSearchResult(target) {
   };
 }
 
-const doSearch = (query, offset = 0, limit = 10, key, actionType) => (dispatch, getState) => {
+const doSearch = (query, key, actionType) => (dispatch, getState) => {
   const state = getState();
-  query.offset = offset;
-  query.limit = limit;
+  const { offset, limit } = query;
   const url = `/api/v1/${key}s/search?${$.param(query)}`;
-  ajaxReturnPromise(state.auth, 'get', url).then((res) => {
+  return ajaxReturnPromise(state.auth, 'get', url).then((res) => {
     const action = {
       type: actionType,
       offset,
       limit,
       text: query.q,
+      isIncremental: !!query.isIncremental,
       ..._.pick(res, 'aggs', 'pagination'),
     };
     action[`${key}s`] = res[`${key}s`];
@@ -801,7 +801,7 @@ const doSearch = (query, offset = 0, limit = 10, key, actionType) => (dispatch, 
   });
 };
 
-export function searchBrands(text, offset, limit) {
+export function searchBrands(text, offset = 0, limit = 10) {
   return (dispatch, getState) => {
     const query = { q: text };
     const key = 'brand';
@@ -809,12 +809,12 @@ export function searchBrands(text, offset, limit) {
       dispatch(resetSearchResult(key));
       return;
     }
-    doSearch(query, offset, limit, key, 'BRAND_SEARCH_RESULT')(dispatch, getState);
+    doSearch({ ...query, offset, limit }, key, 'BRAND_SEARCH_RESULT')(dispatch, getState);
   };
 }
 
-export function searchProducts(query, offset, limit) {
-  return doSearch(query, offset, limit, 'product', 'PRODUCT_SEARCH_RESULT');
+export function searchProducts(query, offset = 0, limit = 10) {
+  return doSearch({ ...query, offset, limit }, 'product', 'PRODUCT_SEARCH_RESULT');
 }
 
 export function fakeLogin(userId) {

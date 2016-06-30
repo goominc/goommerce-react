@@ -9,6 +9,7 @@ import { getBuildingInfo } from 'commons/utils/brandUtil';
 import { formatPrice } from 'commons/utils/numberUtil';
 import { getProductMainImage } from 'commons/utils/productUtil';
 import storeUtil from 'commons/utils/storeUtil';
+import scrollUtil from 'utils/scrollUtil';
 
 export default React.createClass({
   propTypes: {
@@ -25,8 +26,31 @@ export default React.createClass({
     ApiAction: PropTypes.object,
     currencySign: PropTypes.object,
   },
-  getInitialState() {
-    return { lastPageNum: 1 };
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  },
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
+  handleScroll() {
+    scrollUtil.incrementalFetch(this.fnIncrementalFetch);
+  },
+  fnIncrementalFetch() {
+    const { searchResult, pageLimit, activeCategoryId, loadProducts } = this.props;
+    const nextOffset = searchResult.pagination.offset + pageLimit;
+    const nextPage = Math.floor(nextOffset / pageLimit) + 1;
+    if (nextOffset < searchResult.pagination.total) {
+      const loadingElem = $('.content-box .loading');
+      const loadingDisplay = loadingElem.css('display');
+      if (loadingDisplay === 'block') {
+        // 2016. 06. 20. [heekyu] do not fetch when already loading
+        return;
+      }
+      loadingElem.show();
+      loadProducts(activeCategoryId, nextPage, pageLimit, true).then(() => {
+        loadingElem.hide();
+      });
+    }
   },
   render() {
     const { activeLocale, activeCurrency, activeCategoryId } = this.props;
@@ -37,9 +61,7 @@ export default React.createClass({
       return null;
     }
 
-    const loadProducts = (...args) => {
-      this.props.loadProducts.apply(null, args);
-    };
+    const loadProducts = (...args) => this.props.loadProducts.apply(null, args);
     const getLinkUrl = (categoryId) => `${location.pathname}${categoryId ? `?categoryId=${categoryId}` : ''}`;
     const genLink = (elem, categoryId) => (
       <Link
@@ -51,6 +73,8 @@ export default React.createClass({
         {elem}
       </Link>
     );
+    const timestamp = new Date().getTime();
+
     const path = storeUtil.getCategoryBreadcrumbPath(activeCategoryId, getLinkUrl);
     const renderBreadcrumb = () => (
       <div className="breadcrumb">
@@ -91,7 +115,7 @@ export default React.createClass({
       };
       if (img) {
         return (
-          <div className="product-item" key={product.id}>
+          <div className="product-item" key={`${product.id}-${timestamp}`}>
             <Link className="mobile-product-image" to={`/products/${product.id}`}>
               <div className="inner-wrap">
                 {renderImage()}
@@ -149,6 +173,7 @@ export default React.createClass({
         <div className="content-box">
           {renderBreadcrumb()}
           {prodDiv}
+          <div className="loading"></div>
         </div>
       </div>
     );

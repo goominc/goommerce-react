@@ -37,6 +37,9 @@ exports.getWishId = (product) => {
 
 exports.getCategoryBreadcrumbPath = (categoryId, genLinkUrl) => {
   const categoryRoot = store.getState().categories.tree;
+  if (!categoryRoot) {
+    return [];
+  }
   let path;
   if (categoryId !== categoryRoot.id) {
     const findPath = (root) => {

@@ -218,9 +218,13 @@ function search(state = { brand: {} }, action) {
   } else if (action.type === 'RESET_SEARCH_RESULT') {
     return omit(state, action.target);
   } else if (action.type === 'PRODUCT_SEARCH_RESULT') {
-    const newState = Object.assign({}, state,
+    const oldProducts = get(state, 'product.products') || [];
+    const newState = assign({}, state,
       { product: pick(action, ['products', 'aggs', 'pagination', 'offset', 'limit', 'text']) }
     );
+    if (action.isIncremental && oldProducts.length) {
+      newState.product.products = oldProducts.concat(newState.product.products);
+    }
     return newState;
   }
   return state;

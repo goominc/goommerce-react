@@ -73,7 +73,7 @@ const ProductList = React.createClass({
       });
     }
 
-    incrementalFetch(this.doFetch);
+    window.addEventListener('scroll', this.handleScroll);
   },
   componentWillReceiveProps(nextProps) {
     const props = ['params', 'filterPrice', 'filterBrand'];
@@ -90,13 +90,16 @@ const ProductList = React.createClass({
     }
   },
   componentWillUnmount() {
-    $(window).unbind('scroll');
+    window.removeEventListener('scroll', this.handleScroll);
   },
   setFilterPrice(key) {
     this.setState({ filterPrice: key });
   },
   setFilterBrand(key) {
     this.setState({ filterBrand: key });
+  },
+  handleScroll() {
+    incrementalFetch(this.doFetch);
   },
   resetFilter() {
     this.setState({ filterPrice: null, filterBrand: null });

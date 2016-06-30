@@ -32,7 +32,7 @@ const Category = React.createClass({
     this.props.loadCategories();
     this.doSearch(this.props);
 
-    incrementalFetch(this.doFetch);
+    window.addEventListener('scroll', this.handleScroll);
   },
   componentWillReceiveProps(nextProps) {
     const { params } = nextProps;
@@ -49,7 +49,10 @@ const Category = React.createClass({
     }
   },
   componentWillUnmount() {
-    $(window).unbind('scroll');
+    window.removeEventListener('scroll', this.handleScroll);
+  },
+  handleScroll() {
+    incrementalFetch(this.doFetch);
   },
   doSearch(props) {
     const { params } = props;

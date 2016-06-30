@@ -13,6 +13,7 @@ const BrandCustomContainer = React.createClass({
     auth: PropTypes.object,
     brandId: PropTypes.number,
     location: PropTypes.object,
+    pageLimit: PropTypes.number,
   },
   contextTypes: {
     ApiAction: PropTypes.object,
@@ -22,14 +23,14 @@ const BrandCustomContainer = React.createClass({
     return {};
   },
   componentDidMount() {
-    const { auth, brandId, location } = this.props;
+    const { auth, brandId, location, pageLimit } = this.props;
     if (!brandId) {
       return;
     }
     const { ApiAction } = this.context;
     ApiAction.loadBrand(brandId);
     const { categoryId, pageNum } = location.query;
-    this.loadProducts(categoryId, pageNum);
+    this.loadProducts(categoryId, pageNum, pageLimit);
     // TODO load categories only when not exists
     ApiAction.loadCategories();
     const query = {
@@ -46,18 +47,19 @@ const BrandCustomContainer = React.createClass({
       ApiAction.loadWishlist();
     }
   },
-  loadProducts(categoryId, pageNum, limit = 30) {
+  loadProducts(categoryId, pageNum, limit = 30, isIncremental = false) {
     const { brandId } = this.props;
     const { ApiAction } = this.context;
     const offset = (pageNum - 1) * limit || 0;
     const query = {
       brandId,
+      isIncremental,
       sorts: '-id',
     };
     if (categoryId) {
       query.categoryId = categoryId;
     }
-    ApiAction.searchProducts(query, offset, limit);
+    return ApiAction.searchProducts(query, offset, limit);
   },
   render() {
     const { brandId } = this.props;
