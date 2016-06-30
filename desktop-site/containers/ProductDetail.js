@@ -76,9 +76,6 @@ const ProductDetail = React.createClass({
     this.context.ApiAction.loadWishlist();
     this.context.ApiAction.loadProductAndThen(this.props.productId, afterLoadProduct);
   },
-  componentDidUnMount() {
-    this.props.setActiveImage({ url: '' });
-  },
   buildImages() {
     const { product } = this.props;
     const images = [];
