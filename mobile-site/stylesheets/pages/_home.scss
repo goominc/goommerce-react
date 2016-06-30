@@ -248,6 +248,7 @@
   display: block;
 }
 .mobile-product-image {
+  display: block;
   @include default-responsive-img-wrap();
   width: 100%;
 }

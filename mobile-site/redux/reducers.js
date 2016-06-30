@@ -32,7 +32,7 @@ function sign(state = { show: false, flag: 'sign' }, action) {
   return state;
 }
 
-function search(state = { showSearch: false }, action) {
+function headerSearch(state = { showSearch: false }, action) {
   if (action.type === 'TOGGLE_SEARCH') {
     return assign({}, state, { showSearch: !state.showSearch });
   }
@@ -124,11 +124,17 @@ function pageSignup(state = {}, action) {
   }
   return state;
 }
+function pageBrandPage(state = {}, action) {
+  if (action.type === 'TOGGLE_BRAND_PAGE_MENU') {
+    return Object.assign({}, state, { isOpenMenu: !state.isOpenMenu });
+  }
+  return state;
+}
 
 const rootReducer = combineReducers(
   Object.assign({}, CommonReducers.reducers, {
-    errorHandler, checkout, menu, sign, search, menuAddon, header,
-    pageProductList, pageProductDetail, pageSignup,
+    errorHandler, checkout, menu, sign, headerSearch, menuAddon, header,
+    pageProductList, pageProductDetail, pageSignup, pageBrandPage
   })
 );
 

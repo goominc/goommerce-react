@@ -29,11 +29,12 @@
 
 // 6. Page-specific styles
 @import
+  'pages/brand',
+  'pages/brand_default',
   'pages/home',
   'pages/category',
   'pages/productlist',
   'pages/productdetail',
-  'pages/brand',
   'pages/cart',
   'pages/order',
   'pages/address',

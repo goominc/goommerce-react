@@ -5,6 +5,8 @@ import {
   App,
   Cart,
   Category,
+  DefaultRouter,
+  GlobalWrapper,
   Home,
   Order,
   OrderDone,
@@ -96,6 +98,9 @@ export default function configure(store) {
       <Route path="/accounts/reset" component={ResetPassword} />
       <Route path="/user/terms" component={UserTermsContainer} />
       <Route path="/user/policies" component={UserPoliciesContainer} />
+      <Route component={GlobalWrapper}>
+        <Route path="*" component={DefaultRouter} />
+      </Route>
     </Route>
   );
 }

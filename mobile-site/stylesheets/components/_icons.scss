@@ -273,26 +273,35 @@
     content: "\e67f"}
 
 @mixin simple-icon($icon-name, $width, $height) {
-    background-image: url($base-url-pc + '/main/' + $icon-name + '.png');
-    background-repeat: no-repeat;
-    display: inline-block;
-    height: $height;
-    width: $width;
+  background-image: url($base-url-pc + '/main/' + $icon-name + '.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  display: inline-block;
+  height: $height;
+  width: $width;
 }
 
 $icons: ('icon-cart', 'icon-payment', 'icon-check');
 
 @mixin generate-icons {
-    @for $i from 1 through length($icons) {
-        $icon: nth($icons, $i);
-        .#{$icon} {
-            @include simple-icon($icon, 38px, 38px);
-        }
+  @for $i from 1 through length($icons) {
+    $icon: nth($icons, $i);
+    .#{$icon} {
+        @include simple-icon($icon, 38px, 38px);
     }
+  }
 }
 
 @include generate-icons();
 
+@mixin generate-icons-with-size($arr) {
+  @for $i from 1 through length($arr) {
+    $icon: nth($arr, $i);
+    .#{nth($icon, 1)} {
+      @include simple-icon(nth($icon, 1), nth($icon, 2), nth($icon, 3));
+    }
+  }
+}
 $payment-icons: (
                 ('icon-alipay', 43px, 14px),
                 ('icon-credit-card', 34px, 23px),
@@ -306,13 +315,14 @@ $payment-icons: (
                 ('icon-print', 14px, 12px),
                 ('icon-order-summary-arrow-right', 13px, 20px),
 );
+@include generate-icons-with-size($payment-icons);
 
-@mixin generate-payment-icons {
-    @for $i from 1 through length($payment-icons) {
-        $icon: nth($payment-icons, $i);
-        .#{nth($icon, 1)} {
-            @include simple-icon(nth($icon, 1), nth($icon, 2), nth($icon, 3));
-        }
-    }
-}
-@include generate-payment-icons();
+$brand-icons: (
+                ('icon-heart-red_brand1', 25px, 20px),
+                ('icon-heart-gray_brand1', 25px, 20px),
+                ('icon-star-gray_brand1', 20px, 20px),
+                ('icon-star-yellow_brand1', 20px, 20px),
+                ('icon-cart_brand1', 25px, 20px),
+                ('icon-navi-arrow-right_brand1', 8px, 14px),
+);
+@include generate-icons-with-size($brand-icons);

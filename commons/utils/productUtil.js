@@ -62,3 +62,18 @@ exports.getProductMainPrice = (product, currency) => {
   }
   return res;
 };
+
+exports.getCategoryTree = (aggs, categoryRoot) => {
+  if (!aggs || !aggs.categories || !aggs.categories[categoryRoot.id]) {
+    return {};
+  }
+  const dfs = (root) => {
+    if (aggs.categories[root.id]) {
+      const res = Object.assign({}, root, aggs.categories[root.id]);
+      res.children = res.children.map(dfs).filter((r) => !!r);
+      return res;
+    }
+    return null;
+  };
+  return dfs(categoryRoot);
+};

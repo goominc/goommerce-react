@@ -47,10 +47,10 @@ exports.getCategoryBreadcrumbPath = (categoryId, genLinkUrl) => {
         const res = findPath(root.children[i]);
         if (res) {
           if (genLinkUrl) {
-            res.unshift({ link: genLinkUrl(root), name: root.name });
+            res.unshift({ link: genLinkUrl(root), name: root.name, category: root });
           } else {
             // TODO Fix Problem do not reload when click link
-            res.unshift({ name: root.name });
+            res.unshift({ name: root.name, category: root });
           }
 
           return res;
@@ -61,7 +61,7 @@ exports.getCategoryBreadcrumbPath = (categoryId, genLinkUrl) => {
     path = findPath(categoryRoot);
   }
   if (!path) {
-    path = [{ name: i18n.getObj('word.allCategories') }];
+    path = [{ name: i18n.getObj('word.allCategories'), category: categoryRoot }];
   }
   return path;
 };

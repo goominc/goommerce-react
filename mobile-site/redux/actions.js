@@ -22,6 +22,12 @@ export function toggleMenu() {
   };
 }
 
+export function toggleBrandPageMenu() {
+  return {
+    type: 'TOGGLE_BRAND_PAGE_MENU',
+  };
+}
+
 export function toggleSignRegister(show, flag = 'sign') {
   return {
     type: 'TOGGLE_SIGN_REGISTER',

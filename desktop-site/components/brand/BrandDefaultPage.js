@@ -8,7 +8,7 @@ import Breadcrumb from 'components/Breadcrumb';
 import BrandProductItem from './BrandProductItem';
 
 import { getBuildingInfo } from 'commons/utils/brandUtil';
-import { formatPrice } from 'commons/utils/numberUtil';
+import { getCategoryTree } from 'commons/utils/productUtil';
 import storeUtil from 'commons/utils/storeUtil';
 import i18n from 'commons/utils/i18n';
 
@@ -46,20 +46,6 @@ export default React.createClass({
       // $('.right-container .item img').attr('src', '');
       this.props.loadProducts.apply(null, args);
     };
-    const getCategoryTree = () => {
-      if (!aggs || !aggs.categories || !aggs.categories[categoryRoot.id]) {
-        return {};
-      }
-      const dfs = (root) => {
-        if (aggs.categories[root.id]) {
-          const res = Object.assign({}, root, aggs.categories[root.id]);
-          res.children = res.children.map(dfs).filter((r) => !!r);
-          return res;
-        }
-        return null;
-      };
-      return dfs(categoryRoot);
-    };
     const getLinkUrl = (categoryId, pageNum) => `${location.pathname}?pageNum=${pageNum}${categoryId ? `&categoryId=${categoryId}` : ''}`;
     const genLink = (elem, categoryId, pageNum) => (
       <Link
@@ -95,23 +81,6 @@ export default React.createClass({
       products.forEach((product) => {
         product.wishId = storeUtil.getWishId(product);
       });
-      const renderProductBottom = (product) => {
-        if (auth.id) {
-          return (
-            <div className="item-desc-box">
-              <div className="product-name">{_.get(product, `name.${activeLocale}`)}</div>
-              <div className="price">
-                {formatPrice(product[activeCurrency] || 0, activeCurrency, currencySign)}
-              </div>
-              {product.wishId ?
-                <i className="bs bs-icon-heart-red" onClick={() => ApiAction.deleteWish(product.wishId)}></i> :
-                <i className="bs bs-icon-heart-white" onClick={() => ApiAction.addWish(product.id)}></i>
-              }
-            </div>
-          );
-        }
-        return null;
-      };
       const res = [];
       let p = 0;
       while (p < products.length) {
@@ -170,7 +139,7 @@ export default React.createClass({
           </div>
           <div className="content-container">
             <div className="left-container">
-              {(getCategoryTree().children || []).map(renderTopCategory)}
+              {(getCategoryTree(aggs, categoryRoot).children || []).map(renderTopCategory)}
             </div>
             <div className="right-container">
               <Breadcrumb path={path} />
