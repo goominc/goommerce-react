@@ -15,6 +15,7 @@ import ResponsiveImage from 'components/snippet/ResponsiveImage';
 export default React.createClass({
   propTypes: {
     activeImage: PropTypes.object,
+    auth: PropTypes.object,
     addCartProduct: PropTypes.func,
     addFavoriteBrand: PropTypes.func,
     addWish: PropTypes.func,
@@ -33,7 +34,6 @@ export default React.createClass({
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
     currencySign: PropTypes.object,
-    auth: PropTypes.object,
   },
   getInitialState() {
     return {};
@@ -99,12 +99,12 @@ export default React.createClass({
   },
   render() {
     const { product, images, activeImage, variantAttributes, attributes, selectedVariant } = this.props
-    const { addCartProduct, buyNow, toggleWish, addFavoriteBrand, isLikeBrand, wishId } = this.props;
+    const { addCartProduct, auth, buyNow, toggleWish, addFavoriteBrand, isLikeBrand, wishId } = this.props;
     if (!product || !variantAttributes) {
       return (<div className="container no-padding"></div>);
     }
     const brand = product.brand;
-    const { auth, activeLocale, activeCurrency, currencySign } = this.context;
+    const { activeLocale, activeCurrency, currencySign } = this.context;
     const renderPreload = (image) => <img key={image.url} src={image.url} width="1" height="1" />;
     const renderThumbnail = (image) => {
       let className = '';

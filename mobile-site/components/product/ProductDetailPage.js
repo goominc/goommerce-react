@@ -12,6 +12,7 @@ import i18n from 'commons/utils/i18n';
 
 export default React.createClass({
   propTypes: {
+    auth: PropTypes.object,
     product: PropTypes.object,
     images: PropTypes.array,
     variants: PropTypes.array,
@@ -33,7 +34,6 @@ export default React.createClass({
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
     currencySign: PropTypes.object,
-    auth: PropTypes.object,
   },
   getInitialState() {
     return {};
@@ -43,9 +43,9 @@ export default React.createClass({
     $('.add-favorite').addClass('active');
   },
   render() {
-    const { product, images, showCart, variants, colors, sizes,
+    const { auth, product, images, showCart, variants, colors, sizes,
       currentColor, currentSize, currentVariant } = this.props;
-    const { auth, activeCurrency, currencySign } = this.context;
+    const { activeCurrency, currencySign } = this.context;
     if (!product || !Object.keys(product).length) {
       return (
         <div />

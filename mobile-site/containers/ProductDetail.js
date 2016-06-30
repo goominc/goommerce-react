@@ -185,6 +185,7 @@ const ProductDetail = React.createClass({
     return (
       <div>
         <ProductDetailPage
+          auth={this.props.auth}
           product={this.state.product} images={images} variants={this.state.productVariants}
           colors={this.state.productColors} sizes={this.state.productSizes}
           currentColor={this.props.color} currentSize={this.props.size}

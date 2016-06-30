@@ -48,7 +48,6 @@ const App = React.createClass({
     isLogin: PropTypes.func,
     hasRole: PropTypes.func,
     ApiAction: PropTypes.object,
-    auth: PropTypes.object,
   },
   getChildContext() {
     const res = {
@@ -57,7 +56,6 @@ const App = React.createClass({
       currencySign: { KRW: '￦', USD: '$', CNY: '￥' }, // TODO remove
       isLogin: this.isLogin,
       hasRole: () => true, // TODO
-      auth: this.props.auth,
     };
     const actions = {};
     const apiFuncs = Object.keys(ApiAction);
