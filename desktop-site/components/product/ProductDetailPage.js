@@ -33,6 +33,7 @@ export default React.createClass({
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
     currencySign: PropTypes.object,
+    auth: PropTypes.object,
   },
   getInitialState() {
     return {};
@@ -103,7 +104,7 @@ export default React.createClass({
       return (<div className="container no-padding"></div>);
     }
     const brand = product.brand;
-    const { activeLocale, activeCurrency, currencySign } = this.context;
+    const { auth, activeLocale, activeCurrency, currencySign } = this.context;
     const renderPreload = (image) => <img key={image.url} src={image.url} width="1" height="1" />;
     const renderThumbnail = (image) => {
       let className = '';
@@ -405,7 +406,7 @@ export default React.createClass({
             </div>
             <div className="normal-field-box">
               <div className="field-label">{i18n.get('pcItemDetail.building')}</div>
-              <div className="field-content">{_.get(product, 'brand.data.location.building.name.ko')}</div>
+              <div className="field-content">{auth.hasOwnProperty() ? _.get(product, 'brand.data.location.building.name.ko') : i18n.get('mItemDetail.buildingInfoOnlySignup')}</div>
             </div>
             {renderBrand()}
             {renderAllAttributes()}

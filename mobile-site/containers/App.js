@@ -59,6 +59,7 @@ const App = React.createClass({
       activeLocale: this.props.activeLocale,
       activeCurrency: this.props.activeCurrency,
       currencySign: { KRW: '￦', USD: '$', CNY: '￥' }, // TODO remove
+      auth: this.props.auth,
     };
     const actions = {};
     const apiFuncs = Object.keys(ApiAction);
@@ -66,7 +67,7 @@ const App = React.createClass({
       actions[api] = this.props[api];
     });
     res.ApiAction = actions;
-    return Object.assign({}, res, { auth: this.props.auth });
+    return res;
   },
   componentDidMount() {
     this.props.loadCartIfEmpty();
