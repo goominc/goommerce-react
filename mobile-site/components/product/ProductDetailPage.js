@@ -33,6 +33,7 @@ export default React.createClass({
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
     currencySign: PropTypes.object,
+    auth: PropTypes.object,
   },
   getInitialState() {
     return {};
@@ -44,7 +45,7 @@ export default React.createClass({
   render() {
     const { product, images, showCart, variants, colors, sizes,
       currentColor, currentSize, currentVariant } = this.props;
-    const { activeCurrency, currencySign } = this.context;
+    const { auth, activeCurrency, currencySign } = this.context;
     if (!product || !Object.keys(product).length) {
       return (
         <div />
@@ -58,15 +59,14 @@ export default React.createClass({
           <Link to={`/brands/${product.brand.id}`}>
             <header className="store-title">{brandUtil.getName(product.brand)}</header>
             <p className="store-info">
-              { /* 2016.06.23 [minho] s */
-                _.get(product.brand, 'data.location.building.name.ko') }
+              {auth.hasOwnProperty() ? _.get(product.brand, 'data.location.building.name.ko') : i18n.get('mItemDetail.buildingInfoOnlySignup')}
             </p>
             { /* <p className="store-info">
               <img src="http://i01.i.aliimg.com/wimg/feedback/icon/25-s.gif" className="store-level" />
               <span className="store-postive">94.7% positive feedback the past</span>
             </p> */ }
           </Link>
-          <div className="add-favorite" onClick={() => this.handleFavorite(product.brand.id)}>{i18n.get('pcItemDetail.favoriteBrands')}</div>
+          {auth.hasOwnProperty() ? <div className="add-favorite" onClick={() => this.handleFavorite(product.brand.id)}>{i18n.get('pcItemDetail.favoriteBrands')}</div> : null}
         </section>
         );
       }

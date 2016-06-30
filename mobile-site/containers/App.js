@@ -52,6 +52,7 @@ const App = React.createClass({
     activeCurrency: PropTypes.string,
     currencySign: PropTypes.object,
     ApiAction: PropTypes.object,
+    auth: PropTypes.object,
   },
   getChildContext() {
     const res = {
@@ -65,7 +66,7 @@ const App = React.createClass({
       actions[api] = this.props[api];
     });
     res.ApiAction = actions;
-    return res;
+    return Object.assign({}, res, { auth: this.props.auth });
   },
   componentDidMount() {
     this.props.loadCartIfEmpty();
