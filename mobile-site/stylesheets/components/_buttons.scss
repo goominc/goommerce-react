@@ -2,19 +2,29 @@
 // This file contains all styles related to the button component.
 // -----------------------------------------------------------------------------
 
-.go-top {
+$go-top-default-bottom: 50px;
+$go-top-default-right: 15px;
+$go-top-active: inline;
+
+@mixin goTopDefault($bottom, $go-top-active) {
   position: fixed;
-  bottom: 50px;
-  right: 15px;
-  z-index:5000;
-  display: none;
+  bottom: $go-top-default-bottom + $bottom;
+  right: $go-top-default-right;
+  z-index: 5000;
+  display: $go-top-active;
   width: 35px;
   height: 35px;
   background-image: url($base-url + '/main/m-go-top.png');
   background-repeat: no-repeat;
   background-size: contain;
-  &.active {
-    display: inline;
-    opacity: 0.8;
-  }
+  opacity: 0.8;
 }
+
+.go-top {
+  @include goTopDefault(0px, $go-top-active);
+  &.cart {
+    @include goTopDefault(35px, $go-top-active);  }
+  &.orders {
+    @include goTopDefault(0px, none);  }
+}
+
