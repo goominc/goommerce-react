@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import brandUtil from 'commons/utils/brandUtil';
 
+import i18n from 'commons/utils/i18n';
+
 export default React.createClass({
   propTypes: {
     show: PropTypes.bool.isRequired,
@@ -85,13 +87,13 @@ export default React.createClass({
             <div className="refine-main">
               <div className="refine-main-inner">
                 <div className="filter-group">
-                  <p className="filter-title">가격</p>
+                  <p className="filter-title">{i18n.get('word.price')}</p>
                   <div className="filter-item-group">
                     {renderPrice()}
                   </div>
                 </div>
                 <div className="filter-group">
-                  <p className="filter-title">브랜드</p>
+                  <p className="filter-title">{i18n.get('word.brands')}</p>
                   <div className="filter-item-group">
                     {renderBrand()}
                   </div>
