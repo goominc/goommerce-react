@@ -13,8 +13,8 @@ export default React.createClass({
             <p className="phone_num"><a href="tel:02-2272-1122">02-2272-1122</a></p>
             <div className="top_info">
               <p className="top_email">이메일 : <a className="mail_button Roboto" href="mailto:CS@linkshops.com">cs@linkshops.com</a></p>
-              <p className="top_kakao_buyer">카카오톡 ID : <span className="Roboto">linkshops</span> (구매회원)</p>
-              <p className="top_kakao_seller"><span className="opac0">카카오톡 ID :</span> <span className="Roboto">링크샵스 판매자 센터</span> (판매회원)</p>
+              <p className="top_kakao_buyer">카카오톡 ID : <span className="Roboto">@linkshops</span> (구매회원)</p>
+              <p className="top_kakao_seller"><span className="opac0">카카오톡 ID :</span> <span className="Roboto">@링크샵스 판매자 센터</span> (판매회원)</p>
               <p className="top_wechat Roboto">Wechat : linkshops_china</p>
             </div>
           </div>

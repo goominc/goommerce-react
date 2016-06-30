@@ -39,7 +39,7 @@ export default React.createClass({
         </div>
         <div className="signup-done-contact">
           <h3>가입절차 문의</h3>
-          <p>카카오톡 ID : linkshops</p>
+          <p>카카오톡 ID : @linkshops</p>
           <p>이메일 : <a href="mailto:cs@linkshops.com">cs@linkshops.com</a></p>
           <p>고객센터 : 02-2272-1122</p>
           <Link to="/" className="signin-button go-home">홈으로 가기</Link>
