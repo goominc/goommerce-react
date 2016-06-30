@@ -63,6 +63,8 @@ $cart-popup-height: 150px;
 .add-cart-popup {
   @include popup-body($cart-popup-width, $cart-popup-height);
   padding: 20px 15px 5px 15px;
+  top: 50%;
+  margin-top: -($cart-popup-height + 50px);
   .popup-title {
     text-align: center;
     span {
