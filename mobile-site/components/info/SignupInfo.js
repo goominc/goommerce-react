@@ -41,7 +41,7 @@ export default React.createClass({
         <div className="in_seller_text">
           <p>고객센터 : <span className="roboto">02-2272-1122</span></p>
           <p className="Roboto">이메일 : <a className="mail_button" href="mailto:CS@linkshops.com">CS@linkshops.com</a></p>
-          <p>카카오톡 ID : <span className="Roboto">Linkshops_brand</span></p>
+          <p>카카오톡 ID : <span className="Roboto">링크샵스 판매자 센터</span></p>
         </div>
       </div>
     );

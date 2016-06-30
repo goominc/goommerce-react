@@ -360,7 +360,7 @@
     },
     "customerCenter8": {
       "en": "Wechat : linkshops-china",
-      "ko": "판매회원 상담 카카오톡 ID - linkshops_brand",
+      "ko": "판매회원 상담 카카오톡 ID - 링크샵스 판매자 센터",
       "zh-cn": "Line  linkshops",
       "zh-tw": "Line  linkshops"
     }
@@ -1176,13 +1176,13 @@
     },
     "kakaoTalk": {
       "en": "kakao talk : linkshops",
-      "ko": "구매회원 상담 Linkshops",
+      "ko": "구매회원 상담 : Linkshops",
       "zh-cn": "kakao talk : linkshops",
       "zh-tw": "kakao talk : linkshops"
     },
     "wechat": {
       "en": "Wechat : linkshops-china",
-      "ko": "판매회원 상담 Linkshops_brand",
+      "ko": "판매회원 상담 : 링크샵스 판매자 센터",
       "zh-cn": "Wechat : linkshops-china",
       "zh-tw": "Wechat : linkshops-china"
     }
