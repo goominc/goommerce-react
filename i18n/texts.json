@@ -353,14 +353,14 @@
       "zh-tw": "E-mail  cs@linkshops.com"
     },
     "customerCenter7": {
-      "en": "kakaotalk ID : @linkshops",
-      "ko": "구매회원 상담 카카오톡 ID - @linkshops",
+      "en": "kakaotalk ID : linkshops",
+      "ko": "구매회원 상담 카카오톡 ID - linkshops",
       "zh-cn": "微信  linkshops-china",
       "zh-tw": "微信  linkshops-china"
     },
     "customerCenter8": {
       "en": "Wechat : linkshops-china",
-      "ko": "판매회원 상담 카카오톡 ID - @링크샵스 판매자 센터",
+      "ko": "판매회원 상담 카카오톡 ID - linkshops_brand",
       "zh-cn": "Line  linkshops",
       "zh-tw": "Line  linkshops"
     }
@@ -404,7 +404,7 @@
       "zh-cn": "单位: cm",
       "zh-tw": "單位: cm"
     },
-    "buildingInfoOnlySignup":{
+    "buildingInfoOnlySignup": {
       "en": "매장정보는 회원가입후 보실 수 있습니다.",
       "ko": "매장정보는 회원가입후 보실 수 있습니다.",
       "zh-cn": "매장정보는 회원가입후 보실 수 있습니다.",
@@ -1194,13 +1194,13 @@
     },
     "kakaoTalk": {
       "en": "kakao talk : linkshops",
-      "ko": "구매회원 상담 : Linkshops",
+      "ko": "구매회원 상담 Linkshops",
       "zh-cn": "kakao talk : linkshops",
       "zh-tw": "kakao talk : linkshops"
     },
     "wechat": {
       "en": "Wechat : linkshops-china",
-      "ko": "판매회원 상담 : 링크샵스 판매자 센터",
+      "ko": "판매회원 상담 Linkshops_brand",
       "zh-cn": "Wechat : linkshops-china",
       "zh-tw": "Wechat : linkshops-china"
     }
