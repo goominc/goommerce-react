@@ -59,14 +59,14 @@ export default React.createClass({
           <Link to={`/brands/${product.brand.id}`}>
             <header className="store-title">{brandUtil.getName(product.brand)}</header>
             <p className="store-info">
-              {auth.hasOwnProperty() ? _.get(product.brand, 'data.location.building.name.ko') : i18n.get('mItemDetail.buildingInfoOnlySignup')}
+              {auth.id ? _.get(product.brand, 'data.location.building.name.ko') : i18n.get('mItemDetail.buildingInfoOnlySignup')}
             </p>
             { /* <p className="store-info">
               <img src="http://i01.i.aliimg.com/wimg/feedback/icon/25-s.gif" className="store-level" />
               <span className="store-postive">94.7% positive feedback the past</span>
             </p> */ }
           </Link>
-          {auth.hasOwnProperty() ? <div className="add-favorite" onClick={() => this.handleFavorite(product.brand.id)}>{i18n.get('pcItemDetail.favoriteBrands')}</div> : null}
+          {auth.id ? <div className="add-favorite" onClick={() => this.handleFavorite(product.brand.id)}>{i18n.get('pcItemDetail.favoriteBrands')}</div> : null}
         </section>
         );
       }
