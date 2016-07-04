@@ -98,7 +98,11 @@ export default React.createClass({
       };
       return (
         <div key={brand.brand.id} className="row">
-          <div className="brand"><div className="centered">{brandUtil.getName(brand.brand)}</div></div>
+          <div className="brand">
+            <div className="centered">
+              <Link to={`/brands/${brand.brand.id}`}>{brandUtil.getName(brand.brand)}</Link>
+            </div>
+          </div>
           <div className="product-container">
             {(brand.products || []).map((p) =>
               p.productVariants.map((variant, index) => renderVariant(p.product, variant, index)))}
