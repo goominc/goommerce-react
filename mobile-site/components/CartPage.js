@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+import _ from 'lodash';
 
 import i18n from 'commons/utils/i18n';
 import orderUtil from 'commons/utils/orderUtil';
@@ -87,15 +88,14 @@ export default React.createClass({
                   const deleteProduct = () => {
                     this.props.deleteCartProduct(productVariant.productVariant.id);
                   };
-                  const skuIdx = productVariant.productVariant.sku.indexOf('-');
-                  const variantStr = productVariant.productVariant.sku.substr(skuIdx + 1);
+                  const variantStr = `${_.get(productVariant, 'data.color', '')}-${_.get(productVariant, 'data.size', '')}`;
 
                   return (
                     <li className="p-24" key={productVariant.productVariant.id}>
                       <div className="pi-details mb-24 clearfix">
                         <div className="pi-details-pic">
                           <Link to={`/products/${productVariant.productVariant.productId}`}>
-                            <img src={productVariant.productVariant.appImages.default[0].url} />
+                            <img src={_.get(productVariant.productVariant, 'appImages.default[0].url', '')} />
                           </Link>
                         </div>
                         <div className="pi-details-desc">
@@ -185,6 +185,7 @@ export default React.createClass({
       );
     }
 
+    const priceKrw = numberUtil.formatPrice(cart.total.KRW, 'KRW', currencySign);
     return (
       <section className="shopcart-list" id="shopcart-list">
         {this.renderCart()}
@@ -206,7 +207,15 @@ export default React.createClass({
           <div className="accounts bt bb p-24 pt-24 pb-24 clearfix">
             <div className="total">
               <span>{i18n.get('pcCart.total')}:</span>
-              <span className="mt-16 price">{numberUtil.formatPrice(cart.total[activeCurrency], activeCurrency, currencySign)}</span>
+              {activeCurrency === 'KRW' ?
+                <span className="mt-16 price">{priceKrw}</span> :
+                <span className="mt-16 price">
+                  {priceKrw.substring(0, priceKrw.length - 1)} KRW<br />
+                  <span className="approximately">
+                    {numberUtil.formatPrice(cart.total[activeCurrency], activeCurrency, currencySign)} Approximately
+                  </span>
+                </span>
+              }
             </div>
             <div className="ui-button ui-button-main buyall" onClick={this.handleBuyAll}>{i18n.get('word.doOrder')}</div>
           </div>
