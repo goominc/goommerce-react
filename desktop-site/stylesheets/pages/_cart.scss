@@ -437,13 +437,15 @@
     border: 1px solid #aaa;
     border-top: 0;
     overflow-x: hidden;
-    padding: 10px 15px;
+    padding: 10px;
     white-space: nowrap;
     .label {
       display: inline-block;
       font-size: 14px;
       font-weight: 500;
+      margin-top: 5px;
       text-align: left;
+      vertical-align: top;
       width: 30%;
     }
     .control {
@@ -452,7 +454,19 @@
       font-size: 22px;
       font-weight: 500;
       text-align: right;
+      white-space: nowrap;
       width: 70%;
+    }
+    .small {
+      font-size: 14px;
+    }
+    .approximately {
+      color: #999;
+      display: inline-block;
+      line-height: 12px;
+      font-size: 12px;
+      text-align: center;
+      width: 100%;
     }
   }
 }

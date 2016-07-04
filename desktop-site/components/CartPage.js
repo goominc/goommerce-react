@@ -39,7 +39,8 @@ export default React.createClass({
       return null;
     };
 
-    const formatPrice = numberUtil.formatPrice(total[activeCurrency] || 0, activeCurrency, currencySign);
+    // const formatPrice = numberUtil.formatPrice(total[activeCurrency] || 0, activeCurrency, currencySign);
+    const formatPrice = numberUtil.formatPrice(total.KRW || 0, 'KRW', currencySign);
     return (
       <div className="cart-container">
         <div className="cart-title-box">
@@ -50,7 +51,16 @@ export default React.createClass({
           <div className="title">{i18n.get('pcCart.total')}</div>
           <div className="total-row">
             <div className="label">{i18n.get('pcCart.subtotal')}</div>
-            <div className="control">{formatPrice}</div>
+            {activeCurrency === 'KRW' ?
+              <div className="control">{formatPrice}</div> :
+              <div className="control">
+                {formatPrice.substring(0, formatPrice.length - 1)} <span className="small">KRW</span><br />
+                <span className="approximately">
+                  {numberUtil.formatPrice(total[activeCurrency] || 0, activeCurrency, currencySign)}<br />
+                  (Approximately)
+                </span>
+              </div>
+            }
           </div>
           {renderBuyButton()}
         </div>
