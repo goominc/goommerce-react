@@ -166,10 +166,13 @@ export default React.createClass({
       );
     };
     const renderImages = () => {
+      if (!images || !images.length) {
+        return null;
+      }
       const res = [];
       let row = 0;
       let imageIndex = 0;
-      const productImageCount = _.get(product, 'appImages.default').length;
+      const productImageCount = (_.get(product, 'appImages.default') || []).length;
       const isOddCount = productImageCount && productImageCount % 2 === 1;
       while (imageIndex < images.length) {
         if ((isOddCount && row === 1) || imageIndex === images.length - 1) {
