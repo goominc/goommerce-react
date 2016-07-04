@@ -3,8 +3,8 @@
     "title": {
       "en": "Linkshops - K-style Apparel Wholesale ㅣ Online Shopping Mall",
       "ko": "Linkshops - 동대문 도매상품을 한 눈에! 링크샵스",
-      "zh-cn": "Linkshops - 东大门服装批发代购网站_韩国东大门代购_韩国进货攻略_韩国代购货源",
-      "zh-tw": "Linkshops - 東大門服飾批发網站_韓國東大門代購_韓國貨源_韓國進貨"
+      "zh-cn": "Linkshops - 东大门服装批发代购网_韩国东大门代购_韩国进货攻略_韩国代购货源",
+      "zh-tw": "Linkshops - 東大門服飾批发網_韓國東大門代購_韓國貨源_韓國進貨"
     }
   },
   "enum": {
@@ -391,14 +391,14 @@
       "zh-tw": "E-mail  cs@linkshops.com"
     },
     "customerCenter7": {
-      "en": "kakaotalk ID : linkshops",
-      "ko": "구매회원 상담 카카오톡 ID - linkshops",
+      "en": "kakaotalk ID : @linkshops",
+      "ko": "구매회원 상담 카카오톡 ID - @linkshops",
       "zh-cn": "微信  linkshops-china",
       "zh-tw": "微信  linkshops-china"
     },
     "customerCenter8": {
       "en": "Wechat : linkshops-china",
-      "ko": "판매회원 상담 카카오톡 ID - linkshops_brand",
+      "ko": "판매회원 상담 카카오톡 ID - @링크샵스 판매자 센터",
       "zh-cn": "Line  linkshops",
       "zh-tw": "Line  linkshops"
     }
@@ -425,8 +425,8 @@
     "plzSelectLanguage": {
       "en": "사용할 언어를 선택해주세요.",
       "ko": "사용할 언어를 선택해주세요.",
-      "zh-cn": "사용할 언어를 선택해주세요.",
-      "zh-tw": "사용할 언어를 선택해주세요."
+      "zh-cn": "请选择语言",
+      "zh-tw": "請選擇語言"
     }
   },
   "mItemDetail": {
@@ -445,8 +445,8 @@
     "buildingInfoOnlySignup": {
       "en": "매장정보는 회원가입후 보실 수 있습니다.",
       "ko": "매장정보는 회원가입후 보실 수 있습니다.",
-      "zh-cn": "매장정보는 회원가입후 보실 수 있습니다.",
-      "zh-tw": "매장정보는 회원가입후 보실 수 있습니다."
+      "zh-cn": "登陆后可以确认品牌信息",
+      "zh-tw": "登陸後可以確認品牌信息"
     },
     "productActualSize": {
       "en": "Actual Size",
@@ -837,20 +837,20 @@
     "denyDomesticToOverseas": {
       "en": "Cannot change Domestic -> Overseas address. Please add new address",
       "ko": "국내 주소를 해외 주소로 변경할 수 없습니다. 새 주소를 만들어 주세요",
-      "zh-cn": "Cannot change Domestic -> Overseas address. Please add new address",
-      "zh-tw": "Cannot change Domestic -> Overseas address. Please add new address"
+      "zh-cn": "韩国地址不能改成国外地址，请添加新地址。",
+      "zh-tw": "韓國地址不能改成國外地址，請添加新地址。"
     },
     "denyOverseasToDomestic": {
       "en": "Cannot change Overseas -> Domestic address. Please add new address",
       "ko": "해외 주소를 한국 주소로 변경할 수 없습니다. 새 주소를 만들어 주세요",
-      "zh-cn": "Cannot change Overseas -> Domestic address. Please add new address",
-      "zh-tw": "Cannot change Overseas -> Domestic address. Please add new address"
+      "zh-cn": "国外地址不能改成韩国地址，请添加新地址。",
+      "zh-tw": "國外地址不能改成韓國地址，請添加新地址。"
     },
     "findPostalCode": {
       "en": "우편번호 찾기",
       "ko": "우편번호 찾기",
-      "zh-cn": "우편번호 찾기",
-      "zh-tw": "우편번호 찾기"
+      "zh-cn": "邮编查询（韩国）",
+      "zh-tw": "郵編查詢（韓國）"
     },
     "goBack": {
       "en": "Go Back",
@@ -921,14 +921,14 @@
     "thanksForYourOrderPurchase": {
       "en": "Thanks for your purchase!",
       "ko": "Thanks for your purchase!",
-      "zh-cn": "Thanks for your purchase!",
-      "zh-tw": "Thanks for your purchase!"
+      "zh-cn": "感谢您的购买！",
+      "zh-tw": "感謝您的購買！"
     },
     "weHaveReceivedYourPayment": {
       "en": "We have received your payment.",
       "ko": "We have received your payment.",
-      "zh-cn": "We have received your payment.",
-      "zh-tw": "We have received your payment."
+      "zh-cn": "我们已收到您的付款。",
+      "zh-tw": "我們已收到您的付款."
     }
   },
   "mServiceInfo": {
@@ -1232,13 +1232,13 @@
     },
     "kakaoTalk": {
       "en": "kakao talk : linkshops",
-      "ko": "구매회원 상담 Linkshops",
+      "ko": "구매회원 상담 : Linkshops",
       "zh-cn": "kakao talk : linkshops",
       "zh-tw": "kakao talk : linkshops"
     },
     "wechat": {
       "en": "Wechat : linkshops-china",
-      "ko": "판매회원 상담 Linkshops_brand",
+      "ko": "판매회원 상담 : 링크샵스 판매자 센터",
       "zh-cn": "Wechat : linkshops-china",
       "zh-tw": "Wechat : linkshops-china"
     }
