@@ -52,10 +52,12 @@ const Home = React.createClass({
       categories[4].children = [categories[11], categories[12], categories[13], categories[41]];
       categories[179].children = [categories[180], categories[181], categories[183]];
       const topCategories = [categories[4], categories[179]];
-      if (categories[262] && categories[51] && categories[177]) {
+      // if (categories[262] && categories[51] && categories[177]) {
+      if (categories[262] && categories[51] && categories[265]) {
         categories[51].children = [];
-        categories[177].children = [];
-        categories[262].children = [categories[51], categories[177]];
+        // categories[177].children = [];
+        categories[265].children = [];
+        categories[262].children = [categories[51], categories[265]];
         topCategories.push(categories[262]);
       }
       const renderCategory = (c, index) => {
