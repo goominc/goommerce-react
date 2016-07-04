@@ -270,6 +270,44 @@
           "zh-tw`": "確認中",
           "zh-tw": "確認中"
         }
+      },
+      "method": {
+        "0": {
+          "en": "Virtual Account",
+          "ko": "가상계좌",
+          "zh-cn": "虚拟帐户 ",
+          "zh-tw": "虛擬賬戶"
+        },
+        "1": {
+          "en": "Credit Card(KOR)",
+          "ko": "국내 신용카드",
+          "zh-cn": "信用卡(韩国)",
+          "zh-tw": "信用卡(韓國)"
+        },
+        "2": {
+          "en": "Credit Card(GLOBAL)",
+          "ko": "해외 신용카드",
+          "zh-cn": "信用卡(国际)",
+          "zh-tw": "信用卡(國際)"
+        },
+        "3": {
+          "en": "ALIPAY",
+          "ko": "알리페이",
+          "zh-cn": "支付宝",
+          "zh-tw": "支付寶"
+        },
+        "4": {
+          "en": "UNION PAY",
+          "ko": "유니온페이",
+          "zh-cn": "银联",
+          "zh-tw": "銀聯"
+        },
+        "5": {
+          "en": "PAYPAL",
+          "ko": "페이팔",
+          "zh-cn": "PAYPAL",
+          "zh-tw": "PAYPAL"
+        }
       }
     }
   },
