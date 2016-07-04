@@ -37,6 +37,9 @@ export default React.createClass({
   },
   fnIncrementalFetch() {
     const { searchResult, pageLimit, activeCategoryId, loadProducts } = this.props;
+    if (!searchResult || !searchResult.pagination) {
+      return;
+    }
     const nextOffset = searchResult.pagination.offset + pageLimit;
     const nextPage = Math.floor(nextOffset / pageLimit) + 1;
     if (nextOffset < searchResult.pagination.total) {

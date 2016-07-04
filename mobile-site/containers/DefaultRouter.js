@@ -26,6 +26,9 @@ const DefaultRouter = React.createClass({
       router.replace('/');
       return;
     }
+    if (this.props.isOpenMenu) {
+      this.props.toggleBrandPageMenu();
+    }
   },
   render() {
     const { brandPathnameMap, location } = this.props;
