@@ -261,6 +261,16 @@ export default React.createClass({
 
     const renderBrand = () => {
       if (brand) {
+        if (!auth.id) {
+          return (
+            <div className="normal-field-box">
+              <div className="field-label">{i18n.get('pcItemDetail.brand')}</div>
+              <div className="field-content">
+                {i18n.get('mItemDetail.buildingInfoOnlySignup')}
+              </div>
+            </div>
+          );
+        }
         const renderFavoriteButton = () => {
           if (isLikeBrand) {
             return (
@@ -406,7 +416,7 @@ export default React.createClass({
             </div>
             <div className="normal-field-box">
               <div className="field-label">{i18n.get('pcItemDetail.building')}</div>
-              <div className="field-content">{auth.hasOwnProperty() ? _.get(product, 'brand.data.location.building.name.ko') : i18n.get('mItemDetail.buildingInfoOnlySignup')}</div>
+              <div className="field-content">{auth.id ? _.get(product, 'brand.data.location.building.name.ko') : i18n.get('mItemDetail.buildingInfoOnlySignup')}</div>
             </div>
             {renderBrand()}
             {renderAllAttributes()}
