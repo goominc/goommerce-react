@@ -55,7 +55,7 @@ module.exports = (opts) => {
             <meta name="baidu-site-verification" content="p3AtZLtCat" />
             <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, user-scalable=0, width=device-width">
             <meta name="keywords" content="韩国东大门代购 ">
-            <meta name="description" content="东大门服装批发代购网站_韩国东大门代购_韩国进货攻略_韩国代购货源">
+            <meta name="description" content="Linkshops为东大门服装批发代购专用平台，提供时时刻刻上市韩版女装、男装、鞋靴、帽子等最新商品，也提供和东大门店铺一样的优惠价格。对于做实体店、淘宝、微商的老板来说，是一个最好货源，Linkshops还支持准备创业的九零后朋友们。">
             <meta property="og:title" content="링크샵스"/>
             <meta property="og:type"          content="website" />
             <meta property="og:url" content="http://www.linkshops.com"/>
@@ -87,7 +87,7 @@ module.exports = (opts) => {
             <meta name="baidu-site-verification" content="p3AtZLtCat" />
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <meta name="keywords" content="韩国东大门代购 ">
-            <meta name="description" content="东大门服装批发代购网站_韩国东大门代购_韩国进货攻略_韩国代购货源">
+            <meta name="description" content="Linkshops为东大门服装批发代购专用平台，提供时时刻刻上市韩版女装、男装、鞋靴、帽子等最新商品，也提供和东大门店铺一样的优惠价格。对于做实体店、淘宝、微商的老板来说，是一个最好货源，Linkshops还支持准备创业的九零后朋友们。">
             <meta property="og:title" content="링크샵스"/>
             <meta property="og:type"          content="website" />
             <meta property="og:url" content="http://www.linkshops.com"/>
