@@ -6,6 +6,7 @@ import numberUtil from 'commons/utils/numberUtil';
 
 export default React.createClass({
   propTypes: {
+    auth: PropTypes.object,
     brand: PropTypes.object.isRequired,
     products: PropTypes.array,
     addFavoriteBrand: PropTypes.func.isRequired,
@@ -20,18 +21,10 @@ export default React.createClass({
     this.props.addFavoriteBrand(brand.id);
   },
   render() {
-    const { brand, products } = this.props;
+    const { auth = {}, brand, products } = this.props;
     const { activeCurrency, currencySign } = this.context;
 
     const prodDivs = products.map((prod) => {
-      const image = getProductMainImage(prod.topHit || prod);
-      const renderImage = () => {
-        if (!image) {
-          return (<img />);
-        }
-        return (<img src={image.url} />);
-      };
-
       return (
           <li key={prod.id}>
             <Link className="mobile-product-image" to={`/products/${prod.id}`}>
@@ -39,21 +32,9 @@ export default React.createClass({
                 <img src={getProductMainImage(prod).url} />
               </div>
             </Link>
-            <div className="price-center">{numberUtil.formatPrice(prod[activeCurrency], activeCurrency, currencySign)}</div>
-            {/*
-            <div className="ms-gallery-inner">
-              <Link to={`/products/${prod.id}`}>
-                <div className="ms-gallery-pic">
-                  {renderImage()}
-                </div>
-                <div className="ms-gallery-info">
-                  <span className="ms-gallery-price">{activeCurrency} {getProductMainPrice(prod, activeCurrency)}</span>
-                </div>
-              </Link>
-            </div>
-            <div className="ms-space">
-            </div>
-             */}
+            {auth.id &&
+              <div className="price-center">{numberUtil.formatPrice(prod[activeCurrency], activeCurrency, currencySign)}</div>
+            }
           </li>
         );
     });

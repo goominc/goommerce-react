@@ -107,7 +107,9 @@ export default React.createClass({
 
         <section className="ms-pd-lr12 ms-detail-price">
           <div className="detail-price-container">
-            <span className="price-span">{numberUtil.formatPrice(product[activeCurrency], activeCurrency, currencySign)}</span>
+            {auth.id &&
+              <span className="price-span">{numberUtil.formatPrice(product[activeCurrency], activeCurrency, currencySign)}</span>
+            }
             <span className="unit-span"></span>
           </div>
         </section>

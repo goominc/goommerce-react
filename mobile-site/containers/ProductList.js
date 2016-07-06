@@ -17,6 +17,7 @@ const fetchSize = 10;
 
 const ProductList = React.createClass({
   propTypes: {
+    auth: PropTypes.object,
     viewType: PropTypes.object.isRequired,
     showSort: PropTypes.bool.isRequired,
     sorts: PropTypes.string.isRequired,
@@ -154,7 +155,7 @@ const ProductList = React.createClass({
     });
   },
   render() {
-    const { viewType, showSort, sorts, showFilter } = this.props;
+    const { auth, viewType, showSort, sorts, showFilter } = this.props;
 
     let sortStyle = {};
     if (showSort) {
@@ -205,7 +206,7 @@ const ProductList = React.createClass({
           setPrice={this.setFilterPrice} setBrand={this.setFilterBrand} reset={this.resetFilter}
           apply={this.applyFilter}
         />
-        <ProductListItem viewType={viewType.type} products={this.state.products || []} />
+        <ProductListItem auth={auth} viewType={viewType.type} products={this.state.products || []} />
         <div className="loading"></div>
       </section>
     );
@@ -214,6 +215,7 @@ const ProductList = React.createClass({
 
 export default connect(
   (state) => ({
+    auth: state.auth,
     viewType: state.pageProductList.viewType,
     showSort: state.pageProductList.showSort,
     showFilter: state.pageProductList.showFilter,

@@ -13,6 +13,7 @@ const fetchSize = 10;
 
 const Category = React.createClass({
   propTypes: {
+    auth: PropTypes.object,
     categories: PropTypes.object,
     loadCategories: PropTypes.func.isRequired,
     searchProducts: PropTypes.func.isRequired,
@@ -91,7 +92,7 @@ const Category = React.createClass({
     });
   },
   render() {
-    const { params, categories } = this.props;
+    const { auth, params, categories } = this.props;
     let currentCategory;
     if (params && params.categoryId && categories[params.categoryId]) {
       currentCategory = categories[params.categoryId];
@@ -100,7 +101,7 @@ const Category = React.createClass({
     }
     currentCategory = currentCategory || {};
     return (
-      <CategoryList categories={categories} currentCategory={currentCategory} products={this.state.products} />
+      <CategoryList auth={auth} categories={categories} currentCategory={currentCategory} products={this.state.products} />
     );
   },
 });
@@ -108,6 +109,7 @@ const Category = React.createClass({
 export default connect(
   (state) => ({ categories: state.categories,
     activeLocale: state.i18n.activeLocale,
+    auth: state.auth,
     searchProducts: (query) => ajaxReturnPromise(state.auth, 'get', `/api/v1/products/search?${$.param(query)}`) }),
   { loadCategories, setHeader }
 )(Category);

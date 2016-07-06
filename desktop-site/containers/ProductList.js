@@ -17,6 +17,7 @@ const _ = require('lodash');
 
 const ProductList = React.createClass({
   propTypes: {
+    auth: PropTypes.object,
     query: PropTypes.string,
     categoryId: PropTypes.string,
     brandId: PropTypes.string,
@@ -82,7 +83,7 @@ const ProductList = React.createClass({
     return path;
   },
   render() {
-    const { wishes = [], genLink } = this.props;
+    const { auth, genLink } = this.props;
     const { products = [], aggs = {} } = this.state;
     const { ApiAction } = this.context;
     const path = this.breadCrumbPath();
@@ -113,6 +114,7 @@ const ProductList = React.createClass({
               products={products}
               rowSize={4}
               toggleWish={toggleWish}
+              isShowInfo={!!auth.id}
             />
             <PageButton
               pagination={this.state.pagination}
@@ -130,6 +132,7 @@ export default connect(
   (state, ownProps) => {
     const { categoryId = 'tree' } = ownProps;
     return {
+      auth: state.auth,
       searchProducts: (query) => ajaxReturnPromise(state.auth, 'get', `/api/v1/products/search?${$.param(query)}`),
       categories: state.categories,
       category: state.categories[categoryId === 'all' ? 'tree' : categoryId],

@@ -8,8 +8,9 @@ import numberUtil from 'commons/utils/numberUtil';
 
 export default React.createClass({
   propTypes: {
-    viewType: PropTypes.string.isRequired,
+    auth: PropTypes.object,
     products: PropTypes.array.isRequired,
+    viewType: PropTypes.string.isRequired,
   },
   contextTypes: {
     activeLocale: PropTypes.string,
@@ -17,7 +18,7 @@ export default React.createClass({
     currencySign: PropTypes.object,
   },
   render() {
-    const { viewType, products } = this.props;
+    const { auth = {}, viewType, products } = this.props;
     const { activeCurrency, currencySign } = this.context;
 
     const prodDivs = products.map((prod) => {
@@ -55,9 +56,9 @@ export default React.createClass({
                   <span>{productUtil.getName(prod)}</span>
                 </div>
 
-                <span className="discount-price"><em>{numberUtil.formatPrice(prod[activeCurrency], activeCurrency, currencySign)}</em>
-
-                </span>
+                {auth.id &&
+                  <span className="discount-price"><em>{numberUtil.formatPrice(prod[activeCurrency], activeCurrency, currencySign)}</em></span>
+                }
 
                 <div className="custom-gallery-view-blank"></div>
 

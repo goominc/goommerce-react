@@ -16,6 +16,7 @@ export default React.createClass({
     activeCategoryId: PropTypes.number,
     activeLocale: PropTypes.string,
     activeCurrency: PropTypes.string,
+    auth: PropTypes.object,
     brand: PropTypes.object,
     isLikeBrand: PropTypes.bool,
     loadProducts: PropTypes.func,
@@ -57,7 +58,7 @@ export default React.createClass({
   },
   render() {
     const { activeLocale, activeCurrency, activeCategoryId } = this.props;
-    const { brand, isLikeBrand } = this.props;
+    const { auth, brand, isLikeBrand } = this.props;
     const { searchResult, pageLimit } = this.props;
     const { ApiAction, currencySign } = this.context;
     if (!brand || !searchResult) {
@@ -124,6 +125,7 @@ export default React.createClass({
                 {renderImage()}
               </div>
             </Link>
+            {auth.id &&
             <div className="product-detail">
               <div className="product-name">{product.name[activeLocale]}</div>
               <div className="product-price">{formatPrice(product[activeCurrency], activeCurrency, currencySign)}</div>
@@ -134,6 +136,7 @@ export default React.createClass({
                 }
               </div>
             </div>
+            }
           </div>
         );
       }

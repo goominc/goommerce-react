@@ -7,6 +7,7 @@ import numberUtil from 'commons/utils/numberUtil';
 
 export default React.createClass({
   propTypes: {
+    auth: PropTypes.object,
     categories: PropTypes.object.isRequired,
     currentCategory: PropTypes.object.isRequired,
     products: PropTypes.array,
@@ -18,7 +19,7 @@ export default React.createClass({
   },
 
   render() {
-    const { currentCategory } = this.props;
+    const { auth = {}, currentCategory } = this.props;
     const { activeLocale, activeCurrency, currencySign } = this.context;
     const renderCategory = () => {
       if (currentCategory && currentCategory.children) {
@@ -79,7 +80,9 @@ export default React.createClass({
                 {renderImage()}
               </div>
             </Link>
-            <div className="price-center">{numberUtil.formatPrice(product[activeCurrency], activeCurrency, currencySign)}</div>
+            {auth.id &&
+              <div className="price-center">{numberUtil.formatPrice(product[activeCurrency], activeCurrency, currencySign)}</div>
+            }
           </li>
           );
       });

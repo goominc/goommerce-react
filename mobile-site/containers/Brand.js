@@ -78,12 +78,12 @@ const Brand = React.createClass({
     return null;
   },
   render() {
-    const { brand, products } = this.state;
+    const { auth, brand, products } = this.state;
     if (!brand) {
       return (<div />);
     }
     return (
-      <BrandPage brand={brand} products={products} addFavoriteBrand={this.wrapFavorite} />
+      <BrandPage auth={auth} brand={brand} products={products} addFavoriteBrand={this.wrapFavorite} />
       );
   },
 });

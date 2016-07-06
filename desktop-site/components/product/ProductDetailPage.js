@@ -295,6 +295,9 @@ export default React.createClass({
     };
 
     const renderPrice = () => {
+      if (!auth.id) {
+        return <div className="field-content">{i18n.get('mItemDetail.buildingInfoOnlySignup')}</div>
+      }
       let approximately = null;
       if (activeCurrency !== 'KRW') {
         approximately = `Approximately ${numberUtil.formatPrice(price, activeCurrency, currencySign)}`;
