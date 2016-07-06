@@ -1,10 +1,12 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { CloudinaryImage } from 'react-cloudinary';
+
 import { getProductMainImage } from 'commons/utils/productUtil';
 import brandUtil from 'commons/utils/brandUtil';
 import productUtil from 'commons/utils/productUtil';
 import numberUtil from 'commons/utils/numberUtil';
+import i18n from 'commons/utils/i18n';
 
 export default React.createClass({
   propTypes: {
@@ -50,7 +52,10 @@ export default React.createClass({
               </Link>
               <div className="infomation">
                 <div className="brand">
-                  <span>{brandUtil.getName(prod.brand)}</span>
+                  {auth.id ?
+                  <span>{brandUtil.getName(prod.brand)}</span> :
+                  <span>{i18n.get('mItemDetail.buildingInfoOnlySignup')}</span>
+                  }
                 </div>
                 <div className="title">
                   <span>{productUtil.getName(prod)}</span>
