@@ -193,27 +193,6 @@ export default React.createClass({
           <p className="article-title">Supplementary Provisions:</p>
           <p className="article-content">This Terms of Use shall apply from May 8th, 2015.</p>
 
-          <p className="clause">I. </p>
-          <p className="clause">II. </p>
-
-          <p className="clause">i. 销售相关的业务支持服务</p>
-          <p className="clause">ii. 购买相关的支持服务</p>
-          <p className="clause">iii. 销售合同签署相关的服务</p>
-          <p className="clause">iv. 商品或服务相关的信息提供服务</p>
-          <p className="clause">v. 商品或服务的配送相关的服务</p>
-          <p className="clause">vi. 其他与电子商务相关的服务</p>
-          <p className="paragraph-title">② 公司提供的第1项的服务旨在允许会员为了交易商品等而使用商城,对个别销售会员在商城上注册 的商品等不承担任何责任。</p>
-          <p className="paragraph-title">③ 在商品等售罄或产品配置变更的情况下,公司有权变更提供的商品等的内容。这种情况下,明示 被变更的商品等的内容及提供日期等,在展示现在的商品等的位置即刻对此进行公告。</p>
-          <p className="paragraph-title">④ 公司为以在商城上购买的产品进行再次销售的商业行为为目的购买产品的会员提供服务,并非为 以直接使用为目的的消费者提供服务。公司为了向以商业行为为目的的购买会员提供合适的服务, 通过确认购买会员的经营注册证明等其他的方法能确认购买会员是否以商业行为为目的进行购买。</p>
-          <p className="article-title">第五条(服务期间及中断)</p>
-          <p className="paragraph-title">① 本协议项下的服务使用期间为,自服务申请日开始至会员的退出或资格丧失导致的使用协议终止 之时为止。</p>
-          <p className="paragraph-title">② 如发生公司电脑等信息通讯设备的维修、点检、更换或发生故障、通讯的中断等情况,公司可以 暂时中断服务的提供。这种情况下,公司将在商城的初始界面上公告服务中断的事实及其事由。</p>
-          <p className="paragraph-title">③ 如因自然灾害或据此的不可抗力导致无法提供服务,公司有权限制或一时中断服务。这种情况下, 公司可以不在商城的初始界面上公告服务中断的事实及其事由。</p>
-          <p className="paragraph-title">④ 针对第2项及第3项的服务中断,如果公司没有故意或者过失则公司无需向客户赔偿损失。</p>
-
-          <p className="article-content">附则: </p>
-          <p className="article-content">本协议自2015年5月18日开始适用。</p>
-
         </div>
       </div>
     );
