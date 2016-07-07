@@ -67,8 +67,8 @@ const OrderDone = React.createClass({
         <div>
           <h5 className="result-tit">{i18n.get('mOrder.thanksForYourOrderPurchase')}</h5>
           <p>{i18n.get('mOrder.weHaveReceivedYourPayment')}</p>
-          <p>{i18n.get('word.amount')}Amount:
-          <span className="pay-money">{activeCurrency} {order[`total${activeCurrency}`]}</span>
+          <p>{i18n.get('word.amount')}:
+          <span className="pay-money">{order.totalKRW} {activeCurrency === 'KRW' ? '원' : 'KRW'}</span>
           </p>
         </div>
       );
