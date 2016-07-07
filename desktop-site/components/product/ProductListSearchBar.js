@@ -18,7 +18,8 @@ export default React.createClass({
     const { aggs: { brands = [] }, genLink } = this.props;
     const filterBrands = new Set();
     (this.props.brandIds || []).forEach((b) => filterBrands.add(+b));
-    const brandLink = (brandId) => genLink(Object.assign(_.pick(this.props, ['query', 'categoryId', 'sorts', 'KRW']), { brandId }));
+    const brandLink = (brandId) =>
+      genLink(Object.assign(_.pick(this.props, ['query', 'categoryId', 'sorts', 'KRW']), { brandId }));
 
     const renderBrand = (brand) => {
       if (filterBrands.has(+brand.id)) {
@@ -80,7 +81,7 @@ export default React.createClass({
         );
       }
       return (
-        <Link key={item.sorts} to={genLink({ ...this.props, sorts: item.sorts, pageNum: 1 })} className="sort-item">
+        <Link key={item.sorts} to={genLink({ ...this.props, sorts: item.sorts })} className="sort-item">
           {item.name}
         </Link>
       );
