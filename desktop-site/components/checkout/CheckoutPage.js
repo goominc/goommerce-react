@@ -125,11 +125,10 @@ export default React.createClass({
       { icon: 'icon-inicis', name: i18n.get('pcPayment.vbank'), method: 'VBank', inipayMethod: 'web' },
       { icon: 'icon-credit-card', name: i18n.get('pcPayment.creditCardKorea'), method: 'Card', inipayMethod: 'web' },
       { icon: 'icon-credit-card-global', name: i18n.get('pcPayment.creditCardGlobal'), method: 'Card', inipayMethod: 'global_card' },
-      { icon: 'icon-alipay', name: i18n.get('pcPayment.alipay'), method: 'alipay', inipayMethod: 'global' },
-      { icon: 'icon-union-pay', name: i18n.get('pcPayment.unionpay'), method: 'unionpay', inipayMethod: 'global' },
-      // { icon: 'icon-credit-card', name: i18n.get('pcPayment.creditCard'), method: 'Card', inipayMethod: 'global_card' },
+      { icon: 'icon-alipay', name: i18n.get('pcPayment.alipay'), method: 'alipay', inipayMethod: 'alipay' },
+      { icon: 'icon-union-pay', name: i18n.get('pcPayment.unionpay'), method: 'unionpay', inipayMethod: 'unionpay' },
       // { icon: 'icon-tenpay', name: 'TENPAY', method: 'tenpay' },
-      // { icon: 'icon-paypal', name: 'PAYPAL', method: 'paypal' },
+      // { icon: 'icon-paypal', name: 'PAYPAL', method: 'paypal', inipayMethod: 'paypal' },
     ];
     const renderPaymentMethod = (method, index) => (
       <div

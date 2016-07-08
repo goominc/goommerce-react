@@ -85,7 +85,7 @@ export default React.createClass({
       return;
     }
 
-    this.props.inipay(this.props.order.id, inipayMethod).then((res) => {
+    this.props.inipay(this.props.order.id, inipayMethod, true).then((res) => {
       this.refs.mid.value = res.mid;
       this.refs.oid.value = res.oid;
       this.refs.amt.value = res.price;
@@ -285,28 +285,28 @@ export default React.createClass({
             <span className="pay-cancel" onClick={this.toggle}></span>
           </div>
           <ul className="pay-method-list">
-            <li onClick={() => this.inipay('vbank', 'mobile', 'vbank_receipt=Y')}>
+            <li onClick={() => this.inipay('vbank', 'web', 'vbank_receipt=Y')}>
               <div className="icon"><span className="icon-inicis"></span></div>
               <span className="pay-title">{i18n.get('pcPayment.vbank')}</span>
               <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
             </li>
-            <li onClick={() => this.inipay('wcard', 'mobile', 'twotrs_isp=Y&block_isp=Y&twotrs_isp_noti=N')}>
+            <li onClick={() => this.inipay('wcard', 'web', 'twotrs_isp=Y&block_isp=Y&twotrs_isp_noti=N')}>
               <div className="icon"><span className="icon-credit-card"></span></div>
               <span className="pay-title">{i18n.get('pcPayment.creditCard')}</span>
               <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
             </li>
-            <li onClick={() => this.inipay('etc', 'mobile_global', 'etc_paymethod=APAY')}>
+            <li onClick={() => this.inipay('etc', 'alipay', 'etc_paymethod=APAY')}>
               <div className="icon"><span className="icon-alipay"></span></div>
               <span className="pay-title">{i18n.get('pcPayment.alipay')}</span>
               <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
             </li>
-            <li onClick={() => this.inipay('etc', 'mobile_global', 'etc_paymethod=UPMP')}>
+            <li onClick={() => this.inipay('etc', 'unionpay', 'etc_paymethod=UPMP')}>
               <div className="icon"><span className="icon-union-pay"></span></div>
               <span className="pay-title">{i18n.get('pcPayment.unionpay')}</span>
               <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
             </li>
             {/*
-             <li onClick={() => this.inipay('etc', 'mobile_global', 'etc_paymethod=PPAY')}>
+             <li onClick={() => this.inipay('etc', 'paypal', 'etc_paymethod=PPAY')}>
              <span className="pay-title">페이팔</span>
              <span className="ms-arrow"><span className="ms-icon icon-arrow-right"></span></span>
              </li>

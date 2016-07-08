@@ -81,7 +81,7 @@ const Checkout = React.createClass({
     function upperFirst(str) {
       return str.charAt(0).toUpperCase() + str.slice(1);
     }
-    const isGlobalPay = inipayMethod === 'global';
+    const isGlobalPay = _.includes(['alipay', 'paypal', 'unionpay'], method);
     if (isGlobalPay) {
       window.open('', 'checkout');
     }
