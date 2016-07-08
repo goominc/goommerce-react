@@ -71,7 +71,7 @@ export default React.createClass({
     const { order } = this.props;
     const { activeAddressId, addresses, isEditMode,
       checkoutNewAddress, setActiveAddressId, saveOrderAddress } = this.props;
-    const { activeCurrency, currencySign } = this.context;
+    const { activeCurrency, activeLocale, currencySign } = this.context;
     const { isShowPaymentPolicyDetail } = this.state;
     if (!order) {
       return (
@@ -204,6 +204,7 @@ export default React.createClass({
           <input type="hidden" name="mKey" ref="mKey" />
           <input type="hidden" name="quotabase" value="2:3:4:5:6:7:8:9:10:11:12" />
           <input type="hidden" name="acceptmethod" value={`va_receipt:vbank(${moment().add(1, 'd').format('YYYYMMDDHHmm')})`} ref="acceptmethod" />
+          <input type="hidden" name="languageView" value={activeLocale === 'ko' ? 'ko' : 'en'} />
           <button type="submit" className="cart-button-order" onClick={handleCheckout}>
             {i18n.get('pcPayment.placeOrder')}
           </button>
