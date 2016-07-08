@@ -139,6 +139,8 @@ export default React.createClass({
       return <div />;
     }
 
+    const priceKrw = `${numberUtil.format(order.totalKRW)} ${activeCurrency === 'KRW' ? '원' : 'KRW'}`;
+    const formatPrice = (type) => `${numberUtil.format(order[`${type}KRW`])} ${activeCurrency === 'KRW' ? '원' : 'KRW'}`;
     const orderSummary = (
       <div id="order-summary">
         <h3>
@@ -151,31 +153,36 @@ export default React.createClass({
           <li className="clearfix">
             <span className="checkout-item">{i18n.get('pcMypage.productPrice')}</span>
             <span className="cost"><b>
-              {numberUtil.formatPrice(order[`subtotal${activeCurrency}`], activeCurrency, currencySign)}
+              {formatPrice('subtotal')}
+              {/* numberUtil.formatPrice(order[`subtotal${activeCurrency}`], activeCurrency, currencySign) */}
             </b></span>
           </li>
           <li className="clearfix">
             <span className="checkout-item">{i18n.get('pcPayment.tax')}</span>
             <span className="cost"><b>
-              {numberUtil.formatPrice(order[`tax${activeCurrency}`], activeCurrency, currencySign)}
+              {formatPrice('tax')}
+              {/* numberUtil.formatPrice(order[`tax${activeCurrency}`], activeCurrency, currencySign) */}
             </b></span>
           </li>
           <li className="clearfix">
             <span className="checkout-item">{i18n.get('pcPayment.handlingFee')}</span>
             <span className="cost"><b>
-              {numberUtil.formatPrice(order[`handlingFee${activeCurrency}`], activeCurrency, currencySign)}
+              {formatPrice('handlingFee')}
+              {/* numberUtil.formatPrice(order[`handlingFee${activeCurrency}`], activeCurrency, currencySign) */}
             </b></span>
           </li>
           <li className="clearfix">
             <span className="checkout-item">{i18n.get('pcPayment.shippingCost')}</span>
             <span className="cost"><b>
-              {numberUtil.formatPrice(order[`shippingCost${activeCurrency}`], activeCurrency, currencySign)}
+              {formatPrice('shippingCost')}
+              {/* numberUtil.formatPrice(order[`shippingCost${activeCurrency}`], activeCurrency, currencySign) */}
             </b></span>
           </li>
           <li className="checkout-total clearfix">
             <span className="checkout-item"><b>{i18n.get('pcCart.total')}</b></span>
             <span id="checkout-price-total" className="cost"><b>
-              {numberUtil.formatPrice(order[`total${activeCurrency}`], activeCurrency, currencySign)}
+              {formatPrice('total')}
+              {/* numberUtil.formatPrice(order[`total${activeCurrency}`], activeCurrency, currencySign) */}
             </b></span>
           </li>
         </ul>
@@ -202,7 +209,15 @@ export default React.createClass({
           <div className="accounts bt p-24 pt-24 pb-24 clearfix">
             <div className="total">
               <span>{i18n.get('pcCart.total')}</span>
-              <span className="mt-16 price">{numberUtil.formatPrice(order[`total${activeCurrency}`], activeCurrency, currencySign)}</span>
+              {activeCurrency === 'KRW' ?
+                <span className="mt-16 price">{priceKrw}</span> :
+                <span className="mt-16 price">
+                  {priceKrw}<br />
+                  <span className="approximately">
+                    {numberUtil.formatPrice(order[`total${activeCurrency}`], activeCurrency, currencySign)} Approximately
+                  </span>
+                </span>
+              }
             </div>
             <div className="ui-button ui-button-main buyall" onClick={this.toggle}>
               {this.state.showPay ? i18n.get('mOrder.goBack') : i18n.get('pcCart.checkout')}
@@ -242,12 +257,14 @@ export default React.createClass({
                     <div className="variant-attribute">{_.get(productVariant.productVariant, 'data.color')}</div>
                     <div className="variant-attribute">{_.get(productVariant.productVariant, 'data.size')}</div>
                     <div className="unit-price">
-                      {numberUtil.formatPrice(productVariant.productVariant[activeCurrency], activeCurrency, currencySign)}
+                      {numberUtil.format(productVariant.productVariant.KRW)} {activeCurrency === 'KRW' ? '원' : 'KRW'}
+                      {/* numberUtil.formatPrice(productVariant.productVariant[activeCurrency], activeCurrency, currencySign) */}
                     </div>
                     <div className="quantity">{productVariant.quantity} {i18n.get('word.unit')}</div>
                     <div className="clearfix"></div>
                     <div className="total-price">
-                      {numberUtil.formatPrice(productVariant[`total${activeCurrency}`], activeCurrency, currencySign)}
+                      {numberUtil.format(productVariant.totalKRW)} {activeCurrency === 'KRW' ? '원' : 'KRW'}
+                      {/* numberUtil.formatPrice(productVariant[`total${activeCurrency}`], activeCurrency, currencySign) */}
                     </div>
                   </div>
                 </div>

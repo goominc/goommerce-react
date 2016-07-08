@@ -238,8 +238,7 @@ export default React.createClass({
       return null;
     };
 
-    const formatPrice = (type) =>
-      numberUtil.formatPrice(order[`${type}${activeCurrency}`], activeCurrency, currencySign);
+    const formatPrice = (type) => `${numberUtil.format(order[`${type}KRW`])} ${activeCurrency === 'KRW' ? '원' : 'KRW'}`;
 
     const brands = orderUtil.collectByBrands(order.orderProducts);
     const subtotalPrice = formatPrice('subtotal');
@@ -281,7 +280,15 @@ export default React.createClass({
             </div>
             <div className="total-row">
               <div className="label">{i18n.get('pcPayment.totalPrice')}</div>
-              <div className="control">{totalPrice}</div>
+              <div className="control">
+                {totalPrice}
+                {activeCurrency !== 'KRW' &&
+                (<div className="approximately">
+                  ${numberUtil.formatPrice(order[`total${activeCurrency}`], activeCurrency, currencySign)}<br />
+                  (Approximately)
+                </div>)
+                }
+              </div>
             </div>
           </div>
           <div className="payment-policy-box">
