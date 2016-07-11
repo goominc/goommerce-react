@@ -161,6 +161,37 @@ $cart-popup-height: 150px;
     width: 100%;
   }
 }
+.shipping-detail-popup {
+  @include popup-body(600px, auto);
+  .popup-title {
+    background-color: #1d3a4b;
+    color: #fff;
+    height: 39px;
+    line-height: 39px;
+    position: relative;
+    padding: 0 15px;
+  }
+  .popup-close-button {
+    top: 13px;
+  }
+  .popup-content {
+    background-color: #fff;
+    padding: 15px;
+    table {
+      width: 100%;
+    }
+    thead {
+      background-color: #f7f7f7;
+    }
+    tr {
+      border-bottom: 1px solid #f7f7f7;
+    }
+    th,td {
+      padding: 15px;
+      text-align: center;
+    }
+  }
+}
 
 .shipping-policy-container {
   @include popup-body(600px, inherit);

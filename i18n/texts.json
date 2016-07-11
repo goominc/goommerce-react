@@ -2452,6 +2452,30 @@
     }
   },
   "pcOrder": {
+    "shippingTitle": {
+      "en": "배송 조회",
+      "ko": "배송 조회",
+      "zh-cn": "배송 조회",
+      "zh-tw": "배송 조회"
+    },
+    "shippingCompanyColumn": {
+      "en": "배송업체",
+      "ko": "배송업체",
+      "zh-cn": "배송업체",
+      "zh-tw": "배송업체"
+    },
+    "shippingInvoiceNumber": {
+      "en": "송장번호",
+      "ko": "송장번호",
+      "zh-cn": "송장번호",
+      "zh-tw": "송장번호"
+    },
+    "shippingWeightColumn": {
+      "en": "무게(kg)",
+      "ko": "무게(kg)",
+      "zh-cn": "무게(kg)",
+      "zh-tw": "무게(kg)"
+    },
     "vbankTitle": {
       "en": "입금 정보",
       "ko": "입금 정보",
@@ -2891,6 +2915,12 @@
       "ko": "통화",
       "zh-cn": "币种",
       "zh-tw": "貨幣"
+    },
+    "date": {
+      "en": "Date",
+      "ko": "날짜",
+      "zh-cn": "Date",
+      "zh-tw": "Date"
     },
     "domestic": {
       "en": "Domestic",

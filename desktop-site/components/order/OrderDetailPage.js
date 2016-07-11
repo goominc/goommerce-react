@@ -13,6 +13,7 @@ import { paymentMethod, mobileVBankDataToDesktopDataIfNeed } from 'commons/utils
 import AddressInfo from './AddressInfo';
 import PaymentInfo from './PaymentInfo';
 import PrintOrderReceiptButton from 'components/snippet/PrintOrderReceiptButton';
+import ShippingDetailPopup from 'components/popup/ShippingDetailPopup';
 
 export default React.createClass({
   propTypes: {
@@ -21,6 +22,9 @@ export default React.createClass({
   contextTypes: {
     activeCurrency: PropTypes.string,
     currencySign: PropTypes.object,
+  },
+  getInitialState() {
+    return { isShowShippingInfo: false };
   },
   render() {
     const { order } = this.props;
@@ -95,7 +99,15 @@ export default React.createClass({
     };
     return (
       <div className="order-detail-container">
+        {this.state.isShowShippingInfo &&
+          <ShippingDetailPopup order={order} closePopup={() => this.setState({ isShowShippingInfo: false })} />
+        }
         <div className="top-action-line">
+          {order.shipments && order.shipments.length ?
+          <div className="item">
+            <button onClick={() => this.setState({ isShowShippingInfo: true })}><i className="icon-truck"></i> {i18n.get('pcOrder.shippingTitle')}</button>
+          </div> : null
+          }
           <div className="item">
             <PrintOrderReceiptButton order={order} />
           </div>
