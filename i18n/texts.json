@@ -3,8 +3,8 @@
     "title": {
       "en": "Linkshops - K-style Apparel Wholesale ㅣ Online Shopping Mall",
       "ko": "Linkshops - 동대문 도매상품을 한 눈에! 링크샵스",
-      "zh-cn": "Linkshops - 东大门服装批发代购网_韩国东大门代购_韩国进货攻略_韩国代购货源",
-      "zh-tw": "Linkshops - 東大門服飾批发網_韓國東大門代購_韓國貨源_韓國進貨"
+      "zh-cn": "Linkshops - 东大门服装批发代购网|韩国东大门代购|韩国进货攻略|韩国代购货源",
+      "zh-tw": "Linkshops - 東大門服飾批发網|韓國東大門代購|韓國貨源|韓國進貨"
     }
   },
   "enum": {
@@ -445,8 +445,8 @@
     "buildingInfoOnlySignup": {
       "en": "매장정보는 회원가입후 보실 수 있습니다.",
       "ko": "매장정보는 회원가입후 보실 수 있습니다.",
-      "zh-cn": "登陆后可以确认品牌信息",
-      "zh-tw": "登陸後可以確認品牌信息"
+      "zh-cn": "登陆后可以确认商品详细",
+      "zh-tw": "登陸後可以確認商品詳細"
     },
     "productActualSize": {
       "en": "Actual Size",
@@ -749,25 +749,25 @@
       "zh-tw": "由於測量方法及位置不同, 尺寸數據有可能存在一定誤差"
     },
     "warnLinkshopsImage1": {
-      "en": "링크샵스에서 제공하는 상품 이미지의 저작권은",
+      "en": "All images used on this site are owned or",
       "ko": "링크샵스에서 제공하는 상품 이미지의 저작권은",
       "zh-cn": "网站所有图片的著作权归属于",
       "zh-tw": "網站所有圖片的著作權歸屬于"
     },
     "warnLinkshopsImage2": {
-      "en": "링크샵스에게 있습니다.",
+      "en": "licensed by Linkshops,",
       "ko": "링크샵스에게 있습니다.",
       "zh-cn": "Linkshops，",
       "zh-tw": "Linkshops，"
     },
     "warnLinkshopsImage3": {
-      "en": "상품 이미지를 무단 도용/배포하실 경우",
+      "en": "and protected by national and international copyright laws.",
       "ko": "상품 이미지를 무단 도용/배포하실 경우",
       "zh-cn": "如果需要图片，请与客服中心联络。",
       "zh-tw": "如果需要圖片，請與客服中心聯絡。"
     },
     "warnLinkshopsImage4": {
-      "en": "저작권법에 의해 법적 조치를 받을 수 있습니다.",
+      "en": "Unauthorized use is prohibited.",
       "ko": "저작권법에 의해 법적 조치를 받을 수 있습니다.",
       "zh-cn": "",
       "zh-tw": ""
@@ -1683,7 +1683,7 @@
       "zh-tw": "請選擇尺碼"
     },
     "warnLinkshopsImage1": {
-      "en": "All images used on this site are owned or licensed by Linkshops Inc,",
+      "en": "All images used on this site are owned or licensed by Linkshops,",
       "ko": "링크샵스에서 제공하는 상품 이미지의 저작권은 링크샵스에게 있습니다.",
       "zh-cn": "网站所有图片的著作权归属于Linkshops，",
       "zh-tw": "網站所有圖片的著作權歸屬於Linkshops，"
@@ -2665,10 +2665,10 @@
       "zh-tw": "同意退款政策"
     },
     "refundPolicyTitle": {
-      "en": "Refund Policy",
-      "ko": "환급 규정 확인",
-      "zh-cn": "退款规定确认",
-      "zh-tw": "退款規定確認"
+      "en": "Refund Policy 　　　for Out of Stock",
+      "ko": "품절시 환급규정확인",
+      "zh-cn": "缺货/断货时, 　　　　　　退款规定确认",
+      "zh-tw": "缺貨/斷貨時, 　　　　　退款規定確認"
     },
     "refundPolicyDesc1": {
       "en": "- Some items may not be delivered If the item is sold out or out of stock. In this case, we issue partial refund process based on Article 14 of the Terms of Use.",
@@ -2691,20 +2691,20 @@
     "refundPolicyMore1": {
       "en": "- We cannot check seller's inventories in real time due to the characteristics of the wholesale market.",
       "ko": "도매시장의 특성 상 판매자의 실시간 재고 파악이 불가능 합니다.",
-      "zh-cn": "由于批发市场的特殊性，不能立刻确认库存情况。按照商铺的情况，",
-      "zh-tw": "由於批發市場的特殊性，不能立刻確認庫存情況。按照商鋪的情況，"
+      "zh-cn": "由于批发市场的特殊性，不能立刻确认库存情况。按照商铺的情况，有可能发生断货或缺货。",
+      "zh-tw": "由於批發市場的特殊性，不能立刻確認庫存情況。按照商鋪的情況，有可能發生斷貨或缺貨。"
     },
     "refundPolicyMore2": {
       "en": "- Products may run out of stock up to the seller or the manufacturer's situation.",
       "ko": "판매자 또는 제조사의 사정으로 상품이 품절되거나 재고가 부족할 수 있습니다.",
-      "zh-cn": "有可能发生断货或缺货。",
-      "zh-tw": "有可能發生斷貨或缺貨。"
+      "zh-cn": "没库存的商品进行取消并退款处理。",
+      "zh-tw": "沒庫存的商品進行取消并退款處理。"
     },
     "refundPolicyMore3": {
       "en": "- If an item you have ordered is already sold out, we will refund your money with the original payment method used at the time of purchase.",
       "ko": "품절된 상품의 경우 해당 상품금액에 사입비 / 부가세 (국내에 한함)를 포함하여 주문 당시 동일 결제수단으로 자동 환불 처리해 드립니다.",
-      "zh-cn": "没库存的商品进行取消并退款处理。",
-      "zh-tw": "沒庫存的商品進行取消并退款處理。"
+      "zh-cn": "",
+      "zh-tw": ""
     }
   },
   "pcProductList": {
