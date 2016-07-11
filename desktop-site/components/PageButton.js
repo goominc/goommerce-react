@@ -6,14 +6,19 @@ import _ from 'lodash';
 
 export default React.createClass({
   propTypes: {
+    className: PropTypes.string,
+    genLink: PropTypes.func,
     pageNum: PropTypes.string,
     pagination: PropTypes.object,
-    genLink: PropTypes.func,
   },
   render() {
-    const { pageNum, pagination, genLink } = this.props;
+    const { className, pagination, genLink } = this.props;
     if (!pagination || !genLink) {
       return (<div></div>);
+    }
+    let { pageNum } = this.props;
+    if (!pageNum) {
+      pageNum = Math.floor(pagination.offset / pagination.limit) + 1;
     }
     const pageCnt = Math.ceil(pagination.total / pagination.limit);
     if (pageCnt < 2) {
@@ -69,7 +74,7 @@ export default React.createClass({
       );
     };
     return (
-      <div className="page-button-line">
+      <div className={className}>
         {renderFirst()}
         {_.range(start, end + 1).map(renderButton)}
         {renderLast()}

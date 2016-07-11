@@ -117,8 +117,9 @@ const ProductList = React.createClass({
               isShowInfo={!!auth.id}
             />
             <PageButton
-              pagination={this.state.pagination}
+              className="page-button-line"
               genLink={(pageNum) => genLink({ ...this.props, pageNum })}
+              pagination={this.state.pagination}
               pageNum={this.props.pageNum}
             />
           </div>

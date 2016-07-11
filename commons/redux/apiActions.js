@@ -449,15 +449,30 @@ export function deleteAddressOnOrder(address, order) {
   };
 }
 
-export function loadMyOrders(status) {
+export function loadMyOrders(status, pagination) {
   let endpoint = '/api/v1/users/self/orders';
-  if (status) {
-    endpoint = `${endpoint}?status=${status}`;
+  const params = {
+    status,
+  };
+  if (pagination) {
+    // offset, limit
+    _.merge(params, pagination);
+  }
+  const queryString = $.param(params);
+  if (queryString) {
+    endpoint = `${endpoint}?${queryString}`;
   }
   return createFetchAction({
     type: 'LOAD_MY_ORDERS',
     endpoint,
-    transform: ({ data }) => normalize(data.orders, schemas.orders),
+    // 2016. 07. 11. [heekyu] TODO another api's need pagination? make it common logic
+    transform: ({ data }) => {
+      const res = normalize(data.orders, schemas.orders);
+      if (res.entities.orders) {
+        res.entities.orders.pagination = data.pagination;
+      }
+      return res;
+    },
     success: {
       pagination: { key: 'myOrders', type: 'REFRESH' },
     },

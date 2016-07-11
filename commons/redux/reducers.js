@@ -159,6 +159,8 @@ function pagination(state = {}, action) {
   }
 
   if (action.pagination && action.payload) {
+    // 2016. 07. 11. [heekyu]
+    // action.pagination is client-defined values and action.payload.pagination contains server passed offset, limit, total
     const { key, type } = action.pagination;
     const current = get(state, key, {});
 

@@ -1,6 +1,7 @@
 // Copyright (C) 2016 Goom Inc. All rights reserved.
 
 import React, { PropTypes } from 'react';
+import { Link } from 'react-router';
 
 import i18n from 'commons/utils/i18n';
 import stringUtil from 'commons/utils/stringUtil';
@@ -32,7 +33,7 @@ export default React.createClass({
     return (
       <div className="mypage-dashboard">
         {/* 2016. 06. 14. [heekyu] do not use Link for reject not refreshing */}
-        <a href="/mypage/orders">
+        <Link to="/mypage/orders">
           <div className="left-title-box">
             <div className="title">{i18n.get('word.myPage')}</div>
             <div className="welcome">
@@ -40,7 +41,7 @@ export default React.createClass({
               {i18n.get('pcMypage.welcome')}
             </div>
           </div>
-        </a>
+        </Link>
         <div className="right-order-summary-box">
           <div className="title"><i className="icon-receipt"></i> {i18n.get('pcMypage.orderSummaryTitle')}</div>
           <div className="summary-line">
@@ -50,7 +51,7 @@ export default React.createClass({
                   <div className="status">{item.text}</div>
                   <div className="value">
                     {/* 2016. 06. 14. [heekyu] do not use Link for reject not refreshing */}
-                    <a href={item.link}><strong>{item.cnt}</strong>{i18n.get('pcMypage.orderCount')}</a>
+                    <Link to={item.link}><strong>{item.cnt}</strong>{i18n.get('pcMypage.orderCount')}</Link>
                   </div>
                 </div>
                 {index === orderSummary.length - 1 ? null :
