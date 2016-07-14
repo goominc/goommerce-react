@@ -34,7 +34,7 @@ const Reorder = React.createClass({
       const options = { paymentStatus: 200 };
       if (isYesterday) {
         options.skipNotification = true;
-        options.processedDate = moment().subtract(1, 'd').format('YYYY-MM-DD');
+        options.processedDate = moment().format('YYYY-MM-DD');
       }
       ApiAction.createOrderFromCart()
         .then((order) => ApiAction.startOrderProcessing(order.id, options),
